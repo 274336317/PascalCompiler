@@ -1,0 +1,60 @@
+grammar org.xtext.example.pascal.Pascal with org.eclipse.xtext.common.Terminals
+
+generate pascal "http://www.xtext.org/example/pascal/Pascal"
+
+Model:
+	program += program
+;
+
+program:
+	program_heading block "."
+;
+
+program_heading:
+	'program' name=ID "(" identifier_list ")" ";"
+;
+
+identifier_list:
+	ID ( "," ID ) *
+;
+
+block:
+	declaration_part statement_part
+;
+
+declaration_part:
+	(label_declaration_part)? 
+	(constant_definition_part)? 
+	(type_definition_part)? 
+	(variable_declaration_part)? 
+	procedure_and_function_declaration_part
+;
+
+label_declaration_part:
+	'label' label ( "," label ) * ";"
+;
+
+constant_definition_part:
+	'const' constant_definition ";" ( constant_definition ";" ) *
+;
+
+constant_definition:
+	name=ID "=" constant
+;
+
+type_definition_part:
+	'type' type_definition ";" ( type_definition ";" ) *
+;
+
+type_definition:
+	name=ID "=" type
+;
+
+variable_declaration_part:
+	'var' variable_declaration ";" ( variable_declaration ";" ) *
+;
+
+variable_declaration:
+	identifier_list ":" type
+;
+

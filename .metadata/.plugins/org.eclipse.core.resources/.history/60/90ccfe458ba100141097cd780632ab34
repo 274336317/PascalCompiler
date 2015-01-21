@@ -1,0 +1,140 @@
+grammar org.xtext.example.pascal.Pascal with org.eclipse.xtext.common.Terminals
+
+generate pascal "http://www.xtext.org/example/pascal/Pascal"
+
+pascal:
+	program += program
+;
+
+program:
+	program_heading_block block "."
+;
+
+program_heading_block:
+	"program" IDENTIFIER "(" identifier_list ")" ";"	
+;
+ 
+identifier_list:
+	IDENTIFIER ( "," IDENTIFIER ) *	
+;
+
+block:
+	declaration_part statement_part
+;
+
+statement_part:
+	"begin" statement_sequence "end"	
+;
+
+statement_sequence:
+	statement ( ";" statement ) *
+;
+
+statement: //TODO
+	( label ":" ) ? ( simple_statement )
+;
+
+label:
+	integer_number	
+;
+
+simple_statement: //TODO
+	assignment_statement ?	
+;
+
+assignment_statement:
+	( variable | function_identifier ) ":=" expression	
+;
+
+variable: //TODO
+	entire_variable
+;
+
+entire_variable: //TODO
+	variable_identifier
+;
+
+variable_identifier:
+	IDENTIFIER	
+;
+
+function_identifier:
+	IDENTIFIER	
+;
+
+expression:
+	simple_expression ( relational_operator simple_expression ) ?	
+;
+
+simple_expression:
+	( SIGN ) ? term ( addition_operator term ) *	
+;
+
+term:
+	factor ( multiplication_operator factor ) *	
+;
+
+factor: //TODO
+	variable | number | STRING //| set | "nil" | constant_identifier | bound_identifier | function_designator | "(" expression ")" | "not" factor	
+;
+
+number:
+	integer_number | real_number	
+;
+
+integer_number:
+	digit_sequence	
+;
+
+real_number:
+	digit_sequence "." ( UNSIGNED_DIGIT_SEQUENCE ) ? ( SCALE_FACTOR ) ? | digit_sequence SCALE_FACTOR	
+;
+
+digit_sequence:
+	( SIGN ) ? UNSIGNED_DIGIT_SEQUENCE	
+;
+
+declaration_part: //TODO
+	label_declaration_part
+;
+
+label_declaration_part:
+	"label" label ( "," label ) * ";"
+;
+
+terminal IDENTIFIER:
+	LETTER ( LETTER | DIGIT ) *	
+;
+
+terminal DIGIT:
+	"0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+;
+
+terminal LETTER:
+	"A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"	
+;
+ 
+terminal UNSIGNED_DIGIT_SEQUENCE:
+	DIGIT ( DIGIT ) *	
+;
+
+terminal SIGN:
+	"+" | "-"	
+;
+
+terminal SCALE_FACTOR:
+	( "E" | "e" ) digit_sequence	
+;
+
+multiplication_operator:
+	"*" | "/" | "div" | "mod" | "and"	
+;
+
+addition_operator:
+	"+" | "-" | "or"	
+;
+
+relational_operator:
+	"=" | "<>" | "<" | "<=" | ">" | ">=" | "in"	
+;
+
