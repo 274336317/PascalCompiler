@@ -47,23 +47,15 @@ assignment_statement: //TODO
 ;
 
 variable: //TODO
-	entire_variable //| component_variable
+	entire_variable
 ;
 
-entire_variable:
-	IDENTIFIER
+entire_variable: //TODO
+	variable_identifier
 ;
 
-component_variable: //TODO
-	indexed_variable 
-;
-
-indexed_variable: //FIXME: RECURSAO INDIRETA A ESQUERDA
-	variable "[" expression_list "]"	
-;
-
-expression_list:
-	expression ( "," expression ) * 	
+variable_identifier:
+	IDENTIFIER	
 ;
 
 expression:
@@ -95,11 +87,11 @@ signed_number:
 ;
 
 set:
-	"[" expression_list ? "]"	
+	"[" ( expression ( "," expression ) * ) ? "]"	
 ;
 
 function_designator:
-	IDENTIFIER "(" expression_list ? ")"
+	IDENTIFIER ( "(" expression ( "," expression ) * ")" | "(" ")" )
 ;
 
 goto_statement:

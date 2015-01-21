@@ -58,7 +58,7 @@ component_variable: //TODO
 	indexed_variable 
 ;
 
-indexed_variable: //FIXME: RECURSAO INDIRETA A ESQUERDA
+indexed_variable: //FIXME: RECURSAO A ESQUERDA
 	variable "[" expression_list "]"	
 ;
 
