@@ -168,7 +168,7 @@ terminal REAL_NUMBER:
 ;
 
 terminal UNSIGNED_DIGIT_SEQUENCE:
-	DIGIT ( DIGIT ) *	
+	DIGIT+
 ;
 
 terminal DIGIT_SEQUENCE:
