@@ -44,3 +44,24 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.core.resources 4 376 2015-01-21 16:43:08.460
 !MESSAGE Marker id 2790 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-21 16:51:56.520
+!MESSAGE Marker id 2894 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-21 16:51:56.529
+!MESSAGE Marker id 2893 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-21 16:51:56.537
+!MESSAGE Marker id 2899 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-21 16:51:56.546
+!MESSAGE Marker id 2897 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-21 16:51:56.557
+!MESSAGE Marker id 2898 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-21 16:51:56.612
+!MESSAGE Marker id 2895 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-21 16:51:56.623
+!MESSAGE Marker id 2896 not found.

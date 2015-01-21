@@ -1,0 +1,169 @@
+grammar org.xtext.example.pascal.Pascal with org.eclipse.xtext.common.Terminals
+
+generate pascal "http://www.xtext.org/example/pascal/Pascal"
+
+pascal:
+	program += program
+; 
+
+program:
+	program_heading_block block "."
+;
+
+program_heading_block:
+	"program" IDENTIFIER ( "(" identifier_list ")" ) ? ";"	
+;
+ 
+identifier_list:
+	IDENTIFIER ( "," IDENTIFIER ) *	
+;
+
+block:
+	declaration_part statement_part
+;
+
+statement_part:
+	BEGIN_KEYWORD statement_sequence END_KEYWORD	
+;
+
+statement_sequence:
+	statement ( ";" statement ) *
+;
+
+statement: //TODO
+	( label ":" ) ? ( simple_statement )
+;
+
+label:
+	INTEGER_NUMBER	
+;
+
+simple_statement: 
+	( assignment_statement | function_designator | goto_statement ) ?	
+;
+ 
+assignment_statement: //TODO
+	variable ":=" expression	
+;
+
+variable: //TODO
+	entire_variable
+;
+
+entire_variable: //TODO
+	variable_identifier
+;
+
+variable_identifier:
+	IDENTIFIER	
+;
+
+simple_expression: 
+	//term ( ADDITION_OPERATOR term ) * | ADDITION_EXPRESSION | ( "+" | "-" ) term
+	term ( ADDITION_OPERATOR term ) ?
+;
+
+expression:
+	simple_expression ( RELATIONAL_OPERATOR simple_expression ) ? | atom (( "+" | "-" ) expression)
+; 
+
+term:
+	factor ( MULTIPLICATION_OPERATOR factor ) *	
+;
+
+factor: 
+	variable | number | STRING | set | NIL_KEYWORD | function_designator | "(" expression ")" | NOT_KEYWORD factor	
+;
+
+number:
+	INTEGER_NUMBER | REAL_NUMBER	
+;
+ 
+set:
+	"[" ( expression ( "," expression ) * ) ? "]"	
+;
+
+function_designator:
+	IDENTIFIER ( "(" expression ( "," expression ) * ")" | "(" ")" )
+;
+
+goto_statement:
+	"goto" label	
+;
+
+declaration_part: //TODO
+	( label_declaration_part ) ?
+;
+
+label_declaration_part:
+	LABEL_KEYWORD label ( "," label ) * ";"
+;
+
+//terminal ADDITION_EXPRESSION:
+//	( INTEGER_NUMBER | REAL_NUMBER ) ( "+" | "-" ) ( INTEGER_NUMBER | REAL_NUMBER )	
+//;
+
+terminal ADDITION_OPERATOR:
+	"+" | "-" | "or"	
+; 
+
+terminal MULTIPLICATION_OPERATOR:
+	"*" | "/" | "div" | "mod" | "and"	
+;
+
+terminal RELATIONAL_OPERATOR:
+	"=" | "<>" | "<" | "<=" | ">" | ">=" | "in"	
+;
+
+terminal BEGIN_KEYWORD:
+	"begin"	
+;
+
+terminal END_KEYWORD:
+	"end"	
+;
+
+terminal LABEL_KEYWORD:
+	"label"
+;
+
+terminal NIL_KEYWORD:
+	"nil"	
+;
+
+terminal NOT_KEYWORD:
+	"not"	
+;
+
+terminal INTEGER_NUMBER: 
+	DIGIT_SEQUENCE	
+;
+
+terminal REAL_NUMBER:
+	DIGIT_SEQUENCE "." ( UNSIGNED_DIGIT_SEQUENCE ) ? ( ( "E" | "e" ) DIGIT_SEQUENCE ) ? | 
+	DIGIT_SEQUENCE ( "E" | "e" ) DIGIT_SEQUENCE	
+;
+
+terminal UNSIGNED_DIGIT_SEQUENCE:
+	DIGIT ( DIGIT ) *	
+;
+
+terminal DIGIT_SEQUENCE:
+	( "+" | "-" ) ? UNSIGNED_DIGIT_SEQUENCE	
+;
+
+terminal DIGIT:
+	"0".."9"
+;
+
+terminal IDENTIFIER:
+	LETTER_EXTENDED ( LETTER_EXTENDED | DIGIT ) *	
+;
+
+terminal LETTER:
+	"A".."Z" | "a".."z"
+;
+
+terminal LETTER_EXTENDED:
+	LETTER | "_"	
+; 

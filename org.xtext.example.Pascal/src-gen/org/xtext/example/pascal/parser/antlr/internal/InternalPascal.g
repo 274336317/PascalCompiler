@@ -248,7 +248,7 @@ ruleidentifier_list returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRul
     { 
     newLeafNode(this_IDENTIFIER_2, grammarAccess.getIdentifier_listAccess().getIDENTIFIERTerminalRuleCall_1_1()); 
     }
-)*)?
+)*)
     ;
 
 
@@ -486,10 +486,34 @@ rulesimple_statement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRu
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getSimple_statementAccess().getAssignment_statementParserRuleCall()); 
+        newCompositeNode(grammarAccess.getSimple_statementAccess().getAssignment_statementParserRuleCall_0()); 
     }
     this_assignment_statement_0=ruleassignment_statement    {
 		$current.merge(this_assignment_statement_0);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getSimple_statementAccess().getFunction_designatorParserRuleCall_1()); 
+    }
+    this_function_designator_1=rulefunction_designator    {
+		$current.merge(this_function_designator_1);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getSimple_statementAccess().getGoto_statementParserRuleCall_2()); 
+    }
+    this_goto_statement_2=rulegoto_statement    {
+		$current.merge(this_goto_statement_2);
     }
 
     { 
@@ -707,12 +731,89 @@ rulesimple_expression returns [AntlrDatatypeRuleToken current=new AntlrDatatypeR
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+((    this_ADDITION_OPERATOR_0=RULE_ADDITION_OPERATOR    {
+		$current.merge(this_ADDITION_OPERATOR_0);
+    }
+
+    { 
+    newLeafNode(this_ADDITION_OPERATOR_0, grammarAccess.getSimple_expressionAccess().getADDITION_OPERATORTerminalRuleCall_0()); 
+    }
+)?
+    { 
+        newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_1()); 
+    }
+    this_term_1=ruleterm    {
+		$current.merge(this_term_1);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+((((    this_ADDITION_OPERATOR_2=RULE_ADDITION_OPERATOR    {
+		$current.merge(this_ADDITION_OPERATOR_2);
+    }
+
+    { 
+    newLeafNode(this_ADDITION_OPERATOR_2, grammarAccess.getSimple_expressionAccess().getADDITION_OPERATORTerminalRuleCall_2_0_0_0()); 
+    }
+)+
+    |    this_OR_KEYWORD_3=RULE_OR_KEYWORD    {
+		$current.merge(this_OR_KEYWORD_3);
+    }
+
+    { 
+    newLeafNode(this_OR_KEYWORD_3, grammarAccess.getSimple_expressionAccess().getOR_KEYWORDTerminalRuleCall_2_0_0_1()); 
+    }
+)
+    { 
+        newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_2_0_1()); 
+    }
+    this_term_4=ruleterm    {
+		$current.merge(this_term_4);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)
+    |
+    { 
+        newCompositeNode(grammarAccess.getSimple_expressionAccess().getSigned_numberParserRuleCall_2_1()); 
+    }
+    this_signed_number_5=rulesigned_number    {
+		$current.merge(this_signed_number_5);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)*)
+    ;
+
+
+
+
+
+// Entry rule entryRuleaddition
+entryRuleaddition returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getAdditionRule()); } 
+	 iv_ruleaddition=ruleaddition 
+	 { $current=$iv_ruleaddition.current.getText(); }  
+	 EOF 
+;
+
+// Rule addition
+ruleaddition returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
 ((
     { 
-        newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_0_0()); 
+        newCompositeNode(grammarAccess.getAdditionAccess().getNumberParserRuleCall_0_0()); 
     }
-    this_term_0=ruleterm    {
-		$current.merge(this_term_0);
+    this_number_0=rulenumber    {
+		$current.merge(this_number_0);
     }
 
     { 
@@ -723,45 +824,73 @@ rulesimple_expression returns [AntlrDatatypeRuleToken current=new AntlrDatatypeR
     }
 
     { 
-    newLeafNode(this_ADDITION_OPERATOR_1, grammarAccess.getSimple_expressionAccess().getADDITION_OPERATORTerminalRuleCall_0_1_0()); 
+    newLeafNode(this_ADDITION_OPERATOR_1, grammarAccess.getAdditionAccess().getADDITION_OPERATORTerminalRuleCall_0_1()); 
     }
-
+)+
     { 
-        newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_0_1_1()); 
+        newCompositeNode(grammarAccess.getAdditionAccess().getAdditionParserRuleCall_0_2()); 
     }
-    this_term_2=ruleterm    {
-		$current.merge(this_term_2);
+    this_addition_2=ruleaddition    {
+		$current.merge(this_addition_2);
     }
 
     { 
         afterParserOrEnumRuleCall();
-    }
-)*)
-    |((
-	kw='+' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getSimple_expressionAccess().getPlusSignKeyword_1_0_0()); 
-    }
-
-    |
-	kw='-' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getSimple_expressionAccess().getHyphenMinusKeyword_1_0_1()); 
     }
 )
+    |(
     { 
-        newCompositeNode(grammarAccess.getSimple_expressionAccess().getSimple_expressionParserRuleCall_1_1()); 
+        newCompositeNode(grammarAccess.getAdditionAccess().getNumberParserRuleCall_1_0()); 
     }
-    this_simple_expression_5=rulesimple_expression    {
-		$current.merge(this_simple_expression_5);
+    this_number_3=rulenumber    {
+		$current.merge(this_number_3);
     }
 
     { 
         afterParserOrEnumRuleCall();
     }
-))
+(
+    { 
+        newCompositeNode(grammarAccess.getAdditionAccess().getSigned_numberParserRuleCall_1_1()); 
+    }
+    this_signed_number_4=rulesigned_number    {
+		$current.merge(this_signed_number_4);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)+((    this_ADDITION_OPERATOR_5=RULE_ADDITION_OPERATOR    {
+		$current.merge(this_ADDITION_OPERATOR_5);
+    }
+
+    { 
+    newLeafNode(this_ADDITION_OPERATOR_5, grammarAccess.getAdditionAccess().getADDITION_OPERATORTerminalRuleCall_1_2_0()); 
+    }
+)+
+    { 
+        newCompositeNode(grammarAccess.getAdditionAccess().getAdditionParserRuleCall_1_2_1()); 
+    }
+    this_addition_6=ruleaddition    {
+		$current.merge(this_addition_6);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)?)
+    |
+    { 
+        newCompositeNode(grammarAccess.getAdditionAccess().getFactorParserRuleCall_2()); 
+    }
+    this_factor_7=rulefactor    {
+		$current.merge(this_factor_7);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)
     ;
 
 
@@ -959,12 +1088,56 @@ rulenumber returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getNumberAccess().getUnsigned_numberParserRuleCall_0()); 
+    }
+    this_unsigned_number_0=ruleunsigned_number    {
+		$current.merge(this_unsigned_number_0);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getNumberAccess().getSigned_numberParserRuleCall_1()); 
+    }
+    this_signed_number_1=rulesigned_number    {
+		$current.merge(this_signed_number_1);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)
+    ;
+
+
+
+
+
+// Entry rule entryRuleunsigned_number
+entryRuleunsigned_number returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getUnsigned_numberRule()); } 
+	 iv_ruleunsigned_number=ruleunsigned_number 
+	 { $current=$iv_ruleunsigned_number.current.getText(); }  
+	 EOF 
+;
+
+// Rule unsigned_number
+ruleunsigned_number returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
 (    this_INTEGER_NUMBER_0=RULE_INTEGER_NUMBER    {
 		$current.merge(this_INTEGER_NUMBER_0);
     }
 
     { 
-    newLeafNode(this_INTEGER_NUMBER_0, grammarAccess.getNumberAccess().getINTEGER_NUMBERTerminalRuleCall_0()); 
+    newLeafNode(this_INTEGER_NUMBER_0, grammarAccess.getUnsigned_numberAccess().getINTEGER_NUMBERTerminalRuleCall_0()); 
     }
 
     |    this_REAL_NUMBER_1=RULE_REAL_NUMBER    {
@@ -972,7 +1145,43 @@ rulenumber returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
     }
 
     { 
-    newLeafNode(this_REAL_NUMBER_1, grammarAccess.getNumberAccess().getREAL_NUMBERTerminalRuleCall_1()); 
+    newLeafNode(this_REAL_NUMBER_1, grammarAccess.getUnsigned_numberAccess().getREAL_NUMBERTerminalRuleCall_1()); 
+    }
+)
+    ;
+
+
+
+
+
+// Entry rule entryRulesigned_number
+entryRulesigned_number returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSigned_numberRule()); } 
+	 iv_rulesigned_number=rulesigned_number 
+	 { $current=$iv_rulesigned_number.current.getText(); }  
+	 EOF 
+;
+
+// Rule signed_number
+rulesigned_number returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_SIGNED_INTEGER_NUMBER_0=RULE_SIGNED_INTEGER_NUMBER    {
+		$current.merge(this_SIGNED_INTEGER_NUMBER_0);
+    }
+
+    { 
+    newLeafNode(this_SIGNED_INTEGER_NUMBER_0, grammarAccess.getSigned_numberAccess().getSIGNED_INTEGER_NUMBERTerminalRuleCall_0()); 
+    }
+
+    |    this_SIGNED_REAL_NUMBER_1=RULE_SIGNED_REAL_NUMBER    {
+		$current.merge(this_SIGNED_REAL_NUMBER_1);
+    }
+
+    { 
+    newLeafNode(this_SIGNED_REAL_NUMBER_1, grammarAccess.getSigned_numberAccess().getSIGNED_REAL_NUMBERTerminalRuleCall_1()); 
     }
 )
     ;
@@ -1123,6 +1332,44 @@ rulefunction_designator returns [AntlrDatatypeRuleToken current=new AntlrDatatyp
 
 
 
+// Entry rule entryRulegoto_statement
+entryRulegoto_statement returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getGoto_statementRule()); } 
+	 iv_rulegoto_statement=rulegoto_statement 
+	 { $current=$iv_rulegoto_statement.current.getText(); }  
+	 EOF 
+;
+
+// Rule goto_statement
+rulegoto_statement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+	kw='goto' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getGoto_statementAccess().getGotoKeyword_0()); 
+    }
+
+    { 
+        newCompositeNode(grammarAccess.getGoto_statementAccess().getLabelParserRuleCall_1()); 
+    }
+    this_label_1=rulelabel    {
+		$current.merge(this_label_1);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+)
+    ;
+
+
+
+
+
 // Entry rule entryRuledeclaration_part
 entryRuledeclaration_part returns [String current=null] 
 	:
@@ -1217,7 +1464,7 @@ rulelabel_declaration_part returns [AntlrDatatypeRuleToken current=new AntlrData
 
 
 
-RULE_ADDITION_OPERATOR : ('+'|'-'|'or');
+RULE_ADDITION_OPERATOR : ('+'|'-');
 
 RULE_MULTIPLICATION_OPERATOR : ('*'|'/'|'div'|'mod'|'and');
 
@@ -1233,9 +1480,15 @@ RULE_NIL_KEYWORD : 'nil';
 
 RULE_NOT_KEYWORD : 'not';
 
-RULE_INTEGER_NUMBER : RULE_DIGIT_SEQUENCE;
+RULE_OR_KEYWORD : 'or';
 
-RULE_REAL_NUMBER : (RULE_DIGIT_SEQUENCE '.' RULE_UNSIGNED_DIGIT_SEQUENCE? (('E'|'e') RULE_DIGIT_SEQUENCE)?|RULE_DIGIT_SEQUENCE ('E'|'e') RULE_DIGIT_SEQUENCE);
+RULE_SIGNED_INTEGER_NUMBER : ('+'|'-') RULE_INTEGER_NUMBER;
+
+RULE_INTEGER_NUMBER : RULE_UNSIGNED_DIGIT_SEQUENCE;
+
+RULE_SIGNED_REAL_NUMBER : ('+'|'-') RULE_REAL_NUMBER;
+
+RULE_REAL_NUMBER : (RULE_UNSIGNED_DIGIT_SEQUENCE '.' RULE_UNSIGNED_DIGIT_SEQUENCE? (('E'|'e') RULE_DIGIT_SEQUENCE)?|RULE_UNSIGNED_DIGIT_SEQUENCE ('E'|'e') RULE_DIGIT_SEQUENCE);
 
 RULE_UNSIGNED_DIGIT_SEQUENCE : RULE_DIGIT RULE_DIGIT*;
 

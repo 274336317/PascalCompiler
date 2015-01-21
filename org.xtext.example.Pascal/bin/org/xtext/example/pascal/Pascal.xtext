@@ -15,7 +15,7 @@ program_heading_block:
 ;
  
 identifier_list:
-	( IDENTIFIER ( "," IDENTIFIER ) * ) ?	
+	IDENTIFIER ( "," IDENTIFIER ) *	
 ;
 
 block:
@@ -38,10 +38,10 @@ label:
 	INTEGER_NUMBER	
 ;
 
-simple_statement: //TODO
-	assignment_statement ?	
+simple_statement: 
+	( assignment_statement | function_designator | goto_statement ) ?	
 ;
-
+ 
 assignment_statement: //TODO
 	variable ":=" expression	
 ;
@@ -59,15 +59,15 @@ variable_identifier:
 ;
 
 expression:
-	simple_expression ( RELATIONAL_OPERATOR simple_expression ) ? 
-;
+	simple_expression ( RELATIONAL_OPERATOR simple_expression ) ?
+; 
 
-simple_expression: //FIXME: SIGNED EXPRESSION (I.E.: -(2 + 2))
-	term ( ADDITION_OPERATOR term ) * 
+simple_expression: 
+	( ADDITION_OPERATOR+ ) ? term ( ( ADDITION_OPERATOR+ | OR_KEYWORD ) term | signed_number ) *
 ;
-
+  
 term:
-	factor ( MULTIPLICATION_OPERATOR factor ) *	
+	factor ( MULTIPLICATION_OPERATOR factor ) * 
 ;
 
 factor: 
@@ -75,15 +75,27 @@ factor:
 ;
 
 number:
+	unsigned_number | signed_number	
+;
+
+unsigned_number:
 	INTEGER_NUMBER | REAL_NUMBER	
 ;
  
+signed_number:
+	SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER
+;
+
 set:
 	"[" ( expression ( "," expression ) * ) ? "]"	
 ;
 
 function_designator:
 	IDENTIFIER ( "(" expression ( "," expression ) * ")" | "(" ")" )
+;
+
+goto_statement:
+	"goto" label	
 ;
 
 declaration_part: //TODO
@@ -95,7 +107,7 @@ label_declaration_part:
 ;
 
 terminal ADDITION_OPERATOR:
-	"+" | "-" | "or"	
+	"+" | "-" 	
 ; 
 
 terminal MULTIPLICATION_OPERATOR:
@@ -126,13 +138,25 @@ terminal NOT_KEYWORD:
 	"not"	
 ;
 
+terminal OR_KEYWORD:
+	"or"	
+;
+
+terminal SIGNED_INTEGER_NUMBER:
+	( "+" | "-" ) INTEGER_NUMBER	
+;
+
 terminal INTEGER_NUMBER: 
-	DIGIT_SEQUENCE	
+	UNSIGNED_DIGIT_SEQUENCE	
+;
+
+terminal SIGNED_REAL_NUMBER:
+	( "+" | "-" ) REAL_NUMBER
 ;
 
 terminal REAL_NUMBER:
-	DIGIT_SEQUENCE "." ( UNSIGNED_DIGIT_SEQUENCE ) ? ( ( "E" | "e" ) DIGIT_SEQUENCE ) ? | 
-	DIGIT_SEQUENCE ( "E" | "e" ) DIGIT_SEQUENCE	
+	UNSIGNED_DIGIT_SEQUENCE "." ( UNSIGNED_DIGIT_SEQUENCE ) ? ( ( "E" | "e" ) DIGIT_SEQUENCE ) ? | 
+	UNSIGNED_DIGIT_SEQUENCE ( "E" | "e" ) DIGIT_SEQUENCE	
 ;
 
 terminal UNSIGNED_DIGIT_SEQUENCE:
