@@ -21,52 +21,44 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPascalParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_IDENTIFIER", "RULE_INTEGER_NUMBER", "RULE_SIGN", "RULE_REAL_NUMBER", "RULE_DIGIT_SEQUENCE", "RULE_UNSIGNED_DIGIT_SEQUENCE", "RULE_SCALE_FACTOR", "RULE_LETTER_EXTENDED", "RULE_DIGIT", "RULE_LETTER", "RULE_ID", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'.'", "'program'", "'('", "')'", "';'", "','", "'begin'", "'end'", "':'", "':='", "'='", "'<>'", "'<'", "'<='", "'>'", "'>='", "'in'", "'+'", "'-'", "'or'", "'*'", "'/'", "'div'", "'mod'", "'and'", "'label'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_IDENTIFIER", "RULE_BEGIN_KEYWORD", "RULE_END_KEYWORD", "RULE_INTEGER_NUMBER", "RULE_RELATIONAL_OPERATOR", "RULE_ADDITION_OPERATOR", "RULE_MULTIPLICATION_OPERATOR", "RULE_STRING", "RULE_NIL_KEYWORD", "RULE_NOT_KEYWORD", "RULE_REAL_NUMBER", "RULE_LABEL_KEYWORD", "RULE_DIGIT_SEQUENCE", "RULE_UNSIGNED_DIGIT_SEQUENCE", "RULE_DIGIT", "RULE_LETTER_EXTENDED", "RULE_LETTER", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'.'", "'program'", "'('", "')'", "';'", "','", "':'", "':='", "'+'", "'-'", "'['", "']'"
     };
-    public static final int RULE_ID=14;
+    public static final int RULE_ID=21;
+    public static final int RULE_RELATIONAL_OPERATOR=8;
+    public static final int RULE_NIL_KEYWORD=12;
     public static final int T__29=29;
     public static final int T__28=28;
     public static final int T__27=27;
-    public static final int T__26=26;
-    public static final int T__25=25;
-    public static final int T__24=24;
-    public static final int T__23=23;
-    public static final int T__22=22;
-    public static final int RULE_ANY_OTHER=20;
-    public static final int T__21=21;
-    public static final int EOF=-1;
-    public static final int RULE_REAL_NUMBER=7;
-    public static final int RULE_INT=15;
-    public static final int RULE_LETTER_EXTENDED=11;
-    public static final int T__42=42;
-    public static final int T__43=43;
-    public static final int T__40=40;
-    public static final int T__41=41;
-    public static final int T__46=46;
-    public static final int T__44=44;
-    public static final int T__45=45;
-    public static final int RULE_SCALE_FACTOR=10;
+    public static final int RULE_LABEL_KEYWORD=15;
+    public static final int RULE_ANY_OTHER=26;
+    public static final int RULE_UNSIGNED_DIGIT_SEQUENCE=17;
     public static final int RULE_IDENTIFIER=4;
-    public static final int RULE_UNSIGNED_DIGIT_SEQUENCE=9;
-    public static final int RULE_SIGN=6;
-    public static final int RULE_SL_COMMENT=18;
-    public static final int RULE_LETTER=13;
-    public static final int RULE_ML_COMMENT=17;
+    public static final int RULE_SL_COMMENT=24;
+    public static final int RULE_ADDITION_OPERATOR=9;
+    public static final int EOF=-1;
+    public static final int RULE_NOT_KEYWORD=13;
+    public static final int RULE_LETTER=20;
+    public static final int RULE_ML_COMMENT=23;
     public static final int T__30=30;
+    public static final int RULE_END_KEYWORD=6;
     public static final int T__31=31;
+    public static final int RULE_STRING=11;
     public static final int T__32=32;
-    public static final int RULE_STRING=16;
+    public static final int RULE_REAL_NUMBER=14;
     public static final int T__33=33;
     public static final int T__34=34;
     public static final int T__35=35;
     public static final int T__36=36;
     public static final int T__37=37;
     public static final int T__38=38;
-    public static final int T__39=39;
-    public static final int RULE_DIGIT_SEQUENCE=8;
-    public static final int RULE_WS=19;
-    public static final int RULE_DIGIT=12;
-    public static final int RULE_INTEGER_NUMBER=5;
+    public static final int RULE_MULTIPLICATION_OPERATOR=10;
+    public static final int RULE_INT=22;
+    public static final int RULE_BEGIN_KEYWORD=5;
+    public static final int RULE_DIGIT_SEQUENCE=16;
+    public static final int RULE_WS=25;
+    public static final int RULE_DIGIT=18;
+    public static final int RULE_LETTER_EXTENDED=19;
+    public static final int RULE_INTEGER_NUMBER=7;
 
     // delegates
     // delegators
@@ -288,7 +280,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            kw=(Token)match(input,21,FOLLOW_21_in_ruleprogram269); 
+            kw=(Token)match(input,27,FOLLOW_27_in_ruleprogram269); 
 
                     current.merge(kw);
                     newLeafNode(kw, grammarAccess.getProgramAccess().getFullStopKeyword_2()); 
@@ -368,7 +360,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:168:1: (kw= 'program' this_IDENTIFIER_1= RULE_IDENTIFIER (kw= '(' this_identifier_list_3= ruleidentifier_list kw= ')' )? kw= ';' )
             // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:169:2: kw= 'program' this_IDENTIFIER_1= RULE_IDENTIFIER (kw= '(' this_identifier_list_3= ruleidentifier_list kw= ')' )? kw= ';'
             {
-            kw=(Token)match(input,22,FOLLOW_22_in_ruleprogram_heading_block359); 
+            kw=(Token)match(input,28,FOLLOW_28_in_ruleprogram_heading_block359); 
 
                     current.merge(kw);
                     newLeafNode(kw, grammarAccess.getProgram_heading_blockAccess().getProgramKeyword_0()); 
@@ -384,14 +376,14 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==23) ) {
+            if ( (LA1_0==29) ) {
                 alt1=1;
             }
             switch (alt1) {
                 case 1 :
                     // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:182:2: kw= '(' this_identifier_list_3= ruleidentifier_list kw= ')'
                     {
-                    kw=(Token)match(input,23,FOLLOW_23_in_ruleprogram_heading_block393); 
+                    kw=(Token)match(input,29,FOLLOW_29_in_ruleprogram_heading_block393); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getProgram_heading_blockAccess().getLeftParenthesisKeyword_2_0()); 
@@ -410,7 +402,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                      
                             afterParserOrEnumRuleCall();
                         
-                    kw=(Token)match(input,24,FOLLOW_24_in_ruleprogram_heading_block433); 
+                    kw=(Token)match(input,30,FOLLOW_30_in_ruleprogram_heading_block433); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getProgram_heading_blockAccess().getRightParenthesisKeyword_2_2()); 
@@ -421,7 +413,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
             }
 
-            kw=(Token)match(input,25,FOLLOW_25_in_ruleprogram_heading_block448); 
+            kw=(Token)match(input,31,FOLLOW_31_in_ruleprogram_heading_block448); 
 
                     current.merge(kw);
                     newLeafNode(kw, grammarAccess.getProgram_heading_blockAccess().getSemicolonKeyword_3()); 
@@ -521,7 +513,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                         int alt2=2;
                         int LA2_0 = input.LA(1);
 
-                        if ( (LA2_0==26) ) {
+                        if ( (LA2_0==32) ) {
                             alt2=1;
                         }
 
@@ -530,7 +522,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                     	case 1 :
                     	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:239:2: kw= ',' this_IDENTIFIER_2= RULE_IDENTIFIER
                     	    {
-                    	    kw=(Token)match(input,26,FOLLOW_26_in_ruleidentifier_list559); 
+                    	    kw=(Token)match(input,32,FOLLOW_32_in_ruleidentifier_list559); 
 
                     	            current.merge(kw);
                     	            newLeafNode(kw, grammarAccess.getIdentifier_listAccess().getCommaKeyword_1_0()); 
@@ -714,32 +706,35 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulestatement_part"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:311:1: rulestatement_part returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'begin' this_statement_sequence_1= rulestatement_sequence kw= 'end' ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:311:1: rulestatement_part returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_BEGIN_KEYWORD_0= RULE_BEGIN_KEYWORD this_statement_sequence_1= rulestatement_sequence this_END_KEYWORD_2= RULE_END_KEYWORD ) ;
     public final AntlrDatatypeRuleToken rulestatement_part() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
-        Token kw=null;
+        Token this_BEGIN_KEYWORD_0=null;
+        Token this_END_KEYWORD_2=null;
         AntlrDatatypeRuleToken this_statement_sequence_1 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:314:28: ( (kw= 'begin' this_statement_sequence_1= rulestatement_sequence kw= 'end' ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:315:1: (kw= 'begin' this_statement_sequence_1= rulestatement_sequence kw= 'end' )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:314:28: ( (this_BEGIN_KEYWORD_0= RULE_BEGIN_KEYWORD this_statement_sequence_1= rulestatement_sequence this_END_KEYWORD_2= RULE_END_KEYWORD ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:315:1: (this_BEGIN_KEYWORD_0= RULE_BEGIN_KEYWORD this_statement_sequence_1= rulestatement_sequence this_END_KEYWORD_2= RULE_END_KEYWORD )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:315:1: (kw= 'begin' this_statement_sequence_1= rulestatement_sequence kw= 'end' )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:316:2: kw= 'begin' this_statement_sequence_1= rulestatement_sequence kw= 'end'
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:315:1: (this_BEGIN_KEYWORD_0= RULE_BEGIN_KEYWORD this_statement_sequence_1= rulestatement_sequence this_END_KEYWORD_2= RULE_END_KEYWORD )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:315:6: this_BEGIN_KEYWORD_0= RULE_BEGIN_KEYWORD this_statement_sequence_1= rulestatement_sequence this_END_KEYWORD_2= RULE_END_KEYWORD
             {
-            kw=(Token)match(input,27,FOLLOW_27_in_rulestatement_part803); 
+            this_BEGIN_KEYWORD_0=(Token)match(input,RULE_BEGIN_KEYWORD,FOLLOW_RULE_BEGIN_KEYWORD_in_rulestatement_part805); 
 
-                    current.merge(kw);
-                    newLeafNode(kw, grammarAccess.getStatement_partAccess().getBeginKeyword_0()); 
+            		current.merge(this_BEGIN_KEYWORD_0);
+                
+             
+                newLeafNode(this_BEGIN_KEYWORD_0, grammarAccess.getStatement_partAccess().getBEGIN_KEYWORDTerminalRuleCall_0()); 
                 
              
                     newCompositeNode(grammarAccess.getStatement_partAccess().getStatement_sequenceParserRuleCall_1()); 
                 
-            pushFollow(FOLLOW_rulestatement_sequence_in_rulestatement_part825);
+            pushFollow(FOLLOW_rulestatement_sequence_in_rulestatement_part832);
             this_statement_sequence_1=rulestatement_sequence();
 
             state._fsp--;
@@ -750,10 +745,12 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            kw=(Token)match(input,28,FOLLOW_28_in_rulestatement_part843); 
+            this_END_KEYWORD_2=(Token)match(input,RULE_END_KEYWORD,FOLLOW_RULE_END_KEYWORD_in_rulestatement_part852); 
 
-                    current.merge(kw);
-                    newLeafNode(kw, grammarAccess.getStatement_partAccess().getEndKeyword_2()); 
+            		current.merge(this_END_KEYWORD_2);
+                
+             
+                newLeafNode(this_END_KEYWORD_2, grammarAccess.getStatement_partAccess().getEND_KEYWORDTerminalRuleCall_2()); 
                 
 
             }
@@ -776,7 +773,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulestatement_sequence"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:346:1: entryRulestatement_sequence returns [String current=null] : iv_rulestatement_sequence= rulestatement_sequence EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:348:1: entryRulestatement_sequence returns [String current=null] : iv_rulestatement_sequence= rulestatement_sequence EOF ;
     public final String entryRulestatement_sequence() throws RecognitionException {
         String current = null;
 
@@ -784,17 +781,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:347:2: (iv_rulestatement_sequence= rulestatement_sequence EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:348:2: iv_rulestatement_sequence= rulestatement_sequence EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:349:2: (iv_rulestatement_sequence= rulestatement_sequence EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:350:2: iv_rulestatement_sequence= rulestatement_sequence EOF
             {
              newCompositeNode(grammarAccess.getStatement_sequenceRule()); 
-            pushFollow(FOLLOW_rulestatement_sequence_in_entryRulestatement_sequence884);
+            pushFollow(FOLLOW_rulestatement_sequence_in_entryRulestatement_sequence898);
             iv_rulestatement_sequence=rulestatement_sequence();
 
             state._fsp--;
 
              current =iv_rulestatement_sequence.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulestatement_sequence895); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulestatement_sequence909); 
 
             }
 
@@ -812,7 +809,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulestatement_sequence"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:355:1: rulestatement_sequence returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )* ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:357:1: rulestatement_sequence returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )* ) ;
     public final AntlrDatatypeRuleToken rulestatement_sequence() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -825,16 +822,16 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:358:28: ( (this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )* ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:359:1: (this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )* )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:360:28: ( (this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )* ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:361:1: (this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )* )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:359:1: (this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )* )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:360:5: this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )*
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:361:1: (this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )* )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:362:5: this_statement_0= rulestatement (kw= ';' this_statement_2= rulestatement )*
             {
              
                     newCompositeNode(grammarAccess.getStatement_sequenceAccess().getStatementParserRuleCall_0()); 
                 
-            pushFollow(FOLLOW_rulestatement_in_rulestatement_sequence942);
+            pushFollow(FOLLOW_rulestatement_in_rulestatement_sequence956);
             this_statement_0=rulestatement();
 
             state._fsp--;
@@ -845,22 +842,22 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:370:1: (kw= ';' this_statement_2= rulestatement )*
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:372:1: (kw= ';' this_statement_2= rulestatement )*
             loop4:
             do {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( (LA4_0==25) ) {
+                if ( (LA4_0==31) ) {
                     alt4=1;
                 }
 
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:371:2: kw= ';' this_statement_2= rulestatement
+            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:373:2: kw= ';' this_statement_2= rulestatement
             	    {
-            	    kw=(Token)match(input,25,FOLLOW_25_in_rulestatement_sequence961); 
+            	    kw=(Token)match(input,31,FOLLOW_31_in_rulestatement_sequence975); 
 
             	            current.merge(kw);
             	            newLeafNode(kw, grammarAccess.getStatement_sequenceAccess().getSemicolonKeyword_1_0()); 
@@ -868,7 +865,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             	     
             	            newCompositeNode(grammarAccess.getStatement_sequenceAccess().getStatementParserRuleCall_1_1()); 
             	        
-            	    pushFollow(FOLLOW_rulestatement_in_rulestatement_sequence983);
+            	    pushFollow(FOLLOW_rulestatement_in_rulestatement_sequence997);
             	    this_statement_2=rulestatement();
 
             	    state._fsp--;
@@ -909,7 +906,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulestatement"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:395:1: entryRulestatement returns [String current=null] : iv_rulestatement= rulestatement EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:397:1: entryRulestatement returns [String current=null] : iv_rulestatement= rulestatement EOF ;
     public final String entryRulestatement() throws RecognitionException {
         String current = null;
 
@@ -917,17 +914,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:396:2: (iv_rulestatement= rulestatement EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:397:2: iv_rulestatement= rulestatement EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:398:2: (iv_rulestatement= rulestatement EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:399:2: iv_rulestatement= rulestatement EOF
             {
              newCompositeNode(grammarAccess.getStatementRule()); 
-            pushFollow(FOLLOW_rulestatement_in_entryRulestatement1031);
+            pushFollow(FOLLOW_rulestatement_in_entryRulestatement1045);
             iv_rulestatement=rulestatement();
 
             state._fsp--;
 
              current =iv_rulestatement.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulestatement1042); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulestatement1056); 
 
             }
 
@@ -945,7 +942,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulestatement"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:404:1: rulestatement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:406:1: rulestatement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement ) ;
     public final AntlrDatatypeRuleToken rulestatement() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -958,13 +955,13 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:407:28: ( ( (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:408:1: ( (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:409:28: ( ( (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:410:1: ( (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:408:1: ( (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:408:2: (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:410:1: ( (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:410:2: (this_label_0= rulelabel kw= ':' )? this_simple_statement_2= rulesimple_statement
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:408:2: (this_label_0= rulelabel kw= ':' )?
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:410:2: (this_label_0= rulelabel kw= ':' )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -973,12 +970,12 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:409:5: this_label_0= rulelabel kw= ':'
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:411:5: this_label_0= rulelabel kw= ':'
                     {
                      
                             newCompositeNode(grammarAccess.getStatementAccess().getLabelParserRuleCall_0_0()); 
                         
-                    pushFollow(FOLLOW_rulelabel_in_rulestatement1090);
+                    pushFollow(FOLLOW_rulelabel_in_rulestatement1104);
                     this_label_0=rulelabel();
 
                     state._fsp--;
@@ -989,7 +986,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                      
                             afterParserOrEnumRuleCall();
                         
-                    kw=(Token)match(input,29,FOLLOW_29_in_rulestatement1108); 
+                    kw=(Token)match(input,33,FOLLOW_33_in_rulestatement1122); 
 
                             current.merge(kw);
                             newLeafNode(kw, grammarAccess.getStatementAccess().getColonKeyword_0_1()); 
@@ -1003,7 +1000,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
              
                     newCompositeNode(grammarAccess.getStatementAccess().getSimple_statementParserRuleCall_1()); 
                 
-            pushFollow(FOLLOW_rulesimple_statement_in_rulestatement1132);
+            pushFollow(FOLLOW_rulesimple_statement_in_rulestatement1146);
             this_simple_statement_2=rulesimple_statement();
 
             state._fsp--;
@@ -1035,7 +1032,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulelabel"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:444:1: entryRulelabel returns [String current=null] : iv_rulelabel= rulelabel EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:446:1: entryRulelabel returns [String current=null] : iv_rulelabel= rulelabel EOF ;
     public final String entryRulelabel() throws RecognitionException {
         String current = null;
 
@@ -1043,17 +1040,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:445:2: (iv_rulelabel= rulelabel EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:446:2: iv_rulelabel= rulelabel EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:447:2: (iv_rulelabel= rulelabel EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:448:2: iv_rulelabel= rulelabel EOF
             {
              newCompositeNode(grammarAccess.getLabelRule()); 
-            pushFollow(FOLLOW_rulelabel_in_entryRulelabel1178);
+            pushFollow(FOLLOW_rulelabel_in_entryRulelabel1192);
             iv_rulelabel=rulelabel();
 
             state._fsp--;
 
              current =iv_rulelabel.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulelabel1189); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulelabel1203); 
 
             }
 
@@ -1071,7 +1068,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulelabel"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:453:1: rulelabel returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:455:1: rulelabel returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER ;
     public final AntlrDatatypeRuleToken rulelabel() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1080,10 +1077,10 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:456:28: (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:457:5: this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:458:28: (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:459:5: this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER
             {
-            this_INTEGER_NUMBER_0=(Token)match(input,RULE_INTEGER_NUMBER,FOLLOW_RULE_INTEGER_NUMBER_in_rulelabel1228); 
+            this_INTEGER_NUMBER_0=(Token)match(input,RULE_INTEGER_NUMBER,FOLLOW_RULE_INTEGER_NUMBER_in_rulelabel1242); 
 
             		current.merge(this_INTEGER_NUMBER_0);
                 
@@ -1108,7 +1105,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulesimple_statement"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:472:1: entryRulesimple_statement returns [String current=null] : iv_rulesimple_statement= rulesimple_statement EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:474:1: entryRulesimple_statement returns [String current=null] : iv_rulesimple_statement= rulesimple_statement EOF ;
     public final String entryRulesimple_statement() throws RecognitionException {
         String current = null;
 
@@ -1116,17 +1113,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:473:2: (iv_rulesimple_statement= rulesimple_statement EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:474:2: iv_rulesimple_statement= rulesimple_statement EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:475:2: (iv_rulesimple_statement= rulesimple_statement EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:476:2: iv_rulesimple_statement= rulesimple_statement EOF
             {
              newCompositeNode(grammarAccess.getSimple_statementRule()); 
-            pushFollow(FOLLOW_rulesimple_statement_in_entryRulesimple_statement1273);
+            pushFollow(FOLLOW_rulesimple_statement_in_entryRulesimple_statement1287);
             iv_rulesimple_statement=rulesimple_statement();
 
             state._fsp--;
 
              current =iv_rulesimple_statement.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulesimple_statement1284); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulesimple_statement1298); 
 
             }
 
@@ -1144,7 +1141,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulesimple_statement"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:481:1: rulesimple_statement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_assignment_statement_0= ruleassignment_statement )? ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:483:1: rulesimple_statement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_assignment_statement_0= ruleassignment_statement )? ;
     public final AntlrDatatypeRuleToken rulesimple_statement() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1154,10 +1151,10 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:484:28: ( (this_assignment_statement_0= ruleassignment_statement )? )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:485:1: (this_assignment_statement_0= ruleassignment_statement )?
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:486:28: ( (this_assignment_statement_0= ruleassignment_statement )? )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:487:1: (this_assignment_statement_0= ruleassignment_statement )?
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:485:1: (this_assignment_statement_0= ruleassignment_statement )?
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:487:1: (this_assignment_statement_0= ruleassignment_statement )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1166,12 +1163,12 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:486:5: this_assignment_statement_0= ruleassignment_statement
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:488:5: this_assignment_statement_0= ruleassignment_statement
                     {
                      
                             newCompositeNode(grammarAccess.getSimple_statementAccess().getAssignment_statementParserRuleCall()); 
                         
-                    pushFollow(FOLLOW_ruleassignment_statement_in_rulesimple_statement1331);
+                    pushFollow(FOLLOW_ruleassignment_statement_in_rulesimple_statement1345);
                     this_assignment_statement_0=ruleassignment_statement();
 
                     state._fsp--;
@@ -1206,7 +1203,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleassignment_statement"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:504:1: entryRuleassignment_statement returns [String current=null] : iv_ruleassignment_statement= ruleassignment_statement EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:506:1: entryRuleassignment_statement returns [String current=null] : iv_ruleassignment_statement= ruleassignment_statement EOF ;
     public final String entryRuleassignment_statement() throws RecognitionException {
         String current = null;
 
@@ -1214,17 +1211,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:505:2: (iv_ruleassignment_statement= ruleassignment_statement EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:506:2: iv_ruleassignment_statement= ruleassignment_statement EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:507:2: (iv_ruleassignment_statement= ruleassignment_statement EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:508:2: iv_ruleassignment_statement= ruleassignment_statement EOF
             {
              newCompositeNode(grammarAccess.getAssignment_statementRule()); 
-            pushFollow(FOLLOW_ruleassignment_statement_in_entryRuleassignment_statement1378);
+            pushFollow(FOLLOW_ruleassignment_statement_in_entryRuleassignment_statement1392);
             iv_ruleassignment_statement=ruleassignment_statement();
 
             state._fsp--;
 
              current =iv_ruleassignment_statement.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleassignment_statement1389); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleassignment_statement1403); 
 
             }
 
@@ -1242,7 +1239,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleassignment_statement"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:513:1: ruleassignment_statement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:515:1: ruleassignment_statement returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression ) ;
     public final AntlrDatatypeRuleToken ruleassignment_statement() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1255,16 +1252,16 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:516:28: ( (this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:517:1: (this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:518:28: ( (this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:519:1: (this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:517:1: (this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:518:5: this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:519:1: (this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:520:5: this_variable_0= rulevariable kw= ':=' this_expression_2= ruleexpression
             {
              
                     newCompositeNode(grammarAccess.getAssignment_statementAccess().getVariableParserRuleCall_0()); 
                 
-            pushFollow(FOLLOW_rulevariable_in_ruleassignment_statement1436);
+            pushFollow(FOLLOW_rulevariable_in_ruleassignment_statement1450);
             this_variable_0=rulevariable();
 
             state._fsp--;
@@ -1275,7 +1272,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            kw=(Token)match(input,30,FOLLOW_30_in_ruleassignment_statement1454); 
+            kw=(Token)match(input,34,FOLLOW_34_in_ruleassignment_statement1468); 
 
                     current.merge(kw);
                     newLeafNode(kw, grammarAccess.getAssignment_statementAccess().getColonEqualsSignKeyword_1()); 
@@ -1283,7 +1280,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
              
                     newCompositeNode(grammarAccess.getAssignment_statementAccess().getExpressionParserRuleCall_2()); 
                 
-            pushFollow(FOLLOW_ruleexpression_in_ruleassignment_statement1476);
+            pushFollow(FOLLOW_ruleexpression_in_ruleassignment_statement1490);
             this_expression_2=ruleexpression();
 
             state._fsp--;
@@ -1315,7 +1312,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulevariable"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:553:1: entryRulevariable returns [String current=null] : iv_rulevariable= rulevariable EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:555:1: entryRulevariable returns [String current=null] : iv_rulevariable= rulevariable EOF ;
     public final String entryRulevariable() throws RecognitionException {
         String current = null;
 
@@ -1323,17 +1320,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:554:2: (iv_rulevariable= rulevariable EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:555:2: iv_rulevariable= rulevariable EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:556:2: (iv_rulevariable= rulevariable EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:557:2: iv_rulevariable= rulevariable EOF
             {
              newCompositeNode(grammarAccess.getVariableRule()); 
-            pushFollow(FOLLOW_rulevariable_in_entryRulevariable1522);
+            pushFollow(FOLLOW_rulevariable_in_entryRulevariable1536);
             iv_rulevariable=rulevariable();
 
             state._fsp--;
 
              current =iv_rulevariable.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulevariable1533); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulevariable1547); 
 
             }
 
@@ -1351,7 +1348,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulevariable"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:562:1: rulevariable returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_entire_variable_0= ruleentire_variable ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:564:1: rulevariable returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_entire_variable_0= ruleentire_variable ;
     public final AntlrDatatypeRuleToken rulevariable() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1361,13 +1358,13 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:565:28: (this_entire_variable_0= ruleentire_variable )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:567:5: this_entire_variable_0= ruleentire_variable
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:567:28: (this_entire_variable_0= ruleentire_variable )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:569:5: this_entire_variable_0= ruleentire_variable
             {
              
                     newCompositeNode(grammarAccess.getVariableAccess().getEntire_variableParserRuleCall()); 
                 
-            pushFollow(FOLLOW_ruleentire_variable_in_rulevariable1579);
+            pushFollow(FOLLOW_ruleentire_variable_in_rulevariable1593);
             this_entire_variable_0=ruleentire_variable();
 
             state._fsp--;
@@ -1396,7 +1393,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleentire_variable"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:585:1: entryRuleentire_variable returns [String current=null] : iv_ruleentire_variable= ruleentire_variable EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:587:1: entryRuleentire_variable returns [String current=null] : iv_ruleentire_variable= ruleentire_variable EOF ;
     public final String entryRuleentire_variable() throws RecognitionException {
         String current = null;
 
@@ -1404,17 +1401,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:586:2: (iv_ruleentire_variable= ruleentire_variable EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:587:2: iv_ruleentire_variable= ruleentire_variable EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:588:2: (iv_ruleentire_variable= ruleentire_variable EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:589:2: iv_ruleentire_variable= ruleentire_variable EOF
             {
              newCompositeNode(grammarAccess.getEntire_variableRule()); 
-            pushFollow(FOLLOW_ruleentire_variable_in_entryRuleentire_variable1624);
+            pushFollow(FOLLOW_ruleentire_variable_in_entryRuleentire_variable1638);
             iv_ruleentire_variable=ruleentire_variable();
 
             state._fsp--;
 
              current =iv_ruleentire_variable.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleentire_variable1635); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleentire_variable1649); 
 
             }
 
@@ -1432,7 +1429,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleentire_variable"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:594:1: ruleentire_variable returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_variable_identifier_0= rulevariable_identifier ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:596:1: ruleentire_variable returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_variable_identifier_0= rulevariable_identifier ;
     public final AntlrDatatypeRuleToken ruleentire_variable() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1442,13 +1439,13 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:597:28: (this_variable_identifier_0= rulevariable_identifier )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:599:5: this_variable_identifier_0= rulevariable_identifier
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:599:28: (this_variable_identifier_0= rulevariable_identifier )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:601:5: this_variable_identifier_0= rulevariable_identifier
             {
              
                     newCompositeNode(grammarAccess.getEntire_variableAccess().getVariable_identifierParserRuleCall()); 
                 
-            pushFollow(FOLLOW_rulevariable_identifier_in_ruleentire_variable1681);
+            pushFollow(FOLLOW_rulevariable_identifier_in_ruleentire_variable1695);
             this_variable_identifier_0=rulevariable_identifier();
 
             state._fsp--;
@@ -1477,7 +1474,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulevariable_identifier"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:617:1: entryRulevariable_identifier returns [String current=null] : iv_rulevariable_identifier= rulevariable_identifier EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:619:1: entryRulevariable_identifier returns [String current=null] : iv_rulevariable_identifier= rulevariable_identifier EOF ;
     public final String entryRulevariable_identifier() throws RecognitionException {
         String current = null;
 
@@ -1485,17 +1482,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:618:2: (iv_rulevariable_identifier= rulevariable_identifier EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:619:2: iv_rulevariable_identifier= rulevariable_identifier EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:620:2: (iv_rulevariable_identifier= rulevariable_identifier EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:621:2: iv_rulevariable_identifier= rulevariable_identifier EOF
             {
              newCompositeNode(grammarAccess.getVariable_identifierRule()); 
-            pushFollow(FOLLOW_rulevariable_identifier_in_entryRulevariable_identifier1726);
+            pushFollow(FOLLOW_rulevariable_identifier_in_entryRulevariable_identifier1740);
             iv_rulevariable_identifier=rulevariable_identifier();
 
             state._fsp--;
 
              current =iv_rulevariable_identifier.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulevariable_identifier1737); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulevariable_identifier1751); 
 
             }
 
@@ -1513,7 +1510,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulevariable_identifier"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:626:1: rulevariable_identifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_IDENTIFIER_0= RULE_IDENTIFIER ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:628:1: rulevariable_identifier returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : this_IDENTIFIER_0= RULE_IDENTIFIER ;
     public final AntlrDatatypeRuleToken rulevariable_identifier() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -1522,10 +1519,10 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:629:28: (this_IDENTIFIER_0= RULE_IDENTIFIER )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:630:5: this_IDENTIFIER_0= RULE_IDENTIFIER
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:631:28: (this_IDENTIFIER_0= RULE_IDENTIFIER )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:632:5: this_IDENTIFIER_0= RULE_IDENTIFIER
             {
-            this_IDENTIFIER_0=(Token)match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rulevariable_identifier1776); 
+            this_IDENTIFIER_0=(Token)match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rulevariable_identifier1790); 
 
             		current.merge(this_IDENTIFIER_0);
                 
@@ -1550,7 +1547,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleexpression"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:645:1: entryRuleexpression returns [String current=null] : iv_ruleexpression= ruleexpression EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:647:1: entryRuleexpression returns [String current=null] : iv_ruleexpression= ruleexpression EOF ;
     public final String entryRuleexpression() throws RecognitionException {
         String current = null;
 
@@ -1558,17 +1555,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:646:2: (iv_ruleexpression= ruleexpression EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:647:2: iv_ruleexpression= ruleexpression EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:648:2: (iv_ruleexpression= ruleexpression EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:649:2: iv_ruleexpression= ruleexpression EOF
             {
              newCompositeNode(grammarAccess.getExpressionRule()); 
-            pushFollow(FOLLOW_ruleexpression_in_entryRuleexpression1821);
+            pushFollow(FOLLOW_ruleexpression_in_entryRuleexpression1835);
             iv_ruleexpression=ruleexpression();
 
             state._fsp--;
 
              current =iv_ruleexpression.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleexpression1832); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleexpression1846); 
 
             }
 
@@ -1586,13 +1583,12 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleexpression"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:654:1: ruleexpression returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_simple_expression_0= rulesimple_expression (this_relation_operator_1= rulerelation_operator this_simple_expression_2= rulesimple_expression )? ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:656:1: ruleexpression returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_simple_expression_0= rulesimple_expression (this_RELATIONAL_OPERATOR_1= RULE_RELATIONAL_OPERATOR this_simple_expression_2= rulesimple_expression )? ) ;
     public final AntlrDatatypeRuleToken ruleexpression() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
+        Token this_RELATIONAL_OPERATOR_1=null;
         AntlrDatatypeRuleToken this_simple_expression_0 = null;
-
-        AntlrDatatypeRuleToken this_relation_operator_1 = null;
 
         AntlrDatatypeRuleToken this_simple_expression_2 = null;
 
@@ -1600,16 +1596,16 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:657:28: ( (this_simple_expression_0= rulesimple_expression (this_relation_operator_1= rulerelation_operator this_simple_expression_2= rulesimple_expression )? ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:658:1: (this_simple_expression_0= rulesimple_expression (this_relation_operator_1= rulerelation_operator this_simple_expression_2= rulesimple_expression )? )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:659:28: ( (this_simple_expression_0= rulesimple_expression (this_RELATIONAL_OPERATOR_1= RULE_RELATIONAL_OPERATOR this_simple_expression_2= rulesimple_expression )? ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:660:1: (this_simple_expression_0= rulesimple_expression (this_RELATIONAL_OPERATOR_1= RULE_RELATIONAL_OPERATOR this_simple_expression_2= rulesimple_expression )? )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:658:1: (this_simple_expression_0= rulesimple_expression (this_relation_operator_1= rulerelation_operator this_simple_expression_2= rulesimple_expression )? )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:659:5: this_simple_expression_0= rulesimple_expression (this_relation_operator_1= rulerelation_operator this_simple_expression_2= rulesimple_expression )?
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:660:1: (this_simple_expression_0= rulesimple_expression (this_RELATIONAL_OPERATOR_1= RULE_RELATIONAL_OPERATOR this_simple_expression_2= rulesimple_expression )? )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:661:5: this_simple_expression_0= rulesimple_expression (this_RELATIONAL_OPERATOR_1= RULE_RELATIONAL_OPERATOR this_simple_expression_2= rulesimple_expression )?
             {
              
                     newCompositeNode(grammarAccess.getExpressionAccess().getSimple_expressionParserRuleCall_0()); 
                 
-            pushFollow(FOLLOW_rulesimple_expression_in_ruleexpression1879);
+            pushFollow(FOLLOW_rulesimple_expression_in_ruleexpression1893);
             this_simple_expression_0=rulesimple_expression();
 
             state._fsp--;
@@ -1620,35 +1616,28 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:669:1: (this_relation_operator_1= rulerelation_operator this_simple_expression_2= rulesimple_expression )?
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:671:1: (this_RELATIONAL_OPERATOR_1= RULE_RELATIONAL_OPERATOR this_simple_expression_2= rulesimple_expression )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( ((LA7_0>=31 && LA7_0<=37)) ) {
+            if ( (LA7_0==RULE_RELATIONAL_OPERATOR) ) {
                 alt7=1;
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:670:5: this_relation_operator_1= rulerelation_operator this_simple_expression_2= rulesimple_expression
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:671:6: this_RELATIONAL_OPERATOR_1= RULE_RELATIONAL_OPERATOR this_simple_expression_2= rulesimple_expression
                     {
-                     
-                            newCompositeNode(grammarAccess.getExpressionAccess().getRelation_operatorParserRuleCall_1_0()); 
-                        
-                    pushFollow(FOLLOW_rulerelation_operator_in_ruleexpression1907);
-                    this_relation_operator_1=rulerelation_operator();
+                    this_RELATIONAL_OPERATOR_1=(Token)match(input,RULE_RELATIONAL_OPERATOR,FOLLOW_RULE_RELATIONAL_OPERATOR_in_ruleexpression1914); 
 
-                    state._fsp--;
-
-
-                    		current.merge(this_relation_operator_1);
+                    		current.merge(this_RELATIONAL_OPERATOR_1);
                         
                      
-                            afterParserOrEnumRuleCall();
+                        newLeafNode(this_RELATIONAL_OPERATOR_1, grammarAccess.getExpressionAccess().getRELATIONAL_OPERATORTerminalRuleCall_1_0()); 
                         
                      
                             newCompositeNode(grammarAccess.getExpressionAccess().getSimple_expressionParserRuleCall_1_1()); 
                         
-                    pushFollow(FOLLOW_rulesimple_expression_in_ruleexpression1934);
+                    pushFollow(FOLLOW_rulesimple_expression_in_ruleexpression1941);
                     this_simple_expression_2=rulesimple_expression();
 
                     state._fsp--;
@@ -1685,200 +1674,8 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleexpression"
 
 
-    // $ANTLR start "entryRulerelation_operator"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:699:1: entryRulerelation_operator returns [String current=null] : iv_rulerelation_operator= rulerelation_operator EOF ;
-    public final String entryRulerelation_operator() throws RecognitionException {
-        String current = null;
-
-        AntlrDatatypeRuleToken iv_rulerelation_operator = null;
-
-
-        try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:700:2: (iv_rulerelation_operator= rulerelation_operator EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:701:2: iv_rulerelation_operator= rulerelation_operator EOF
-            {
-             newCompositeNode(grammarAccess.getRelation_operatorRule()); 
-            pushFollow(FOLLOW_rulerelation_operator_in_entryRulerelation_operator1982);
-            iv_rulerelation_operator=rulerelation_operator();
-
-            state._fsp--;
-
-             current =iv_rulerelation_operator.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulerelation_operator1993); 
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRulerelation_operator"
-
-
-    // $ANTLR start "rulerelation_operator"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:708:1: rulerelation_operator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '=' | kw= '<>' | kw= '<' | kw= '<=' | kw= '>' | kw= '>=' | kw= 'in' ) ;
-    public final AntlrDatatypeRuleToken rulerelation_operator() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
-
-        Token kw=null;
-
-         enterRule(); 
-            
-        try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:711:28: ( (kw= '=' | kw= '<>' | kw= '<' | kw= '<=' | kw= '>' | kw= '>=' | kw= 'in' ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:712:1: (kw= '=' | kw= '<>' | kw= '<' | kw= '<=' | kw= '>' | kw= '>=' | kw= 'in' )
-            {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:712:1: (kw= '=' | kw= '<>' | kw= '<' | kw= '<=' | kw= '>' | kw= '>=' | kw= 'in' )
-            int alt8=7;
-            switch ( input.LA(1) ) {
-            case 31:
-                {
-                alt8=1;
-                }
-                break;
-            case 32:
-                {
-                alt8=2;
-                }
-                break;
-            case 33:
-                {
-                alt8=3;
-                }
-                break;
-            case 34:
-                {
-                alt8=4;
-                }
-                break;
-            case 35:
-                {
-                alt8=5;
-                }
-                break;
-            case 36:
-                {
-                alt8=6;
-                }
-                break;
-            case 37:
-                {
-                alt8=7;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 8, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt8) {
-                case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:713:2: kw= '='
-                    {
-                    kw=(Token)match(input,31,FOLLOW_31_in_rulerelation_operator2031); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getRelation_operatorAccess().getEqualsSignKeyword_0()); 
-                        
-
-                    }
-                    break;
-                case 2 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:720:2: kw= '<>'
-                    {
-                    kw=(Token)match(input,32,FOLLOW_32_in_rulerelation_operator2050); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getRelation_operatorAccess().getLessThanSignGreaterThanSignKeyword_1()); 
-                        
-
-                    }
-                    break;
-                case 3 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:727:2: kw= '<'
-                    {
-                    kw=(Token)match(input,33,FOLLOW_33_in_rulerelation_operator2069); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getRelation_operatorAccess().getLessThanSignKeyword_2()); 
-                        
-
-                    }
-                    break;
-                case 4 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:734:2: kw= '<='
-                    {
-                    kw=(Token)match(input,34,FOLLOW_34_in_rulerelation_operator2088); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getRelation_operatorAccess().getLessThanSignEqualsSignKeyword_3()); 
-                        
-
-                    }
-                    break;
-                case 5 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:741:2: kw= '>'
-                    {
-                    kw=(Token)match(input,35,FOLLOW_35_in_rulerelation_operator2107); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getRelation_operatorAccess().getGreaterThanSignKeyword_4()); 
-                        
-
-                    }
-                    break;
-                case 6 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:748:2: kw= '>='
-                    {
-                    kw=(Token)match(input,36,FOLLOW_36_in_rulerelation_operator2126); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getRelation_operatorAccess().getGreaterThanSignEqualsSignKeyword_5()); 
-                        
-
-                    }
-                    break;
-                case 7 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:755:2: kw= 'in'
-                    {
-                    kw=(Token)match(input,37,FOLLOW_37_in_rulerelation_operator2145); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getRelation_operatorAccess().getInKeyword_6()); 
-                        
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-             leaveRule(); 
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "rulerelation_operator"
-
-
     // $ANTLR start "entryRulesimple_expression"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:768:1: entryRulesimple_expression returns [String current=null] : iv_rulesimple_expression= rulesimple_expression EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:697:1: entryRulesimple_expression returns [String current=null] : iv_rulesimple_expression= rulesimple_expression EOF ;
     public final String entryRulesimple_expression() throws RecognitionException {
         String current = null;
 
@@ -1886,17 +1683,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:769:2: (iv_rulesimple_expression= rulesimple_expression EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:770:2: iv_rulesimple_expression= rulesimple_expression EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:698:2: (iv_rulesimple_expression= rulesimple_expression EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:699:2: iv_rulesimple_expression= rulesimple_expression EOF
             {
              newCompositeNode(grammarAccess.getSimple_expressionRule()); 
-            pushFollow(FOLLOW_rulesimple_expression_in_entryRulesimple_expression2186);
+            pushFollow(FOLLOW_rulesimple_expression_in_entryRulesimple_expression1989);
             iv_rulesimple_expression=rulesimple_expression();
 
             state._fsp--;
 
              current =iv_rulesimple_expression.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulesimple_expression2197); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulesimple_expression2000); 
 
             }
 
@@ -1914,117 +1711,181 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulesimple_expression"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:777:1: rulesimple_expression returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_SIGN_0= RULE_SIGN )? this_term_1= ruleterm (this_addition_operator_2= ruleaddition_operator this_term_3= ruleterm )* ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:706:1: rulesimple_expression returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (this_term_0= ruleterm (this_ADDITION_OPERATOR_1= RULE_ADDITION_OPERATOR this_term_2= ruleterm )* ) | ( (kw= '+' | kw= '-' ) this_simple_expression_5= rulesimple_expression ) ) ;
     public final AntlrDatatypeRuleToken rulesimple_expression() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
-        Token this_SIGN_0=null;
-        AntlrDatatypeRuleToken this_term_1 = null;
+        Token this_ADDITION_OPERATOR_1=null;
+        Token kw=null;
+        AntlrDatatypeRuleToken this_term_0 = null;
 
-        AntlrDatatypeRuleToken this_addition_operator_2 = null;
+        AntlrDatatypeRuleToken this_term_2 = null;
 
-        AntlrDatatypeRuleToken this_term_3 = null;
+        AntlrDatatypeRuleToken this_simple_expression_5 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:780:28: ( ( (this_SIGN_0= RULE_SIGN )? this_term_1= ruleterm (this_addition_operator_2= ruleaddition_operator this_term_3= ruleterm )* ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:781:1: ( (this_SIGN_0= RULE_SIGN )? this_term_1= ruleterm (this_addition_operator_2= ruleaddition_operator this_term_3= ruleterm )* )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:709:28: ( ( (this_term_0= ruleterm (this_ADDITION_OPERATOR_1= RULE_ADDITION_OPERATOR this_term_2= ruleterm )* ) | ( (kw= '+' | kw= '-' ) this_simple_expression_5= rulesimple_expression ) ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:710:1: ( (this_term_0= ruleterm (this_ADDITION_OPERATOR_1= RULE_ADDITION_OPERATOR this_term_2= ruleterm )* ) | ( (kw= '+' | kw= '-' ) this_simple_expression_5= rulesimple_expression ) )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:781:1: ( (this_SIGN_0= RULE_SIGN )? this_term_1= ruleterm (this_addition_operator_2= ruleaddition_operator this_term_3= ruleterm )* )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:781:2: (this_SIGN_0= RULE_SIGN )? this_term_1= ruleterm (this_addition_operator_2= ruleaddition_operator this_term_3= ruleterm )*
-            {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:781:2: (this_SIGN_0= RULE_SIGN )?
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:710:1: ( (this_term_0= ruleterm (this_ADDITION_OPERATOR_1= RULE_ADDITION_OPERATOR this_term_2= ruleterm )* ) | ( (kw= '+' | kw= '-' ) this_simple_expression_5= rulesimple_expression ) )
+            int alt10=2;
+            int LA10_0 = input.LA(1);
 
-            if ( (LA9_0==RULE_SIGN) ) {
-                alt9=1;
+            if ( (LA10_0==RULE_IDENTIFIER||LA10_0==RULE_INTEGER_NUMBER||(LA10_0>=RULE_STRING && LA10_0<=RULE_REAL_NUMBER)||LA10_0==29||LA10_0==37) ) {
+                alt10=1;
             }
-            switch (alt9) {
-                case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:781:7: this_SIGN_0= RULE_SIGN
-                    {
-                    this_SIGN_0=(Token)match(input,RULE_SIGN,FOLLOW_RULE_SIGN_in_rulesimple_expression2238); 
+            else if ( ((LA10_0>=35 && LA10_0<=36)) ) {
+                alt10=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 10, 0, input);
 
-                    		current.merge(this_SIGN_0);
+                throw nvae;
+            }
+            switch (alt10) {
+                case 1 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:710:2: (this_term_0= ruleterm (this_ADDITION_OPERATOR_1= RULE_ADDITION_OPERATOR this_term_2= ruleterm )* )
+                    {
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:710:2: (this_term_0= ruleterm (this_ADDITION_OPERATOR_1= RULE_ADDITION_OPERATOR this_term_2= ruleterm )* )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:711:5: this_term_0= ruleterm (this_ADDITION_OPERATOR_1= RULE_ADDITION_OPERATOR this_term_2= ruleterm )*
+                    {
+                     
+                            newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_0_0()); 
+                        
+                    pushFollow(FOLLOW_ruleterm_in_rulesimple_expression2048);
+                    this_term_0=ruleterm();
+
+                    state._fsp--;
+
+
+                    		current.merge(this_term_0);
                         
                      
-                        newLeafNode(this_SIGN_0, grammarAccess.getSimple_expressionAccess().getSIGNTerminalRuleCall_0()); 
+                            afterParserOrEnumRuleCall();
                         
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:721:1: (this_ADDITION_OPERATOR_1= RULE_ADDITION_OPERATOR this_term_2= ruleterm )*
+                    loop8:
+                    do {
+                        int alt8=2;
+                        int LA8_0 = input.LA(1);
+
+                        if ( (LA8_0==RULE_ADDITION_OPERATOR) ) {
+                            alt8=1;
+                        }
+
+
+                        switch (alt8) {
+                    	case 1 :
+                    	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:721:6: this_ADDITION_OPERATOR_1= RULE_ADDITION_OPERATOR this_term_2= ruleterm
+                    	    {
+                    	    this_ADDITION_OPERATOR_1=(Token)match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rulesimple_expression2069); 
+
+                    	    		current.merge(this_ADDITION_OPERATOR_1);
+                    	        
+                    	     
+                    	        newLeafNode(this_ADDITION_OPERATOR_1, grammarAccess.getSimple_expressionAccess().getADDITION_OPERATORTerminalRuleCall_0_1_0()); 
+                    	        
+                    	     
+                    	            newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_0_1_1()); 
+                    	        
+                    	    pushFollow(FOLLOW_ruleterm_in_rulesimple_expression2096);
+                    	    this_term_2=ruleterm();
+
+                    	    state._fsp--;
+
+
+                    	    		current.merge(this_term_2);
+                    	        
+                    	     
+                    	            afterParserOrEnumRuleCall();
+                    	        
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop8;
+                        }
+                    } while (true);
+
+
+                    }
+
 
                     }
                     break;
+                case 2 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:740:6: ( (kw= '+' | kw= '-' ) this_simple_expression_5= rulesimple_expression )
+                    {
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:740:6: ( (kw= '+' | kw= '-' ) this_simple_expression_5= rulesimple_expression )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:740:7: (kw= '+' | kw= '-' ) this_simple_expression_5= rulesimple_expression
+                    {
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:740:7: (kw= '+' | kw= '-' )
+                    int alt9=2;
+                    int LA9_0 = input.LA(1);
 
-            }
+                    if ( (LA9_0==35) ) {
+                        alt9=1;
+                    }
+                    else if ( (LA9_0==36) ) {
+                        alt9=2;
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 9, 0, input);
 
-             
-                    newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_1()); 
-                
-            pushFollow(FOLLOW_ruleterm_in_rulesimple_expression2267);
-            this_term_1=ruleterm();
+                        throw nvae;
+                    }
+                    switch (alt9) {
+                        case 1 :
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:741:2: kw= '+'
+                            {
+                            kw=(Token)match(input,35,FOLLOW_35_in_rulesimple_expression2125); 
 
-            state._fsp--;
+                                    current.merge(kw);
+                                    newLeafNode(kw, grammarAccess.getSimple_expressionAccess().getPlusSignKeyword_1_0_0()); 
+                                
 
+                            }
+                            break;
+                        case 2 :
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:748:2: kw= '-'
+                            {
+                            kw=(Token)match(input,36,FOLLOW_36_in_rulesimple_expression2144); 
 
-            		current.merge(this_term_1);
-                
-             
-                    afterParserOrEnumRuleCall();
-                
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:799:1: (this_addition_operator_2= ruleaddition_operator this_term_3= ruleterm )*
-            loop10:
-            do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                                    current.merge(kw);
+                                    newLeafNode(kw, grammarAccess.getSimple_expressionAccess().getHyphenMinusKeyword_1_0_1()); 
+                                
 
-                if ( ((LA10_0>=38 && LA10_0<=40)) ) {
-                    alt10=1;
-                }
+                            }
+                            break;
 
+                    }
 
-                switch (alt10) {
-            	case 1 :
-            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:800:5: this_addition_operator_2= ruleaddition_operator this_term_3= ruleterm
-            	    {
-            	     
-            	            newCompositeNode(grammarAccess.getSimple_expressionAccess().getAddition_operatorParserRuleCall_2_0()); 
-            	        
-            	    pushFollow(FOLLOW_ruleaddition_operator_in_rulesimple_expression2295);
-            	    this_addition_operator_2=ruleaddition_operator();
+                     
+                            newCompositeNode(grammarAccess.getSimple_expressionAccess().getSimple_expressionParserRuleCall_1_1()); 
+                        
+                    pushFollow(FOLLOW_rulesimple_expression_in_rulesimple_expression2167);
+                    this_simple_expression_5=rulesimple_expression();
 
-            	    state._fsp--;
-
-
-            	    		current.merge(this_addition_operator_2);
-            	        
-            	     
-            	            afterParserOrEnumRuleCall();
-            	        
-            	     
-            	            newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_2_1()); 
-            	        
-            	    pushFollow(FOLLOW_ruleterm_in_rulesimple_expression2322);
-            	    this_term_3=ruleterm();
-
-            	    state._fsp--;
+                    state._fsp--;
 
 
-            	    		current.merge(this_term_3);
-            	        
-            	     
-            	            afterParserOrEnumRuleCall();
-            	        
+                    		current.merge(this_simple_expression_5);
+                        
+                     
+                            afterParserOrEnumRuleCall();
+                        
 
-            	    }
-            	    break;
+                    }
 
-            	default :
-            	    break loop10;
-                }
-            } while (true);
 
+                    }
+                    break;
 
             }
 
@@ -2045,136 +1906,8 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulesimple_expression"
 
 
-    // $ANTLR start "entryRuleaddition_operator"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:829:1: entryRuleaddition_operator returns [String current=null] : iv_ruleaddition_operator= ruleaddition_operator EOF ;
-    public final String entryRuleaddition_operator() throws RecognitionException {
-        String current = null;
-
-        AntlrDatatypeRuleToken iv_ruleaddition_operator = null;
-
-
-        try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:830:2: (iv_ruleaddition_operator= ruleaddition_operator EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:831:2: iv_ruleaddition_operator= ruleaddition_operator EOF
-            {
-             newCompositeNode(grammarAccess.getAddition_operatorRule()); 
-            pushFollow(FOLLOW_ruleaddition_operator_in_entryRuleaddition_operator2370);
-            iv_ruleaddition_operator=ruleaddition_operator();
-
-            state._fsp--;
-
-             current =iv_ruleaddition_operator.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleaddition_operator2381); 
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleaddition_operator"
-
-
-    // $ANTLR start "ruleaddition_operator"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:838:1: ruleaddition_operator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '+' | kw= '-' | kw= 'or' ) ;
-    public final AntlrDatatypeRuleToken ruleaddition_operator() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
-
-        Token kw=null;
-
-         enterRule(); 
-            
-        try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:841:28: ( (kw= '+' | kw= '-' | kw= 'or' ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:842:1: (kw= '+' | kw= '-' | kw= 'or' )
-            {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:842:1: (kw= '+' | kw= '-' | kw= 'or' )
-            int alt11=3;
-            switch ( input.LA(1) ) {
-            case 38:
-                {
-                alt11=1;
-                }
-                break;
-            case 39:
-                {
-                alt11=2;
-                }
-                break;
-            case 40:
-                {
-                alt11=3;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 11, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt11) {
-                case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:843:2: kw= '+'
-                    {
-                    kw=(Token)match(input,38,FOLLOW_38_in_ruleaddition_operator2419); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getAddition_operatorAccess().getPlusSignKeyword_0()); 
-                        
-
-                    }
-                    break;
-                case 2 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:850:2: kw= '-'
-                    {
-                    kw=(Token)match(input,39,FOLLOW_39_in_ruleaddition_operator2438); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getAddition_operatorAccess().getHyphenMinusKeyword_1()); 
-                        
-
-                    }
-                    break;
-                case 3 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:857:2: kw= 'or'
-                    {
-                    kw=(Token)match(input,40,FOLLOW_40_in_ruleaddition_operator2457); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getAddition_operatorAccess().getOrKeyword_2()); 
-                        
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-             leaveRule(); 
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleaddition_operator"
-
-
     // $ANTLR start "entryRuleterm"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:870:1: entryRuleterm returns [String current=null] : iv_ruleterm= ruleterm EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:772:1: entryRuleterm returns [String current=null] : iv_ruleterm= ruleterm EOF ;
     public final String entryRuleterm() throws RecognitionException {
         String current = null;
 
@@ -2182,17 +1915,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:871:2: (iv_ruleterm= ruleterm EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:872:2: iv_ruleterm= ruleterm EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:773:2: (iv_ruleterm= ruleterm EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:774:2: iv_ruleterm= ruleterm EOF
             {
              newCompositeNode(grammarAccess.getTermRule()); 
-            pushFollow(FOLLOW_ruleterm_in_entryRuleterm2498);
+            pushFollow(FOLLOW_ruleterm_in_entryRuleterm2214);
             iv_ruleterm=ruleterm();
 
             state._fsp--;
 
              current =iv_ruleterm.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleterm2509); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleterm2225); 
 
             }
 
@@ -2210,13 +1943,12 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleterm"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:879:1: ruleterm returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_factor_0= rulefactor (this_multiplication_operator_1= rulemultiplication_operator this_factor_2= rulefactor )* ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:781:1: ruleterm returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_factor_0= rulefactor (this_MULTIPLICATION_OPERATOR_1= RULE_MULTIPLICATION_OPERATOR this_factor_2= rulefactor )* ) ;
     public final AntlrDatatypeRuleToken ruleterm() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
+        Token this_MULTIPLICATION_OPERATOR_1=null;
         AntlrDatatypeRuleToken this_factor_0 = null;
-
-        AntlrDatatypeRuleToken this_multiplication_operator_1 = null;
 
         AntlrDatatypeRuleToken this_factor_2 = null;
 
@@ -2224,16 +1956,16 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:882:28: ( (this_factor_0= rulefactor (this_multiplication_operator_1= rulemultiplication_operator this_factor_2= rulefactor )* ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:883:1: (this_factor_0= rulefactor (this_multiplication_operator_1= rulemultiplication_operator this_factor_2= rulefactor )* )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:784:28: ( (this_factor_0= rulefactor (this_MULTIPLICATION_OPERATOR_1= RULE_MULTIPLICATION_OPERATOR this_factor_2= rulefactor )* ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:785:1: (this_factor_0= rulefactor (this_MULTIPLICATION_OPERATOR_1= RULE_MULTIPLICATION_OPERATOR this_factor_2= rulefactor )* )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:883:1: (this_factor_0= rulefactor (this_multiplication_operator_1= rulemultiplication_operator this_factor_2= rulefactor )* )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:884:5: this_factor_0= rulefactor (this_multiplication_operator_1= rulemultiplication_operator this_factor_2= rulefactor )*
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:785:1: (this_factor_0= rulefactor (this_MULTIPLICATION_OPERATOR_1= RULE_MULTIPLICATION_OPERATOR this_factor_2= rulefactor )* )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:786:5: this_factor_0= rulefactor (this_MULTIPLICATION_OPERATOR_1= RULE_MULTIPLICATION_OPERATOR this_factor_2= rulefactor )*
             {
              
                     newCompositeNode(grammarAccess.getTermAccess().getFactorParserRuleCall_0()); 
                 
-            pushFollow(FOLLOW_rulefactor_in_ruleterm2556);
+            pushFollow(FOLLOW_rulefactor_in_ruleterm2272);
             this_factor_0=rulefactor();
 
             state._fsp--;
@@ -2244,39 +1976,32 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:894:1: (this_multiplication_operator_1= rulemultiplication_operator this_factor_2= rulefactor )*
-            loop12:
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:796:1: (this_MULTIPLICATION_OPERATOR_1= RULE_MULTIPLICATION_OPERATOR this_factor_2= rulefactor )*
+            loop11:
             do {
-                int alt12=2;
-                int LA12_0 = input.LA(1);
+                int alt11=2;
+                int LA11_0 = input.LA(1);
 
-                if ( ((LA12_0>=41 && LA12_0<=45)) ) {
-                    alt12=1;
+                if ( (LA11_0==RULE_MULTIPLICATION_OPERATOR) ) {
+                    alt11=1;
                 }
 
 
-                switch (alt12) {
+                switch (alt11) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:895:5: this_multiplication_operator_1= rulemultiplication_operator this_factor_2= rulefactor
+            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:796:6: this_MULTIPLICATION_OPERATOR_1= RULE_MULTIPLICATION_OPERATOR this_factor_2= rulefactor
             	    {
-            	     
-            	            newCompositeNode(grammarAccess.getTermAccess().getMultiplication_operatorParserRuleCall_1_0()); 
-            	        
-            	    pushFollow(FOLLOW_rulemultiplication_operator_in_ruleterm2584);
-            	    this_multiplication_operator_1=rulemultiplication_operator();
+            	    this_MULTIPLICATION_OPERATOR_1=(Token)match(input,RULE_MULTIPLICATION_OPERATOR,FOLLOW_RULE_MULTIPLICATION_OPERATOR_in_ruleterm2293); 
 
-            	    state._fsp--;
-
-
-            	    		current.merge(this_multiplication_operator_1);
+            	    		current.merge(this_MULTIPLICATION_OPERATOR_1);
             	        
             	     
-            	            afterParserOrEnumRuleCall();
+            	        newLeafNode(this_MULTIPLICATION_OPERATOR_1, grammarAccess.getTermAccess().getMULTIPLICATION_OPERATORTerminalRuleCall_1_0()); 
             	        
             	     
             	            newCompositeNode(grammarAccess.getTermAccess().getFactorParserRuleCall_1_1()); 
             	        
-            	    pushFollow(FOLLOW_rulefactor_in_ruleterm2611);
+            	    pushFollow(FOLLOW_rulefactor_in_ruleterm2320);
             	    this_factor_2=rulefactor();
 
             	    state._fsp--;
@@ -2292,7 +2017,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop12;
+            	    break loop11;
                 }
             } while (true);
 
@@ -2316,168 +2041,8 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleterm"
 
 
-    // $ANTLR start "entryRulemultiplication_operator"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:924:1: entryRulemultiplication_operator returns [String current=null] : iv_rulemultiplication_operator= rulemultiplication_operator EOF ;
-    public final String entryRulemultiplication_operator() throws RecognitionException {
-        String current = null;
-
-        AntlrDatatypeRuleToken iv_rulemultiplication_operator = null;
-
-
-        try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:925:2: (iv_rulemultiplication_operator= rulemultiplication_operator EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:926:2: iv_rulemultiplication_operator= rulemultiplication_operator EOF
-            {
-             newCompositeNode(grammarAccess.getMultiplication_operatorRule()); 
-            pushFollow(FOLLOW_rulemultiplication_operator_in_entryRulemultiplication_operator2659);
-            iv_rulemultiplication_operator=rulemultiplication_operator();
-
-            state._fsp--;
-
-             current =iv_rulemultiplication_operator.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulemultiplication_operator2670); 
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRulemultiplication_operator"
-
-
-    // $ANTLR start "rulemultiplication_operator"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:933:1: rulemultiplication_operator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '*' | kw= '/' | kw= 'div' | kw= 'mod' | kw= 'and' ) ;
-    public final AntlrDatatypeRuleToken rulemultiplication_operator() throws RecognitionException {
-        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
-
-        Token kw=null;
-
-         enterRule(); 
-            
-        try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:936:28: ( (kw= '*' | kw= '/' | kw= 'div' | kw= 'mod' | kw= 'and' ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:937:1: (kw= '*' | kw= '/' | kw= 'div' | kw= 'mod' | kw= 'and' )
-            {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:937:1: (kw= '*' | kw= '/' | kw= 'div' | kw= 'mod' | kw= 'and' )
-            int alt13=5;
-            switch ( input.LA(1) ) {
-            case 41:
-                {
-                alt13=1;
-                }
-                break;
-            case 42:
-                {
-                alt13=2;
-                }
-                break;
-            case 43:
-                {
-                alt13=3;
-                }
-                break;
-            case 44:
-                {
-                alt13=4;
-                }
-                break;
-            case 45:
-                {
-                alt13=5;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("", 13, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt13) {
-                case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:938:2: kw= '*'
-                    {
-                    kw=(Token)match(input,41,FOLLOW_41_in_rulemultiplication_operator2708); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getMultiplication_operatorAccess().getAsteriskKeyword_0()); 
-                        
-
-                    }
-                    break;
-                case 2 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:945:2: kw= '/'
-                    {
-                    kw=(Token)match(input,42,FOLLOW_42_in_rulemultiplication_operator2727); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getMultiplication_operatorAccess().getSolidusKeyword_1()); 
-                        
-
-                    }
-                    break;
-                case 3 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:952:2: kw= 'div'
-                    {
-                    kw=(Token)match(input,43,FOLLOW_43_in_rulemultiplication_operator2746); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getMultiplication_operatorAccess().getDivKeyword_2()); 
-                        
-
-                    }
-                    break;
-                case 4 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:959:2: kw= 'mod'
-                    {
-                    kw=(Token)match(input,44,FOLLOW_44_in_rulemultiplication_operator2765); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getMultiplication_operatorAccess().getModKeyword_3()); 
-                        
-
-                    }
-                    break;
-                case 5 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:966:2: kw= 'and'
-                    {
-                    kw=(Token)match(input,45,FOLLOW_45_in_rulemultiplication_operator2784); 
-
-                            current.merge(kw);
-                            newLeafNode(kw, grammarAccess.getMultiplication_operatorAccess().getAndKeyword_4()); 
-                        
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-             leaveRule(); 
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "rulemultiplication_operator"
-
-
     // $ANTLR start "entryRulefactor"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:979:1: entryRulefactor returns [String current=null] : iv_rulefactor= rulefactor EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:822:1: entryRulefactor returns [String current=null] : iv_rulefactor= rulefactor EOF ;
     public final String entryRulefactor() throws RecognitionException {
         String current = null;
 
@@ -2485,17 +2050,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:980:2: (iv_rulefactor= rulefactor EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:981:2: iv_rulefactor= rulefactor EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:823:2: (iv_rulefactor= rulefactor EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:824:2: iv_rulefactor= rulefactor EOF
             {
              newCompositeNode(grammarAccess.getFactorRule()); 
-            pushFollow(FOLLOW_rulefactor_in_entryRulefactor2825);
+            pushFollow(FOLLOW_rulefactor_in_entryRulefactor2368);
             iv_rulefactor=rulefactor();
 
             state._fsp--;
 
              current =iv_rulefactor.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulefactor2836); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulefactor2379); 
 
             }
 
@@ -2513,45 +2078,44 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulefactor"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:988:1: rulefactor returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_variable_0= rulevariable | this_number_1= rulenumber ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:831:1: rulefactor returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_variable_0= rulevariable | this_number_1= rulenumber | this_STRING_2= RULE_STRING | this_set_3= ruleset | this_NIL_KEYWORD_4= RULE_NIL_KEYWORD | this_function_designator_5= rulefunction_designator | (kw= '(' this_expression_7= ruleexpression kw= ')' ) | (this_NOT_KEYWORD_9= RULE_NOT_KEYWORD this_factor_10= rulefactor ) ) ;
     public final AntlrDatatypeRuleToken rulefactor() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
+        Token this_STRING_2=null;
+        Token this_NIL_KEYWORD_4=null;
+        Token kw=null;
+        Token this_NOT_KEYWORD_9=null;
         AntlrDatatypeRuleToken this_variable_0 = null;
 
         AntlrDatatypeRuleToken this_number_1 = null;
+
+        AntlrDatatypeRuleToken this_set_3 = null;
+
+        AntlrDatatypeRuleToken this_function_designator_5 = null;
+
+        AntlrDatatypeRuleToken this_expression_7 = null;
+
+        AntlrDatatypeRuleToken this_factor_10 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:991:28: ( (this_variable_0= rulevariable | this_number_1= rulenumber ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:992:1: (this_variable_0= rulevariable | this_number_1= rulenumber )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:834:28: ( (this_variable_0= rulevariable | this_number_1= rulenumber | this_STRING_2= RULE_STRING | this_set_3= ruleset | this_NIL_KEYWORD_4= RULE_NIL_KEYWORD | this_function_designator_5= rulefunction_designator | (kw= '(' this_expression_7= ruleexpression kw= ')' ) | (this_NOT_KEYWORD_9= RULE_NOT_KEYWORD this_factor_10= rulefactor ) ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:835:1: (this_variable_0= rulevariable | this_number_1= rulenumber | this_STRING_2= RULE_STRING | this_set_3= ruleset | this_NIL_KEYWORD_4= RULE_NIL_KEYWORD | this_function_designator_5= rulefunction_designator | (kw= '(' this_expression_7= ruleexpression kw= ')' ) | (this_NOT_KEYWORD_9= RULE_NOT_KEYWORD this_factor_10= rulefactor ) )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:992:1: (this_variable_0= rulevariable | this_number_1= rulenumber )
-            int alt14=2;
-            int LA14_0 = input.LA(1);
-
-            if ( (LA14_0==RULE_IDENTIFIER) ) {
-                alt14=1;
-            }
-            else if ( (LA14_0==RULE_INTEGER_NUMBER||LA14_0==RULE_REAL_NUMBER) ) {
-                alt14=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 14, 0, input);
-
-                throw nvae;
-            }
-            switch (alt14) {
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:835:1: (this_variable_0= rulevariable | this_number_1= rulenumber | this_STRING_2= RULE_STRING | this_set_3= ruleset | this_NIL_KEYWORD_4= RULE_NIL_KEYWORD | this_function_designator_5= rulefunction_designator | (kw= '(' this_expression_7= ruleexpression kw= ')' ) | (this_NOT_KEYWORD_9= RULE_NOT_KEYWORD this_factor_10= rulefactor ) )
+            int alt12=8;
+            alt12 = dfa12.predict(input);
+            switch (alt12) {
                 case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:993:5: this_variable_0= rulevariable
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:836:5: this_variable_0= rulevariable
                     {
                      
                             newCompositeNode(grammarAccess.getFactorAccess().getVariableParserRuleCall_0()); 
                         
-                    pushFollow(FOLLOW_rulevariable_in_rulefactor2883);
+                    pushFollow(FOLLOW_rulevariable_in_rulefactor2426);
                     this_variable_0=rulevariable();
 
                     state._fsp--;
@@ -2566,12 +2130,12 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1005:5: this_number_1= rulenumber
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:848:5: this_number_1= rulenumber
                     {
                      
                             newCompositeNode(grammarAccess.getFactorAccess().getNumberParserRuleCall_1()); 
                         
-                    pushFollow(FOLLOW_rulenumber_in_rulefactor2916);
+                    pushFollow(FOLLOW_rulenumber_in_rulefactor2459);
                     this_number_1=rulenumber();
 
                     state._fsp--;
@@ -2582,6 +2146,141 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                      
                             afterParserOrEnumRuleCall();
                         
+
+                    }
+                    break;
+                case 3 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:859:10: this_STRING_2= RULE_STRING
+                    {
+                    this_STRING_2=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulefactor2485); 
+
+                    		current.merge(this_STRING_2);
+                        
+                     
+                        newLeafNode(this_STRING_2, grammarAccess.getFactorAccess().getSTRINGTerminalRuleCall_2()); 
+                        
+
+                    }
+                    break;
+                case 4 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:868:5: this_set_3= ruleset
+                    {
+                     
+                            newCompositeNode(grammarAccess.getFactorAccess().getSetParserRuleCall_3()); 
+                        
+                    pushFollow(FOLLOW_ruleset_in_rulefactor2518);
+                    this_set_3=ruleset();
+
+                    state._fsp--;
+
+
+                    		current.merge(this_set_3);
+                        
+                     
+                            afterParserOrEnumRuleCall();
+                        
+
+                    }
+                    break;
+                case 5 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:879:10: this_NIL_KEYWORD_4= RULE_NIL_KEYWORD
+                    {
+                    this_NIL_KEYWORD_4=(Token)match(input,RULE_NIL_KEYWORD,FOLLOW_RULE_NIL_KEYWORD_in_rulefactor2544); 
+
+                    		current.merge(this_NIL_KEYWORD_4);
+                        
+                     
+                        newLeafNode(this_NIL_KEYWORD_4, grammarAccess.getFactorAccess().getNIL_KEYWORDTerminalRuleCall_4()); 
+                        
+
+                    }
+                    break;
+                case 6 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:888:5: this_function_designator_5= rulefunction_designator
+                    {
+                     
+                            newCompositeNode(grammarAccess.getFactorAccess().getFunction_designatorParserRuleCall_5()); 
+                        
+                    pushFollow(FOLLOW_rulefunction_designator_in_rulefactor2577);
+                    this_function_designator_5=rulefunction_designator();
+
+                    state._fsp--;
+
+
+                    		current.merge(this_function_designator_5);
+                        
+                     
+                            afterParserOrEnumRuleCall();
+                        
+
+                    }
+                    break;
+                case 7 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:899:6: (kw= '(' this_expression_7= ruleexpression kw= ')' )
+                    {
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:899:6: (kw= '(' this_expression_7= ruleexpression kw= ')' )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:900:2: kw= '(' this_expression_7= ruleexpression kw= ')'
+                    {
+                    kw=(Token)match(input,29,FOLLOW_29_in_rulefactor2602); 
+
+                            current.merge(kw);
+                            newLeafNode(kw, grammarAccess.getFactorAccess().getLeftParenthesisKeyword_6_0()); 
+                        
+                     
+                            newCompositeNode(grammarAccess.getFactorAccess().getExpressionParserRuleCall_6_1()); 
+                        
+                    pushFollow(FOLLOW_ruleexpression_in_rulefactor2624);
+                    this_expression_7=ruleexpression();
+
+                    state._fsp--;
+
+
+                    		current.merge(this_expression_7);
+                        
+                     
+                            afterParserOrEnumRuleCall();
+                        
+                    kw=(Token)match(input,30,FOLLOW_30_in_rulefactor2642); 
+
+                            current.merge(kw);
+                            newLeafNode(kw, grammarAccess.getFactorAccess().getRightParenthesisKeyword_6_2()); 
+                        
+
+                    }
+
+
+                    }
+                    break;
+                case 8 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:923:6: (this_NOT_KEYWORD_9= RULE_NOT_KEYWORD this_factor_10= rulefactor )
+                    {
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:923:6: (this_NOT_KEYWORD_9= RULE_NOT_KEYWORD this_factor_10= rulefactor )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:923:11: this_NOT_KEYWORD_9= RULE_NOT_KEYWORD this_factor_10= rulefactor
+                    {
+                    this_NOT_KEYWORD_9=(Token)match(input,RULE_NOT_KEYWORD,FOLLOW_RULE_NOT_KEYWORD_in_rulefactor2665); 
+
+                    		current.merge(this_NOT_KEYWORD_9);
+                        
+                     
+                        newLeafNode(this_NOT_KEYWORD_9, grammarAccess.getFactorAccess().getNOT_KEYWORDTerminalRuleCall_7_0()); 
+                        
+                     
+                            newCompositeNode(grammarAccess.getFactorAccess().getFactorParserRuleCall_7_1()); 
+                        
+                    pushFollow(FOLLOW_rulefactor_in_rulefactor2692);
+                    this_factor_10=rulefactor();
+
+                    state._fsp--;
+
+
+                    		current.merge(this_factor_10);
+                        
+                     
+                            afterParserOrEnumRuleCall();
+                        
+
+                    }
+
 
                     }
                     break;
@@ -2606,7 +2305,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulenumber"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1023:1: entryRulenumber returns [String current=null] : iv_rulenumber= rulenumber EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:949:1: entryRulenumber returns [String current=null] : iv_rulenumber= rulenumber EOF ;
     public final String entryRulenumber() throws RecognitionException {
         String current = null;
 
@@ -2614,17 +2313,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1024:2: (iv_rulenumber= rulenumber EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1025:2: iv_rulenumber= rulenumber EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:950:2: (iv_rulenumber= rulenumber EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:951:2: iv_rulenumber= rulenumber EOF
             {
              newCompositeNode(grammarAccess.getNumberRule()); 
-            pushFollow(FOLLOW_rulenumber_in_entryRulenumber2962);
+            pushFollow(FOLLOW_rulenumber_in_entryRulenumber2739);
             iv_rulenumber=rulenumber();
 
             state._fsp--;
 
              current =iv_rulenumber.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulenumber2973); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulenumber2750); 
 
             }
 
@@ -2642,7 +2341,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulenumber"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1032:1: rulenumber returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER | this_REAL_NUMBER_1= RULE_REAL_NUMBER ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:958:1: rulenumber returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER | this_REAL_NUMBER_1= RULE_REAL_NUMBER ) ;
     public final AntlrDatatypeRuleToken rulenumber() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2652,30 +2351,30 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1035:28: ( (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER | this_REAL_NUMBER_1= RULE_REAL_NUMBER ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1036:1: (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER | this_REAL_NUMBER_1= RULE_REAL_NUMBER )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:961:28: ( (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER | this_REAL_NUMBER_1= RULE_REAL_NUMBER ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:962:1: (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER | this_REAL_NUMBER_1= RULE_REAL_NUMBER )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1036:1: (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER | this_REAL_NUMBER_1= RULE_REAL_NUMBER )
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:962:1: (this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER | this_REAL_NUMBER_1= RULE_REAL_NUMBER )
+            int alt13=2;
+            int LA13_0 = input.LA(1);
 
-            if ( (LA15_0==RULE_INTEGER_NUMBER) ) {
-                alt15=1;
+            if ( (LA13_0==RULE_INTEGER_NUMBER) ) {
+                alt13=1;
             }
-            else if ( (LA15_0==RULE_REAL_NUMBER) ) {
-                alt15=2;
+            else if ( (LA13_0==RULE_REAL_NUMBER) ) {
+                alt13=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 15, 0, input);
+                    new NoViableAltException("", 13, 0, input);
 
                 throw nvae;
             }
-            switch (alt15) {
+            switch (alt13) {
                 case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1036:6: this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:962:6: this_INTEGER_NUMBER_0= RULE_INTEGER_NUMBER
                     {
-                    this_INTEGER_NUMBER_0=(Token)match(input,RULE_INTEGER_NUMBER,FOLLOW_RULE_INTEGER_NUMBER_in_rulenumber3013); 
+                    this_INTEGER_NUMBER_0=(Token)match(input,RULE_INTEGER_NUMBER,FOLLOW_RULE_INTEGER_NUMBER_in_rulenumber2790); 
 
                     		current.merge(this_INTEGER_NUMBER_0);
                         
@@ -2686,9 +2385,9 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1044:10: this_REAL_NUMBER_1= RULE_REAL_NUMBER
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:970:10: this_REAL_NUMBER_1= RULE_REAL_NUMBER
                     {
-                    this_REAL_NUMBER_1=(Token)match(input,RULE_REAL_NUMBER,FOLLOW_RULE_REAL_NUMBER_in_rulenumber3039); 
+                    this_REAL_NUMBER_1=(Token)match(input,RULE_REAL_NUMBER,FOLLOW_RULE_REAL_NUMBER_in_rulenumber2816); 
 
                     		current.merge(this_REAL_NUMBER_1);
                         
@@ -2718,8 +2417,383 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulenumber"
 
 
+    // $ANTLR start "entryRuleset"
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:985:1: entryRuleset returns [String current=null] : iv_ruleset= ruleset EOF ;
+    public final String entryRuleset() throws RecognitionException {
+        String current = null;
+
+        AntlrDatatypeRuleToken iv_ruleset = null;
+
+
+        try {
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:986:2: (iv_ruleset= ruleset EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:987:2: iv_ruleset= ruleset EOF
+            {
+             newCompositeNode(grammarAccess.getSetRule()); 
+            pushFollow(FOLLOW_ruleset_in_entryRuleset2862);
+            iv_ruleset=ruleset();
+
+            state._fsp--;
+
+             current =iv_ruleset.getText(); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleset2873); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleset"
+
+
+    // $ANTLR start "ruleset"
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:994:1: ruleset returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= '[' (this_expression_1= ruleexpression (kw= ',' this_expression_3= ruleexpression )* )? kw= ']' ) ;
+    public final AntlrDatatypeRuleToken ruleset() throws RecognitionException {
+        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+
+        Token kw=null;
+        AntlrDatatypeRuleToken this_expression_1 = null;
+
+        AntlrDatatypeRuleToken this_expression_3 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:997:28: ( (kw= '[' (this_expression_1= ruleexpression (kw= ',' this_expression_3= ruleexpression )* )? kw= ']' ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:998:1: (kw= '[' (this_expression_1= ruleexpression (kw= ',' this_expression_3= ruleexpression )* )? kw= ']' )
+            {
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:998:1: (kw= '[' (this_expression_1= ruleexpression (kw= ',' this_expression_3= ruleexpression )* )? kw= ']' )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:999:2: kw= '[' (this_expression_1= ruleexpression (kw= ',' this_expression_3= ruleexpression )* )? kw= ']'
+            {
+            kw=(Token)match(input,37,FOLLOW_37_in_ruleset2911); 
+
+                    current.merge(kw);
+                    newLeafNode(kw, grammarAccess.getSetAccess().getLeftSquareBracketKeyword_0()); 
+                
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1004:1: (this_expression_1= ruleexpression (kw= ',' this_expression_3= ruleexpression )* )?
+            int alt15=2;
+            int LA15_0 = input.LA(1);
+
+            if ( (LA15_0==RULE_IDENTIFIER||LA15_0==RULE_INTEGER_NUMBER||(LA15_0>=RULE_STRING && LA15_0<=RULE_REAL_NUMBER)||LA15_0==29||(LA15_0>=35 && LA15_0<=37)) ) {
+                alt15=1;
+            }
+            switch (alt15) {
+                case 1 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1005:5: this_expression_1= ruleexpression (kw= ',' this_expression_3= ruleexpression )*
+                    {
+                     
+                            newCompositeNode(grammarAccess.getSetAccess().getExpressionParserRuleCall_1_0()); 
+                        
+                    pushFollow(FOLLOW_ruleexpression_in_ruleset2934);
+                    this_expression_1=ruleexpression();
+
+                    state._fsp--;
+
+
+                    		current.merge(this_expression_1);
+                        
+                     
+                            afterParserOrEnumRuleCall();
+                        
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1015:1: (kw= ',' this_expression_3= ruleexpression )*
+                    loop14:
+                    do {
+                        int alt14=2;
+                        int LA14_0 = input.LA(1);
+
+                        if ( (LA14_0==32) ) {
+                            alt14=1;
+                        }
+
+
+                        switch (alt14) {
+                    	case 1 :
+                    	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1016:2: kw= ',' this_expression_3= ruleexpression
+                    	    {
+                    	    kw=(Token)match(input,32,FOLLOW_32_in_ruleset2953); 
+
+                    	            current.merge(kw);
+                    	            newLeafNode(kw, grammarAccess.getSetAccess().getCommaKeyword_1_1_0()); 
+                    	        
+                    	     
+                    	            newCompositeNode(grammarAccess.getSetAccess().getExpressionParserRuleCall_1_1_1()); 
+                    	        
+                    	    pushFollow(FOLLOW_ruleexpression_in_ruleset2975);
+                    	    this_expression_3=ruleexpression();
+
+                    	    state._fsp--;
+
+
+                    	    		current.merge(this_expression_3);
+                    	        
+                    	     
+                    	            afterParserOrEnumRuleCall();
+                    	        
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop14;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+
+            }
+
+            kw=(Token)match(input,38,FOLLOW_38_in_ruleset2997); 
+
+                    current.merge(kw);
+                    newLeafNode(kw, grammarAccess.getSetAccess().getRightSquareBracketKeyword_2()); 
+                
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleset"
+
+
+    // $ANTLR start "entryRulefunction_designator"
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1046:1: entryRulefunction_designator returns [String current=null] : iv_rulefunction_designator= rulefunction_designator EOF ;
+    public final String entryRulefunction_designator() throws RecognitionException {
+        String current = null;
+
+        AntlrDatatypeRuleToken iv_rulefunction_designator = null;
+
+
+        try {
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1047:2: (iv_rulefunction_designator= rulefunction_designator EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1048:2: iv_rulefunction_designator= rulefunction_designator EOF
+            {
+             newCompositeNode(grammarAccess.getFunction_designatorRule()); 
+            pushFollow(FOLLOW_rulefunction_designator_in_entryRulefunction_designator3038);
+            iv_rulefunction_designator=rulefunction_designator();
+
+            state._fsp--;
+
+             current =iv_rulefunction_designator.getText(); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulefunction_designator3049); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRulefunction_designator"
+
+
+    // $ANTLR start "rulefunction_designator"
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1055:1: rulefunction_designator returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_IDENTIFIER_0= RULE_IDENTIFIER ( (kw= '(' this_expression_2= ruleexpression (kw= ',' this_expression_4= ruleexpression )* kw= ')' ) | (kw= '(' kw= ')' ) ) ) ;
+    public final AntlrDatatypeRuleToken rulefunction_designator() throws RecognitionException {
+        AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
+
+        Token this_IDENTIFIER_0=null;
+        Token kw=null;
+        AntlrDatatypeRuleToken this_expression_2 = null;
+
+        AntlrDatatypeRuleToken this_expression_4 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1058:28: ( (this_IDENTIFIER_0= RULE_IDENTIFIER ( (kw= '(' this_expression_2= ruleexpression (kw= ',' this_expression_4= ruleexpression )* kw= ')' ) | (kw= '(' kw= ')' ) ) ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1059:1: (this_IDENTIFIER_0= RULE_IDENTIFIER ( (kw= '(' this_expression_2= ruleexpression (kw= ',' this_expression_4= ruleexpression )* kw= ')' ) | (kw= '(' kw= ')' ) ) )
+            {
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1059:1: (this_IDENTIFIER_0= RULE_IDENTIFIER ( (kw= '(' this_expression_2= ruleexpression (kw= ',' this_expression_4= ruleexpression )* kw= ')' ) | (kw= '(' kw= ')' ) ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1059:6: this_IDENTIFIER_0= RULE_IDENTIFIER ( (kw= '(' this_expression_2= ruleexpression (kw= ',' this_expression_4= ruleexpression )* kw= ')' ) | (kw= '(' kw= ')' ) )
+            {
+            this_IDENTIFIER_0=(Token)match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rulefunction_designator3089); 
+
+            		current.merge(this_IDENTIFIER_0);
+                
+             
+                newLeafNode(this_IDENTIFIER_0, grammarAccess.getFunction_designatorAccess().getIDENTIFIERTerminalRuleCall_0()); 
+                
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1066:1: ( (kw= '(' this_expression_2= ruleexpression (kw= ',' this_expression_4= ruleexpression )* kw= ')' ) | (kw= '(' kw= ')' ) )
+            int alt17=2;
+            int LA17_0 = input.LA(1);
+
+            if ( (LA17_0==29) ) {
+                int LA17_1 = input.LA(2);
+
+                if ( (LA17_1==30) ) {
+                    alt17=2;
+                }
+                else if ( (LA17_1==RULE_IDENTIFIER||LA17_1==RULE_INTEGER_NUMBER||(LA17_1>=RULE_STRING && LA17_1<=RULE_REAL_NUMBER)||LA17_1==29||(LA17_1>=35 && LA17_1<=37)) ) {
+                    alt17=1;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 17, 1, input);
+
+                    throw nvae;
+                }
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 17, 0, input);
+
+                throw nvae;
+            }
+            switch (alt17) {
+                case 1 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1066:2: (kw= '(' this_expression_2= ruleexpression (kw= ',' this_expression_4= ruleexpression )* kw= ')' )
+                    {
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1066:2: (kw= '(' this_expression_2= ruleexpression (kw= ',' this_expression_4= ruleexpression )* kw= ')' )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1067:2: kw= '(' this_expression_2= ruleexpression (kw= ',' this_expression_4= ruleexpression )* kw= ')'
+                    {
+                    kw=(Token)match(input,29,FOLLOW_29_in_rulefunction_designator3109); 
+
+                            current.merge(kw);
+                            newLeafNode(kw, grammarAccess.getFunction_designatorAccess().getLeftParenthesisKeyword_1_0_0()); 
+                        
+                     
+                            newCompositeNode(grammarAccess.getFunction_designatorAccess().getExpressionParserRuleCall_1_0_1()); 
+                        
+                    pushFollow(FOLLOW_ruleexpression_in_rulefunction_designator3131);
+                    this_expression_2=ruleexpression();
+
+                    state._fsp--;
+
+
+                    		current.merge(this_expression_2);
+                        
+                     
+                            afterParserOrEnumRuleCall();
+                        
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1083:1: (kw= ',' this_expression_4= ruleexpression )*
+                    loop16:
+                    do {
+                        int alt16=2;
+                        int LA16_0 = input.LA(1);
+
+                        if ( (LA16_0==32) ) {
+                            alt16=1;
+                        }
+
+
+                        switch (alt16) {
+                    	case 1 :
+                    	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1084:2: kw= ',' this_expression_4= ruleexpression
+                    	    {
+                    	    kw=(Token)match(input,32,FOLLOW_32_in_rulefunction_designator3150); 
+
+                    	            current.merge(kw);
+                    	            newLeafNode(kw, grammarAccess.getFunction_designatorAccess().getCommaKeyword_1_0_2_0()); 
+                    	        
+                    	     
+                    	            newCompositeNode(grammarAccess.getFunction_designatorAccess().getExpressionParserRuleCall_1_0_2_1()); 
+                    	        
+                    	    pushFollow(FOLLOW_ruleexpression_in_rulefunction_designator3172);
+                    	    this_expression_4=ruleexpression();
+
+                    	    state._fsp--;
+
+
+                    	    		current.merge(this_expression_4);
+                    	        
+                    	     
+                    	            afterParserOrEnumRuleCall();
+                    	        
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop16;
+                        }
+                    } while (true);
+
+                    kw=(Token)match(input,30,FOLLOW_30_in_rulefunction_designator3192); 
+
+                            current.merge(kw);
+                            newLeafNode(kw, grammarAccess.getFunction_designatorAccess().getRightParenthesisKeyword_1_0_3()); 
+                        
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1107:6: (kw= '(' kw= ')' )
+                    {
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1107:6: (kw= '(' kw= ')' )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1108:2: kw= '(' kw= ')'
+                    {
+                    kw=(Token)match(input,29,FOLLOW_29_in_rulefunction_designator3213); 
+
+                            current.merge(kw);
+                            newLeafNode(kw, grammarAccess.getFunction_designatorAccess().getLeftParenthesisKeyword_1_1_0()); 
+                        
+                    kw=(Token)match(input,30,FOLLOW_30_in_rulefunction_designator3226); 
+
+                            current.merge(kw);
+                            newLeafNode(kw, grammarAccess.getFunction_designatorAccess().getRightParenthesisKeyword_1_1_1()); 
+                        
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+
+            }
+
+             leaveRule(); 
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "rulefunction_designator"
+
+
     // $ANTLR start "entryRuledeclaration_part"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1059:1: entryRuledeclaration_part returns [String current=null] : iv_ruledeclaration_part= ruledeclaration_part EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1127:1: entryRuledeclaration_part returns [String current=null] : iv_ruledeclaration_part= ruledeclaration_part EOF ;
     public final String entryRuledeclaration_part() throws RecognitionException {
         String current = null;
 
@@ -2727,17 +2801,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1060:2: (iv_ruledeclaration_part= ruledeclaration_part EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1061:2: iv_ruledeclaration_part= ruledeclaration_part EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1128:2: (iv_ruledeclaration_part= ruledeclaration_part EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1129:2: iv_ruledeclaration_part= ruledeclaration_part EOF
             {
              newCompositeNode(grammarAccess.getDeclaration_partRule()); 
-            pushFollow(FOLLOW_ruledeclaration_part_in_entryRuledeclaration_part3085);
+            pushFollow(FOLLOW_ruledeclaration_part_in_entryRuledeclaration_part3269);
             iv_ruledeclaration_part=ruledeclaration_part();
 
             state._fsp--;
 
              current =iv_ruledeclaration_part.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuledeclaration_part3096); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuledeclaration_part3280); 
 
             }
 
@@ -2755,7 +2829,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruledeclaration_part"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1068:1: ruledeclaration_part returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_label_declaration_part_0= rulelabel_declaration_part )? ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1136:1: ruledeclaration_part returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_label_declaration_part_0= rulelabel_declaration_part )? ;
     public final AntlrDatatypeRuleToken ruledeclaration_part() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2765,24 +2839,24 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1071:28: ( (this_label_declaration_part_0= rulelabel_declaration_part )? )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1072:1: (this_label_declaration_part_0= rulelabel_declaration_part )?
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1139:28: ( (this_label_declaration_part_0= rulelabel_declaration_part )? )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1140:1: (this_label_declaration_part_0= rulelabel_declaration_part )?
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1072:1: (this_label_declaration_part_0= rulelabel_declaration_part )?
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1140:1: (this_label_declaration_part_0= rulelabel_declaration_part )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA16_0==46) ) {
-                alt16=1;
+            if ( (LA18_0==RULE_LABEL_KEYWORD) ) {
+                alt18=1;
             }
-            switch (alt16) {
+            switch (alt18) {
                 case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1073:5: this_label_declaration_part_0= rulelabel_declaration_part
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1141:5: this_label_declaration_part_0= rulelabel_declaration_part
                     {
                      
                             newCompositeNode(grammarAccess.getDeclaration_partAccess().getLabel_declaration_partParserRuleCall()); 
                         
-                    pushFollow(FOLLOW_rulelabel_declaration_part_in_ruledeclaration_part3143);
+                    pushFollow(FOLLOW_rulelabel_declaration_part_in_ruledeclaration_part3327);
                     this_label_declaration_part_0=rulelabel_declaration_part();
 
                     state._fsp--;
@@ -2817,7 +2891,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRulelabel_declaration_part"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1091:1: entryRulelabel_declaration_part returns [String current=null] : iv_rulelabel_declaration_part= rulelabel_declaration_part EOF ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1159:1: entryRulelabel_declaration_part returns [String current=null] : iv_rulelabel_declaration_part= rulelabel_declaration_part EOF ;
     public final String entryRulelabel_declaration_part() throws RecognitionException {
         String current = null;
 
@@ -2825,17 +2899,17 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1092:2: (iv_rulelabel_declaration_part= rulelabel_declaration_part EOF )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1093:2: iv_rulelabel_declaration_part= rulelabel_declaration_part EOF
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1160:2: (iv_rulelabel_declaration_part= rulelabel_declaration_part EOF )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1161:2: iv_rulelabel_declaration_part= rulelabel_declaration_part EOF
             {
              newCompositeNode(grammarAccess.getLabel_declaration_partRule()); 
-            pushFollow(FOLLOW_rulelabel_declaration_part_in_entryRulelabel_declaration_part3190);
+            pushFollow(FOLLOW_rulelabel_declaration_part_in_entryRulelabel_declaration_part3374);
             iv_rulelabel_declaration_part=rulelabel_declaration_part();
 
             state._fsp--;
 
              current =iv_rulelabel_declaration_part.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulelabel_declaration_part3201); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulelabel_declaration_part3385); 
 
             }
 
@@ -2853,10 +2927,11 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulelabel_declaration_part"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1100:1: rulelabel_declaration_part returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (kw= 'label' this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';' ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1168:1: rulelabel_declaration_part returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_LABEL_KEYWORD_0= RULE_LABEL_KEYWORD this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';' ) ;
     public final AntlrDatatypeRuleToken rulelabel_declaration_part() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
+        Token this_LABEL_KEYWORD_0=null;
         Token kw=null;
         AntlrDatatypeRuleToken this_label_1 = null;
 
@@ -2866,21 +2941,23 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1103:28: ( (kw= 'label' this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';' ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1104:1: (kw= 'label' this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';' )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1171:28: ( (this_LABEL_KEYWORD_0= RULE_LABEL_KEYWORD this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';' ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1172:1: (this_LABEL_KEYWORD_0= RULE_LABEL_KEYWORD this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';' )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1104:1: (kw= 'label' this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';' )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1105:2: kw= 'label' this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';'
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1172:1: (this_LABEL_KEYWORD_0= RULE_LABEL_KEYWORD this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';' )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1172:6: this_LABEL_KEYWORD_0= RULE_LABEL_KEYWORD this_label_1= rulelabel (kw= ',' this_label_3= rulelabel )* kw= ';'
             {
-            kw=(Token)match(input,46,FOLLOW_46_in_rulelabel_declaration_part3239); 
+            this_LABEL_KEYWORD_0=(Token)match(input,RULE_LABEL_KEYWORD,FOLLOW_RULE_LABEL_KEYWORD_in_rulelabel_declaration_part3425); 
 
-                    current.merge(kw);
-                    newLeafNode(kw, grammarAccess.getLabel_declaration_partAccess().getLabelKeyword_0()); 
+            		current.merge(this_LABEL_KEYWORD_0);
+                
+             
+                newLeafNode(this_LABEL_KEYWORD_0, grammarAccess.getLabel_declaration_partAccess().getLABEL_KEYWORDTerminalRuleCall_0()); 
                 
              
                     newCompositeNode(grammarAccess.getLabel_declaration_partAccess().getLabelParserRuleCall_1()); 
                 
-            pushFollow(FOLLOW_rulelabel_in_rulelabel_declaration_part3261);
+            pushFollow(FOLLOW_rulelabel_in_rulelabel_declaration_part3452);
             this_label_1=rulelabel();
 
             state._fsp--;
@@ -2891,22 +2968,22 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
              
                     afterParserOrEnumRuleCall();
                 
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1121:1: (kw= ',' this_label_3= rulelabel )*
-            loop17:
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1190:1: (kw= ',' this_label_3= rulelabel )*
+            loop19:
             do {
-                int alt17=2;
-                int LA17_0 = input.LA(1);
+                int alt19=2;
+                int LA19_0 = input.LA(1);
 
-                if ( (LA17_0==26) ) {
-                    alt17=1;
+                if ( (LA19_0==32) ) {
+                    alt19=1;
                 }
 
 
-                switch (alt17) {
+                switch (alt19) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1122:2: kw= ',' this_label_3= rulelabel
+            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascal.g:1191:2: kw= ',' this_label_3= rulelabel
             	    {
-            	    kw=(Token)match(input,26,FOLLOW_26_in_rulelabel_declaration_part3280); 
+            	    kw=(Token)match(input,32,FOLLOW_32_in_rulelabel_declaration_part3471); 
 
             	            current.merge(kw);
             	            newLeafNode(kw, grammarAccess.getLabel_declaration_partAccess().getCommaKeyword_2_0()); 
@@ -2914,7 +2991,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             	     
             	            newCompositeNode(grammarAccess.getLabel_declaration_partAccess().getLabelParserRuleCall_2_1()); 
             	        
-            	    pushFollow(FOLLOW_rulelabel_in_rulelabel_declaration_part3302);
+            	    pushFollow(FOLLOW_rulelabel_in_rulelabel_declaration_part3493);
             	    this_label_3=rulelabel();
 
             	    state._fsp--;
@@ -2930,11 +3007,11 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop17;
+            	    break loop19;
                 }
             } while (true);
 
-            kw=(Token)match(input,25,FOLLOW_25_in_rulelabel_declaration_part3322); 
+            kw=(Token)match(input,31,FOLLOW_31_in_rulelabel_declaration_part3513); 
 
                     current.merge(kw);
                     newLeafNode(kw, grammarAccess.getLabel_declaration_partAccess().getSemicolonKeyword_3()); 
@@ -2961,6 +3038,66 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
     // Delegated rules
 
 
+    protected DFA12 dfa12 = new DFA12(this);
+    static final String DFA12_eotS =
+        "\12\uffff";
+    static final String DFA12_eofS =
+        "\1\uffff\1\11\10\uffff";
+    static final String DFA12_minS =
+        "\1\4\1\6\10\uffff";
+    static final String DFA12_maxS =
+        "\1\45\1\46\10\uffff";
+    static final String DFA12_acceptS =
+        "\2\uffff\1\2\1\3\1\4\1\5\1\7\1\10\1\6\1\1";
+    static final String DFA12_specialS =
+        "\12\uffff}>";
+    static final String[] DFA12_transitionS = {
+            "\1\1\2\uffff\1\2\3\uffff\1\3\1\5\1\7\1\2\16\uffff\1\6\7\uffff"+
+            "\1\4",
+            "\1\11\1\uffff\3\11\22\uffff\1\10\3\11\5\uffff\1\11",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+    };
+
+    static final short[] DFA12_eot = DFA.unpackEncodedString(DFA12_eotS);
+    static final short[] DFA12_eof = DFA.unpackEncodedString(DFA12_eofS);
+    static final char[] DFA12_min = DFA.unpackEncodedStringToUnsignedChars(DFA12_minS);
+    static final char[] DFA12_max = DFA.unpackEncodedStringToUnsignedChars(DFA12_maxS);
+    static final short[] DFA12_accept = DFA.unpackEncodedString(DFA12_acceptS);
+    static final short[] DFA12_special = DFA.unpackEncodedString(DFA12_specialS);
+    static final short[][] DFA12_transition;
+
+    static {
+        int numStates = DFA12_transitionS.length;
+        DFA12_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA12_transition[i] = DFA.unpackEncodedString(DFA12_transitionS[i]);
+        }
+    }
+
+    class DFA12 extends DFA {
+
+        public DFA12(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 12;
+            this.eot = DFA12_eot;
+            this.eof = DFA12_eof;
+            this.min = DFA12_min;
+            this.max = DFA12_max;
+            this.accept = DFA12_accept;
+            this.special = DFA12_special;
+            this.transition = DFA12_transition;
+        }
+        public String getDescription() {
+            return "835:1: (this_variable_0= rulevariable | this_number_1= rulenumber | this_STRING_2= RULE_STRING | this_set_3= ruleset | this_NIL_KEYWORD_4= RULE_NIL_KEYWORD | this_function_designator_5= rulefunction_designator | (kw= '(' this_expression_7= ruleexpression kw= ')' ) | (this_NOT_KEYWORD_9= RULE_NOT_KEYWORD this_factor_10= rulefactor ) )";
+        }
+    }
  
 
     public static final BitSet FOLLOW_rulepascal_in_entryRulepascal75 = new BitSet(new long[]{0x0000000000000000L});
@@ -2968,115 +3105,122 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleprogram_in_rulepascal130 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleprogram_in_entryRuleprogram166 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleprogram177 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleprogram_heading_block_in_ruleprogram224 = new BitSet(new long[]{0x0000400008000000L});
-    public static final BitSet FOLLOW_ruleblock_in_ruleprogram251 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_ruleprogram269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleprogram_heading_block_in_ruleprogram224 = new BitSet(new long[]{0x0000000000008020L});
+    public static final BitSet FOLLOW_ruleblock_in_ruleprogram251 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_27_in_ruleprogram269 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleprogram_heading_block_in_entryRuleprogram_heading_block310 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleprogram_heading_block321 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_ruleprogram_heading_block359 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_ruleprogram_heading_block374 = new BitSet(new long[]{0x0000000002800000L});
-    public static final BitSet FOLLOW_23_in_ruleprogram_heading_block393 = new BitSet(new long[]{0x0000000001000010L});
-    public static final BitSet FOLLOW_ruleidentifier_list_in_ruleprogram_heading_block415 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_ruleprogram_heading_block433 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_ruleprogram_heading_block448 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleprogram_heading_block359 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_ruleprogram_heading_block374 = new BitSet(new long[]{0x00000000A0000000L});
+    public static final BitSet FOLLOW_29_in_ruleprogram_heading_block393 = new BitSet(new long[]{0x0000000040000010L});
+    public static final BitSet FOLLOW_ruleidentifier_list_in_ruleprogram_heading_block415 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_ruleprogram_heading_block433 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_ruleprogram_heading_block448 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleidentifier_list_in_entryRuleidentifier_list489 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleidentifier_list500 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_ruleidentifier_list540 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_26_in_ruleidentifier_list559 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_ruleidentifier_list574 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_ruleidentifier_list540 = new BitSet(new long[]{0x0000000100000002L});
+    public static final BitSet FOLLOW_32_in_ruleidentifier_list559 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_ruleidentifier_list574 = new BitSet(new long[]{0x0000000100000002L});
     public static final BitSet FOLLOW_ruleblock_in_entryRuleblock623 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleblock634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruledeclaration_part_in_ruleblock681 = new BitSet(new long[]{0x0000400008000000L});
+    public static final BitSet FOLLOW_ruledeclaration_part_in_ruleblock681 = new BitSet(new long[]{0x0000000000008020L});
     public static final BitSet FOLLOW_rulestatement_part_in_ruleblock708 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulestatement_part_in_entryRulestatement_part754 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulestatement_part765 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rulestatement_part803 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_rulestatement_sequence_in_rulestatement_part825 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_rulestatement_part843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_sequence_in_entryRulestatement_sequence884 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulestatement_sequence895 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_in_rulestatement_sequence942 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_25_in_rulestatement_sequence961 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_rulestatement_in_rulestatement_sequence983 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_rulestatement_in_entryRulestatement1031 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulestatement1042 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_in_rulestatement1090 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_rulestatement1108 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rulesimple_statement_in_rulestatement1132 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_in_entryRulelabel1178 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulelabel1189 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGER_NUMBER_in_rulelabel1228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulesimple_statement_in_entryRulesimple_statement1273 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulesimple_statement1284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleassignment_statement_in_rulesimple_statement1331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleassignment_statement_in_entryRuleassignment_statement1378 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleassignment_statement1389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulevariable_in_ruleassignment_statement1436 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_ruleassignment_statement1454 = new BitSet(new long[]{0x00000000000000F0L});
-    public static final BitSet FOLLOW_ruleexpression_in_ruleassignment_statement1476 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulevariable_in_entryRulevariable1522 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulevariable1533 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleentire_variable_in_rulevariable1579 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleentire_variable_in_entryRuleentire_variable1624 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleentire_variable1635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulevariable_identifier_in_ruleentire_variable1681 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulevariable_identifier_in_entryRulevariable_identifier1726 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulevariable_identifier1737 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rulevariable_identifier1776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_entryRuleexpression1821 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleexpression1832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulesimple_expression_in_ruleexpression1879 = new BitSet(new long[]{0x0000003F80000002L});
-    public static final BitSet FOLLOW_rulerelation_operator_in_ruleexpression1907 = new BitSet(new long[]{0x00000000000000F0L});
-    public static final BitSet FOLLOW_rulesimple_expression_in_ruleexpression1934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulerelation_operator_in_entryRulerelation_operator1982 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulerelation_operator1993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_rulerelation_operator2031 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_rulerelation_operator2050 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rulerelation_operator2069 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_rulerelation_operator2088 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rulerelation_operator2107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rulerelation_operator2126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rulerelation_operator2145 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulesimple_expression_in_entryRulesimple_expression2186 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulesimple_expression2197 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SIGN_in_rulesimple_expression2238 = new BitSet(new long[]{0x00000000000000F0L});
-    public static final BitSet FOLLOW_ruleterm_in_rulesimple_expression2267 = new BitSet(new long[]{0x000001C000000002L});
-    public static final BitSet FOLLOW_ruleaddition_operator_in_rulesimple_expression2295 = new BitSet(new long[]{0x00000000000000F0L});
-    public static final BitSet FOLLOW_ruleterm_in_rulesimple_expression2322 = new BitSet(new long[]{0x000001C000000002L});
-    public static final BitSet FOLLOW_ruleaddition_operator_in_entryRuleaddition_operator2370 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleaddition_operator2381 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleaddition_operator2419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_ruleaddition_operator2438 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_ruleaddition_operator2457 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleterm_in_entryRuleterm2498 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleterm2509 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulefactor_in_ruleterm2556 = new BitSet(new long[]{0x00003E0000000002L});
-    public static final BitSet FOLLOW_rulemultiplication_operator_in_ruleterm2584 = new BitSet(new long[]{0x00000000000000F0L});
-    public static final BitSet FOLLOW_rulefactor_in_ruleterm2611 = new BitSet(new long[]{0x00003E0000000002L});
-    public static final BitSet FOLLOW_rulemultiplication_operator_in_entryRulemultiplication_operator2659 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulemultiplication_operator2670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_rulemultiplication_operator2708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_rulemultiplication_operator2727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_rulemultiplication_operator2746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_rulemultiplication_operator2765 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rulemultiplication_operator2784 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulefactor_in_entryRulefactor2825 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulefactor2836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulevariable_in_rulefactor2883 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulenumber_in_rulefactor2916 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulenumber_in_entryRulenumber2962 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulenumber2973 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGER_NUMBER_in_rulenumber3013 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_REAL_NUMBER_in_rulenumber3039 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruledeclaration_part_in_entryRuledeclaration_part3085 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuledeclaration_part3096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_declaration_part_in_ruledeclaration_part3143 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_declaration_part_in_entryRulelabel_declaration_part3190 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulelabel_declaration_part3201 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rulelabel_declaration_part3239 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rulelabel_in_rulelabel_declaration_part3261 = new BitSet(new long[]{0x0000000006000000L});
-    public static final BitSet FOLLOW_26_in_rulelabel_declaration_part3280 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rulelabel_in_rulelabel_declaration_part3302 = new BitSet(new long[]{0x0000000006000000L});
-    public static final BitSet FOLLOW_25_in_rulelabel_declaration_part3322 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_BEGIN_KEYWORD_in_rulestatement_part805 = new BitSet(new long[]{0x0000000000000090L});
+    public static final BitSet FOLLOW_rulestatement_sequence_in_rulestatement_part832 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_END_KEYWORD_in_rulestatement_part852 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_sequence_in_entryRulestatement_sequence898 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulestatement_sequence909 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_in_rulestatement_sequence956 = new BitSet(new long[]{0x0000000080000002L});
+    public static final BitSet FOLLOW_31_in_rulestatement_sequence975 = new BitSet(new long[]{0x0000000000000090L});
+    public static final BitSet FOLLOW_rulestatement_in_rulestatement_sequence997 = new BitSet(new long[]{0x0000000080000002L});
+    public static final BitSet FOLLOW_rulestatement_in_entryRulestatement1045 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulestatement1056 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_in_rulestatement1104 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_33_in_rulestatement1122 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rulesimple_statement_in_rulestatement1146 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_in_entryRulelabel1192 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulelabel1203 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_NUMBER_in_rulelabel1242 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulesimple_statement_in_entryRulesimple_statement1287 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulesimple_statement1298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleassignment_statement_in_rulesimple_statement1345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleassignment_statement_in_entryRuleassignment_statement1392 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleassignment_statement1403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_in_ruleassignment_statement1450 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_ruleassignment_statement1468 = new BitSet(new long[]{0x0000003820007890L});
+    public static final BitSet FOLLOW_ruleexpression_in_ruleassignment_statement1490 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_in_entryRulevariable1536 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulevariable1547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleentire_variable_in_rulevariable1593 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleentire_variable_in_entryRuleentire_variable1638 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleentire_variable1649 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_identifier_in_ruleentire_variable1695 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_identifier_in_entryRulevariable_identifier1740 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulevariable_identifier1751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rulevariable_identifier1790 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_entryRuleexpression1835 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleexpression1846 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulesimple_expression_in_ruleexpression1893 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_RULE_RELATIONAL_OPERATOR_in_ruleexpression1914 = new BitSet(new long[]{0x0000003820007890L});
+    public static final BitSet FOLLOW_rulesimple_expression_in_ruleexpression1941 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulesimple_expression_in_entryRulesimple_expression1989 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulesimple_expression2000 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleterm_in_rulesimple_expression2048 = new BitSet(new long[]{0x0000000000000202L});
+    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rulesimple_expression2069 = new BitSet(new long[]{0x0000002020007890L});
+    public static final BitSet FOLLOW_ruleterm_in_rulesimple_expression2096 = new BitSet(new long[]{0x0000000000000202L});
+    public static final BitSet FOLLOW_35_in_rulesimple_expression2125 = new BitSet(new long[]{0x0000003820007890L});
+    public static final BitSet FOLLOW_36_in_rulesimple_expression2144 = new BitSet(new long[]{0x0000003820007890L});
+    public static final BitSet FOLLOW_rulesimple_expression_in_rulesimple_expression2167 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleterm_in_entryRuleterm2214 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleterm2225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulefactor_in_ruleterm2272 = new BitSet(new long[]{0x0000000000000402L});
+    public static final BitSet FOLLOW_RULE_MULTIPLICATION_OPERATOR_in_ruleterm2293 = new BitSet(new long[]{0x0000002020007890L});
+    public static final BitSet FOLLOW_rulefactor_in_ruleterm2320 = new BitSet(new long[]{0x0000000000000402L});
+    public static final BitSet FOLLOW_rulefactor_in_entryRulefactor2368 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulefactor2379 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_in_rulefactor2426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulenumber_in_rulefactor2459 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rulefactor2485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleset_in_rulefactor2518 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_NIL_KEYWORD_in_rulefactor2544 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulefunction_designator_in_rulefactor2577 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rulefactor2602 = new BitSet(new long[]{0x0000003820007890L});
+    public static final BitSet FOLLOW_ruleexpression_in_rulefactor2624 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_rulefactor2642 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_NOT_KEYWORD_in_rulefactor2665 = new BitSet(new long[]{0x0000002020007890L});
+    public static final BitSet FOLLOW_rulefactor_in_rulefactor2692 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulenumber_in_entryRulenumber2739 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulenumber2750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_NUMBER_in_rulenumber2790 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_REAL_NUMBER_in_rulenumber2816 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleset_in_entryRuleset2862 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleset2873 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleset2911 = new BitSet(new long[]{0x0000007820007890L});
+    public static final BitSet FOLLOW_ruleexpression_in_ruleset2934 = new BitSet(new long[]{0x0000004100000000L});
+    public static final BitSet FOLLOW_32_in_ruleset2953 = new BitSet(new long[]{0x0000003820007890L});
+    public static final BitSet FOLLOW_ruleexpression_in_ruleset2975 = new BitSet(new long[]{0x0000004100000000L});
+    public static final BitSet FOLLOW_38_in_ruleset2997 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulefunction_designator_in_entryRulefunction_designator3038 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulefunction_designator3049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rulefunction_designator3089 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_rulefunction_designator3109 = new BitSet(new long[]{0x0000003820007890L});
+    public static final BitSet FOLLOW_ruleexpression_in_rulefunction_designator3131 = new BitSet(new long[]{0x0000000140000000L});
+    public static final BitSet FOLLOW_32_in_rulefunction_designator3150 = new BitSet(new long[]{0x0000003820007890L});
+    public static final BitSet FOLLOW_ruleexpression_in_rulefunction_designator3172 = new BitSet(new long[]{0x0000000140000000L});
+    public static final BitSet FOLLOW_30_in_rulefunction_designator3192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rulefunction_designator3213 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_rulefunction_designator3226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruledeclaration_part_in_entryRuledeclaration_part3269 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuledeclaration_part3280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_declaration_part_in_ruledeclaration_part3327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_declaration_part_in_entryRulelabel_declaration_part3374 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulelabel_declaration_part3385 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_LABEL_KEYWORD_in_rulelabel_declaration_part3425 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rulelabel_in_rulelabel_declaration_part3452 = new BitSet(new long[]{0x0000000180000000L});
+    public static final BitSet FOLLOW_32_in_rulelabel_declaration_part3471 = new BitSet(new long[]{0x0000000000000080L});
+    public static final BitSet FOLLOW_rulelabel_in_rulelabel_declaration_part3493 = new BitSet(new long[]{0x0000000180000000L});
+    public static final BitSet FOLLOW_31_in_rulelabel_declaration_part3513 = new BitSet(new long[]{0x0000000000000002L});
 
 }

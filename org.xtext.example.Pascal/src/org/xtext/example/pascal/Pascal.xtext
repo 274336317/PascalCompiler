@@ -23,7 +23,7 @@ block:
 ;
 
 statement_part:
-	"begin" statement_sequence "end"	
+	BEGIN_KEYWORD statement_sequence END_KEYWORD	
 ;
 
 statement_sequence:
@@ -59,35 +59,31 @@ variable_identifier:
 ;
 
 expression:
-	simple_expression ( relation_operator simple_expression ) ?	
+	simple_expression ( RELATIONAL_OPERATOR simple_expression ) ? 
 ;
 
-relation_operator:
-	"=" | "<>" | "<" | "<=" | ">" | ">=" | "in"	
-;
-
-simple_expression:
-	( SIGN ) ? term ( addition_operator term ) *	
-;
-
-addition_operator:
-	"+" | "-" | "or"	
+simple_expression: //FIXME: SIGNED EXPRESSION (I.E.: -(2 + 2))
+	term ( ADDITION_OPERATOR term ) * 
 ;
 
 term:
-	factor ( multiplication_operator factor ) *	
+	factor ( MULTIPLICATION_OPERATOR factor ) *	
 ;
 
-multiplication_operator:
-	"*" | "/" | "div" | "mod" | "and"	
-;
-
-factor: //TODO
-	variable | number //| STRING | set | "nil" | constant_identifier | bound_identifier | function_designator | "(" expression ")" | "not" factor	
+factor: 
+	variable | number | STRING | set | NIL_KEYWORD | function_designator | "(" expression ")" | NOT_KEYWORD factor	
 ;
 
 number:
 	INTEGER_NUMBER | REAL_NUMBER	
+;
+ 
+set:
+	"[" ( expression ( "," expression ) * ) ? "]"	
+;
+
+function_designator:
+	IDENTIFIER ( "(" expression ( "," expression ) * ")" | "(" ")" )
 ;
 
 declaration_part: //TODO
@@ -95,7 +91,39 @@ declaration_part: //TODO
 ;
 
 label_declaration_part:
-	"label" label ( "," label ) * ";"
+	LABEL_KEYWORD label ( "," label ) * ";"
+;
+
+terminal ADDITION_OPERATOR:
+	"+" | "-" | "or"	
+; 
+
+terminal MULTIPLICATION_OPERATOR:
+	"*" | "/" | "div" | "mod" | "and"	
+;
+
+terminal RELATIONAL_OPERATOR:
+	"=" | "<>" | "<" | "<=" | ">" | ">=" | "in"	
+;
+
+terminal BEGIN_KEYWORD:
+	"begin"	
+;
+
+terminal END_KEYWORD:
+	"end"	
+;
+
+terminal LABEL_KEYWORD:
+	"label"
+;
+
+terminal NIL_KEYWORD:
+	"nil"	
+;
+
+terminal NOT_KEYWORD:
+	"not"	
 ;
 
 terminal INTEGER_NUMBER: 
@@ -103,11 +131,8 @@ terminal INTEGER_NUMBER:
 ;
 
 terminal REAL_NUMBER:
-	DIGIT_SEQUENCE "." ( UNSIGNED_DIGIT_SEQUENCE ) ? ( ( "E" | "e" ) DIGIT_SEQUENCE ) ? | DIGIT_SEQUENCE ( "E" | "e" ) DIGIT_SEQUENCE	
-;
-
-terminal IDENTIFIER:
-	LETTER_EXTENDED ( LETTER_EXTENDED | DIGIT ) *	
+	DIGIT_SEQUENCE "." ( UNSIGNED_DIGIT_SEQUENCE ) ? ( ( "E" | "e" ) DIGIT_SEQUENCE ) ? | 
+	DIGIT_SEQUENCE ( "E" | "e" ) DIGIT_SEQUENCE	
 ;
 
 terminal UNSIGNED_DIGIT_SEQUENCE:
@@ -115,11 +140,15 @@ terminal UNSIGNED_DIGIT_SEQUENCE:
 ;
 
 terminal DIGIT_SEQUENCE:
-	( SIGN ) ? UNSIGNED_DIGIT_SEQUENCE	
+	( "+" | "-" ) ? UNSIGNED_DIGIT_SEQUENCE	
 ;
 
 terminal DIGIT:
 	"0".."9"
+;
+
+terminal IDENTIFIER:
+	LETTER_EXTENDED ( LETTER_EXTENDED | DIGIT ) *	
 ;
 
 terminal LETTER:
@@ -128,8 +157,4 @@ terminal LETTER:
 
 terminal LETTER_EXTENDED:
 	LETTER | "_"	
-;
-
-terminal SIGN:
-	"+" | "-"	
-;
+; 
