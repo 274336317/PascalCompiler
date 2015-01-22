@@ -1,0 +1,11 @@
+package org.xtext.example.pascal.ui;
+
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+
+public class GuessHighlightingCalculator implements ISemanticHighlightingCalculator {
+	
+	public void provideHighlightingFor( XtextResource resource, IHighlightedPositionAcceptor acceptor ) {}
+	
+}

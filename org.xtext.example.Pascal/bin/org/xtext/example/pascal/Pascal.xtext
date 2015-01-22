@@ -103,7 +103,7 @@ function_designator:
 ;
 
 goto_statement:
-	"goto" label	
+	GOTO_KEYWORD label	
 ;
 
 declaration_part: //TODO
@@ -148,6 +148,10 @@ terminal NOT_KEYWORD:
 
 terminal OR_KEYWORD:
 	"or"	
+;
+
+terminal GOTO_KEYWORD:
+	"goto"	
 ;
 
 terminal SIGNED_INTEGER_NUMBER:

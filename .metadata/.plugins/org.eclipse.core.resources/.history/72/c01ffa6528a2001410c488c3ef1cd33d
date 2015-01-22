@@ -1,0 +1,15 @@
+package org.xtext.example.pascal.ui;
+
+import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
+
+public class MyAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenToAttributeIdMapper {
+
+	@Override
+	protected String calculateId(String tokenName, int tokenType) {
+		if("'or'".equals(tokenName)) {
+			return MyHighLightingConfiguration.LAYOUT_ID;
+		}
+		return super.calculateId(tokenName, tokenType);
+	}
+	
+}
