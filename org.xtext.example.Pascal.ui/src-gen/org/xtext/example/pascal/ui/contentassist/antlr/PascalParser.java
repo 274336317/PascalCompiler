@@ -57,6 +57,10 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSubrange_typeAccess().getAlternatives(), "rule__Subrange_type__Alternatives");
 					put(grammarAccess.getUnpacked_structured_typeAccess().getAlternatives(), "rule__Unpacked_structured_type__Alternatives");
 					put(grammarAccess.getField_listAccess().getAlternatives_0(), "rule__Field_list__Alternatives_0");
+					put(grammarAccess.getProcedure_declarationAccess().getAlternatives_2(), "rule__Procedure_declaration__Alternatives_2");
+					put(grammarAccess.getParameter_typeAccess().getAlternatives(), "rule__Parameter_type__Alternatives");
+					put(grammarAccess.getConformant_array_schemaAccess().getAlternatives(), "rule__Conformant_array_schema__Alternatives");
+					put(grammarAccess.getUnpacked_conformant_array_schemaAccess().getAlternatives_6(), "rule__Unpacked_conformant_array_schema__Alternatives_6");
 					put(grammarAccess.getProgramAccess().getGroup(), "rule__Program__Group__0");
 					put(grammarAccess.getProgram_heading_blockAccess().getGroup(), "rule__Program_heading_block__Group__0");
 					put(grammarAccess.getProgram_heading_blockAccess().getGroup_2(), "rule__Program_heading_block__Group_2__0");
@@ -124,6 +128,19 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVariantAccess().getGroup(), "rule__Variant__Group__0");
 					put(grammarAccess.getSet_typeAccess().getGroup(), "rule__Set_type__Group__0");
 					put(grammarAccess.getFile_typeAccess().getGroup(), "rule__File_type__Group__0");
+					put(grammarAccess.getPointer_typeAccess().getGroup(), "rule__Pointer_type__Group__0");
+					put(grammarAccess.getVariable_declaration_partAccess().getGroup(), "rule__Variable_declaration_part__Group__0");
+					put(grammarAccess.getVariable_declaration_partAccess().getGroup_3(), "rule__Variable_declaration_part__Group_3__0");
+					put(grammarAccess.getProcedure_and_function_declaration_partAccess().getGroup(), "rule__Procedure_and_function_declaration_part__Group__0");
+					put(grammarAccess.getProcedure_declarationAccess().getGroup(), "rule__Procedure_declaration__Group__0");
+					put(grammarAccess.getProcedure_headingAccess().getGroup(), "rule__Procedure_heading__Group__0");
+					put(grammarAccess.getFormal_parameter_listAccess().getGroup(), "rule__Formal_parameter_list__Group__0");
+					put(grammarAccess.getFormal_parameter_listAccess().getGroup_2(), "rule__Formal_parameter_list__Group_2__0");
+					put(grammarAccess.getValue_parameter_sectionAccess().getGroup(), "rule__Value_parameter_section__Group__0");
+					put(grammarAccess.getPacked_conformant_array_schemaAccess().getGroup(), "rule__Packed_conformant_array_schema__Group__0");
+					put(grammarAccess.getBound_specificationAccess().getGroup(), "rule__Bound_specification__Group__0");
+					put(grammarAccess.getUnpacked_conformant_array_schemaAccess().getGroup(), "rule__Unpacked_conformant_array_schema__Group__0");
+					put(grammarAccess.getUnpacked_conformant_array_schemaAccess().getGroup_3(), "rule__Unpacked_conformant_array_schema__Group_3__0");
 					put(grammarAccess.getPascalAccess().getProgramAssignment(), "rule__Pascal__ProgramAssignment");
 				}
 			};

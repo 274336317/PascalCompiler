@@ -158,10 +158,12 @@ goto_statement:
 	GOTO_KEYWORD label	
 ;
 
-declaration_part: //TODO
+declaration_part: 
 	( label_declaration_part ) ?
 	( constant_definition_part ) ? 
 	( type_definition_part ) ?
+	( variable_declaration_part ) ? 
+	procedure_and_function_declaration_part
 ;
 
 label_declaration_part:
@@ -255,6 +257,62 @@ file_type:
 pointer_type:
 	"^" IDENTIFIER	
 ; 
+
+variable_declaration_part:
+	VAR_KEYWORD record_section ";" ( record_section ";" ) *
+;
+
+procedure_and_function_declaration_part: //TODO
+	( ( procedure_declaration ) ";" ) *	
+;
+
+procedure_declaration:
+	procedure_heading ";" ( block | FORWARD_KEYWORD )
+;
+
+procedure_heading:
+	PROCEDURE_KEYWORD IDENTIFIER ( formal_parameter_list ) ?	
+;
+
+formal_parameter_list:
+	"(" formal_parameter_section ( ";" formal_parameter_section ) * ")"	
+;
+
+formal_parameter_section: 
+	value_parameter_section | variable_parameter_section | procedure_heading | function_heading
+;
+
+value_parameter_section:
+	identifier_list ":" parameter_type	
+;
+
+parameter_type:
+	conformant_array_schema | IDENTIFIER	
+;
+
+conformant_array_schema:
+	packed_conformant_array_schema | unpacked_conformant_array_schema	
+;
+
+packed_conformant_array_schema:
+	PACKED_KEYWORD ARRAY_KEYWORD "[" bound_specification "]" OF_KEYWORD IDENTIFIER	
+;
+
+bound_specification:
+	IDENTIFIER ".." IDENTIFIER ":" IDENTIFIER	
+;
+
+unpacked_conformant_array_schema:
+	ARRAY_KEYWORD "[" bound_specification ( ";" bound_specification ) * "]" OF_KEYWORD ( conformant_array_schema | IDENTIFIER )	
+;
+
+variable_parameter_section:
+	VAR_KEYWORD identifier_list ":" parameter_type	
+;
+
+function_heading:
+	FUNCTION_KEYWORD IDENTIFIER ( formal_parameter_list ) ? ":" IDENTIFIER
+;
 
 terminal NUMERIC_SUBRANGE:
 	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER ) ".."	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER )
@@ -378,6 +436,22 @@ terminal SET_KEYWORD:
 
 terminal FILE_KEYWORD:
 	"file"
+;
+
+terminal VAR_KEYWORD:
+	"var"
+;
+
+terminal PROCEDURE_KEYWORD:
+	"procedure"	
+;
+
+terminal FORWARD_KEYWORD:
+	"forward"	
+;
+
+terminal FUNCTION_KEYWORD:
+	"function"	
 ;
 
 terminal SIGNED_INTEGER_NUMBER:
