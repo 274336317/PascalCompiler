@@ -32,5 +32,6 @@ Export-Package: org.xtext.example.pascal,
  org.xtext.example.pascal.validation,
  org.xtext.example.pascal.scoping,
  org.xtext.example.pascal.generator,
- org.xtext.example.pascal.formatting
+ org.xtext.example.pascal.formatting,
+ org.xtext.example.pascal.parser.antlr.lexer
 

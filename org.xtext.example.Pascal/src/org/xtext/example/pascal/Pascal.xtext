@@ -103,7 +103,7 @@ function_designator:
 ;
 
 structured_statement: //TODO
-	compound_statement | repetitive_statement
+	compound_statement | repetitive_statement | conditional_statement
 ;
 
 compound_statement:
@@ -124,6 +124,30 @@ repeat_statement:
 
 for_statement:
 	FOR_KEYWORD assignment_statement ( TO_KEYWORD | DOWNTO_KEYWORD ) expression DO_KEYWORD statement	
+;
+
+conditional_statement: 
+	if_statement | case_statement
+;
+
+if_statement:
+	IF_KEYWORD expression THEN_KEYWORD statement ( ELSE_KEYWORD statement )	?
+;
+
+case_statement:
+	CASE_KEYWORD expression OF_KEYWORD case_limb ( ";" case_limb ) * ( ";" ) ? END_KEYWORD	
+;
+
+case_limb:
+	case_label_list ":" statement	
+;
+
+case_label_list:
+	constant ( "," constant ) *	
+;
+
+constant:
+	( "+" | "-" ) ? ( IDENTIFIER | number ) | STRING 	
 ;
 
 goto_statement:
@@ -204,6 +228,26 @@ terminal TO_KEYWORD:
 
 terminal DOWNTO_KEYWORD:
 	"downto"	
+;
+
+terminal IF_KEYWORD:
+	"if"	
+;
+
+terminal THEN_KEYWORD:
+	"then"	
+;
+
+terminal ELSE_KEYWORD:
+	"else"	
+;
+
+terminal CASE_KEYWORD:
+	"case"	
+;
+
+terminal OF_KEYWORD:
+	"of"	
 ;
 
 terminal SIGNED_INTEGER_NUMBER:

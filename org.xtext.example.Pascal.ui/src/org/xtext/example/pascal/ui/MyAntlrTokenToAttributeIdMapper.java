@@ -7,7 +7,7 @@ public class MyAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenToAttribut
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
 		String[] layouts = new String[]{ "RULE_IDENTIFIER" };
-		String[] keywords = new String[]{ "RULE_BEGIN_KEYWORD", "RULE_END_KEYWORD", "RULE_GOTO_KEYWORD", "RULE_LABEL_KEYWORD", "RULE_WHILE_KEYWORD", "RULE_DO_KEYWORD", "RULE_REPEAT_KEYWORD", "RULE_UNTIL_KEYWORD", "RULE_FOR_KEYWORD", "RULE_TO_KEYWORD", "RULE_DOWNTO_KEYWORD" };
+		String[] keywords = new String[]{ "RULE_BEGIN_KEYWORD", "RULE_END_KEYWORD", "RULE_GOTO_KEYWORD", "RULE_LABEL_KEYWORD", "RULE_WHILE_KEYWORD", "RULE_DO_KEYWORD", "RULE_REPEAT_KEYWORD", "RULE_UNTIL_KEYWORD", "RULE_FOR_KEYWORD", "RULE_TO_KEYWORD", "RULE_DOWNTO_KEYWORD", "RULE_IF_KEYWORD", "RULE_THEN_KEYWORD", "RULE_ELSE_KEYWORD", "RULE_CASE_KEYWORD", "RULE_OF_KEYWORD" };
 		String[] numbers = new String[]{ "RULE_INTEGER_NUMBER", "RULE_SIGNED_INTEGER_NUMBER", "RULE_REAL_NUMBER", "RULE_SIGNED_REAL_NUMBER" };
 		String[] punctuation = new String[]{ "'['", "']'", "':'", "','", "'('", "')'", "';'" };
 		for (String s : layouts) {

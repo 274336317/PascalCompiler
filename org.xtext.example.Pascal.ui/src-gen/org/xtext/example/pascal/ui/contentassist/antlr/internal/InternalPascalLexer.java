@@ -12,50 +12,57 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalPascalLexer extends Lexer {
-    public static final int RULE_ID=32;
-    public static final int RULE_ANY_OTHER=37;
+    public static final int RULE_ID=37;
+    public static final int RULE_ANY_OTHER=42;
+    public static final int RULE_IF_KEYWORD=25;
     public static final int RULE_FOR_KEYWORD=24;
-    public static final int EOF=-1;
     public static final int RULE_ADDITION_OPERATOR=6;
+    public static final int EOF=-1;
     public static final int RULE_UNTIL_KEYWORD=23;
+    public static final int RULE_THEN_KEYWORD=26;
     public static final int RULE_END_KEYWORD=16;
+    public static final int RULE_CASE_KEYWORD=28;
     public static final int RULE_REAL_NUMBER=10;
+    public static final int T__51=51;
+    public static final int T__52=52;
+    public static final int T__53=53;
+    public static final int T__54=54;
     public static final int RULE_MULTIPLICATION_OPERATOR=18;
-    public static final int RULE_INT=33;
+    public static final int RULE_INT=38;
     public static final int RULE_BEGIN_KEYWORD=15;
-    public static final int RULE_LETTER_EXTENDED=30;
+    public static final int RULE_LETTER_EXTENDED=35;
+    public static final int T__50=50;
     public static final int RULE_DOWNTO_KEYWORD=14;
-    public static final int T__42=42;
-    public static final int RULE_TO_KEYWORD=13;
     public static final int T__43=43;
-    public static final int T__40=40;
+    public static final int RULE_TO_KEYWORD=13;
     public static final int RULE_RELATIONAL_OPERATOR=17;
-    public static final int T__41=41;
     public static final int T__46=46;
     public static final int RULE_NIL_KEYWORD=9;
     public static final int T__47=47;
     public static final int T__44=44;
     public static final int T__45=45;
-    public static final int RULE_GOTO_KEYWORD=25;
-    public static final int RULE_LABEL_KEYWORD=26;
+    public static final int RULE_GOTO_KEYWORD=30;
+    public static final int RULE_LABEL_KEYWORD=31;
+    public static final int T__48=48;
+    public static final int T__49=49;
     public static final int RULE_WHILE_KEYWORD=20;
+    public static final int RULE_UNSIGNED_DIGIT_SEQUENCE=32;
     public static final int RULE_IDENTIFIER=5;
-    public static final int RULE_UNSIGNED_DIGIT_SEQUENCE=27;
+    public static final int RULE_OF_KEYWORD=29;
     public static final int RULE_DO_KEYWORD=21;
-    public static final int RULE_SL_COMMENT=35;
+    public static final int RULE_SL_COMMENT=40;
     public static final int RULE_NOT_KEYWORD=19;
-    public static final int RULE_LETTER=31;
-    public static final int RULE_ML_COMMENT=34;
+    public static final int RULE_LETTER=36;
+    public static final int RULE_ML_COMMENT=39;
     public static final int RULE_STRING=8;
     public static final int RULE_SIGNED_REAL_NUMBER=12;
     public static final int RULE_REPEAT_KEYWORD=22;
-    public static final int T__38=38;
-    public static final int T__39=39;
     public static final int RULE_OR_KEYWORD=7;
-    public static final int RULE_DIGIT_SEQUENCE=28;
-    public static final int RULE_WS=36;
-    public static final int RULE_DIGIT=29;
+    public static final int RULE_DIGIT_SEQUENCE=33;
+    public static final int RULE_WS=41;
     public static final int RULE_SIGNED_INTEGER_NUMBER=11;
+    public static final int RULE_DIGIT=34;
+    public static final int RULE_ELSE_KEYWORD=27;
     public static final int RULE_INTEGER_NUMBER=4;
 
     // delegates
@@ -71,116 +78,15 @@ public class InternalPascalLexer extends Lexer {
     }
     public String getGrammarFileName() { return "../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g"; }
 
-    // $ANTLR start "T__38"
-    public final void mT__38() throws RecognitionException {
-        try {
-            int _type = T__38;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:11:7: ( '.' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:11:9: '.'
-            {
-            match('.'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__38"
-
-    // $ANTLR start "T__39"
-    public final void mT__39() throws RecognitionException {
-        try {
-            int _type = T__39;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:12:7: ( 'program' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:12:9: 'program'
-            {
-            match("program"); 
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__39"
-
-    // $ANTLR start "T__40"
-    public final void mT__40() throws RecognitionException {
-        try {
-            int _type = T__40;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:13:7: ( ';' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:13:9: ';'
-            {
-            match(';'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__40"
-
-    // $ANTLR start "T__41"
-    public final void mT__41() throws RecognitionException {
-        try {
-            int _type = T__41;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:14:7: ( '(' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:14:9: '('
-            {
-            match('('); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__41"
-
-    // $ANTLR start "T__42"
-    public final void mT__42() throws RecognitionException {
-        try {
-            int _type = T__42;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:15:7: ( ')' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:15:9: ')'
-            {
-            match(')'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "T__42"
-
     // $ANTLR start "T__43"
     public final void mT__43() throws RecognitionException {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:16:7: ( ',' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:16:9: ','
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:11:7: ( '+' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:11:9: '+'
             {
-            match(','); 
+            match('+'); 
 
             }
 
@@ -197,10 +103,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:17:7: ( ':' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:17:9: ':'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:12:7: ( '-' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:12:9: '-'
             {
-            match(':'); 
+            match('-'); 
 
             }
 
@@ -217,11 +123,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:18:7: ( ':=' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:18:9: ':='
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:13:7: ( '.' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:13:9: '.'
             {
-            match(":="); 
-
+            match('.'); 
 
             }
 
@@ -238,10 +143,11 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:19:7: ( '[' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:19:9: '['
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:14:7: ( 'program' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:14:9: 'program'
             {
-            match('['); 
+            match("program"); 
+
 
             }
 
@@ -258,10 +164,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:20:7: ( ']' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:20:9: ']'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:15:7: ( ';' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:15:9: ';'
             {
-            match(']'); 
+            match(';'); 
 
             }
 
@@ -273,13 +179,154 @@ public class InternalPascalLexer extends Lexer {
     }
     // $ANTLR end "T__47"
 
+    // $ANTLR start "T__48"
+    public final void mT__48() throws RecognitionException {
+        try {
+            int _type = T__48;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:16:7: ( '(' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:16:9: '('
+            {
+            match('('); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__48"
+
+    // $ANTLR start "T__49"
+    public final void mT__49() throws RecognitionException {
+        try {
+            int _type = T__49;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:17:7: ( ')' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:17:9: ')'
+            {
+            match(')'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__49"
+
+    // $ANTLR start "T__50"
+    public final void mT__50() throws RecognitionException {
+        try {
+            int _type = T__50;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:18:7: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:18:9: ','
+            {
+            match(','); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__50"
+
+    // $ANTLR start "T__51"
+    public final void mT__51() throws RecognitionException {
+        try {
+            int _type = T__51;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:19:7: ( ':' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:19:9: ':'
+            {
+            match(':'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__51"
+
+    // $ANTLR start "T__52"
+    public final void mT__52() throws RecognitionException {
+        try {
+            int _type = T__52;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:20:7: ( ':=' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:20:9: ':='
+            {
+            match(":="); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__52"
+
+    // $ANTLR start "T__53"
+    public final void mT__53() throws RecognitionException {
+        try {
+            int _type = T__53;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:21:7: ( '[' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:21:9: '['
+            {
+            match('['); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__53"
+
+    // $ANTLR start "T__54"
+    public final void mT__54() throws RecognitionException {
+        try {
+            int _type = T__54;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:22:7: ( ']' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:22:9: ']'
+            {
+            match(']'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__54"
+
     // $ANTLR start "RULE_ADDITION_OPERATOR"
     public final void mRULE_ADDITION_OPERATOR() throws RecognitionException {
         try {
             int _type = RULE_ADDITION_OPERATOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4038:24: ( ( '+' | '-' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4038:26: ( '+' | '-' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5079:24: ( ( '+' | '-' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5079:26: ( '+' | '-' )
             {
             if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                 input.consume();
@@ -306,10 +353,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_MULTIPLICATION_OPERATOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4040:30: ( ( '*' | '/' | 'div' | 'mod' | 'and' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4040:32: ( '*' | '/' | 'div' | 'mod' | 'and' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5081:30: ( ( '*' | '/' | 'div' | 'mod' | 'and' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5081:32: ( '*' | '/' | 'div' | 'mod' | 'and' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4040:32: ( '*' | '/' | 'div' | 'mod' | 'and' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5081:32: ( '*' | '/' | 'div' | 'mod' | 'and' )
             int alt1=5;
             switch ( input.LA(1) ) {
             case '*':
@@ -346,21 +393,21 @@ public class InternalPascalLexer extends Lexer {
 
             switch (alt1) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4040:33: '*'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5081:33: '*'
                     {
                     match('*'); 
 
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4040:37: '/'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5081:37: '/'
                     {
                     match('/'); 
 
                     }
                     break;
                 case 3 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4040:41: 'div'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5081:41: 'div'
                     {
                     match("div"); 
 
@@ -368,7 +415,7 @@ public class InternalPascalLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4040:47: 'mod'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5081:47: 'mod'
                     {
                     match("mod"); 
 
@@ -376,7 +423,7 @@ public class InternalPascalLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4040:53: 'and'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5081:53: 'and'
                     {
                     match("and"); 
 
@@ -402,22 +449,22 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_RELATIONAL_OPERATOR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:26: ( ( '=' | '<>' | '<' | '<=' | '>' | '>=' | 'in' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:28: ( '=' | '<>' | '<' | '<=' | '>' | '>=' | 'in' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:26: ( ( '=' | '<>' | '<' | '<=' | '>' | '>=' | 'in' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:28: ( '=' | '<>' | '<' | '<=' | '>' | '>=' | 'in' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:28: ( '=' | '<>' | '<' | '<=' | '>' | '>=' | 'in' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:28: ( '=' | '<>' | '<' | '<=' | '>' | '>=' | 'in' )
             int alt2=7;
             alt2 = dfa2.predict(input);
             switch (alt2) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:29: '='
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:29: '='
                     {
                     match('='); 
 
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:33: '<>'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:33: '<>'
                     {
                     match("<>"); 
 
@@ -425,14 +472,14 @@ public class InternalPascalLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:38: '<'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:38: '<'
                     {
                     match('<'); 
 
                     }
                     break;
                 case 4 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:42: '<='
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:42: '<='
                     {
                     match("<="); 
 
@@ -440,14 +487,14 @@ public class InternalPascalLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:47: '>'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:47: '>'
                     {
                     match('>'); 
 
                     }
                     break;
                 case 6 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:51: '>='
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:51: '>='
                     {
                     match(">="); 
 
@@ -455,7 +502,7 @@ public class InternalPascalLexer extends Lexer {
                     }
                     break;
                 case 7 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:56: 'in'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:56: 'in'
                     {
                     match("in"); 
 
@@ -481,8 +528,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_BEGIN_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4044:20: ( 'begin' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4044:22: 'begin'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5085:20: ( 'begin' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5085:22: 'begin'
             {
             match("begin"); 
 
@@ -502,8 +549,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_END_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4046:18: ( 'end' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4046:20: 'end'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5087:18: ( 'end' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5087:20: 'end'
             {
             match("end"); 
 
@@ -523,8 +570,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_LABEL_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4048:20: ( 'label' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4048:22: 'label'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5089:20: ( 'label' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5089:22: 'label'
             {
             match("label"); 
 
@@ -544,8 +591,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_NIL_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4050:18: ( 'nil' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4050:20: 'nil'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5091:18: ( 'nil' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5091:20: 'nil'
             {
             match("nil"); 
 
@@ -565,8 +612,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_NOT_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4052:18: ( 'not' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4052:20: 'not'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5093:18: ( 'not' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5093:20: 'not'
             {
             match("not"); 
 
@@ -586,8 +633,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_OR_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4054:17: ( 'or' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4054:19: 'or'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5095:17: ( 'or' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5095:19: 'or'
             {
             match("or"); 
 
@@ -607,8 +654,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_GOTO_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4056:19: ( 'goto' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4056:21: 'goto'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5097:19: ( 'goto' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5097:21: 'goto'
             {
             match("goto"); 
 
@@ -628,8 +675,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_WHILE_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4058:20: ( 'while' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4058:22: 'while'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5099:20: ( 'while' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5099:22: 'while'
             {
             match("while"); 
 
@@ -649,8 +696,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_DO_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4060:17: ( 'do' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4060:19: 'do'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5101:17: ( 'do' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5101:19: 'do'
             {
             match("do"); 
 
@@ -670,8 +717,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_REPEAT_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4062:21: ( 'repeat' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4062:23: 'repeat'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5103:21: ( 'repeat' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5103:23: 'repeat'
             {
             match("repeat"); 
 
@@ -691,8 +738,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_UNTIL_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4064:20: ( 'until' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4064:22: 'until'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5105:20: ( 'until' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5105:22: 'until'
             {
             match("until"); 
 
@@ -712,8 +759,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_FOR_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4066:18: ( 'for' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4066:20: 'for'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5107:18: ( 'for' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5107:20: 'for'
             {
             match("for"); 
 
@@ -733,8 +780,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_TO_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4068:17: ( 'to' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4068:19: 'to'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5109:17: ( 'to' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5109:19: 'to'
             {
             match("to"); 
 
@@ -754,8 +801,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_DOWNTO_KEYWORD;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4070:21: ( 'downto' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4070:23: 'downto'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5111:21: ( 'downto' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5111:23: 'downto'
             {
             match("downto"); 
 
@@ -770,13 +817,118 @@ public class InternalPascalLexer extends Lexer {
     }
     // $ANTLR end "RULE_DOWNTO_KEYWORD"
 
+    // $ANTLR start "RULE_IF_KEYWORD"
+    public final void mRULE_IF_KEYWORD() throws RecognitionException {
+        try {
+            int _type = RULE_IF_KEYWORD;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5113:17: ( 'if' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5113:19: 'if'
+            {
+            match("if"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_IF_KEYWORD"
+
+    // $ANTLR start "RULE_THEN_KEYWORD"
+    public final void mRULE_THEN_KEYWORD() throws RecognitionException {
+        try {
+            int _type = RULE_THEN_KEYWORD;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5115:19: ( 'then' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5115:21: 'then'
+            {
+            match("then"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_THEN_KEYWORD"
+
+    // $ANTLR start "RULE_ELSE_KEYWORD"
+    public final void mRULE_ELSE_KEYWORD() throws RecognitionException {
+        try {
+            int _type = RULE_ELSE_KEYWORD;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5117:19: ( 'else' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5117:21: 'else'
+            {
+            match("else"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_ELSE_KEYWORD"
+
+    // $ANTLR start "RULE_CASE_KEYWORD"
+    public final void mRULE_CASE_KEYWORD() throws RecognitionException {
+        try {
+            int _type = RULE_CASE_KEYWORD;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5119:19: ( 'case' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5119:21: 'case'
+            {
+            match("case"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_CASE_KEYWORD"
+
+    // $ANTLR start "RULE_OF_KEYWORD"
+    public final void mRULE_OF_KEYWORD() throws RecognitionException {
+        try {
+            int _type = RULE_OF_KEYWORD;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5121:17: ( 'of' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5121:19: 'of'
+            {
+            match("of"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_OF_KEYWORD"
+
     // $ANTLR start "RULE_SIGNED_INTEGER_NUMBER"
     public final void mRULE_SIGNED_INTEGER_NUMBER() throws RecognitionException {
         try {
             int _type = RULE_SIGNED_INTEGER_NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4072:28: ( ( '+' | '-' ) RULE_INTEGER_NUMBER )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4072:30: ( '+' | '-' ) RULE_INTEGER_NUMBER
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5123:28: ( ( '+' | '-' ) RULE_INTEGER_NUMBER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5123:30: ( '+' | '-' ) RULE_INTEGER_NUMBER
             {
             if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                 input.consume();
@@ -804,8 +956,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_INTEGER_NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4074:21: ( RULE_UNSIGNED_DIGIT_SEQUENCE )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4074:23: RULE_UNSIGNED_DIGIT_SEQUENCE
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5125:21: ( RULE_UNSIGNED_DIGIT_SEQUENCE )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5125:23: RULE_UNSIGNED_DIGIT_SEQUENCE
             {
             mRULE_UNSIGNED_DIGIT_SEQUENCE(); 
 
@@ -824,8 +976,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_SIGNED_REAL_NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4076:25: ( ( '+' | '-' ) RULE_REAL_NUMBER )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4076:27: ( '+' | '-' ) RULE_REAL_NUMBER
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5127:25: ( ( '+' | '-' ) RULE_REAL_NUMBER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5127:27: ( '+' | '-' ) RULE_REAL_NUMBER
             {
             if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                 input.consume();
@@ -853,19 +1005,19 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_REAL_NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4078:18: ( ( RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )? | RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4078:20: ( RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )? | RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5129:18: ( ( RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )? | RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5129:20: ( RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )? | RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4078:20: ( RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )? | RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5129:20: ( RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )? | RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )
             int alt5=2;
             alt5 = dfa5.predict(input);
             switch (alt5) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4078:21: RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )?
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5129:21: RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )?
                     {
                     mRULE_UNSIGNED_DIGIT_SEQUENCE(); 
                     match('.'); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4078:54: ( RULE_UNSIGNED_DIGIT_SEQUENCE )?
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5129:54: ( RULE_UNSIGNED_DIGIT_SEQUENCE )?
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
@@ -874,7 +1026,7 @@ public class InternalPascalLexer extends Lexer {
                     }
                     switch (alt3) {
                         case 1 :
-                            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4078:54: RULE_UNSIGNED_DIGIT_SEQUENCE
+                            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5129:54: RULE_UNSIGNED_DIGIT_SEQUENCE
                             {
                             mRULE_UNSIGNED_DIGIT_SEQUENCE(); 
 
@@ -883,7 +1035,7 @@ public class InternalPascalLexer extends Lexer {
 
                     }
 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4078:84: ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )?
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5129:84: ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )?
                     int alt4=2;
                     int LA4_0 = input.LA(1);
 
@@ -892,7 +1044,7 @@ public class InternalPascalLexer extends Lexer {
                     }
                     switch (alt4) {
                         case 1 :
-                            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4078:85: ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE
+                            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5129:85: ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE
                             {
                             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                                 input.consume();
@@ -914,7 +1066,7 @@ public class InternalPascalLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4078:117: RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5129:117: RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE
                     {
                     mRULE_UNSIGNED_DIGIT_SEQUENCE(); 
                     if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
@@ -949,10 +1101,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_UNSIGNED_DIGIT_SEQUENCE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4080:30: ( ( RULE_DIGIT )+ )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4080:32: ( RULE_DIGIT )+
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5131:30: ( ( RULE_DIGIT )+ )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5131:32: ( RULE_DIGIT )+
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4080:32: ( RULE_DIGIT )+
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5131:32: ( RULE_DIGIT )+
             int cnt6=0;
             loop6:
             do {
@@ -966,7 +1118,7 @@ public class InternalPascalLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4080:32: RULE_DIGIT
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5131:32: RULE_DIGIT
             	    {
             	    mRULE_DIGIT(); 
 
@@ -998,10 +1150,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_DIGIT_SEQUENCE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4082:21: ( ( '+' | '-' )? RULE_UNSIGNED_DIGIT_SEQUENCE )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4082:23: ( '+' | '-' )? RULE_UNSIGNED_DIGIT_SEQUENCE
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5133:21: ( ( '+' | '-' )? RULE_UNSIGNED_DIGIT_SEQUENCE )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5133:23: ( '+' | '-' )? RULE_UNSIGNED_DIGIT_SEQUENCE
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4082:23: ( '+' | '-' )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5133:23: ( '+' | '-' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1044,8 +1196,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_DIGIT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4084:12: ( '0' .. '9' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4084:14: '0' .. '9'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5135:12: ( '0' .. '9' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5135:14: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -1064,11 +1216,11 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4086:17: ( RULE_LETTER_EXTENDED ( RULE_LETTER_EXTENDED | RULE_DIGIT )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4086:19: RULE_LETTER_EXTENDED ( RULE_LETTER_EXTENDED | RULE_DIGIT )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5137:17: ( RULE_LETTER_EXTENDED ( RULE_LETTER_EXTENDED | RULE_DIGIT )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5137:19: RULE_LETTER_EXTENDED ( RULE_LETTER_EXTENDED | RULE_DIGIT )*
             {
             mRULE_LETTER_EXTENDED(); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4086:40: ( RULE_LETTER_EXTENDED | RULE_DIGIT )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5137:40: ( RULE_LETTER_EXTENDED | RULE_DIGIT )*
             loop8:
             do {
                 int alt8=2;
@@ -1117,8 +1269,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_LETTER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4088:13: ( ( 'A' .. 'Z' | 'a' .. 'z' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4088:15: ( 'A' .. 'Z' | 'a' .. 'z' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5139:13: ( ( 'A' .. 'Z' | 'a' .. 'z' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5139:15: ( 'A' .. 'Z' | 'a' .. 'z' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1145,8 +1297,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_LETTER_EXTENDED;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4090:22: ( ( RULE_LETTER | '_' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4090:24: ( RULE_LETTER | '_' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5141:22: ( ( RULE_LETTER | '_' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5141:24: ( RULE_LETTER | '_' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1173,10 +1325,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4092:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4092:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5143:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5143:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4092:11: ( '^' )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5143:11: ( '^' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1185,7 +1337,7 @@ public class InternalPascalLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4092:11: '^'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5143:11: '^'
                     {
                     match('^'); 
 
@@ -1203,7 +1355,7 @@ public class InternalPascalLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4092:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5143:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop10:
             do {
                 int alt10=2;
@@ -1252,10 +1404,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4094:10: ( ( '0' .. '9' )+ )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4094:12: ( '0' .. '9' )+
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5145:10: ( ( '0' .. '9' )+ )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5145:12: ( '0' .. '9' )+
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4094:12: ( '0' .. '9' )+
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5145:12: ( '0' .. '9' )+
             int cnt11=0;
             loop11:
             do {
@@ -1269,7 +1421,7 @@ public class InternalPascalLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4094:13: '0' .. '9'
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5145:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1301,10 +1453,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1322,10 +1474,10 @@ public class InternalPascalLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop12:
                     do {
                         int alt12=3;
@@ -1341,7 +1493,7 @@ public class InternalPascalLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:21: '\\\\' .
+                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1349,7 +1501,7 @@ public class InternalPascalLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1374,10 +1526,10 @@ public class InternalPascalLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop13:
                     do {
                         int alt13=3;
@@ -1393,7 +1545,7 @@ public class InternalPascalLexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:54: '\\\\' .
+                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1401,7 +1553,7 @@ public class InternalPascalLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5147:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1444,12 +1596,12 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4098:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4098:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5149:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5149:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4098:24: ( options {greedy=false; } : . )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5149:24: ( options {greedy=false; } : . )*
             loop15:
             do {
                 int alt15=2;
@@ -1474,7 +1626,7 @@ public class InternalPascalLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4098:52: .
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5149:52: .
             	    {
             	    matchAny(); 
 
@@ -1504,12 +1656,12 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4100:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4100:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5151:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5151:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4100:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5151:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop16:
             do {
                 int alt16=2;
@@ -1522,7 +1674,7 @@ public class InternalPascalLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4100:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5151:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1542,7 +1694,7 @@ public class InternalPascalLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4100:40: ( ( '\\r' )? '\\n' )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5151:40: ( ( '\\r' )? '\\n' )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -1551,9 +1703,9 @@ public class InternalPascalLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4100:41: ( '\\r' )? '\\n'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5151:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4100:41: ( '\\r' )?
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5151:41: ( '\\r' )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -1562,7 +1714,7 @@ public class InternalPascalLexer extends Lexer {
                     }
                     switch (alt17) {
                         case 1 :
-                            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4100:41: '\\r'
+                            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5151:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1594,10 +1746,10 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4102:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4102:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5153:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5153:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4102:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5153:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt19=0;
             loop19:
             do {
@@ -1651,8 +1803,8 @@ public class InternalPascalLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4104:16: ( . )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4104:18: .
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5155:16: ( . )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5155:18: .
             {
             matchAny(); 
 
@@ -1667,313 +1819,362 @@ public class InternalPascalLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:8: ( T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | RULE_ADDITION_OPERATOR | RULE_MULTIPLICATION_OPERATOR | RULE_RELATIONAL_OPERATOR | RULE_BEGIN_KEYWORD | RULE_END_KEYWORD | RULE_LABEL_KEYWORD | RULE_NIL_KEYWORD | RULE_NOT_KEYWORD | RULE_OR_KEYWORD | RULE_GOTO_KEYWORD | RULE_WHILE_KEYWORD | RULE_DO_KEYWORD | RULE_REPEAT_KEYWORD | RULE_UNTIL_KEYWORD | RULE_FOR_KEYWORD | RULE_TO_KEYWORD | RULE_DOWNTO_KEYWORD | RULE_SIGNED_INTEGER_NUMBER | RULE_INTEGER_NUMBER | RULE_SIGNED_REAL_NUMBER | RULE_REAL_NUMBER | RULE_UNSIGNED_DIGIT_SEQUENCE | RULE_DIGIT_SEQUENCE | RULE_DIGIT | RULE_IDENTIFIER | RULE_LETTER | RULE_LETTER_EXTENDED | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt20=44;
+        // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:8: ( T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | RULE_ADDITION_OPERATOR | RULE_MULTIPLICATION_OPERATOR | RULE_RELATIONAL_OPERATOR | RULE_BEGIN_KEYWORD | RULE_END_KEYWORD | RULE_LABEL_KEYWORD | RULE_NIL_KEYWORD | RULE_NOT_KEYWORD | RULE_OR_KEYWORD | RULE_GOTO_KEYWORD | RULE_WHILE_KEYWORD | RULE_DO_KEYWORD | RULE_REPEAT_KEYWORD | RULE_UNTIL_KEYWORD | RULE_FOR_KEYWORD | RULE_TO_KEYWORD | RULE_DOWNTO_KEYWORD | RULE_IF_KEYWORD | RULE_THEN_KEYWORD | RULE_ELSE_KEYWORD | RULE_CASE_KEYWORD | RULE_OF_KEYWORD | RULE_SIGNED_INTEGER_NUMBER | RULE_INTEGER_NUMBER | RULE_SIGNED_REAL_NUMBER | RULE_REAL_NUMBER | RULE_UNSIGNED_DIGIT_SEQUENCE | RULE_DIGIT_SEQUENCE | RULE_DIGIT | RULE_IDENTIFIER | RULE_LETTER | RULE_LETTER_EXTENDED | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt20=51;
         alt20 = dfa20.predict(input);
         switch (alt20) {
             case 1 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:10: T__38
-                {
-                mT__38(); 
-
-                }
-                break;
-            case 2 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:16: T__39
-                {
-                mT__39(); 
-
-                }
-                break;
-            case 3 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:22: T__40
-                {
-                mT__40(); 
-
-                }
-                break;
-            case 4 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:28: T__41
-                {
-                mT__41(); 
-
-                }
-                break;
-            case 5 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:34: T__42
-                {
-                mT__42(); 
-
-                }
-                break;
-            case 6 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:40: T__43
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:10: T__43
                 {
                 mT__43(); 
 
                 }
                 break;
-            case 7 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:46: T__44
+            case 2 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:16: T__44
                 {
                 mT__44(); 
 
                 }
                 break;
-            case 8 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:52: T__45
+            case 3 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:22: T__45
                 {
                 mT__45(); 
 
                 }
                 break;
-            case 9 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:58: T__46
+            case 4 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:28: T__46
                 {
                 mT__46(); 
 
                 }
                 break;
-            case 10 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:64: T__47
+            case 5 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:34: T__47
                 {
                 mT__47(); 
 
                 }
                 break;
+            case 6 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:40: T__48
+                {
+                mT__48(); 
+
+                }
+                break;
+            case 7 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:46: T__49
+                {
+                mT__49(); 
+
+                }
+                break;
+            case 8 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:52: T__50
+                {
+                mT__50(); 
+
+                }
+                break;
+            case 9 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:58: T__51
+                {
+                mT__51(); 
+
+                }
+                break;
+            case 10 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:64: T__52
+                {
+                mT__52(); 
+
+                }
+                break;
             case 11 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:70: RULE_ADDITION_OPERATOR
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:70: T__53
+                {
+                mT__53(); 
+
+                }
+                break;
+            case 12 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:76: T__54
+                {
+                mT__54(); 
+
+                }
+                break;
+            case 13 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:82: RULE_ADDITION_OPERATOR
                 {
                 mRULE_ADDITION_OPERATOR(); 
 
                 }
                 break;
-            case 12 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:93: RULE_MULTIPLICATION_OPERATOR
+            case 14 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:105: RULE_MULTIPLICATION_OPERATOR
                 {
                 mRULE_MULTIPLICATION_OPERATOR(); 
 
                 }
                 break;
-            case 13 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:122: RULE_RELATIONAL_OPERATOR
+            case 15 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:134: RULE_RELATIONAL_OPERATOR
                 {
                 mRULE_RELATIONAL_OPERATOR(); 
 
                 }
                 break;
-            case 14 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:147: RULE_BEGIN_KEYWORD
+            case 16 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:159: RULE_BEGIN_KEYWORD
                 {
                 mRULE_BEGIN_KEYWORD(); 
 
                 }
                 break;
-            case 15 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:166: RULE_END_KEYWORD
+            case 17 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:178: RULE_END_KEYWORD
                 {
                 mRULE_END_KEYWORD(); 
 
                 }
                 break;
-            case 16 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:183: RULE_LABEL_KEYWORD
+            case 18 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:195: RULE_LABEL_KEYWORD
                 {
                 mRULE_LABEL_KEYWORD(); 
 
                 }
                 break;
-            case 17 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:202: RULE_NIL_KEYWORD
+            case 19 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:214: RULE_NIL_KEYWORD
                 {
                 mRULE_NIL_KEYWORD(); 
 
                 }
                 break;
-            case 18 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:219: RULE_NOT_KEYWORD
+            case 20 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:231: RULE_NOT_KEYWORD
                 {
                 mRULE_NOT_KEYWORD(); 
 
                 }
                 break;
-            case 19 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:236: RULE_OR_KEYWORD
+            case 21 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:248: RULE_OR_KEYWORD
                 {
                 mRULE_OR_KEYWORD(); 
 
                 }
                 break;
-            case 20 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:252: RULE_GOTO_KEYWORD
+            case 22 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:264: RULE_GOTO_KEYWORD
                 {
                 mRULE_GOTO_KEYWORD(); 
 
                 }
                 break;
-            case 21 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:270: RULE_WHILE_KEYWORD
+            case 23 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:282: RULE_WHILE_KEYWORD
                 {
                 mRULE_WHILE_KEYWORD(); 
 
                 }
                 break;
-            case 22 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:289: RULE_DO_KEYWORD
+            case 24 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:301: RULE_DO_KEYWORD
                 {
                 mRULE_DO_KEYWORD(); 
 
                 }
                 break;
-            case 23 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:305: RULE_REPEAT_KEYWORD
+            case 25 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:317: RULE_REPEAT_KEYWORD
                 {
                 mRULE_REPEAT_KEYWORD(); 
 
                 }
                 break;
-            case 24 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:325: RULE_UNTIL_KEYWORD
+            case 26 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:337: RULE_UNTIL_KEYWORD
                 {
                 mRULE_UNTIL_KEYWORD(); 
 
                 }
                 break;
-            case 25 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:344: RULE_FOR_KEYWORD
+            case 27 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:356: RULE_FOR_KEYWORD
                 {
                 mRULE_FOR_KEYWORD(); 
 
                 }
                 break;
-            case 26 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:361: RULE_TO_KEYWORD
+            case 28 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:373: RULE_TO_KEYWORD
                 {
                 mRULE_TO_KEYWORD(); 
 
                 }
                 break;
-            case 27 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:377: RULE_DOWNTO_KEYWORD
+            case 29 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:389: RULE_DOWNTO_KEYWORD
                 {
                 mRULE_DOWNTO_KEYWORD(); 
 
                 }
                 break;
-            case 28 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:397: RULE_SIGNED_INTEGER_NUMBER
+            case 30 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:409: RULE_IF_KEYWORD
+                {
+                mRULE_IF_KEYWORD(); 
+
+                }
+                break;
+            case 31 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:425: RULE_THEN_KEYWORD
+                {
+                mRULE_THEN_KEYWORD(); 
+
+                }
+                break;
+            case 32 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:443: RULE_ELSE_KEYWORD
+                {
+                mRULE_ELSE_KEYWORD(); 
+
+                }
+                break;
+            case 33 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:461: RULE_CASE_KEYWORD
+                {
+                mRULE_CASE_KEYWORD(); 
+
+                }
+                break;
+            case 34 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:479: RULE_OF_KEYWORD
+                {
+                mRULE_OF_KEYWORD(); 
+
+                }
+                break;
+            case 35 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:495: RULE_SIGNED_INTEGER_NUMBER
                 {
                 mRULE_SIGNED_INTEGER_NUMBER(); 
 
                 }
                 break;
-            case 29 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:424: RULE_INTEGER_NUMBER
+            case 36 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:522: RULE_INTEGER_NUMBER
                 {
                 mRULE_INTEGER_NUMBER(); 
 
                 }
                 break;
-            case 30 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:444: RULE_SIGNED_REAL_NUMBER
+            case 37 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:542: RULE_SIGNED_REAL_NUMBER
                 {
                 mRULE_SIGNED_REAL_NUMBER(); 
 
                 }
                 break;
-            case 31 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:468: RULE_REAL_NUMBER
+            case 38 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:566: RULE_REAL_NUMBER
                 {
                 mRULE_REAL_NUMBER(); 
 
                 }
                 break;
-            case 32 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:485: RULE_UNSIGNED_DIGIT_SEQUENCE
+            case 39 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:583: RULE_UNSIGNED_DIGIT_SEQUENCE
                 {
                 mRULE_UNSIGNED_DIGIT_SEQUENCE(); 
 
                 }
                 break;
-            case 33 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:514: RULE_DIGIT_SEQUENCE
+            case 40 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:612: RULE_DIGIT_SEQUENCE
                 {
                 mRULE_DIGIT_SEQUENCE(); 
 
                 }
                 break;
-            case 34 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:534: RULE_DIGIT
+            case 41 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:632: RULE_DIGIT
                 {
                 mRULE_DIGIT(); 
 
                 }
                 break;
-            case 35 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:545: RULE_IDENTIFIER
+            case 42 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:643: RULE_IDENTIFIER
                 {
                 mRULE_IDENTIFIER(); 
 
                 }
                 break;
-            case 36 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:561: RULE_LETTER
+            case 43 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:659: RULE_LETTER
                 {
                 mRULE_LETTER(); 
 
                 }
                 break;
-            case 37 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:573: RULE_LETTER_EXTENDED
+            case 44 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:671: RULE_LETTER_EXTENDED
                 {
                 mRULE_LETTER_EXTENDED(); 
 
                 }
                 break;
-            case 38 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:594: RULE_ID
+            case 45 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:692: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 39 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:602: RULE_INT
+            case 46 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:700: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 40 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:611: RULE_STRING
+            case 47 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:709: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 41 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:623: RULE_ML_COMMENT
+            case 48 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:721: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 42 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:639: RULE_SL_COMMENT
+            case 49 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:737: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 43 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:655: RULE_WS
+            case 50 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:753: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 44 :
-                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:663: RULE_ANY_OTHER
+            case 51 :
+                // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1:761: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -2043,7 +2244,7 @@ public class InternalPascalLexer extends Lexer {
             this.transition = DFA2_transition;
         }
         public String getDescription() {
-            return "4042:28: ( '=' | '<>' | '<' | '<=' | '>' | '>=' | 'in' )";
+            return "5083:28: ( '=' | '<>' | '<' | '<=' | '>' | '>=' | 'in' )";
         }
     }
     static final String DFA5_eotS =
@@ -2095,177 +2296,212 @@ public class InternalPascalLexer extends Lexer {
             this.transition = DFA5_transition;
         }
         public String getDescription() {
-            return "4078:20: ( RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )? | RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )";
+            return "5129:20: ( RULE_UNSIGNED_DIGIT_SEQUENCE '.' ( RULE_UNSIGNED_DIGIT_SEQUENCE )? ( ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )? | RULE_UNSIGNED_DIGIT_SEQUENCE ( 'E' | 'e' ) RULE_DIGIT_SEQUENCE )";
         }
     }
     static final String DFA20_eotS =
-        "\2\uffff\1\52\4\uffff\1\60\2\uffff\1\63\1\uffff\1\65\3\52\3\uffff"+
-        "\14\52\1\112\2\52\3\46\3\uffff\2\52\12\uffff\1\121\3\uffff\1\52"+
-        "\1\125\2\52\1\uffff\1\74\5\52\1\135\5\52\1\143\1\uffff\1\112\4\uffff"+
-        "\1\52\2\uffff\1\65\1\52\1\uffff\2\65\1\52\1\147\1\52\1\151\1\152"+
-        "\1\uffff\4\52\1\157\1\uffff\3\52\1\uffff\1\52\2\uffff\1\164\3\52"+
-        "\1\uffff\2\52\1\172\1\173\1\uffff\1\174\1\52\1\176\1\52\1\u0080"+
-        "\3\uffff\1\u0081\1\uffff\1\u0082\3\uffff";
+        "\1\uffff\1\52\1\53\1\uffff\1\56\4\uffff\1\65\3\uffff\1\70\3\56"+
+        "\3\uffff\15\56\1\122\2\56\3\50\2\uffff\1\130\3\uffff\1\56\1\uffff"+
+        "\1\56\13\uffff\1\56\1\135\2\56\1\uffff\1\77\1\140\6\56\1\147\1\150"+
+        "\5\56\1\156\2\56\1\uffff\1\122\6\uffff\1\56\1\70\1\56\1\uffff\2"+
+        "\70\1\uffff\1\56\1\164\2\56\1\167\1\170\2\uffff\4\56\1\175\1\uffff"+
+        "\5\56\1\uffff\1\u0083\1\56\2\uffff\1\u0085\3\56\1\uffff\1\u0089"+
+        "\1\u008a\2\56\1\u008d\1\uffff\1\u008e\1\uffff\1\u008f\1\56\1\u0091"+
+        "\2\uffff\1\56\1\u0093\3\uffff\1\u0094\1\uffff\1\u0095\3\uffff";
     static final String DFA20_eofS =
-        "\u0083\uffff";
+        "\u0096\uffff";
     static final String DFA20_minS =
-        "\1\0\1\uffff\1\60\4\uffff\1\75\2\uffff\1\60\1\uffff\1\52\3\60\3"+
-        "\uffff\14\60\1\56\2\60\1\101\2\0\3\uffff\2\60\12\uffff\1\56\3\uffff"+
-        "\4\60\1\uffff\15\60\1\uffff\1\56\4\uffff\1\60\2\uffff\2\60\1\uffff"+
-        "\7\60\1\uffff\5\60\1\uffff\3\60\1\uffff\1\60\2\uffff\4\60\1\uffff"+
-        "\4\60\1\uffff\5\60\3\uffff\1\60\1\uffff\1\60\3\uffff";
+        "\1\0\2\60\1\uffff\1\60\4\uffff\1\75\3\uffff\1\52\3\60\3\uffff\15"+
+        "\60\1\56\2\60\1\101\2\0\2\uffff\1\56\3\uffff\1\60\1\uffff\1\60\13"+
+        "\uffff\4\60\1\uffff\22\60\1\uffff\1\56\6\uffff\3\60\1\uffff\2\60"+
+        "\1\uffff\6\60\2\uffff\5\60\1\uffff\5\60\1\uffff\2\60\2\uffff\4\60"+
+        "\1\uffff\5\60\1\uffff\1\60\1\uffff\3\60\2\uffff\2\60\3\uffff\1\60"+
+        "\1\uffff\1\60\3\uffff";
     static final String DFA20_maxS =
-        "\1\uffff\1\uffff\1\172\4\uffff\1\75\2\uffff\1\71\1\uffff\1\57\3"+
-        "\172\3\uffff\14\172\1\145\3\172\2\uffff\3\uffff\2\172\12\uffff\1"+
-        "\145\3\uffff\4\172\1\uffff\15\172\1\uffff\1\145\4\uffff\1\172\2"+
-        "\uffff\2\172\1\uffff\7\172\1\uffff\5\172\1\uffff\3\172\1\uffff\1"+
-        "\172\2\uffff\4\172\1\uffff\4\172\1\uffff\5\172\3\uffff\1\172\1\uffff"+
-        "\1\172\3\uffff";
+        "\1\uffff\2\71\1\uffff\1\172\4\uffff\1\75\3\uffff\1\57\3\172\3\uffff"+
+        "\15\172\1\145\3\172\2\uffff\2\uffff\1\145\3\uffff\1\172\1\uffff"+
+        "\1\172\13\uffff\4\172\1\uffff\22\172\1\uffff\1\145\6\uffff\3\172"+
+        "\1\uffff\2\172\1\uffff\6\172\2\uffff\5\172\1\uffff\5\172\1\uffff"+
+        "\2\172\2\uffff\4\172\1\uffff\5\172\1\uffff\1\172\1\uffff\3\172\2"+
+        "\uffff\2\172\3\uffff\1\172\1\uffff\1\172\3\uffff";
     static final String DFA20_acceptS =
-        "\1\uffff\1\1\1\uffff\1\3\1\4\1\5\1\6\1\uffff\1\11\1\12\1\uffff"+
-        "\1\14\4\uffff\3\15\22\uffff\1\53\1\54\1\1\2\uffff\1\43\1\3\1\4\1"+
-        "\5\1\6\1\10\1\7\1\11\1\12\1\13\1\uffff\1\14\1\51\1\52\4\uffff\1"+
-        "\15\15\uffff\1\35\1\uffff\1\37\1\46\1\50\1\53\1\uffff\1\34\1\36"+
-        "\2\uffff\1\26\7\uffff\1\23\5\uffff\1\32\3\uffff\1\17\1\uffff\1\21"+
-        "\1\22\4\uffff\1\31\4\uffff\1\24\5\uffff\1\16\1\20\1\25\1\uffff\1"+
-        "\30\1\uffff\1\33\1\27\1\2";
+        "\3\uffff\1\3\1\uffff\1\5\1\6\1\7\1\10\1\uffff\1\13\1\14\1\16\4"+
+        "\uffff\3\17\23\uffff\1\62\1\63\1\uffff\1\1\1\2\1\3\1\uffff\1\52"+
+        "\1\uffff\1\5\1\6\1\7\1\10\1\12\1\11\1\13\1\14\1\16\1\60\1\61\4\uffff"+
+        "\1\17\22\uffff\1\44\1\uffff\1\46\1\55\1\57\1\62\1\43\1\45\3\uffff"+
+        "\1\30\2\uffff\1\36\6\uffff\1\25\1\42\5\uffff\1\34\5\uffff\1\21\2"+
+        "\uffff\1\23\1\24\4\uffff\1\33\5\uffff\1\40\1\uffff\1\26\3\uffff"+
+        "\1\37\1\41\2\uffff\1\20\1\22\1\27\1\uffff\1\32\1\uffff\1\35\1\31"+
+        "\1\4";
     static final String DFA20_specialS =
-        "\1\1\42\uffff\1\0\1\2\136\uffff}>";
+        "\1\2\44\uffff\1\1\1\0\157\uffff}>";
     static final String[] DFA20_transitionS = {
-            "\11\46\2\45\2\46\1\45\22\46\1\45\1\46\1\43\4\46\1\44\1\4\1"+
-            "\5\1\13\1\12\1\6\1\12\1\1\1\14\12\37\1\7\1\3\1\21\1\20\1\22"+
-            "\2\46\32\40\1\10\1\46\1\11\1\42\1\41\1\46\1\17\1\24\1\40\1\15"+
-            "\1\25\1\35\1\31\1\40\1\23\2\40\1\26\1\16\1\27\1\30\1\2\1\40"+
-            "\1\33\1\40\1\36\1\34\1\40\1\32\3\40\uff85\46",
+            "\11\50\2\47\2\50\1\47\22\50\1\47\1\50\1\45\4\50\1\46\1\6\1"+
+            "\7\1\14\1\1\1\10\1\2\1\3\1\15\12\41\1\11\1\5\1\22\1\21\1\23"+
+            "\2\50\32\42\1\12\1\50\1\13\1\44\1\43\1\50\1\20\1\25\1\40\1\16"+
+            "\1\26\1\36\1\32\1\42\1\24\2\42\1\27\1\17\1\30\1\31\1\4\1\42"+
+            "\1\34\1\42\1\37\1\35\1\42\1\33\3\42\uff85\50",
+            "\12\51",
+            "\12\51",
             "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\21\51\1\50\10\51",
-            "",
-            "",
-            "",
-            "",
-            "\1\57",
-            "",
-            "",
-            "\12\64",
-            "",
-            "\1\66\4\uffff\1\67",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\10\51\1\70\5\51"+
-            "\1\71\13\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\16\51\1\72\13\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\15\51\1\73\14\51",
-            "",
-            "",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\15\51\1\75\14\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\4\51\1\76\25\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\15\51\1\77\14\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\1\100\31\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\10\51\1\101\5\51"+
-            "\1\102\13\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\21\51\1\103\10\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\16\51\1\104\13\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\7\51\1\105\22\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\4\51\1\106\25\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\15\51\1\107\14\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\16\51\1\110\13\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\16\51\1\111\13\51",
-            "\1\114\1\uffff\12\113\13\uffff\1\114\37\uffff\1\114",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\32\115\4\uffff\1\115\1\uffff\32\115",
-            "\0\116",
-            "\0\116",
-            "",
-            "",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\16\51\1\120\13\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\21\57\1\55\10\57",
             "",
             "",
             "",
             "",
+            "\1\64",
+            "",
+            "",
+            "",
+            "\1\71\4\uffff\1\72",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\10\57\1\73\5\57"+
+            "\1\74\13\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\16\57\1\75\13\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\15\57\1\76\14\57",
+            "",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\5\57\1\101\7\57"+
+            "\1\100\14\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\102\25\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\13\57\1\104\1\57"+
+            "\1\103\14\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\1\105\31\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\10\57\1\106\5\57"+
+            "\1\107\13\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\5\57\1\111\13\57"+
+            "\1\110\10\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\16\57\1\112\13\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\7\57\1\113\22\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\114\25\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\15\57\1\115\14\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\16\57\1\116\13\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\7\57\1\120\6\57"+
+            "\1\117\13\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\1\121\31\57",
+            "\1\124\1\uffff\12\123\13\uffff\1\124\37\uffff\1\124",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\32\125\4\uffff\1\125\1\uffff\32\125",
+            "\0\126",
+            "\0\126",
+            "",
+            "",
+            "\1\131\1\uffff\12\51\13\uffff\1\131\37\uffff\1\131",
+            "",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\16\57\1\132\13\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "",
             "",
             "",
             "",
             "",
             "",
-            "\1\122\1\uffff\12\64\13\uffff\1\122\37\uffff\1\122",
-            "",
-            "",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\25\51\1\123\4\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\26\51\1\124\3\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\3\51\1\126\26\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\3\51\1\127\26\51",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\6\51\1\130\23\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\3\51\1\131\26\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\1\51\1\132\30\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\13\51\1\133\16\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\23\51\1\134\6\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\23\51\1\136\6\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\10\51\1\137\21\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\17\51\1\140\12\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\23\51\1\141\6\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\21\51\1\142\10\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "",
-            "\1\114\1\uffff\12\113\13\uffff\1\114\37\uffff\1\114",
             "",
             "",
             "",
             "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\6\51\1\144\23\51",
             "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\25\57\1\133\4\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\26\57\1\134\3\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\3\57\1\136\26\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\3\57\1\137\26\57",
             "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\15\51\1\145\14\51",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\6\57\1\141\23\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\3\57\1\142\26\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\22\57\1\143\7\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\1\57\1\144\30\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\13\57\1\145\16\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\23\57\1\146\6\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\23\57\1\151\6\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\10\57\1\152\21\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\17\57\1\153\12\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\23\57\1\154\6\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\21\57\1\155\10\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\157\25\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\22\57\1\160\7\57",
             "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\10\51\1\146\21\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\4\51\1\150\25\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\16\51\1\153\13\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\13\51\1\154\16\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\4\51\1\155\25\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\10\51\1\156\21\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\21\51\1\160\10\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\23\51\1\161\6\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\15\51\1\162\14\51",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\13\51\1\163\16\51",
-            "",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\4\51\1\165\25\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\1\166\31\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\13\51\1\167\16\51",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\1\170\31\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\16\51\1\171\13\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\23\51\1\175\6\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\14\51\1\177\15\51",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
+            "\1\124\1\uffff\12\123\13\uffff\1\124\37\uffff\1\124",
             "",
             "",
             "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
             "",
-            "\12\51\7\uffff\32\51\4\uffff\1\51\1\uffff\32\51",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\6\57\1\161\23\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\15\57\1\162\14\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\10\57\1\163\21\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\165\25\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\166\25\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\16\57\1\171\13\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\13\57\1\172\16\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\173\25\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\10\57\1\174\21\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\15\57\1\176\14\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\177\25\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\21\57\1\u0080\10"+
+            "\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\23\57\1\u0081\6"+
+            "\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\15\57\1\u0082\14"+
+            "\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\13\57\1\u0084\16"+
+            "\57",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\4\57\1\u0086\25"+
+            "\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\1\u0087\31\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\13\57\1\u0088\16"+
+            "\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\1\u008b\31\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\16\57\1\u008c\13"+
+            "\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\23\57\1\u0090\6"+
+            "\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\14\57\1\u0092\15"+
+            "\57",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
+            "",
+            "\12\57\7\uffff\32\57\4\uffff\1\57\1\uffff\32\57",
             "",
             "",
             ""
@@ -2301,111 +2537,115 @@ public class InternalPascalLexer extends Lexer {
             this.transition = DFA20_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | RULE_ADDITION_OPERATOR | RULE_MULTIPLICATION_OPERATOR | RULE_RELATIONAL_OPERATOR | RULE_BEGIN_KEYWORD | RULE_END_KEYWORD | RULE_LABEL_KEYWORD | RULE_NIL_KEYWORD | RULE_NOT_KEYWORD | RULE_OR_KEYWORD | RULE_GOTO_KEYWORD | RULE_WHILE_KEYWORD | RULE_DO_KEYWORD | RULE_REPEAT_KEYWORD | RULE_UNTIL_KEYWORD | RULE_FOR_KEYWORD | RULE_TO_KEYWORD | RULE_DOWNTO_KEYWORD | RULE_SIGNED_INTEGER_NUMBER | RULE_INTEGER_NUMBER | RULE_SIGNED_REAL_NUMBER | RULE_REAL_NUMBER | RULE_UNSIGNED_DIGIT_SEQUENCE | RULE_DIGIT_SEQUENCE | RULE_DIGIT | RULE_IDENTIFIER | RULE_LETTER | RULE_LETTER_EXTENDED | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | RULE_ADDITION_OPERATOR | RULE_MULTIPLICATION_OPERATOR | RULE_RELATIONAL_OPERATOR | RULE_BEGIN_KEYWORD | RULE_END_KEYWORD | RULE_LABEL_KEYWORD | RULE_NIL_KEYWORD | RULE_NOT_KEYWORD | RULE_OR_KEYWORD | RULE_GOTO_KEYWORD | RULE_WHILE_KEYWORD | RULE_DO_KEYWORD | RULE_REPEAT_KEYWORD | RULE_UNTIL_KEYWORD | RULE_FOR_KEYWORD | RULE_TO_KEYWORD | RULE_DOWNTO_KEYWORD | RULE_IF_KEYWORD | RULE_THEN_KEYWORD | RULE_ELSE_KEYWORD | RULE_CASE_KEYWORD | RULE_OF_KEYWORD | RULE_SIGNED_INTEGER_NUMBER | RULE_INTEGER_NUMBER | RULE_SIGNED_REAL_NUMBER | RULE_REAL_NUMBER | RULE_UNSIGNED_DIGIT_SEQUENCE | RULE_DIGIT_SEQUENCE | RULE_DIGIT | RULE_IDENTIFIER | RULE_LETTER | RULE_LETTER_EXTENDED | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA20_35 = input.LA(1);
+                        int LA20_38 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA20_35>='\u0000' && LA20_35<='\uFFFF')) ) {s = 78;}
+                        if ( ((LA20_38>='\u0000' && LA20_38<='\uFFFF')) ) {s = 86;}
 
-                        else s = 38;
+                        else s = 40;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA20_0 = input.LA(1);
+                        int LA20_37 = input.LA(1);
 
                         s = -1;
-                        if ( (LA20_0=='.') ) {s = 1;}
+                        if ( ((LA20_37>='\u0000' && LA20_37<='\uFFFF')) ) {s = 86;}
 
-                        else if ( (LA20_0=='p') ) {s = 2;}
-
-                        else if ( (LA20_0==';') ) {s = 3;}
-
-                        else if ( (LA20_0=='(') ) {s = 4;}
-
-                        else if ( (LA20_0==')') ) {s = 5;}
-
-                        else if ( (LA20_0==',') ) {s = 6;}
-
-                        else if ( (LA20_0==':') ) {s = 7;}
-
-                        else if ( (LA20_0=='[') ) {s = 8;}
-
-                        else if ( (LA20_0==']') ) {s = 9;}
-
-                        else if ( (LA20_0=='+'||LA20_0=='-') ) {s = 10;}
-
-                        else if ( (LA20_0=='*') ) {s = 11;}
-
-                        else if ( (LA20_0=='/') ) {s = 12;}
-
-                        else if ( (LA20_0=='d') ) {s = 13;}
-
-                        else if ( (LA20_0=='m') ) {s = 14;}
-
-                        else if ( (LA20_0=='a') ) {s = 15;}
-
-                        else if ( (LA20_0=='=') ) {s = 16;}
-
-                        else if ( (LA20_0=='<') ) {s = 17;}
-
-                        else if ( (LA20_0=='>') ) {s = 18;}
-
-                        else if ( (LA20_0=='i') ) {s = 19;}
-
-                        else if ( (LA20_0=='b') ) {s = 20;}
-
-                        else if ( (LA20_0=='e') ) {s = 21;}
-
-                        else if ( (LA20_0=='l') ) {s = 22;}
-
-                        else if ( (LA20_0=='n') ) {s = 23;}
-
-                        else if ( (LA20_0=='o') ) {s = 24;}
-
-                        else if ( (LA20_0=='g') ) {s = 25;}
-
-                        else if ( (LA20_0=='w') ) {s = 26;}
-
-                        else if ( (LA20_0=='r') ) {s = 27;}
-
-                        else if ( (LA20_0=='u') ) {s = 28;}
-
-                        else if ( (LA20_0=='f') ) {s = 29;}
-
-                        else if ( (LA20_0=='t') ) {s = 30;}
-
-                        else if ( ((LA20_0>='0' && LA20_0<='9')) ) {s = 31;}
-
-                        else if ( ((LA20_0>='A' && LA20_0<='Z')||LA20_0=='c'||LA20_0=='h'||(LA20_0>='j' && LA20_0<='k')||LA20_0=='q'||LA20_0=='s'||LA20_0=='v'||(LA20_0>='x' && LA20_0<='z')) ) {s = 32;}
-
-                        else if ( (LA20_0=='_') ) {s = 33;}
-
-                        else if ( (LA20_0=='^') ) {s = 34;}
-
-                        else if ( (LA20_0=='\"') ) {s = 35;}
-
-                        else if ( (LA20_0=='\'') ) {s = 36;}
-
-                        else if ( ((LA20_0>='\t' && LA20_0<='\n')||LA20_0=='\r'||LA20_0==' ') ) {s = 37;}
-
-                        else if ( ((LA20_0>='\u0000' && LA20_0<='\b')||(LA20_0>='\u000B' && LA20_0<='\f')||(LA20_0>='\u000E' && LA20_0<='\u001F')||LA20_0=='!'||(LA20_0>='#' && LA20_0<='&')||(LA20_0>='?' && LA20_0<='@')||LA20_0=='\\'||LA20_0=='`'||(LA20_0>='{' && LA20_0<='\uFFFF')) ) {s = 38;}
+                        else s = 40;
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA20_36 = input.LA(1);
+                        int LA20_0 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA20_36>='\u0000' && LA20_36<='\uFFFF')) ) {s = 78;}
+                        if ( (LA20_0=='+') ) {s = 1;}
 
-                        else s = 38;
+                        else if ( (LA20_0=='-') ) {s = 2;}
+
+                        else if ( (LA20_0=='.') ) {s = 3;}
+
+                        else if ( (LA20_0=='p') ) {s = 4;}
+
+                        else if ( (LA20_0==';') ) {s = 5;}
+
+                        else if ( (LA20_0=='(') ) {s = 6;}
+
+                        else if ( (LA20_0==')') ) {s = 7;}
+
+                        else if ( (LA20_0==',') ) {s = 8;}
+
+                        else if ( (LA20_0==':') ) {s = 9;}
+
+                        else if ( (LA20_0=='[') ) {s = 10;}
+
+                        else if ( (LA20_0==']') ) {s = 11;}
+
+                        else if ( (LA20_0=='*') ) {s = 12;}
+
+                        else if ( (LA20_0=='/') ) {s = 13;}
+
+                        else if ( (LA20_0=='d') ) {s = 14;}
+
+                        else if ( (LA20_0=='m') ) {s = 15;}
+
+                        else if ( (LA20_0=='a') ) {s = 16;}
+
+                        else if ( (LA20_0=='=') ) {s = 17;}
+
+                        else if ( (LA20_0=='<') ) {s = 18;}
+
+                        else if ( (LA20_0=='>') ) {s = 19;}
+
+                        else if ( (LA20_0=='i') ) {s = 20;}
+
+                        else if ( (LA20_0=='b') ) {s = 21;}
+
+                        else if ( (LA20_0=='e') ) {s = 22;}
+
+                        else if ( (LA20_0=='l') ) {s = 23;}
+
+                        else if ( (LA20_0=='n') ) {s = 24;}
+
+                        else if ( (LA20_0=='o') ) {s = 25;}
+
+                        else if ( (LA20_0=='g') ) {s = 26;}
+
+                        else if ( (LA20_0=='w') ) {s = 27;}
+
+                        else if ( (LA20_0=='r') ) {s = 28;}
+
+                        else if ( (LA20_0=='u') ) {s = 29;}
+
+                        else if ( (LA20_0=='f') ) {s = 30;}
+
+                        else if ( (LA20_0=='t') ) {s = 31;}
+
+                        else if ( (LA20_0=='c') ) {s = 32;}
+
+                        else if ( ((LA20_0>='0' && LA20_0<='9')) ) {s = 33;}
+
+                        else if ( ((LA20_0>='A' && LA20_0<='Z')||LA20_0=='h'||(LA20_0>='j' && LA20_0<='k')||LA20_0=='q'||LA20_0=='s'||LA20_0=='v'||(LA20_0>='x' && LA20_0<='z')) ) {s = 34;}
+
+                        else if ( (LA20_0=='_') ) {s = 35;}
+
+                        else if ( (LA20_0=='^') ) {s = 36;}
+
+                        else if ( (LA20_0=='\"') ) {s = 37;}
+
+                        else if ( (LA20_0=='\'') ) {s = 38;}
+
+                        else if ( ((LA20_0>='\t' && LA20_0<='\n')||LA20_0=='\r'||LA20_0==' ') ) {s = 39;}
+
+                        else if ( ((LA20_0>='\u0000' && LA20_0<='\b')||(LA20_0>='\u000B' && LA20_0<='\f')||(LA20_0>='\u000E' && LA20_0<='\u001F')||LA20_0=='!'||(LA20_0>='#' && LA20_0<='&')||(LA20_0>='?' && LA20_0<='@')||LA20_0=='\\'||LA20_0=='`'||(LA20_0>='{' && LA20_0<='\uFFFF')) ) {s = 40;}
 
                         if ( s>=0 ) return s;
                         break;

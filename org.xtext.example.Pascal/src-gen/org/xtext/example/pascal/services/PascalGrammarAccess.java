@@ -677,13 +677,14 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cCompound_statementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cRepetitive_statementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cConditional_statementParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		////TODO
 		//structured_statement:
-		//	compound_statement | repetitive_statement;
+		//	compound_statement | repetitive_statement | conditional_statement;
 		public ParserRule getRule() { return rule; }
 
-		//compound_statement | repetitive_statement
+		//compound_statement | repetitive_statement | conditional_statement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//compound_statement
@@ -691,6 +692,9 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 		//repetitive_statement
 		public RuleCall getRepetitive_statementParserRuleCall_1() { return cRepetitive_statementParserRuleCall_1; }
+
+		//conditional_statement
+		public RuleCall getConditional_statementParserRuleCall_2() { return cConditional_statementParserRuleCall_2; }
 	}
 
 	public class Compound_statementElements extends AbstractParserRuleElementFinder {
@@ -841,6 +845,210 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getStatementParserRuleCall_5() { return cStatementParserRuleCall_5; }
 	}
 
+	public class Conditional_statementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "conditional_statement");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cIf_statementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cCase_statementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//conditional_statement:
+		//	if_statement | case_statement;
+		public ParserRule getRule() { return rule; }
+
+		//if_statement | case_statement
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//if_statement
+		public RuleCall getIf_statementParserRuleCall_0() { return cIf_statementParserRuleCall_0; }
+
+		//case_statement
+		public RuleCall getCase_statementParserRuleCall_1() { return cCase_statementParserRuleCall_1; }
+	}
+
+	public class If_statementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "if_statement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cIF_KEYWORDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cTHEN_KEYWORDTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cStatementParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final RuleCall cELSE_KEYWORDTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final RuleCall cStatementParserRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		
+		//if_statement:
+		//	IF_KEYWORD expression THEN_KEYWORD statement (ELSE_KEYWORD statement)?;
+		public ParserRule getRule() { return rule; }
+
+		//IF_KEYWORD expression THEN_KEYWORD statement (ELSE_KEYWORD statement)?
+		public Group getGroup() { return cGroup; }
+
+		//IF_KEYWORD
+		public RuleCall getIF_KEYWORDTerminalRuleCall_0() { return cIF_KEYWORDTerminalRuleCall_0; }
+
+		//expression
+		public RuleCall getExpressionParserRuleCall_1() { return cExpressionParserRuleCall_1; }
+
+		//THEN_KEYWORD
+		public RuleCall getTHEN_KEYWORDTerminalRuleCall_2() { return cTHEN_KEYWORDTerminalRuleCall_2; }
+
+		//statement
+		public RuleCall getStatementParserRuleCall_3() { return cStatementParserRuleCall_3; }
+
+		//(ELSE_KEYWORD statement)?
+		public Group getGroup_4() { return cGroup_4; }
+
+		//ELSE_KEYWORD
+		public RuleCall getELSE_KEYWORDTerminalRuleCall_4_0() { return cELSE_KEYWORDTerminalRuleCall_4_0; }
+
+		//statement
+		public RuleCall getStatementParserRuleCall_4_1() { return cStatementParserRuleCall_4_1; }
+	}
+
+	public class Case_statementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "case_statement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cCASE_KEYWORDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cOF_KEYWORDTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cCase_limbParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cSemicolonKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final RuleCall cCase_limbParserRuleCall_4_1 = (RuleCall)cGroup_4.eContents().get(1);
+		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final RuleCall cEND_KEYWORDTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		
+		//case_statement:
+		//	CASE_KEYWORD expression OF_KEYWORD case_limb (";" case_limb)* ";"? END_KEYWORD;
+		public ParserRule getRule() { return rule; }
+
+		//CASE_KEYWORD expression OF_KEYWORD case_limb (";" case_limb)* ";"? END_KEYWORD
+		public Group getGroup() { return cGroup; }
+
+		//CASE_KEYWORD
+		public RuleCall getCASE_KEYWORDTerminalRuleCall_0() { return cCASE_KEYWORDTerminalRuleCall_0; }
+
+		//expression
+		public RuleCall getExpressionParserRuleCall_1() { return cExpressionParserRuleCall_1; }
+
+		//OF_KEYWORD
+		public RuleCall getOF_KEYWORDTerminalRuleCall_2() { return cOF_KEYWORDTerminalRuleCall_2; }
+
+		//case_limb
+		public RuleCall getCase_limbParserRuleCall_3() { return cCase_limbParserRuleCall_3; }
+
+		//(";" case_limb)*
+		public Group getGroup_4() { return cGroup_4; }
+
+		//";"
+		public Keyword getSemicolonKeyword_4_0() { return cSemicolonKeyword_4_0; }
+
+		//case_limb
+		public RuleCall getCase_limbParserRuleCall_4_1() { return cCase_limbParserRuleCall_4_1; }
+
+		//";"?
+		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+
+		//END_KEYWORD
+		public RuleCall getEND_KEYWORDTerminalRuleCall_6() { return cEND_KEYWORDTerminalRuleCall_6; }
+	}
+
+	public class Case_limbElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "case_limb");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cCase_label_listParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cStatementParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//case_limb:
+		//	case_label_list ":" statement;
+		public ParserRule getRule() { return rule; }
+
+		//case_label_list ":" statement
+		public Group getGroup() { return cGroup; }
+
+		//case_label_list
+		public RuleCall getCase_label_listParserRuleCall_0() { return cCase_label_listParserRuleCall_0; }
+
+		//":"
+		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
+
+		//statement
+		public RuleCall getStatementParserRuleCall_2() { return cStatementParserRuleCall_2; }
+	}
+
+	public class Case_label_listElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "case_label_list");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cConstantParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cConstantParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		//case_label_list:
+		//	constant ("," constant)*;
+		public ParserRule getRule() { return rule; }
+
+		//constant ("," constant)*
+		public Group getGroup() { return cGroup; }
+
+		//constant
+		public RuleCall getConstantParserRuleCall_0() { return cConstantParserRuleCall_0; }
+
+		//("," constant)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//","
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+
+		//constant
+		public RuleCall getConstantParserRuleCall_1_1() { return cConstantParserRuleCall_1_1; }
+	}
+
+	public class ConstantElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "constant");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Alternatives cAlternatives_0_0 = (Alternatives)cGroup_0.eContents().get(0);
+		private final Keyword cPlusSignKeyword_0_0_0 = (Keyword)cAlternatives_0_0.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_0_0_1 = (Keyword)cAlternatives_0_0.eContents().get(1);
+		private final Alternatives cAlternatives_0_1 = (Alternatives)cGroup_0.eContents().get(1);
+		private final RuleCall cIDENTIFIERTerminalRuleCall_0_1_0 = (RuleCall)cAlternatives_0_1.eContents().get(0);
+		private final RuleCall cNumberParserRuleCall_0_1_1 = (RuleCall)cAlternatives_0_1.eContents().get(1);
+		private final RuleCall cSTRINGTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//constant:
+		//	("+" | "-")? (IDENTIFIER | number) | STRING;
+		public ParserRule getRule() { return rule; }
+
+		//("+" | "-")? (IDENTIFIER | number) | STRING
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//("+" | "-")? (IDENTIFIER | number)
+		public Group getGroup_0() { return cGroup_0; }
+
+		//("+" | "-")?
+		public Alternatives getAlternatives_0_0() { return cAlternatives_0_0; }
+
+		//"+"
+		public Keyword getPlusSignKeyword_0_0_0() { return cPlusSignKeyword_0_0_0; }
+
+		//"-"
+		public Keyword getHyphenMinusKeyword_0_0_1() { return cHyphenMinusKeyword_0_0_1; }
+
+		//IDENTIFIER | number
+		public Alternatives getAlternatives_0_1() { return cAlternatives_0_1; }
+
+		//IDENTIFIER
+		public RuleCall getIDENTIFIERTerminalRuleCall_0_1_0() { return cIDENTIFIERTerminalRuleCall_0_1_0; }
+
+		//number
+		public RuleCall getNumberParserRuleCall_0_1_1() { return cNumberParserRuleCall_0_1_1; }
+
+		//STRING
+		public RuleCall getSTRINGTerminalRuleCall_1() { return cSTRINGTerminalRuleCall_1; }
+	}
+
 	public class Goto_statementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "goto_statement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -942,6 +1150,12 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	private final While_statementElements pWhile_statement;
 	private final Repeat_statementElements pRepeat_statement;
 	private final For_statementElements pFor_statement;
+	private final Conditional_statementElements pConditional_statement;
+	private final If_statementElements pIf_statement;
+	private final Case_statementElements pCase_statement;
+	private final Case_limbElements pCase_limb;
+	private final Case_label_listElements pCase_label_list;
+	private final ConstantElements pConstant;
 	private final Goto_statementElements pGoto_statement;
 	private final Declaration_partElements pDeclaration_part;
 	private final Label_declaration_partElements pLabel_declaration_part;
@@ -962,6 +1176,11 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tFOR_KEYWORD;
 	private final TerminalRule tTO_KEYWORD;
 	private final TerminalRule tDOWNTO_KEYWORD;
+	private final TerminalRule tIF_KEYWORD;
+	private final TerminalRule tTHEN_KEYWORD;
+	private final TerminalRule tELSE_KEYWORD;
+	private final TerminalRule tCASE_KEYWORD;
+	private final TerminalRule tOF_KEYWORD;
 	private final TerminalRule tSIGNED_INTEGER_NUMBER;
 	private final TerminalRule tINTEGER_NUMBER;
 	private final TerminalRule tSIGNED_REAL_NUMBER;
@@ -1013,6 +1232,12 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		this.pWhile_statement = new While_statementElements();
 		this.pRepeat_statement = new Repeat_statementElements();
 		this.pFor_statement = new For_statementElements();
+		this.pConditional_statement = new Conditional_statementElements();
+		this.pIf_statement = new If_statementElements();
+		this.pCase_statement = new Case_statementElements();
+		this.pCase_limb = new Case_limbElements();
+		this.pCase_label_list = new Case_label_listElements();
+		this.pConstant = new ConstantElements();
 		this.pGoto_statement = new Goto_statementElements();
 		this.pDeclaration_part = new Declaration_partElements();
 		this.pLabel_declaration_part = new Label_declaration_partElements();
@@ -1033,6 +1258,11 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		this.tFOR_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "FOR_KEYWORD");
 		this.tTO_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "TO_KEYWORD");
 		this.tDOWNTO_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOWNTO_KEYWORD");
+		this.tIF_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "IF_KEYWORD");
+		this.tTHEN_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "THEN_KEYWORD");
+		this.tELSE_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ELSE_KEYWORD");
+		this.tCASE_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "CASE_KEYWORD");
+		this.tOF_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OF_KEYWORD");
 		this.tSIGNED_INTEGER_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIGNED_INTEGER_NUMBER");
 		this.tINTEGER_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INTEGER_NUMBER");
 		this.tSIGNED_REAL_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIGNED_REAL_NUMBER");
@@ -1329,7 +1559,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 	////TODO
 	//structured_statement:
-	//	compound_statement | repetitive_statement;
+	//	compound_statement | repetitive_statement | conditional_statement;
 	public Structured_statementElements getStructured_statementAccess() {
 		return pStructured_statement;
 	}
@@ -1386,6 +1616,66 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getFor_statementRule() {
 		return getFor_statementAccess().getRule();
+	}
+
+	//conditional_statement:
+	//	if_statement | case_statement;
+	public Conditional_statementElements getConditional_statementAccess() {
+		return pConditional_statement;
+	}
+	
+	public ParserRule getConditional_statementRule() {
+		return getConditional_statementAccess().getRule();
+	}
+
+	//if_statement:
+	//	IF_KEYWORD expression THEN_KEYWORD statement (ELSE_KEYWORD statement)?;
+	public If_statementElements getIf_statementAccess() {
+		return pIf_statement;
+	}
+	
+	public ParserRule getIf_statementRule() {
+		return getIf_statementAccess().getRule();
+	}
+
+	//case_statement:
+	//	CASE_KEYWORD expression OF_KEYWORD case_limb (";" case_limb)* ";"? END_KEYWORD;
+	public Case_statementElements getCase_statementAccess() {
+		return pCase_statement;
+	}
+	
+	public ParserRule getCase_statementRule() {
+		return getCase_statementAccess().getRule();
+	}
+
+	//case_limb:
+	//	case_label_list ":" statement;
+	public Case_limbElements getCase_limbAccess() {
+		return pCase_limb;
+	}
+	
+	public ParserRule getCase_limbRule() {
+		return getCase_limbAccess().getRule();
+	}
+
+	//case_label_list:
+	//	constant ("," constant)*;
+	public Case_label_listElements getCase_label_listAccess() {
+		return pCase_label_list;
+	}
+	
+	public ParserRule getCase_label_listRule() {
+		return getCase_label_listAccess().getRule();
+	}
+
+	//constant:
+	//	("+" | "-")? (IDENTIFIER | number) | STRING;
+	public ConstantElements getConstantAccess() {
+		return pConstant;
+	}
+	
+	public ParserRule getConstantRule() {
+		return getConstantAccess().getRule();
 	}
 
 	//goto_statement:
@@ -1519,6 +1809,36 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	//	"downto";
 	public TerminalRule getDOWNTO_KEYWORDRule() {
 		return tDOWNTO_KEYWORD;
+	} 
+
+	//terminal IF_KEYWORD:
+	//	"if";
+	public TerminalRule getIF_KEYWORDRule() {
+		return tIF_KEYWORD;
+	} 
+
+	//terminal THEN_KEYWORD:
+	//	"then";
+	public TerminalRule getTHEN_KEYWORDRule() {
+		return tTHEN_KEYWORD;
+	} 
+
+	//terminal ELSE_KEYWORD:
+	//	"else";
+	public TerminalRule getELSE_KEYWORDRule() {
+		return tELSE_KEYWORD;
+	} 
+
+	//terminal CASE_KEYWORD:
+	//	"case";
+	public TerminalRule getCASE_KEYWORDRule() {
+		return tCASE_KEYWORD;
+	} 
+
+	//terminal OF_KEYWORD:
+	//	"of";
+	public TerminalRule getOF_KEYWORDRule() {
+		return tOF_KEYWORD;
 	} 
 
 	//terminal SIGNED_INTEGER_NUMBER:
