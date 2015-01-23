@@ -211,7 +211,7 @@ unpacked_structured_type:
 ;
 
 array_type:
-	ARRAY_KEYWORD "[" index_type ( "," index_type ) * "]" OF_KEYWORD type
+	ARRAY_KEYWORD ( "[" index_type ( "," index_type ) * "]" ) ? OF_KEYWORD type
 ;
 
 index_type:
@@ -262,8 +262,8 @@ variable_declaration_part:
 	VAR_KEYWORD record_section ";" ( record_section ";" ) *
 ;
 
-procedure_and_function_declaration_part: //TODO
-	( ( procedure_declaration ) ";" ) *	
+procedure_and_function_declaration_part: 
+	( ( procedure_declaration | function_declaration ) ";" ) *	
 ;
 
 procedure_declaration:
@@ -312,6 +312,10 @@ variable_parameter_section:
 
 function_heading:
 	FUNCTION_KEYWORD IDENTIFIER ( formal_parameter_list ) ? ":" IDENTIFIER
+;
+ 
+function_declaration:
+	function_heading ";" ( block | FORWARD_KEYWORD) 
 ;
 
 terminal NUMERIC_SUBRANGE:
