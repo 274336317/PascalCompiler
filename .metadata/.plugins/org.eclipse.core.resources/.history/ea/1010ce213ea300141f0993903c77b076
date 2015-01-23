@@ -184,7 +184,7 @@ type_definition:
 	IDENTIFIER "=" type	
 ;
 
-type: 
+type: //TODO
 	simple_type | structured_type | pointer_type | IDENTIFIER
 ;
 
@@ -253,8 +253,8 @@ file_type:
 ;
 
 pointer_type:
-	"^" IDENTIFIER	
-; 
+	"^" IDENTIFIER;	
+;
 
 terminal NUMERIC_SUBRANGE:
 	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER ) ".."	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER )

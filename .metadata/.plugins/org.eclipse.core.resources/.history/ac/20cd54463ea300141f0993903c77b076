@@ -185,7 +185,7 @@ type_definition:
 ;
 
 type: 
-	simple_type | structured_type | pointer_type | IDENTIFIER
+	simple_type | structured_type |  IDENTIFIER
 ;
 
 simple_type: 
@@ -253,7 +253,7 @@ file_type:
 ;
 
 pointer_type:
-	"^" IDENTIFIER	
+	" A" IDENTIFIER;	
 ; 
 
 terminal NUMERIC_SUBRANGE:

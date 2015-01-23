@@ -253,7 +253,7 @@ file_type:
 ;
 
 pointer_type:
-	"^" IDENTIFIER	
+	"^" IDENTIFIER;	
 ; 
 
 terminal NUMERIC_SUBRANGE:
