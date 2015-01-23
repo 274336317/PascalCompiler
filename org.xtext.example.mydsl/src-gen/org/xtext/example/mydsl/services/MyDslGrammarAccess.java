@@ -42,13 +42,13 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
 		private final Keyword cExclamationMarkKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
-		private final RuleCall cSIGNED_REAL_NUMBERParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cNumberParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//Greeting:
-		//	"Hello" name=ID "!" | SIGNED_REAL_NUMBER;
+		//	"Hello" name=ID "!" | number;
 		public ParserRule getRule() { return rule; }
 
-		//"Hello" name=ID "!" | SIGNED_REAL_NUMBER
+		//"Hello" name=ID "!" | number
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"Hello" name=ID "!"
@@ -66,8 +66,174 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"!"
 		public Keyword getExclamationMarkKeyword_0_2() { return cExclamationMarkKeyword_0_2; }
 
-		//SIGNED_REAL_NUMBER
-		public RuleCall getSIGNED_REAL_NUMBERParserRuleCall_1() { return cSIGNED_REAL_NUMBERParserRuleCall_1; }
+		//number
+		public RuleCall getNumberParserRuleCall_1() { return cNumberParserRuleCall_1; }
+	}
+
+	public class NumberElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "number");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cDigitZeroKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Keyword cDigitOneKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
+		private final Keyword cDigitTwoKeyword_0_2 = (Keyword)cAlternatives_0.eContents().get(2);
+		private final Keyword cDigitThreeKeyword_0_3 = (Keyword)cAlternatives_0.eContents().get(3);
+		private final Keyword cDigitFourKeyword_0_4 = (Keyword)cAlternatives_0.eContents().get(4);
+		private final Keyword cDigitFiveKeyword_0_5 = (Keyword)cAlternatives_0.eContents().get(5);
+		private final Keyword cDigitSixKeyword_0_6 = (Keyword)cAlternatives_0.eContents().get(6);
+		private final Keyword cDigitSevenKeyword_0_7 = (Keyword)cAlternatives_0.eContents().get(7);
+		private final Keyword cDigitEightKeyword_0_8 = (Keyword)cAlternatives_0.eContents().get(8);
+		private final Keyword cDigitNineKeyword_0_9 = (Keyword)cAlternatives_0.eContents().get(9);
+		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Keyword cDigitZeroKeyword_2_0 = (Keyword)cAlternatives_2.eContents().get(0);
+		private final Keyword cDigitOneKeyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
+		private final Keyword cDigitTwoKeyword_2_2 = (Keyword)cAlternatives_2.eContents().get(2);
+		private final Keyword cDigitThreeKeyword_2_3 = (Keyword)cAlternatives_2.eContents().get(3);
+		private final Keyword cDigitFourKeyword_2_4 = (Keyword)cAlternatives_2.eContents().get(4);
+		private final Keyword cDigitFiveKeyword_2_5 = (Keyword)cAlternatives_2.eContents().get(5);
+		private final Keyword cDigitSixKeyword_2_6 = (Keyword)cAlternatives_2.eContents().get(6);
+		private final Keyword cDigitSevenKeyword_2_7 = (Keyword)cAlternatives_2.eContents().get(7);
+		private final Keyword cDigitEightKeyword_2_8 = (Keyword)cAlternatives_2.eContents().get(8);
+		private final Keyword cDigitNineKeyword_2_9 = (Keyword)cAlternatives_2.eContents().get(9);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_3_0 = (Alternatives)cGroup_3.eContents().get(0);
+		private final Keyword cEKeyword_3_0_0 = (Keyword)cAlternatives_3_0.eContents().get(0);
+		private final Keyword cEKeyword_3_0_1 = (Keyword)cAlternatives_3_0.eContents().get(1);
+		private final Alternatives cAlternatives_3_1 = (Alternatives)cGroup_3.eContents().get(1);
+		private final Keyword cDigitZeroKeyword_3_1_0 = (Keyword)cAlternatives_3_1.eContents().get(0);
+		private final Keyword cDigitOneKeyword_3_1_1 = (Keyword)cAlternatives_3_1.eContents().get(1);
+		private final Keyword cDigitTwoKeyword_3_1_2 = (Keyword)cAlternatives_3_1.eContents().get(2);
+		private final Keyword cDigitThreeKeyword_3_1_3 = (Keyword)cAlternatives_3_1.eContents().get(3);
+		private final Keyword cDigitFourKeyword_3_1_4 = (Keyword)cAlternatives_3_1.eContents().get(4);
+		private final Keyword cDigitFiveKeyword_3_1_5 = (Keyword)cAlternatives_3_1.eContents().get(5);
+		private final Keyword cDigitSixKeyword_3_1_6 = (Keyword)cAlternatives_3_1.eContents().get(6);
+		private final Keyword cDigitSevenKeyword_3_1_7 = (Keyword)cAlternatives_3_1.eContents().get(7);
+		private final Keyword cDigitEightKeyword_3_1_8 = (Keyword)cAlternatives_3_1.eContents().get(8);
+		private final Keyword cDigitNineKeyword_3_1_9 = (Keyword)cAlternatives_3_1.eContents().get(9);
+		
+		//number:
+		//	("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+ "." ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8"
+		//	| "9")+ (("E" | "e") ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+)?;
+		public ParserRule getRule() { return rule; }
+
+		//("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+ "." ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" |
+		//"9")+ (("E" | "e") ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+)?
+		public Group getGroup() { return cGroup; }
+
+		//("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//"0"
+		public Keyword getDigitZeroKeyword_0_0() { return cDigitZeroKeyword_0_0; }
+
+		//"1"
+		public Keyword getDigitOneKeyword_0_1() { return cDigitOneKeyword_0_1; }
+
+		//"2"
+		public Keyword getDigitTwoKeyword_0_2() { return cDigitTwoKeyword_0_2; }
+
+		//"3"
+		public Keyword getDigitThreeKeyword_0_3() { return cDigitThreeKeyword_0_3; }
+
+		//"4"
+		public Keyword getDigitFourKeyword_0_4() { return cDigitFourKeyword_0_4; }
+
+		//"5"
+		public Keyword getDigitFiveKeyword_0_5() { return cDigitFiveKeyword_0_5; }
+
+		//"6"
+		public Keyword getDigitSixKeyword_0_6() { return cDigitSixKeyword_0_6; }
+
+		//"7"
+		public Keyword getDigitSevenKeyword_0_7() { return cDigitSevenKeyword_0_7; }
+
+		//"8"
+		public Keyword getDigitEightKeyword_0_8() { return cDigitEightKeyword_0_8; }
+
+		//"9"
+		public Keyword getDigitNineKeyword_0_9() { return cDigitNineKeyword_0_9; }
+
+		//"."
+		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
+
+		//("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//"0"
+		public Keyword getDigitZeroKeyword_2_0() { return cDigitZeroKeyword_2_0; }
+
+		//"1"
+		public Keyword getDigitOneKeyword_2_1() { return cDigitOneKeyword_2_1; }
+
+		//"2"
+		public Keyword getDigitTwoKeyword_2_2() { return cDigitTwoKeyword_2_2; }
+
+		//"3"
+		public Keyword getDigitThreeKeyword_2_3() { return cDigitThreeKeyword_2_3; }
+
+		//"4"
+		public Keyword getDigitFourKeyword_2_4() { return cDigitFourKeyword_2_4; }
+
+		//"5"
+		public Keyword getDigitFiveKeyword_2_5() { return cDigitFiveKeyword_2_5; }
+
+		//"6"
+		public Keyword getDigitSixKeyword_2_6() { return cDigitSixKeyword_2_6; }
+
+		//"7"
+		public Keyword getDigitSevenKeyword_2_7() { return cDigitSevenKeyword_2_7; }
+
+		//"8"
+		public Keyword getDigitEightKeyword_2_8() { return cDigitEightKeyword_2_8; }
+
+		//"9"
+		public Keyword getDigitNineKeyword_2_9() { return cDigitNineKeyword_2_9; }
+
+		//(("E" | "e") ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"E" | "e"
+		public Alternatives getAlternatives_3_0() { return cAlternatives_3_0; }
+
+		//"E"
+		public Keyword getEKeyword_3_0_0() { return cEKeyword_3_0_0; }
+
+		//"e"
+		public Keyword getEKeyword_3_0_1() { return cEKeyword_3_0_1; }
+
+		//("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+
+		public Alternatives getAlternatives_3_1() { return cAlternatives_3_1; }
+
+		//"0"
+		public Keyword getDigitZeroKeyword_3_1_0() { return cDigitZeroKeyword_3_1_0; }
+
+		//"1"
+		public Keyword getDigitOneKeyword_3_1_1() { return cDigitOneKeyword_3_1_1; }
+
+		//"2"
+		public Keyword getDigitTwoKeyword_3_1_2() { return cDigitTwoKeyword_3_1_2; }
+
+		//"3"
+		public Keyword getDigitThreeKeyword_3_1_3() { return cDigitThreeKeyword_3_1_3; }
+
+		//"4"
+		public Keyword getDigitFourKeyword_3_1_4() { return cDigitFourKeyword_3_1_4; }
+
+		//"5"
+		public Keyword getDigitFiveKeyword_3_1_5() { return cDigitFiveKeyword_3_1_5; }
+
+		//"6"
+		public Keyword getDigitSixKeyword_3_1_6() { return cDigitSixKeyword_3_1_6; }
+
+		//"7"
+		public Keyword getDigitSevenKeyword_3_1_7() { return cDigitSevenKeyword_3_1_7; }
+
+		//"8"
+		public Keyword getDigitEightKeyword_3_1_8() { return cDigitEightKeyword_3_1_8; }
+
+		//"9"
+		public Keyword getDigitNineKeyword_3_1_9() { return cDigitNineKeyword_3_1_9; }
 	}
 
 	public class SIGNED_REAL_NUMBERElements extends AbstractParserRuleElementFinder {
@@ -215,6 +381,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final ModelElements pModel;
 	private final GreetingElements pGreeting;
+	private final NumberElements pNumber;
 	private final SIGNED_REAL_NUMBERElements pSIGNED_REAL_NUMBER;
 	private final REAL_NUMBERElements pREAL_NUMBER;
 	private final UNSIGNED_DIGIT_SEQUENCEElements pUNSIGNED_DIGIT_SEQUENCE;
@@ -232,6 +399,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
 		this.pGreeting = new GreetingElements();
+		this.pNumber = new NumberElements();
 		this.pSIGNED_REAL_NUMBER = new SIGNED_REAL_NUMBERElements();
 		this.pREAL_NUMBER = new REAL_NUMBERElements();
 		this.pUNSIGNED_DIGIT_SEQUENCE = new UNSIGNED_DIGIT_SEQUENCEElements();
@@ -277,13 +445,24 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Greeting:
-	//	"Hello" name=ID "!" | SIGNED_REAL_NUMBER;
+	//	"Hello" name=ID "!" | number;
 	public GreetingElements getGreetingAccess() {
 		return pGreeting;
 	}
 	
 	public ParserRule getGreetingRule() {
 		return getGreetingAccess().getRule();
+	}
+
+	//number:
+	//	("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+ "." ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8"
+	//	| "9")+ (("E" | "e") ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")+)?;
+	public NumberElements getNumberAccess() {
+		return pNumber;
+	}
+	
+	public ParserRule getNumberRule() {
+		return getNumberAccess().getRule();
 	}
 
 	//SIGNED_REAL_NUMBER:

@@ -145,9 +145,9 @@ ruleGreeting returns [EObject current=null]
 )
     |
     { 
-        newCompositeNode(grammarAccess.getGreetingAccess().getSIGNED_REAL_NUMBERParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getGreetingAccess().getNumberParserRuleCall_1()); 
     }
-ruleSIGNED_REAL_NUMBER
+rulenumber
     { 
         afterParserOrEnumRuleCall();
     }
@@ -158,46 +158,250 @@ ruleSIGNED_REAL_NUMBER
 
 
 
-// Entry rule entryRuleSIGNED_REAL_NUMBER
-entryRuleSIGNED_REAL_NUMBER returns [String current=null] 
+// Entry rule entryRulenumber
+entryRulenumber returns [String current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getSIGNED_REAL_NUMBERRule()); } 
-	 iv_ruleSIGNED_REAL_NUMBER=ruleSIGNED_REAL_NUMBER 
-	 { $current=$iv_ruleSIGNED_REAL_NUMBER.current.getText(); }  
+	{ newCompositeNode(grammarAccess.getNumberRule()); } 
+	 iv_rulenumber=rulenumber 
+	 { $current=$iv_rulenumber.current.getText(); }  
 	 EOF 
 ;
 
-// Rule SIGNED_REAL_NUMBER
-ruleSIGNED_REAL_NUMBER returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+// Rule number
+rulenumber returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
-	kw='+' 
+	kw='0' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getSIGNED_REAL_NUMBERAccess().getPlusSignKeyword_0_0()); 
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitZeroKeyword_0_0()); 
     }
 
     |
-	kw='-' 
+	kw='1' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getSIGNED_REAL_NUMBERAccess().getHyphenMinusKeyword_0_1()); 
-    }
-)
-    { 
-        newCompositeNode(grammarAccess.getSIGNED_REAL_NUMBERAccess().getREAL_NUMBERParserRuleCall_1()); 
-    }
-    this_REAL_NUMBER_2=ruleREAL_NUMBER    {
-		$current.merge(this_REAL_NUMBER_2);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitOneKeyword_0_1()); 
     }
 
-    { 
-        afterParserOrEnumRuleCall();
+    |
+	kw='2' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitTwoKeyword_0_2()); 
     }
-)
+
+    |
+	kw='3' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitThreeKeyword_0_3()); 
+    }
+
+    |
+	kw='4' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitFourKeyword_0_4()); 
+    }
+
+    |
+	kw='5' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitFiveKeyword_0_5()); 
+    }
+
+    |
+	kw='6' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitSixKeyword_0_6()); 
+    }
+
+    |
+	kw='7' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitSevenKeyword_0_7()); 
+    }
+
+    |
+	kw='8' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitEightKeyword_0_8()); 
+    }
+
+    |
+	kw='9' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitNineKeyword_0_9()); 
+    }
+)+
+	kw='.' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getFullStopKeyword_1()); 
+    }
+(
+	kw='0' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitZeroKeyword_2_0()); 
+    }
+
+    |
+	kw='1' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitOneKeyword_2_1()); 
+    }
+
+    |
+	kw='2' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitTwoKeyword_2_2()); 
+    }
+
+    |
+	kw='3' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitThreeKeyword_2_3()); 
+    }
+
+    |
+	kw='4' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitFourKeyword_2_4()); 
+    }
+
+    |
+	kw='5' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitFiveKeyword_2_5()); 
+    }
+
+    |
+	kw='6' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitSixKeyword_2_6()); 
+    }
+
+    |
+	kw='7' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitSevenKeyword_2_7()); 
+    }
+
+    |
+	kw='8' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitEightKeyword_2_8()); 
+    }
+
+    |
+	kw='9' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitNineKeyword_2_9()); 
+    }
+)+((
+	kw='E' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getEKeyword_3_0_0()); 
+    }
+
+    |
+	kw='e' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getEKeyword_3_0_1()); 
+    }
+)(
+	kw='0' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitZeroKeyword_3_1_0()); 
+    }
+
+    |
+	kw='1' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitOneKeyword_3_1_1()); 
+    }
+
+    |
+	kw='2' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitTwoKeyword_3_1_2()); 
+    }
+
+    |
+	kw='3' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitThreeKeyword_3_1_3()); 
+    }
+
+    |
+	kw='4' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitFourKeyword_3_1_4()); 
+    }
+
+    |
+	kw='5' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitFiveKeyword_3_1_5()); 
+    }
+
+    |
+	kw='6' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitSixKeyword_3_1_6()); 
+    }
+
+    |
+	kw='7' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitSevenKeyword_3_1_7()); 
+    }
+
+    |
+	kw='8' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitEightKeyword_3_1_8()); 
+    }
+
+    |
+	kw='9' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getNumberAccess().getDigitNineKeyword_3_1_9()); 
+    }
+)+)?)
     ;
+
+
 
 
 

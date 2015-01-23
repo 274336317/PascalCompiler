@@ -38,12 +38,18 @@ public class MyDslParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getGreetingAccess().getAlternatives(), "rule__Greeting__Alternatives");
+					put(grammarAccess.getNumberAccess().getAlternatives_0(), "rule__Number__Alternatives_0");
+					put(grammarAccess.getNumberAccess().getAlternatives_2(), "rule__Number__Alternatives_2");
+					put(grammarAccess.getNumberAccess().getAlternatives_3_0(), "rule__Number__Alternatives_3_0");
+					put(grammarAccess.getNumberAccess().getAlternatives_3_1(), "rule__Number__Alternatives_3_1");
 					put(grammarAccess.getSIGNED_REAL_NUMBERAccess().getAlternatives_0(), "rule__SIGNED_REAL_NUMBER__Alternatives_0");
 					put(grammarAccess.getREAL_NUMBERAccess().getAlternatives(), "rule__REAL_NUMBER__Alternatives");
 					put(grammarAccess.getREAL_NUMBERAccess().getAlternatives_0_3_0(), "rule__REAL_NUMBER__Alternatives_0_3_0");
 					put(grammarAccess.getREAL_NUMBERAccess().getAlternatives_1_1(), "rule__REAL_NUMBER__Alternatives_1_1");
 					put(grammarAccess.getDIGIT_SEQUENCEAccess().getAlternatives_0(), "rule__DIGIT_SEQUENCE__Alternatives_0");
 					put(grammarAccess.getGreetingAccess().getGroup_0(), "rule__Greeting__Group_0__0");
+					put(grammarAccess.getNumberAccess().getGroup(), "rule__Number__Group__0");
+					put(grammarAccess.getNumberAccess().getGroup_3(), "rule__Number__Group_3__0");
 					put(grammarAccess.getSIGNED_REAL_NUMBERAccess().getGroup(), "rule__SIGNED_REAL_NUMBER__Group__0");
 					put(grammarAccess.getREAL_NUMBERAccess().getGroup_0(), "rule__REAL_NUMBER__Group_0__0");
 					put(grammarAccess.getREAL_NUMBERAccess().getGroup_0_3(), "rule__REAL_NUMBER__Group_0_3__0");

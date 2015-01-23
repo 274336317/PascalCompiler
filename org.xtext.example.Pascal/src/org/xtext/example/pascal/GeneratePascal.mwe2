@@ -67,9 +67,10 @@ Workflow {
     		fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {
     		//  options = {
     		//      backtrack = true
+    		//	ignoreCase = true
     		//  }
     		}
-    
+    		
     		// Xtend-based API for validation
     		fragment = validation.ValidatorFragment auto-inject {
     		//    composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
@@ -81,7 +82,7 @@ Workflow {
     		// fragment = exporting.SimpleNamesFragment auto-inject {}
     
     		// scoping and exporting API
-    		fragment = scoping.ImportNamespacesScopingFragment auto-inject {}
+    		fragment = scoping.ImportNamespacesScopingFragment auto-inject { }
     		fragment = exporting.QualifiedNamesFragment auto-inject {}
     		fragment = builder.BuilderIntegrationFragment auto-inject {}
     
@@ -102,11 +103,11 @@ Workflow {
     		fragment = quickfix.QuickfixProviderFragment auto-inject {}
     
     		// content assist API
-    		fragment = contentAssist.ContentAssistFragment auto-inject {}
+    		fragment = contentAssist.ContentAssistFragment auto-inject { }
     
     		// generates a more lightweight Antlr parser and lexer tailored for content assist
-    		fragment = parser.antlr.XtextAntlrUiGeneratorFragment auto-inject {}
-    
+    		fragment = parser.antlr.XtextAntlrUiGeneratorFragment auto-inject { }
+
     		// generates junit test support classes into Generator#pathTestProject
     		fragment = junit.Junit4Fragment auto-inject {}
     

@@ -23,20 +23,20 @@ public class MyDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if(ruleCall.getRule() == grammarAccess.getSIGNED_REAL_NUMBERRule())
-			return getSIGNED_REAL_NUMBERToken(semanticObject, ruleCall, node);
+		if(ruleCall.getRule() == grammarAccess.getNumberRule())
+			return getnumberToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
 	/**
-	 * SIGNED_REAL_NUMBER:
-	 * 	( "+" | "-" ) REAL_NUMBER
+	 * number:
+	 * 	('0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9')+"."('0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9')+(("E" | "e")('0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9')+)?
 	 * ;
 	 */
-	protected String getSIGNED_REAL_NUMBERToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getnumberToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return "+.";
+		return "0.0";
 	}
 	
 	@Override
