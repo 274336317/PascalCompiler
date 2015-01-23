@@ -204,14 +204,16 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
 		private final RuleCall cLabelParserRuleCall_0_0 = (RuleCall)cGroup_0.eContents().get(0);
 		private final Keyword cColonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
-		private final RuleCall cSimple_statementParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final RuleCall cSimple_statementParserRuleCall_1_0 = (RuleCall)cAlternatives_1.eContents().get(0);
+		private final RuleCall cStructured_statementParserRuleCall_1_1 = (RuleCall)cAlternatives_1.eContents().get(1);
 		
 		////TODO
 		//statement:
-		//	(label ":")? simple_statement;
+		//	(label ":")? (simple_statement | structured_statement);
 		public ParserRule getRule() { return rule; }
 
-		//(label ":")? simple_statement
+		//(label ":")? (simple_statement | structured_statement)
 		public Group getGroup() { return cGroup; }
 
 		//(label ":")?
@@ -223,8 +225,14 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//":"
 		public Keyword getColonKeyword_0_1() { return cColonKeyword_0_1; }
 
+		//simple_statement | structured_statement
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
 		//simple_statement
-		public RuleCall getSimple_statementParserRuleCall_1() { return cSimple_statementParserRuleCall_1; }
+		public RuleCall getSimple_statementParserRuleCall_1_0() { return cSimple_statementParserRuleCall_1_0; }
+
+		//structured_statement
+		public RuleCall getStructured_statementParserRuleCall_1_1() { return cStructured_statementParserRuleCall_1_1; }
 	}
 
 	public class LabelElements extends AbstractParserRuleElementFinder {
@@ -664,6 +672,175 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 
+	public class Structured_statementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "structured_statement");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cCompound_statementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cRepetitive_statementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		////TODO
+		//structured_statement:
+		//	compound_statement | repetitive_statement;
+		public ParserRule getRule() { return rule; }
+
+		//compound_statement | repetitive_statement
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//compound_statement
+		public RuleCall getCompound_statementParserRuleCall_0() { return cCompound_statementParserRuleCall_0; }
+
+		//repetitive_statement
+		public RuleCall getRepetitive_statementParserRuleCall_1() { return cRepetitive_statementParserRuleCall_1; }
+	}
+
+	public class Compound_statementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "compound_statement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cBEGIN_KEYWORDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cStatement_sequenceParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cEND_KEYWORDTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//compound_statement:
+		//	BEGIN_KEYWORD statement_sequence END_KEYWORD;
+		public ParserRule getRule() { return rule; }
+
+		//BEGIN_KEYWORD statement_sequence END_KEYWORD
+		public Group getGroup() { return cGroup; }
+
+		//BEGIN_KEYWORD
+		public RuleCall getBEGIN_KEYWORDTerminalRuleCall_0() { return cBEGIN_KEYWORDTerminalRuleCall_0; }
+
+		//statement_sequence
+		public RuleCall getStatement_sequenceParserRuleCall_1() { return cStatement_sequenceParserRuleCall_1; }
+
+		//END_KEYWORD
+		public RuleCall getEND_KEYWORDTerminalRuleCall_2() { return cEND_KEYWORDTerminalRuleCall_2; }
+	}
+
+	public class Repetitive_statementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "repetitive_statement");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cWhile_statementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cRepeat_statementParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cFor_statementParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//repetitive_statement:
+		//	while_statement | repeat_statement | for_statement;
+		public ParserRule getRule() { return rule; }
+
+		//while_statement | repeat_statement | for_statement
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//while_statement
+		public RuleCall getWhile_statementParserRuleCall_0() { return cWhile_statementParserRuleCall_0; }
+
+		//repeat_statement
+		public RuleCall getRepeat_statementParserRuleCall_1() { return cRepeat_statementParserRuleCall_1; }
+
+		//for_statement
+		public RuleCall getFor_statementParserRuleCall_2() { return cFor_statementParserRuleCall_2; }
+	}
+
+	public class While_statementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "while_statement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cWHILE_KEYWORDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cExpressionParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cDO_KEYWORDTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cStatementParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		
+		//while_statement:
+		//	WHILE_KEYWORD expression DO_KEYWORD statement;
+		public ParserRule getRule() { return rule; }
+
+		//WHILE_KEYWORD expression DO_KEYWORD statement
+		public Group getGroup() { return cGroup; }
+
+		//WHILE_KEYWORD
+		public RuleCall getWHILE_KEYWORDTerminalRuleCall_0() { return cWHILE_KEYWORDTerminalRuleCall_0; }
+
+		//expression
+		public RuleCall getExpressionParserRuleCall_1() { return cExpressionParserRuleCall_1; }
+
+		//DO_KEYWORD
+		public RuleCall getDO_KEYWORDTerminalRuleCall_2() { return cDO_KEYWORDTerminalRuleCall_2; }
+
+		//statement
+		public RuleCall getStatementParserRuleCall_3() { return cStatementParserRuleCall_3; }
+	}
+
+	public class Repeat_statementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "repeat_statement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cREPEAT_KEYWORDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cStatement_sequenceParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cUNTIL_KEYWORDTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final RuleCall cExpressionParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		
+		//repeat_statement:
+		//	REPEAT_KEYWORD statement_sequence UNTIL_KEYWORD expression;
+		public ParserRule getRule() { return rule; }
+
+		//REPEAT_KEYWORD statement_sequence UNTIL_KEYWORD expression
+		public Group getGroup() { return cGroup; }
+
+		//REPEAT_KEYWORD
+		public RuleCall getREPEAT_KEYWORDTerminalRuleCall_0() { return cREPEAT_KEYWORDTerminalRuleCall_0; }
+
+		//statement_sequence
+		public RuleCall getStatement_sequenceParserRuleCall_1() { return cStatement_sequenceParserRuleCall_1; }
+
+		//UNTIL_KEYWORD
+		public RuleCall getUNTIL_KEYWORDTerminalRuleCall_2() { return cUNTIL_KEYWORDTerminalRuleCall_2; }
+
+		//expression
+		public RuleCall getExpressionParserRuleCall_3() { return cExpressionParserRuleCall_3; }
+	}
+
+	public class For_statementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "for_statement");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cFOR_KEYWORDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cAssignment_statementParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final RuleCall cTO_KEYWORDTerminalRuleCall_2_0 = (RuleCall)cAlternatives_2.eContents().get(0);
+		private final RuleCall cDOWNTO_KEYWORDTerminalRuleCall_2_1 = (RuleCall)cAlternatives_2.eContents().get(1);
+		private final RuleCall cExpressionParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cDO_KEYWORDTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cStatementParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		
+		//for_statement:
+		//	FOR_KEYWORD assignment_statement (TO_KEYWORD | DOWNTO_KEYWORD) expression DO_KEYWORD statement;
+		public ParserRule getRule() { return rule; }
+
+		//FOR_KEYWORD assignment_statement (TO_KEYWORD | DOWNTO_KEYWORD) expression DO_KEYWORD statement
+		public Group getGroup() { return cGroup; }
+
+		//FOR_KEYWORD
+		public RuleCall getFOR_KEYWORDTerminalRuleCall_0() { return cFOR_KEYWORDTerminalRuleCall_0; }
+
+		//assignment_statement
+		public RuleCall getAssignment_statementParserRuleCall_1() { return cAssignment_statementParserRuleCall_1; }
+
+		//TO_KEYWORD | DOWNTO_KEYWORD
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//TO_KEYWORD
+		public RuleCall getTO_KEYWORDTerminalRuleCall_2_0() { return cTO_KEYWORDTerminalRuleCall_2_0; }
+
+		//DOWNTO_KEYWORD
+		public RuleCall getDOWNTO_KEYWORDTerminalRuleCall_2_1() { return cDOWNTO_KEYWORDTerminalRuleCall_2_1; }
+
+		//expression
+		public RuleCall getExpressionParserRuleCall_3() { return cExpressionParserRuleCall_3; }
+
+		//DO_KEYWORD
+		public RuleCall getDO_KEYWORDTerminalRuleCall_4() { return cDO_KEYWORDTerminalRuleCall_4; }
+
+		//statement
+		public RuleCall getStatementParserRuleCall_5() { return cStatementParserRuleCall_5; }
+	}
+
 	public class Goto_statementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "goto_statement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -759,6 +936,12 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	private final Signed_numberElements pSigned_number;
 	private final SetElements pSet;
 	private final Function_designatorElements pFunction_designator;
+	private final Structured_statementElements pStructured_statement;
+	private final Compound_statementElements pCompound_statement;
+	private final Repetitive_statementElements pRepetitive_statement;
+	private final While_statementElements pWhile_statement;
+	private final Repeat_statementElements pRepeat_statement;
+	private final For_statementElements pFor_statement;
 	private final Goto_statementElements pGoto_statement;
 	private final Declaration_partElements pDeclaration_part;
 	private final Label_declaration_partElements pLabel_declaration_part;
@@ -772,6 +955,13 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tNOT_KEYWORD;
 	private final TerminalRule tOR_KEYWORD;
 	private final TerminalRule tGOTO_KEYWORD;
+	private final TerminalRule tWHILE_KEYWORD;
+	private final TerminalRule tDO_KEYWORD;
+	private final TerminalRule tREPEAT_KEYWORD;
+	private final TerminalRule tUNTIL_KEYWORD;
+	private final TerminalRule tFOR_KEYWORD;
+	private final TerminalRule tTO_KEYWORD;
+	private final TerminalRule tDOWNTO_KEYWORD;
 	private final TerminalRule tSIGNED_INTEGER_NUMBER;
 	private final TerminalRule tINTEGER_NUMBER;
 	private final TerminalRule tSIGNED_REAL_NUMBER;
@@ -817,6 +1007,12 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		this.pSigned_number = new Signed_numberElements();
 		this.pSet = new SetElements();
 		this.pFunction_designator = new Function_designatorElements();
+		this.pStructured_statement = new Structured_statementElements();
+		this.pCompound_statement = new Compound_statementElements();
+		this.pRepetitive_statement = new Repetitive_statementElements();
+		this.pWhile_statement = new While_statementElements();
+		this.pRepeat_statement = new Repeat_statementElements();
+		this.pFor_statement = new For_statementElements();
 		this.pGoto_statement = new Goto_statementElements();
 		this.pDeclaration_part = new Declaration_partElements();
 		this.pLabel_declaration_part = new Label_declaration_partElements();
@@ -830,6 +1026,13 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		this.tNOT_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NOT_KEYWORD");
 		this.tOR_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "OR_KEYWORD");
 		this.tGOTO_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "GOTO_KEYWORD");
+		this.tWHILE_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WHILE_KEYWORD");
+		this.tDO_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DO_KEYWORD");
+		this.tREPEAT_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REPEAT_KEYWORD");
+		this.tUNTIL_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNTIL_KEYWORD");
+		this.tFOR_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "FOR_KEYWORD");
+		this.tTO_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "TO_KEYWORD");
+		this.tDOWNTO_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOWNTO_KEYWORD");
 		this.tSIGNED_INTEGER_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIGNED_INTEGER_NUMBER");
 		this.tINTEGER_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INTEGER_NUMBER");
 		this.tSIGNED_REAL_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIGNED_REAL_NUMBER");
@@ -941,7 +1144,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 	////TODO
 	//statement:
-	//	(label ":")? simple_statement;
+	//	(label ":")? (simple_statement | structured_statement);
 	public StatementElements getStatementAccess() {
 		return pStatement;
 	}
@@ -1124,6 +1327,67 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunction_designatorAccess().getRule();
 	}
 
+	////TODO
+	//structured_statement:
+	//	compound_statement | repetitive_statement;
+	public Structured_statementElements getStructured_statementAccess() {
+		return pStructured_statement;
+	}
+	
+	public ParserRule getStructured_statementRule() {
+		return getStructured_statementAccess().getRule();
+	}
+
+	//compound_statement:
+	//	BEGIN_KEYWORD statement_sequence END_KEYWORD;
+	public Compound_statementElements getCompound_statementAccess() {
+		return pCompound_statement;
+	}
+	
+	public ParserRule getCompound_statementRule() {
+		return getCompound_statementAccess().getRule();
+	}
+
+	//repetitive_statement:
+	//	while_statement | repeat_statement | for_statement;
+	public Repetitive_statementElements getRepetitive_statementAccess() {
+		return pRepetitive_statement;
+	}
+	
+	public ParserRule getRepetitive_statementRule() {
+		return getRepetitive_statementAccess().getRule();
+	}
+
+	//while_statement:
+	//	WHILE_KEYWORD expression DO_KEYWORD statement;
+	public While_statementElements getWhile_statementAccess() {
+		return pWhile_statement;
+	}
+	
+	public ParserRule getWhile_statementRule() {
+		return getWhile_statementAccess().getRule();
+	}
+
+	//repeat_statement:
+	//	REPEAT_KEYWORD statement_sequence UNTIL_KEYWORD expression;
+	public Repeat_statementElements getRepeat_statementAccess() {
+		return pRepeat_statement;
+	}
+	
+	public ParserRule getRepeat_statementRule() {
+		return getRepeat_statementAccess().getRule();
+	}
+
+	//for_statement:
+	//	FOR_KEYWORD assignment_statement (TO_KEYWORD | DOWNTO_KEYWORD) expression DO_KEYWORD statement;
+	public For_statementElements getFor_statementAccess() {
+		return pFor_statement;
+	}
+	
+	public ParserRule getFor_statementRule() {
+		return getFor_statementAccess().getRule();
+	}
+
 	//goto_statement:
 	//	GOTO_KEYWORD label;
 	public Goto_statementElements getGoto_statementAccess() {
@@ -1213,6 +1477,48 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	//	"goto";
 	public TerminalRule getGOTO_KEYWORDRule() {
 		return tGOTO_KEYWORD;
+	} 
+
+	//terminal WHILE_KEYWORD:
+	//	"while";
+	public TerminalRule getWHILE_KEYWORDRule() {
+		return tWHILE_KEYWORD;
+	} 
+
+	//terminal DO_KEYWORD:
+	//	"do";
+	public TerminalRule getDO_KEYWORDRule() {
+		return tDO_KEYWORD;
+	} 
+
+	//terminal REPEAT_KEYWORD:
+	//	"repeat";
+	public TerminalRule getREPEAT_KEYWORDRule() {
+		return tREPEAT_KEYWORD;
+	} 
+
+	//terminal UNTIL_KEYWORD:
+	//	"until";
+	public TerminalRule getUNTIL_KEYWORDRule() {
+		return tUNTIL_KEYWORD;
+	} 
+
+	//terminal FOR_KEYWORD:
+	//	"for";
+	public TerminalRule getFOR_KEYWORDRule() {
+		return tFOR_KEYWORD;
+	} 
+
+	//terminal TO_KEYWORD:
+	//	"to";
+	public TerminalRule getTO_KEYWORDRule() {
+		return tTO_KEYWORD;
+	} 
+
+	//terminal DOWNTO_KEYWORD:
+	//	"downto";
+	public TerminalRule getDOWNTO_KEYWORDRule() {
+		return tDOWNTO_KEYWORD;
 	} 
 
 	//terminal SIGNED_INTEGER_NUMBER:

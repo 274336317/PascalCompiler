@@ -37,6 +37,7 @@ public class PascalParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getStatementAccess().getAlternatives_1(), "rule__Statement__Alternatives_1");
 					put(grammarAccess.getSimple_statementAccess().getAlternatives(), "rule__Simple_statement__Alternatives");
 					put(grammarAccess.getSimple_expressionAccess().getAlternatives_2(), "rule__Simple_expression__Alternatives_2");
 					put(grammarAccess.getSimple_expressionAccess().getAlternatives_2_0_0(), "rule__Simple_expression__Alternatives_2_0_0");
@@ -44,6 +45,9 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNumberAccess().getAlternatives(), "rule__Number__Alternatives");
 					put(grammarAccess.getUnsigned_numberAccess().getAlternatives(), "rule__Unsigned_number__Alternatives");
 					put(grammarAccess.getSigned_numberAccess().getAlternatives(), "rule__Signed_number__Alternatives");
+					put(grammarAccess.getStructured_statementAccess().getAlternatives(), "rule__Structured_statement__Alternatives");
+					put(grammarAccess.getRepetitive_statementAccess().getAlternatives(), "rule__Repetitive_statement__Alternatives");
+					put(grammarAccess.getFor_statementAccess().getAlternatives_2(), "rule__For_statement__Alternatives_2");
 					put(grammarAccess.getProgramAccess().getGroup(), "rule__Program__Group__0");
 					put(grammarAccess.getProgram_heading_blockAccess().getGroup(), "rule__Program_heading_block__Group__0");
 					put(grammarAccess.getProgram_heading_blockAccess().getGroup_2(), "rule__Program_heading_block__Group_2__0");
@@ -69,6 +73,10 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFactorAccess().getGroup_7(), "rule__Factor__Group_7__0");
 					put(grammarAccess.getSetAccess().getGroup(), "rule__Set__Group__0");
 					put(grammarAccess.getFunction_designatorAccess().getGroup(), "rule__Function_designator__Group__0");
+					put(grammarAccess.getCompound_statementAccess().getGroup(), "rule__Compound_statement__Group__0");
+					put(grammarAccess.getWhile_statementAccess().getGroup(), "rule__While_statement__Group__0");
+					put(grammarAccess.getRepeat_statementAccess().getGroup(), "rule__Repeat_statement__Group__0");
+					put(grammarAccess.getFor_statementAccess().getGroup(), "rule__For_statement__Group__0");
 					put(grammarAccess.getGoto_statementAccess().getGroup(), "rule__Goto_statement__Group__0");
 					put(grammarAccess.getLabel_declaration_partAccess().getGroup(), "rule__Label_declaration_part__Group__0");
 					put(grammarAccess.getLabel_declaration_partAccess().getGroup_2(), "rule__Label_declaration_part__Group_2__0");

@@ -6,14 +6,21 @@ public class MyAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenToAttribut
 
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
-		if ("RULE_IDENTIFIER".equals(tokenName)) {
-			return MyHighLightingConfiguration.LAYOUT_ID;
-		} else if ("RULE_BEGIN_KEYWORD".equals(tokenName) || "RULE_END_KEYWORD".equals(tokenName) || "RULE_GOTO_KEYWORD".equals(tokenName) || "RULE_LABEL_KEYWORD".equals(tokenName)) {
-			return MyHighLightingConfiguration.KEYWORD_ID;
-		} else if ("RULE_INTEGER_NUMBER".equals(tokenName) || "RULE_SIGNED_INTEGER_NUMBER".equals(tokenName) || "RULE_REAL_NUMBER".equals(tokenName) || "RULE_SIGNED_REAL_NUMBER".equals(tokenName)) {
-			return MyHighLightingConfiguration.NUMBER_ID;
-		} else if ("'['".equals(tokenName) || "']'".equals(tokenName) || "':'".equals(tokenName) || "','".equals(tokenName) || "':='".equals(tokenName) || "'('".equals(tokenName) || "')'".equals(tokenName) || "';'".equals(tokenName)) {
-			return MyHighLightingConfiguration.PUNCTUATION_ID;
+		String[] layouts = new String[]{ "RULE_IDENTIFIER" };
+		String[] keywords = new String[]{ "RULE_BEGIN_KEYWORD", "RULE_END_KEYWORD", "RULE_GOTO_KEYWORD", "RULE_LABEL_KEYWORD", "RULE_WHILE_KEYWORD", "RULE_DO_KEYWORD", "RULE_REPEAT_KEYWORD", "RULE_UNTIL_KEYWORD", "RULE_FOR_KEYWORD", "RULE_TO_KEYWORD", "RULE_DOWNTO_KEYWORD" };
+		String[] numbers = new String[]{ "RULE_INTEGER_NUMBER", "RULE_SIGNED_INTEGER_NUMBER", "RULE_REAL_NUMBER", "RULE_SIGNED_REAL_NUMBER" };
+		String[] punctuation = new String[]{ "'['", "']'", "':'", "','", "'('", "')'", "';'" };
+		for (String s : layouts) {
+			if (s.equals(tokenName)) return MyHighLightingConfiguration.LAYOUT_ID; 
+		}
+		for (String s : keywords) {
+			if (s.equals(tokenName)) return MyHighLightingConfiguration.KEYWORD_ID;
+		}
+		for (String s : numbers) {
+			if (s.equals(tokenName)) return MyHighLightingConfiguration.NUMBER_ID;
+		}
+		for (String s : punctuation) {
+			if (s.equals(tokenName)) return MyHighLightingConfiguration.PUNCTUATION_ID;
 		}
 		return super.calculateId(tokenName, tokenType);
 	}

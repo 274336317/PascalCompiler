@@ -31,7 +31,7 @@ statement_sequence:
 ;
 
 statement: //TODO
-	( label ":" ) ? ( simple_statement )
+	( label ":" ) ? ( simple_statement | structured_statement )
 ;
 
 label:
@@ -102,6 +102,30 @@ function_designator:
 	IDENTIFIER "(" expression_list ? ")"
 ;
 
+structured_statement: //TODO
+	compound_statement | repetitive_statement
+;
+
+compound_statement:
+	BEGIN_KEYWORD statement_sequence END_KEYWORD
+;
+
+repetitive_statement: 
+	while_statement | repeat_statement | for_statement
+;
+
+while_statement:
+	WHILE_KEYWORD expression DO_KEYWORD statement	
+;
+
+repeat_statement:
+	REPEAT_KEYWORD statement_sequence UNTIL_KEYWORD expression	
+;
+
+for_statement:
+	FOR_KEYWORD assignment_statement ( TO_KEYWORD | DOWNTO_KEYWORD ) expression DO_KEYWORD statement	
+;
+
 goto_statement:
 	GOTO_KEYWORD label	
 ;
@@ -152,6 +176,34 @@ terminal OR_KEYWORD:
 
 terminal GOTO_KEYWORD:
 	"goto"	
+;
+
+terminal WHILE_KEYWORD:
+	"while"	
+;
+
+terminal DO_KEYWORD:
+	"do"	
+;
+
+terminal REPEAT_KEYWORD:
+	"repeat"	
+;
+
+terminal UNTIL_KEYWORD:
+	"until"	
+;
+
+terminal FOR_KEYWORD:
+	"for"	
+;
+
+terminal TO_KEYWORD:
+	"to"	
+;
+
+terminal DOWNTO_KEYWORD:
+	"downto"	
 ;
 
 terminal SIGNED_INTEGER_NUMBER:
