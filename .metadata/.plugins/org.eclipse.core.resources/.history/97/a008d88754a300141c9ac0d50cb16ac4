@@ -1,0 +1,488 @@
+grammar org.xtext.example.pascal.Pascal with org.eclipse.xtext.common.Terminals
+
+generate pascal "http://www.xtext.org/example/pascal/Pascal"
+
+pascal:
+	program += program
+; 
+
+program:
+	program_heading_block block "."
+;
+
+program_heading_block:
+	"program" IDENTIFIER ( "(" identifier_list ")" ) ? ";"	
+;
+ 
+identifier_list:
+	IDENTIFIER ( "," IDENTIFIER ) *	
+;
+
+block:
+	declaration_part statement_part
+;
+
+statement_part:
+	BEGIN_KEYWORD statement_sequence END_KEYWORD	
+;
+
+statement_sequence:
+	statement ( ";" statement ) *
+;
+
+statement: 
+	( label ":" ) ? ( simple_statement | structured_statement )
+;
+
+label:
+	SIGNED_INTEGER_NUMBER | INTEGER_NUMBER
+;
+
+simple_statement: 
+	( assignment_statement | function_designator | goto_statement ) ?	
+;
+ 
+assignment_statement: 
+	variable ":=" expression	
+;
+
+variable: //TODO
+	entire_variable //| component_variable
+;
+
+entire_variable:
+	IDENTIFIER
+;
+
+component_variable: //TODO
+	indexed_variable 
+;
+
+indexed_variable: //FIXME: RECURSAO INDIRETA A ESQUERDA
+	variable "[" expression_list "]"	
+;
+
+expression_list:
+	expression ( "," expression ) * 	
+;
+
+expression:
+	simple_expression ( RELATIONAL_OPERATOR simple_expression ) ?
+; 
+
+simple_expression: 
+	( ADDITION_OPERATOR+ ) ? term ( ( ADDITION_OPERATOR+ | OR_KEYWORD ) term | signed_number ) *
+;
+  
+term:
+	factor ( MULTIPLICATION_OPERATOR factor ) * 
+;
+
+factor: 
+	variable | number | STRING | set | NIL_KEYWORD | function_designator | "(" expression ")" | NOT_KEYWORD factor	
+;
+
+number:
+	unsigned_number | signed_number	
+;
+
+unsigned_number:
+	INTEGER_NUMBER | REAL_NUMBER	
+;
+ 
+signed_number:
+	SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER
+;
+
+set:
+	"[" expression_list ? "]"	
+;
+
+function_designator:
+	IDENTIFIER "(" expression_list ? ")"
+;
+
+structured_statement: 
+	compound_statement | repetitive_statement | conditional_statement | with_statement
+;
+
+compound_statement:
+	BEGIN_KEYWORD statement_sequence END_KEYWORD
+;
+
+repetitive_statement: 
+	while_statement | repeat_statement | for_statement
+;
+
+while_statement:
+	WHILE_KEYWORD expression DO_KEYWORD statement	
+;
+
+repeat_statement:
+	REPEAT_KEYWORD statement_sequence UNTIL_KEYWORD expression	
+;
+
+for_statement:
+	FOR_KEYWORD assignment_statement ( TO_KEYWORD | DOWNTO_KEYWORD ) expression DO_KEYWORD statement	
+;
+
+conditional_statement: 
+	if_statement | case_statement
+;
+
+if_statement:
+	IF_KEYWORD expression THEN_KEYWORD statement ( ELSE_KEYWORD statement )	?
+;
+
+case_statement:
+	CASE_KEYWORD expression OF_KEYWORD case_limb ( ";" case_limb ) * ( ";" ) ? END_KEYWORD	
+;
+
+case_limb:
+	case_label_list ":" statement	
+;
+
+case_label_list:
+	constant ( "," constant ) *	
+;
+
+constant:
+	ADDITION_OPERATOR ? ( IDENTIFIER | number ) | STRING 	
+;
+
+with_statement:
+	WITH_KEYWORD variable ( "," variable ) * DO_KEYWORD statement	
+;
+
+goto_statement:
+	GOTO_KEYWORD label	
+;
+
+declaration_part: 
+	( label_declaration_part ) ?
+	( constant_definition_part ) ? 
+	( type_definition_part ) ?
+	( variable_declaration_part ) ? 
+	procedure_and_function_declaration_part
+;
+
+label_declaration_part:
+	LABEL_KEYWORD label ( "," label ) * ";"
+;
+
+constant_definition_part:
+	CONST_KEYWORD ( constant_definition ";" ) +	
+;
+
+constant_definition:
+	IDENTIFIER "=" constant	
+;
+
+type_definition_part:
+	TYPE_KEYWORD ( type_definition ";" ) +	
+;
+
+type_definition:
+	IDENTIFIER "=" type	
+;
+
+type: 
+	simple_type | structured_type | pointer_type | IDENTIFIER
+;
+
+simple_type: 
+	subrange_type | enumerated_type
+;
+
+subrange_type:
+	constant ".." constant | NUMERIC_SUBRANGE
+;
+
+enumerated_type:
+	"(" identifier_list ")"
+;
+
+structured_type:
+	( PACKED_KEYWORD ) ? unpacked_structured_type	
+;
+
+unpacked_structured_type: 
+	array_type | record_type | set_type | file_type
+;
+
+array_type:
+	ARRAY_KEYWORD "[" index_type ( "," index_type ) * "]" OF_KEYWORD type
+;
+
+index_type:
+	simple_type	
+;
+
+record_type:
+	RECORD_KEYWORD field_list END_KEYWORD	
+;
+
+field_list:
+	( ( fixed_part ( ";" variant_part ) ? | variant_part ) ( ";" ) ? ) ?	
+;
+
+fixed_part:
+	record_section ( ";" record_section ) *
+;
+
+record_section:
+	identifier_list ":" type	
+;
+
+variant_part:
+	CASE_KEYWORD tag_field IDENTIFIER OF_KEYWORD variant ( ";" variant ) *  	
+;
+
+tag_field:
+	( IDENTIFIER ":" ) ?	
+;
+
+variant:
+	case_label_list ":" "(" field_list ")"	
+;
+
+set_type:
+	SET_KEYWORD OF_KEYWORD type	
+;
+
+file_type:
+	FILE_KEYWORD OF_KEYWORD type
+;
+
+pointer_type:
+	"^" IDENTIFIER	
+; 
+
+variable_declaration_part:
+	VAR_KEYWORD record_section ";" ( record_section ";" ) *
+;
+
+procedure_and_function_declaration_part: //TODO
+	( ( procedure_declaration ) ";" ) *	
+;
+
+procedure_declaration:
+	procedure_heading ";" block// | procedure_heading ";" FORWARD_KEYWORD | procedure_identification ";" block	
+;
+
+procedure_heading:
+	PROCEDURE_KEYWORD IDENTIFIER ( formal_parameter_list ) ?	
+;
+
+formal_parameter_list:
+	"(" formal_parameter_section ( ";" formal_parameter_section ) * ")"	
+;
+
+formal_parameter_section: //TODO
+	value_parameter_section | variable_parameter_section | procedure_heading | function_heading
+;
+
+value_parameter_section:
+	identifier_list ":" parameter_type	
+;
+
+parameter_type:
+	conformant_array_schema | IDENTIFIER	
+;
+
+conformant_array_schema:
+	packed_conformant_array_schema | unpacked_conformant_array_schema	
+;
+
+packed_conformant_array_schema:
+	PACKED_KEYWORD ARRAY_KEYWORD "[" bound_specification "]" OF_KEYWORD IDENTIFIER	
+;
+
+bound_specification:
+	IDENTIFIER ".." IDENTIFIER ":" IDENTIFIER	
+;
+
+unpacked_conformant_array_schema:
+	ARRAY_KEYWORD "[" bound_specification ( ";" bound_specification ) * "]" OF_KEYWORD ( conformant_array_schema | IDENTIFIER )	
+;
+
+procedure_identification:
+	PROCEDURE_KEYWORD IDENTIFIER	
+;
+
+terminal NUMERIC_SUBRANGE:
+	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER ) ".."	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER )
+;
+
+terminal ADDITION_OPERATOR:
+	"+" | "-" 	
+; 
+
+terminal MULTIPLICATION_OPERATOR:
+	"*" | "/" | "div" | "mod" | "and"	
+;
+
+terminal RELATIONAL_OPERATOR:
+	"=" | "<>" | "<" | "<=" | ">" | ">=" | "in"	
+;
+
+terminal BEGIN_KEYWORD:
+	"begin"	
+;
+
+terminal END_KEYWORD:
+	"end"	
+;
+
+terminal LABEL_KEYWORD:
+	"label"
+;
+
+terminal NIL_KEYWORD:
+	"nil"	
+;
+
+terminal NOT_KEYWORD:
+	"not"	
+;
+
+terminal OR_KEYWORD:
+	"or"	
+;
+
+terminal GOTO_KEYWORD:
+	"goto"	
+;
+
+terminal WHILE_KEYWORD:
+	"while"	
+;
+
+terminal DO_KEYWORD:
+	"do"	
+;
+
+terminal REPEAT_KEYWORD:
+	"repeat"	
+;
+
+terminal UNTIL_KEYWORD:
+	"until"	
+;
+
+terminal FOR_KEYWORD:
+	"for"	
+;
+
+terminal TO_KEYWORD:
+	"to"	
+;
+
+terminal DOWNTO_KEYWORD:
+	"downto"	
+;
+
+terminal IF_KEYWORD:
+	"if"	
+;
+
+terminal THEN_KEYWORD:
+	"then"	
+;
+
+terminal ELSE_KEYWORD:
+	"else"	
+;
+
+terminal CASE_KEYWORD:
+	"case"	
+;
+
+terminal OF_KEYWORD:
+	"of"	
+;
+
+terminal WITH_KEYWORD:
+	"with"	
+;
+
+terminal CONST_KEYWORD:
+	"const"
+;
+
+terminal TYPE_KEYWORD:
+	"type"	
+;
+
+terminal PACKED_KEYWORD:
+	"packed"	
+;
+
+terminal ARRAY_KEYWORD:
+	"array"	
+;
+
+terminal RECORD_KEYWORD:
+	"record"	
+;
+
+terminal SET_KEYWORD:
+	"set"	
+;
+
+terminal FILE_KEYWORD:
+	"file"
+;
+
+terminal VAR_KEYWORD:
+	"var"
+;
+
+terminal PROCEDURE_KEYWORD:
+	"procedure"	
+;
+
+terminal FORWARD_KEYWORD:
+	"forward"	
+;
+
+terminal SIGNED_INTEGER_NUMBER:
+	ADDITION_OPERATOR INTEGER_NUMBER	
+;
+
+terminal INTEGER_NUMBER: 
+	UNSIGNED_DIGIT_SEQUENCE	
+;
+
+terminal SIGNED_REAL_NUMBER:
+	ADDITION_OPERATOR REAL_NUMBER
+;
+
+terminal REAL_NUMBER:
+	UNSIGNED_DIGIT_SEQUENCE "." ( UNSIGNED_DIGIT_SEQUENCE ) ? ( ( "E" | "e" ) DIGIT_SEQUENCE ) ? | 
+	UNSIGNED_DIGIT_SEQUENCE ( "E" | "e" ) DIGIT_SEQUENCE	
+;
+
+terminal UNSIGNED_DIGIT_SEQUENCE:
+	DIGIT+
+;
+
+terminal DIGIT_SEQUENCE:
+	ADDITION_OPERATOR ? UNSIGNED_DIGIT_SEQUENCE	
+;
+
+terminal DIGIT:
+	"0".."9"
+;
+
+terminal IDENTIFIER:
+	LETTER_EXTENDED ( LETTER_EXTENDED | DIGIT ) *	
+;
+
+terminal LETTER:
+	"A".."Z" | "a".."z"
+;
+
+terminal LETTER_EXTENDED:
+	LETTER | "_"	
+; 

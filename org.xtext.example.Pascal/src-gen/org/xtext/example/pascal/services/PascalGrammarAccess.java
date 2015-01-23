@@ -510,20 +510,24 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSTRINGTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cSetParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cNIL_KEYWORDTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cFunction_designatorParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
-		private final Keyword cLeftParenthesisKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final RuleCall cExpressionParserRuleCall_6_1 = (RuleCall)cGroup_6.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
-		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
-		private final RuleCall cNOT_KEYWORDTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
-		private final RuleCall cFactorParserRuleCall_7_1 = (RuleCall)cGroup_7.eContents().get(1);
+		private final RuleCall cTRUE_KEYWORDTerminalRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cFALSE_KEYWORDTerminalRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cFunction_designatorParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
+		private final Keyword cLeftParenthesisKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final RuleCall cExpressionParserRuleCall_8_1 = (RuleCall)cGroup_8.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_8_2 = (Keyword)cGroup_8.eContents().get(2);
+		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
+		private final RuleCall cNOT_KEYWORDTerminalRuleCall_9_0 = (RuleCall)cGroup_9.eContents().get(0);
+		private final RuleCall cFactorParserRuleCall_9_1 = (RuleCall)cGroup_9.eContents().get(1);
 		
 		//factor:
-		//	variable | number | STRING | set | NIL_KEYWORD | function_designator | "(" expression ")" | NOT_KEYWORD factor;
+		//	variable | number | STRING | set | NIL_KEYWORD | TRUE_KEYWORD | FALSE_KEYWORD | function_designator | "(" expression
+		//	")" | NOT_KEYWORD factor;
 		public ParserRule getRule() { return rule; }
 
-		//variable | number | STRING | set | NIL_KEYWORD | function_designator | "(" expression ")" | NOT_KEYWORD factor
+		//variable | number | STRING | set | NIL_KEYWORD | TRUE_KEYWORD | FALSE_KEYWORD | function_designator | "(" expression ")"
+		//| NOT_KEYWORD factor
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//variable
@@ -541,29 +545,35 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//NIL_KEYWORD
 		public RuleCall getNIL_KEYWORDTerminalRuleCall_4() { return cNIL_KEYWORDTerminalRuleCall_4; }
 
+		//TRUE_KEYWORD
+		public RuleCall getTRUE_KEYWORDTerminalRuleCall_5() { return cTRUE_KEYWORDTerminalRuleCall_5; }
+
+		//FALSE_KEYWORD
+		public RuleCall getFALSE_KEYWORDTerminalRuleCall_6() { return cFALSE_KEYWORDTerminalRuleCall_6; }
+
 		//function_designator
-		public RuleCall getFunction_designatorParserRuleCall_5() { return cFunction_designatorParserRuleCall_5; }
+		public RuleCall getFunction_designatorParserRuleCall_7() { return cFunction_designatorParserRuleCall_7; }
 
 		//"(" expression ")"
-		public Group getGroup_6() { return cGroup_6; }
+		public Group getGroup_8() { return cGroup_8; }
 
 		//"("
-		public Keyword getLeftParenthesisKeyword_6_0() { return cLeftParenthesisKeyword_6_0; }
+		public Keyword getLeftParenthesisKeyword_8_0() { return cLeftParenthesisKeyword_8_0; }
 
 		//expression
-		public RuleCall getExpressionParserRuleCall_6_1() { return cExpressionParserRuleCall_6_1; }
+		public RuleCall getExpressionParserRuleCall_8_1() { return cExpressionParserRuleCall_8_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_6_2() { return cRightParenthesisKeyword_6_2; }
+		public Keyword getRightParenthesisKeyword_8_2() { return cRightParenthesisKeyword_8_2; }
 
 		//NOT_KEYWORD factor
-		public Group getGroup_7() { return cGroup_7; }
+		public Group getGroup_9() { return cGroup_9; }
 
 		//NOT_KEYWORD
-		public RuleCall getNOT_KEYWORDTerminalRuleCall_7_0() { return cNOT_KEYWORDTerminalRuleCall_7_0; }
+		public RuleCall getNOT_KEYWORDTerminalRuleCall_9_0() { return cNOT_KEYWORDTerminalRuleCall_9_0; }
 
 		//factor
-		public RuleCall getFactorParserRuleCall_7_1() { return cFactorParserRuleCall_7_1; }
+		public RuleCall getFactorParserRuleCall_9_1() { return cFactorParserRuleCall_9_1; }
 	}
 
 	public class NumberElements extends AbstractParserRuleElementFinder {
@@ -1440,52 +1450,48 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "array_type");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cARRAY_KEYWORDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final RuleCall cIndex_typeParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
-		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
-		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
-		private final RuleCall cIndex_typeParserRuleCall_1_2_1 = (RuleCall)cGroup_1_2.eContents().get(1);
-		private final Keyword cRightSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
-		private final RuleCall cOF_KEYWORDTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
-		private final RuleCall cTypeParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cIndex_typeParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final RuleCall cIndex_typeParserRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cOF_KEYWORDTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final RuleCall cTypeParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//array_type:
-		//	ARRAY_KEYWORD ("[" index_type ("," index_type)* "]")? OF_KEYWORD type;
+		//	ARRAY_KEYWORD "[" index_type ("," index_type)* "]" OF_KEYWORD type;
 		public ParserRule getRule() { return rule; }
 
-		//ARRAY_KEYWORD ("[" index_type ("," index_type)* "]")? OF_KEYWORD type
+		//ARRAY_KEYWORD "[" index_type ("," index_type)* "]" OF_KEYWORD type
 		public Group getGroup() { return cGroup; }
 
 		//ARRAY_KEYWORD
 		public RuleCall getARRAY_KEYWORDTerminalRuleCall_0() { return cARRAY_KEYWORDTerminalRuleCall_0; }
 
-		//("[" index_type ("," index_type)* "]")?
-		public Group getGroup_1() { return cGroup_1; }
-
 		//"["
-		public Keyword getLeftSquareBracketKeyword_1_0() { return cLeftSquareBracketKeyword_1_0; }
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 
 		//index_type
-		public RuleCall getIndex_typeParserRuleCall_1_1() { return cIndex_typeParserRuleCall_1_1; }
+		public RuleCall getIndex_typeParserRuleCall_2() { return cIndex_typeParserRuleCall_2; }
 
 		//("," index_type)*
-		public Group getGroup_1_2() { return cGroup_1_2; }
+		public Group getGroup_3() { return cGroup_3; }
 
 		//","
-		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 
 		//index_type
-		public RuleCall getIndex_typeParserRuleCall_1_2_1() { return cIndex_typeParserRuleCall_1_2_1; }
+		public RuleCall getIndex_typeParserRuleCall_3_1() { return cIndex_typeParserRuleCall_3_1; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_1_3() { return cRightSquareBracketKeyword_1_3; }
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
 
 		//OF_KEYWORD
-		public RuleCall getOF_KEYWORDTerminalRuleCall_2() { return cOF_KEYWORDTerminalRuleCall_2; }
+		public RuleCall getOF_KEYWORDTerminalRuleCall_5() { return cOF_KEYWORDTerminalRuleCall_5; }
 
 		//type
-		public RuleCall getTypeParserRuleCall_3() { return cTypeParserRuleCall_3; }
+		public RuleCall getTypeParserRuleCall_6() { return cTypeParserRuleCall_6; }
 	}
 
 	public class Index_typeElements extends AbstractParserRuleElementFinder {
@@ -2367,6 +2373,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	private final TerminalRule tPROCEDURE_KEYWORD;
 	private final TerminalRule tFORWARD_KEYWORD;
 	private final TerminalRule tFUNCTION_KEYWORD;
+	private final TerminalRule tTRUE_KEYWORD;
+	private final TerminalRule tFALSE_KEYWORD;
 	private final TerminalRule tSIGNED_INTEGER_NUMBER;
 	private final TerminalRule tINTEGER_NUMBER;
 	private final TerminalRule tSIGNED_REAL_NUMBER;
@@ -2500,6 +2508,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		this.tPROCEDURE_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PROCEDURE_KEYWORD");
 		this.tFORWARD_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "FORWARD_KEYWORD");
 		this.tFUNCTION_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "FUNCTION_KEYWORD");
+		this.tTRUE_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "TRUE_KEYWORD");
+		this.tFALSE_KEYWORD = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "FALSE_KEYWORD");
 		this.tSIGNED_INTEGER_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIGNED_INTEGER_NUMBER");
 		this.tINTEGER_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INTEGER_NUMBER");
 		this.tSIGNED_REAL_NUMBER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SIGNED_REAL_NUMBER");
@@ -2733,7 +2743,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//factor:
-	//	variable | number | STRING | set | NIL_KEYWORD | function_designator | "(" expression ")" | NOT_KEYWORD factor;
+	//	variable | number | STRING | set | NIL_KEYWORD | TRUE_KEYWORD | FALSE_KEYWORD | function_designator | "(" expression
+	//	")" | NOT_KEYWORD factor;
 	public FactorElements getFactorAccess() {
 		return pFactor;
 	}
@@ -3054,7 +3065,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//array_type:
-	//	ARRAY_KEYWORD ("[" index_type ("," index_type)* "]")? OF_KEYWORD type;
+	//	ARRAY_KEYWORD "[" index_type ("," index_type)* "]" OF_KEYWORD type;
 	public Array_typeElements getArray_typeAccess() {
 		return pArray_type;
 	}
@@ -3533,6 +3544,18 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	//	"function";
 	public TerminalRule getFUNCTION_KEYWORDRule() {
 		return tFUNCTION_KEYWORD;
+	} 
+
+	//terminal TRUE_KEYWORD:
+	//	"true";
+	public TerminalRule getTRUE_KEYWORDRule() {
+		return tTRUE_KEYWORD;
+	} 
+
+	//terminal FALSE_KEYWORD:
+	//	"false";
+	public TerminalRule getFALSE_KEYWORDRule() {
+		return tFALSE_KEYWORD;
 	} 
 
 	//terminal SIGNED_INTEGER_NUMBER:

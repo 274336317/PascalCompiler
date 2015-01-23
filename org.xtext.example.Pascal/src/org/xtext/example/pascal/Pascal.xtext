@@ -79,7 +79,7 @@ term:
 ;
 
 factor: 
-	variable | number | STRING | set | NIL_KEYWORD | function_designator | "(" expression ")" | NOT_KEYWORD factor	
+	variable | number | STRING | set | NIL_KEYWORD | TRUE_KEYWORD | FALSE_KEYWORD | function_designator | "(" expression ")" | NOT_KEYWORD factor	
 ;
 
 number:
@@ -211,7 +211,7 @@ unpacked_structured_type:
 ;
 
 array_type:
-	ARRAY_KEYWORD ( "[" index_type ( "," index_type ) * "]" ) ? OF_KEYWORD type
+	ARRAY_KEYWORD "[" index_type ( "," index_type ) * "]" OF_KEYWORD type
 ;
 
 index_type:
@@ -262,8 +262,8 @@ variable_declaration_part:
 	VAR_KEYWORD record_section ";" ( record_section ";" ) *
 ;
 
-procedure_and_function_declaration_part: 
-	( ( procedure_declaration | function_declaration ) ";" ) *	
+procedure_and_function_declaration_part:
+	( ( procedure_declaration | function_declaration  ) ";" ) *	
 ;
 
 procedure_declaration:
@@ -317,7 +317,7 @@ function_heading:
 function_declaration:
 	function_heading ";" ( block | FORWARD_KEYWORD) 
 ;
-
+ 
 terminal NUMERIC_SUBRANGE:
 	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER ) ".."	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER )
 ;
@@ -456,6 +456,14 @@ terminal FORWARD_KEYWORD:
 
 terminal FUNCTION_KEYWORD:
 	"function"	
+;
+
+terminal TRUE_KEYWORD:
+	"true"	
+;
+
+terminal FALSE_KEYWORD:
+	"false"	
 ;
 
 terminal SIGNED_INTEGER_NUMBER:
