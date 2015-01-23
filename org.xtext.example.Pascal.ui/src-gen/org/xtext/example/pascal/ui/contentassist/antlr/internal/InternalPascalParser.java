@@ -22,10 +22,10 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalPascalParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INTEGER_NUMBER", "RULE_IDENTIFIER", "RULE_ADDITION_OPERATOR", "RULE_OR_KEYWORD", "RULE_STRING", "RULE_NIL_KEYWORD", "RULE_REAL_NUMBER", "RULE_SIGNED_INTEGER_NUMBER", "RULE_SIGNED_REAL_NUMBER", "RULE_TO_KEYWORD", "RULE_DOWNTO_KEYWORD", "RULE_BEGIN_KEYWORD", "RULE_END_KEYWORD", "RULE_RELATIONAL_OPERATOR", "RULE_MULTIPLICATION_OPERATOR", "RULE_NOT_KEYWORD", "RULE_WHILE_KEYWORD", "RULE_DO_KEYWORD", "RULE_REPEAT_KEYWORD", "RULE_UNTIL_KEYWORD", "RULE_FOR_KEYWORD", "RULE_IF_KEYWORD", "RULE_THEN_KEYWORD", "RULE_ELSE_KEYWORD", "RULE_CASE_KEYWORD", "RULE_OF_KEYWORD", "RULE_GOTO_KEYWORD", "RULE_LABEL_KEYWORD", "RULE_UNSIGNED_DIGIT_SEQUENCE", "RULE_DIGIT_SEQUENCE", "RULE_DIGIT", "RULE_LETTER_EXTENDED", "RULE_LETTER", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'+'", "'-'", "'.'", "'program'", "';'", "'('", "')'", "','", "':'", "':='", "'['", "']'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INTEGER_NUMBER", "RULE_IDENTIFIER", "RULE_ADDITION_OPERATOR", "RULE_OR_KEYWORD", "RULE_STRING", "RULE_NIL_KEYWORD", "RULE_REAL_NUMBER", "RULE_SIGNED_INTEGER_NUMBER", "RULE_SIGNED_REAL_NUMBER", "RULE_TO_KEYWORD", "RULE_DOWNTO_KEYWORD", "RULE_BEGIN_KEYWORD", "RULE_END_KEYWORD", "RULE_RELATIONAL_OPERATOR", "RULE_MULTIPLICATION_OPERATOR", "RULE_NOT_KEYWORD", "RULE_WHILE_KEYWORD", "RULE_DO_KEYWORD", "RULE_REPEAT_KEYWORD", "RULE_UNTIL_KEYWORD", "RULE_FOR_KEYWORD", "RULE_IF_KEYWORD", "RULE_THEN_KEYWORD", "RULE_ELSE_KEYWORD", "RULE_CASE_KEYWORD", "RULE_OF_KEYWORD", "RULE_WITH_KEYWORD", "RULE_GOTO_KEYWORD", "RULE_LABEL_KEYWORD", "RULE_UNSIGNED_DIGIT_SEQUENCE", "RULE_DIGIT_SEQUENCE", "RULE_DIGIT", "RULE_LETTER_EXTENDED", "RULE_LETTER", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'.'", "'program'", "';'", "'('", "')'", "','", "':'", "':='", "'['", "']'"
     };
-    public static final int RULE_ID=37;
-    public static final int RULE_ANY_OTHER=42;
+    public static final int RULE_ID=38;
+    public static final int RULE_ANY_OTHER=43;
     public static final int RULE_IF_KEYWORD=25;
     public static final int RULE_ADDITION_OPERATOR=6;
     public static final int EOF=-1;
@@ -38,14 +38,12 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     public static final int RULE_REAL_NUMBER=10;
     public static final int T__52=52;
     public static final int T__53=53;
-    public static final int T__54=54;
     public static final int RULE_MULTIPLICATION_OPERATOR=18;
-    public static final int RULE_INT=38;
+    public static final int RULE_INT=39;
     public static final int RULE_BEGIN_KEYWORD=15;
-    public static final int RULE_LETTER_EXTENDED=35;
+    public static final int RULE_LETTER_EXTENDED=36;
     public static final int T__50=50;
     public static final int RULE_DOWNTO_KEYWORD=14;
-    public static final int T__43=43;
     public static final int RULE_TO_KEYWORD=13;
     public static final int RULE_RELATIONAL_OPERATOR=17;
     public static final int T__46=46;
@@ -53,26 +51,27 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     public static final int T__47=47;
     public static final int T__44=44;
     public static final int T__45=45;
-    public static final int RULE_GOTO_KEYWORD=30;
-    public static final int RULE_LABEL_KEYWORD=31;
+    public static final int RULE_GOTO_KEYWORD=31;
     public static final int T__48=48;
+    public static final int RULE_LABEL_KEYWORD=32;
     public static final int T__49=49;
     public static final int RULE_WHILE_KEYWORD=20;
-    public static final int RULE_UNSIGNED_DIGIT_SEQUENCE=32;
+    public static final int RULE_UNSIGNED_DIGIT_SEQUENCE=33;
     public static final int RULE_IDENTIFIER=5;
     public static final int RULE_OF_KEYWORD=29;
     public static final int RULE_DO_KEYWORD=21;
-    public static final int RULE_SL_COMMENT=40;
+    public static final int RULE_WITH_KEYWORD=30;
+    public static final int RULE_SL_COMMENT=41;
     public static final int RULE_NOT_KEYWORD=19;
-    public static final int RULE_LETTER=36;
-    public static final int RULE_ML_COMMENT=39;
+    public static final int RULE_LETTER=37;
+    public static final int RULE_ML_COMMENT=40;
     public static final int RULE_STRING=8;
     public static final int RULE_SIGNED_REAL_NUMBER=12;
     public static final int RULE_REPEAT_KEYWORD=22;
     public static final int RULE_OR_KEYWORD=7;
-    public static final int RULE_DIGIT_SEQUENCE=33;
-    public static final int RULE_WS=41;
-    public static final int RULE_DIGIT=34;
+    public static final int RULE_DIGIT_SEQUENCE=34;
+    public static final int RULE_WS=42;
+    public static final int RULE_DIGIT=35;
     public static final int RULE_SIGNED_INTEGER_NUMBER=11;
     public static final int RULE_ELSE_KEYWORD=27;
     public static final int RULE_INTEGER_NUMBER=4;
@@ -2871,21 +2870,98 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleconstant"
 
 
+    // $ANTLR start "entryRulewith_statement"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1070:1: entryRulewith_statement : rulewith_statement EOF ;
+    public final void entryRulewith_statement() throws RecognitionException {
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1071:1: ( rulewith_statement EOF )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1072:1: rulewith_statement EOF
+            {
+             before(grammarAccess.getWith_statementRule()); 
+            pushFollow(FOLLOW_rulewith_statement_in_entryRulewith_statement2221);
+            rulewith_statement();
+
+            state._fsp--;
+
+             after(grammarAccess.getWith_statementRule()); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulewith_statement2228); 
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+        }
+        return ;
+    }
+    // $ANTLR end "entryRulewith_statement"
+
+
+    // $ANTLR start "rulewith_statement"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1079:1: rulewith_statement : ( ( rule__With_statement__Group__0 ) ) ;
+    public final void rulewith_statement() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1083:2: ( ( ( rule__With_statement__Group__0 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1084:1: ( ( rule__With_statement__Group__0 ) )
+            {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1084:1: ( ( rule__With_statement__Group__0 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1085:1: ( rule__With_statement__Group__0 )
+            {
+             before(grammarAccess.getWith_statementAccess().getGroup()); 
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1086:1: ( rule__With_statement__Group__0 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1086:2: rule__With_statement__Group__0
+            {
+            pushFollow(FOLLOW_rule__With_statement__Group__0_in_rulewith_statement2254);
+            rule__With_statement__Group__0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getWith_statementAccess().getGroup()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rulewith_statement"
+
+
     // $ANTLR start "entryRulegoto_statement"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1070:1: entryRulegoto_statement : rulegoto_statement EOF ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1098:1: entryRulegoto_statement : rulegoto_statement EOF ;
     public final void entryRulegoto_statement() throws RecognitionException {
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1071:1: ( rulegoto_statement EOF )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1072:1: rulegoto_statement EOF
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1099:1: ( rulegoto_statement EOF )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1100:1: rulegoto_statement EOF
             {
              before(grammarAccess.getGoto_statementRule()); 
-            pushFollow(FOLLOW_rulegoto_statement_in_entryRulegoto_statement2221);
+            pushFollow(FOLLOW_rulegoto_statement_in_entryRulegoto_statement2281);
             rulegoto_statement();
 
             state._fsp--;
 
              after(grammarAccess.getGoto_statementRule()); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulegoto_statement2228); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulegoto_statement2288); 
 
             }
 
@@ -2902,23 +2978,23 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rulegoto_statement"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1079:1: rulegoto_statement : ( ( rule__Goto_statement__Group__0 ) ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1107:1: rulegoto_statement : ( ( rule__Goto_statement__Group__0 ) ) ;
     public final void rulegoto_statement() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1083:2: ( ( ( rule__Goto_statement__Group__0 ) ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1084:1: ( ( rule__Goto_statement__Group__0 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1111:2: ( ( ( rule__Goto_statement__Group__0 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1112:1: ( ( rule__Goto_statement__Group__0 ) )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1084:1: ( ( rule__Goto_statement__Group__0 ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1085:1: ( rule__Goto_statement__Group__0 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1112:1: ( ( rule__Goto_statement__Group__0 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1113:1: ( rule__Goto_statement__Group__0 )
             {
              before(grammarAccess.getGoto_statementAccess().getGroup()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1086:1: ( rule__Goto_statement__Group__0 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1086:2: rule__Goto_statement__Group__0
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1114:1: ( rule__Goto_statement__Group__0 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1114:2: rule__Goto_statement__Group__0
             {
-            pushFollow(FOLLOW_rule__Goto_statement__Group__0_in_rulegoto_statement2254);
+            pushFollow(FOLLOW_rule__Goto_statement__Group__0_in_rulegoto_statement2314);
             rule__Goto_statement__Group__0();
 
             state._fsp--;
@@ -2949,20 +3025,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRuledeclaration_part"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1098:1: entryRuledeclaration_part : ruledeclaration_part EOF ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1126:1: entryRuledeclaration_part : ruledeclaration_part EOF ;
     public final void entryRuledeclaration_part() throws RecognitionException {
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1099:1: ( ruledeclaration_part EOF )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1100:1: ruledeclaration_part EOF
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1127:1: ( ruledeclaration_part EOF )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1128:1: ruledeclaration_part EOF
             {
              before(grammarAccess.getDeclaration_partRule()); 
-            pushFollow(FOLLOW_ruledeclaration_part_in_entryRuledeclaration_part2281);
+            pushFollow(FOLLOW_ruledeclaration_part_in_entryRuledeclaration_part2341);
             ruledeclaration_part();
 
             state._fsp--;
 
              after(grammarAccess.getDeclaration_partRule()); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuledeclaration_part2288); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuledeclaration_part2348); 
 
             }
 
@@ -2979,20 +3055,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "ruledeclaration_part"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1107:1: ruledeclaration_part : ( ( rulelabel_declaration_part )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1135:1: ruledeclaration_part : ( ( rulelabel_declaration_part )? ) ;
     public final void ruledeclaration_part() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1111:2: ( ( ( rulelabel_declaration_part )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1112:1: ( ( rulelabel_declaration_part )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1139:2: ( ( ( rulelabel_declaration_part )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1140:1: ( ( rulelabel_declaration_part )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1112:1: ( ( rulelabel_declaration_part )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1113:1: ( rulelabel_declaration_part )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1140:1: ( ( rulelabel_declaration_part )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1141:1: ( rulelabel_declaration_part )?
             {
              before(grammarAccess.getDeclaration_partAccess().getLabel_declaration_partParserRuleCall()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1114:1: ( rulelabel_declaration_part )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1142:1: ( rulelabel_declaration_part )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -3001,9 +3077,9 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1114:3: rulelabel_declaration_part
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1142:3: rulelabel_declaration_part
                     {
-                    pushFollow(FOLLOW_rulelabel_declaration_part_in_ruledeclaration_part2315);
+                    pushFollow(FOLLOW_rulelabel_declaration_part_in_ruledeclaration_part2375);
                     rulelabel_declaration_part();
 
                     state._fsp--;
@@ -3037,20 +3113,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "entryRulelabel_declaration_part"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1126:1: entryRulelabel_declaration_part : rulelabel_declaration_part EOF ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1154:1: entryRulelabel_declaration_part : rulelabel_declaration_part EOF ;
     public final void entryRulelabel_declaration_part() throws RecognitionException {
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1127:1: ( rulelabel_declaration_part EOF )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1128:1: rulelabel_declaration_part EOF
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1155:1: ( rulelabel_declaration_part EOF )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1156:1: rulelabel_declaration_part EOF
             {
              before(grammarAccess.getLabel_declaration_partRule()); 
-            pushFollow(FOLLOW_rulelabel_declaration_part_in_entryRulelabel_declaration_part2343);
+            pushFollow(FOLLOW_rulelabel_declaration_part_in_entryRulelabel_declaration_part2403);
             rulelabel_declaration_part();
 
             state._fsp--;
 
              after(grammarAccess.getLabel_declaration_partRule()); 
-            match(input,EOF,FOLLOW_EOF_in_entryRulelabel_declaration_part2350); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulelabel_declaration_part2410); 
 
             }
 
@@ -3067,23 +3143,23 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rulelabel_declaration_part"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1135:1: rulelabel_declaration_part : ( ( rule__Label_declaration_part__Group__0 ) ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1163:1: rulelabel_declaration_part : ( ( rule__Label_declaration_part__Group__0 ) ) ;
     public final void rulelabel_declaration_part() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1139:2: ( ( ( rule__Label_declaration_part__Group__0 ) ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1140:1: ( ( rule__Label_declaration_part__Group__0 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1167:2: ( ( ( rule__Label_declaration_part__Group__0 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1168:1: ( ( rule__Label_declaration_part__Group__0 ) )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1140:1: ( ( rule__Label_declaration_part__Group__0 ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1141:1: ( rule__Label_declaration_part__Group__0 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1168:1: ( ( rule__Label_declaration_part__Group__0 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1169:1: ( rule__Label_declaration_part__Group__0 )
             {
              before(grammarAccess.getLabel_declaration_partAccess().getGroup()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1142:1: ( rule__Label_declaration_part__Group__0 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1142:2: rule__Label_declaration_part__Group__0
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1170:1: ( rule__Label_declaration_part__Group__0 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1170:2: rule__Label_declaration_part__Group__0
             {
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group__0_in_rulelabel_declaration_part2376);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group__0_in_rulelabel_declaration_part2436);
             rule__Label_declaration_part__Group__0();
 
             state._fsp--;
@@ -3114,20 +3190,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Alternatives_1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1154:1: rule__Statement__Alternatives_1 : ( ( rulesimple_statement ) | ( rulestructured_statement ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1182:1: rule__Statement__Alternatives_1 : ( ( rulesimple_statement ) | ( rulestructured_statement ) );
     public final void rule__Statement__Alternatives_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1158:1: ( ( rulesimple_statement ) | ( rulestructured_statement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1186:1: ( ( rulesimple_statement ) | ( rulestructured_statement ) )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
-            if ( (LA3_0==EOF||LA3_0==RULE_IDENTIFIER||LA3_0==RULE_END_KEYWORD||LA3_0==RULE_UNTIL_KEYWORD||LA3_0==RULE_ELSE_KEYWORD||LA3_0==RULE_GOTO_KEYWORD||LA3_0==47) ) {
+            if ( (LA3_0==EOF||LA3_0==RULE_IDENTIFIER||LA3_0==RULE_END_KEYWORD||LA3_0==RULE_UNTIL_KEYWORD||LA3_0==RULE_ELSE_KEYWORD||LA3_0==RULE_GOTO_KEYWORD||LA3_0==46) ) {
                 alt3=1;
             }
-            else if ( (LA3_0==RULE_BEGIN_KEYWORD||LA3_0==RULE_WHILE_KEYWORD||LA3_0==RULE_REPEAT_KEYWORD||(LA3_0>=RULE_FOR_KEYWORD && LA3_0<=RULE_IF_KEYWORD)||LA3_0==RULE_CASE_KEYWORD) ) {
+            else if ( (LA3_0==RULE_BEGIN_KEYWORD||LA3_0==RULE_WHILE_KEYWORD||LA3_0==RULE_REPEAT_KEYWORD||(LA3_0>=RULE_FOR_KEYWORD && LA3_0<=RULE_IF_KEYWORD)||LA3_0==RULE_CASE_KEYWORD||LA3_0==RULE_WITH_KEYWORD) ) {
                 alt3=2;
             }
             else {
@@ -3138,13 +3214,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1159:1: ( rulesimple_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1187:1: ( rulesimple_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1159:1: ( rulesimple_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1160:1: rulesimple_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1187:1: ( rulesimple_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1188:1: rulesimple_statement
                     {
                      before(grammarAccess.getStatementAccess().getSimple_statementParserRuleCall_1_0()); 
-                    pushFollow(FOLLOW_rulesimple_statement_in_rule__Statement__Alternatives_12412);
+                    pushFollow(FOLLOW_rulesimple_statement_in_rule__Statement__Alternatives_12472);
                     rulesimple_statement();
 
                     state._fsp--;
@@ -3157,13 +3233,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1165:6: ( rulestructured_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1193:6: ( rulestructured_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1165:6: ( rulestructured_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1166:1: rulestructured_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1193:6: ( rulestructured_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1194:1: rulestructured_statement
                     {
                      before(grammarAccess.getStatementAccess().getStructured_statementParserRuleCall_1_1()); 
-                    pushFollow(FOLLOW_rulestructured_statement_in_rule__Statement__Alternatives_12429);
+                    pushFollow(FOLLOW_rulestructured_statement_in_rule__Statement__Alternatives_12489);
                     rulestructured_statement();
 
                     state._fsp--;
@@ -3193,24 +3269,24 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_statement__Alternatives"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1176:1: rule__Simple_statement__Alternatives : ( ( ruleassignment_statement ) | ( rulefunction_designator ) | ( rulegoto_statement ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1204:1: rule__Simple_statement__Alternatives : ( ( ruleassignment_statement ) | ( rulefunction_designator ) | ( rulegoto_statement ) );
     public final void rule__Simple_statement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1180:1: ( ( ruleassignment_statement ) | ( rulefunction_designator ) | ( rulegoto_statement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1208:1: ( ( ruleassignment_statement ) | ( rulefunction_designator ) | ( rulegoto_statement ) )
             int alt4=3;
             int LA4_0 = input.LA(1);
 
             if ( (LA4_0==RULE_IDENTIFIER) ) {
                 int LA4_1 = input.LA(2);
 
-                if ( (LA4_1==52) ) {
-                    alt4=1;
-                }
-                else if ( (LA4_1==48) ) {
+                if ( (LA4_1==47) ) {
                     alt4=2;
+                }
+                else if ( (LA4_1==51) ) {
+                    alt4=1;
                 }
                 else {
                     NoViableAltException nvae =
@@ -3230,13 +3306,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1181:1: ( ruleassignment_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1209:1: ( ruleassignment_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1181:1: ( ruleassignment_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1182:1: ruleassignment_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1209:1: ( ruleassignment_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1210:1: ruleassignment_statement
                     {
                      before(grammarAccess.getSimple_statementAccess().getAssignment_statementParserRuleCall_0()); 
-                    pushFollow(FOLLOW_ruleassignment_statement_in_rule__Simple_statement__Alternatives2461);
+                    pushFollow(FOLLOW_ruleassignment_statement_in_rule__Simple_statement__Alternatives2521);
                     ruleassignment_statement();
 
                     state._fsp--;
@@ -3249,13 +3325,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1187:6: ( rulefunction_designator )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1215:6: ( rulefunction_designator )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1187:6: ( rulefunction_designator )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1188:1: rulefunction_designator
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1215:6: ( rulefunction_designator )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1216:1: rulefunction_designator
                     {
                      before(grammarAccess.getSimple_statementAccess().getFunction_designatorParserRuleCall_1()); 
-                    pushFollow(FOLLOW_rulefunction_designator_in_rule__Simple_statement__Alternatives2478);
+                    pushFollow(FOLLOW_rulefunction_designator_in_rule__Simple_statement__Alternatives2538);
                     rulefunction_designator();
 
                     state._fsp--;
@@ -3268,13 +3344,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1193:6: ( rulegoto_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1221:6: ( rulegoto_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1193:6: ( rulegoto_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1194:1: rulegoto_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1221:6: ( rulegoto_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1222:1: rulegoto_statement
                     {
                      before(grammarAccess.getSimple_statementAccess().getGoto_statementParserRuleCall_2()); 
-                    pushFollow(FOLLOW_rulegoto_statement_in_rule__Simple_statement__Alternatives2495);
+                    pushFollow(FOLLOW_rulegoto_statement_in_rule__Simple_statement__Alternatives2555);
                     rulegoto_statement();
 
                     state._fsp--;
@@ -3304,13 +3380,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Alternatives_2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1204:1: rule__Simple_expression__Alternatives_2 : ( ( ( rule__Simple_expression__Group_2_0__0 ) ) | ( rulesigned_number ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1232:1: rule__Simple_expression__Alternatives_2 : ( ( ( rule__Simple_expression__Group_2_0__0 ) ) | ( rulesigned_number ) );
     public final void rule__Simple_expression__Alternatives_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1208:1: ( ( ( rule__Simple_expression__Group_2_0__0 ) ) | ( rulesigned_number ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1236:1: ( ( ( rule__Simple_expression__Group_2_0__0 ) ) | ( rulesigned_number ) )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -3328,16 +3404,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1209:1: ( ( rule__Simple_expression__Group_2_0__0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1237:1: ( ( rule__Simple_expression__Group_2_0__0 ) )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1209:1: ( ( rule__Simple_expression__Group_2_0__0 ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1210:1: ( rule__Simple_expression__Group_2_0__0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1237:1: ( ( rule__Simple_expression__Group_2_0__0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1238:1: ( rule__Simple_expression__Group_2_0__0 )
                     {
                      before(grammarAccess.getSimple_expressionAccess().getGroup_2_0()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1211:1: ( rule__Simple_expression__Group_2_0__0 )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1211:2: rule__Simple_expression__Group_2_0__0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1239:1: ( rule__Simple_expression__Group_2_0__0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1239:2: rule__Simple_expression__Group_2_0__0
                     {
-                    pushFollow(FOLLOW_rule__Simple_expression__Group_2_0__0_in_rule__Simple_expression__Alternatives_22527);
+                    pushFollow(FOLLOW_rule__Simple_expression__Group_2_0__0_in_rule__Simple_expression__Alternatives_22587);
                     rule__Simple_expression__Group_2_0__0();
 
                     state._fsp--;
@@ -3353,13 +3429,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1215:6: ( rulesigned_number )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1243:6: ( rulesigned_number )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1215:6: ( rulesigned_number )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1216:1: rulesigned_number
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1243:6: ( rulesigned_number )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1244:1: rulesigned_number
                     {
                      before(grammarAccess.getSimple_expressionAccess().getSigned_numberParserRuleCall_2_1()); 
-                    pushFollow(FOLLOW_rulesigned_number_in_rule__Simple_expression__Alternatives_22545);
+                    pushFollow(FOLLOW_rulesigned_number_in_rule__Simple_expression__Alternatives_22605);
                     rulesigned_number();
 
                     state._fsp--;
@@ -3389,13 +3465,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Alternatives_2_0_0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1226:1: rule__Simple_expression__Alternatives_2_0_0 : ( ( ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* ) ) | ( RULE_OR_KEYWORD ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1254:1: rule__Simple_expression__Alternatives_2_0_0 : ( ( ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* ) ) | ( RULE_OR_KEYWORD ) );
     public final void rule__Simple_expression__Alternatives_2_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1230:1: ( ( ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* ) ) | ( RULE_OR_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1258:1: ( ( ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* ) ) | ( RULE_OR_KEYWORD ) )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -3413,19 +3489,19 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1231:1: ( ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1259:1: ( ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* ) )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1231:1: ( ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1232:1: ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1259:1: ( ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1260:1: ( ( RULE_ADDITION_OPERATOR ) ) ( ( RULE_ADDITION_OPERATOR )* )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1232:1: ( ( RULE_ADDITION_OPERATOR ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1233:1: ( RULE_ADDITION_OPERATOR )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1260:1: ( ( RULE_ADDITION_OPERATOR ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1261:1: ( RULE_ADDITION_OPERATOR )
                     {
                      before(grammarAccess.getSimple_expressionAccess().getADDITION_OPERATORTerminalRuleCall_2_0_0_0()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1234:1: ( RULE_ADDITION_OPERATOR )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1234:3: RULE_ADDITION_OPERATOR
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1262:1: ( RULE_ADDITION_OPERATOR )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1262:3: RULE_ADDITION_OPERATOR
                     {
-                    match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Alternatives_2_0_02580); 
+                    match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Alternatives_2_0_02640); 
 
                     }
 
@@ -3433,11 +3509,11 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
                     }
 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1237:1: ( ( RULE_ADDITION_OPERATOR )* )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1238:1: ( RULE_ADDITION_OPERATOR )*
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1265:1: ( ( RULE_ADDITION_OPERATOR )* )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1266:1: ( RULE_ADDITION_OPERATOR )*
                     {
                      before(grammarAccess.getSimple_expressionAccess().getADDITION_OPERATORTerminalRuleCall_2_0_0_0()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1239:1: ( RULE_ADDITION_OPERATOR )*
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1267:1: ( RULE_ADDITION_OPERATOR )*
                     loop6:
                     do {
                         int alt6=2;
@@ -3450,9 +3526,9 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1239:3: RULE_ADDITION_OPERATOR
+                    	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1267:3: RULE_ADDITION_OPERATOR
                     	    {
-                    	    match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Alternatives_2_0_02593); 
+                    	    match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Alternatives_2_0_02653); 
 
                     	    }
                     	    break;
@@ -3473,13 +3549,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1244:6: ( RULE_OR_KEYWORD )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1272:6: ( RULE_OR_KEYWORD )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1244:6: ( RULE_OR_KEYWORD )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1245:1: RULE_OR_KEYWORD
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1272:6: ( RULE_OR_KEYWORD )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1273:1: RULE_OR_KEYWORD
                     {
                      before(grammarAccess.getSimple_expressionAccess().getOR_KEYWORDTerminalRuleCall_2_0_0_1()); 
-                    match(input,RULE_OR_KEYWORD,FOLLOW_RULE_OR_KEYWORD_in_rule__Simple_expression__Alternatives_2_0_02614); 
+                    match(input,RULE_OR_KEYWORD,FOLLOW_RULE_OR_KEYWORD_in_rule__Simple_expression__Alternatives_2_0_02674); 
                      after(grammarAccess.getSimple_expressionAccess().getOR_KEYWORDTerminalRuleCall_2_0_0_1()); 
 
                     }
@@ -3505,24 +3581,24 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Alternatives"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1255:1: rule__Factor__Alternatives : ( ( rulevariable ) | ( rulenumber ) | ( RULE_STRING ) | ( ruleset ) | ( RULE_NIL_KEYWORD ) | ( rulefunction_designator ) | ( ( rule__Factor__Group_6__0 ) ) | ( ( rule__Factor__Group_7__0 ) ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1283:1: rule__Factor__Alternatives : ( ( rulevariable ) | ( rulenumber ) | ( RULE_STRING ) | ( ruleset ) | ( RULE_NIL_KEYWORD ) | ( rulefunction_designator ) | ( ( rule__Factor__Group_6__0 ) ) | ( ( rule__Factor__Group_7__0 ) ) );
     public final void rule__Factor__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1259:1: ( ( rulevariable ) | ( rulenumber ) | ( RULE_STRING ) | ( ruleset ) | ( RULE_NIL_KEYWORD ) | ( rulefunction_designator ) | ( ( rule__Factor__Group_6__0 ) ) | ( ( rule__Factor__Group_7__0 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1287:1: ( ( rulevariable ) | ( rulenumber ) | ( RULE_STRING ) | ( ruleset ) | ( RULE_NIL_KEYWORD ) | ( rulefunction_designator ) | ( ( rule__Factor__Group_6__0 ) ) | ( ( rule__Factor__Group_7__0 ) ) )
             int alt8=8;
             alt8 = dfa8.predict(input);
             switch (alt8) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1260:1: ( rulevariable )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1288:1: ( rulevariable )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1260:1: ( rulevariable )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1261:1: rulevariable
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1288:1: ( rulevariable )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1289:1: rulevariable
                     {
                      before(grammarAccess.getFactorAccess().getVariableParserRuleCall_0()); 
-                    pushFollow(FOLLOW_rulevariable_in_rule__Factor__Alternatives2646);
+                    pushFollow(FOLLOW_rulevariable_in_rule__Factor__Alternatives2706);
                     rulevariable();
 
                     state._fsp--;
@@ -3535,13 +3611,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1266:6: ( rulenumber )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1294:6: ( rulenumber )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1266:6: ( rulenumber )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1267:1: rulenumber
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1294:6: ( rulenumber )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1295:1: rulenumber
                     {
                      before(grammarAccess.getFactorAccess().getNumberParserRuleCall_1()); 
-                    pushFollow(FOLLOW_rulenumber_in_rule__Factor__Alternatives2663);
+                    pushFollow(FOLLOW_rulenumber_in_rule__Factor__Alternatives2723);
                     rulenumber();
 
                     state._fsp--;
@@ -3554,13 +3630,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1272:6: ( RULE_STRING )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1300:6: ( RULE_STRING )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1272:6: ( RULE_STRING )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1273:1: RULE_STRING
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1300:6: ( RULE_STRING )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1301:1: RULE_STRING
                     {
                      before(grammarAccess.getFactorAccess().getSTRINGTerminalRuleCall_2()); 
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Factor__Alternatives2680); 
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Factor__Alternatives2740); 
                      after(grammarAccess.getFactorAccess().getSTRINGTerminalRuleCall_2()); 
 
                     }
@@ -3569,13 +3645,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1278:6: ( ruleset )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1306:6: ( ruleset )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1278:6: ( ruleset )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1279:1: ruleset
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1306:6: ( ruleset )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1307:1: ruleset
                     {
                      before(grammarAccess.getFactorAccess().getSetParserRuleCall_3()); 
-                    pushFollow(FOLLOW_ruleset_in_rule__Factor__Alternatives2697);
+                    pushFollow(FOLLOW_ruleset_in_rule__Factor__Alternatives2757);
                     ruleset();
 
                     state._fsp--;
@@ -3588,13 +3664,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 5 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1284:6: ( RULE_NIL_KEYWORD )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1312:6: ( RULE_NIL_KEYWORD )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1284:6: ( RULE_NIL_KEYWORD )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1285:1: RULE_NIL_KEYWORD
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1312:6: ( RULE_NIL_KEYWORD )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1313:1: RULE_NIL_KEYWORD
                     {
                      before(grammarAccess.getFactorAccess().getNIL_KEYWORDTerminalRuleCall_4()); 
-                    match(input,RULE_NIL_KEYWORD,FOLLOW_RULE_NIL_KEYWORD_in_rule__Factor__Alternatives2714); 
+                    match(input,RULE_NIL_KEYWORD,FOLLOW_RULE_NIL_KEYWORD_in_rule__Factor__Alternatives2774); 
                      after(grammarAccess.getFactorAccess().getNIL_KEYWORDTerminalRuleCall_4()); 
 
                     }
@@ -3603,13 +3679,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 6 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1290:6: ( rulefunction_designator )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1318:6: ( rulefunction_designator )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1290:6: ( rulefunction_designator )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1291:1: rulefunction_designator
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1318:6: ( rulefunction_designator )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1319:1: rulefunction_designator
                     {
                      before(grammarAccess.getFactorAccess().getFunction_designatorParserRuleCall_5()); 
-                    pushFollow(FOLLOW_rulefunction_designator_in_rule__Factor__Alternatives2731);
+                    pushFollow(FOLLOW_rulefunction_designator_in_rule__Factor__Alternatives2791);
                     rulefunction_designator();
 
                     state._fsp--;
@@ -3622,16 +3698,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 7 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1296:6: ( ( rule__Factor__Group_6__0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1324:6: ( ( rule__Factor__Group_6__0 ) )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1296:6: ( ( rule__Factor__Group_6__0 ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1297:1: ( rule__Factor__Group_6__0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1324:6: ( ( rule__Factor__Group_6__0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1325:1: ( rule__Factor__Group_6__0 )
                     {
                      before(grammarAccess.getFactorAccess().getGroup_6()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1298:1: ( rule__Factor__Group_6__0 )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1298:2: rule__Factor__Group_6__0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1326:1: ( rule__Factor__Group_6__0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1326:2: rule__Factor__Group_6__0
                     {
-                    pushFollow(FOLLOW_rule__Factor__Group_6__0_in_rule__Factor__Alternatives2748);
+                    pushFollow(FOLLOW_rule__Factor__Group_6__0_in_rule__Factor__Alternatives2808);
                     rule__Factor__Group_6__0();
 
                     state._fsp--;
@@ -3647,16 +3723,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 8 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1302:6: ( ( rule__Factor__Group_7__0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1330:6: ( ( rule__Factor__Group_7__0 ) )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1302:6: ( ( rule__Factor__Group_7__0 ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1303:1: ( rule__Factor__Group_7__0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1330:6: ( ( rule__Factor__Group_7__0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1331:1: ( rule__Factor__Group_7__0 )
                     {
                      before(grammarAccess.getFactorAccess().getGroup_7()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1304:1: ( rule__Factor__Group_7__0 )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1304:2: rule__Factor__Group_7__0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1332:1: ( rule__Factor__Group_7__0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1332:2: rule__Factor__Group_7__0
                     {
-                    pushFollow(FOLLOW_rule__Factor__Group_7__0_in_rule__Factor__Alternatives2766);
+                    pushFollow(FOLLOW_rule__Factor__Group_7__0_in_rule__Factor__Alternatives2826);
                     rule__Factor__Group_7__0();
 
                     state._fsp--;
@@ -3689,13 +3765,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Number__Alternatives"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1313:1: rule__Number__Alternatives : ( ( ruleunsigned_number ) | ( rulesigned_number ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1341:1: rule__Number__Alternatives : ( ( ruleunsigned_number ) | ( rulesigned_number ) );
     public final void rule__Number__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1317:1: ( ( ruleunsigned_number ) | ( rulesigned_number ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1345:1: ( ( ruleunsigned_number ) | ( rulesigned_number ) )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -3713,13 +3789,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1318:1: ( ruleunsigned_number )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1346:1: ( ruleunsigned_number )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1318:1: ( ruleunsigned_number )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1319:1: ruleunsigned_number
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1346:1: ( ruleunsigned_number )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1347:1: ruleunsigned_number
                     {
                      before(grammarAccess.getNumberAccess().getUnsigned_numberParserRuleCall_0()); 
-                    pushFollow(FOLLOW_ruleunsigned_number_in_rule__Number__Alternatives2799);
+                    pushFollow(FOLLOW_ruleunsigned_number_in_rule__Number__Alternatives2859);
                     ruleunsigned_number();
 
                     state._fsp--;
@@ -3732,13 +3808,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1324:6: ( rulesigned_number )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1352:6: ( rulesigned_number )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1324:6: ( rulesigned_number )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1325:1: rulesigned_number
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1352:6: ( rulesigned_number )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1353:1: rulesigned_number
                     {
                      before(grammarAccess.getNumberAccess().getSigned_numberParserRuleCall_1()); 
-                    pushFollow(FOLLOW_rulesigned_number_in_rule__Number__Alternatives2816);
+                    pushFollow(FOLLOW_rulesigned_number_in_rule__Number__Alternatives2876);
                     rulesigned_number();
 
                     state._fsp--;
@@ -3768,13 +3844,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Unsigned_number__Alternatives"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1335:1: rule__Unsigned_number__Alternatives : ( ( RULE_INTEGER_NUMBER ) | ( RULE_REAL_NUMBER ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1363:1: rule__Unsigned_number__Alternatives : ( ( RULE_INTEGER_NUMBER ) | ( RULE_REAL_NUMBER ) );
     public final void rule__Unsigned_number__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1339:1: ( ( RULE_INTEGER_NUMBER ) | ( RULE_REAL_NUMBER ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1367:1: ( ( RULE_INTEGER_NUMBER ) | ( RULE_REAL_NUMBER ) )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -3792,13 +3868,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1340:1: ( RULE_INTEGER_NUMBER )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1368:1: ( RULE_INTEGER_NUMBER )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1340:1: ( RULE_INTEGER_NUMBER )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1341:1: RULE_INTEGER_NUMBER
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1368:1: ( RULE_INTEGER_NUMBER )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1369:1: RULE_INTEGER_NUMBER
                     {
                      before(grammarAccess.getUnsigned_numberAccess().getINTEGER_NUMBERTerminalRuleCall_0()); 
-                    match(input,RULE_INTEGER_NUMBER,FOLLOW_RULE_INTEGER_NUMBER_in_rule__Unsigned_number__Alternatives2848); 
+                    match(input,RULE_INTEGER_NUMBER,FOLLOW_RULE_INTEGER_NUMBER_in_rule__Unsigned_number__Alternatives2908); 
                      after(grammarAccess.getUnsigned_numberAccess().getINTEGER_NUMBERTerminalRuleCall_0()); 
 
                     }
@@ -3807,13 +3883,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1346:6: ( RULE_REAL_NUMBER )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1374:6: ( RULE_REAL_NUMBER )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1346:6: ( RULE_REAL_NUMBER )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1347:1: RULE_REAL_NUMBER
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1374:6: ( RULE_REAL_NUMBER )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1375:1: RULE_REAL_NUMBER
                     {
                      before(grammarAccess.getUnsigned_numberAccess().getREAL_NUMBERTerminalRuleCall_1()); 
-                    match(input,RULE_REAL_NUMBER,FOLLOW_RULE_REAL_NUMBER_in_rule__Unsigned_number__Alternatives2865); 
+                    match(input,RULE_REAL_NUMBER,FOLLOW_RULE_REAL_NUMBER_in_rule__Unsigned_number__Alternatives2925); 
                      after(grammarAccess.getUnsigned_numberAccess().getREAL_NUMBERTerminalRuleCall_1()); 
 
                     }
@@ -3839,13 +3915,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Signed_number__Alternatives"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1357:1: rule__Signed_number__Alternatives : ( ( RULE_SIGNED_INTEGER_NUMBER ) | ( RULE_SIGNED_REAL_NUMBER ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1385:1: rule__Signed_number__Alternatives : ( ( RULE_SIGNED_INTEGER_NUMBER ) | ( RULE_SIGNED_REAL_NUMBER ) );
     public final void rule__Signed_number__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1361:1: ( ( RULE_SIGNED_INTEGER_NUMBER ) | ( RULE_SIGNED_REAL_NUMBER ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1389:1: ( ( RULE_SIGNED_INTEGER_NUMBER ) | ( RULE_SIGNED_REAL_NUMBER ) )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -3863,13 +3939,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt11) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1362:1: ( RULE_SIGNED_INTEGER_NUMBER )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1390:1: ( RULE_SIGNED_INTEGER_NUMBER )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1362:1: ( RULE_SIGNED_INTEGER_NUMBER )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1363:1: RULE_SIGNED_INTEGER_NUMBER
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1390:1: ( RULE_SIGNED_INTEGER_NUMBER )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1391:1: RULE_SIGNED_INTEGER_NUMBER
                     {
                      before(grammarAccess.getSigned_numberAccess().getSIGNED_INTEGER_NUMBERTerminalRuleCall_0()); 
-                    match(input,RULE_SIGNED_INTEGER_NUMBER,FOLLOW_RULE_SIGNED_INTEGER_NUMBER_in_rule__Signed_number__Alternatives2897); 
+                    match(input,RULE_SIGNED_INTEGER_NUMBER,FOLLOW_RULE_SIGNED_INTEGER_NUMBER_in_rule__Signed_number__Alternatives2957); 
                      after(grammarAccess.getSigned_numberAccess().getSIGNED_INTEGER_NUMBERTerminalRuleCall_0()); 
 
                     }
@@ -3878,13 +3954,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1368:6: ( RULE_SIGNED_REAL_NUMBER )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1396:6: ( RULE_SIGNED_REAL_NUMBER )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1368:6: ( RULE_SIGNED_REAL_NUMBER )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1369:1: RULE_SIGNED_REAL_NUMBER
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1396:6: ( RULE_SIGNED_REAL_NUMBER )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1397:1: RULE_SIGNED_REAL_NUMBER
                     {
                      before(grammarAccess.getSigned_numberAccess().getSIGNED_REAL_NUMBERTerminalRuleCall_1()); 
-                    match(input,RULE_SIGNED_REAL_NUMBER,FOLLOW_RULE_SIGNED_REAL_NUMBER_in_rule__Signed_number__Alternatives2914); 
+                    match(input,RULE_SIGNED_REAL_NUMBER,FOLLOW_RULE_SIGNED_REAL_NUMBER_in_rule__Signed_number__Alternatives2974); 
                      after(grammarAccess.getSigned_numberAccess().getSIGNED_REAL_NUMBERTerminalRuleCall_1()); 
 
                     }
@@ -3910,14 +3986,14 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Structured_statement__Alternatives"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1379:1: rule__Structured_statement__Alternatives : ( ( rulecompound_statement ) | ( rulerepetitive_statement ) | ( ruleconditional_statement ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1407:1: rule__Structured_statement__Alternatives : ( ( rulecompound_statement ) | ( rulerepetitive_statement ) | ( ruleconditional_statement ) | ( rulewith_statement ) );
     public final void rule__Structured_statement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1383:1: ( ( rulecompound_statement ) | ( rulerepetitive_statement ) | ( ruleconditional_statement ) )
-            int alt12=3;
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1411:1: ( ( rulecompound_statement ) | ( rulerepetitive_statement ) | ( ruleconditional_statement ) | ( rulewith_statement ) )
+            int alt12=4;
             switch ( input.LA(1) ) {
             case RULE_BEGIN_KEYWORD:
                 {
@@ -3937,6 +4013,11 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                 alt12=3;
                 }
                 break;
+            case RULE_WITH_KEYWORD:
+                {
+                alt12=4;
+                }
+                break;
             default:
                 NoViableAltException nvae =
                     new NoViableAltException("", 12, 0, input);
@@ -3946,13 +4027,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
             switch (alt12) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1384:1: ( rulecompound_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1412:1: ( rulecompound_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1384:1: ( rulecompound_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1385:1: rulecompound_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1412:1: ( rulecompound_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1413:1: rulecompound_statement
                     {
                      before(grammarAccess.getStructured_statementAccess().getCompound_statementParserRuleCall_0()); 
-                    pushFollow(FOLLOW_rulecompound_statement_in_rule__Structured_statement__Alternatives2946);
+                    pushFollow(FOLLOW_rulecompound_statement_in_rule__Structured_statement__Alternatives3006);
                     rulecompound_statement();
 
                     state._fsp--;
@@ -3965,13 +4046,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1390:6: ( rulerepetitive_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1418:6: ( rulerepetitive_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1390:6: ( rulerepetitive_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1391:1: rulerepetitive_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1418:6: ( rulerepetitive_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1419:1: rulerepetitive_statement
                     {
                      before(grammarAccess.getStructured_statementAccess().getRepetitive_statementParserRuleCall_1()); 
-                    pushFollow(FOLLOW_rulerepetitive_statement_in_rule__Structured_statement__Alternatives2963);
+                    pushFollow(FOLLOW_rulerepetitive_statement_in_rule__Structured_statement__Alternatives3023);
                     rulerepetitive_statement();
 
                     state._fsp--;
@@ -3984,18 +4065,37 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1396:6: ( ruleconditional_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1424:6: ( ruleconditional_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1396:6: ( ruleconditional_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1397:1: ruleconditional_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1424:6: ( ruleconditional_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1425:1: ruleconditional_statement
                     {
                      before(grammarAccess.getStructured_statementAccess().getConditional_statementParserRuleCall_2()); 
-                    pushFollow(FOLLOW_ruleconditional_statement_in_rule__Structured_statement__Alternatives2980);
+                    pushFollow(FOLLOW_ruleconditional_statement_in_rule__Structured_statement__Alternatives3040);
                     ruleconditional_statement();
 
                     state._fsp--;
 
                      after(grammarAccess.getStructured_statementAccess().getConditional_statementParserRuleCall_2()); 
+
+                    }
+
+
+                    }
+                    break;
+                case 4 :
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1430:6: ( rulewith_statement )
+                    {
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1430:6: ( rulewith_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1431:1: rulewith_statement
+                    {
+                     before(grammarAccess.getStructured_statementAccess().getWith_statementParserRuleCall_3()); 
+                    pushFollow(FOLLOW_rulewith_statement_in_rule__Structured_statement__Alternatives3057);
+                    rulewith_statement();
+
+                    state._fsp--;
+
+                     after(grammarAccess.getStructured_statementAccess().getWith_statementParserRuleCall_3()); 
 
                     }
 
@@ -4020,13 +4120,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repetitive_statement__Alternatives"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1407:1: rule__Repetitive_statement__Alternatives : ( ( rulewhile_statement ) | ( rulerepeat_statement ) | ( rulefor_statement ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1441:1: rule__Repetitive_statement__Alternatives : ( ( rulewhile_statement ) | ( rulerepeat_statement ) | ( rulefor_statement ) );
     public final void rule__Repetitive_statement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1411:1: ( ( rulewhile_statement ) | ( rulerepeat_statement ) | ( rulefor_statement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1445:1: ( ( rulewhile_statement ) | ( rulerepeat_statement ) | ( rulefor_statement ) )
             int alt13=3;
             switch ( input.LA(1) ) {
             case RULE_WHILE_KEYWORD:
@@ -4053,13 +4153,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
             switch (alt13) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1412:1: ( rulewhile_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1446:1: ( rulewhile_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1412:1: ( rulewhile_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1413:1: rulewhile_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1446:1: ( rulewhile_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1447:1: rulewhile_statement
                     {
                      before(grammarAccess.getRepetitive_statementAccess().getWhile_statementParserRuleCall_0()); 
-                    pushFollow(FOLLOW_rulewhile_statement_in_rule__Repetitive_statement__Alternatives3012);
+                    pushFollow(FOLLOW_rulewhile_statement_in_rule__Repetitive_statement__Alternatives3089);
                     rulewhile_statement();
 
                     state._fsp--;
@@ -4072,13 +4172,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1418:6: ( rulerepeat_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1452:6: ( rulerepeat_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1418:6: ( rulerepeat_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1419:1: rulerepeat_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1452:6: ( rulerepeat_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1453:1: rulerepeat_statement
                     {
                      before(grammarAccess.getRepetitive_statementAccess().getRepeat_statementParserRuleCall_1()); 
-                    pushFollow(FOLLOW_rulerepeat_statement_in_rule__Repetitive_statement__Alternatives3029);
+                    pushFollow(FOLLOW_rulerepeat_statement_in_rule__Repetitive_statement__Alternatives3106);
                     rulerepeat_statement();
 
                     state._fsp--;
@@ -4091,13 +4191,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1424:6: ( rulefor_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1458:6: ( rulefor_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1424:6: ( rulefor_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1425:1: rulefor_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1458:6: ( rulefor_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1459:1: rulefor_statement
                     {
                      before(grammarAccess.getRepetitive_statementAccess().getFor_statementParserRuleCall_2()); 
-                    pushFollow(FOLLOW_rulefor_statement_in_rule__Repetitive_statement__Alternatives3046);
+                    pushFollow(FOLLOW_rulefor_statement_in_rule__Repetitive_statement__Alternatives3123);
                     rulefor_statement();
 
                     state._fsp--;
@@ -4127,13 +4227,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Alternatives_2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1435:1: rule__For_statement__Alternatives_2 : ( ( RULE_TO_KEYWORD ) | ( RULE_DOWNTO_KEYWORD ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1469:1: rule__For_statement__Alternatives_2 : ( ( RULE_TO_KEYWORD ) | ( RULE_DOWNTO_KEYWORD ) );
     public final void rule__For_statement__Alternatives_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1439:1: ( ( RULE_TO_KEYWORD ) | ( RULE_DOWNTO_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1473:1: ( ( RULE_TO_KEYWORD ) | ( RULE_DOWNTO_KEYWORD ) )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -4151,13 +4251,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt14) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1440:1: ( RULE_TO_KEYWORD )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1474:1: ( RULE_TO_KEYWORD )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1440:1: ( RULE_TO_KEYWORD )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1441:1: RULE_TO_KEYWORD
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1474:1: ( RULE_TO_KEYWORD )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1475:1: RULE_TO_KEYWORD
                     {
                      before(grammarAccess.getFor_statementAccess().getTO_KEYWORDTerminalRuleCall_2_0()); 
-                    match(input,RULE_TO_KEYWORD,FOLLOW_RULE_TO_KEYWORD_in_rule__For_statement__Alternatives_23078); 
+                    match(input,RULE_TO_KEYWORD,FOLLOW_RULE_TO_KEYWORD_in_rule__For_statement__Alternatives_23155); 
                      after(grammarAccess.getFor_statementAccess().getTO_KEYWORDTerminalRuleCall_2_0()); 
 
                     }
@@ -4166,13 +4266,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1446:6: ( RULE_DOWNTO_KEYWORD )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1480:6: ( RULE_DOWNTO_KEYWORD )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1446:6: ( RULE_DOWNTO_KEYWORD )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1447:1: RULE_DOWNTO_KEYWORD
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1480:6: ( RULE_DOWNTO_KEYWORD )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1481:1: RULE_DOWNTO_KEYWORD
                     {
                      before(grammarAccess.getFor_statementAccess().getDOWNTO_KEYWORDTerminalRuleCall_2_1()); 
-                    match(input,RULE_DOWNTO_KEYWORD,FOLLOW_RULE_DOWNTO_KEYWORD_in_rule__For_statement__Alternatives_23095); 
+                    match(input,RULE_DOWNTO_KEYWORD,FOLLOW_RULE_DOWNTO_KEYWORD_in_rule__For_statement__Alternatives_23172); 
                      after(grammarAccess.getFor_statementAccess().getDOWNTO_KEYWORDTerminalRuleCall_2_1()); 
 
                     }
@@ -4198,13 +4298,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Conditional_statement__Alternatives"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1457:1: rule__Conditional_statement__Alternatives : ( ( ruleif_statement ) | ( rulecase_statement ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1491:1: rule__Conditional_statement__Alternatives : ( ( ruleif_statement ) | ( rulecase_statement ) );
     public final void rule__Conditional_statement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1461:1: ( ( ruleif_statement ) | ( rulecase_statement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1495:1: ( ( ruleif_statement ) | ( rulecase_statement ) )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -4222,13 +4322,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt15) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1462:1: ( ruleif_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1496:1: ( ruleif_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1462:1: ( ruleif_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1463:1: ruleif_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1496:1: ( ruleif_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1497:1: ruleif_statement
                     {
                      before(grammarAccess.getConditional_statementAccess().getIf_statementParserRuleCall_0()); 
-                    pushFollow(FOLLOW_ruleif_statement_in_rule__Conditional_statement__Alternatives3127);
+                    pushFollow(FOLLOW_ruleif_statement_in_rule__Conditional_statement__Alternatives3204);
                     ruleif_statement();
 
                     state._fsp--;
@@ -4241,13 +4341,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1468:6: ( rulecase_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1502:6: ( rulecase_statement )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1468:6: ( rulecase_statement )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1469:1: rulecase_statement
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1502:6: ( rulecase_statement )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1503:1: rulecase_statement
                     {
                      before(grammarAccess.getConditional_statementAccess().getCase_statementParserRuleCall_1()); 
-                    pushFollow(FOLLOW_rulecase_statement_in_rule__Conditional_statement__Alternatives3144);
+                    pushFollow(FOLLOW_rulecase_statement_in_rule__Conditional_statement__Alternatives3221);
                     rulecase_statement();
 
                     state._fsp--;
@@ -4277,17 +4377,17 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__Alternatives"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1479:1: rule__Constant__Alternatives : ( ( ( rule__Constant__Group_0__0 ) ) | ( RULE_STRING ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1513:1: rule__Constant__Alternatives : ( ( ( rule__Constant__Group_0__0 ) ) | ( RULE_STRING ) );
     public final void rule__Constant__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1483:1: ( ( ( rule__Constant__Group_0__0 ) ) | ( RULE_STRING ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1517:1: ( ( ( rule__Constant__Group_0__0 ) ) | ( RULE_STRING ) )
             int alt16=2;
             int LA16_0 = input.LA(1);
 
-            if ( ((LA16_0>=RULE_INTEGER_NUMBER && LA16_0<=RULE_IDENTIFIER)||(LA16_0>=RULE_REAL_NUMBER && LA16_0<=RULE_SIGNED_REAL_NUMBER)||(LA16_0>=43 && LA16_0<=44)) ) {
+            if ( ((LA16_0>=RULE_INTEGER_NUMBER && LA16_0<=RULE_ADDITION_OPERATOR)||(LA16_0>=RULE_REAL_NUMBER && LA16_0<=RULE_SIGNED_REAL_NUMBER)) ) {
                 alt16=1;
             }
             else if ( (LA16_0==RULE_STRING) ) {
@@ -4301,16 +4401,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt16) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1484:1: ( ( rule__Constant__Group_0__0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1518:1: ( ( rule__Constant__Group_0__0 ) )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1484:1: ( ( rule__Constant__Group_0__0 ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1485:1: ( rule__Constant__Group_0__0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1518:1: ( ( rule__Constant__Group_0__0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1519:1: ( rule__Constant__Group_0__0 )
                     {
                      before(grammarAccess.getConstantAccess().getGroup_0()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1486:1: ( rule__Constant__Group_0__0 )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1486:2: rule__Constant__Group_0__0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1520:1: ( rule__Constant__Group_0__0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1520:2: rule__Constant__Group_0__0
                     {
-                    pushFollow(FOLLOW_rule__Constant__Group_0__0_in_rule__Constant__Alternatives3176);
+                    pushFollow(FOLLOW_rule__Constant__Group_0__0_in_rule__Constant__Alternatives3253);
                     rule__Constant__Group_0__0();
 
                     state._fsp--;
@@ -4326,13 +4426,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1490:6: ( RULE_STRING )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1524:6: ( RULE_STRING )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1490:6: ( RULE_STRING )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1491:1: RULE_STRING
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1524:6: ( RULE_STRING )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1525:1: RULE_STRING
                     {
                      before(grammarAccess.getConstantAccess().getSTRINGTerminalRuleCall_1()); 
-                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Constant__Alternatives3194); 
+                    match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Constant__Alternatives3271); 
                      after(grammarAccess.getConstantAccess().getSTRINGTerminalRuleCall_1()); 
 
                     }
@@ -4357,21 +4457,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Constant__Alternatives"
 
 
-    // $ANTLR start "rule__Constant__Alternatives_0_0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1501:1: rule__Constant__Alternatives_0_0 : ( ( '+' ) | ( '-' ) );
-    public final void rule__Constant__Alternatives_0_0() throws RecognitionException {
+    // $ANTLR start "rule__Constant__Alternatives_0_1"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1535:1: rule__Constant__Alternatives_0_1 : ( ( RULE_IDENTIFIER ) | ( rulenumber ) );
+    public final void rule__Constant__Alternatives_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1505:1: ( ( '+' ) | ( '-' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1539:1: ( ( RULE_IDENTIFIER ) | ( rulenumber ) )
             int alt17=2;
             int LA17_0 = input.LA(1);
 
-            if ( (LA17_0==43) ) {
+            if ( (LA17_0==RULE_IDENTIFIER) ) {
                 alt17=1;
             }
-            else if ( (LA17_0==44) ) {
+            else if ( (LA17_0==RULE_INTEGER_NUMBER||(LA17_0>=RULE_REAL_NUMBER && LA17_0<=RULE_SIGNED_REAL_NUMBER)) ) {
                 alt17=2;
             }
             else {
@@ -4382,84 +4482,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt17) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1506:1: ( '+' )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1540:1: ( RULE_IDENTIFIER )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1506:1: ( '+' )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1507:1: '+'
-                    {
-                     before(grammarAccess.getConstantAccess().getPlusSignKeyword_0_0_0()); 
-                    match(input,43,FOLLOW_43_in_rule__Constant__Alternatives_0_03227); 
-                     after(grammarAccess.getConstantAccess().getPlusSignKeyword_0_0_0()); 
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1514:6: ( '-' )
-                    {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1514:6: ( '-' )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1515:1: '-'
-                    {
-                     before(grammarAccess.getConstantAccess().getHyphenMinusKeyword_0_0_1()); 
-                    match(input,44,FOLLOW_44_in_rule__Constant__Alternatives_0_03247); 
-                     after(grammarAccess.getConstantAccess().getHyphenMinusKeyword_0_0_1()); 
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__Constant__Alternatives_0_0"
-
-
-    // $ANTLR start "rule__Constant__Alternatives_0_1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1527:1: rule__Constant__Alternatives_0_1 : ( ( RULE_IDENTIFIER ) | ( rulenumber ) );
-    public final void rule__Constant__Alternatives_0_1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1531:1: ( ( RULE_IDENTIFIER ) | ( rulenumber ) )
-            int alt18=2;
-            int LA18_0 = input.LA(1);
-
-            if ( (LA18_0==RULE_IDENTIFIER) ) {
-                alt18=1;
-            }
-            else if ( (LA18_0==RULE_INTEGER_NUMBER||(LA18_0>=RULE_REAL_NUMBER && LA18_0<=RULE_SIGNED_REAL_NUMBER)) ) {
-                alt18=2;
-            }
-            else {
-                NoViableAltException nvae =
-                    new NoViableAltException("", 18, 0, input);
-
-                throw nvae;
-            }
-            switch (alt18) {
-                case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1532:1: ( RULE_IDENTIFIER )
-                    {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1532:1: ( RULE_IDENTIFIER )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1533:1: RULE_IDENTIFIER
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1540:1: ( RULE_IDENTIFIER )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1541:1: RULE_IDENTIFIER
                     {
                      before(grammarAccess.getConstantAccess().getIDENTIFIERTerminalRuleCall_0_1_0()); 
-                    match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Constant__Alternatives_0_13281); 
+                    match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Constant__Alternatives_0_13303); 
                      after(grammarAccess.getConstantAccess().getIDENTIFIERTerminalRuleCall_0_1_0()); 
 
                     }
@@ -4468,13 +4497,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1538:6: ( rulenumber )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1546:6: ( rulenumber )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1538:6: ( rulenumber )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1539:1: rulenumber
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1546:6: ( rulenumber )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1547:1: rulenumber
                     {
                      before(grammarAccess.getConstantAccess().getNumberParserRuleCall_0_1_1()); 
-                    pushFollow(FOLLOW_rulenumber_in_rule__Constant__Alternatives_0_13298);
+                    pushFollow(FOLLOW_rulenumber_in_rule__Constant__Alternatives_0_13320);
                     rulenumber();
 
                     state._fsp--;
@@ -4504,21 +4533,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1551:1: rule__Program__Group__0 : rule__Program__Group__0__Impl rule__Program__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1559:1: rule__Program__Group__0 : rule__Program__Group__0__Impl rule__Program__Group__1 ;
     public final void rule__Program__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1555:1: ( rule__Program__Group__0__Impl rule__Program__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1556:2: rule__Program__Group__0__Impl rule__Program__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1563:1: ( rule__Program__Group__0__Impl rule__Program__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1564:2: rule__Program__Group__0__Impl rule__Program__Group__1
             {
-            pushFollow(FOLLOW_rule__Program__Group__0__Impl_in_rule__Program__Group__03328);
+            pushFollow(FOLLOW_rule__Program__Group__0__Impl_in_rule__Program__Group__03350);
             rule__Program__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Program__Group__1_in_rule__Program__Group__03331);
+            pushFollow(FOLLOW_rule__Program__Group__1_in_rule__Program__Group__03353);
             rule__Program__Group__1();
 
             state._fsp--;
@@ -4542,20 +4571,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1563:1: rule__Program__Group__0__Impl : ( ruleprogram_heading_block ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1571:1: rule__Program__Group__0__Impl : ( ruleprogram_heading_block ) ;
     public final void rule__Program__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1567:1: ( ( ruleprogram_heading_block ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1568:1: ( ruleprogram_heading_block )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1575:1: ( ( ruleprogram_heading_block ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1576:1: ( ruleprogram_heading_block )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1568:1: ( ruleprogram_heading_block )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1569:1: ruleprogram_heading_block
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1576:1: ( ruleprogram_heading_block )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1577:1: ruleprogram_heading_block
             {
              before(grammarAccess.getProgramAccess().getProgram_heading_blockParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleprogram_heading_block_in_rule__Program__Group__0__Impl3358);
+            pushFollow(FOLLOW_ruleprogram_heading_block_in_rule__Program__Group__0__Impl3380);
             ruleprogram_heading_block();
 
             state._fsp--;
@@ -4583,21 +4612,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1580:1: rule__Program__Group__1 : rule__Program__Group__1__Impl rule__Program__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1588:1: rule__Program__Group__1 : rule__Program__Group__1__Impl rule__Program__Group__2 ;
     public final void rule__Program__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1584:1: ( rule__Program__Group__1__Impl rule__Program__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1585:2: rule__Program__Group__1__Impl rule__Program__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1592:1: ( rule__Program__Group__1__Impl rule__Program__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1593:2: rule__Program__Group__1__Impl rule__Program__Group__2
             {
-            pushFollow(FOLLOW_rule__Program__Group__1__Impl_in_rule__Program__Group__13387);
+            pushFollow(FOLLOW_rule__Program__Group__1__Impl_in_rule__Program__Group__13409);
             rule__Program__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Program__Group__2_in_rule__Program__Group__13390);
+            pushFollow(FOLLOW_rule__Program__Group__2_in_rule__Program__Group__13412);
             rule__Program__Group__2();
 
             state._fsp--;
@@ -4621,20 +4650,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1592:1: rule__Program__Group__1__Impl : ( ruleblock ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1600:1: rule__Program__Group__1__Impl : ( ruleblock ) ;
     public final void rule__Program__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1596:1: ( ( ruleblock ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1597:1: ( ruleblock )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1604:1: ( ( ruleblock ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1605:1: ( ruleblock )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1597:1: ( ruleblock )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1598:1: ruleblock
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1605:1: ( ruleblock )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1606:1: ruleblock
             {
              before(grammarAccess.getProgramAccess().getBlockParserRuleCall_1()); 
-            pushFollow(FOLLOW_ruleblock_in_rule__Program__Group__1__Impl3417);
+            pushFollow(FOLLOW_ruleblock_in_rule__Program__Group__1__Impl3439);
             ruleblock();
 
             state._fsp--;
@@ -4662,16 +4691,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1609:1: rule__Program__Group__2 : rule__Program__Group__2__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1617:1: rule__Program__Group__2 : rule__Program__Group__2__Impl ;
     public final void rule__Program__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1613:1: ( rule__Program__Group__2__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1614:2: rule__Program__Group__2__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1621:1: ( rule__Program__Group__2__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1622:2: rule__Program__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Program__Group__2__Impl_in_rule__Program__Group__23446);
+            pushFollow(FOLLOW_rule__Program__Group__2__Impl_in_rule__Program__Group__23468);
             rule__Program__Group__2__Impl();
 
             state._fsp--;
@@ -4695,20 +4724,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1620:1: rule__Program__Group__2__Impl : ( '.' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1628:1: rule__Program__Group__2__Impl : ( '.' ) ;
     public final void rule__Program__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1624:1: ( ( '.' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1625:1: ( '.' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1632:1: ( ( '.' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1633:1: ( '.' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1625:1: ( '.' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1626:1: '.'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1633:1: ( '.' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1634:1: '.'
             {
              before(grammarAccess.getProgramAccess().getFullStopKeyword_2()); 
-            match(input,45,FOLLOW_45_in_rule__Program__Group__2__Impl3474); 
+            match(input,44,FOLLOW_44_in_rule__Program__Group__2__Impl3496); 
              after(grammarAccess.getProgramAccess().getFullStopKeyword_2()); 
 
             }
@@ -4732,21 +4761,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1645:1: rule__Program_heading_block__Group__0 : rule__Program_heading_block__Group__0__Impl rule__Program_heading_block__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1653:1: rule__Program_heading_block__Group__0 : rule__Program_heading_block__Group__0__Impl rule__Program_heading_block__Group__1 ;
     public final void rule__Program_heading_block__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1649:1: ( rule__Program_heading_block__Group__0__Impl rule__Program_heading_block__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1650:2: rule__Program_heading_block__Group__0__Impl rule__Program_heading_block__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1657:1: ( rule__Program_heading_block__Group__0__Impl rule__Program_heading_block__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1658:2: rule__Program_heading_block__Group__0__Impl rule__Program_heading_block__Group__1
             {
-            pushFollow(FOLLOW_rule__Program_heading_block__Group__0__Impl_in_rule__Program_heading_block__Group__03511);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group__0__Impl_in_rule__Program_heading_block__Group__03533);
             rule__Program_heading_block__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Program_heading_block__Group__1_in_rule__Program_heading_block__Group__03514);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group__1_in_rule__Program_heading_block__Group__03536);
             rule__Program_heading_block__Group__1();
 
             state._fsp--;
@@ -4770,20 +4799,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1657:1: rule__Program_heading_block__Group__0__Impl : ( 'program' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1665:1: rule__Program_heading_block__Group__0__Impl : ( 'program' ) ;
     public final void rule__Program_heading_block__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1661:1: ( ( 'program' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1662:1: ( 'program' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1669:1: ( ( 'program' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1670:1: ( 'program' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1662:1: ( 'program' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1663:1: 'program'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1670:1: ( 'program' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1671:1: 'program'
             {
              before(grammarAccess.getProgram_heading_blockAccess().getProgramKeyword_0()); 
-            match(input,46,FOLLOW_46_in_rule__Program_heading_block__Group__0__Impl3542); 
+            match(input,45,FOLLOW_45_in_rule__Program_heading_block__Group__0__Impl3564); 
              after(grammarAccess.getProgram_heading_blockAccess().getProgramKeyword_0()); 
 
             }
@@ -4807,21 +4836,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1676:1: rule__Program_heading_block__Group__1 : rule__Program_heading_block__Group__1__Impl rule__Program_heading_block__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1684:1: rule__Program_heading_block__Group__1 : rule__Program_heading_block__Group__1__Impl rule__Program_heading_block__Group__2 ;
     public final void rule__Program_heading_block__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1680:1: ( rule__Program_heading_block__Group__1__Impl rule__Program_heading_block__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1681:2: rule__Program_heading_block__Group__1__Impl rule__Program_heading_block__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1688:1: ( rule__Program_heading_block__Group__1__Impl rule__Program_heading_block__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1689:2: rule__Program_heading_block__Group__1__Impl rule__Program_heading_block__Group__2
             {
-            pushFollow(FOLLOW_rule__Program_heading_block__Group__1__Impl_in_rule__Program_heading_block__Group__13573);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group__1__Impl_in_rule__Program_heading_block__Group__13595);
             rule__Program_heading_block__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Program_heading_block__Group__2_in_rule__Program_heading_block__Group__13576);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group__2_in_rule__Program_heading_block__Group__13598);
             rule__Program_heading_block__Group__2();
 
             state._fsp--;
@@ -4845,20 +4874,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1688:1: rule__Program_heading_block__Group__1__Impl : ( RULE_IDENTIFIER ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1696:1: rule__Program_heading_block__Group__1__Impl : ( RULE_IDENTIFIER ) ;
     public final void rule__Program_heading_block__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1692:1: ( ( RULE_IDENTIFIER ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1693:1: ( RULE_IDENTIFIER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1700:1: ( ( RULE_IDENTIFIER ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1701:1: ( RULE_IDENTIFIER )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1693:1: ( RULE_IDENTIFIER )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1694:1: RULE_IDENTIFIER
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1701:1: ( RULE_IDENTIFIER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1702:1: RULE_IDENTIFIER
             {
              before(grammarAccess.getProgram_heading_blockAccess().getIDENTIFIERTerminalRuleCall_1()); 
-            match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Program_heading_block__Group__1__Impl3603); 
+            match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Program_heading_block__Group__1__Impl3625); 
              after(grammarAccess.getProgram_heading_blockAccess().getIDENTIFIERTerminalRuleCall_1()); 
 
             }
@@ -4882,21 +4911,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1705:1: rule__Program_heading_block__Group__2 : rule__Program_heading_block__Group__2__Impl rule__Program_heading_block__Group__3 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1713:1: rule__Program_heading_block__Group__2 : rule__Program_heading_block__Group__2__Impl rule__Program_heading_block__Group__3 ;
     public final void rule__Program_heading_block__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1709:1: ( rule__Program_heading_block__Group__2__Impl rule__Program_heading_block__Group__3 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1710:2: rule__Program_heading_block__Group__2__Impl rule__Program_heading_block__Group__3
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1717:1: ( rule__Program_heading_block__Group__2__Impl rule__Program_heading_block__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1718:2: rule__Program_heading_block__Group__2__Impl rule__Program_heading_block__Group__3
             {
-            pushFollow(FOLLOW_rule__Program_heading_block__Group__2__Impl_in_rule__Program_heading_block__Group__23632);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group__2__Impl_in_rule__Program_heading_block__Group__23654);
             rule__Program_heading_block__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Program_heading_block__Group__3_in_rule__Program_heading_block__Group__23635);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group__3_in_rule__Program_heading_block__Group__23657);
             rule__Program_heading_block__Group__3();
 
             state._fsp--;
@@ -4920,31 +4949,31 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1717:1: rule__Program_heading_block__Group__2__Impl : ( ( rule__Program_heading_block__Group_2__0 )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1725:1: rule__Program_heading_block__Group__2__Impl : ( ( rule__Program_heading_block__Group_2__0 )? ) ;
     public final void rule__Program_heading_block__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1721:1: ( ( ( rule__Program_heading_block__Group_2__0 )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1722:1: ( ( rule__Program_heading_block__Group_2__0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1729:1: ( ( ( rule__Program_heading_block__Group_2__0 )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1730:1: ( ( rule__Program_heading_block__Group_2__0 )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1722:1: ( ( rule__Program_heading_block__Group_2__0 )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1723:1: ( rule__Program_heading_block__Group_2__0 )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1730:1: ( ( rule__Program_heading_block__Group_2__0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1731:1: ( rule__Program_heading_block__Group_2__0 )?
             {
              before(grammarAccess.getProgram_heading_blockAccess().getGroup_2()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1724:1: ( rule__Program_heading_block__Group_2__0 )?
-            int alt19=2;
-            int LA19_0 = input.LA(1);
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1732:1: ( rule__Program_heading_block__Group_2__0 )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA19_0==48) ) {
-                alt19=1;
+            if ( (LA18_0==47) ) {
+                alt18=1;
             }
-            switch (alt19) {
+            switch (alt18) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1724:2: rule__Program_heading_block__Group_2__0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1732:2: rule__Program_heading_block__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__Program_heading_block__Group_2__0_in_rule__Program_heading_block__Group__2__Impl3662);
+                    pushFollow(FOLLOW_rule__Program_heading_block__Group_2__0_in_rule__Program_heading_block__Group__2__Impl3684);
                     rule__Program_heading_block__Group_2__0();
 
                     state._fsp--;
@@ -4978,16 +5007,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group__3"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1734:1: rule__Program_heading_block__Group__3 : rule__Program_heading_block__Group__3__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1742:1: rule__Program_heading_block__Group__3 : rule__Program_heading_block__Group__3__Impl ;
     public final void rule__Program_heading_block__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1738:1: ( rule__Program_heading_block__Group__3__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1739:2: rule__Program_heading_block__Group__3__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1746:1: ( rule__Program_heading_block__Group__3__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1747:2: rule__Program_heading_block__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Program_heading_block__Group__3__Impl_in_rule__Program_heading_block__Group__33693);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group__3__Impl_in_rule__Program_heading_block__Group__33715);
             rule__Program_heading_block__Group__3__Impl();
 
             state._fsp--;
@@ -5011,20 +5040,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group__3__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1745:1: rule__Program_heading_block__Group__3__Impl : ( ';' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1753:1: rule__Program_heading_block__Group__3__Impl : ( ';' ) ;
     public final void rule__Program_heading_block__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1749:1: ( ( ';' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1750:1: ( ';' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1757:1: ( ( ';' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1758:1: ( ';' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1750:1: ( ';' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1751:1: ';'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1758:1: ( ';' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1759:1: ';'
             {
              before(grammarAccess.getProgram_heading_blockAccess().getSemicolonKeyword_3()); 
-            match(input,47,FOLLOW_47_in_rule__Program_heading_block__Group__3__Impl3721); 
+            match(input,46,FOLLOW_46_in_rule__Program_heading_block__Group__3__Impl3743); 
              after(grammarAccess.getProgram_heading_blockAccess().getSemicolonKeyword_3()); 
 
             }
@@ -5048,21 +5077,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group_2__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1772:1: rule__Program_heading_block__Group_2__0 : rule__Program_heading_block__Group_2__0__Impl rule__Program_heading_block__Group_2__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1780:1: rule__Program_heading_block__Group_2__0 : rule__Program_heading_block__Group_2__0__Impl rule__Program_heading_block__Group_2__1 ;
     public final void rule__Program_heading_block__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1776:1: ( rule__Program_heading_block__Group_2__0__Impl rule__Program_heading_block__Group_2__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1777:2: rule__Program_heading_block__Group_2__0__Impl rule__Program_heading_block__Group_2__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1784:1: ( rule__Program_heading_block__Group_2__0__Impl rule__Program_heading_block__Group_2__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1785:2: rule__Program_heading_block__Group_2__0__Impl rule__Program_heading_block__Group_2__1
             {
-            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__0__Impl_in_rule__Program_heading_block__Group_2__03760);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__0__Impl_in_rule__Program_heading_block__Group_2__03782);
             rule__Program_heading_block__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__1_in_rule__Program_heading_block__Group_2__03763);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__1_in_rule__Program_heading_block__Group_2__03785);
             rule__Program_heading_block__Group_2__1();
 
             state._fsp--;
@@ -5086,20 +5115,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group_2__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1784:1: rule__Program_heading_block__Group_2__0__Impl : ( '(' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1792:1: rule__Program_heading_block__Group_2__0__Impl : ( '(' ) ;
     public final void rule__Program_heading_block__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1788:1: ( ( '(' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1789:1: ( '(' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1796:1: ( ( '(' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1797:1: ( '(' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1789:1: ( '(' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1790:1: '('
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1797:1: ( '(' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1798:1: '('
             {
              before(grammarAccess.getProgram_heading_blockAccess().getLeftParenthesisKeyword_2_0()); 
-            match(input,48,FOLLOW_48_in_rule__Program_heading_block__Group_2__0__Impl3791); 
+            match(input,47,FOLLOW_47_in_rule__Program_heading_block__Group_2__0__Impl3813); 
              after(grammarAccess.getProgram_heading_blockAccess().getLeftParenthesisKeyword_2_0()); 
 
             }
@@ -5123,21 +5152,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group_2__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1803:1: rule__Program_heading_block__Group_2__1 : rule__Program_heading_block__Group_2__1__Impl rule__Program_heading_block__Group_2__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1811:1: rule__Program_heading_block__Group_2__1 : rule__Program_heading_block__Group_2__1__Impl rule__Program_heading_block__Group_2__2 ;
     public final void rule__Program_heading_block__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1807:1: ( rule__Program_heading_block__Group_2__1__Impl rule__Program_heading_block__Group_2__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1808:2: rule__Program_heading_block__Group_2__1__Impl rule__Program_heading_block__Group_2__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1815:1: ( rule__Program_heading_block__Group_2__1__Impl rule__Program_heading_block__Group_2__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1816:2: rule__Program_heading_block__Group_2__1__Impl rule__Program_heading_block__Group_2__2
             {
-            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__1__Impl_in_rule__Program_heading_block__Group_2__13822);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__1__Impl_in_rule__Program_heading_block__Group_2__13844);
             rule__Program_heading_block__Group_2__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__2_in_rule__Program_heading_block__Group_2__13825);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__2_in_rule__Program_heading_block__Group_2__13847);
             rule__Program_heading_block__Group_2__2();
 
             state._fsp--;
@@ -5161,20 +5190,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group_2__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1815:1: rule__Program_heading_block__Group_2__1__Impl : ( ruleidentifier_list ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1823:1: rule__Program_heading_block__Group_2__1__Impl : ( ruleidentifier_list ) ;
     public final void rule__Program_heading_block__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1819:1: ( ( ruleidentifier_list ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1820:1: ( ruleidentifier_list )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1827:1: ( ( ruleidentifier_list ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1828:1: ( ruleidentifier_list )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1820:1: ( ruleidentifier_list )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1821:1: ruleidentifier_list
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1828:1: ( ruleidentifier_list )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1829:1: ruleidentifier_list
             {
              before(grammarAccess.getProgram_heading_blockAccess().getIdentifier_listParserRuleCall_2_1()); 
-            pushFollow(FOLLOW_ruleidentifier_list_in_rule__Program_heading_block__Group_2__1__Impl3852);
+            pushFollow(FOLLOW_ruleidentifier_list_in_rule__Program_heading_block__Group_2__1__Impl3874);
             ruleidentifier_list();
 
             state._fsp--;
@@ -5202,16 +5231,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group_2__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1832:1: rule__Program_heading_block__Group_2__2 : rule__Program_heading_block__Group_2__2__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1840:1: rule__Program_heading_block__Group_2__2 : rule__Program_heading_block__Group_2__2__Impl ;
     public final void rule__Program_heading_block__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1836:1: ( rule__Program_heading_block__Group_2__2__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1837:2: rule__Program_heading_block__Group_2__2__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1844:1: ( rule__Program_heading_block__Group_2__2__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1845:2: rule__Program_heading_block__Group_2__2__Impl
             {
-            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__2__Impl_in_rule__Program_heading_block__Group_2__23881);
+            pushFollow(FOLLOW_rule__Program_heading_block__Group_2__2__Impl_in_rule__Program_heading_block__Group_2__23903);
             rule__Program_heading_block__Group_2__2__Impl();
 
             state._fsp--;
@@ -5235,20 +5264,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Program_heading_block__Group_2__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1843:1: rule__Program_heading_block__Group_2__2__Impl : ( ')' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1851:1: rule__Program_heading_block__Group_2__2__Impl : ( ')' ) ;
     public final void rule__Program_heading_block__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1847:1: ( ( ')' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1848:1: ( ')' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1855:1: ( ( ')' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1856:1: ( ')' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1848:1: ( ')' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1849:1: ')'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1856:1: ( ')' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1857:1: ')'
             {
              before(grammarAccess.getProgram_heading_blockAccess().getRightParenthesisKeyword_2_2()); 
-            match(input,49,FOLLOW_49_in_rule__Program_heading_block__Group_2__2__Impl3909); 
+            match(input,48,FOLLOW_48_in_rule__Program_heading_block__Group_2__2__Impl3931); 
              after(grammarAccess.getProgram_heading_blockAccess().getRightParenthesisKeyword_2_2()); 
 
             }
@@ -5272,21 +5301,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Identifier_list__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1868:1: rule__Identifier_list__Group__0 : rule__Identifier_list__Group__0__Impl rule__Identifier_list__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1876:1: rule__Identifier_list__Group__0 : rule__Identifier_list__Group__0__Impl rule__Identifier_list__Group__1 ;
     public final void rule__Identifier_list__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1872:1: ( rule__Identifier_list__Group__0__Impl rule__Identifier_list__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1873:2: rule__Identifier_list__Group__0__Impl rule__Identifier_list__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1880:1: ( rule__Identifier_list__Group__0__Impl rule__Identifier_list__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1881:2: rule__Identifier_list__Group__0__Impl rule__Identifier_list__Group__1
             {
-            pushFollow(FOLLOW_rule__Identifier_list__Group__0__Impl_in_rule__Identifier_list__Group__03946);
+            pushFollow(FOLLOW_rule__Identifier_list__Group__0__Impl_in_rule__Identifier_list__Group__03968);
             rule__Identifier_list__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Identifier_list__Group__1_in_rule__Identifier_list__Group__03949);
+            pushFollow(FOLLOW_rule__Identifier_list__Group__1_in_rule__Identifier_list__Group__03971);
             rule__Identifier_list__Group__1();
 
             state._fsp--;
@@ -5310,20 +5339,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Identifier_list__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1880:1: rule__Identifier_list__Group__0__Impl : ( RULE_IDENTIFIER ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1888:1: rule__Identifier_list__Group__0__Impl : ( RULE_IDENTIFIER ) ;
     public final void rule__Identifier_list__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1884:1: ( ( RULE_IDENTIFIER ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1885:1: ( RULE_IDENTIFIER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1892:1: ( ( RULE_IDENTIFIER ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1893:1: ( RULE_IDENTIFIER )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1885:1: ( RULE_IDENTIFIER )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1886:1: RULE_IDENTIFIER
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1893:1: ( RULE_IDENTIFIER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1894:1: RULE_IDENTIFIER
             {
              before(grammarAccess.getIdentifier_listAccess().getIDENTIFIERTerminalRuleCall_0()); 
-            match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Identifier_list__Group__0__Impl3976); 
+            match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Identifier_list__Group__0__Impl3998); 
              after(grammarAccess.getIdentifier_listAccess().getIDENTIFIERTerminalRuleCall_0()); 
 
             }
@@ -5347,16 +5376,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Identifier_list__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1897:1: rule__Identifier_list__Group__1 : rule__Identifier_list__Group__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1905:1: rule__Identifier_list__Group__1 : rule__Identifier_list__Group__1__Impl ;
     public final void rule__Identifier_list__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1901:1: ( rule__Identifier_list__Group__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1902:2: rule__Identifier_list__Group__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1909:1: ( rule__Identifier_list__Group__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1910:2: rule__Identifier_list__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Identifier_list__Group__1__Impl_in_rule__Identifier_list__Group__14005);
+            pushFollow(FOLLOW_rule__Identifier_list__Group__1__Impl_in_rule__Identifier_list__Group__14027);
             rule__Identifier_list__Group__1__Impl();
 
             state._fsp--;
@@ -5380,35 +5409,35 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Identifier_list__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1908:1: rule__Identifier_list__Group__1__Impl : ( ( rule__Identifier_list__Group_1__0 )* ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1916:1: rule__Identifier_list__Group__1__Impl : ( ( rule__Identifier_list__Group_1__0 )* ) ;
     public final void rule__Identifier_list__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1912:1: ( ( ( rule__Identifier_list__Group_1__0 )* ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1913:1: ( ( rule__Identifier_list__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1920:1: ( ( ( rule__Identifier_list__Group_1__0 )* ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1921:1: ( ( rule__Identifier_list__Group_1__0 )* )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1913:1: ( ( rule__Identifier_list__Group_1__0 )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1914:1: ( rule__Identifier_list__Group_1__0 )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1921:1: ( ( rule__Identifier_list__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1922:1: ( rule__Identifier_list__Group_1__0 )*
             {
              before(grammarAccess.getIdentifier_listAccess().getGroup_1()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1915:1: ( rule__Identifier_list__Group_1__0 )*
-            loop20:
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1923:1: ( rule__Identifier_list__Group_1__0 )*
+            loop19:
             do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
+                int alt19=2;
+                int LA19_0 = input.LA(1);
 
-                if ( (LA20_0==50) ) {
-                    alt20=1;
+                if ( (LA19_0==49) ) {
+                    alt19=1;
                 }
 
 
-                switch (alt20) {
+                switch (alt19) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1915:2: rule__Identifier_list__Group_1__0
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1923:2: rule__Identifier_list__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__Identifier_list__Group_1__0_in_rule__Identifier_list__Group__1__Impl4032);
+            	    pushFollow(FOLLOW_rule__Identifier_list__Group_1__0_in_rule__Identifier_list__Group__1__Impl4054);
             	    rule__Identifier_list__Group_1__0();
 
             	    state._fsp--;
@@ -5418,7 +5447,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop20;
+            	    break loop19;
                 }
             } while (true);
 
@@ -5445,21 +5474,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Identifier_list__Group_1__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1929:1: rule__Identifier_list__Group_1__0 : rule__Identifier_list__Group_1__0__Impl rule__Identifier_list__Group_1__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1937:1: rule__Identifier_list__Group_1__0 : rule__Identifier_list__Group_1__0__Impl rule__Identifier_list__Group_1__1 ;
     public final void rule__Identifier_list__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1933:1: ( rule__Identifier_list__Group_1__0__Impl rule__Identifier_list__Group_1__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1934:2: rule__Identifier_list__Group_1__0__Impl rule__Identifier_list__Group_1__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1941:1: ( rule__Identifier_list__Group_1__0__Impl rule__Identifier_list__Group_1__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1942:2: rule__Identifier_list__Group_1__0__Impl rule__Identifier_list__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Identifier_list__Group_1__0__Impl_in_rule__Identifier_list__Group_1__04067);
+            pushFollow(FOLLOW_rule__Identifier_list__Group_1__0__Impl_in_rule__Identifier_list__Group_1__04089);
             rule__Identifier_list__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Identifier_list__Group_1__1_in_rule__Identifier_list__Group_1__04070);
+            pushFollow(FOLLOW_rule__Identifier_list__Group_1__1_in_rule__Identifier_list__Group_1__04092);
             rule__Identifier_list__Group_1__1();
 
             state._fsp--;
@@ -5483,20 +5512,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Identifier_list__Group_1__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1941:1: rule__Identifier_list__Group_1__0__Impl : ( ',' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1949:1: rule__Identifier_list__Group_1__0__Impl : ( ',' ) ;
     public final void rule__Identifier_list__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1945:1: ( ( ',' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1946:1: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1953:1: ( ( ',' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1954:1: ( ',' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1946:1: ( ',' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1947:1: ','
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1954:1: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1955:1: ','
             {
              before(grammarAccess.getIdentifier_listAccess().getCommaKeyword_1_0()); 
-            match(input,50,FOLLOW_50_in_rule__Identifier_list__Group_1__0__Impl4098); 
+            match(input,49,FOLLOW_49_in_rule__Identifier_list__Group_1__0__Impl4120); 
              after(grammarAccess.getIdentifier_listAccess().getCommaKeyword_1_0()); 
 
             }
@@ -5520,16 +5549,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Identifier_list__Group_1__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1960:1: rule__Identifier_list__Group_1__1 : rule__Identifier_list__Group_1__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1968:1: rule__Identifier_list__Group_1__1 : rule__Identifier_list__Group_1__1__Impl ;
     public final void rule__Identifier_list__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1964:1: ( rule__Identifier_list__Group_1__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1965:2: rule__Identifier_list__Group_1__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1972:1: ( rule__Identifier_list__Group_1__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1973:2: rule__Identifier_list__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Identifier_list__Group_1__1__Impl_in_rule__Identifier_list__Group_1__14129);
+            pushFollow(FOLLOW_rule__Identifier_list__Group_1__1__Impl_in_rule__Identifier_list__Group_1__14151);
             rule__Identifier_list__Group_1__1__Impl();
 
             state._fsp--;
@@ -5553,20 +5582,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Identifier_list__Group_1__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1971:1: rule__Identifier_list__Group_1__1__Impl : ( RULE_IDENTIFIER ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1979:1: rule__Identifier_list__Group_1__1__Impl : ( RULE_IDENTIFIER ) ;
     public final void rule__Identifier_list__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1975:1: ( ( RULE_IDENTIFIER ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1976:1: ( RULE_IDENTIFIER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1983:1: ( ( RULE_IDENTIFIER ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1984:1: ( RULE_IDENTIFIER )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1976:1: ( RULE_IDENTIFIER )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1977:1: RULE_IDENTIFIER
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1984:1: ( RULE_IDENTIFIER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1985:1: RULE_IDENTIFIER
             {
              before(grammarAccess.getIdentifier_listAccess().getIDENTIFIERTerminalRuleCall_1_1()); 
-            match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Identifier_list__Group_1__1__Impl4156); 
+            match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Identifier_list__Group_1__1__Impl4178); 
              after(grammarAccess.getIdentifier_listAccess().getIDENTIFIERTerminalRuleCall_1_1()); 
 
             }
@@ -5590,21 +5619,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Block__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1992:1: rule__Block__Group__0 : rule__Block__Group__0__Impl rule__Block__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2000:1: rule__Block__Group__0 : rule__Block__Group__0__Impl rule__Block__Group__1 ;
     public final void rule__Block__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1996:1: ( rule__Block__Group__0__Impl rule__Block__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:1997:2: rule__Block__Group__0__Impl rule__Block__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2004:1: ( rule__Block__Group__0__Impl rule__Block__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2005:2: rule__Block__Group__0__Impl rule__Block__Group__1
             {
-            pushFollow(FOLLOW_rule__Block__Group__0__Impl_in_rule__Block__Group__04189);
+            pushFollow(FOLLOW_rule__Block__Group__0__Impl_in_rule__Block__Group__04211);
             rule__Block__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Block__Group__1_in_rule__Block__Group__04192);
+            pushFollow(FOLLOW_rule__Block__Group__1_in_rule__Block__Group__04214);
             rule__Block__Group__1();
 
             state._fsp--;
@@ -5628,20 +5657,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Block__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2004:1: rule__Block__Group__0__Impl : ( ruledeclaration_part ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2012:1: rule__Block__Group__0__Impl : ( ruledeclaration_part ) ;
     public final void rule__Block__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2008:1: ( ( ruledeclaration_part ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2009:1: ( ruledeclaration_part )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2016:1: ( ( ruledeclaration_part ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2017:1: ( ruledeclaration_part )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2009:1: ( ruledeclaration_part )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2010:1: ruledeclaration_part
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2017:1: ( ruledeclaration_part )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2018:1: ruledeclaration_part
             {
              before(grammarAccess.getBlockAccess().getDeclaration_partParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruledeclaration_part_in_rule__Block__Group__0__Impl4219);
+            pushFollow(FOLLOW_ruledeclaration_part_in_rule__Block__Group__0__Impl4241);
             ruledeclaration_part();
 
             state._fsp--;
@@ -5669,16 +5698,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Block__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2021:1: rule__Block__Group__1 : rule__Block__Group__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2029:1: rule__Block__Group__1 : rule__Block__Group__1__Impl ;
     public final void rule__Block__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2025:1: ( rule__Block__Group__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2026:2: rule__Block__Group__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2033:1: ( rule__Block__Group__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2034:2: rule__Block__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Block__Group__1__Impl_in_rule__Block__Group__14248);
+            pushFollow(FOLLOW_rule__Block__Group__1__Impl_in_rule__Block__Group__14270);
             rule__Block__Group__1__Impl();
 
             state._fsp--;
@@ -5702,20 +5731,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Block__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2032:1: rule__Block__Group__1__Impl : ( rulestatement_part ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2040:1: rule__Block__Group__1__Impl : ( rulestatement_part ) ;
     public final void rule__Block__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2036:1: ( ( rulestatement_part ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2037:1: ( rulestatement_part )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2044:1: ( ( rulestatement_part ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2045:1: ( rulestatement_part )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2037:1: ( rulestatement_part )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2038:1: rulestatement_part
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2045:1: ( rulestatement_part )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2046:1: rulestatement_part
             {
              before(grammarAccess.getBlockAccess().getStatement_partParserRuleCall_1()); 
-            pushFollow(FOLLOW_rulestatement_part_in_rule__Block__Group__1__Impl4275);
+            pushFollow(FOLLOW_rulestatement_part_in_rule__Block__Group__1__Impl4297);
             rulestatement_part();
 
             state._fsp--;
@@ -5743,21 +5772,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_part__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2053:1: rule__Statement_part__Group__0 : rule__Statement_part__Group__0__Impl rule__Statement_part__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2061:1: rule__Statement_part__Group__0 : rule__Statement_part__Group__0__Impl rule__Statement_part__Group__1 ;
     public final void rule__Statement_part__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2057:1: ( rule__Statement_part__Group__0__Impl rule__Statement_part__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2058:2: rule__Statement_part__Group__0__Impl rule__Statement_part__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2065:1: ( rule__Statement_part__Group__0__Impl rule__Statement_part__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2066:2: rule__Statement_part__Group__0__Impl rule__Statement_part__Group__1
             {
-            pushFollow(FOLLOW_rule__Statement_part__Group__0__Impl_in_rule__Statement_part__Group__04308);
+            pushFollow(FOLLOW_rule__Statement_part__Group__0__Impl_in_rule__Statement_part__Group__04330);
             rule__Statement_part__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Statement_part__Group__1_in_rule__Statement_part__Group__04311);
+            pushFollow(FOLLOW_rule__Statement_part__Group__1_in_rule__Statement_part__Group__04333);
             rule__Statement_part__Group__1();
 
             state._fsp--;
@@ -5781,20 +5810,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_part__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2065:1: rule__Statement_part__Group__0__Impl : ( RULE_BEGIN_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2073:1: rule__Statement_part__Group__0__Impl : ( RULE_BEGIN_KEYWORD ) ;
     public final void rule__Statement_part__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2069:1: ( ( RULE_BEGIN_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2070:1: ( RULE_BEGIN_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2077:1: ( ( RULE_BEGIN_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2078:1: ( RULE_BEGIN_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2070:1: ( RULE_BEGIN_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2071:1: RULE_BEGIN_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2078:1: ( RULE_BEGIN_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2079:1: RULE_BEGIN_KEYWORD
             {
              before(grammarAccess.getStatement_partAccess().getBEGIN_KEYWORDTerminalRuleCall_0()); 
-            match(input,RULE_BEGIN_KEYWORD,FOLLOW_RULE_BEGIN_KEYWORD_in_rule__Statement_part__Group__0__Impl4338); 
+            match(input,RULE_BEGIN_KEYWORD,FOLLOW_RULE_BEGIN_KEYWORD_in_rule__Statement_part__Group__0__Impl4360); 
              after(grammarAccess.getStatement_partAccess().getBEGIN_KEYWORDTerminalRuleCall_0()); 
 
             }
@@ -5818,21 +5847,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_part__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2082:1: rule__Statement_part__Group__1 : rule__Statement_part__Group__1__Impl rule__Statement_part__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2090:1: rule__Statement_part__Group__1 : rule__Statement_part__Group__1__Impl rule__Statement_part__Group__2 ;
     public final void rule__Statement_part__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2086:1: ( rule__Statement_part__Group__1__Impl rule__Statement_part__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2087:2: rule__Statement_part__Group__1__Impl rule__Statement_part__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2094:1: ( rule__Statement_part__Group__1__Impl rule__Statement_part__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2095:2: rule__Statement_part__Group__1__Impl rule__Statement_part__Group__2
             {
-            pushFollow(FOLLOW_rule__Statement_part__Group__1__Impl_in_rule__Statement_part__Group__14367);
+            pushFollow(FOLLOW_rule__Statement_part__Group__1__Impl_in_rule__Statement_part__Group__14389);
             rule__Statement_part__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Statement_part__Group__2_in_rule__Statement_part__Group__14370);
+            pushFollow(FOLLOW_rule__Statement_part__Group__2_in_rule__Statement_part__Group__14392);
             rule__Statement_part__Group__2();
 
             state._fsp--;
@@ -5856,20 +5885,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_part__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2094:1: rule__Statement_part__Group__1__Impl : ( rulestatement_sequence ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2102:1: rule__Statement_part__Group__1__Impl : ( rulestatement_sequence ) ;
     public final void rule__Statement_part__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2098:1: ( ( rulestatement_sequence ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2099:1: ( rulestatement_sequence )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2106:1: ( ( rulestatement_sequence ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2107:1: ( rulestatement_sequence )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2099:1: ( rulestatement_sequence )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2100:1: rulestatement_sequence
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2107:1: ( rulestatement_sequence )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2108:1: rulestatement_sequence
             {
              before(grammarAccess.getStatement_partAccess().getStatement_sequenceParserRuleCall_1()); 
-            pushFollow(FOLLOW_rulestatement_sequence_in_rule__Statement_part__Group__1__Impl4397);
+            pushFollow(FOLLOW_rulestatement_sequence_in_rule__Statement_part__Group__1__Impl4419);
             rulestatement_sequence();
 
             state._fsp--;
@@ -5897,16 +5926,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_part__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2111:1: rule__Statement_part__Group__2 : rule__Statement_part__Group__2__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2119:1: rule__Statement_part__Group__2 : rule__Statement_part__Group__2__Impl ;
     public final void rule__Statement_part__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2115:1: ( rule__Statement_part__Group__2__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2116:2: rule__Statement_part__Group__2__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2123:1: ( rule__Statement_part__Group__2__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2124:2: rule__Statement_part__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Statement_part__Group__2__Impl_in_rule__Statement_part__Group__24426);
+            pushFollow(FOLLOW_rule__Statement_part__Group__2__Impl_in_rule__Statement_part__Group__24448);
             rule__Statement_part__Group__2__Impl();
 
             state._fsp--;
@@ -5930,20 +5959,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_part__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2122:1: rule__Statement_part__Group__2__Impl : ( RULE_END_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2130:1: rule__Statement_part__Group__2__Impl : ( RULE_END_KEYWORD ) ;
     public final void rule__Statement_part__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2126:1: ( ( RULE_END_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2127:1: ( RULE_END_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2134:1: ( ( RULE_END_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2135:1: ( RULE_END_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2127:1: ( RULE_END_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2128:1: RULE_END_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2135:1: ( RULE_END_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2136:1: RULE_END_KEYWORD
             {
              before(grammarAccess.getStatement_partAccess().getEND_KEYWORDTerminalRuleCall_2()); 
-            match(input,RULE_END_KEYWORD,FOLLOW_RULE_END_KEYWORD_in_rule__Statement_part__Group__2__Impl4453); 
+            match(input,RULE_END_KEYWORD,FOLLOW_RULE_END_KEYWORD_in_rule__Statement_part__Group__2__Impl4475); 
              after(grammarAccess.getStatement_partAccess().getEND_KEYWORDTerminalRuleCall_2()); 
 
             }
@@ -5967,21 +5996,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_sequence__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2145:1: rule__Statement_sequence__Group__0 : rule__Statement_sequence__Group__0__Impl rule__Statement_sequence__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2153:1: rule__Statement_sequence__Group__0 : rule__Statement_sequence__Group__0__Impl rule__Statement_sequence__Group__1 ;
     public final void rule__Statement_sequence__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2149:1: ( rule__Statement_sequence__Group__0__Impl rule__Statement_sequence__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2150:2: rule__Statement_sequence__Group__0__Impl rule__Statement_sequence__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2157:1: ( rule__Statement_sequence__Group__0__Impl rule__Statement_sequence__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2158:2: rule__Statement_sequence__Group__0__Impl rule__Statement_sequence__Group__1
             {
-            pushFollow(FOLLOW_rule__Statement_sequence__Group__0__Impl_in_rule__Statement_sequence__Group__04488);
+            pushFollow(FOLLOW_rule__Statement_sequence__Group__0__Impl_in_rule__Statement_sequence__Group__04510);
             rule__Statement_sequence__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Statement_sequence__Group__1_in_rule__Statement_sequence__Group__04491);
+            pushFollow(FOLLOW_rule__Statement_sequence__Group__1_in_rule__Statement_sequence__Group__04513);
             rule__Statement_sequence__Group__1();
 
             state._fsp--;
@@ -6005,20 +6034,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_sequence__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2157:1: rule__Statement_sequence__Group__0__Impl : ( rulestatement ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2165:1: rule__Statement_sequence__Group__0__Impl : ( rulestatement ) ;
     public final void rule__Statement_sequence__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2161:1: ( ( rulestatement ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2162:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2169:1: ( ( rulestatement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2170:1: ( rulestatement )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2162:1: ( rulestatement )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2163:1: rulestatement
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2170:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2171:1: rulestatement
             {
              before(grammarAccess.getStatement_sequenceAccess().getStatementParserRuleCall_0()); 
-            pushFollow(FOLLOW_rulestatement_in_rule__Statement_sequence__Group__0__Impl4518);
+            pushFollow(FOLLOW_rulestatement_in_rule__Statement_sequence__Group__0__Impl4540);
             rulestatement();
 
             state._fsp--;
@@ -6046,16 +6075,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_sequence__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2174:1: rule__Statement_sequence__Group__1 : rule__Statement_sequence__Group__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2182:1: rule__Statement_sequence__Group__1 : rule__Statement_sequence__Group__1__Impl ;
     public final void rule__Statement_sequence__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2178:1: ( rule__Statement_sequence__Group__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2179:2: rule__Statement_sequence__Group__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2186:1: ( rule__Statement_sequence__Group__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2187:2: rule__Statement_sequence__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Statement_sequence__Group__1__Impl_in_rule__Statement_sequence__Group__14547);
+            pushFollow(FOLLOW_rule__Statement_sequence__Group__1__Impl_in_rule__Statement_sequence__Group__14569);
             rule__Statement_sequence__Group__1__Impl();
 
             state._fsp--;
@@ -6079,35 +6108,35 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_sequence__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2185:1: rule__Statement_sequence__Group__1__Impl : ( ( rule__Statement_sequence__Group_1__0 )* ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2193:1: rule__Statement_sequence__Group__1__Impl : ( ( rule__Statement_sequence__Group_1__0 )* ) ;
     public final void rule__Statement_sequence__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2189:1: ( ( ( rule__Statement_sequence__Group_1__0 )* ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2190:1: ( ( rule__Statement_sequence__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2197:1: ( ( ( rule__Statement_sequence__Group_1__0 )* ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2198:1: ( ( rule__Statement_sequence__Group_1__0 )* )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2190:1: ( ( rule__Statement_sequence__Group_1__0 )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2191:1: ( rule__Statement_sequence__Group_1__0 )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2198:1: ( ( rule__Statement_sequence__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2199:1: ( rule__Statement_sequence__Group_1__0 )*
             {
              before(grammarAccess.getStatement_sequenceAccess().getGroup_1()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2192:1: ( rule__Statement_sequence__Group_1__0 )*
-            loop21:
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2200:1: ( rule__Statement_sequence__Group_1__0 )*
+            loop20:
             do {
-                int alt21=2;
-                int LA21_0 = input.LA(1);
+                int alt20=2;
+                int LA20_0 = input.LA(1);
 
-                if ( (LA21_0==47) ) {
-                    alt21=1;
+                if ( (LA20_0==46) ) {
+                    alt20=1;
                 }
 
 
-                switch (alt21) {
+                switch (alt20) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2192:2: rule__Statement_sequence__Group_1__0
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2200:2: rule__Statement_sequence__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__Statement_sequence__Group_1__0_in_rule__Statement_sequence__Group__1__Impl4574);
+            	    pushFollow(FOLLOW_rule__Statement_sequence__Group_1__0_in_rule__Statement_sequence__Group__1__Impl4596);
             	    rule__Statement_sequence__Group_1__0();
 
             	    state._fsp--;
@@ -6117,7 +6146,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop21;
+            	    break loop20;
                 }
             } while (true);
 
@@ -6144,21 +6173,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_sequence__Group_1__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2206:1: rule__Statement_sequence__Group_1__0 : rule__Statement_sequence__Group_1__0__Impl rule__Statement_sequence__Group_1__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2214:1: rule__Statement_sequence__Group_1__0 : rule__Statement_sequence__Group_1__0__Impl rule__Statement_sequence__Group_1__1 ;
     public final void rule__Statement_sequence__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2210:1: ( rule__Statement_sequence__Group_1__0__Impl rule__Statement_sequence__Group_1__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2211:2: rule__Statement_sequence__Group_1__0__Impl rule__Statement_sequence__Group_1__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2218:1: ( rule__Statement_sequence__Group_1__0__Impl rule__Statement_sequence__Group_1__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2219:2: rule__Statement_sequence__Group_1__0__Impl rule__Statement_sequence__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Statement_sequence__Group_1__0__Impl_in_rule__Statement_sequence__Group_1__04609);
+            pushFollow(FOLLOW_rule__Statement_sequence__Group_1__0__Impl_in_rule__Statement_sequence__Group_1__04631);
             rule__Statement_sequence__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Statement_sequence__Group_1__1_in_rule__Statement_sequence__Group_1__04612);
+            pushFollow(FOLLOW_rule__Statement_sequence__Group_1__1_in_rule__Statement_sequence__Group_1__04634);
             rule__Statement_sequence__Group_1__1();
 
             state._fsp--;
@@ -6182,20 +6211,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_sequence__Group_1__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2218:1: rule__Statement_sequence__Group_1__0__Impl : ( ';' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2226:1: rule__Statement_sequence__Group_1__0__Impl : ( ';' ) ;
     public final void rule__Statement_sequence__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2222:1: ( ( ';' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2223:1: ( ';' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2230:1: ( ( ';' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2231:1: ( ';' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2223:1: ( ';' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2224:1: ';'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2231:1: ( ';' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2232:1: ';'
             {
              before(grammarAccess.getStatement_sequenceAccess().getSemicolonKeyword_1_0()); 
-            match(input,47,FOLLOW_47_in_rule__Statement_sequence__Group_1__0__Impl4640); 
+            match(input,46,FOLLOW_46_in_rule__Statement_sequence__Group_1__0__Impl4662); 
              after(grammarAccess.getStatement_sequenceAccess().getSemicolonKeyword_1_0()); 
 
             }
@@ -6219,16 +6248,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_sequence__Group_1__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2237:1: rule__Statement_sequence__Group_1__1 : rule__Statement_sequence__Group_1__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2245:1: rule__Statement_sequence__Group_1__1 : rule__Statement_sequence__Group_1__1__Impl ;
     public final void rule__Statement_sequence__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2241:1: ( rule__Statement_sequence__Group_1__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2242:2: rule__Statement_sequence__Group_1__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2249:1: ( rule__Statement_sequence__Group_1__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2250:2: rule__Statement_sequence__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Statement_sequence__Group_1__1__Impl_in_rule__Statement_sequence__Group_1__14671);
+            pushFollow(FOLLOW_rule__Statement_sequence__Group_1__1__Impl_in_rule__Statement_sequence__Group_1__14693);
             rule__Statement_sequence__Group_1__1__Impl();
 
             state._fsp--;
@@ -6252,20 +6281,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement_sequence__Group_1__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2248:1: rule__Statement_sequence__Group_1__1__Impl : ( rulestatement ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2256:1: rule__Statement_sequence__Group_1__1__Impl : ( rulestatement ) ;
     public final void rule__Statement_sequence__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2252:1: ( ( rulestatement ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2253:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2260:1: ( ( rulestatement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2261:1: ( rulestatement )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2253:1: ( rulestatement )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2254:1: rulestatement
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2261:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2262:1: rulestatement
             {
              before(grammarAccess.getStatement_sequenceAccess().getStatementParserRuleCall_1_1()); 
-            pushFollow(FOLLOW_rulestatement_in_rule__Statement_sequence__Group_1__1__Impl4698);
+            pushFollow(FOLLOW_rulestatement_in_rule__Statement_sequence__Group_1__1__Impl4720);
             rulestatement();
 
             state._fsp--;
@@ -6293,21 +6322,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2269:1: rule__Statement__Group__0 : rule__Statement__Group__0__Impl rule__Statement__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2277:1: rule__Statement__Group__0 : rule__Statement__Group__0__Impl rule__Statement__Group__1 ;
     public final void rule__Statement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2273:1: ( rule__Statement__Group__0__Impl rule__Statement__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2274:2: rule__Statement__Group__0__Impl rule__Statement__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2281:1: ( rule__Statement__Group__0__Impl rule__Statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2282:2: rule__Statement__Group__0__Impl rule__Statement__Group__1
             {
-            pushFollow(FOLLOW_rule__Statement__Group__0__Impl_in_rule__Statement__Group__04731);
+            pushFollow(FOLLOW_rule__Statement__Group__0__Impl_in_rule__Statement__Group__04753);
             rule__Statement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Statement__Group__1_in_rule__Statement__Group__04734);
+            pushFollow(FOLLOW_rule__Statement__Group__1_in_rule__Statement__Group__04756);
             rule__Statement__Group__1();
 
             state._fsp--;
@@ -6331,31 +6360,31 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2281:1: rule__Statement__Group__0__Impl : ( ( rule__Statement__Group_0__0 )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2289:1: rule__Statement__Group__0__Impl : ( ( rule__Statement__Group_0__0 )? ) ;
     public final void rule__Statement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2285:1: ( ( ( rule__Statement__Group_0__0 )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2286:1: ( ( rule__Statement__Group_0__0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2293:1: ( ( ( rule__Statement__Group_0__0 )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2294:1: ( ( rule__Statement__Group_0__0 )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2286:1: ( ( rule__Statement__Group_0__0 )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2287:1: ( rule__Statement__Group_0__0 )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2294:1: ( ( rule__Statement__Group_0__0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2295:1: ( rule__Statement__Group_0__0 )?
             {
              before(grammarAccess.getStatementAccess().getGroup_0()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2288:1: ( rule__Statement__Group_0__0 )?
-            int alt22=2;
-            int LA22_0 = input.LA(1);
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2296:1: ( rule__Statement__Group_0__0 )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA22_0==RULE_INTEGER_NUMBER) ) {
-                alt22=1;
+            if ( (LA21_0==RULE_INTEGER_NUMBER) ) {
+                alt21=1;
             }
-            switch (alt22) {
+            switch (alt21) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2288:2: rule__Statement__Group_0__0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2296:2: rule__Statement__Group_0__0
                     {
-                    pushFollow(FOLLOW_rule__Statement__Group_0__0_in_rule__Statement__Group__0__Impl4761);
+                    pushFollow(FOLLOW_rule__Statement__Group_0__0_in_rule__Statement__Group__0__Impl4783);
                     rule__Statement__Group_0__0();
 
                     state._fsp--;
@@ -6389,16 +6418,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2298:1: rule__Statement__Group__1 : rule__Statement__Group__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2306:1: rule__Statement__Group__1 : rule__Statement__Group__1__Impl ;
     public final void rule__Statement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2302:1: ( rule__Statement__Group__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2303:2: rule__Statement__Group__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2310:1: ( rule__Statement__Group__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2311:2: rule__Statement__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Statement__Group__1__Impl_in_rule__Statement__Group__14792);
+            pushFollow(FOLLOW_rule__Statement__Group__1__Impl_in_rule__Statement__Group__14814);
             rule__Statement__Group__1__Impl();
 
             state._fsp--;
@@ -6422,23 +6451,23 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2309:1: rule__Statement__Group__1__Impl : ( ( rule__Statement__Alternatives_1 ) ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2317:1: rule__Statement__Group__1__Impl : ( ( rule__Statement__Alternatives_1 ) ) ;
     public final void rule__Statement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2313:1: ( ( ( rule__Statement__Alternatives_1 ) ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2314:1: ( ( rule__Statement__Alternatives_1 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2321:1: ( ( ( rule__Statement__Alternatives_1 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2322:1: ( ( rule__Statement__Alternatives_1 ) )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2314:1: ( ( rule__Statement__Alternatives_1 ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2315:1: ( rule__Statement__Alternatives_1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2322:1: ( ( rule__Statement__Alternatives_1 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2323:1: ( rule__Statement__Alternatives_1 )
             {
              before(grammarAccess.getStatementAccess().getAlternatives_1()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2316:1: ( rule__Statement__Alternatives_1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2316:2: rule__Statement__Alternatives_1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2324:1: ( rule__Statement__Alternatives_1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2324:2: rule__Statement__Alternatives_1
             {
-            pushFollow(FOLLOW_rule__Statement__Alternatives_1_in_rule__Statement__Group__1__Impl4819);
+            pushFollow(FOLLOW_rule__Statement__Alternatives_1_in_rule__Statement__Group__1__Impl4841);
             rule__Statement__Alternatives_1();
 
             state._fsp--;
@@ -6469,21 +6498,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Group_0__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2330:1: rule__Statement__Group_0__0 : rule__Statement__Group_0__0__Impl rule__Statement__Group_0__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2338:1: rule__Statement__Group_0__0 : rule__Statement__Group_0__0__Impl rule__Statement__Group_0__1 ;
     public final void rule__Statement__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2334:1: ( rule__Statement__Group_0__0__Impl rule__Statement__Group_0__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2335:2: rule__Statement__Group_0__0__Impl rule__Statement__Group_0__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2342:1: ( rule__Statement__Group_0__0__Impl rule__Statement__Group_0__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2343:2: rule__Statement__Group_0__0__Impl rule__Statement__Group_0__1
             {
-            pushFollow(FOLLOW_rule__Statement__Group_0__0__Impl_in_rule__Statement__Group_0__04853);
+            pushFollow(FOLLOW_rule__Statement__Group_0__0__Impl_in_rule__Statement__Group_0__04875);
             rule__Statement__Group_0__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Statement__Group_0__1_in_rule__Statement__Group_0__04856);
+            pushFollow(FOLLOW_rule__Statement__Group_0__1_in_rule__Statement__Group_0__04878);
             rule__Statement__Group_0__1();
 
             state._fsp--;
@@ -6507,20 +6536,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Group_0__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2342:1: rule__Statement__Group_0__0__Impl : ( rulelabel ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2350:1: rule__Statement__Group_0__0__Impl : ( rulelabel ) ;
     public final void rule__Statement__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2346:1: ( ( rulelabel ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2347:1: ( rulelabel )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2354:1: ( ( rulelabel ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2355:1: ( rulelabel )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2347:1: ( rulelabel )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2348:1: rulelabel
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2355:1: ( rulelabel )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2356:1: rulelabel
             {
              before(grammarAccess.getStatementAccess().getLabelParserRuleCall_0_0()); 
-            pushFollow(FOLLOW_rulelabel_in_rule__Statement__Group_0__0__Impl4883);
+            pushFollow(FOLLOW_rulelabel_in_rule__Statement__Group_0__0__Impl4905);
             rulelabel();
 
             state._fsp--;
@@ -6548,16 +6577,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Group_0__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2359:1: rule__Statement__Group_0__1 : rule__Statement__Group_0__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2367:1: rule__Statement__Group_0__1 : rule__Statement__Group_0__1__Impl ;
     public final void rule__Statement__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2363:1: ( rule__Statement__Group_0__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2364:2: rule__Statement__Group_0__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2371:1: ( rule__Statement__Group_0__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2372:2: rule__Statement__Group_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__Statement__Group_0__1__Impl_in_rule__Statement__Group_0__14912);
+            pushFollow(FOLLOW_rule__Statement__Group_0__1__Impl_in_rule__Statement__Group_0__14934);
             rule__Statement__Group_0__1__Impl();
 
             state._fsp--;
@@ -6581,20 +6610,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Group_0__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2370:1: rule__Statement__Group_0__1__Impl : ( ':' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2378:1: rule__Statement__Group_0__1__Impl : ( ':' ) ;
     public final void rule__Statement__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2374:1: ( ( ':' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2375:1: ( ':' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2382:1: ( ( ':' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2383:1: ( ':' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2375:1: ( ':' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2376:1: ':'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2383:1: ( ':' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2384:1: ':'
             {
              before(grammarAccess.getStatementAccess().getColonKeyword_0_1()); 
-            match(input,51,FOLLOW_51_in_rule__Statement__Group_0__1__Impl4940); 
+            match(input,50,FOLLOW_50_in_rule__Statement__Group_0__1__Impl4962); 
              after(grammarAccess.getStatementAccess().getColonKeyword_0_1()); 
 
             }
@@ -6618,21 +6647,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Assignment_statement__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2393:1: rule__Assignment_statement__Group__0 : rule__Assignment_statement__Group__0__Impl rule__Assignment_statement__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2401:1: rule__Assignment_statement__Group__0 : rule__Assignment_statement__Group__0__Impl rule__Assignment_statement__Group__1 ;
     public final void rule__Assignment_statement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2397:1: ( rule__Assignment_statement__Group__0__Impl rule__Assignment_statement__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2398:2: rule__Assignment_statement__Group__0__Impl rule__Assignment_statement__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2405:1: ( rule__Assignment_statement__Group__0__Impl rule__Assignment_statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2406:2: rule__Assignment_statement__Group__0__Impl rule__Assignment_statement__Group__1
             {
-            pushFollow(FOLLOW_rule__Assignment_statement__Group__0__Impl_in_rule__Assignment_statement__Group__04975);
+            pushFollow(FOLLOW_rule__Assignment_statement__Group__0__Impl_in_rule__Assignment_statement__Group__04997);
             rule__Assignment_statement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Assignment_statement__Group__1_in_rule__Assignment_statement__Group__04978);
+            pushFollow(FOLLOW_rule__Assignment_statement__Group__1_in_rule__Assignment_statement__Group__05000);
             rule__Assignment_statement__Group__1();
 
             state._fsp--;
@@ -6656,20 +6685,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Assignment_statement__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2405:1: rule__Assignment_statement__Group__0__Impl : ( rulevariable ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2413:1: rule__Assignment_statement__Group__0__Impl : ( rulevariable ) ;
     public final void rule__Assignment_statement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2409:1: ( ( rulevariable ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2410:1: ( rulevariable )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2417:1: ( ( rulevariable ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2418:1: ( rulevariable )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2410:1: ( rulevariable )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2411:1: rulevariable
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2418:1: ( rulevariable )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2419:1: rulevariable
             {
              before(grammarAccess.getAssignment_statementAccess().getVariableParserRuleCall_0()); 
-            pushFollow(FOLLOW_rulevariable_in_rule__Assignment_statement__Group__0__Impl5005);
+            pushFollow(FOLLOW_rulevariable_in_rule__Assignment_statement__Group__0__Impl5027);
             rulevariable();
 
             state._fsp--;
@@ -6697,21 +6726,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Assignment_statement__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2422:1: rule__Assignment_statement__Group__1 : rule__Assignment_statement__Group__1__Impl rule__Assignment_statement__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2430:1: rule__Assignment_statement__Group__1 : rule__Assignment_statement__Group__1__Impl rule__Assignment_statement__Group__2 ;
     public final void rule__Assignment_statement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2426:1: ( rule__Assignment_statement__Group__1__Impl rule__Assignment_statement__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2427:2: rule__Assignment_statement__Group__1__Impl rule__Assignment_statement__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2434:1: ( rule__Assignment_statement__Group__1__Impl rule__Assignment_statement__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2435:2: rule__Assignment_statement__Group__1__Impl rule__Assignment_statement__Group__2
             {
-            pushFollow(FOLLOW_rule__Assignment_statement__Group__1__Impl_in_rule__Assignment_statement__Group__15034);
+            pushFollow(FOLLOW_rule__Assignment_statement__Group__1__Impl_in_rule__Assignment_statement__Group__15056);
             rule__Assignment_statement__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Assignment_statement__Group__2_in_rule__Assignment_statement__Group__15037);
+            pushFollow(FOLLOW_rule__Assignment_statement__Group__2_in_rule__Assignment_statement__Group__15059);
             rule__Assignment_statement__Group__2();
 
             state._fsp--;
@@ -6735,20 +6764,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Assignment_statement__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2434:1: rule__Assignment_statement__Group__1__Impl : ( ':=' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2442:1: rule__Assignment_statement__Group__1__Impl : ( ':=' ) ;
     public final void rule__Assignment_statement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2438:1: ( ( ':=' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2439:1: ( ':=' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2446:1: ( ( ':=' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2447:1: ( ':=' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2439:1: ( ':=' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2440:1: ':='
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2447:1: ( ':=' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2448:1: ':='
             {
              before(grammarAccess.getAssignment_statementAccess().getColonEqualsSignKeyword_1()); 
-            match(input,52,FOLLOW_52_in_rule__Assignment_statement__Group__1__Impl5065); 
+            match(input,51,FOLLOW_51_in_rule__Assignment_statement__Group__1__Impl5087); 
              after(grammarAccess.getAssignment_statementAccess().getColonEqualsSignKeyword_1()); 
 
             }
@@ -6772,16 +6801,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Assignment_statement__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2453:1: rule__Assignment_statement__Group__2 : rule__Assignment_statement__Group__2__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2461:1: rule__Assignment_statement__Group__2 : rule__Assignment_statement__Group__2__Impl ;
     public final void rule__Assignment_statement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2457:1: ( rule__Assignment_statement__Group__2__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2458:2: rule__Assignment_statement__Group__2__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2465:1: ( rule__Assignment_statement__Group__2__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2466:2: rule__Assignment_statement__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Assignment_statement__Group__2__Impl_in_rule__Assignment_statement__Group__25096);
+            pushFollow(FOLLOW_rule__Assignment_statement__Group__2__Impl_in_rule__Assignment_statement__Group__25118);
             rule__Assignment_statement__Group__2__Impl();
 
             state._fsp--;
@@ -6805,20 +6834,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Assignment_statement__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2464:1: rule__Assignment_statement__Group__2__Impl : ( ruleexpression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2472:1: rule__Assignment_statement__Group__2__Impl : ( ruleexpression ) ;
     public final void rule__Assignment_statement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2468:1: ( ( ruleexpression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2469:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2476:1: ( ( ruleexpression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2477:1: ( ruleexpression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2469:1: ( ruleexpression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2470:1: ruleexpression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2477:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2478:1: ruleexpression
             {
              before(grammarAccess.getAssignment_statementAccess().getExpressionParserRuleCall_2()); 
-            pushFollow(FOLLOW_ruleexpression_in_rule__Assignment_statement__Group__2__Impl5123);
+            pushFollow(FOLLOW_ruleexpression_in_rule__Assignment_statement__Group__2__Impl5145);
             ruleexpression();
 
             state._fsp--;
@@ -6846,21 +6875,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Indexed_variable__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2487:1: rule__Indexed_variable__Group__0 : rule__Indexed_variable__Group__0__Impl rule__Indexed_variable__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2495:1: rule__Indexed_variable__Group__0 : rule__Indexed_variable__Group__0__Impl rule__Indexed_variable__Group__1 ;
     public final void rule__Indexed_variable__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2491:1: ( rule__Indexed_variable__Group__0__Impl rule__Indexed_variable__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2492:2: rule__Indexed_variable__Group__0__Impl rule__Indexed_variable__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2499:1: ( rule__Indexed_variable__Group__0__Impl rule__Indexed_variable__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2500:2: rule__Indexed_variable__Group__0__Impl rule__Indexed_variable__Group__1
             {
-            pushFollow(FOLLOW_rule__Indexed_variable__Group__0__Impl_in_rule__Indexed_variable__Group__05158);
+            pushFollow(FOLLOW_rule__Indexed_variable__Group__0__Impl_in_rule__Indexed_variable__Group__05180);
             rule__Indexed_variable__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Indexed_variable__Group__1_in_rule__Indexed_variable__Group__05161);
+            pushFollow(FOLLOW_rule__Indexed_variable__Group__1_in_rule__Indexed_variable__Group__05183);
             rule__Indexed_variable__Group__1();
 
             state._fsp--;
@@ -6884,20 +6913,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Indexed_variable__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2499:1: rule__Indexed_variable__Group__0__Impl : ( rulevariable ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2507:1: rule__Indexed_variable__Group__0__Impl : ( rulevariable ) ;
     public final void rule__Indexed_variable__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2503:1: ( ( rulevariable ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2504:1: ( rulevariable )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2511:1: ( ( rulevariable ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2512:1: ( rulevariable )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2504:1: ( rulevariable )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2505:1: rulevariable
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2512:1: ( rulevariable )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2513:1: rulevariable
             {
              before(grammarAccess.getIndexed_variableAccess().getVariableParserRuleCall_0()); 
-            pushFollow(FOLLOW_rulevariable_in_rule__Indexed_variable__Group__0__Impl5188);
+            pushFollow(FOLLOW_rulevariable_in_rule__Indexed_variable__Group__0__Impl5210);
             rulevariable();
 
             state._fsp--;
@@ -6925,21 +6954,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Indexed_variable__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2516:1: rule__Indexed_variable__Group__1 : rule__Indexed_variable__Group__1__Impl rule__Indexed_variable__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2524:1: rule__Indexed_variable__Group__1 : rule__Indexed_variable__Group__1__Impl rule__Indexed_variable__Group__2 ;
     public final void rule__Indexed_variable__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2520:1: ( rule__Indexed_variable__Group__1__Impl rule__Indexed_variable__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2521:2: rule__Indexed_variable__Group__1__Impl rule__Indexed_variable__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2528:1: ( rule__Indexed_variable__Group__1__Impl rule__Indexed_variable__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2529:2: rule__Indexed_variable__Group__1__Impl rule__Indexed_variable__Group__2
             {
-            pushFollow(FOLLOW_rule__Indexed_variable__Group__1__Impl_in_rule__Indexed_variable__Group__15217);
+            pushFollow(FOLLOW_rule__Indexed_variable__Group__1__Impl_in_rule__Indexed_variable__Group__15239);
             rule__Indexed_variable__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Indexed_variable__Group__2_in_rule__Indexed_variable__Group__15220);
+            pushFollow(FOLLOW_rule__Indexed_variable__Group__2_in_rule__Indexed_variable__Group__15242);
             rule__Indexed_variable__Group__2();
 
             state._fsp--;
@@ -6963,20 +6992,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Indexed_variable__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2528:1: rule__Indexed_variable__Group__1__Impl : ( '[' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2536:1: rule__Indexed_variable__Group__1__Impl : ( '[' ) ;
     public final void rule__Indexed_variable__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2532:1: ( ( '[' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2533:1: ( '[' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2540:1: ( ( '[' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2541:1: ( '[' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2533:1: ( '[' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2534:1: '['
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2541:1: ( '[' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2542:1: '['
             {
              before(grammarAccess.getIndexed_variableAccess().getLeftSquareBracketKeyword_1()); 
-            match(input,53,FOLLOW_53_in_rule__Indexed_variable__Group__1__Impl5248); 
+            match(input,52,FOLLOW_52_in_rule__Indexed_variable__Group__1__Impl5270); 
              after(grammarAccess.getIndexed_variableAccess().getLeftSquareBracketKeyword_1()); 
 
             }
@@ -7000,21 +7029,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Indexed_variable__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2547:1: rule__Indexed_variable__Group__2 : rule__Indexed_variable__Group__2__Impl rule__Indexed_variable__Group__3 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2555:1: rule__Indexed_variable__Group__2 : rule__Indexed_variable__Group__2__Impl rule__Indexed_variable__Group__3 ;
     public final void rule__Indexed_variable__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2551:1: ( rule__Indexed_variable__Group__2__Impl rule__Indexed_variable__Group__3 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2552:2: rule__Indexed_variable__Group__2__Impl rule__Indexed_variable__Group__3
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2559:1: ( rule__Indexed_variable__Group__2__Impl rule__Indexed_variable__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2560:2: rule__Indexed_variable__Group__2__Impl rule__Indexed_variable__Group__3
             {
-            pushFollow(FOLLOW_rule__Indexed_variable__Group__2__Impl_in_rule__Indexed_variable__Group__25279);
+            pushFollow(FOLLOW_rule__Indexed_variable__Group__2__Impl_in_rule__Indexed_variable__Group__25301);
             rule__Indexed_variable__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Indexed_variable__Group__3_in_rule__Indexed_variable__Group__25282);
+            pushFollow(FOLLOW_rule__Indexed_variable__Group__3_in_rule__Indexed_variable__Group__25304);
             rule__Indexed_variable__Group__3();
 
             state._fsp--;
@@ -7038,20 +7067,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Indexed_variable__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2559:1: rule__Indexed_variable__Group__2__Impl : ( ruleexpression_list ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2567:1: rule__Indexed_variable__Group__2__Impl : ( ruleexpression_list ) ;
     public final void rule__Indexed_variable__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2563:1: ( ( ruleexpression_list ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2564:1: ( ruleexpression_list )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2571:1: ( ( ruleexpression_list ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2572:1: ( ruleexpression_list )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2564:1: ( ruleexpression_list )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2565:1: ruleexpression_list
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2572:1: ( ruleexpression_list )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2573:1: ruleexpression_list
             {
              before(grammarAccess.getIndexed_variableAccess().getExpression_listParserRuleCall_2()); 
-            pushFollow(FOLLOW_ruleexpression_list_in_rule__Indexed_variable__Group__2__Impl5309);
+            pushFollow(FOLLOW_ruleexpression_list_in_rule__Indexed_variable__Group__2__Impl5331);
             ruleexpression_list();
 
             state._fsp--;
@@ -7079,16 +7108,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Indexed_variable__Group__3"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2576:1: rule__Indexed_variable__Group__3 : rule__Indexed_variable__Group__3__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2584:1: rule__Indexed_variable__Group__3 : rule__Indexed_variable__Group__3__Impl ;
     public final void rule__Indexed_variable__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2580:1: ( rule__Indexed_variable__Group__3__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2581:2: rule__Indexed_variable__Group__3__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2588:1: ( rule__Indexed_variable__Group__3__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2589:2: rule__Indexed_variable__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Indexed_variable__Group__3__Impl_in_rule__Indexed_variable__Group__35338);
+            pushFollow(FOLLOW_rule__Indexed_variable__Group__3__Impl_in_rule__Indexed_variable__Group__35360);
             rule__Indexed_variable__Group__3__Impl();
 
             state._fsp--;
@@ -7112,20 +7141,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Indexed_variable__Group__3__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2587:1: rule__Indexed_variable__Group__3__Impl : ( ']' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2595:1: rule__Indexed_variable__Group__3__Impl : ( ']' ) ;
     public final void rule__Indexed_variable__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2591:1: ( ( ']' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2592:1: ( ']' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2599:1: ( ( ']' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2600:1: ( ']' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2592:1: ( ']' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2593:1: ']'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2600:1: ( ']' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2601:1: ']'
             {
              before(grammarAccess.getIndexed_variableAccess().getRightSquareBracketKeyword_3()); 
-            match(input,54,FOLLOW_54_in_rule__Indexed_variable__Group__3__Impl5366); 
+            match(input,53,FOLLOW_53_in_rule__Indexed_variable__Group__3__Impl5388); 
              after(grammarAccess.getIndexed_variableAccess().getRightSquareBracketKeyword_3()); 
 
             }
@@ -7149,21 +7178,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression_list__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2614:1: rule__Expression_list__Group__0 : rule__Expression_list__Group__0__Impl rule__Expression_list__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2622:1: rule__Expression_list__Group__0 : rule__Expression_list__Group__0__Impl rule__Expression_list__Group__1 ;
     public final void rule__Expression_list__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2618:1: ( rule__Expression_list__Group__0__Impl rule__Expression_list__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2619:2: rule__Expression_list__Group__0__Impl rule__Expression_list__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2626:1: ( rule__Expression_list__Group__0__Impl rule__Expression_list__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2627:2: rule__Expression_list__Group__0__Impl rule__Expression_list__Group__1
             {
-            pushFollow(FOLLOW_rule__Expression_list__Group__0__Impl_in_rule__Expression_list__Group__05405);
+            pushFollow(FOLLOW_rule__Expression_list__Group__0__Impl_in_rule__Expression_list__Group__05427);
             rule__Expression_list__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Expression_list__Group__1_in_rule__Expression_list__Group__05408);
+            pushFollow(FOLLOW_rule__Expression_list__Group__1_in_rule__Expression_list__Group__05430);
             rule__Expression_list__Group__1();
 
             state._fsp--;
@@ -7187,20 +7216,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression_list__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2626:1: rule__Expression_list__Group__0__Impl : ( ruleexpression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2634:1: rule__Expression_list__Group__0__Impl : ( ruleexpression ) ;
     public final void rule__Expression_list__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2630:1: ( ( ruleexpression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2631:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2638:1: ( ( ruleexpression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2639:1: ( ruleexpression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2631:1: ( ruleexpression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2632:1: ruleexpression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2639:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2640:1: ruleexpression
             {
              before(grammarAccess.getExpression_listAccess().getExpressionParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleexpression_in_rule__Expression_list__Group__0__Impl5435);
+            pushFollow(FOLLOW_ruleexpression_in_rule__Expression_list__Group__0__Impl5457);
             ruleexpression();
 
             state._fsp--;
@@ -7228,16 +7257,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression_list__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2643:1: rule__Expression_list__Group__1 : rule__Expression_list__Group__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2651:1: rule__Expression_list__Group__1 : rule__Expression_list__Group__1__Impl ;
     public final void rule__Expression_list__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2647:1: ( rule__Expression_list__Group__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2648:2: rule__Expression_list__Group__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2655:1: ( rule__Expression_list__Group__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2656:2: rule__Expression_list__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Expression_list__Group__1__Impl_in_rule__Expression_list__Group__15464);
+            pushFollow(FOLLOW_rule__Expression_list__Group__1__Impl_in_rule__Expression_list__Group__15486);
             rule__Expression_list__Group__1__Impl();
 
             state._fsp--;
@@ -7261,35 +7290,35 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression_list__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2654:1: rule__Expression_list__Group__1__Impl : ( ( rule__Expression_list__Group_1__0 )* ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2662:1: rule__Expression_list__Group__1__Impl : ( ( rule__Expression_list__Group_1__0 )* ) ;
     public final void rule__Expression_list__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2658:1: ( ( ( rule__Expression_list__Group_1__0 )* ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2659:1: ( ( rule__Expression_list__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2666:1: ( ( ( rule__Expression_list__Group_1__0 )* ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2667:1: ( ( rule__Expression_list__Group_1__0 )* )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2659:1: ( ( rule__Expression_list__Group_1__0 )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2660:1: ( rule__Expression_list__Group_1__0 )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2667:1: ( ( rule__Expression_list__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2668:1: ( rule__Expression_list__Group_1__0 )*
             {
              before(grammarAccess.getExpression_listAccess().getGroup_1()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2661:1: ( rule__Expression_list__Group_1__0 )*
-            loop23:
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2669:1: ( rule__Expression_list__Group_1__0 )*
+            loop22:
             do {
-                int alt23=2;
-                int LA23_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( (LA23_0==50) ) {
-                    alt23=1;
+                if ( (LA22_0==49) ) {
+                    alt22=1;
                 }
 
 
-                switch (alt23) {
+                switch (alt22) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2661:2: rule__Expression_list__Group_1__0
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2669:2: rule__Expression_list__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__Expression_list__Group_1__0_in_rule__Expression_list__Group__1__Impl5491);
+            	    pushFollow(FOLLOW_rule__Expression_list__Group_1__0_in_rule__Expression_list__Group__1__Impl5513);
             	    rule__Expression_list__Group_1__0();
 
             	    state._fsp--;
@@ -7299,7 +7328,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop23;
+            	    break loop22;
                 }
             } while (true);
 
@@ -7326,21 +7355,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression_list__Group_1__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2675:1: rule__Expression_list__Group_1__0 : rule__Expression_list__Group_1__0__Impl rule__Expression_list__Group_1__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2683:1: rule__Expression_list__Group_1__0 : rule__Expression_list__Group_1__0__Impl rule__Expression_list__Group_1__1 ;
     public final void rule__Expression_list__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2679:1: ( rule__Expression_list__Group_1__0__Impl rule__Expression_list__Group_1__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2680:2: rule__Expression_list__Group_1__0__Impl rule__Expression_list__Group_1__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2687:1: ( rule__Expression_list__Group_1__0__Impl rule__Expression_list__Group_1__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2688:2: rule__Expression_list__Group_1__0__Impl rule__Expression_list__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Expression_list__Group_1__0__Impl_in_rule__Expression_list__Group_1__05526);
+            pushFollow(FOLLOW_rule__Expression_list__Group_1__0__Impl_in_rule__Expression_list__Group_1__05548);
             rule__Expression_list__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Expression_list__Group_1__1_in_rule__Expression_list__Group_1__05529);
+            pushFollow(FOLLOW_rule__Expression_list__Group_1__1_in_rule__Expression_list__Group_1__05551);
             rule__Expression_list__Group_1__1();
 
             state._fsp--;
@@ -7364,20 +7393,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression_list__Group_1__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2687:1: rule__Expression_list__Group_1__0__Impl : ( ',' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2695:1: rule__Expression_list__Group_1__0__Impl : ( ',' ) ;
     public final void rule__Expression_list__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2691:1: ( ( ',' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2692:1: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2699:1: ( ( ',' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2700:1: ( ',' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2692:1: ( ',' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2693:1: ','
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2700:1: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2701:1: ','
             {
              before(grammarAccess.getExpression_listAccess().getCommaKeyword_1_0()); 
-            match(input,50,FOLLOW_50_in_rule__Expression_list__Group_1__0__Impl5557); 
+            match(input,49,FOLLOW_49_in_rule__Expression_list__Group_1__0__Impl5579); 
              after(grammarAccess.getExpression_listAccess().getCommaKeyword_1_0()); 
 
             }
@@ -7401,16 +7430,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression_list__Group_1__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2706:1: rule__Expression_list__Group_1__1 : rule__Expression_list__Group_1__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2714:1: rule__Expression_list__Group_1__1 : rule__Expression_list__Group_1__1__Impl ;
     public final void rule__Expression_list__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2710:1: ( rule__Expression_list__Group_1__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2711:2: rule__Expression_list__Group_1__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2718:1: ( rule__Expression_list__Group_1__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2719:2: rule__Expression_list__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Expression_list__Group_1__1__Impl_in_rule__Expression_list__Group_1__15588);
+            pushFollow(FOLLOW_rule__Expression_list__Group_1__1__Impl_in_rule__Expression_list__Group_1__15610);
             rule__Expression_list__Group_1__1__Impl();
 
             state._fsp--;
@@ -7434,20 +7463,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression_list__Group_1__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2717:1: rule__Expression_list__Group_1__1__Impl : ( ruleexpression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2725:1: rule__Expression_list__Group_1__1__Impl : ( ruleexpression ) ;
     public final void rule__Expression_list__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2721:1: ( ( ruleexpression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2722:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2729:1: ( ( ruleexpression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2730:1: ( ruleexpression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2722:1: ( ruleexpression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2723:1: ruleexpression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2730:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2731:1: ruleexpression
             {
              before(grammarAccess.getExpression_listAccess().getExpressionParserRuleCall_1_1()); 
-            pushFollow(FOLLOW_ruleexpression_in_rule__Expression_list__Group_1__1__Impl5615);
+            pushFollow(FOLLOW_ruleexpression_in_rule__Expression_list__Group_1__1__Impl5637);
             ruleexpression();
 
             state._fsp--;
@@ -7475,21 +7504,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2738:1: rule__Expression__Group__0 : rule__Expression__Group__0__Impl rule__Expression__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2746:1: rule__Expression__Group__0 : rule__Expression__Group__0__Impl rule__Expression__Group__1 ;
     public final void rule__Expression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2742:1: ( rule__Expression__Group__0__Impl rule__Expression__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2743:2: rule__Expression__Group__0__Impl rule__Expression__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2750:1: ( rule__Expression__Group__0__Impl rule__Expression__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2751:2: rule__Expression__Group__0__Impl rule__Expression__Group__1
             {
-            pushFollow(FOLLOW_rule__Expression__Group__0__Impl_in_rule__Expression__Group__05648);
+            pushFollow(FOLLOW_rule__Expression__Group__0__Impl_in_rule__Expression__Group__05670);
             rule__Expression__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Expression__Group__1_in_rule__Expression__Group__05651);
+            pushFollow(FOLLOW_rule__Expression__Group__1_in_rule__Expression__Group__05673);
             rule__Expression__Group__1();
 
             state._fsp--;
@@ -7513,20 +7542,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2750:1: rule__Expression__Group__0__Impl : ( rulesimple_expression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2758:1: rule__Expression__Group__0__Impl : ( rulesimple_expression ) ;
     public final void rule__Expression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2754:1: ( ( rulesimple_expression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2755:1: ( rulesimple_expression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2762:1: ( ( rulesimple_expression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2763:1: ( rulesimple_expression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2755:1: ( rulesimple_expression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2756:1: rulesimple_expression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2763:1: ( rulesimple_expression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2764:1: rulesimple_expression
             {
              before(grammarAccess.getExpressionAccess().getSimple_expressionParserRuleCall_0()); 
-            pushFollow(FOLLOW_rulesimple_expression_in_rule__Expression__Group__0__Impl5678);
+            pushFollow(FOLLOW_rulesimple_expression_in_rule__Expression__Group__0__Impl5700);
             rulesimple_expression();
 
             state._fsp--;
@@ -7554,16 +7583,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2767:1: rule__Expression__Group__1 : rule__Expression__Group__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2775:1: rule__Expression__Group__1 : rule__Expression__Group__1__Impl ;
     public final void rule__Expression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2771:1: ( rule__Expression__Group__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2772:2: rule__Expression__Group__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2779:1: ( rule__Expression__Group__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2780:2: rule__Expression__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Expression__Group__1__Impl_in_rule__Expression__Group__15707);
+            pushFollow(FOLLOW_rule__Expression__Group__1__Impl_in_rule__Expression__Group__15729);
             rule__Expression__Group__1__Impl();
 
             state._fsp--;
@@ -7587,31 +7616,31 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2778:1: rule__Expression__Group__1__Impl : ( ( rule__Expression__Group_1__0 )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2786:1: rule__Expression__Group__1__Impl : ( ( rule__Expression__Group_1__0 )? ) ;
     public final void rule__Expression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2782:1: ( ( ( rule__Expression__Group_1__0 )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2783:1: ( ( rule__Expression__Group_1__0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2790:1: ( ( ( rule__Expression__Group_1__0 )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2791:1: ( ( rule__Expression__Group_1__0 )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2783:1: ( ( rule__Expression__Group_1__0 )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2784:1: ( rule__Expression__Group_1__0 )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2791:1: ( ( rule__Expression__Group_1__0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2792:1: ( rule__Expression__Group_1__0 )?
             {
              before(grammarAccess.getExpressionAccess().getGroup_1()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2785:1: ( rule__Expression__Group_1__0 )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2793:1: ( rule__Expression__Group_1__0 )?
+            int alt23=2;
+            int LA23_0 = input.LA(1);
 
-            if ( (LA24_0==RULE_RELATIONAL_OPERATOR) ) {
-                alt24=1;
+            if ( (LA23_0==RULE_RELATIONAL_OPERATOR) ) {
+                alt23=1;
             }
-            switch (alt24) {
+            switch (alt23) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2785:2: rule__Expression__Group_1__0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2793:2: rule__Expression__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__Expression__Group_1__0_in_rule__Expression__Group__1__Impl5734);
+                    pushFollow(FOLLOW_rule__Expression__Group_1__0_in_rule__Expression__Group__1__Impl5756);
                     rule__Expression__Group_1__0();
 
                     state._fsp--;
@@ -7645,21 +7674,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression__Group_1__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2799:1: rule__Expression__Group_1__0 : rule__Expression__Group_1__0__Impl rule__Expression__Group_1__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2807:1: rule__Expression__Group_1__0 : rule__Expression__Group_1__0__Impl rule__Expression__Group_1__1 ;
     public final void rule__Expression__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2803:1: ( rule__Expression__Group_1__0__Impl rule__Expression__Group_1__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2804:2: rule__Expression__Group_1__0__Impl rule__Expression__Group_1__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2811:1: ( rule__Expression__Group_1__0__Impl rule__Expression__Group_1__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2812:2: rule__Expression__Group_1__0__Impl rule__Expression__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Expression__Group_1__0__Impl_in_rule__Expression__Group_1__05769);
+            pushFollow(FOLLOW_rule__Expression__Group_1__0__Impl_in_rule__Expression__Group_1__05791);
             rule__Expression__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Expression__Group_1__1_in_rule__Expression__Group_1__05772);
+            pushFollow(FOLLOW_rule__Expression__Group_1__1_in_rule__Expression__Group_1__05794);
             rule__Expression__Group_1__1();
 
             state._fsp--;
@@ -7683,20 +7712,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression__Group_1__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2811:1: rule__Expression__Group_1__0__Impl : ( RULE_RELATIONAL_OPERATOR ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2819:1: rule__Expression__Group_1__0__Impl : ( RULE_RELATIONAL_OPERATOR ) ;
     public final void rule__Expression__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2815:1: ( ( RULE_RELATIONAL_OPERATOR ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2816:1: ( RULE_RELATIONAL_OPERATOR )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2823:1: ( ( RULE_RELATIONAL_OPERATOR ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2824:1: ( RULE_RELATIONAL_OPERATOR )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2816:1: ( RULE_RELATIONAL_OPERATOR )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2817:1: RULE_RELATIONAL_OPERATOR
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2824:1: ( RULE_RELATIONAL_OPERATOR )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2825:1: RULE_RELATIONAL_OPERATOR
             {
              before(grammarAccess.getExpressionAccess().getRELATIONAL_OPERATORTerminalRuleCall_1_0()); 
-            match(input,RULE_RELATIONAL_OPERATOR,FOLLOW_RULE_RELATIONAL_OPERATOR_in_rule__Expression__Group_1__0__Impl5799); 
+            match(input,RULE_RELATIONAL_OPERATOR,FOLLOW_RULE_RELATIONAL_OPERATOR_in_rule__Expression__Group_1__0__Impl5821); 
              after(grammarAccess.getExpressionAccess().getRELATIONAL_OPERATORTerminalRuleCall_1_0()); 
 
             }
@@ -7720,16 +7749,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression__Group_1__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2828:1: rule__Expression__Group_1__1 : rule__Expression__Group_1__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2836:1: rule__Expression__Group_1__1 : rule__Expression__Group_1__1__Impl ;
     public final void rule__Expression__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2832:1: ( rule__Expression__Group_1__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2833:2: rule__Expression__Group_1__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2840:1: ( rule__Expression__Group_1__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2841:2: rule__Expression__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Expression__Group_1__1__Impl_in_rule__Expression__Group_1__15828);
+            pushFollow(FOLLOW_rule__Expression__Group_1__1__Impl_in_rule__Expression__Group_1__15850);
             rule__Expression__Group_1__1__Impl();
 
             state._fsp--;
@@ -7753,20 +7782,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression__Group_1__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2839:1: rule__Expression__Group_1__1__Impl : ( rulesimple_expression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2847:1: rule__Expression__Group_1__1__Impl : ( rulesimple_expression ) ;
     public final void rule__Expression__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2843:1: ( ( rulesimple_expression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2844:1: ( rulesimple_expression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2851:1: ( ( rulesimple_expression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2852:1: ( rulesimple_expression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2844:1: ( rulesimple_expression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2845:1: rulesimple_expression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2852:1: ( rulesimple_expression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2853:1: rulesimple_expression
             {
              before(grammarAccess.getExpressionAccess().getSimple_expressionParserRuleCall_1_1()); 
-            pushFollow(FOLLOW_rulesimple_expression_in_rule__Expression__Group_1__1__Impl5855);
+            pushFollow(FOLLOW_rulesimple_expression_in_rule__Expression__Group_1__1__Impl5877);
             rulesimple_expression();
 
             state._fsp--;
@@ -7794,21 +7823,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2860:1: rule__Simple_expression__Group__0 : rule__Simple_expression__Group__0__Impl rule__Simple_expression__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2868:1: rule__Simple_expression__Group__0 : rule__Simple_expression__Group__0__Impl rule__Simple_expression__Group__1 ;
     public final void rule__Simple_expression__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2864:1: ( rule__Simple_expression__Group__0__Impl rule__Simple_expression__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2865:2: rule__Simple_expression__Group__0__Impl rule__Simple_expression__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2872:1: ( rule__Simple_expression__Group__0__Impl rule__Simple_expression__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2873:2: rule__Simple_expression__Group__0__Impl rule__Simple_expression__Group__1
             {
-            pushFollow(FOLLOW_rule__Simple_expression__Group__0__Impl_in_rule__Simple_expression__Group__05888);
+            pushFollow(FOLLOW_rule__Simple_expression__Group__0__Impl_in_rule__Simple_expression__Group__05910);
             rule__Simple_expression__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Simple_expression__Group__1_in_rule__Simple_expression__Group__05891);
+            pushFollow(FOLLOW_rule__Simple_expression__Group__1_in_rule__Simple_expression__Group__05913);
             rule__Simple_expression__Group__1();
 
             state._fsp--;
@@ -7832,31 +7861,31 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2872:1: rule__Simple_expression__Group__0__Impl : ( ( RULE_ADDITION_OPERATOR )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2880:1: rule__Simple_expression__Group__0__Impl : ( ( RULE_ADDITION_OPERATOR )? ) ;
     public final void rule__Simple_expression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2876:1: ( ( ( RULE_ADDITION_OPERATOR )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2877:1: ( ( RULE_ADDITION_OPERATOR )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2884:1: ( ( ( RULE_ADDITION_OPERATOR )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2885:1: ( ( RULE_ADDITION_OPERATOR )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2877:1: ( ( RULE_ADDITION_OPERATOR )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2878:1: ( RULE_ADDITION_OPERATOR )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2885:1: ( ( RULE_ADDITION_OPERATOR )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2886:1: ( RULE_ADDITION_OPERATOR )?
             {
              before(grammarAccess.getSimple_expressionAccess().getADDITION_OPERATORTerminalRuleCall_0()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2879:1: ( RULE_ADDITION_OPERATOR )?
-            int alt25=2;
-            int LA25_0 = input.LA(1);
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2887:1: ( RULE_ADDITION_OPERATOR )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA25_0==RULE_ADDITION_OPERATOR) ) {
-                alt25=1;
+            if ( (LA24_0==RULE_ADDITION_OPERATOR) ) {
+                alt24=1;
             }
-            switch (alt25) {
+            switch (alt24) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2879:3: RULE_ADDITION_OPERATOR
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2887:3: RULE_ADDITION_OPERATOR
                     {
-                    match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Group__0__Impl5919); 
+                    match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Group__0__Impl5941); 
 
                     }
                     break;
@@ -7886,21 +7915,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2889:1: rule__Simple_expression__Group__1 : rule__Simple_expression__Group__1__Impl rule__Simple_expression__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2897:1: rule__Simple_expression__Group__1 : rule__Simple_expression__Group__1__Impl rule__Simple_expression__Group__2 ;
     public final void rule__Simple_expression__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2893:1: ( rule__Simple_expression__Group__1__Impl rule__Simple_expression__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2894:2: rule__Simple_expression__Group__1__Impl rule__Simple_expression__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2901:1: ( rule__Simple_expression__Group__1__Impl rule__Simple_expression__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2902:2: rule__Simple_expression__Group__1__Impl rule__Simple_expression__Group__2
             {
-            pushFollow(FOLLOW_rule__Simple_expression__Group__1__Impl_in_rule__Simple_expression__Group__15950);
+            pushFollow(FOLLOW_rule__Simple_expression__Group__1__Impl_in_rule__Simple_expression__Group__15972);
             rule__Simple_expression__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Simple_expression__Group__2_in_rule__Simple_expression__Group__15953);
+            pushFollow(FOLLOW_rule__Simple_expression__Group__2_in_rule__Simple_expression__Group__15975);
             rule__Simple_expression__Group__2();
 
             state._fsp--;
@@ -7924,20 +7953,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2901:1: rule__Simple_expression__Group__1__Impl : ( ruleterm ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2909:1: rule__Simple_expression__Group__1__Impl : ( ruleterm ) ;
     public final void rule__Simple_expression__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2905:1: ( ( ruleterm ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2906:1: ( ruleterm )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2913:1: ( ( ruleterm ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2914:1: ( ruleterm )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2906:1: ( ruleterm )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2907:1: ruleterm
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2914:1: ( ruleterm )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2915:1: ruleterm
             {
              before(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_1()); 
-            pushFollow(FOLLOW_ruleterm_in_rule__Simple_expression__Group__1__Impl5980);
+            pushFollow(FOLLOW_ruleterm_in_rule__Simple_expression__Group__1__Impl6002);
             ruleterm();
 
             state._fsp--;
@@ -7965,16 +7994,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2918:1: rule__Simple_expression__Group__2 : rule__Simple_expression__Group__2__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2926:1: rule__Simple_expression__Group__2 : rule__Simple_expression__Group__2__Impl ;
     public final void rule__Simple_expression__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2922:1: ( rule__Simple_expression__Group__2__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2923:2: rule__Simple_expression__Group__2__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2930:1: ( rule__Simple_expression__Group__2__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2931:2: rule__Simple_expression__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Simple_expression__Group__2__Impl_in_rule__Simple_expression__Group__26009);
+            pushFollow(FOLLOW_rule__Simple_expression__Group__2__Impl_in_rule__Simple_expression__Group__26031);
             rule__Simple_expression__Group__2__Impl();
 
             state._fsp--;
@@ -7998,35 +8027,35 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2929:1: rule__Simple_expression__Group__2__Impl : ( ( rule__Simple_expression__Alternatives_2 )* ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2937:1: rule__Simple_expression__Group__2__Impl : ( ( rule__Simple_expression__Alternatives_2 )* ) ;
     public final void rule__Simple_expression__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2933:1: ( ( ( rule__Simple_expression__Alternatives_2 )* ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2934:1: ( ( rule__Simple_expression__Alternatives_2 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2941:1: ( ( ( rule__Simple_expression__Alternatives_2 )* ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2942:1: ( ( rule__Simple_expression__Alternatives_2 )* )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2934:1: ( ( rule__Simple_expression__Alternatives_2 )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2935:1: ( rule__Simple_expression__Alternatives_2 )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2942:1: ( ( rule__Simple_expression__Alternatives_2 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2943:1: ( rule__Simple_expression__Alternatives_2 )*
             {
              before(grammarAccess.getSimple_expressionAccess().getAlternatives_2()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2936:1: ( rule__Simple_expression__Alternatives_2 )*
-            loop26:
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2944:1: ( rule__Simple_expression__Alternatives_2 )*
+            loop25:
             do {
-                int alt26=2;
-                int LA26_0 = input.LA(1);
+                int alt25=2;
+                int LA25_0 = input.LA(1);
 
-                if ( ((LA26_0>=RULE_ADDITION_OPERATOR && LA26_0<=RULE_OR_KEYWORD)||(LA26_0>=RULE_SIGNED_INTEGER_NUMBER && LA26_0<=RULE_SIGNED_REAL_NUMBER)) ) {
-                    alt26=1;
+                if ( ((LA25_0>=RULE_ADDITION_OPERATOR && LA25_0<=RULE_OR_KEYWORD)||(LA25_0>=RULE_SIGNED_INTEGER_NUMBER && LA25_0<=RULE_SIGNED_REAL_NUMBER)) ) {
+                    alt25=1;
                 }
 
 
-                switch (alt26) {
+                switch (alt25) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2936:2: rule__Simple_expression__Alternatives_2
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2944:2: rule__Simple_expression__Alternatives_2
             	    {
-            	    pushFollow(FOLLOW_rule__Simple_expression__Alternatives_2_in_rule__Simple_expression__Group__2__Impl6036);
+            	    pushFollow(FOLLOW_rule__Simple_expression__Alternatives_2_in_rule__Simple_expression__Group__2__Impl6058);
             	    rule__Simple_expression__Alternatives_2();
 
             	    state._fsp--;
@@ -8036,7 +8065,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop26;
+            	    break loop25;
                 }
             } while (true);
 
@@ -8063,21 +8092,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group_2_0__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2952:1: rule__Simple_expression__Group_2_0__0 : rule__Simple_expression__Group_2_0__0__Impl rule__Simple_expression__Group_2_0__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2960:1: rule__Simple_expression__Group_2_0__0 : rule__Simple_expression__Group_2_0__0__Impl rule__Simple_expression__Group_2_0__1 ;
     public final void rule__Simple_expression__Group_2_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2956:1: ( rule__Simple_expression__Group_2_0__0__Impl rule__Simple_expression__Group_2_0__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2957:2: rule__Simple_expression__Group_2_0__0__Impl rule__Simple_expression__Group_2_0__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2964:1: ( rule__Simple_expression__Group_2_0__0__Impl rule__Simple_expression__Group_2_0__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2965:2: rule__Simple_expression__Group_2_0__0__Impl rule__Simple_expression__Group_2_0__1
             {
-            pushFollow(FOLLOW_rule__Simple_expression__Group_2_0__0__Impl_in_rule__Simple_expression__Group_2_0__06073);
+            pushFollow(FOLLOW_rule__Simple_expression__Group_2_0__0__Impl_in_rule__Simple_expression__Group_2_0__06095);
             rule__Simple_expression__Group_2_0__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Simple_expression__Group_2_0__1_in_rule__Simple_expression__Group_2_0__06076);
+            pushFollow(FOLLOW_rule__Simple_expression__Group_2_0__1_in_rule__Simple_expression__Group_2_0__06098);
             rule__Simple_expression__Group_2_0__1();
 
             state._fsp--;
@@ -8101,23 +8130,23 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group_2_0__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2964:1: rule__Simple_expression__Group_2_0__0__Impl : ( ( rule__Simple_expression__Alternatives_2_0_0 ) ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2972:1: rule__Simple_expression__Group_2_0__0__Impl : ( ( rule__Simple_expression__Alternatives_2_0_0 ) ) ;
     public final void rule__Simple_expression__Group_2_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2968:1: ( ( ( rule__Simple_expression__Alternatives_2_0_0 ) ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2969:1: ( ( rule__Simple_expression__Alternatives_2_0_0 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2976:1: ( ( ( rule__Simple_expression__Alternatives_2_0_0 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2977:1: ( ( rule__Simple_expression__Alternatives_2_0_0 ) )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2969:1: ( ( rule__Simple_expression__Alternatives_2_0_0 ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2970:1: ( rule__Simple_expression__Alternatives_2_0_0 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2977:1: ( ( rule__Simple_expression__Alternatives_2_0_0 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2978:1: ( rule__Simple_expression__Alternatives_2_0_0 )
             {
              before(grammarAccess.getSimple_expressionAccess().getAlternatives_2_0_0()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2971:1: ( rule__Simple_expression__Alternatives_2_0_0 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2971:2: rule__Simple_expression__Alternatives_2_0_0
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2979:1: ( rule__Simple_expression__Alternatives_2_0_0 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2979:2: rule__Simple_expression__Alternatives_2_0_0
             {
-            pushFollow(FOLLOW_rule__Simple_expression__Alternatives_2_0_0_in_rule__Simple_expression__Group_2_0__0__Impl6103);
+            pushFollow(FOLLOW_rule__Simple_expression__Alternatives_2_0_0_in_rule__Simple_expression__Group_2_0__0__Impl6125);
             rule__Simple_expression__Alternatives_2_0_0();
 
             state._fsp--;
@@ -8148,16 +8177,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group_2_0__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2981:1: rule__Simple_expression__Group_2_0__1 : rule__Simple_expression__Group_2_0__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2989:1: rule__Simple_expression__Group_2_0__1 : rule__Simple_expression__Group_2_0__1__Impl ;
     public final void rule__Simple_expression__Group_2_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2985:1: ( rule__Simple_expression__Group_2_0__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2986:2: rule__Simple_expression__Group_2_0__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2993:1: ( rule__Simple_expression__Group_2_0__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2994:2: rule__Simple_expression__Group_2_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__Simple_expression__Group_2_0__1__Impl_in_rule__Simple_expression__Group_2_0__16133);
+            pushFollow(FOLLOW_rule__Simple_expression__Group_2_0__1__Impl_in_rule__Simple_expression__Group_2_0__16155);
             rule__Simple_expression__Group_2_0__1__Impl();
 
             state._fsp--;
@@ -8181,20 +8210,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group_2_0__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2992:1: rule__Simple_expression__Group_2_0__1__Impl : ( ruleterm ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3000:1: rule__Simple_expression__Group_2_0__1__Impl : ( ruleterm ) ;
     public final void rule__Simple_expression__Group_2_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2996:1: ( ( ruleterm ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2997:1: ( ruleterm )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3004:1: ( ( ruleterm ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3005:1: ( ruleterm )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2997:1: ( ruleterm )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:2998:1: ruleterm
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3005:1: ( ruleterm )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3006:1: ruleterm
             {
              before(grammarAccess.getSimple_expressionAccess().getTermParserRuleCall_2_0_1()); 
-            pushFollow(FOLLOW_ruleterm_in_rule__Simple_expression__Group_2_0__1__Impl6160);
+            pushFollow(FOLLOW_ruleterm_in_rule__Simple_expression__Group_2_0__1__Impl6182);
             ruleterm();
 
             state._fsp--;
@@ -8222,21 +8251,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Term__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3013:1: rule__Term__Group__0 : rule__Term__Group__0__Impl rule__Term__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3021:1: rule__Term__Group__0 : rule__Term__Group__0__Impl rule__Term__Group__1 ;
     public final void rule__Term__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3017:1: ( rule__Term__Group__0__Impl rule__Term__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3018:2: rule__Term__Group__0__Impl rule__Term__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3025:1: ( rule__Term__Group__0__Impl rule__Term__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3026:2: rule__Term__Group__0__Impl rule__Term__Group__1
             {
-            pushFollow(FOLLOW_rule__Term__Group__0__Impl_in_rule__Term__Group__06193);
+            pushFollow(FOLLOW_rule__Term__Group__0__Impl_in_rule__Term__Group__06215);
             rule__Term__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Term__Group__1_in_rule__Term__Group__06196);
+            pushFollow(FOLLOW_rule__Term__Group__1_in_rule__Term__Group__06218);
             rule__Term__Group__1();
 
             state._fsp--;
@@ -8260,20 +8289,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Term__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3025:1: rule__Term__Group__0__Impl : ( rulefactor ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3033:1: rule__Term__Group__0__Impl : ( rulefactor ) ;
     public final void rule__Term__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3029:1: ( ( rulefactor ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3030:1: ( rulefactor )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3037:1: ( ( rulefactor ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3038:1: ( rulefactor )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3030:1: ( rulefactor )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3031:1: rulefactor
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3038:1: ( rulefactor )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3039:1: rulefactor
             {
              before(grammarAccess.getTermAccess().getFactorParserRuleCall_0()); 
-            pushFollow(FOLLOW_rulefactor_in_rule__Term__Group__0__Impl6223);
+            pushFollow(FOLLOW_rulefactor_in_rule__Term__Group__0__Impl6245);
             rulefactor();
 
             state._fsp--;
@@ -8301,16 +8330,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Term__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3042:1: rule__Term__Group__1 : rule__Term__Group__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3050:1: rule__Term__Group__1 : rule__Term__Group__1__Impl ;
     public final void rule__Term__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3046:1: ( rule__Term__Group__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3047:2: rule__Term__Group__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3054:1: ( rule__Term__Group__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3055:2: rule__Term__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Term__Group__1__Impl_in_rule__Term__Group__16252);
+            pushFollow(FOLLOW_rule__Term__Group__1__Impl_in_rule__Term__Group__16274);
             rule__Term__Group__1__Impl();
 
             state._fsp--;
@@ -8334,35 +8363,35 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Term__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3053:1: rule__Term__Group__1__Impl : ( ( rule__Term__Group_1__0 )* ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3061:1: rule__Term__Group__1__Impl : ( ( rule__Term__Group_1__0 )* ) ;
     public final void rule__Term__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3057:1: ( ( ( rule__Term__Group_1__0 )* ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3058:1: ( ( rule__Term__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3065:1: ( ( ( rule__Term__Group_1__0 )* ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3066:1: ( ( rule__Term__Group_1__0 )* )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3058:1: ( ( rule__Term__Group_1__0 )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3059:1: ( rule__Term__Group_1__0 )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3066:1: ( ( rule__Term__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3067:1: ( rule__Term__Group_1__0 )*
             {
              before(grammarAccess.getTermAccess().getGroup_1()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3060:1: ( rule__Term__Group_1__0 )*
-            loop27:
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3068:1: ( rule__Term__Group_1__0 )*
+            loop26:
             do {
-                int alt27=2;
-                int LA27_0 = input.LA(1);
+                int alt26=2;
+                int LA26_0 = input.LA(1);
 
-                if ( (LA27_0==RULE_MULTIPLICATION_OPERATOR) ) {
-                    alt27=1;
+                if ( (LA26_0==RULE_MULTIPLICATION_OPERATOR) ) {
+                    alt26=1;
                 }
 
 
-                switch (alt27) {
+                switch (alt26) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3060:2: rule__Term__Group_1__0
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3068:2: rule__Term__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__Term__Group_1__0_in_rule__Term__Group__1__Impl6279);
+            	    pushFollow(FOLLOW_rule__Term__Group_1__0_in_rule__Term__Group__1__Impl6301);
             	    rule__Term__Group_1__0();
 
             	    state._fsp--;
@@ -8372,7 +8401,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop27;
+            	    break loop26;
                 }
             } while (true);
 
@@ -8399,21 +8428,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Term__Group_1__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3074:1: rule__Term__Group_1__0 : rule__Term__Group_1__0__Impl rule__Term__Group_1__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3082:1: rule__Term__Group_1__0 : rule__Term__Group_1__0__Impl rule__Term__Group_1__1 ;
     public final void rule__Term__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3078:1: ( rule__Term__Group_1__0__Impl rule__Term__Group_1__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3079:2: rule__Term__Group_1__0__Impl rule__Term__Group_1__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3086:1: ( rule__Term__Group_1__0__Impl rule__Term__Group_1__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3087:2: rule__Term__Group_1__0__Impl rule__Term__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Term__Group_1__0__Impl_in_rule__Term__Group_1__06314);
+            pushFollow(FOLLOW_rule__Term__Group_1__0__Impl_in_rule__Term__Group_1__06336);
             rule__Term__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Term__Group_1__1_in_rule__Term__Group_1__06317);
+            pushFollow(FOLLOW_rule__Term__Group_1__1_in_rule__Term__Group_1__06339);
             rule__Term__Group_1__1();
 
             state._fsp--;
@@ -8437,20 +8466,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Term__Group_1__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3086:1: rule__Term__Group_1__0__Impl : ( RULE_MULTIPLICATION_OPERATOR ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3094:1: rule__Term__Group_1__0__Impl : ( RULE_MULTIPLICATION_OPERATOR ) ;
     public final void rule__Term__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3090:1: ( ( RULE_MULTIPLICATION_OPERATOR ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3091:1: ( RULE_MULTIPLICATION_OPERATOR )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3098:1: ( ( RULE_MULTIPLICATION_OPERATOR ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3099:1: ( RULE_MULTIPLICATION_OPERATOR )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3091:1: ( RULE_MULTIPLICATION_OPERATOR )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3092:1: RULE_MULTIPLICATION_OPERATOR
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3099:1: ( RULE_MULTIPLICATION_OPERATOR )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3100:1: RULE_MULTIPLICATION_OPERATOR
             {
              before(grammarAccess.getTermAccess().getMULTIPLICATION_OPERATORTerminalRuleCall_1_0()); 
-            match(input,RULE_MULTIPLICATION_OPERATOR,FOLLOW_RULE_MULTIPLICATION_OPERATOR_in_rule__Term__Group_1__0__Impl6344); 
+            match(input,RULE_MULTIPLICATION_OPERATOR,FOLLOW_RULE_MULTIPLICATION_OPERATOR_in_rule__Term__Group_1__0__Impl6366); 
              after(grammarAccess.getTermAccess().getMULTIPLICATION_OPERATORTerminalRuleCall_1_0()); 
 
             }
@@ -8474,16 +8503,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Term__Group_1__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3103:1: rule__Term__Group_1__1 : rule__Term__Group_1__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3111:1: rule__Term__Group_1__1 : rule__Term__Group_1__1__Impl ;
     public final void rule__Term__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3107:1: ( rule__Term__Group_1__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3108:2: rule__Term__Group_1__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3115:1: ( rule__Term__Group_1__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3116:2: rule__Term__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Term__Group_1__1__Impl_in_rule__Term__Group_1__16373);
+            pushFollow(FOLLOW_rule__Term__Group_1__1__Impl_in_rule__Term__Group_1__16395);
             rule__Term__Group_1__1__Impl();
 
             state._fsp--;
@@ -8507,20 +8536,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Term__Group_1__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3114:1: rule__Term__Group_1__1__Impl : ( rulefactor ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3122:1: rule__Term__Group_1__1__Impl : ( rulefactor ) ;
     public final void rule__Term__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3118:1: ( ( rulefactor ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3119:1: ( rulefactor )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3126:1: ( ( rulefactor ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3127:1: ( rulefactor )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3119:1: ( rulefactor )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3120:1: rulefactor
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3127:1: ( rulefactor )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3128:1: rulefactor
             {
              before(grammarAccess.getTermAccess().getFactorParserRuleCall_1_1()); 
-            pushFollow(FOLLOW_rulefactor_in_rule__Term__Group_1__1__Impl6400);
+            pushFollow(FOLLOW_rulefactor_in_rule__Term__Group_1__1__Impl6422);
             rulefactor();
 
             state._fsp--;
@@ -8548,21 +8577,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_6__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3135:1: rule__Factor__Group_6__0 : rule__Factor__Group_6__0__Impl rule__Factor__Group_6__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3143:1: rule__Factor__Group_6__0 : rule__Factor__Group_6__0__Impl rule__Factor__Group_6__1 ;
     public final void rule__Factor__Group_6__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3139:1: ( rule__Factor__Group_6__0__Impl rule__Factor__Group_6__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3140:2: rule__Factor__Group_6__0__Impl rule__Factor__Group_6__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3147:1: ( rule__Factor__Group_6__0__Impl rule__Factor__Group_6__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3148:2: rule__Factor__Group_6__0__Impl rule__Factor__Group_6__1
             {
-            pushFollow(FOLLOW_rule__Factor__Group_6__0__Impl_in_rule__Factor__Group_6__06433);
+            pushFollow(FOLLOW_rule__Factor__Group_6__0__Impl_in_rule__Factor__Group_6__06455);
             rule__Factor__Group_6__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Factor__Group_6__1_in_rule__Factor__Group_6__06436);
+            pushFollow(FOLLOW_rule__Factor__Group_6__1_in_rule__Factor__Group_6__06458);
             rule__Factor__Group_6__1();
 
             state._fsp--;
@@ -8586,20 +8615,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_6__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3147:1: rule__Factor__Group_6__0__Impl : ( '(' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3155:1: rule__Factor__Group_6__0__Impl : ( '(' ) ;
     public final void rule__Factor__Group_6__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3151:1: ( ( '(' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3152:1: ( '(' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3159:1: ( ( '(' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3160:1: ( '(' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3152:1: ( '(' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3153:1: '('
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3160:1: ( '(' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3161:1: '('
             {
              before(grammarAccess.getFactorAccess().getLeftParenthesisKeyword_6_0()); 
-            match(input,48,FOLLOW_48_in_rule__Factor__Group_6__0__Impl6464); 
+            match(input,47,FOLLOW_47_in_rule__Factor__Group_6__0__Impl6486); 
              after(grammarAccess.getFactorAccess().getLeftParenthesisKeyword_6_0()); 
 
             }
@@ -8623,21 +8652,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_6__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3166:1: rule__Factor__Group_6__1 : rule__Factor__Group_6__1__Impl rule__Factor__Group_6__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3174:1: rule__Factor__Group_6__1 : rule__Factor__Group_6__1__Impl rule__Factor__Group_6__2 ;
     public final void rule__Factor__Group_6__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3170:1: ( rule__Factor__Group_6__1__Impl rule__Factor__Group_6__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3171:2: rule__Factor__Group_6__1__Impl rule__Factor__Group_6__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3178:1: ( rule__Factor__Group_6__1__Impl rule__Factor__Group_6__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3179:2: rule__Factor__Group_6__1__Impl rule__Factor__Group_6__2
             {
-            pushFollow(FOLLOW_rule__Factor__Group_6__1__Impl_in_rule__Factor__Group_6__16495);
+            pushFollow(FOLLOW_rule__Factor__Group_6__1__Impl_in_rule__Factor__Group_6__16517);
             rule__Factor__Group_6__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Factor__Group_6__2_in_rule__Factor__Group_6__16498);
+            pushFollow(FOLLOW_rule__Factor__Group_6__2_in_rule__Factor__Group_6__16520);
             rule__Factor__Group_6__2();
 
             state._fsp--;
@@ -8661,20 +8690,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_6__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3178:1: rule__Factor__Group_6__1__Impl : ( ruleexpression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3186:1: rule__Factor__Group_6__1__Impl : ( ruleexpression ) ;
     public final void rule__Factor__Group_6__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3182:1: ( ( ruleexpression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3183:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3190:1: ( ( ruleexpression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3191:1: ( ruleexpression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3183:1: ( ruleexpression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3184:1: ruleexpression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3191:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3192:1: ruleexpression
             {
              before(grammarAccess.getFactorAccess().getExpressionParserRuleCall_6_1()); 
-            pushFollow(FOLLOW_ruleexpression_in_rule__Factor__Group_6__1__Impl6525);
+            pushFollow(FOLLOW_ruleexpression_in_rule__Factor__Group_6__1__Impl6547);
             ruleexpression();
 
             state._fsp--;
@@ -8702,16 +8731,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_6__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3195:1: rule__Factor__Group_6__2 : rule__Factor__Group_6__2__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3203:1: rule__Factor__Group_6__2 : rule__Factor__Group_6__2__Impl ;
     public final void rule__Factor__Group_6__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3199:1: ( rule__Factor__Group_6__2__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3200:2: rule__Factor__Group_6__2__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3207:1: ( rule__Factor__Group_6__2__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3208:2: rule__Factor__Group_6__2__Impl
             {
-            pushFollow(FOLLOW_rule__Factor__Group_6__2__Impl_in_rule__Factor__Group_6__26554);
+            pushFollow(FOLLOW_rule__Factor__Group_6__2__Impl_in_rule__Factor__Group_6__26576);
             rule__Factor__Group_6__2__Impl();
 
             state._fsp--;
@@ -8735,20 +8764,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_6__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3206:1: rule__Factor__Group_6__2__Impl : ( ')' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3214:1: rule__Factor__Group_6__2__Impl : ( ')' ) ;
     public final void rule__Factor__Group_6__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3210:1: ( ( ')' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3211:1: ( ')' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3218:1: ( ( ')' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3219:1: ( ')' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3211:1: ( ')' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3212:1: ')'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3219:1: ( ')' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3220:1: ')'
             {
              before(grammarAccess.getFactorAccess().getRightParenthesisKeyword_6_2()); 
-            match(input,49,FOLLOW_49_in_rule__Factor__Group_6__2__Impl6582); 
+            match(input,48,FOLLOW_48_in_rule__Factor__Group_6__2__Impl6604); 
              after(grammarAccess.getFactorAccess().getRightParenthesisKeyword_6_2()); 
 
             }
@@ -8772,21 +8801,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_7__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3231:1: rule__Factor__Group_7__0 : rule__Factor__Group_7__0__Impl rule__Factor__Group_7__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3239:1: rule__Factor__Group_7__0 : rule__Factor__Group_7__0__Impl rule__Factor__Group_7__1 ;
     public final void rule__Factor__Group_7__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3235:1: ( rule__Factor__Group_7__0__Impl rule__Factor__Group_7__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3236:2: rule__Factor__Group_7__0__Impl rule__Factor__Group_7__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3243:1: ( rule__Factor__Group_7__0__Impl rule__Factor__Group_7__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3244:2: rule__Factor__Group_7__0__Impl rule__Factor__Group_7__1
             {
-            pushFollow(FOLLOW_rule__Factor__Group_7__0__Impl_in_rule__Factor__Group_7__06619);
+            pushFollow(FOLLOW_rule__Factor__Group_7__0__Impl_in_rule__Factor__Group_7__06641);
             rule__Factor__Group_7__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Factor__Group_7__1_in_rule__Factor__Group_7__06622);
+            pushFollow(FOLLOW_rule__Factor__Group_7__1_in_rule__Factor__Group_7__06644);
             rule__Factor__Group_7__1();
 
             state._fsp--;
@@ -8810,20 +8839,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_7__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3243:1: rule__Factor__Group_7__0__Impl : ( RULE_NOT_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3251:1: rule__Factor__Group_7__0__Impl : ( RULE_NOT_KEYWORD ) ;
     public final void rule__Factor__Group_7__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3247:1: ( ( RULE_NOT_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3248:1: ( RULE_NOT_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3255:1: ( ( RULE_NOT_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3256:1: ( RULE_NOT_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3248:1: ( RULE_NOT_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3249:1: RULE_NOT_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3256:1: ( RULE_NOT_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3257:1: RULE_NOT_KEYWORD
             {
              before(grammarAccess.getFactorAccess().getNOT_KEYWORDTerminalRuleCall_7_0()); 
-            match(input,RULE_NOT_KEYWORD,FOLLOW_RULE_NOT_KEYWORD_in_rule__Factor__Group_7__0__Impl6649); 
+            match(input,RULE_NOT_KEYWORD,FOLLOW_RULE_NOT_KEYWORD_in_rule__Factor__Group_7__0__Impl6671); 
              after(grammarAccess.getFactorAccess().getNOT_KEYWORDTerminalRuleCall_7_0()); 
 
             }
@@ -8847,16 +8876,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_7__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3260:1: rule__Factor__Group_7__1 : rule__Factor__Group_7__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3268:1: rule__Factor__Group_7__1 : rule__Factor__Group_7__1__Impl ;
     public final void rule__Factor__Group_7__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3264:1: ( rule__Factor__Group_7__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3265:2: rule__Factor__Group_7__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3272:1: ( rule__Factor__Group_7__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3273:2: rule__Factor__Group_7__1__Impl
             {
-            pushFollow(FOLLOW_rule__Factor__Group_7__1__Impl_in_rule__Factor__Group_7__16678);
+            pushFollow(FOLLOW_rule__Factor__Group_7__1__Impl_in_rule__Factor__Group_7__16700);
             rule__Factor__Group_7__1__Impl();
 
             state._fsp--;
@@ -8880,20 +8909,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Factor__Group_7__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3271:1: rule__Factor__Group_7__1__Impl : ( rulefactor ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3279:1: rule__Factor__Group_7__1__Impl : ( rulefactor ) ;
     public final void rule__Factor__Group_7__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3275:1: ( ( rulefactor ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3276:1: ( rulefactor )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3283:1: ( ( rulefactor ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3284:1: ( rulefactor )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3276:1: ( rulefactor )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3277:1: rulefactor
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3284:1: ( rulefactor )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3285:1: rulefactor
             {
              before(grammarAccess.getFactorAccess().getFactorParserRuleCall_7_1()); 
-            pushFollow(FOLLOW_rulefactor_in_rule__Factor__Group_7__1__Impl6705);
+            pushFollow(FOLLOW_rulefactor_in_rule__Factor__Group_7__1__Impl6727);
             rulefactor();
 
             state._fsp--;
@@ -8921,21 +8950,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Set__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3292:1: rule__Set__Group__0 : rule__Set__Group__0__Impl rule__Set__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3300:1: rule__Set__Group__0 : rule__Set__Group__0__Impl rule__Set__Group__1 ;
     public final void rule__Set__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3296:1: ( rule__Set__Group__0__Impl rule__Set__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3297:2: rule__Set__Group__0__Impl rule__Set__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3304:1: ( rule__Set__Group__0__Impl rule__Set__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3305:2: rule__Set__Group__0__Impl rule__Set__Group__1
             {
-            pushFollow(FOLLOW_rule__Set__Group__0__Impl_in_rule__Set__Group__06738);
+            pushFollow(FOLLOW_rule__Set__Group__0__Impl_in_rule__Set__Group__06760);
             rule__Set__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Set__Group__1_in_rule__Set__Group__06741);
+            pushFollow(FOLLOW_rule__Set__Group__1_in_rule__Set__Group__06763);
             rule__Set__Group__1();
 
             state._fsp--;
@@ -8959,20 +8988,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Set__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3304:1: rule__Set__Group__0__Impl : ( '[' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3312:1: rule__Set__Group__0__Impl : ( '[' ) ;
     public final void rule__Set__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3308:1: ( ( '[' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3309:1: ( '[' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3316:1: ( ( '[' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3317:1: ( '[' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3309:1: ( '[' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3310:1: '['
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3317:1: ( '[' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3318:1: '['
             {
              before(grammarAccess.getSetAccess().getLeftSquareBracketKeyword_0()); 
-            match(input,53,FOLLOW_53_in_rule__Set__Group__0__Impl6769); 
+            match(input,52,FOLLOW_52_in_rule__Set__Group__0__Impl6791); 
              after(grammarAccess.getSetAccess().getLeftSquareBracketKeyword_0()); 
 
             }
@@ -8996,21 +9025,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Set__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3323:1: rule__Set__Group__1 : rule__Set__Group__1__Impl rule__Set__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3331:1: rule__Set__Group__1 : rule__Set__Group__1__Impl rule__Set__Group__2 ;
     public final void rule__Set__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3327:1: ( rule__Set__Group__1__Impl rule__Set__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3328:2: rule__Set__Group__1__Impl rule__Set__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3335:1: ( rule__Set__Group__1__Impl rule__Set__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3336:2: rule__Set__Group__1__Impl rule__Set__Group__2
             {
-            pushFollow(FOLLOW_rule__Set__Group__1__Impl_in_rule__Set__Group__16800);
+            pushFollow(FOLLOW_rule__Set__Group__1__Impl_in_rule__Set__Group__16822);
             rule__Set__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Set__Group__2_in_rule__Set__Group__16803);
+            pushFollow(FOLLOW_rule__Set__Group__2_in_rule__Set__Group__16825);
             rule__Set__Group__2();
 
             state._fsp--;
@@ -9034,31 +9063,31 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Set__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3335:1: rule__Set__Group__1__Impl : ( ( ruleexpression_list )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3343:1: rule__Set__Group__1__Impl : ( ( ruleexpression_list )? ) ;
     public final void rule__Set__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3339:1: ( ( ( ruleexpression_list )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3340:1: ( ( ruleexpression_list )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3347:1: ( ( ( ruleexpression_list )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3348:1: ( ( ruleexpression_list )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3340:1: ( ( ruleexpression_list )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3341:1: ( ruleexpression_list )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3348:1: ( ( ruleexpression_list )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3349:1: ( ruleexpression_list )?
             {
              before(grammarAccess.getSetAccess().getExpression_listParserRuleCall_1()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3342:1: ( ruleexpression_list )?
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3350:1: ( ruleexpression_list )?
+            int alt27=2;
+            int LA27_0 = input.LA(1);
 
-            if ( ((LA28_0>=RULE_INTEGER_NUMBER && LA28_0<=RULE_ADDITION_OPERATOR)||(LA28_0>=RULE_STRING && LA28_0<=RULE_SIGNED_REAL_NUMBER)||LA28_0==RULE_NOT_KEYWORD||LA28_0==48||LA28_0==53) ) {
-                alt28=1;
+            if ( ((LA27_0>=RULE_INTEGER_NUMBER && LA27_0<=RULE_ADDITION_OPERATOR)||(LA27_0>=RULE_STRING && LA27_0<=RULE_SIGNED_REAL_NUMBER)||LA27_0==RULE_NOT_KEYWORD||LA27_0==47||LA27_0==52) ) {
+                alt27=1;
             }
-            switch (alt28) {
+            switch (alt27) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3342:3: ruleexpression_list
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3350:3: ruleexpression_list
                     {
-                    pushFollow(FOLLOW_ruleexpression_list_in_rule__Set__Group__1__Impl6831);
+                    pushFollow(FOLLOW_ruleexpression_list_in_rule__Set__Group__1__Impl6853);
                     ruleexpression_list();
 
                     state._fsp--;
@@ -9092,16 +9121,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Set__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3352:1: rule__Set__Group__2 : rule__Set__Group__2__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3360:1: rule__Set__Group__2 : rule__Set__Group__2__Impl ;
     public final void rule__Set__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3356:1: ( rule__Set__Group__2__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3357:2: rule__Set__Group__2__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3364:1: ( rule__Set__Group__2__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3365:2: rule__Set__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Set__Group__2__Impl_in_rule__Set__Group__26862);
+            pushFollow(FOLLOW_rule__Set__Group__2__Impl_in_rule__Set__Group__26884);
             rule__Set__Group__2__Impl();
 
             state._fsp--;
@@ -9125,20 +9154,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Set__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3363:1: rule__Set__Group__2__Impl : ( ']' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3371:1: rule__Set__Group__2__Impl : ( ']' ) ;
     public final void rule__Set__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3367:1: ( ( ']' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3368:1: ( ']' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3375:1: ( ( ']' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3376:1: ( ']' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3368:1: ( ']' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3369:1: ']'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3376:1: ( ']' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3377:1: ']'
             {
              before(grammarAccess.getSetAccess().getRightSquareBracketKeyword_2()); 
-            match(input,54,FOLLOW_54_in_rule__Set__Group__2__Impl6890); 
+            match(input,53,FOLLOW_53_in_rule__Set__Group__2__Impl6912); 
              after(grammarAccess.getSetAccess().getRightSquareBracketKeyword_2()); 
 
             }
@@ -9162,21 +9191,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Function_designator__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3388:1: rule__Function_designator__Group__0 : rule__Function_designator__Group__0__Impl rule__Function_designator__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3396:1: rule__Function_designator__Group__0 : rule__Function_designator__Group__0__Impl rule__Function_designator__Group__1 ;
     public final void rule__Function_designator__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3392:1: ( rule__Function_designator__Group__0__Impl rule__Function_designator__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3393:2: rule__Function_designator__Group__0__Impl rule__Function_designator__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3400:1: ( rule__Function_designator__Group__0__Impl rule__Function_designator__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3401:2: rule__Function_designator__Group__0__Impl rule__Function_designator__Group__1
             {
-            pushFollow(FOLLOW_rule__Function_designator__Group__0__Impl_in_rule__Function_designator__Group__06927);
+            pushFollow(FOLLOW_rule__Function_designator__Group__0__Impl_in_rule__Function_designator__Group__06949);
             rule__Function_designator__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Function_designator__Group__1_in_rule__Function_designator__Group__06930);
+            pushFollow(FOLLOW_rule__Function_designator__Group__1_in_rule__Function_designator__Group__06952);
             rule__Function_designator__Group__1();
 
             state._fsp--;
@@ -9200,20 +9229,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Function_designator__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3400:1: rule__Function_designator__Group__0__Impl : ( RULE_IDENTIFIER ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3408:1: rule__Function_designator__Group__0__Impl : ( RULE_IDENTIFIER ) ;
     public final void rule__Function_designator__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3404:1: ( ( RULE_IDENTIFIER ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3405:1: ( RULE_IDENTIFIER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3412:1: ( ( RULE_IDENTIFIER ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3413:1: ( RULE_IDENTIFIER )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3405:1: ( RULE_IDENTIFIER )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3406:1: RULE_IDENTIFIER
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3413:1: ( RULE_IDENTIFIER )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3414:1: RULE_IDENTIFIER
             {
              before(grammarAccess.getFunction_designatorAccess().getIDENTIFIERTerminalRuleCall_0()); 
-            match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Function_designator__Group__0__Impl6957); 
+            match(input,RULE_IDENTIFIER,FOLLOW_RULE_IDENTIFIER_in_rule__Function_designator__Group__0__Impl6979); 
              after(grammarAccess.getFunction_designatorAccess().getIDENTIFIERTerminalRuleCall_0()); 
 
             }
@@ -9237,21 +9266,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Function_designator__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3417:1: rule__Function_designator__Group__1 : rule__Function_designator__Group__1__Impl rule__Function_designator__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3425:1: rule__Function_designator__Group__1 : rule__Function_designator__Group__1__Impl rule__Function_designator__Group__2 ;
     public final void rule__Function_designator__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3421:1: ( rule__Function_designator__Group__1__Impl rule__Function_designator__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3422:2: rule__Function_designator__Group__1__Impl rule__Function_designator__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3429:1: ( rule__Function_designator__Group__1__Impl rule__Function_designator__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3430:2: rule__Function_designator__Group__1__Impl rule__Function_designator__Group__2
             {
-            pushFollow(FOLLOW_rule__Function_designator__Group__1__Impl_in_rule__Function_designator__Group__16986);
+            pushFollow(FOLLOW_rule__Function_designator__Group__1__Impl_in_rule__Function_designator__Group__17008);
             rule__Function_designator__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Function_designator__Group__2_in_rule__Function_designator__Group__16989);
+            pushFollow(FOLLOW_rule__Function_designator__Group__2_in_rule__Function_designator__Group__17011);
             rule__Function_designator__Group__2();
 
             state._fsp--;
@@ -9275,20 +9304,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Function_designator__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3429:1: rule__Function_designator__Group__1__Impl : ( '(' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3437:1: rule__Function_designator__Group__1__Impl : ( '(' ) ;
     public final void rule__Function_designator__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3433:1: ( ( '(' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3434:1: ( '(' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3441:1: ( ( '(' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3442:1: ( '(' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3434:1: ( '(' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3435:1: '('
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3442:1: ( '(' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3443:1: '('
             {
              before(grammarAccess.getFunction_designatorAccess().getLeftParenthesisKeyword_1()); 
-            match(input,48,FOLLOW_48_in_rule__Function_designator__Group__1__Impl7017); 
+            match(input,47,FOLLOW_47_in_rule__Function_designator__Group__1__Impl7039); 
              after(grammarAccess.getFunction_designatorAccess().getLeftParenthesisKeyword_1()); 
 
             }
@@ -9312,21 +9341,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Function_designator__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3448:1: rule__Function_designator__Group__2 : rule__Function_designator__Group__2__Impl rule__Function_designator__Group__3 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3456:1: rule__Function_designator__Group__2 : rule__Function_designator__Group__2__Impl rule__Function_designator__Group__3 ;
     public final void rule__Function_designator__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3452:1: ( rule__Function_designator__Group__2__Impl rule__Function_designator__Group__3 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3453:2: rule__Function_designator__Group__2__Impl rule__Function_designator__Group__3
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3460:1: ( rule__Function_designator__Group__2__Impl rule__Function_designator__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3461:2: rule__Function_designator__Group__2__Impl rule__Function_designator__Group__3
             {
-            pushFollow(FOLLOW_rule__Function_designator__Group__2__Impl_in_rule__Function_designator__Group__27048);
+            pushFollow(FOLLOW_rule__Function_designator__Group__2__Impl_in_rule__Function_designator__Group__27070);
             rule__Function_designator__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Function_designator__Group__3_in_rule__Function_designator__Group__27051);
+            pushFollow(FOLLOW_rule__Function_designator__Group__3_in_rule__Function_designator__Group__27073);
             rule__Function_designator__Group__3();
 
             state._fsp--;
@@ -9350,31 +9379,31 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Function_designator__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3460:1: rule__Function_designator__Group__2__Impl : ( ( ruleexpression_list )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3468:1: rule__Function_designator__Group__2__Impl : ( ( ruleexpression_list )? ) ;
     public final void rule__Function_designator__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3464:1: ( ( ( ruleexpression_list )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3465:1: ( ( ruleexpression_list )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3472:1: ( ( ( ruleexpression_list )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3473:1: ( ( ruleexpression_list )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3465:1: ( ( ruleexpression_list )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3466:1: ( ruleexpression_list )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3473:1: ( ( ruleexpression_list )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3474:1: ( ruleexpression_list )?
             {
              before(grammarAccess.getFunction_designatorAccess().getExpression_listParserRuleCall_2()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3467:1: ( ruleexpression_list )?
-            int alt29=2;
-            int LA29_0 = input.LA(1);
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3475:1: ( ruleexpression_list )?
+            int alt28=2;
+            int LA28_0 = input.LA(1);
 
-            if ( ((LA29_0>=RULE_INTEGER_NUMBER && LA29_0<=RULE_ADDITION_OPERATOR)||(LA29_0>=RULE_STRING && LA29_0<=RULE_SIGNED_REAL_NUMBER)||LA29_0==RULE_NOT_KEYWORD||LA29_0==48||LA29_0==53) ) {
-                alt29=1;
+            if ( ((LA28_0>=RULE_INTEGER_NUMBER && LA28_0<=RULE_ADDITION_OPERATOR)||(LA28_0>=RULE_STRING && LA28_0<=RULE_SIGNED_REAL_NUMBER)||LA28_0==RULE_NOT_KEYWORD||LA28_0==47||LA28_0==52) ) {
+                alt28=1;
             }
-            switch (alt29) {
+            switch (alt28) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3467:3: ruleexpression_list
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3475:3: ruleexpression_list
                     {
-                    pushFollow(FOLLOW_ruleexpression_list_in_rule__Function_designator__Group__2__Impl7079);
+                    pushFollow(FOLLOW_ruleexpression_list_in_rule__Function_designator__Group__2__Impl7101);
                     ruleexpression_list();
 
                     state._fsp--;
@@ -9408,16 +9437,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Function_designator__Group__3"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3477:1: rule__Function_designator__Group__3 : rule__Function_designator__Group__3__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3485:1: rule__Function_designator__Group__3 : rule__Function_designator__Group__3__Impl ;
     public final void rule__Function_designator__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3481:1: ( rule__Function_designator__Group__3__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3482:2: rule__Function_designator__Group__3__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3489:1: ( rule__Function_designator__Group__3__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3490:2: rule__Function_designator__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Function_designator__Group__3__Impl_in_rule__Function_designator__Group__37110);
+            pushFollow(FOLLOW_rule__Function_designator__Group__3__Impl_in_rule__Function_designator__Group__37132);
             rule__Function_designator__Group__3__Impl();
 
             state._fsp--;
@@ -9441,20 +9470,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Function_designator__Group__3__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3488:1: rule__Function_designator__Group__3__Impl : ( ')' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3496:1: rule__Function_designator__Group__3__Impl : ( ')' ) ;
     public final void rule__Function_designator__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3492:1: ( ( ')' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3493:1: ( ')' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3500:1: ( ( ')' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3501:1: ( ')' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3493:1: ( ')' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3494:1: ')'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3501:1: ( ')' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3502:1: ')'
             {
              before(grammarAccess.getFunction_designatorAccess().getRightParenthesisKeyword_3()); 
-            match(input,49,FOLLOW_49_in_rule__Function_designator__Group__3__Impl7138); 
+            match(input,48,FOLLOW_48_in_rule__Function_designator__Group__3__Impl7160); 
              after(grammarAccess.getFunction_designatorAccess().getRightParenthesisKeyword_3()); 
 
             }
@@ -9478,21 +9507,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Compound_statement__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3515:1: rule__Compound_statement__Group__0 : rule__Compound_statement__Group__0__Impl rule__Compound_statement__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3523:1: rule__Compound_statement__Group__0 : rule__Compound_statement__Group__0__Impl rule__Compound_statement__Group__1 ;
     public final void rule__Compound_statement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3519:1: ( rule__Compound_statement__Group__0__Impl rule__Compound_statement__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3520:2: rule__Compound_statement__Group__0__Impl rule__Compound_statement__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3527:1: ( rule__Compound_statement__Group__0__Impl rule__Compound_statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3528:2: rule__Compound_statement__Group__0__Impl rule__Compound_statement__Group__1
             {
-            pushFollow(FOLLOW_rule__Compound_statement__Group__0__Impl_in_rule__Compound_statement__Group__07177);
+            pushFollow(FOLLOW_rule__Compound_statement__Group__0__Impl_in_rule__Compound_statement__Group__07199);
             rule__Compound_statement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Compound_statement__Group__1_in_rule__Compound_statement__Group__07180);
+            pushFollow(FOLLOW_rule__Compound_statement__Group__1_in_rule__Compound_statement__Group__07202);
             rule__Compound_statement__Group__1();
 
             state._fsp--;
@@ -9516,20 +9545,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Compound_statement__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3527:1: rule__Compound_statement__Group__0__Impl : ( RULE_BEGIN_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3535:1: rule__Compound_statement__Group__0__Impl : ( RULE_BEGIN_KEYWORD ) ;
     public final void rule__Compound_statement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3531:1: ( ( RULE_BEGIN_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3532:1: ( RULE_BEGIN_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3539:1: ( ( RULE_BEGIN_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3540:1: ( RULE_BEGIN_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3532:1: ( RULE_BEGIN_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3533:1: RULE_BEGIN_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3540:1: ( RULE_BEGIN_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3541:1: RULE_BEGIN_KEYWORD
             {
              before(grammarAccess.getCompound_statementAccess().getBEGIN_KEYWORDTerminalRuleCall_0()); 
-            match(input,RULE_BEGIN_KEYWORD,FOLLOW_RULE_BEGIN_KEYWORD_in_rule__Compound_statement__Group__0__Impl7207); 
+            match(input,RULE_BEGIN_KEYWORD,FOLLOW_RULE_BEGIN_KEYWORD_in_rule__Compound_statement__Group__0__Impl7229); 
              after(grammarAccess.getCompound_statementAccess().getBEGIN_KEYWORDTerminalRuleCall_0()); 
 
             }
@@ -9553,21 +9582,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Compound_statement__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3544:1: rule__Compound_statement__Group__1 : rule__Compound_statement__Group__1__Impl rule__Compound_statement__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3552:1: rule__Compound_statement__Group__1 : rule__Compound_statement__Group__1__Impl rule__Compound_statement__Group__2 ;
     public final void rule__Compound_statement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3548:1: ( rule__Compound_statement__Group__1__Impl rule__Compound_statement__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3549:2: rule__Compound_statement__Group__1__Impl rule__Compound_statement__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3556:1: ( rule__Compound_statement__Group__1__Impl rule__Compound_statement__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3557:2: rule__Compound_statement__Group__1__Impl rule__Compound_statement__Group__2
             {
-            pushFollow(FOLLOW_rule__Compound_statement__Group__1__Impl_in_rule__Compound_statement__Group__17236);
+            pushFollow(FOLLOW_rule__Compound_statement__Group__1__Impl_in_rule__Compound_statement__Group__17258);
             rule__Compound_statement__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Compound_statement__Group__2_in_rule__Compound_statement__Group__17239);
+            pushFollow(FOLLOW_rule__Compound_statement__Group__2_in_rule__Compound_statement__Group__17261);
             rule__Compound_statement__Group__2();
 
             state._fsp--;
@@ -9591,20 +9620,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Compound_statement__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3556:1: rule__Compound_statement__Group__1__Impl : ( rulestatement_sequence ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3564:1: rule__Compound_statement__Group__1__Impl : ( rulestatement_sequence ) ;
     public final void rule__Compound_statement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3560:1: ( ( rulestatement_sequence ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3561:1: ( rulestatement_sequence )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3568:1: ( ( rulestatement_sequence ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3569:1: ( rulestatement_sequence )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3561:1: ( rulestatement_sequence )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3562:1: rulestatement_sequence
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3569:1: ( rulestatement_sequence )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3570:1: rulestatement_sequence
             {
              before(grammarAccess.getCompound_statementAccess().getStatement_sequenceParserRuleCall_1()); 
-            pushFollow(FOLLOW_rulestatement_sequence_in_rule__Compound_statement__Group__1__Impl7266);
+            pushFollow(FOLLOW_rulestatement_sequence_in_rule__Compound_statement__Group__1__Impl7288);
             rulestatement_sequence();
 
             state._fsp--;
@@ -9632,16 +9661,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Compound_statement__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3573:1: rule__Compound_statement__Group__2 : rule__Compound_statement__Group__2__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3581:1: rule__Compound_statement__Group__2 : rule__Compound_statement__Group__2__Impl ;
     public final void rule__Compound_statement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3577:1: ( rule__Compound_statement__Group__2__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3578:2: rule__Compound_statement__Group__2__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3585:1: ( rule__Compound_statement__Group__2__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3586:2: rule__Compound_statement__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Compound_statement__Group__2__Impl_in_rule__Compound_statement__Group__27295);
+            pushFollow(FOLLOW_rule__Compound_statement__Group__2__Impl_in_rule__Compound_statement__Group__27317);
             rule__Compound_statement__Group__2__Impl();
 
             state._fsp--;
@@ -9665,20 +9694,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Compound_statement__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3584:1: rule__Compound_statement__Group__2__Impl : ( RULE_END_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3592:1: rule__Compound_statement__Group__2__Impl : ( RULE_END_KEYWORD ) ;
     public final void rule__Compound_statement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3588:1: ( ( RULE_END_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3589:1: ( RULE_END_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3596:1: ( ( RULE_END_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3597:1: ( RULE_END_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3589:1: ( RULE_END_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3590:1: RULE_END_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3597:1: ( RULE_END_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3598:1: RULE_END_KEYWORD
             {
              before(grammarAccess.getCompound_statementAccess().getEND_KEYWORDTerminalRuleCall_2()); 
-            match(input,RULE_END_KEYWORD,FOLLOW_RULE_END_KEYWORD_in_rule__Compound_statement__Group__2__Impl7322); 
+            match(input,RULE_END_KEYWORD,FOLLOW_RULE_END_KEYWORD_in_rule__Compound_statement__Group__2__Impl7344); 
              after(grammarAccess.getCompound_statementAccess().getEND_KEYWORDTerminalRuleCall_2()); 
 
             }
@@ -9702,21 +9731,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__While_statement__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3607:1: rule__While_statement__Group__0 : rule__While_statement__Group__0__Impl rule__While_statement__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3615:1: rule__While_statement__Group__0 : rule__While_statement__Group__0__Impl rule__While_statement__Group__1 ;
     public final void rule__While_statement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3611:1: ( rule__While_statement__Group__0__Impl rule__While_statement__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3612:2: rule__While_statement__Group__0__Impl rule__While_statement__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3619:1: ( rule__While_statement__Group__0__Impl rule__While_statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3620:2: rule__While_statement__Group__0__Impl rule__While_statement__Group__1
             {
-            pushFollow(FOLLOW_rule__While_statement__Group__0__Impl_in_rule__While_statement__Group__07357);
+            pushFollow(FOLLOW_rule__While_statement__Group__0__Impl_in_rule__While_statement__Group__07379);
             rule__While_statement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__While_statement__Group__1_in_rule__While_statement__Group__07360);
+            pushFollow(FOLLOW_rule__While_statement__Group__1_in_rule__While_statement__Group__07382);
             rule__While_statement__Group__1();
 
             state._fsp--;
@@ -9740,20 +9769,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__While_statement__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3619:1: rule__While_statement__Group__0__Impl : ( RULE_WHILE_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3627:1: rule__While_statement__Group__0__Impl : ( RULE_WHILE_KEYWORD ) ;
     public final void rule__While_statement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3623:1: ( ( RULE_WHILE_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3624:1: ( RULE_WHILE_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3631:1: ( ( RULE_WHILE_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3632:1: ( RULE_WHILE_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3624:1: ( RULE_WHILE_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3625:1: RULE_WHILE_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3632:1: ( RULE_WHILE_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3633:1: RULE_WHILE_KEYWORD
             {
              before(grammarAccess.getWhile_statementAccess().getWHILE_KEYWORDTerminalRuleCall_0()); 
-            match(input,RULE_WHILE_KEYWORD,FOLLOW_RULE_WHILE_KEYWORD_in_rule__While_statement__Group__0__Impl7387); 
+            match(input,RULE_WHILE_KEYWORD,FOLLOW_RULE_WHILE_KEYWORD_in_rule__While_statement__Group__0__Impl7409); 
              after(grammarAccess.getWhile_statementAccess().getWHILE_KEYWORDTerminalRuleCall_0()); 
 
             }
@@ -9777,21 +9806,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__While_statement__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3636:1: rule__While_statement__Group__1 : rule__While_statement__Group__1__Impl rule__While_statement__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3644:1: rule__While_statement__Group__1 : rule__While_statement__Group__1__Impl rule__While_statement__Group__2 ;
     public final void rule__While_statement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3640:1: ( rule__While_statement__Group__1__Impl rule__While_statement__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3641:2: rule__While_statement__Group__1__Impl rule__While_statement__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3648:1: ( rule__While_statement__Group__1__Impl rule__While_statement__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3649:2: rule__While_statement__Group__1__Impl rule__While_statement__Group__2
             {
-            pushFollow(FOLLOW_rule__While_statement__Group__1__Impl_in_rule__While_statement__Group__17416);
+            pushFollow(FOLLOW_rule__While_statement__Group__1__Impl_in_rule__While_statement__Group__17438);
             rule__While_statement__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__While_statement__Group__2_in_rule__While_statement__Group__17419);
+            pushFollow(FOLLOW_rule__While_statement__Group__2_in_rule__While_statement__Group__17441);
             rule__While_statement__Group__2();
 
             state._fsp--;
@@ -9815,20 +9844,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__While_statement__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3648:1: rule__While_statement__Group__1__Impl : ( ruleexpression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3656:1: rule__While_statement__Group__1__Impl : ( ruleexpression ) ;
     public final void rule__While_statement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3652:1: ( ( ruleexpression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3653:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3660:1: ( ( ruleexpression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3661:1: ( ruleexpression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3653:1: ( ruleexpression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3654:1: ruleexpression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3661:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3662:1: ruleexpression
             {
              before(grammarAccess.getWhile_statementAccess().getExpressionParserRuleCall_1()); 
-            pushFollow(FOLLOW_ruleexpression_in_rule__While_statement__Group__1__Impl7446);
+            pushFollow(FOLLOW_ruleexpression_in_rule__While_statement__Group__1__Impl7468);
             ruleexpression();
 
             state._fsp--;
@@ -9856,21 +9885,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__While_statement__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3665:1: rule__While_statement__Group__2 : rule__While_statement__Group__2__Impl rule__While_statement__Group__3 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3673:1: rule__While_statement__Group__2 : rule__While_statement__Group__2__Impl rule__While_statement__Group__3 ;
     public final void rule__While_statement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3669:1: ( rule__While_statement__Group__2__Impl rule__While_statement__Group__3 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3670:2: rule__While_statement__Group__2__Impl rule__While_statement__Group__3
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3677:1: ( rule__While_statement__Group__2__Impl rule__While_statement__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3678:2: rule__While_statement__Group__2__Impl rule__While_statement__Group__3
             {
-            pushFollow(FOLLOW_rule__While_statement__Group__2__Impl_in_rule__While_statement__Group__27475);
+            pushFollow(FOLLOW_rule__While_statement__Group__2__Impl_in_rule__While_statement__Group__27497);
             rule__While_statement__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__While_statement__Group__3_in_rule__While_statement__Group__27478);
+            pushFollow(FOLLOW_rule__While_statement__Group__3_in_rule__While_statement__Group__27500);
             rule__While_statement__Group__3();
 
             state._fsp--;
@@ -9894,20 +9923,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__While_statement__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3677:1: rule__While_statement__Group__2__Impl : ( RULE_DO_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3685:1: rule__While_statement__Group__2__Impl : ( RULE_DO_KEYWORD ) ;
     public final void rule__While_statement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3681:1: ( ( RULE_DO_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3682:1: ( RULE_DO_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3689:1: ( ( RULE_DO_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3690:1: ( RULE_DO_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3682:1: ( RULE_DO_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3683:1: RULE_DO_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3690:1: ( RULE_DO_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3691:1: RULE_DO_KEYWORD
             {
              before(grammarAccess.getWhile_statementAccess().getDO_KEYWORDTerminalRuleCall_2()); 
-            match(input,RULE_DO_KEYWORD,FOLLOW_RULE_DO_KEYWORD_in_rule__While_statement__Group__2__Impl7505); 
+            match(input,RULE_DO_KEYWORD,FOLLOW_RULE_DO_KEYWORD_in_rule__While_statement__Group__2__Impl7527); 
              after(grammarAccess.getWhile_statementAccess().getDO_KEYWORDTerminalRuleCall_2()); 
 
             }
@@ -9931,16 +9960,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__While_statement__Group__3"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3694:1: rule__While_statement__Group__3 : rule__While_statement__Group__3__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3702:1: rule__While_statement__Group__3 : rule__While_statement__Group__3__Impl ;
     public final void rule__While_statement__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3698:1: ( rule__While_statement__Group__3__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3699:2: rule__While_statement__Group__3__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3706:1: ( rule__While_statement__Group__3__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3707:2: rule__While_statement__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__While_statement__Group__3__Impl_in_rule__While_statement__Group__37534);
+            pushFollow(FOLLOW_rule__While_statement__Group__3__Impl_in_rule__While_statement__Group__37556);
             rule__While_statement__Group__3__Impl();
 
             state._fsp--;
@@ -9964,20 +9993,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__While_statement__Group__3__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3705:1: rule__While_statement__Group__3__Impl : ( rulestatement ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3713:1: rule__While_statement__Group__3__Impl : ( rulestatement ) ;
     public final void rule__While_statement__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3709:1: ( ( rulestatement ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3710:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3717:1: ( ( rulestatement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3718:1: ( rulestatement )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3710:1: ( rulestatement )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3711:1: rulestatement
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3718:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3719:1: rulestatement
             {
              before(grammarAccess.getWhile_statementAccess().getStatementParserRuleCall_3()); 
-            pushFollow(FOLLOW_rulestatement_in_rule__While_statement__Group__3__Impl7561);
+            pushFollow(FOLLOW_rulestatement_in_rule__While_statement__Group__3__Impl7583);
             rulestatement();
 
             state._fsp--;
@@ -10005,21 +10034,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repeat_statement__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3730:1: rule__Repeat_statement__Group__0 : rule__Repeat_statement__Group__0__Impl rule__Repeat_statement__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3738:1: rule__Repeat_statement__Group__0 : rule__Repeat_statement__Group__0__Impl rule__Repeat_statement__Group__1 ;
     public final void rule__Repeat_statement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3734:1: ( rule__Repeat_statement__Group__0__Impl rule__Repeat_statement__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3735:2: rule__Repeat_statement__Group__0__Impl rule__Repeat_statement__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3742:1: ( rule__Repeat_statement__Group__0__Impl rule__Repeat_statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3743:2: rule__Repeat_statement__Group__0__Impl rule__Repeat_statement__Group__1
             {
-            pushFollow(FOLLOW_rule__Repeat_statement__Group__0__Impl_in_rule__Repeat_statement__Group__07598);
+            pushFollow(FOLLOW_rule__Repeat_statement__Group__0__Impl_in_rule__Repeat_statement__Group__07620);
             rule__Repeat_statement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Repeat_statement__Group__1_in_rule__Repeat_statement__Group__07601);
+            pushFollow(FOLLOW_rule__Repeat_statement__Group__1_in_rule__Repeat_statement__Group__07623);
             rule__Repeat_statement__Group__1();
 
             state._fsp--;
@@ -10043,20 +10072,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repeat_statement__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3742:1: rule__Repeat_statement__Group__0__Impl : ( RULE_REPEAT_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3750:1: rule__Repeat_statement__Group__0__Impl : ( RULE_REPEAT_KEYWORD ) ;
     public final void rule__Repeat_statement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3746:1: ( ( RULE_REPEAT_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3747:1: ( RULE_REPEAT_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3754:1: ( ( RULE_REPEAT_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3755:1: ( RULE_REPEAT_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3747:1: ( RULE_REPEAT_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3748:1: RULE_REPEAT_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3755:1: ( RULE_REPEAT_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3756:1: RULE_REPEAT_KEYWORD
             {
              before(grammarAccess.getRepeat_statementAccess().getREPEAT_KEYWORDTerminalRuleCall_0()); 
-            match(input,RULE_REPEAT_KEYWORD,FOLLOW_RULE_REPEAT_KEYWORD_in_rule__Repeat_statement__Group__0__Impl7628); 
+            match(input,RULE_REPEAT_KEYWORD,FOLLOW_RULE_REPEAT_KEYWORD_in_rule__Repeat_statement__Group__0__Impl7650); 
              after(grammarAccess.getRepeat_statementAccess().getREPEAT_KEYWORDTerminalRuleCall_0()); 
 
             }
@@ -10080,21 +10109,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repeat_statement__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3759:1: rule__Repeat_statement__Group__1 : rule__Repeat_statement__Group__1__Impl rule__Repeat_statement__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3767:1: rule__Repeat_statement__Group__1 : rule__Repeat_statement__Group__1__Impl rule__Repeat_statement__Group__2 ;
     public final void rule__Repeat_statement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3763:1: ( rule__Repeat_statement__Group__1__Impl rule__Repeat_statement__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3764:2: rule__Repeat_statement__Group__1__Impl rule__Repeat_statement__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3771:1: ( rule__Repeat_statement__Group__1__Impl rule__Repeat_statement__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3772:2: rule__Repeat_statement__Group__1__Impl rule__Repeat_statement__Group__2
             {
-            pushFollow(FOLLOW_rule__Repeat_statement__Group__1__Impl_in_rule__Repeat_statement__Group__17657);
+            pushFollow(FOLLOW_rule__Repeat_statement__Group__1__Impl_in_rule__Repeat_statement__Group__17679);
             rule__Repeat_statement__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Repeat_statement__Group__2_in_rule__Repeat_statement__Group__17660);
+            pushFollow(FOLLOW_rule__Repeat_statement__Group__2_in_rule__Repeat_statement__Group__17682);
             rule__Repeat_statement__Group__2();
 
             state._fsp--;
@@ -10118,20 +10147,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repeat_statement__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3771:1: rule__Repeat_statement__Group__1__Impl : ( rulestatement_sequence ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3779:1: rule__Repeat_statement__Group__1__Impl : ( rulestatement_sequence ) ;
     public final void rule__Repeat_statement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3775:1: ( ( rulestatement_sequence ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3776:1: ( rulestatement_sequence )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3783:1: ( ( rulestatement_sequence ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3784:1: ( rulestatement_sequence )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3776:1: ( rulestatement_sequence )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3777:1: rulestatement_sequence
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3784:1: ( rulestatement_sequence )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3785:1: rulestatement_sequence
             {
              before(grammarAccess.getRepeat_statementAccess().getStatement_sequenceParserRuleCall_1()); 
-            pushFollow(FOLLOW_rulestatement_sequence_in_rule__Repeat_statement__Group__1__Impl7687);
+            pushFollow(FOLLOW_rulestatement_sequence_in_rule__Repeat_statement__Group__1__Impl7709);
             rulestatement_sequence();
 
             state._fsp--;
@@ -10159,21 +10188,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repeat_statement__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3788:1: rule__Repeat_statement__Group__2 : rule__Repeat_statement__Group__2__Impl rule__Repeat_statement__Group__3 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3796:1: rule__Repeat_statement__Group__2 : rule__Repeat_statement__Group__2__Impl rule__Repeat_statement__Group__3 ;
     public final void rule__Repeat_statement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3792:1: ( rule__Repeat_statement__Group__2__Impl rule__Repeat_statement__Group__3 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3793:2: rule__Repeat_statement__Group__2__Impl rule__Repeat_statement__Group__3
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3800:1: ( rule__Repeat_statement__Group__2__Impl rule__Repeat_statement__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3801:2: rule__Repeat_statement__Group__2__Impl rule__Repeat_statement__Group__3
             {
-            pushFollow(FOLLOW_rule__Repeat_statement__Group__2__Impl_in_rule__Repeat_statement__Group__27716);
+            pushFollow(FOLLOW_rule__Repeat_statement__Group__2__Impl_in_rule__Repeat_statement__Group__27738);
             rule__Repeat_statement__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Repeat_statement__Group__3_in_rule__Repeat_statement__Group__27719);
+            pushFollow(FOLLOW_rule__Repeat_statement__Group__3_in_rule__Repeat_statement__Group__27741);
             rule__Repeat_statement__Group__3();
 
             state._fsp--;
@@ -10197,20 +10226,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repeat_statement__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3800:1: rule__Repeat_statement__Group__2__Impl : ( RULE_UNTIL_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3808:1: rule__Repeat_statement__Group__2__Impl : ( RULE_UNTIL_KEYWORD ) ;
     public final void rule__Repeat_statement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3804:1: ( ( RULE_UNTIL_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3805:1: ( RULE_UNTIL_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3812:1: ( ( RULE_UNTIL_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3813:1: ( RULE_UNTIL_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3805:1: ( RULE_UNTIL_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3806:1: RULE_UNTIL_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3813:1: ( RULE_UNTIL_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3814:1: RULE_UNTIL_KEYWORD
             {
              before(grammarAccess.getRepeat_statementAccess().getUNTIL_KEYWORDTerminalRuleCall_2()); 
-            match(input,RULE_UNTIL_KEYWORD,FOLLOW_RULE_UNTIL_KEYWORD_in_rule__Repeat_statement__Group__2__Impl7746); 
+            match(input,RULE_UNTIL_KEYWORD,FOLLOW_RULE_UNTIL_KEYWORD_in_rule__Repeat_statement__Group__2__Impl7768); 
              after(grammarAccess.getRepeat_statementAccess().getUNTIL_KEYWORDTerminalRuleCall_2()); 
 
             }
@@ -10234,16 +10263,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repeat_statement__Group__3"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3817:1: rule__Repeat_statement__Group__3 : rule__Repeat_statement__Group__3__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3825:1: rule__Repeat_statement__Group__3 : rule__Repeat_statement__Group__3__Impl ;
     public final void rule__Repeat_statement__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3821:1: ( rule__Repeat_statement__Group__3__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3822:2: rule__Repeat_statement__Group__3__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3829:1: ( rule__Repeat_statement__Group__3__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3830:2: rule__Repeat_statement__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Repeat_statement__Group__3__Impl_in_rule__Repeat_statement__Group__37775);
+            pushFollow(FOLLOW_rule__Repeat_statement__Group__3__Impl_in_rule__Repeat_statement__Group__37797);
             rule__Repeat_statement__Group__3__Impl();
 
             state._fsp--;
@@ -10267,20 +10296,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Repeat_statement__Group__3__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3828:1: rule__Repeat_statement__Group__3__Impl : ( ruleexpression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3836:1: rule__Repeat_statement__Group__3__Impl : ( ruleexpression ) ;
     public final void rule__Repeat_statement__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3832:1: ( ( ruleexpression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3833:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3840:1: ( ( ruleexpression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3841:1: ( ruleexpression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3833:1: ( ruleexpression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3834:1: ruleexpression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3841:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3842:1: ruleexpression
             {
              before(grammarAccess.getRepeat_statementAccess().getExpressionParserRuleCall_3()); 
-            pushFollow(FOLLOW_ruleexpression_in_rule__Repeat_statement__Group__3__Impl7802);
+            pushFollow(FOLLOW_ruleexpression_in_rule__Repeat_statement__Group__3__Impl7824);
             ruleexpression();
 
             state._fsp--;
@@ -10308,21 +10337,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3853:1: rule__For_statement__Group__0 : rule__For_statement__Group__0__Impl rule__For_statement__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3861:1: rule__For_statement__Group__0 : rule__For_statement__Group__0__Impl rule__For_statement__Group__1 ;
     public final void rule__For_statement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3857:1: ( rule__For_statement__Group__0__Impl rule__For_statement__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3858:2: rule__For_statement__Group__0__Impl rule__For_statement__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3865:1: ( rule__For_statement__Group__0__Impl rule__For_statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3866:2: rule__For_statement__Group__0__Impl rule__For_statement__Group__1
             {
-            pushFollow(FOLLOW_rule__For_statement__Group__0__Impl_in_rule__For_statement__Group__07839);
+            pushFollow(FOLLOW_rule__For_statement__Group__0__Impl_in_rule__For_statement__Group__07861);
             rule__For_statement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__For_statement__Group__1_in_rule__For_statement__Group__07842);
+            pushFollow(FOLLOW_rule__For_statement__Group__1_in_rule__For_statement__Group__07864);
             rule__For_statement__Group__1();
 
             state._fsp--;
@@ -10346,20 +10375,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3865:1: rule__For_statement__Group__0__Impl : ( RULE_FOR_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3873:1: rule__For_statement__Group__0__Impl : ( RULE_FOR_KEYWORD ) ;
     public final void rule__For_statement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3869:1: ( ( RULE_FOR_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3870:1: ( RULE_FOR_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3877:1: ( ( RULE_FOR_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3878:1: ( RULE_FOR_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3870:1: ( RULE_FOR_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3871:1: RULE_FOR_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3878:1: ( RULE_FOR_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3879:1: RULE_FOR_KEYWORD
             {
              before(grammarAccess.getFor_statementAccess().getFOR_KEYWORDTerminalRuleCall_0()); 
-            match(input,RULE_FOR_KEYWORD,FOLLOW_RULE_FOR_KEYWORD_in_rule__For_statement__Group__0__Impl7869); 
+            match(input,RULE_FOR_KEYWORD,FOLLOW_RULE_FOR_KEYWORD_in_rule__For_statement__Group__0__Impl7891); 
              after(grammarAccess.getFor_statementAccess().getFOR_KEYWORDTerminalRuleCall_0()); 
 
             }
@@ -10383,21 +10412,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3882:1: rule__For_statement__Group__1 : rule__For_statement__Group__1__Impl rule__For_statement__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3890:1: rule__For_statement__Group__1 : rule__For_statement__Group__1__Impl rule__For_statement__Group__2 ;
     public final void rule__For_statement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3886:1: ( rule__For_statement__Group__1__Impl rule__For_statement__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3887:2: rule__For_statement__Group__1__Impl rule__For_statement__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3894:1: ( rule__For_statement__Group__1__Impl rule__For_statement__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3895:2: rule__For_statement__Group__1__Impl rule__For_statement__Group__2
             {
-            pushFollow(FOLLOW_rule__For_statement__Group__1__Impl_in_rule__For_statement__Group__17898);
+            pushFollow(FOLLOW_rule__For_statement__Group__1__Impl_in_rule__For_statement__Group__17920);
             rule__For_statement__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__For_statement__Group__2_in_rule__For_statement__Group__17901);
+            pushFollow(FOLLOW_rule__For_statement__Group__2_in_rule__For_statement__Group__17923);
             rule__For_statement__Group__2();
 
             state._fsp--;
@@ -10421,20 +10450,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3894:1: rule__For_statement__Group__1__Impl : ( ruleassignment_statement ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3902:1: rule__For_statement__Group__1__Impl : ( ruleassignment_statement ) ;
     public final void rule__For_statement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3898:1: ( ( ruleassignment_statement ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3899:1: ( ruleassignment_statement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3906:1: ( ( ruleassignment_statement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3907:1: ( ruleassignment_statement )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3899:1: ( ruleassignment_statement )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3900:1: ruleassignment_statement
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3907:1: ( ruleassignment_statement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3908:1: ruleassignment_statement
             {
              before(grammarAccess.getFor_statementAccess().getAssignment_statementParserRuleCall_1()); 
-            pushFollow(FOLLOW_ruleassignment_statement_in_rule__For_statement__Group__1__Impl7928);
+            pushFollow(FOLLOW_ruleassignment_statement_in_rule__For_statement__Group__1__Impl7950);
             ruleassignment_statement();
 
             state._fsp--;
@@ -10462,21 +10491,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3911:1: rule__For_statement__Group__2 : rule__For_statement__Group__2__Impl rule__For_statement__Group__3 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3919:1: rule__For_statement__Group__2 : rule__For_statement__Group__2__Impl rule__For_statement__Group__3 ;
     public final void rule__For_statement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3915:1: ( rule__For_statement__Group__2__Impl rule__For_statement__Group__3 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3916:2: rule__For_statement__Group__2__Impl rule__For_statement__Group__3
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3923:1: ( rule__For_statement__Group__2__Impl rule__For_statement__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3924:2: rule__For_statement__Group__2__Impl rule__For_statement__Group__3
             {
-            pushFollow(FOLLOW_rule__For_statement__Group__2__Impl_in_rule__For_statement__Group__27957);
+            pushFollow(FOLLOW_rule__For_statement__Group__2__Impl_in_rule__For_statement__Group__27979);
             rule__For_statement__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__For_statement__Group__3_in_rule__For_statement__Group__27960);
+            pushFollow(FOLLOW_rule__For_statement__Group__3_in_rule__For_statement__Group__27982);
             rule__For_statement__Group__3();
 
             state._fsp--;
@@ -10500,23 +10529,23 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3923:1: rule__For_statement__Group__2__Impl : ( ( rule__For_statement__Alternatives_2 ) ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3931:1: rule__For_statement__Group__2__Impl : ( ( rule__For_statement__Alternatives_2 ) ) ;
     public final void rule__For_statement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3927:1: ( ( ( rule__For_statement__Alternatives_2 ) ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3928:1: ( ( rule__For_statement__Alternatives_2 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3935:1: ( ( ( rule__For_statement__Alternatives_2 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3936:1: ( ( rule__For_statement__Alternatives_2 ) )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3928:1: ( ( rule__For_statement__Alternatives_2 ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3929:1: ( rule__For_statement__Alternatives_2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3936:1: ( ( rule__For_statement__Alternatives_2 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3937:1: ( rule__For_statement__Alternatives_2 )
             {
              before(grammarAccess.getFor_statementAccess().getAlternatives_2()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3930:1: ( rule__For_statement__Alternatives_2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3930:2: rule__For_statement__Alternatives_2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3938:1: ( rule__For_statement__Alternatives_2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3938:2: rule__For_statement__Alternatives_2
             {
-            pushFollow(FOLLOW_rule__For_statement__Alternatives_2_in_rule__For_statement__Group__2__Impl7987);
+            pushFollow(FOLLOW_rule__For_statement__Alternatives_2_in_rule__For_statement__Group__2__Impl8009);
             rule__For_statement__Alternatives_2();
 
             state._fsp--;
@@ -10547,21 +10576,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__3"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3940:1: rule__For_statement__Group__3 : rule__For_statement__Group__3__Impl rule__For_statement__Group__4 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3948:1: rule__For_statement__Group__3 : rule__For_statement__Group__3__Impl rule__For_statement__Group__4 ;
     public final void rule__For_statement__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3944:1: ( rule__For_statement__Group__3__Impl rule__For_statement__Group__4 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3945:2: rule__For_statement__Group__3__Impl rule__For_statement__Group__4
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3952:1: ( rule__For_statement__Group__3__Impl rule__For_statement__Group__4 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3953:2: rule__For_statement__Group__3__Impl rule__For_statement__Group__4
             {
-            pushFollow(FOLLOW_rule__For_statement__Group__3__Impl_in_rule__For_statement__Group__38017);
+            pushFollow(FOLLOW_rule__For_statement__Group__3__Impl_in_rule__For_statement__Group__38039);
             rule__For_statement__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__For_statement__Group__4_in_rule__For_statement__Group__38020);
+            pushFollow(FOLLOW_rule__For_statement__Group__4_in_rule__For_statement__Group__38042);
             rule__For_statement__Group__4();
 
             state._fsp--;
@@ -10585,20 +10614,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__3__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3952:1: rule__For_statement__Group__3__Impl : ( ruleexpression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3960:1: rule__For_statement__Group__3__Impl : ( ruleexpression ) ;
     public final void rule__For_statement__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3956:1: ( ( ruleexpression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3957:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3964:1: ( ( ruleexpression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3965:1: ( ruleexpression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3957:1: ( ruleexpression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3958:1: ruleexpression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3965:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3966:1: ruleexpression
             {
              before(grammarAccess.getFor_statementAccess().getExpressionParserRuleCall_3()); 
-            pushFollow(FOLLOW_ruleexpression_in_rule__For_statement__Group__3__Impl8047);
+            pushFollow(FOLLOW_ruleexpression_in_rule__For_statement__Group__3__Impl8069);
             ruleexpression();
 
             state._fsp--;
@@ -10626,21 +10655,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__4"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3969:1: rule__For_statement__Group__4 : rule__For_statement__Group__4__Impl rule__For_statement__Group__5 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3977:1: rule__For_statement__Group__4 : rule__For_statement__Group__4__Impl rule__For_statement__Group__5 ;
     public final void rule__For_statement__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3973:1: ( rule__For_statement__Group__4__Impl rule__For_statement__Group__5 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3974:2: rule__For_statement__Group__4__Impl rule__For_statement__Group__5
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3981:1: ( rule__For_statement__Group__4__Impl rule__For_statement__Group__5 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3982:2: rule__For_statement__Group__4__Impl rule__For_statement__Group__5
             {
-            pushFollow(FOLLOW_rule__For_statement__Group__4__Impl_in_rule__For_statement__Group__48076);
+            pushFollow(FOLLOW_rule__For_statement__Group__4__Impl_in_rule__For_statement__Group__48098);
             rule__For_statement__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__For_statement__Group__5_in_rule__For_statement__Group__48079);
+            pushFollow(FOLLOW_rule__For_statement__Group__5_in_rule__For_statement__Group__48101);
             rule__For_statement__Group__5();
 
             state._fsp--;
@@ -10664,20 +10693,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__4__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3981:1: rule__For_statement__Group__4__Impl : ( RULE_DO_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3989:1: rule__For_statement__Group__4__Impl : ( RULE_DO_KEYWORD ) ;
     public final void rule__For_statement__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3985:1: ( ( RULE_DO_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3986:1: ( RULE_DO_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3993:1: ( ( RULE_DO_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3994:1: ( RULE_DO_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3986:1: ( RULE_DO_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3987:1: RULE_DO_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3994:1: ( RULE_DO_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3995:1: RULE_DO_KEYWORD
             {
              before(grammarAccess.getFor_statementAccess().getDO_KEYWORDTerminalRuleCall_4()); 
-            match(input,RULE_DO_KEYWORD,FOLLOW_RULE_DO_KEYWORD_in_rule__For_statement__Group__4__Impl8106); 
+            match(input,RULE_DO_KEYWORD,FOLLOW_RULE_DO_KEYWORD_in_rule__For_statement__Group__4__Impl8128); 
              after(grammarAccess.getFor_statementAccess().getDO_KEYWORDTerminalRuleCall_4()); 
 
             }
@@ -10701,16 +10730,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__5"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:3998:1: rule__For_statement__Group__5 : rule__For_statement__Group__5__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4006:1: rule__For_statement__Group__5 : rule__For_statement__Group__5__Impl ;
     public final void rule__For_statement__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4002:1: ( rule__For_statement__Group__5__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4003:2: rule__For_statement__Group__5__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4010:1: ( rule__For_statement__Group__5__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4011:2: rule__For_statement__Group__5__Impl
             {
-            pushFollow(FOLLOW_rule__For_statement__Group__5__Impl_in_rule__For_statement__Group__58135);
+            pushFollow(FOLLOW_rule__For_statement__Group__5__Impl_in_rule__For_statement__Group__58157);
             rule__For_statement__Group__5__Impl();
 
             state._fsp--;
@@ -10734,20 +10763,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__For_statement__Group__5__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4009:1: rule__For_statement__Group__5__Impl : ( rulestatement ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4017:1: rule__For_statement__Group__5__Impl : ( rulestatement ) ;
     public final void rule__For_statement__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4013:1: ( ( rulestatement ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4014:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4021:1: ( ( rulestatement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4022:1: ( rulestatement )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4014:1: ( rulestatement )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4015:1: rulestatement
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4022:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4023:1: rulestatement
             {
              before(grammarAccess.getFor_statementAccess().getStatementParserRuleCall_5()); 
-            pushFollow(FOLLOW_rulestatement_in_rule__For_statement__Group__5__Impl8162);
+            pushFollow(FOLLOW_rulestatement_in_rule__For_statement__Group__5__Impl8184);
             rulestatement();
 
             state._fsp--;
@@ -10775,21 +10804,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4038:1: rule__If_statement__Group__0 : rule__If_statement__Group__0__Impl rule__If_statement__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4046:1: rule__If_statement__Group__0 : rule__If_statement__Group__0__Impl rule__If_statement__Group__1 ;
     public final void rule__If_statement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4042:1: ( rule__If_statement__Group__0__Impl rule__If_statement__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4043:2: rule__If_statement__Group__0__Impl rule__If_statement__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4050:1: ( rule__If_statement__Group__0__Impl rule__If_statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4051:2: rule__If_statement__Group__0__Impl rule__If_statement__Group__1
             {
-            pushFollow(FOLLOW_rule__If_statement__Group__0__Impl_in_rule__If_statement__Group__08203);
+            pushFollow(FOLLOW_rule__If_statement__Group__0__Impl_in_rule__If_statement__Group__08225);
             rule__If_statement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__If_statement__Group__1_in_rule__If_statement__Group__08206);
+            pushFollow(FOLLOW_rule__If_statement__Group__1_in_rule__If_statement__Group__08228);
             rule__If_statement__Group__1();
 
             state._fsp--;
@@ -10813,20 +10842,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4050:1: rule__If_statement__Group__0__Impl : ( RULE_IF_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4058:1: rule__If_statement__Group__0__Impl : ( RULE_IF_KEYWORD ) ;
     public final void rule__If_statement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4054:1: ( ( RULE_IF_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4055:1: ( RULE_IF_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4062:1: ( ( RULE_IF_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4063:1: ( RULE_IF_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4055:1: ( RULE_IF_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4056:1: RULE_IF_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4063:1: ( RULE_IF_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4064:1: RULE_IF_KEYWORD
             {
              before(grammarAccess.getIf_statementAccess().getIF_KEYWORDTerminalRuleCall_0()); 
-            match(input,RULE_IF_KEYWORD,FOLLOW_RULE_IF_KEYWORD_in_rule__If_statement__Group__0__Impl8233); 
+            match(input,RULE_IF_KEYWORD,FOLLOW_RULE_IF_KEYWORD_in_rule__If_statement__Group__0__Impl8255); 
              after(grammarAccess.getIf_statementAccess().getIF_KEYWORDTerminalRuleCall_0()); 
 
             }
@@ -10850,21 +10879,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4067:1: rule__If_statement__Group__1 : rule__If_statement__Group__1__Impl rule__If_statement__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4075:1: rule__If_statement__Group__1 : rule__If_statement__Group__1__Impl rule__If_statement__Group__2 ;
     public final void rule__If_statement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4071:1: ( rule__If_statement__Group__1__Impl rule__If_statement__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4072:2: rule__If_statement__Group__1__Impl rule__If_statement__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4079:1: ( rule__If_statement__Group__1__Impl rule__If_statement__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4080:2: rule__If_statement__Group__1__Impl rule__If_statement__Group__2
             {
-            pushFollow(FOLLOW_rule__If_statement__Group__1__Impl_in_rule__If_statement__Group__18262);
+            pushFollow(FOLLOW_rule__If_statement__Group__1__Impl_in_rule__If_statement__Group__18284);
             rule__If_statement__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__If_statement__Group__2_in_rule__If_statement__Group__18265);
+            pushFollow(FOLLOW_rule__If_statement__Group__2_in_rule__If_statement__Group__18287);
             rule__If_statement__Group__2();
 
             state._fsp--;
@@ -10888,20 +10917,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4079:1: rule__If_statement__Group__1__Impl : ( ruleexpression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4087:1: rule__If_statement__Group__1__Impl : ( ruleexpression ) ;
     public final void rule__If_statement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4083:1: ( ( ruleexpression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4084:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4091:1: ( ( ruleexpression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4092:1: ( ruleexpression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4084:1: ( ruleexpression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4085:1: ruleexpression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4092:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4093:1: ruleexpression
             {
              before(grammarAccess.getIf_statementAccess().getExpressionParserRuleCall_1()); 
-            pushFollow(FOLLOW_ruleexpression_in_rule__If_statement__Group__1__Impl8292);
+            pushFollow(FOLLOW_ruleexpression_in_rule__If_statement__Group__1__Impl8314);
             ruleexpression();
 
             state._fsp--;
@@ -10929,21 +10958,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4096:1: rule__If_statement__Group__2 : rule__If_statement__Group__2__Impl rule__If_statement__Group__3 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4104:1: rule__If_statement__Group__2 : rule__If_statement__Group__2__Impl rule__If_statement__Group__3 ;
     public final void rule__If_statement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4100:1: ( rule__If_statement__Group__2__Impl rule__If_statement__Group__3 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4101:2: rule__If_statement__Group__2__Impl rule__If_statement__Group__3
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4108:1: ( rule__If_statement__Group__2__Impl rule__If_statement__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4109:2: rule__If_statement__Group__2__Impl rule__If_statement__Group__3
             {
-            pushFollow(FOLLOW_rule__If_statement__Group__2__Impl_in_rule__If_statement__Group__28321);
+            pushFollow(FOLLOW_rule__If_statement__Group__2__Impl_in_rule__If_statement__Group__28343);
             rule__If_statement__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__If_statement__Group__3_in_rule__If_statement__Group__28324);
+            pushFollow(FOLLOW_rule__If_statement__Group__3_in_rule__If_statement__Group__28346);
             rule__If_statement__Group__3();
 
             state._fsp--;
@@ -10967,20 +10996,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4108:1: rule__If_statement__Group__2__Impl : ( RULE_THEN_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4116:1: rule__If_statement__Group__2__Impl : ( RULE_THEN_KEYWORD ) ;
     public final void rule__If_statement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4112:1: ( ( RULE_THEN_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4113:1: ( RULE_THEN_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4120:1: ( ( RULE_THEN_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4121:1: ( RULE_THEN_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4113:1: ( RULE_THEN_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4114:1: RULE_THEN_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4121:1: ( RULE_THEN_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4122:1: RULE_THEN_KEYWORD
             {
              before(grammarAccess.getIf_statementAccess().getTHEN_KEYWORDTerminalRuleCall_2()); 
-            match(input,RULE_THEN_KEYWORD,FOLLOW_RULE_THEN_KEYWORD_in_rule__If_statement__Group__2__Impl8351); 
+            match(input,RULE_THEN_KEYWORD,FOLLOW_RULE_THEN_KEYWORD_in_rule__If_statement__Group__2__Impl8373); 
              after(grammarAccess.getIf_statementAccess().getTHEN_KEYWORDTerminalRuleCall_2()); 
 
             }
@@ -11004,21 +11033,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__3"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4125:1: rule__If_statement__Group__3 : rule__If_statement__Group__3__Impl rule__If_statement__Group__4 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4133:1: rule__If_statement__Group__3 : rule__If_statement__Group__3__Impl rule__If_statement__Group__4 ;
     public final void rule__If_statement__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4129:1: ( rule__If_statement__Group__3__Impl rule__If_statement__Group__4 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4130:2: rule__If_statement__Group__3__Impl rule__If_statement__Group__4
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4137:1: ( rule__If_statement__Group__3__Impl rule__If_statement__Group__4 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4138:2: rule__If_statement__Group__3__Impl rule__If_statement__Group__4
             {
-            pushFollow(FOLLOW_rule__If_statement__Group__3__Impl_in_rule__If_statement__Group__38380);
+            pushFollow(FOLLOW_rule__If_statement__Group__3__Impl_in_rule__If_statement__Group__38402);
             rule__If_statement__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__If_statement__Group__4_in_rule__If_statement__Group__38383);
+            pushFollow(FOLLOW_rule__If_statement__Group__4_in_rule__If_statement__Group__38405);
             rule__If_statement__Group__4();
 
             state._fsp--;
@@ -11042,20 +11071,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__3__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4137:1: rule__If_statement__Group__3__Impl : ( rulestatement ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4145:1: rule__If_statement__Group__3__Impl : ( rulestatement ) ;
     public final void rule__If_statement__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4141:1: ( ( rulestatement ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4142:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4149:1: ( ( rulestatement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4150:1: ( rulestatement )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4142:1: ( rulestatement )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4143:1: rulestatement
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4150:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4151:1: rulestatement
             {
              before(grammarAccess.getIf_statementAccess().getStatementParserRuleCall_3()); 
-            pushFollow(FOLLOW_rulestatement_in_rule__If_statement__Group__3__Impl8410);
+            pushFollow(FOLLOW_rulestatement_in_rule__If_statement__Group__3__Impl8432);
             rulestatement();
 
             state._fsp--;
@@ -11083,16 +11112,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__4"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4154:1: rule__If_statement__Group__4 : rule__If_statement__Group__4__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4162:1: rule__If_statement__Group__4 : rule__If_statement__Group__4__Impl ;
     public final void rule__If_statement__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4158:1: ( rule__If_statement__Group__4__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4159:2: rule__If_statement__Group__4__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4166:1: ( rule__If_statement__Group__4__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4167:2: rule__If_statement__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__If_statement__Group__4__Impl_in_rule__If_statement__Group__48439);
+            pushFollow(FOLLOW_rule__If_statement__Group__4__Impl_in_rule__If_statement__Group__48461);
             rule__If_statement__Group__4__Impl();
 
             state._fsp--;
@@ -11116,31 +11145,31 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group__4__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4165:1: rule__If_statement__Group__4__Impl : ( ( rule__If_statement__Group_4__0 )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4173:1: rule__If_statement__Group__4__Impl : ( ( rule__If_statement__Group_4__0 )? ) ;
     public final void rule__If_statement__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4169:1: ( ( ( rule__If_statement__Group_4__0 )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4170:1: ( ( rule__If_statement__Group_4__0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4177:1: ( ( ( rule__If_statement__Group_4__0 )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4178:1: ( ( rule__If_statement__Group_4__0 )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4170:1: ( ( rule__If_statement__Group_4__0 )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4171:1: ( rule__If_statement__Group_4__0 )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4178:1: ( ( rule__If_statement__Group_4__0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4179:1: ( rule__If_statement__Group_4__0 )?
             {
              before(grammarAccess.getIf_statementAccess().getGroup_4()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4172:1: ( rule__If_statement__Group_4__0 )?
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4180:1: ( rule__If_statement__Group_4__0 )?
+            int alt29=2;
+            int LA29_0 = input.LA(1);
 
-            if ( (LA30_0==RULE_ELSE_KEYWORD) ) {
-                alt30=1;
+            if ( (LA29_0==RULE_ELSE_KEYWORD) ) {
+                alt29=1;
             }
-            switch (alt30) {
+            switch (alt29) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4172:2: rule__If_statement__Group_4__0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4180:2: rule__If_statement__Group_4__0
                     {
-                    pushFollow(FOLLOW_rule__If_statement__Group_4__0_in_rule__If_statement__Group__4__Impl8466);
+                    pushFollow(FOLLOW_rule__If_statement__Group_4__0_in_rule__If_statement__Group__4__Impl8488);
                     rule__If_statement__Group_4__0();
 
                     state._fsp--;
@@ -11174,21 +11203,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group_4__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4192:1: rule__If_statement__Group_4__0 : rule__If_statement__Group_4__0__Impl rule__If_statement__Group_4__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4200:1: rule__If_statement__Group_4__0 : rule__If_statement__Group_4__0__Impl rule__If_statement__Group_4__1 ;
     public final void rule__If_statement__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4196:1: ( rule__If_statement__Group_4__0__Impl rule__If_statement__Group_4__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4197:2: rule__If_statement__Group_4__0__Impl rule__If_statement__Group_4__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4204:1: ( rule__If_statement__Group_4__0__Impl rule__If_statement__Group_4__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4205:2: rule__If_statement__Group_4__0__Impl rule__If_statement__Group_4__1
             {
-            pushFollow(FOLLOW_rule__If_statement__Group_4__0__Impl_in_rule__If_statement__Group_4__08507);
+            pushFollow(FOLLOW_rule__If_statement__Group_4__0__Impl_in_rule__If_statement__Group_4__08529);
             rule__If_statement__Group_4__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__If_statement__Group_4__1_in_rule__If_statement__Group_4__08510);
+            pushFollow(FOLLOW_rule__If_statement__Group_4__1_in_rule__If_statement__Group_4__08532);
             rule__If_statement__Group_4__1();
 
             state._fsp--;
@@ -11212,20 +11241,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group_4__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4204:1: rule__If_statement__Group_4__0__Impl : ( RULE_ELSE_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4212:1: rule__If_statement__Group_4__0__Impl : ( RULE_ELSE_KEYWORD ) ;
     public final void rule__If_statement__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4208:1: ( ( RULE_ELSE_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4209:1: ( RULE_ELSE_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4216:1: ( ( RULE_ELSE_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4217:1: ( RULE_ELSE_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4209:1: ( RULE_ELSE_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4210:1: RULE_ELSE_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4217:1: ( RULE_ELSE_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4218:1: RULE_ELSE_KEYWORD
             {
              before(grammarAccess.getIf_statementAccess().getELSE_KEYWORDTerminalRuleCall_4_0()); 
-            match(input,RULE_ELSE_KEYWORD,FOLLOW_RULE_ELSE_KEYWORD_in_rule__If_statement__Group_4__0__Impl8537); 
+            match(input,RULE_ELSE_KEYWORD,FOLLOW_RULE_ELSE_KEYWORD_in_rule__If_statement__Group_4__0__Impl8559); 
              after(grammarAccess.getIf_statementAccess().getELSE_KEYWORDTerminalRuleCall_4_0()); 
 
             }
@@ -11249,16 +11278,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group_4__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4221:1: rule__If_statement__Group_4__1 : rule__If_statement__Group_4__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4229:1: rule__If_statement__Group_4__1 : rule__If_statement__Group_4__1__Impl ;
     public final void rule__If_statement__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4225:1: ( rule__If_statement__Group_4__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4226:2: rule__If_statement__Group_4__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4233:1: ( rule__If_statement__Group_4__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4234:2: rule__If_statement__Group_4__1__Impl
             {
-            pushFollow(FOLLOW_rule__If_statement__Group_4__1__Impl_in_rule__If_statement__Group_4__18566);
+            pushFollow(FOLLOW_rule__If_statement__Group_4__1__Impl_in_rule__If_statement__Group_4__18588);
             rule__If_statement__Group_4__1__Impl();
 
             state._fsp--;
@@ -11282,20 +11311,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__If_statement__Group_4__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4232:1: rule__If_statement__Group_4__1__Impl : ( rulestatement ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4240:1: rule__If_statement__Group_4__1__Impl : ( rulestatement ) ;
     public final void rule__If_statement__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4236:1: ( ( rulestatement ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4237:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4244:1: ( ( rulestatement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4245:1: ( rulestatement )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4237:1: ( rulestatement )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4238:1: rulestatement
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4245:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4246:1: rulestatement
             {
              before(grammarAccess.getIf_statementAccess().getStatementParserRuleCall_4_1()); 
-            pushFollow(FOLLOW_rulestatement_in_rule__If_statement__Group_4__1__Impl8593);
+            pushFollow(FOLLOW_rulestatement_in_rule__If_statement__Group_4__1__Impl8615);
             rulestatement();
 
             state._fsp--;
@@ -11323,21 +11352,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4253:1: rule__Case_statement__Group__0 : rule__Case_statement__Group__0__Impl rule__Case_statement__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4261:1: rule__Case_statement__Group__0 : rule__Case_statement__Group__0__Impl rule__Case_statement__Group__1 ;
     public final void rule__Case_statement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4257:1: ( rule__Case_statement__Group__0__Impl rule__Case_statement__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4258:2: rule__Case_statement__Group__0__Impl rule__Case_statement__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4265:1: ( rule__Case_statement__Group__0__Impl rule__Case_statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4266:2: rule__Case_statement__Group__0__Impl rule__Case_statement__Group__1
             {
-            pushFollow(FOLLOW_rule__Case_statement__Group__0__Impl_in_rule__Case_statement__Group__08626);
+            pushFollow(FOLLOW_rule__Case_statement__Group__0__Impl_in_rule__Case_statement__Group__08648);
             rule__Case_statement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_statement__Group__1_in_rule__Case_statement__Group__08629);
+            pushFollow(FOLLOW_rule__Case_statement__Group__1_in_rule__Case_statement__Group__08651);
             rule__Case_statement__Group__1();
 
             state._fsp--;
@@ -11361,20 +11390,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4265:1: rule__Case_statement__Group__0__Impl : ( RULE_CASE_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4273:1: rule__Case_statement__Group__0__Impl : ( RULE_CASE_KEYWORD ) ;
     public final void rule__Case_statement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4269:1: ( ( RULE_CASE_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4270:1: ( RULE_CASE_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4277:1: ( ( RULE_CASE_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4278:1: ( RULE_CASE_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4270:1: ( RULE_CASE_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4271:1: RULE_CASE_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4278:1: ( RULE_CASE_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4279:1: RULE_CASE_KEYWORD
             {
              before(grammarAccess.getCase_statementAccess().getCASE_KEYWORDTerminalRuleCall_0()); 
-            match(input,RULE_CASE_KEYWORD,FOLLOW_RULE_CASE_KEYWORD_in_rule__Case_statement__Group__0__Impl8656); 
+            match(input,RULE_CASE_KEYWORD,FOLLOW_RULE_CASE_KEYWORD_in_rule__Case_statement__Group__0__Impl8678); 
              after(grammarAccess.getCase_statementAccess().getCASE_KEYWORDTerminalRuleCall_0()); 
 
             }
@@ -11398,21 +11427,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4282:1: rule__Case_statement__Group__1 : rule__Case_statement__Group__1__Impl rule__Case_statement__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4290:1: rule__Case_statement__Group__1 : rule__Case_statement__Group__1__Impl rule__Case_statement__Group__2 ;
     public final void rule__Case_statement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4286:1: ( rule__Case_statement__Group__1__Impl rule__Case_statement__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4287:2: rule__Case_statement__Group__1__Impl rule__Case_statement__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4294:1: ( rule__Case_statement__Group__1__Impl rule__Case_statement__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4295:2: rule__Case_statement__Group__1__Impl rule__Case_statement__Group__2
             {
-            pushFollow(FOLLOW_rule__Case_statement__Group__1__Impl_in_rule__Case_statement__Group__18685);
+            pushFollow(FOLLOW_rule__Case_statement__Group__1__Impl_in_rule__Case_statement__Group__18707);
             rule__Case_statement__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_statement__Group__2_in_rule__Case_statement__Group__18688);
+            pushFollow(FOLLOW_rule__Case_statement__Group__2_in_rule__Case_statement__Group__18710);
             rule__Case_statement__Group__2();
 
             state._fsp--;
@@ -11436,20 +11465,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4294:1: rule__Case_statement__Group__1__Impl : ( ruleexpression ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4302:1: rule__Case_statement__Group__1__Impl : ( ruleexpression ) ;
     public final void rule__Case_statement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4298:1: ( ( ruleexpression ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4299:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4306:1: ( ( ruleexpression ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4307:1: ( ruleexpression )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4299:1: ( ruleexpression )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4300:1: ruleexpression
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4307:1: ( ruleexpression )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4308:1: ruleexpression
             {
              before(grammarAccess.getCase_statementAccess().getExpressionParserRuleCall_1()); 
-            pushFollow(FOLLOW_ruleexpression_in_rule__Case_statement__Group__1__Impl8715);
+            pushFollow(FOLLOW_ruleexpression_in_rule__Case_statement__Group__1__Impl8737);
             ruleexpression();
 
             state._fsp--;
@@ -11477,21 +11506,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4311:1: rule__Case_statement__Group__2 : rule__Case_statement__Group__2__Impl rule__Case_statement__Group__3 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4319:1: rule__Case_statement__Group__2 : rule__Case_statement__Group__2__Impl rule__Case_statement__Group__3 ;
     public final void rule__Case_statement__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4315:1: ( rule__Case_statement__Group__2__Impl rule__Case_statement__Group__3 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4316:2: rule__Case_statement__Group__2__Impl rule__Case_statement__Group__3
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4323:1: ( rule__Case_statement__Group__2__Impl rule__Case_statement__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4324:2: rule__Case_statement__Group__2__Impl rule__Case_statement__Group__3
             {
-            pushFollow(FOLLOW_rule__Case_statement__Group__2__Impl_in_rule__Case_statement__Group__28744);
+            pushFollow(FOLLOW_rule__Case_statement__Group__2__Impl_in_rule__Case_statement__Group__28766);
             rule__Case_statement__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_statement__Group__3_in_rule__Case_statement__Group__28747);
+            pushFollow(FOLLOW_rule__Case_statement__Group__3_in_rule__Case_statement__Group__28769);
             rule__Case_statement__Group__3();
 
             state._fsp--;
@@ -11515,20 +11544,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4323:1: rule__Case_statement__Group__2__Impl : ( RULE_OF_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4331:1: rule__Case_statement__Group__2__Impl : ( RULE_OF_KEYWORD ) ;
     public final void rule__Case_statement__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4327:1: ( ( RULE_OF_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4328:1: ( RULE_OF_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4335:1: ( ( RULE_OF_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4336:1: ( RULE_OF_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4328:1: ( RULE_OF_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4329:1: RULE_OF_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4336:1: ( RULE_OF_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4337:1: RULE_OF_KEYWORD
             {
              before(grammarAccess.getCase_statementAccess().getOF_KEYWORDTerminalRuleCall_2()); 
-            match(input,RULE_OF_KEYWORD,FOLLOW_RULE_OF_KEYWORD_in_rule__Case_statement__Group__2__Impl8774); 
+            match(input,RULE_OF_KEYWORD,FOLLOW_RULE_OF_KEYWORD_in_rule__Case_statement__Group__2__Impl8796); 
              after(grammarAccess.getCase_statementAccess().getOF_KEYWORDTerminalRuleCall_2()); 
 
             }
@@ -11552,21 +11581,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__3"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4340:1: rule__Case_statement__Group__3 : rule__Case_statement__Group__3__Impl rule__Case_statement__Group__4 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4348:1: rule__Case_statement__Group__3 : rule__Case_statement__Group__3__Impl rule__Case_statement__Group__4 ;
     public final void rule__Case_statement__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4344:1: ( rule__Case_statement__Group__3__Impl rule__Case_statement__Group__4 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4345:2: rule__Case_statement__Group__3__Impl rule__Case_statement__Group__4
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4352:1: ( rule__Case_statement__Group__3__Impl rule__Case_statement__Group__4 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4353:2: rule__Case_statement__Group__3__Impl rule__Case_statement__Group__4
             {
-            pushFollow(FOLLOW_rule__Case_statement__Group__3__Impl_in_rule__Case_statement__Group__38803);
+            pushFollow(FOLLOW_rule__Case_statement__Group__3__Impl_in_rule__Case_statement__Group__38825);
             rule__Case_statement__Group__3__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_statement__Group__4_in_rule__Case_statement__Group__38806);
+            pushFollow(FOLLOW_rule__Case_statement__Group__4_in_rule__Case_statement__Group__38828);
             rule__Case_statement__Group__4();
 
             state._fsp--;
@@ -11590,20 +11619,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__3__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4352:1: rule__Case_statement__Group__3__Impl : ( rulecase_limb ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4360:1: rule__Case_statement__Group__3__Impl : ( rulecase_limb ) ;
     public final void rule__Case_statement__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4356:1: ( ( rulecase_limb ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4357:1: ( rulecase_limb )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4364:1: ( ( rulecase_limb ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4365:1: ( rulecase_limb )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4357:1: ( rulecase_limb )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4358:1: rulecase_limb
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4365:1: ( rulecase_limb )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4366:1: rulecase_limb
             {
              before(grammarAccess.getCase_statementAccess().getCase_limbParserRuleCall_3()); 
-            pushFollow(FOLLOW_rulecase_limb_in_rule__Case_statement__Group__3__Impl8833);
+            pushFollow(FOLLOW_rulecase_limb_in_rule__Case_statement__Group__3__Impl8855);
             rulecase_limb();
 
             state._fsp--;
@@ -11631,21 +11660,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__4"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4369:1: rule__Case_statement__Group__4 : rule__Case_statement__Group__4__Impl rule__Case_statement__Group__5 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4377:1: rule__Case_statement__Group__4 : rule__Case_statement__Group__4__Impl rule__Case_statement__Group__5 ;
     public final void rule__Case_statement__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4373:1: ( rule__Case_statement__Group__4__Impl rule__Case_statement__Group__5 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4374:2: rule__Case_statement__Group__4__Impl rule__Case_statement__Group__5
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4381:1: ( rule__Case_statement__Group__4__Impl rule__Case_statement__Group__5 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4382:2: rule__Case_statement__Group__4__Impl rule__Case_statement__Group__5
             {
-            pushFollow(FOLLOW_rule__Case_statement__Group__4__Impl_in_rule__Case_statement__Group__48862);
+            pushFollow(FOLLOW_rule__Case_statement__Group__4__Impl_in_rule__Case_statement__Group__48884);
             rule__Case_statement__Group__4__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_statement__Group__5_in_rule__Case_statement__Group__48865);
+            pushFollow(FOLLOW_rule__Case_statement__Group__5_in_rule__Case_statement__Group__48887);
             rule__Case_statement__Group__5();
 
             state._fsp--;
@@ -11669,41 +11698,41 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__4__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4381:1: rule__Case_statement__Group__4__Impl : ( ( rule__Case_statement__Group_4__0 )* ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4389:1: rule__Case_statement__Group__4__Impl : ( ( rule__Case_statement__Group_4__0 )* ) ;
     public final void rule__Case_statement__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4385:1: ( ( ( rule__Case_statement__Group_4__0 )* ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4386:1: ( ( rule__Case_statement__Group_4__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4393:1: ( ( ( rule__Case_statement__Group_4__0 )* ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4394:1: ( ( rule__Case_statement__Group_4__0 )* )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4386:1: ( ( rule__Case_statement__Group_4__0 )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4387:1: ( rule__Case_statement__Group_4__0 )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4394:1: ( ( rule__Case_statement__Group_4__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4395:1: ( rule__Case_statement__Group_4__0 )*
             {
              before(grammarAccess.getCase_statementAccess().getGroup_4()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4388:1: ( rule__Case_statement__Group_4__0 )*
-            loop31:
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4396:1: ( rule__Case_statement__Group_4__0 )*
+            loop30:
             do {
-                int alt31=2;
-                int LA31_0 = input.LA(1);
+                int alt30=2;
+                int LA30_0 = input.LA(1);
 
-                if ( (LA31_0==47) ) {
-                    int LA31_1 = input.LA(2);
+                if ( (LA30_0==46) ) {
+                    int LA30_1 = input.LA(2);
 
-                    if ( ((LA31_1>=RULE_INTEGER_NUMBER && LA31_1<=RULE_IDENTIFIER)||LA31_1==RULE_STRING||(LA31_1>=RULE_REAL_NUMBER && LA31_1<=RULE_SIGNED_REAL_NUMBER)||(LA31_1>=43 && LA31_1<=44)) ) {
-                        alt31=1;
+                    if ( ((LA30_1>=RULE_INTEGER_NUMBER && LA30_1<=RULE_ADDITION_OPERATOR)||LA30_1==RULE_STRING||(LA30_1>=RULE_REAL_NUMBER && LA30_1<=RULE_SIGNED_REAL_NUMBER)) ) {
+                        alt30=1;
                     }
 
 
                 }
 
 
-                switch (alt31) {
+                switch (alt30) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4388:2: rule__Case_statement__Group_4__0
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4396:2: rule__Case_statement__Group_4__0
             	    {
-            	    pushFollow(FOLLOW_rule__Case_statement__Group_4__0_in_rule__Case_statement__Group__4__Impl8892);
+            	    pushFollow(FOLLOW_rule__Case_statement__Group_4__0_in_rule__Case_statement__Group__4__Impl8914);
             	    rule__Case_statement__Group_4__0();
 
             	    state._fsp--;
@@ -11713,7 +11742,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop31;
+            	    break loop30;
                 }
             } while (true);
 
@@ -11740,21 +11769,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__5"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4398:1: rule__Case_statement__Group__5 : rule__Case_statement__Group__5__Impl rule__Case_statement__Group__6 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4406:1: rule__Case_statement__Group__5 : rule__Case_statement__Group__5__Impl rule__Case_statement__Group__6 ;
     public final void rule__Case_statement__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4402:1: ( rule__Case_statement__Group__5__Impl rule__Case_statement__Group__6 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4403:2: rule__Case_statement__Group__5__Impl rule__Case_statement__Group__6
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4410:1: ( rule__Case_statement__Group__5__Impl rule__Case_statement__Group__6 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4411:2: rule__Case_statement__Group__5__Impl rule__Case_statement__Group__6
             {
-            pushFollow(FOLLOW_rule__Case_statement__Group__5__Impl_in_rule__Case_statement__Group__58923);
+            pushFollow(FOLLOW_rule__Case_statement__Group__5__Impl_in_rule__Case_statement__Group__58945);
             rule__Case_statement__Group__5__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_statement__Group__6_in_rule__Case_statement__Group__58926);
+            pushFollow(FOLLOW_rule__Case_statement__Group__6_in_rule__Case_statement__Group__58948);
             rule__Case_statement__Group__6();
 
             state._fsp--;
@@ -11778,31 +11807,31 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__5__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4410:1: rule__Case_statement__Group__5__Impl : ( ( ';' )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4418:1: rule__Case_statement__Group__5__Impl : ( ( ';' )? ) ;
     public final void rule__Case_statement__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4414:1: ( ( ( ';' )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4415:1: ( ( ';' )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4422:1: ( ( ( ';' )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4423:1: ( ( ';' )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4415:1: ( ( ';' )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4416:1: ( ';' )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4423:1: ( ( ';' )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4424:1: ( ';' )?
             {
              before(grammarAccess.getCase_statementAccess().getSemicolonKeyword_5()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4417:1: ( ';' )?
-            int alt32=2;
-            int LA32_0 = input.LA(1);
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4425:1: ( ';' )?
+            int alt31=2;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA32_0==47) ) {
-                alt32=1;
+            if ( (LA31_0==46) ) {
+                alt31=1;
             }
-            switch (alt32) {
+            switch (alt31) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4418:2: ';'
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4426:2: ';'
                     {
-                    match(input,47,FOLLOW_47_in_rule__Case_statement__Group__5__Impl8955); 
+                    match(input,46,FOLLOW_46_in_rule__Case_statement__Group__5__Impl8977); 
 
                     }
                     break;
@@ -11832,16 +11861,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__6"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4429:1: rule__Case_statement__Group__6 : rule__Case_statement__Group__6__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4437:1: rule__Case_statement__Group__6 : rule__Case_statement__Group__6__Impl ;
     public final void rule__Case_statement__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4433:1: ( rule__Case_statement__Group__6__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4434:2: rule__Case_statement__Group__6__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4441:1: ( rule__Case_statement__Group__6__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4442:2: rule__Case_statement__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__Case_statement__Group__6__Impl_in_rule__Case_statement__Group__68988);
+            pushFollow(FOLLOW_rule__Case_statement__Group__6__Impl_in_rule__Case_statement__Group__69010);
             rule__Case_statement__Group__6__Impl();
 
             state._fsp--;
@@ -11865,20 +11894,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group__6__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4440:1: rule__Case_statement__Group__6__Impl : ( RULE_END_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4448:1: rule__Case_statement__Group__6__Impl : ( RULE_END_KEYWORD ) ;
     public final void rule__Case_statement__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4444:1: ( ( RULE_END_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4445:1: ( RULE_END_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4452:1: ( ( RULE_END_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4453:1: ( RULE_END_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4445:1: ( RULE_END_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4446:1: RULE_END_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4453:1: ( RULE_END_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4454:1: RULE_END_KEYWORD
             {
              before(grammarAccess.getCase_statementAccess().getEND_KEYWORDTerminalRuleCall_6()); 
-            match(input,RULE_END_KEYWORD,FOLLOW_RULE_END_KEYWORD_in_rule__Case_statement__Group__6__Impl9015); 
+            match(input,RULE_END_KEYWORD,FOLLOW_RULE_END_KEYWORD_in_rule__Case_statement__Group__6__Impl9037); 
              after(grammarAccess.getCase_statementAccess().getEND_KEYWORDTerminalRuleCall_6()); 
 
             }
@@ -11902,21 +11931,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group_4__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4471:1: rule__Case_statement__Group_4__0 : rule__Case_statement__Group_4__0__Impl rule__Case_statement__Group_4__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4479:1: rule__Case_statement__Group_4__0 : rule__Case_statement__Group_4__0__Impl rule__Case_statement__Group_4__1 ;
     public final void rule__Case_statement__Group_4__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4475:1: ( rule__Case_statement__Group_4__0__Impl rule__Case_statement__Group_4__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4476:2: rule__Case_statement__Group_4__0__Impl rule__Case_statement__Group_4__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4483:1: ( rule__Case_statement__Group_4__0__Impl rule__Case_statement__Group_4__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4484:2: rule__Case_statement__Group_4__0__Impl rule__Case_statement__Group_4__1
             {
-            pushFollow(FOLLOW_rule__Case_statement__Group_4__0__Impl_in_rule__Case_statement__Group_4__09058);
+            pushFollow(FOLLOW_rule__Case_statement__Group_4__0__Impl_in_rule__Case_statement__Group_4__09080);
             rule__Case_statement__Group_4__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_statement__Group_4__1_in_rule__Case_statement__Group_4__09061);
+            pushFollow(FOLLOW_rule__Case_statement__Group_4__1_in_rule__Case_statement__Group_4__09083);
             rule__Case_statement__Group_4__1();
 
             state._fsp--;
@@ -11940,20 +11969,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group_4__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4483:1: rule__Case_statement__Group_4__0__Impl : ( ';' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4491:1: rule__Case_statement__Group_4__0__Impl : ( ';' ) ;
     public final void rule__Case_statement__Group_4__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4487:1: ( ( ';' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4488:1: ( ';' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4495:1: ( ( ';' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4496:1: ( ';' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4488:1: ( ';' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4489:1: ';'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4496:1: ( ';' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4497:1: ';'
             {
              before(grammarAccess.getCase_statementAccess().getSemicolonKeyword_4_0()); 
-            match(input,47,FOLLOW_47_in_rule__Case_statement__Group_4__0__Impl9089); 
+            match(input,46,FOLLOW_46_in_rule__Case_statement__Group_4__0__Impl9111); 
              after(grammarAccess.getCase_statementAccess().getSemicolonKeyword_4_0()); 
 
             }
@@ -11977,16 +12006,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group_4__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4502:1: rule__Case_statement__Group_4__1 : rule__Case_statement__Group_4__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4510:1: rule__Case_statement__Group_4__1 : rule__Case_statement__Group_4__1__Impl ;
     public final void rule__Case_statement__Group_4__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4506:1: ( rule__Case_statement__Group_4__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4507:2: rule__Case_statement__Group_4__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4514:1: ( rule__Case_statement__Group_4__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4515:2: rule__Case_statement__Group_4__1__Impl
             {
-            pushFollow(FOLLOW_rule__Case_statement__Group_4__1__Impl_in_rule__Case_statement__Group_4__19120);
+            pushFollow(FOLLOW_rule__Case_statement__Group_4__1__Impl_in_rule__Case_statement__Group_4__19142);
             rule__Case_statement__Group_4__1__Impl();
 
             state._fsp--;
@@ -12010,20 +12039,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_statement__Group_4__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4513:1: rule__Case_statement__Group_4__1__Impl : ( rulecase_limb ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4521:1: rule__Case_statement__Group_4__1__Impl : ( rulecase_limb ) ;
     public final void rule__Case_statement__Group_4__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4517:1: ( ( rulecase_limb ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4518:1: ( rulecase_limb )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4525:1: ( ( rulecase_limb ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4526:1: ( rulecase_limb )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4518:1: ( rulecase_limb )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4519:1: rulecase_limb
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4526:1: ( rulecase_limb )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4527:1: rulecase_limb
             {
              before(grammarAccess.getCase_statementAccess().getCase_limbParserRuleCall_4_1()); 
-            pushFollow(FOLLOW_rulecase_limb_in_rule__Case_statement__Group_4__1__Impl9147);
+            pushFollow(FOLLOW_rulecase_limb_in_rule__Case_statement__Group_4__1__Impl9169);
             rulecase_limb();
 
             state._fsp--;
@@ -12051,21 +12080,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_limb__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4534:1: rule__Case_limb__Group__0 : rule__Case_limb__Group__0__Impl rule__Case_limb__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4542:1: rule__Case_limb__Group__0 : rule__Case_limb__Group__0__Impl rule__Case_limb__Group__1 ;
     public final void rule__Case_limb__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4538:1: ( rule__Case_limb__Group__0__Impl rule__Case_limb__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4539:2: rule__Case_limb__Group__0__Impl rule__Case_limb__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4546:1: ( rule__Case_limb__Group__0__Impl rule__Case_limb__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4547:2: rule__Case_limb__Group__0__Impl rule__Case_limb__Group__1
             {
-            pushFollow(FOLLOW_rule__Case_limb__Group__0__Impl_in_rule__Case_limb__Group__09180);
+            pushFollow(FOLLOW_rule__Case_limb__Group__0__Impl_in_rule__Case_limb__Group__09202);
             rule__Case_limb__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_limb__Group__1_in_rule__Case_limb__Group__09183);
+            pushFollow(FOLLOW_rule__Case_limb__Group__1_in_rule__Case_limb__Group__09205);
             rule__Case_limb__Group__1();
 
             state._fsp--;
@@ -12089,20 +12118,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_limb__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4546:1: rule__Case_limb__Group__0__Impl : ( rulecase_label_list ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4554:1: rule__Case_limb__Group__0__Impl : ( rulecase_label_list ) ;
     public final void rule__Case_limb__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4550:1: ( ( rulecase_label_list ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4551:1: ( rulecase_label_list )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4558:1: ( ( rulecase_label_list ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4559:1: ( rulecase_label_list )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4551:1: ( rulecase_label_list )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4552:1: rulecase_label_list
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4559:1: ( rulecase_label_list )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4560:1: rulecase_label_list
             {
              before(grammarAccess.getCase_limbAccess().getCase_label_listParserRuleCall_0()); 
-            pushFollow(FOLLOW_rulecase_label_list_in_rule__Case_limb__Group__0__Impl9210);
+            pushFollow(FOLLOW_rulecase_label_list_in_rule__Case_limb__Group__0__Impl9232);
             rulecase_label_list();
 
             state._fsp--;
@@ -12130,21 +12159,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_limb__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4563:1: rule__Case_limb__Group__1 : rule__Case_limb__Group__1__Impl rule__Case_limb__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4571:1: rule__Case_limb__Group__1 : rule__Case_limb__Group__1__Impl rule__Case_limb__Group__2 ;
     public final void rule__Case_limb__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4567:1: ( rule__Case_limb__Group__1__Impl rule__Case_limb__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4568:2: rule__Case_limb__Group__1__Impl rule__Case_limb__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4575:1: ( rule__Case_limb__Group__1__Impl rule__Case_limb__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4576:2: rule__Case_limb__Group__1__Impl rule__Case_limb__Group__2
             {
-            pushFollow(FOLLOW_rule__Case_limb__Group__1__Impl_in_rule__Case_limb__Group__19239);
+            pushFollow(FOLLOW_rule__Case_limb__Group__1__Impl_in_rule__Case_limb__Group__19261);
             rule__Case_limb__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_limb__Group__2_in_rule__Case_limb__Group__19242);
+            pushFollow(FOLLOW_rule__Case_limb__Group__2_in_rule__Case_limb__Group__19264);
             rule__Case_limb__Group__2();
 
             state._fsp--;
@@ -12168,20 +12197,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_limb__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4575:1: rule__Case_limb__Group__1__Impl : ( ':' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4583:1: rule__Case_limb__Group__1__Impl : ( ':' ) ;
     public final void rule__Case_limb__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4579:1: ( ( ':' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4580:1: ( ':' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4587:1: ( ( ':' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4588:1: ( ':' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4580:1: ( ':' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4581:1: ':'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4588:1: ( ':' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4589:1: ':'
             {
              before(grammarAccess.getCase_limbAccess().getColonKeyword_1()); 
-            match(input,51,FOLLOW_51_in_rule__Case_limb__Group__1__Impl9270); 
+            match(input,50,FOLLOW_50_in_rule__Case_limb__Group__1__Impl9292); 
              after(grammarAccess.getCase_limbAccess().getColonKeyword_1()); 
 
             }
@@ -12205,16 +12234,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_limb__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4594:1: rule__Case_limb__Group__2 : rule__Case_limb__Group__2__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4602:1: rule__Case_limb__Group__2 : rule__Case_limb__Group__2__Impl ;
     public final void rule__Case_limb__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4598:1: ( rule__Case_limb__Group__2__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4599:2: rule__Case_limb__Group__2__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4606:1: ( rule__Case_limb__Group__2__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4607:2: rule__Case_limb__Group__2__Impl
             {
-            pushFollow(FOLLOW_rule__Case_limb__Group__2__Impl_in_rule__Case_limb__Group__29301);
+            pushFollow(FOLLOW_rule__Case_limb__Group__2__Impl_in_rule__Case_limb__Group__29323);
             rule__Case_limb__Group__2__Impl();
 
             state._fsp--;
@@ -12238,20 +12267,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_limb__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4605:1: rule__Case_limb__Group__2__Impl : ( rulestatement ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4613:1: rule__Case_limb__Group__2__Impl : ( rulestatement ) ;
     public final void rule__Case_limb__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4609:1: ( ( rulestatement ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4610:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4617:1: ( ( rulestatement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4618:1: ( rulestatement )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4610:1: ( rulestatement )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4611:1: rulestatement
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4618:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4619:1: rulestatement
             {
              before(grammarAccess.getCase_limbAccess().getStatementParserRuleCall_2()); 
-            pushFollow(FOLLOW_rulestatement_in_rule__Case_limb__Group__2__Impl9328);
+            pushFollow(FOLLOW_rulestatement_in_rule__Case_limb__Group__2__Impl9350);
             rulestatement();
 
             state._fsp--;
@@ -12279,21 +12308,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_label_list__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4628:1: rule__Case_label_list__Group__0 : rule__Case_label_list__Group__0__Impl rule__Case_label_list__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4636:1: rule__Case_label_list__Group__0 : rule__Case_label_list__Group__0__Impl rule__Case_label_list__Group__1 ;
     public final void rule__Case_label_list__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4632:1: ( rule__Case_label_list__Group__0__Impl rule__Case_label_list__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4633:2: rule__Case_label_list__Group__0__Impl rule__Case_label_list__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4640:1: ( rule__Case_label_list__Group__0__Impl rule__Case_label_list__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4641:2: rule__Case_label_list__Group__0__Impl rule__Case_label_list__Group__1
             {
-            pushFollow(FOLLOW_rule__Case_label_list__Group__0__Impl_in_rule__Case_label_list__Group__09363);
+            pushFollow(FOLLOW_rule__Case_label_list__Group__0__Impl_in_rule__Case_label_list__Group__09385);
             rule__Case_label_list__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_label_list__Group__1_in_rule__Case_label_list__Group__09366);
+            pushFollow(FOLLOW_rule__Case_label_list__Group__1_in_rule__Case_label_list__Group__09388);
             rule__Case_label_list__Group__1();
 
             state._fsp--;
@@ -12317,20 +12346,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_label_list__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4640:1: rule__Case_label_list__Group__0__Impl : ( ruleconstant ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4648:1: rule__Case_label_list__Group__0__Impl : ( ruleconstant ) ;
     public final void rule__Case_label_list__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4644:1: ( ( ruleconstant ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4645:1: ( ruleconstant )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4652:1: ( ( ruleconstant ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4653:1: ( ruleconstant )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4645:1: ( ruleconstant )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4646:1: ruleconstant
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4653:1: ( ruleconstant )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4654:1: ruleconstant
             {
              before(grammarAccess.getCase_label_listAccess().getConstantParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleconstant_in_rule__Case_label_list__Group__0__Impl9393);
+            pushFollow(FOLLOW_ruleconstant_in_rule__Case_label_list__Group__0__Impl9415);
             ruleconstant();
 
             state._fsp--;
@@ -12358,16 +12387,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_label_list__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4657:1: rule__Case_label_list__Group__1 : rule__Case_label_list__Group__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4665:1: rule__Case_label_list__Group__1 : rule__Case_label_list__Group__1__Impl ;
     public final void rule__Case_label_list__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4661:1: ( rule__Case_label_list__Group__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4662:2: rule__Case_label_list__Group__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4669:1: ( rule__Case_label_list__Group__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4670:2: rule__Case_label_list__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Case_label_list__Group__1__Impl_in_rule__Case_label_list__Group__19422);
+            pushFollow(FOLLOW_rule__Case_label_list__Group__1__Impl_in_rule__Case_label_list__Group__19444);
             rule__Case_label_list__Group__1__Impl();
 
             state._fsp--;
@@ -12391,35 +12420,35 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_label_list__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4668:1: rule__Case_label_list__Group__1__Impl : ( ( rule__Case_label_list__Group_1__0 )* ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4676:1: rule__Case_label_list__Group__1__Impl : ( ( rule__Case_label_list__Group_1__0 )* ) ;
     public final void rule__Case_label_list__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4672:1: ( ( ( rule__Case_label_list__Group_1__0 )* ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4673:1: ( ( rule__Case_label_list__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4680:1: ( ( ( rule__Case_label_list__Group_1__0 )* ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4681:1: ( ( rule__Case_label_list__Group_1__0 )* )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4673:1: ( ( rule__Case_label_list__Group_1__0 )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4674:1: ( rule__Case_label_list__Group_1__0 )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4681:1: ( ( rule__Case_label_list__Group_1__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4682:1: ( rule__Case_label_list__Group_1__0 )*
             {
              before(grammarAccess.getCase_label_listAccess().getGroup_1()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4675:1: ( rule__Case_label_list__Group_1__0 )*
-            loop33:
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4683:1: ( rule__Case_label_list__Group_1__0 )*
+            loop32:
             do {
-                int alt33=2;
-                int LA33_0 = input.LA(1);
+                int alt32=2;
+                int LA32_0 = input.LA(1);
 
-                if ( (LA33_0==50) ) {
-                    alt33=1;
+                if ( (LA32_0==49) ) {
+                    alt32=1;
                 }
 
 
-                switch (alt33) {
+                switch (alt32) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4675:2: rule__Case_label_list__Group_1__0
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4683:2: rule__Case_label_list__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__Case_label_list__Group_1__0_in_rule__Case_label_list__Group__1__Impl9449);
+            	    pushFollow(FOLLOW_rule__Case_label_list__Group_1__0_in_rule__Case_label_list__Group__1__Impl9471);
             	    rule__Case_label_list__Group_1__0();
 
             	    state._fsp--;
@@ -12429,7 +12458,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop33;
+            	    break loop32;
                 }
             } while (true);
 
@@ -12456,21 +12485,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_label_list__Group_1__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4689:1: rule__Case_label_list__Group_1__0 : rule__Case_label_list__Group_1__0__Impl rule__Case_label_list__Group_1__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4697:1: rule__Case_label_list__Group_1__0 : rule__Case_label_list__Group_1__0__Impl rule__Case_label_list__Group_1__1 ;
     public final void rule__Case_label_list__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4693:1: ( rule__Case_label_list__Group_1__0__Impl rule__Case_label_list__Group_1__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4694:2: rule__Case_label_list__Group_1__0__Impl rule__Case_label_list__Group_1__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4701:1: ( rule__Case_label_list__Group_1__0__Impl rule__Case_label_list__Group_1__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4702:2: rule__Case_label_list__Group_1__0__Impl rule__Case_label_list__Group_1__1
             {
-            pushFollow(FOLLOW_rule__Case_label_list__Group_1__0__Impl_in_rule__Case_label_list__Group_1__09484);
+            pushFollow(FOLLOW_rule__Case_label_list__Group_1__0__Impl_in_rule__Case_label_list__Group_1__09506);
             rule__Case_label_list__Group_1__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Case_label_list__Group_1__1_in_rule__Case_label_list__Group_1__09487);
+            pushFollow(FOLLOW_rule__Case_label_list__Group_1__1_in_rule__Case_label_list__Group_1__09509);
             rule__Case_label_list__Group_1__1();
 
             state._fsp--;
@@ -12494,20 +12523,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_label_list__Group_1__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4701:1: rule__Case_label_list__Group_1__0__Impl : ( ',' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4709:1: rule__Case_label_list__Group_1__0__Impl : ( ',' ) ;
     public final void rule__Case_label_list__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4705:1: ( ( ',' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4706:1: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4713:1: ( ( ',' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4714:1: ( ',' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4706:1: ( ',' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4707:1: ','
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4714:1: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4715:1: ','
             {
              before(grammarAccess.getCase_label_listAccess().getCommaKeyword_1_0()); 
-            match(input,50,FOLLOW_50_in_rule__Case_label_list__Group_1__0__Impl9515); 
+            match(input,49,FOLLOW_49_in_rule__Case_label_list__Group_1__0__Impl9537); 
              after(grammarAccess.getCase_label_listAccess().getCommaKeyword_1_0()); 
 
             }
@@ -12531,16 +12560,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_label_list__Group_1__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4720:1: rule__Case_label_list__Group_1__1 : rule__Case_label_list__Group_1__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4728:1: rule__Case_label_list__Group_1__1 : rule__Case_label_list__Group_1__1__Impl ;
     public final void rule__Case_label_list__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4724:1: ( rule__Case_label_list__Group_1__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4725:2: rule__Case_label_list__Group_1__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4732:1: ( rule__Case_label_list__Group_1__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4733:2: rule__Case_label_list__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__Case_label_list__Group_1__1__Impl_in_rule__Case_label_list__Group_1__19546);
+            pushFollow(FOLLOW_rule__Case_label_list__Group_1__1__Impl_in_rule__Case_label_list__Group_1__19568);
             rule__Case_label_list__Group_1__1__Impl();
 
             state._fsp--;
@@ -12564,20 +12593,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Case_label_list__Group_1__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4731:1: rule__Case_label_list__Group_1__1__Impl : ( ruleconstant ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4739:1: rule__Case_label_list__Group_1__1__Impl : ( ruleconstant ) ;
     public final void rule__Case_label_list__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4735:1: ( ( ruleconstant ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4736:1: ( ruleconstant )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4743:1: ( ( ruleconstant ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4744:1: ( ruleconstant )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4736:1: ( ruleconstant )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4737:1: ruleconstant
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4744:1: ( ruleconstant )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4745:1: ruleconstant
             {
              before(grammarAccess.getCase_label_listAccess().getConstantParserRuleCall_1_1()); 
-            pushFollow(FOLLOW_ruleconstant_in_rule__Case_label_list__Group_1__1__Impl9573);
+            pushFollow(FOLLOW_ruleconstant_in_rule__Case_label_list__Group_1__1__Impl9595);
             ruleconstant();
 
             state._fsp--;
@@ -12605,21 +12634,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__Group_0__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4752:1: rule__Constant__Group_0__0 : rule__Constant__Group_0__0__Impl rule__Constant__Group_0__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4760:1: rule__Constant__Group_0__0 : rule__Constant__Group_0__0__Impl rule__Constant__Group_0__1 ;
     public final void rule__Constant__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4756:1: ( rule__Constant__Group_0__0__Impl rule__Constant__Group_0__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4757:2: rule__Constant__Group_0__0__Impl rule__Constant__Group_0__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4764:1: ( rule__Constant__Group_0__0__Impl rule__Constant__Group_0__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4765:2: rule__Constant__Group_0__0__Impl rule__Constant__Group_0__1
             {
-            pushFollow(FOLLOW_rule__Constant__Group_0__0__Impl_in_rule__Constant__Group_0__09606);
+            pushFollow(FOLLOW_rule__Constant__Group_0__0__Impl_in_rule__Constant__Group_0__09628);
             rule__Constant__Group_0__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Constant__Group_0__1_in_rule__Constant__Group_0__09609);
+            pushFollow(FOLLOW_rule__Constant__Group_0__1_in_rule__Constant__Group_0__09631);
             rule__Constant__Group_0__1();
 
             state._fsp--;
@@ -12643,42 +12672,38 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__Group_0__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4764:1: rule__Constant__Group_0__0__Impl : ( ( rule__Constant__Alternatives_0_0 )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4772:1: rule__Constant__Group_0__0__Impl : ( ( RULE_ADDITION_OPERATOR )? ) ;
     public final void rule__Constant__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4768:1: ( ( ( rule__Constant__Alternatives_0_0 )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4769:1: ( ( rule__Constant__Alternatives_0_0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4776:1: ( ( ( RULE_ADDITION_OPERATOR )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4777:1: ( ( RULE_ADDITION_OPERATOR )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4769:1: ( ( rule__Constant__Alternatives_0_0 )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4770:1: ( rule__Constant__Alternatives_0_0 )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4777:1: ( ( RULE_ADDITION_OPERATOR )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4778:1: ( RULE_ADDITION_OPERATOR )?
             {
-             before(grammarAccess.getConstantAccess().getAlternatives_0_0()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4771:1: ( rule__Constant__Alternatives_0_0 )?
-            int alt34=2;
-            int LA34_0 = input.LA(1);
+             before(grammarAccess.getConstantAccess().getADDITION_OPERATORTerminalRuleCall_0_0()); 
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4779:1: ( RULE_ADDITION_OPERATOR )?
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( ((LA34_0>=43 && LA34_0<=44)) ) {
-                alt34=1;
+            if ( (LA33_0==RULE_ADDITION_OPERATOR) ) {
+                alt33=1;
             }
-            switch (alt34) {
+            switch (alt33) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4771:2: rule__Constant__Alternatives_0_0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4779:3: RULE_ADDITION_OPERATOR
                     {
-                    pushFollow(FOLLOW_rule__Constant__Alternatives_0_0_in_rule__Constant__Group_0__0__Impl9636);
-                    rule__Constant__Alternatives_0_0();
-
-                    state._fsp--;
-
+                    match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Constant__Group_0__0__Impl9659); 
 
                     }
                     break;
 
             }
 
-             after(grammarAccess.getConstantAccess().getAlternatives_0_0()); 
+             after(grammarAccess.getConstantAccess().getADDITION_OPERATORTerminalRuleCall_0_0()); 
 
             }
 
@@ -12701,16 +12726,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__Group_0__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4781:1: rule__Constant__Group_0__1 : rule__Constant__Group_0__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4789:1: rule__Constant__Group_0__1 : rule__Constant__Group_0__1__Impl ;
     public final void rule__Constant__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4785:1: ( rule__Constant__Group_0__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4786:2: rule__Constant__Group_0__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4793:1: ( rule__Constant__Group_0__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4794:2: rule__Constant__Group_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__Constant__Group_0__1__Impl_in_rule__Constant__Group_0__19667);
+            pushFollow(FOLLOW_rule__Constant__Group_0__1__Impl_in_rule__Constant__Group_0__19690);
             rule__Constant__Group_0__1__Impl();
 
             state._fsp--;
@@ -12734,23 +12759,23 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Constant__Group_0__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4792:1: rule__Constant__Group_0__1__Impl : ( ( rule__Constant__Alternatives_0_1 ) ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4800:1: rule__Constant__Group_0__1__Impl : ( ( rule__Constant__Alternatives_0_1 ) ) ;
     public final void rule__Constant__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4796:1: ( ( ( rule__Constant__Alternatives_0_1 ) ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4797:1: ( ( rule__Constant__Alternatives_0_1 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4804:1: ( ( ( rule__Constant__Alternatives_0_1 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4805:1: ( ( rule__Constant__Alternatives_0_1 ) )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4797:1: ( ( rule__Constant__Alternatives_0_1 ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4798:1: ( rule__Constant__Alternatives_0_1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4805:1: ( ( rule__Constant__Alternatives_0_1 ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4806:1: ( rule__Constant__Alternatives_0_1 )
             {
              before(grammarAccess.getConstantAccess().getAlternatives_0_1()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4799:1: ( rule__Constant__Alternatives_0_1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4799:2: rule__Constant__Alternatives_0_1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4807:1: ( rule__Constant__Alternatives_0_1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4807:2: rule__Constant__Alternatives_0_1
             {
-            pushFollow(FOLLOW_rule__Constant__Alternatives_0_1_in_rule__Constant__Group_0__1__Impl9694);
+            pushFollow(FOLLOW_rule__Constant__Alternatives_0_1_in_rule__Constant__Group_0__1__Impl9717);
             rule__Constant__Alternatives_0_1();
 
             state._fsp--;
@@ -12780,22 +12805,577 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Constant__Group_0__1__Impl"
 
 
+    // $ANTLR start "rule__With_statement__Group__0"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4821:1: rule__With_statement__Group__0 : rule__With_statement__Group__0__Impl rule__With_statement__Group__1 ;
+    public final void rule__With_statement__Group__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4825:1: ( rule__With_statement__Group__0__Impl rule__With_statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4826:2: rule__With_statement__Group__0__Impl rule__With_statement__Group__1
+            {
+            pushFollow(FOLLOW_rule__With_statement__Group__0__Impl_in_rule__With_statement__Group__09751);
+            rule__With_statement__Group__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__With_statement__Group__1_in_rule__With_statement__Group__09754);
+            rule__With_statement__Group__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__0"
+
+
+    // $ANTLR start "rule__With_statement__Group__0__Impl"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4833:1: rule__With_statement__Group__0__Impl : ( RULE_WITH_KEYWORD ) ;
+    public final void rule__With_statement__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4837:1: ( ( RULE_WITH_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4838:1: ( RULE_WITH_KEYWORD )
+            {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4838:1: ( RULE_WITH_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4839:1: RULE_WITH_KEYWORD
+            {
+             before(grammarAccess.getWith_statementAccess().getWITH_KEYWORDTerminalRuleCall_0()); 
+            match(input,RULE_WITH_KEYWORD,FOLLOW_RULE_WITH_KEYWORD_in_rule__With_statement__Group__0__Impl9781); 
+             after(grammarAccess.getWith_statementAccess().getWITH_KEYWORDTerminalRuleCall_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__0__Impl"
+
+
+    // $ANTLR start "rule__With_statement__Group__1"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4850:1: rule__With_statement__Group__1 : rule__With_statement__Group__1__Impl rule__With_statement__Group__2 ;
+    public final void rule__With_statement__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4854:1: ( rule__With_statement__Group__1__Impl rule__With_statement__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4855:2: rule__With_statement__Group__1__Impl rule__With_statement__Group__2
+            {
+            pushFollow(FOLLOW_rule__With_statement__Group__1__Impl_in_rule__With_statement__Group__19810);
+            rule__With_statement__Group__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__With_statement__Group__2_in_rule__With_statement__Group__19813);
+            rule__With_statement__Group__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__1"
+
+
+    // $ANTLR start "rule__With_statement__Group__1__Impl"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4862:1: rule__With_statement__Group__1__Impl : ( rulevariable ) ;
+    public final void rule__With_statement__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4866:1: ( ( rulevariable ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4867:1: ( rulevariable )
+            {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4867:1: ( rulevariable )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4868:1: rulevariable
+            {
+             before(grammarAccess.getWith_statementAccess().getVariableParserRuleCall_1()); 
+            pushFollow(FOLLOW_rulevariable_in_rule__With_statement__Group__1__Impl9840);
+            rulevariable();
+
+            state._fsp--;
+
+             after(grammarAccess.getWith_statementAccess().getVariableParserRuleCall_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__1__Impl"
+
+
+    // $ANTLR start "rule__With_statement__Group__2"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4879:1: rule__With_statement__Group__2 : rule__With_statement__Group__2__Impl rule__With_statement__Group__3 ;
+    public final void rule__With_statement__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4883:1: ( rule__With_statement__Group__2__Impl rule__With_statement__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4884:2: rule__With_statement__Group__2__Impl rule__With_statement__Group__3
+            {
+            pushFollow(FOLLOW_rule__With_statement__Group__2__Impl_in_rule__With_statement__Group__29869);
+            rule__With_statement__Group__2__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__With_statement__Group__3_in_rule__With_statement__Group__29872);
+            rule__With_statement__Group__3();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__2"
+
+
+    // $ANTLR start "rule__With_statement__Group__2__Impl"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4891:1: rule__With_statement__Group__2__Impl : ( ( rule__With_statement__Group_2__0 )* ) ;
+    public final void rule__With_statement__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4895:1: ( ( ( rule__With_statement__Group_2__0 )* ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4896:1: ( ( rule__With_statement__Group_2__0 )* )
+            {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4896:1: ( ( rule__With_statement__Group_2__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4897:1: ( rule__With_statement__Group_2__0 )*
+            {
+             before(grammarAccess.getWith_statementAccess().getGroup_2()); 
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4898:1: ( rule__With_statement__Group_2__0 )*
+            loop34:
+            do {
+                int alt34=2;
+                int LA34_0 = input.LA(1);
+
+                if ( (LA34_0==49) ) {
+                    alt34=1;
+                }
+
+
+                switch (alt34) {
+            	case 1 :
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4898:2: rule__With_statement__Group_2__0
+            	    {
+            	    pushFollow(FOLLOW_rule__With_statement__Group_2__0_in_rule__With_statement__Group__2__Impl9899);
+            	    rule__With_statement__Group_2__0();
+
+            	    state._fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop34;
+                }
+            } while (true);
+
+             after(grammarAccess.getWith_statementAccess().getGroup_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__2__Impl"
+
+
+    // $ANTLR start "rule__With_statement__Group__3"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4908:1: rule__With_statement__Group__3 : rule__With_statement__Group__3__Impl rule__With_statement__Group__4 ;
+    public final void rule__With_statement__Group__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4912:1: ( rule__With_statement__Group__3__Impl rule__With_statement__Group__4 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4913:2: rule__With_statement__Group__3__Impl rule__With_statement__Group__4
+            {
+            pushFollow(FOLLOW_rule__With_statement__Group__3__Impl_in_rule__With_statement__Group__39930);
+            rule__With_statement__Group__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__With_statement__Group__4_in_rule__With_statement__Group__39933);
+            rule__With_statement__Group__4();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__3"
+
+
+    // $ANTLR start "rule__With_statement__Group__3__Impl"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4920:1: rule__With_statement__Group__3__Impl : ( RULE_DO_KEYWORD ) ;
+    public final void rule__With_statement__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4924:1: ( ( RULE_DO_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4925:1: ( RULE_DO_KEYWORD )
+            {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4925:1: ( RULE_DO_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4926:1: RULE_DO_KEYWORD
+            {
+             before(grammarAccess.getWith_statementAccess().getDO_KEYWORDTerminalRuleCall_3()); 
+            match(input,RULE_DO_KEYWORD,FOLLOW_RULE_DO_KEYWORD_in_rule__With_statement__Group__3__Impl9960); 
+             after(grammarAccess.getWith_statementAccess().getDO_KEYWORDTerminalRuleCall_3()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__3__Impl"
+
+
+    // $ANTLR start "rule__With_statement__Group__4"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4937:1: rule__With_statement__Group__4 : rule__With_statement__Group__4__Impl ;
+    public final void rule__With_statement__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4941:1: ( rule__With_statement__Group__4__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4942:2: rule__With_statement__Group__4__Impl
+            {
+            pushFollow(FOLLOW_rule__With_statement__Group__4__Impl_in_rule__With_statement__Group__49989);
+            rule__With_statement__Group__4__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__4"
+
+
+    // $ANTLR start "rule__With_statement__Group__4__Impl"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4948:1: rule__With_statement__Group__4__Impl : ( rulestatement ) ;
+    public final void rule__With_statement__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4952:1: ( ( rulestatement ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4953:1: ( rulestatement )
+            {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4953:1: ( rulestatement )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4954:1: rulestatement
+            {
+             before(grammarAccess.getWith_statementAccess().getStatementParserRuleCall_4()); 
+            pushFollow(FOLLOW_rulestatement_in_rule__With_statement__Group__4__Impl10016);
+            rulestatement();
+
+            state._fsp--;
+
+             after(grammarAccess.getWith_statementAccess().getStatementParserRuleCall_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group__4__Impl"
+
+
+    // $ANTLR start "rule__With_statement__Group_2__0"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4975:1: rule__With_statement__Group_2__0 : rule__With_statement__Group_2__0__Impl rule__With_statement__Group_2__1 ;
+    public final void rule__With_statement__Group_2__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4979:1: ( rule__With_statement__Group_2__0__Impl rule__With_statement__Group_2__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4980:2: rule__With_statement__Group_2__0__Impl rule__With_statement__Group_2__1
+            {
+            pushFollow(FOLLOW_rule__With_statement__Group_2__0__Impl_in_rule__With_statement__Group_2__010055);
+            rule__With_statement__Group_2__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__With_statement__Group_2__1_in_rule__With_statement__Group_2__010058);
+            rule__With_statement__Group_2__1();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group_2__0"
+
+
+    // $ANTLR start "rule__With_statement__Group_2__0__Impl"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4987:1: rule__With_statement__Group_2__0__Impl : ( ',' ) ;
+    public final void rule__With_statement__Group_2__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4991:1: ( ( ',' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4992:1: ( ',' )
+            {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4992:1: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4993:1: ','
+            {
+             before(grammarAccess.getWith_statementAccess().getCommaKeyword_2_0()); 
+            match(input,49,FOLLOW_49_in_rule__With_statement__Group_2__0__Impl10086); 
+             after(grammarAccess.getWith_statementAccess().getCommaKeyword_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group_2__0__Impl"
+
+
+    // $ANTLR start "rule__With_statement__Group_2__1"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5006:1: rule__With_statement__Group_2__1 : rule__With_statement__Group_2__1__Impl ;
+    public final void rule__With_statement__Group_2__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5010:1: ( rule__With_statement__Group_2__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5011:2: rule__With_statement__Group_2__1__Impl
+            {
+            pushFollow(FOLLOW_rule__With_statement__Group_2__1__Impl_in_rule__With_statement__Group_2__110117);
+            rule__With_statement__Group_2__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group_2__1"
+
+
+    // $ANTLR start "rule__With_statement__Group_2__1__Impl"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5017:1: rule__With_statement__Group_2__1__Impl : ( rulevariable ) ;
+    public final void rule__With_statement__Group_2__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5021:1: ( ( rulevariable ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5022:1: ( rulevariable )
+            {
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5022:1: ( rulevariable )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5023:1: rulevariable
+            {
+             before(grammarAccess.getWith_statementAccess().getVariableParserRuleCall_2_1()); 
+            pushFollow(FOLLOW_rulevariable_in_rule__With_statement__Group_2__1__Impl10144);
+            rulevariable();
+
+            state._fsp--;
+
+             after(grammarAccess.getWith_statementAccess().getVariableParserRuleCall_2_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__With_statement__Group_2__1__Impl"
+
+
     // $ANTLR start "rule__Goto_statement__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4813:1: rule__Goto_statement__Group__0 : rule__Goto_statement__Group__0__Impl rule__Goto_statement__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5038:1: rule__Goto_statement__Group__0 : rule__Goto_statement__Group__0__Impl rule__Goto_statement__Group__1 ;
     public final void rule__Goto_statement__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4817:1: ( rule__Goto_statement__Group__0__Impl rule__Goto_statement__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4818:2: rule__Goto_statement__Group__0__Impl rule__Goto_statement__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5042:1: ( rule__Goto_statement__Group__0__Impl rule__Goto_statement__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5043:2: rule__Goto_statement__Group__0__Impl rule__Goto_statement__Group__1
             {
-            pushFollow(FOLLOW_rule__Goto_statement__Group__0__Impl_in_rule__Goto_statement__Group__09728);
+            pushFollow(FOLLOW_rule__Goto_statement__Group__0__Impl_in_rule__Goto_statement__Group__010177);
             rule__Goto_statement__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Goto_statement__Group__1_in_rule__Goto_statement__Group__09731);
+            pushFollow(FOLLOW_rule__Goto_statement__Group__1_in_rule__Goto_statement__Group__010180);
             rule__Goto_statement__Group__1();
 
             state._fsp--;
@@ -12819,20 +13399,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Goto_statement__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4825:1: rule__Goto_statement__Group__0__Impl : ( RULE_GOTO_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5050:1: rule__Goto_statement__Group__0__Impl : ( RULE_GOTO_KEYWORD ) ;
     public final void rule__Goto_statement__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4829:1: ( ( RULE_GOTO_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4830:1: ( RULE_GOTO_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5054:1: ( ( RULE_GOTO_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5055:1: ( RULE_GOTO_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4830:1: ( RULE_GOTO_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4831:1: RULE_GOTO_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5055:1: ( RULE_GOTO_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5056:1: RULE_GOTO_KEYWORD
             {
              before(grammarAccess.getGoto_statementAccess().getGOTO_KEYWORDTerminalRuleCall_0()); 
-            match(input,RULE_GOTO_KEYWORD,FOLLOW_RULE_GOTO_KEYWORD_in_rule__Goto_statement__Group__0__Impl9758); 
+            match(input,RULE_GOTO_KEYWORD,FOLLOW_RULE_GOTO_KEYWORD_in_rule__Goto_statement__Group__0__Impl10207); 
              after(grammarAccess.getGoto_statementAccess().getGOTO_KEYWORDTerminalRuleCall_0()); 
 
             }
@@ -12856,16 +13436,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Goto_statement__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4842:1: rule__Goto_statement__Group__1 : rule__Goto_statement__Group__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5067:1: rule__Goto_statement__Group__1 : rule__Goto_statement__Group__1__Impl ;
     public final void rule__Goto_statement__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4846:1: ( rule__Goto_statement__Group__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4847:2: rule__Goto_statement__Group__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5071:1: ( rule__Goto_statement__Group__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5072:2: rule__Goto_statement__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Goto_statement__Group__1__Impl_in_rule__Goto_statement__Group__19787);
+            pushFollow(FOLLOW_rule__Goto_statement__Group__1__Impl_in_rule__Goto_statement__Group__110236);
             rule__Goto_statement__Group__1__Impl();
 
             state._fsp--;
@@ -12889,20 +13469,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Goto_statement__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4853:1: rule__Goto_statement__Group__1__Impl : ( rulelabel ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5078:1: rule__Goto_statement__Group__1__Impl : ( rulelabel ) ;
     public final void rule__Goto_statement__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4857:1: ( ( rulelabel ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4858:1: ( rulelabel )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5082:1: ( ( rulelabel ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:1: ( rulelabel )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4858:1: ( rulelabel )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4859:1: rulelabel
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5083:1: ( rulelabel )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5084:1: rulelabel
             {
              before(grammarAccess.getGoto_statementAccess().getLabelParserRuleCall_1()); 
-            pushFollow(FOLLOW_rulelabel_in_rule__Goto_statement__Group__1__Impl9814);
+            pushFollow(FOLLOW_rulelabel_in_rule__Goto_statement__Group__1__Impl10263);
             rulelabel();
 
             state._fsp--;
@@ -12930,21 +13510,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4874:1: rule__Label_declaration_part__Group__0 : rule__Label_declaration_part__Group__0__Impl rule__Label_declaration_part__Group__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5099:1: rule__Label_declaration_part__Group__0 : rule__Label_declaration_part__Group__0__Impl rule__Label_declaration_part__Group__1 ;
     public final void rule__Label_declaration_part__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4878:1: ( rule__Label_declaration_part__Group__0__Impl rule__Label_declaration_part__Group__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4879:2: rule__Label_declaration_part__Group__0__Impl rule__Label_declaration_part__Group__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5103:1: ( rule__Label_declaration_part__Group__0__Impl rule__Label_declaration_part__Group__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5104:2: rule__Label_declaration_part__Group__0__Impl rule__Label_declaration_part__Group__1
             {
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group__0__Impl_in_rule__Label_declaration_part__Group__09847);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group__0__Impl_in_rule__Label_declaration_part__Group__010296);
             rule__Label_declaration_part__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group__1_in_rule__Label_declaration_part__Group__09850);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group__1_in_rule__Label_declaration_part__Group__010299);
             rule__Label_declaration_part__Group__1();
 
             state._fsp--;
@@ -12968,20 +13548,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4886:1: rule__Label_declaration_part__Group__0__Impl : ( RULE_LABEL_KEYWORD ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5111:1: rule__Label_declaration_part__Group__0__Impl : ( RULE_LABEL_KEYWORD ) ;
     public final void rule__Label_declaration_part__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4890:1: ( ( RULE_LABEL_KEYWORD ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4891:1: ( RULE_LABEL_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5115:1: ( ( RULE_LABEL_KEYWORD ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5116:1: ( RULE_LABEL_KEYWORD )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4891:1: ( RULE_LABEL_KEYWORD )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4892:1: RULE_LABEL_KEYWORD
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5116:1: ( RULE_LABEL_KEYWORD )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5117:1: RULE_LABEL_KEYWORD
             {
              before(grammarAccess.getLabel_declaration_partAccess().getLABEL_KEYWORDTerminalRuleCall_0()); 
-            match(input,RULE_LABEL_KEYWORD,FOLLOW_RULE_LABEL_KEYWORD_in_rule__Label_declaration_part__Group__0__Impl9877); 
+            match(input,RULE_LABEL_KEYWORD,FOLLOW_RULE_LABEL_KEYWORD_in_rule__Label_declaration_part__Group__0__Impl10326); 
              after(grammarAccess.getLabel_declaration_partAccess().getLABEL_KEYWORDTerminalRuleCall_0()); 
 
             }
@@ -13005,21 +13585,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4903:1: rule__Label_declaration_part__Group__1 : rule__Label_declaration_part__Group__1__Impl rule__Label_declaration_part__Group__2 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5128:1: rule__Label_declaration_part__Group__1 : rule__Label_declaration_part__Group__1__Impl rule__Label_declaration_part__Group__2 ;
     public final void rule__Label_declaration_part__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4907:1: ( rule__Label_declaration_part__Group__1__Impl rule__Label_declaration_part__Group__2 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4908:2: rule__Label_declaration_part__Group__1__Impl rule__Label_declaration_part__Group__2
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5132:1: ( rule__Label_declaration_part__Group__1__Impl rule__Label_declaration_part__Group__2 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5133:2: rule__Label_declaration_part__Group__1__Impl rule__Label_declaration_part__Group__2
             {
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group__1__Impl_in_rule__Label_declaration_part__Group__19906);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group__1__Impl_in_rule__Label_declaration_part__Group__110355);
             rule__Label_declaration_part__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group__2_in_rule__Label_declaration_part__Group__19909);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group__2_in_rule__Label_declaration_part__Group__110358);
             rule__Label_declaration_part__Group__2();
 
             state._fsp--;
@@ -13043,20 +13623,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4915:1: rule__Label_declaration_part__Group__1__Impl : ( rulelabel ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5140:1: rule__Label_declaration_part__Group__1__Impl : ( rulelabel ) ;
     public final void rule__Label_declaration_part__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4919:1: ( ( rulelabel ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4920:1: ( rulelabel )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5144:1: ( ( rulelabel ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5145:1: ( rulelabel )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4920:1: ( rulelabel )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4921:1: rulelabel
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5145:1: ( rulelabel )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5146:1: rulelabel
             {
              before(grammarAccess.getLabel_declaration_partAccess().getLabelParserRuleCall_1()); 
-            pushFollow(FOLLOW_rulelabel_in_rule__Label_declaration_part__Group__1__Impl9936);
+            pushFollow(FOLLOW_rulelabel_in_rule__Label_declaration_part__Group__1__Impl10385);
             rulelabel();
 
             state._fsp--;
@@ -13084,21 +13664,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group__2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4932:1: rule__Label_declaration_part__Group__2 : rule__Label_declaration_part__Group__2__Impl rule__Label_declaration_part__Group__3 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5157:1: rule__Label_declaration_part__Group__2 : rule__Label_declaration_part__Group__2__Impl rule__Label_declaration_part__Group__3 ;
     public final void rule__Label_declaration_part__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4936:1: ( rule__Label_declaration_part__Group__2__Impl rule__Label_declaration_part__Group__3 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4937:2: rule__Label_declaration_part__Group__2__Impl rule__Label_declaration_part__Group__3
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5161:1: ( rule__Label_declaration_part__Group__2__Impl rule__Label_declaration_part__Group__3 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5162:2: rule__Label_declaration_part__Group__2__Impl rule__Label_declaration_part__Group__3
             {
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group__2__Impl_in_rule__Label_declaration_part__Group__29965);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group__2__Impl_in_rule__Label_declaration_part__Group__210414);
             rule__Label_declaration_part__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group__3_in_rule__Label_declaration_part__Group__29968);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group__3_in_rule__Label_declaration_part__Group__210417);
             rule__Label_declaration_part__Group__3();
 
             state._fsp--;
@@ -13122,35 +13702,35 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group__2__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4944:1: rule__Label_declaration_part__Group__2__Impl : ( ( rule__Label_declaration_part__Group_2__0 )* ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5169:1: rule__Label_declaration_part__Group__2__Impl : ( ( rule__Label_declaration_part__Group_2__0 )* ) ;
     public final void rule__Label_declaration_part__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4948:1: ( ( ( rule__Label_declaration_part__Group_2__0 )* ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4949:1: ( ( rule__Label_declaration_part__Group_2__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5173:1: ( ( ( rule__Label_declaration_part__Group_2__0 )* ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5174:1: ( ( rule__Label_declaration_part__Group_2__0 )* )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4949:1: ( ( rule__Label_declaration_part__Group_2__0 )* )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4950:1: ( rule__Label_declaration_part__Group_2__0 )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5174:1: ( ( rule__Label_declaration_part__Group_2__0 )* )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5175:1: ( rule__Label_declaration_part__Group_2__0 )*
             {
              before(grammarAccess.getLabel_declaration_partAccess().getGroup_2()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4951:1: ( rule__Label_declaration_part__Group_2__0 )*
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5176:1: ( rule__Label_declaration_part__Group_2__0 )*
             loop35:
             do {
                 int alt35=2;
                 int LA35_0 = input.LA(1);
 
-                if ( (LA35_0==50) ) {
+                if ( (LA35_0==49) ) {
                     alt35=1;
                 }
 
 
                 switch (alt35) {
             	case 1 :
-            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4951:2: rule__Label_declaration_part__Group_2__0
+            	    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5176:2: rule__Label_declaration_part__Group_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__Label_declaration_part__Group_2__0_in_rule__Label_declaration_part__Group__2__Impl9995);
+            	    pushFollow(FOLLOW_rule__Label_declaration_part__Group_2__0_in_rule__Label_declaration_part__Group__2__Impl10444);
             	    rule__Label_declaration_part__Group_2__0();
 
             	    state._fsp--;
@@ -13187,16 +13767,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group__3"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4961:1: rule__Label_declaration_part__Group__3 : rule__Label_declaration_part__Group__3__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5186:1: rule__Label_declaration_part__Group__3 : rule__Label_declaration_part__Group__3__Impl ;
     public final void rule__Label_declaration_part__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4965:1: ( rule__Label_declaration_part__Group__3__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4966:2: rule__Label_declaration_part__Group__3__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5190:1: ( rule__Label_declaration_part__Group__3__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5191:2: rule__Label_declaration_part__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group__3__Impl_in_rule__Label_declaration_part__Group__310026);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group__3__Impl_in_rule__Label_declaration_part__Group__310475);
             rule__Label_declaration_part__Group__3__Impl();
 
             state._fsp--;
@@ -13220,20 +13800,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group__3__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4972:1: rule__Label_declaration_part__Group__3__Impl : ( ';' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5197:1: rule__Label_declaration_part__Group__3__Impl : ( ';' ) ;
     public final void rule__Label_declaration_part__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4976:1: ( ( ';' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4977:1: ( ';' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5201:1: ( ( ';' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5202:1: ( ';' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4977:1: ( ';' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4978:1: ';'
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5202:1: ( ';' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5203:1: ';'
             {
              before(grammarAccess.getLabel_declaration_partAccess().getSemicolonKeyword_3()); 
-            match(input,47,FOLLOW_47_in_rule__Label_declaration_part__Group__3__Impl10054); 
+            match(input,46,FOLLOW_46_in_rule__Label_declaration_part__Group__3__Impl10503); 
              after(grammarAccess.getLabel_declaration_partAccess().getSemicolonKeyword_3()); 
 
             }
@@ -13257,21 +13837,21 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group_2__0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:4999:1: rule__Label_declaration_part__Group_2__0 : rule__Label_declaration_part__Group_2__0__Impl rule__Label_declaration_part__Group_2__1 ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5224:1: rule__Label_declaration_part__Group_2__0 : rule__Label_declaration_part__Group_2__0__Impl rule__Label_declaration_part__Group_2__1 ;
     public final void rule__Label_declaration_part__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5003:1: ( rule__Label_declaration_part__Group_2__0__Impl rule__Label_declaration_part__Group_2__1 )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5004:2: rule__Label_declaration_part__Group_2__0__Impl rule__Label_declaration_part__Group_2__1
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5228:1: ( rule__Label_declaration_part__Group_2__0__Impl rule__Label_declaration_part__Group_2__1 )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5229:2: rule__Label_declaration_part__Group_2__0__Impl rule__Label_declaration_part__Group_2__1
             {
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group_2__0__Impl_in_rule__Label_declaration_part__Group_2__010093);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group_2__0__Impl_in_rule__Label_declaration_part__Group_2__010542);
             rule__Label_declaration_part__Group_2__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group_2__1_in_rule__Label_declaration_part__Group_2__010096);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group_2__1_in_rule__Label_declaration_part__Group_2__010545);
             rule__Label_declaration_part__Group_2__1();
 
             state._fsp--;
@@ -13295,20 +13875,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group_2__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5011:1: rule__Label_declaration_part__Group_2__0__Impl : ( ',' ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5236:1: rule__Label_declaration_part__Group_2__0__Impl : ( ',' ) ;
     public final void rule__Label_declaration_part__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5015:1: ( ( ',' ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5016:1: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5240:1: ( ( ',' ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5241:1: ( ',' )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5016:1: ( ',' )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5017:1: ','
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5241:1: ( ',' )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5242:1: ','
             {
              before(grammarAccess.getLabel_declaration_partAccess().getCommaKeyword_2_0()); 
-            match(input,50,FOLLOW_50_in_rule__Label_declaration_part__Group_2__0__Impl10124); 
+            match(input,49,FOLLOW_49_in_rule__Label_declaration_part__Group_2__0__Impl10573); 
              after(grammarAccess.getLabel_declaration_partAccess().getCommaKeyword_2_0()); 
 
             }
@@ -13332,16 +13912,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group_2__1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5030:1: rule__Label_declaration_part__Group_2__1 : rule__Label_declaration_part__Group_2__1__Impl ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5255:1: rule__Label_declaration_part__Group_2__1 : rule__Label_declaration_part__Group_2__1__Impl ;
     public final void rule__Label_declaration_part__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5034:1: ( rule__Label_declaration_part__Group_2__1__Impl )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5035:2: rule__Label_declaration_part__Group_2__1__Impl
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5259:1: ( rule__Label_declaration_part__Group_2__1__Impl )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5260:2: rule__Label_declaration_part__Group_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__Label_declaration_part__Group_2__1__Impl_in_rule__Label_declaration_part__Group_2__110155);
+            pushFollow(FOLLOW_rule__Label_declaration_part__Group_2__1__Impl_in_rule__Label_declaration_part__Group_2__110604);
             rule__Label_declaration_part__Group_2__1__Impl();
 
             state._fsp--;
@@ -13365,20 +13945,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Label_declaration_part__Group_2__1__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5041:1: rule__Label_declaration_part__Group_2__1__Impl : ( rulelabel ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5266:1: rule__Label_declaration_part__Group_2__1__Impl : ( rulelabel ) ;
     public final void rule__Label_declaration_part__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5045:1: ( ( rulelabel ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5046:1: ( rulelabel )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5270:1: ( ( rulelabel ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5271:1: ( rulelabel )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5046:1: ( rulelabel )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5047:1: rulelabel
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5271:1: ( rulelabel )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5272:1: rulelabel
             {
              before(grammarAccess.getLabel_declaration_partAccess().getLabelParserRuleCall_2_1()); 
-            pushFollow(FOLLOW_rulelabel_in_rule__Label_declaration_part__Group_2__1__Impl10182);
+            pushFollow(FOLLOW_rulelabel_in_rule__Label_declaration_part__Group_2__1__Impl10631);
             rulelabel();
 
             state._fsp--;
@@ -13406,20 +13986,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pascal__ProgramAssignment"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5063:1: rule__Pascal__ProgramAssignment : ( ruleprogram ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5288:1: rule__Pascal__ProgramAssignment : ( ruleprogram ) ;
     public final void rule__Pascal__ProgramAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5067:1: ( ( ruleprogram ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5068:1: ( ruleprogram )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5292:1: ( ( ruleprogram ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5293:1: ( ruleprogram )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5068:1: ( ruleprogram )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5069:1: ruleprogram
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5293:1: ( ruleprogram )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascal.g:5294:1: ruleprogram
             {
              before(grammarAccess.getPascalAccess().getProgramProgramParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleprogram_in_rule__Pascal__ProgramAssignment10220);
+            pushFollow(FOLLOW_ruleprogram_in_rule__Pascal__ProgramAssignment10669);
             ruleprogram();
 
             state._fsp--;
@@ -13456,16 +14036,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     static final String DFA8_minS =
         "\1\4\1\6\10\uffff";
     static final String DFA8_maxS =
-        "\1\65\1\66\10\uffff";
+        "\1\64\1\65\10\uffff";
     static final String DFA8_acceptS =
         "\2\uffff\1\2\1\3\1\4\1\5\1\7\1\10\1\1\1\6";
     static final String DFA8_specialS =
         "\12\uffff}>";
     static final String[] DFA8_transitionS = {
-            "\1\2\1\1\2\uffff\1\3\1\5\3\2\6\uffff\1\7\34\uffff\1\6\4\uffff"+
+            "\1\2\1\1\2\uffff\1\3\1\5\3\2\6\uffff\1\7\33\uffff\1\6\4\uffff"+
             "\1\4",
             "\2\10\3\uffff\4\10\1\uffff\3\10\2\uffff\1\10\1\uffff\1\10"+
-            "\2\uffff\2\10\1\uffff\1\10\21\uffff\1\10\1\11\2\10\3\uffff\1"+
+            "\2\uffff\2\10\1\uffff\1\10\20\uffff\1\10\1\11\2\10\3\uffff\1"+
             "\10",
             "",
             "",
@@ -13507,7 +14087,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             this.transition = DFA8_transition;
         }
         public String getDescription() {
-            return "1255:1: rule__Factor__Alternatives : ( ( rulevariable ) | ( rulenumber ) | ( RULE_STRING ) | ( ruleset ) | ( RULE_NIL_KEYWORD ) | ( rulefunction_designator ) | ( ( rule__Factor__Group_6__0 ) ) | ( ( rule__Factor__Group_7__0 ) ) );";
+            return "1283:1: rule__Factor__Alternatives : ( ( rulevariable ) | ( rulenumber ) | ( RULE_STRING ) | ( ruleset ) | ( RULE_NIL_KEYWORD ) | ( rulefunction_designator ) | ( ( rule__Factor__Group_6__0 ) ) | ( ( rule__Factor__Group_7__0 ) ) );";
         }
     }
  
@@ -13620,354 +14200,375 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleconstant_in_entryRuleconstant2161 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleconstant2168 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Constant__Alternatives_in_ruleconstant2194 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulegoto_statement_in_entryRulegoto_statement2221 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulegoto_statement2228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Goto_statement__Group__0_in_rulegoto_statement2254 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruledeclaration_part_in_entryRuledeclaration_part2281 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuledeclaration_part2288 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_declaration_part_in_ruledeclaration_part2315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_declaration_part_in_entryRulelabel_declaration_part2343 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulelabel_declaration_part2350 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__0_in_rulelabel_declaration_part2376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulesimple_statement_in_rule__Statement__Alternatives_12412 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestructured_statement_in_rule__Statement__Alternatives_12429 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleassignment_statement_in_rule__Simple_statement__Alternatives2461 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulefunction_designator_in_rule__Simple_statement__Alternatives2478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulegoto_statement_in_rule__Simple_statement__Alternatives2495 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Group_2_0__0_in_rule__Simple_expression__Alternatives_22527 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulesigned_number_in_rule__Simple_expression__Alternatives_22545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Alternatives_2_0_02580 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Alternatives_2_0_02593 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_RULE_OR_KEYWORD_in_rule__Simple_expression__Alternatives_2_0_02614 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulevariable_in_rule__Factor__Alternatives2646 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulenumber_in_rule__Factor__Alternatives2663 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Factor__Alternatives2680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleset_in_rule__Factor__Alternatives2697 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_NIL_KEYWORD_in_rule__Factor__Alternatives2714 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulefunction_designator_in_rule__Factor__Alternatives2731 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Factor__Group_6__0_in_rule__Factor__Alternatives2748 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Factor__Group_7__0_in_rule__Factor__Alternatives2766 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleunsigned_number_in_rule__Number__Alternatives2799 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulesigned_number_in_rule__Number__Alternatives2816 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGER_NUMBER_in_rule__Unsigned_number__Alternatives2848 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_REAL_NUMBER_in_rule__Unsigned_number__Alternatives2865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SIGNED_INTEGER_NUMBER_in_rule__Signed_number__Alternatives2897 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SIGNED_REAL_NUMBER_in_rule__Signed_number__Alternatives2914 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulecompound_statement_in_rule__Structured_statement__Alternatives2946 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulerepetitive_statement_in_rule__Structured_statement__Alternatives2963 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleconditional_statement_in_rule__Structured_statement__Alternatives2980 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulewhile_statement_in_rule__Repetitive_statement__Alternatives3012 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulerepeat_statement_in_rule__Repetitive_statement__Alternatives3029 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulefor_statement_in_rule__Repetitive_statement__Alternatives3046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_TO_KEYWORD_in_rule__For_statement__Alternatives_23078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DOWNTO_KEYWORD_in_rule__For_statement__Alternatives_23095 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleif_statement_in_rule__Conditional_statement__Alternatives3127 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulecase_statement_in_rule__Conditional_statement__Alternatives3144 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constant__Group_0__0_in_rule__Constant__Alternatives3176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Constant__Alternatives3194 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_rule__Constant__Alternatives_0_03227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_rule__Constant__Alternatives_0_03247 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Constant__Alternatives_0_13281 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulenumber_in_rule__Constant__Alternatives_0_13298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program__Group__0__Impl_in_rule__Program__Group__03328 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_rule__Program__Group__1_in_rule__Program__Group__03331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleprogram_heading_block_in_rule__Program__Group__0__Impl3358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program__Group__1__Impl_in_rule__Program__Group__13387 = new BitSet(new long[]{0x0000200000000000L});
-    public static final BitSet FOLLOW_rule__Program__Group__2_in_rule__Program__Group__13390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleblock_in_rule__Program__Group__1__Impl3417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program__Group__2__Impl_in_rule__Program__Group__23446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rule__Program__Group__2__Impl3474 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group__0__Impl_in_rule__Program_heading_block__Group__03511 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group__1_in_rule__Program_heading_block__Group__03514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_rule__Program_heading_block__Group__0__Impl3542 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group__1__Impl_in_rule__Program_heading_block__Group__13573 = new BitSet(new long[]{0x0001800000000000L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group__2_in_rule__Program_heading_block__Group__13576 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Program_heading_block__Group__1__Impl3603 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group__2__Impl_in_rule__Program_heading_block__Group__23632 = new BitSet(new long[]{0x0001800000000000L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group__3_in_rule__Program_heading_block__Group__23635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__0_in_rule__Program_heading_block__Group__2__Impl3662 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group__3__Impl_in_rule__Program_heading_block__Group__33693 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_rule__Program_heading_block__Group__3__Impl3721 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__0__Impl_in_rule__Program_heading_block__Group_2__03760 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__1_in_rule__Program_heading_block__Group_2__03763 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__Program_heading_block__Group_2__0__Impl3791 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__1__Impl_in_rule__Program_heading_block__Group_2__13822 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__2_in_rule__Program_heading_block__Group_2__13825 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleidentifier_list_in_rule__Program_heading_block__Group_2__1__Impl3852 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__2__Impl_in_rule__Program_heading_block__Group_2__23881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_rule__Program_heading_block__Group_2__2__Impl3909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Identifier_list__Group__0__Impl_in_rule__Identifier_list__Group__03946 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_rule__Identifier_list__Group__1_in_rule__Identifier_list__Group__03949 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Identifier_list__Group__0__Impl3976 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Identifier_list__Group__1__Impl_in_rule__Identifier_list__Group__14005 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Identifier_list__Group_1__0_in_rule__Identifier_list__Group__1__Impl4032 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_rule__Identifier_list__Group_1__0__Impl_in_rule__Identifier_list__Group_1__04067 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__Identifier_list__Group_1__1_in_rule__Identifier_list__Group_1__04070 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__Identifier_list__Group_1__0__Impl4098 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Identifier_list__Group_1__1__Impl_in_rule__Identifier_list__Group_1__14129 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Identifier_list__Group_1__1__Impl4156 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Block__Group__0__Impl_in_rule__Block__Group__04189 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_rule__Block__Group__1_in_rule__Block__Group__04192 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruledeclaration_part_in_rule__Block__Group__0__Impl4219 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Block__Group__1__Impl_in_rule__Block__Group__14248 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_part_in_rule__Block__Group__1__Impl4275 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement_part__Group__0__Impl_in_rule__Statement_part__Group__04308 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__Statement_part__Group__1_in_rule__Statement_part__Group__04311 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_BEGIN_KEYWORD_in_rule__Statement_part__Group__0__Impl4338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement_part__Group__1__Impl_in_rule__Statement_part__Group__14367 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_rule__Statement_part__Group__2_in_rule__Statement_part__Group__14370 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_sequence_in_rule__Statement_part__Group__1__Impl4397 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement_part__Group__2__Impl_in_rule__Statement_part__Group__24426 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_END_KEYWORD_in_rule__Statement_part__Group__2__Impl4453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement_sequence__Group__0__Impl_in_rule__Statement_sequence__Group__04488 = new BitSet(new long[]{0x0000800000000000L});
-    public static final BitSet FOLLOW_rule__Statement_sequence__Group__1_in_rule__Statement_sequence__Group__04491 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_in_rule__Statement_sequence__Group__0__Impl4518 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement_sequence__Group__1__Impl_in_rule__Statement_sequence__Group__14547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement_sequence__Group_1__0_in_rule__Statement_sequence__Group__1__Impl4574 = new BitSet(new long[]{0x0000800000000002L});
-    public static final BitSet FOLLOW_rule__Statement_sequence__Group_1__0__Impl_in_rule__Statement_sequence__Group_1__04609 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__Statement_sequence__Group_1__1_in_rule__Statement_sequence__Group_1__04612 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_rule__Statement_sequence__Group_1__0__Impl4640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement_sequence__Group_1__1__Impl_in_rule__Statement_sequence__Group_1__14671 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_in_rule__Statement_sequence__Group_1__1__Impl4698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement__Group__0__Impl_in_rule__Statement__Group__04731 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__Statement__Group__1_in_rule__Statement__Group__04734 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement__Group_0__0_in_rule__Statement__Group__0__Impl4761 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement__Group__1__Impl_in_rule__Statement__Group__14792 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement__Alternatives_1_in_rule__Statement__Group__1__Impl4819 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement__Group_0__0__Impl_in_rule__Statement__Group_0__04853 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__Statement__Group_0__1_in_rule__Statement__Group_0__04856 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_in_rule__Statement__Group_0__0__Impl4883 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Statement__Group_0__1__Impl_in_rule__Statement__Group_0__14912 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__Statement__Group_0__1__Impl4940 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment_statement__Group__0__Impl_in_rule__Assignment_statement__Group__04975 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_rule__Assignment_statement__Group__1_in_rule__Assignment_statement__Group__04978 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulevariable_in_rule__Assignment_statement__Group__0__Impl5005 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment_statement__Group__1__Impl_in_rule__Assignment_statement__Group__15034 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Assignment_statement__Group__2_in_rule__Assignment_statement__Group__15037 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rule__Assignment_statement__Group__1__Impl5065 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment_statement__Group__2__Impl_in_rule__Assignment_statement__Group__25096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_rule__Assignment_statement__Group__2__Impl5123 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Indexed_variable__Group__0__Impl_in_rule__Indexed_variable__Group__05158 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_rule__Indexed_variable__Group__1_in_rule__Indexed_variable__Group__05161 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulevariable_in_rule__Indexed_variable__Group__0__Impl5188 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Indexed_variable__Group__1__Impl_in_rule__Indexed_variable__Group__15217 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Indexed_variable__Group__2_in_rule__Indexed_variable__Group__15220 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_rule__Indexed_variable__Group__1__Impl5248 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Indexed_variable__Group__2__Impl_in_rule__Indexed_variable__Group__25279 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_rule__Indexed_variable__Group__3_in_rule__Indexed_variable__Group__25282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_list_in_rule__Indexed_variable__Group__2__Impl5309 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Indexed_variable__Group__3__Impl_in_rule__Indexed_variable__Group__35338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__Indexed_variable__Group__3__Impl5366 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression_list__Group__0__Impl_in_rule__Expression_list__Group__05405 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_rule__Expression_list__Group__1_in_rule__Expression_list__Group__05408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_rule__Expression_list__Group__0__Impl5435 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression_list__Group__1__Impl_in_rule__Expression_list__Group__15464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression_list__Group_1__0_in_rule__Expression_list__Group__1__Impl5491 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_rule__Expression_list__Group_1__0__Impl_in_rule__Expression_list__Group_1__05526 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Expression_list__Group_1__1_in_rule__Expression_list__Group_1__05529 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__Expression_list__Group_1__0__Impl5557 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression_list__Group_1__1__Impl_in_rule__Expression_list__Group_1__15588 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_rule__Expression_list__Group_1__1__Impl5615 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression__Group__0__Impl_in_rule__Expression__Group__05648 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_rule__Expression__Group__1_in_rule__Expression__Group__05651 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulesimple_expression_in_rule__Expression__Group__0__Impl5678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression__Group__1__Impl_in_rule__Expression__Group__15707 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression__Group_1__0_in_rule__Expression__Group__1__Impl5734 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression__Group_1__0__Impl_in_rule__Expression__Group_1__05769 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Expression__Group_1__1_in_rule__Expression__Group_1__05772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_RELATIONAL_OPERATOR_in_rule__Expression__Group_1__0__Impl5799 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression__Group_1__1__Impl_in_rule__Expression__Group_1__15828 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulesimple_expression_in_rule__Expression__Group_1__1__Impl5855 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Group__0__Impl_in_rule__Simple_expression__Group__05888 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Group__1_in_rule__Simple_expression__Group__05891 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Group__0__Impl5919 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Group__1__Impl_in_rule__Simple_expression__Group__15950 = new BitSet(new long[]{0x0000000000001CD0L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Group__2_in_rule__Simple_expression__Group__15953 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleterm_in_rule__Simple_expression__Group__1__Impl5980 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Group__2__Impl_in_rule__Simple_expression__Group__26009 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Alternatives_2_in_rule__Simple_expression__Group__2__Impl6036 = new BitSet(new long[]{0x0000000000001CD2L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Group_2_0__0__Impl_in_rule__Simple_expression__Group_2_0__06073 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Group_2_0__1_in_rule__Simple_expression__Group_2_0__06076 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Alternatives_2_0_0_in_rule__Simple_expression__Group_2_0__0__Impl6103 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Simple_expression__Group_2_0__1__Impl_in_rule__Simple_expression__Group_2_0__16133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleterm_in_rule__Simple_expression__Group_2_0__1__Impl6160 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Term__Group__0__Impl_in_rule__Term__Group__06193 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_rule__Term__Group__1_in_rule__Term__Group__06196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulefactor_in_rule__Term__Group__0__Impl6223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Term__Group__1__Impl_in_rule__Term__Group__16252 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Term__Group_1__0_in_rule__Term__Group__1__Impl6279 = new BitSet(new long[]{0x0000000000040002L});
-    public static final BitSet FOLLOW_rule__Term__Group_1__0__Impl_in_rule__Term__Group_1__06314 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Term__Group_1__1_in_rule__Term__Group_1__06317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_MULTIPLICATION_OPERATOR_in_rule__Term__Group_1__0__Impl6344 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Term__Group_1__1__Impl_in_rule__Term__Group_1__16373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulefactor_in_rule__Term__Group_1__1__Impl6400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Factor__Group_6__0__Impl_in_rule__Factor__Group_6__06433 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Factor__Group_6__1_in_rule__Factor__Group_6__06436 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__Factor__Group_6__0__Impl6464 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Factor__Group_6__1__Impl_in_rule__Factor__Group_6__16495 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_rule__Factor__Group_6__2_in_rule__Factor__Group_6__16498 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_rule__Factor__Group_6__1__Impl6525 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Factor__Group_6__2__Impl_in_rule__Factor__Group_6__26554 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_rule__Factor__Group_6__2__Impl6582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Factor__Group_7__0__Impl_in_rule__Factor__Group_7__06619 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Factor__Group_7__1_in_rule__Factor__Group_7__06622 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_NOT_KEYWORD_in_rule__Factor__Group_7__0__Impl6649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Factor__Group_7__1__Impl_in_rule__Factor__Group_7__16678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulefactor_in_rule__Factor__Group_7__1__Impl6705 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Set__Group__0__Impl_in_rule__Set__Group__06738 = new BitSet(new long[]{0x0061000000081F70L});
-    public static final BitSet FOLLOW_rule__Set__Group__1_in_rule__Set__Group__06741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_rule__Set__Group__0__Impl6769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Set__Group__1__Impl_in_rule__Set__Group__16800 = new BitSet(new long[]{0x0061000000081F70L});
-    public static final BitSet FOLLOW_rule__Set__Group__2_in_rule__Set__Group__16803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_list_in_rule__Set__Group__1__Impl6831 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Set__Group__2__Impl_in_rule__Set__Group__26862 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__Set__Group__2__Impl6890 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Function_designator__Group__0__Impl_in_rule__Function_designator__Group__06927 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_rule__Function_designator__Group__1_in_rule__Function_designator__Group__06930 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Function_designator__Group__0__Impl6957 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Function_designator__Group__1__Impl_in_rule__Function_designator__Group__16986 = new BitSet(new long[]{0x0023000000081F70L});
-    public static final BitSet FOLLOW_rule__Function_designator__Group__2_in_rule__Function_designator__Group__16989 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__Function_designator__Group__1__Impl7017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Function_designator__Group__2__Impl_in_rule__Function_designator__Group__27048 = new BitSet(new long[]{0x0023000000081F70L});
-    public static final BitSet FOLLOW_rule__Function_designator__Group__3_in_rule__Function_designator__Group__27051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_list_in_rule__Function_designator__Group__2__Impl7079 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Function_designator__Group__3__Impl_in_rule__Function_designator__Group__37110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_rule__Function_designator__Group__3__Impl7138 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Compound_statement__Group__0__Impl_in_rule__Compound_statement__Group__07177 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__Compound_statement__Group__1_in_rule__Compound_statement__Group__07180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_BEGIN_KEYWORD_in_rule__Compound_statement__Group__0__Impl7207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Compound_statement__Group__1__Impl_in_rule__Compound_statement__Group__17236 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_rule__Compound_statement__Group__2_in_rule__Compound_statement__Group__17239 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_sequence_in_rule__Compound_statement__Group__1__Impl7266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Compound_statement__Group__2__Impl_in_rule__Compound_statement__Group__27295 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_END_KEYWORD_in_rule__Compound_statement__Group__2__Impl7322 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__While_statement__Group__0__Impl_in_rule__While_statement__Group__07357 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__While_statement__Group__1_in_rule__While_statement__Group__07360 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_WHILE_KEYWORD_in_rule__While_statement__Group__0__Impl7387 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__While_statement__Group__1__Impl_in_rule__While_statement__Group__17416 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_rule__While_statement__Group__2_in_rule__While_statement__Group__17419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_rule__While_statement__Group__1__Impl7446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__While_statement__Group__2__Impl_in_rule__While_statement__Group__27475 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__While_statement__Group__3_in_rule__While_statement__Group__27478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DO_KEYWORD_in_rule__While_statement__Group__2__Impl7505 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__While_statement__Group__3__Impl_in_rule__While_statement__Group__37534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_in_rule__While_statement__Group__3__Impl7561 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Repeat_statement__Group__0__Impl_in_rule__Repeat_statement__Group__07598 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__Repeat_statement__Group__1_in_rule__Repeat_statement__Group__07601 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_REPEAT_KEYWORD_in_rule__Repeat_statement__Group__0__Impl7628 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Repeat_statement__Group__1__Impl_in_rule__Repeat_statement__Group__17657 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_rule__Repeat_statement__Group__2_in_rule__Repeat_statement__Group__17660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_sequence_in_rule__Repeat_statement__Group__1__Impl7687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Repeat_statement__Group__2__Impl_in_rule__Repeat_statement__Group__27716 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Repeat_statement__Group__3_in_rule__Repeat_statement__Group__27719 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_UNTIL_KEYWORD_in_rule__Repeat_statement__Group__2__Impl7746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Repeat_statement__Group__3__Impl_in_rule__Repeat_statement__Group__37775 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_rule__Repeat_statement__Group__3__Impl7802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__0__Impl_in_rule__For_statement__Group__07839 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__1_in_rule__For_statement__Group__07842 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_FOR_KEYWORD_in_rule__For_statement__Group__0__Impl7869 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__1__Impl_in_rule__For_statement__Group__17898 = new BitSet(new long[]{0x0000000000006000L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__2_in_rule__For_statement__Group__17901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleassignment_statement_in_rule__For_statement__Group__1__Impl7928 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__2__Impl_in_rule__For_statement__Group__27957 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__3_in_rule__For_statement__Group__27960 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__For_statement__Alternatives_2_in_rule__For_statement__Group__2__Impl7987 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__3__Impl_in_rule__For_statement__Group__38017 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__4_in_rule__For_statement__Group__38020 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_rule__For_statement__Group__3__Impl8047 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__4__Impl_in_rule__For_statement__Group__48076 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__5_in_rule__For_statement__Group__48079 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DO_KEYWORD_in_rule__For_statement__Group__4__Impl8106 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__For_statement__Group__5__Impl_in_rule__For_statement__Group__58135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_in_rule__For_statement__Group__5__Impl8162 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__If_statement__Group__0__Impl_in_rule__If_statement__Group__08203 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__If_statement__Group__1_in_rule__If_statement__Group__08206 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IF_KEYWORD_in_rule__If_statement__Group__0__Impl8233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__If_statement__Group__1__Impl_in_rule__If_statement__Group__18262 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_rule__If_statement__Group__2_in_rule__If_statement__Group__18265 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_rule__If_statement__Group__1__Impl8292 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__If_statement__Group__2__Impl_in_rule__If_statement__Group__28321 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__If_statement__Group__3_in_rule__If_statement__Group__28324 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_THEN_KEYWORD_in_rule__If_statement__Group__2__Impl8351 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__If_statement__Group__3__Impl_in_rule__If_statement__Group__38380 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_rule__If_statement__Group__4_in_rule__If_statement__Group__38383 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_in_rule__If_statement__Group__3__Impl8410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__If_statement__Group__4__Impl_in_rule__If_statement__Group__48439 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__If_statement__Group_4__0_in_rule__If_statement__Group__4__Impl8466 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__If_statement__Group_4__0__Impl_in_rule__If_statement__Group_4__08507 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__If_statement__Group_4__1_in_rule__If_statement__Group_4__08510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ELSE_KEYWORD_in_rule__If_statement__Group_4__0__Impl8537 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__If_statement__Group_4__1__Impl_in_rule__If_statement__Group_4__18566 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_in_rule__If_statement__Group_4__1__Impl8593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__0__Impl_in_rule__Case_statement__Group__08626 = new BitSet(new long[]{0x0021000000081F70L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__1_in_rule__Case_statement__Group__08629 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_CASE_KEYWORD_in_rule__Case_statement__Group__0__Impl8656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__1__Impl_in_rule__Case_statement__Group__18685 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__2_in_rule__Case_statement__Group__18688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleexpression_in_rule__Case_statement__Group__1__Impl8715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__2__Impl_in_rule__Case_statement__Group__28744 = new BitSet(new long[]{0x0000180000001D30L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__3_in_rule__Case_statement__Group__28747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_OF_KEYWORD_in_rule__Case_statement__Group__2__Impl8774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__3__Impl_in_rule__Case_statement__Group__38803 = new BitSet(new long[]{0x0000800000010000L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__4_in_rule__Case_statement__Group__38806 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulecase_limb_in_rule__Case_statement__Group__3__Impl8833 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__4__Impl_in_rule__Case_statement__Group__48862 = new BitSet(new long[]{0x0000800000010000L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__5_in_rule__Case_statement__Group__48865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group_4__0_in_rule__Case_statement__Group__4__Impl8892 = new BitSet(new long[]{0x0000800000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__5__Impl_in_rule__Case_statement__Group__58923 = new BitSet(new long[]{0x0000800000010000L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__6_in_rule__Case_statement__Group__58926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_rule__Case_statement__Group__5__Impl8955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group__6__Impl_in_rule__Case_statement__Group__68988 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_END_KEYWORD_in_rule__Case_statement__Group__6__Impl9015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group_4__0__Impl_in_rule__Case_statement__Group_4__09058 = new BitSet(new long[]{0x0000180000001D30L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group_4__1_in_rule__Case_statement__Group_4__09061 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_rule__Case_statement__Group_4__0__Impl9089 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_statement__Group_4__1__Impl_in_rule__Case_statement__Group_4__19120 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulecase_limb_in_rule__Case_statement__Group_4__1__Impl9147 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_limb__Group__0__Impl_in_rule__Case_limb__Group__09180 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__Case_limb__Group__1_in_rule__Case_limb__Group__09183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulecase_label_list_in_rule__Case_limb__Group__0__Impl9210 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_limb__Group__1__Impl_in_rule__Case_limb__Group__19239 = new BitSet(new long[]{0x0000000053508030L});
-    public static final BitSet FOLLOW_rule__Case_limb__Group__2_in_rule__Case_limb__Group__19242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__Case_limb__Group__1__Impl9270 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_limb__Group__2__Impl_in_rule__Case_limb__Group__29301 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulestatement_in_rule__Case_limb__Group__2__Impl9328 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_label_list__Group__0__Impl_in_rule__Case_label_list__Group__09363 = new BitSet(new long[]{0x0004000000000000L});
-    public static final BitSet FOLLOW_rule__Case_label_list__Group__1_in_rule__Case_label_list__Group__09366 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleconstant_in_rule__Case_label_list__Group__0__Impl9393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_label_list__Group__1__Impl_in_rule__Case_label_list__Group__19422 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_label_list__Group_1__0_in_rule__Case_label_list__Group__1__Impl9449 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_rule__Case_label_list__Group_1__0__Impl_in_rule__Case_label_list__Group_1__09484 = new BitSet(new long[]{0x0000180000001D30L});
-    public static final BitSet FOLLOW_rule__Case_label_list__Group_1__1_in_rule__Case_label_list__Group_1__09487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__Case_label_list__Group_1__0__Impl9515 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Case_label_list__Group_1__1__Impl_in_rule__Case_label_list__Group_1__19546 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleconstant_in_rule__Case_label_list__Group_1__1__Impl9573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constant__Group_0__0__Impl_in_rule__Constant__Group_0__09606 = new BitSet(new long[]{0x0000180000001C30L});
-    public static final BitSet FOLLOW_rule__Constant__Group_0__1_in_rule__Constant__Group_0__09609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constant__Alternatives_0_0_in_rule__Constant__Group_0__0__Impl9636 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constant__Group_0__1__Impl_in_rule__Constant__Group_0__19667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constant__Alternatives_0_1_in_rule__Constant__Group_0__1__Impl9694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Goto_statement__Group__0__Impl_in_rule__Goto_statement__Group__09728 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__Goto_statement__Group__1_in_rule__Goto_statement__Group__09731 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_GOTO_KEYWORD_in_rule__Goto_statement__Group__0__Impl9758 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Goto_statement__Group__1__Impl_in_rule__Goto_statement__Group__19787 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_in_rule__Goto_statement__Group__1__Impl9814 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__0__Impl_in_rule__Label_declaration_part__Group__09847 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__1_in_rule__Label_declaration_part__Group__09850 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_LABEL_KEYWORD_in_rule__Label_declaration_part__Group__0__Impl9877 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__1__Impl_in_rule__Label_declaration_part__Group__19906 = new BitSet(new long[]{0x0004800000000000L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__2_in_rule__Label_declaration_part__Group__19909 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_in_rule__Label_declaration_part__Group__1__Impl9936 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__2__Impl_in_rule__Label_declaration_part__Group__29965 = new BitSet(new long[]{0x0004800000000000L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__3_in_rule__Label_declaration_part__Group__29968 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group_2__0_in_rule__Label_declaration_part__Group__2__Impl9995 = new BitSet(new long[]{0x0004000000000002L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__3__Impl_in_rule__Label_declaration_part__Group__310026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_rule__Label_declaration_part__Group__3__Impl10054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group_2__0__Impl_in_rule__Label_declaration_part__Group_2__010093 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group_2__1_in_rule__Label_declaration_part__Group_2__010096 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__Label_declaration_part__Group_2__0__Impl10124 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Label_declaration_part__Group_2__1__Impl_in_rule__Label_declaration_part__Group_2__110155 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulelabel_in_rule__Label_declaration_part__Group_2__1__Impl10182 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleprogram_in_rule__Pascal__ProgramAssignment10220 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulewith_statement_in_entryRulewith_statement2221 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulewith_statement2228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__0_in_rulewith_statement2254 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulegoto_statement_in_entryRulegoto_statement2281 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulegoto_statement2288 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Goto_statement__Group__0_in_rulegoto_statement2314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruledeclaration_part_in_entryRuledeclaration_part2341 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuledeclaration_part2348 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_declaration_part_in_ruledeclaration_part2375 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_declaration_part_in_entryRulelabel_declaration_part2403 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulelabel_declaration_part2410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__0_in_rulelabel_declaration_part2436 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulesimple_statement_in_rule__Statement__Alternatives_12472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestructured_statement_in_rule__Statement__Alternatives_12489 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleassignment_statement_in_rule__Simple_statement__Alternatives2521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulefunction_designator_in_rule__Simple_statement__Alternatives2538 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulegoto_statement_in_rule__Simple_statement__Alternatives2555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Group_2_0__0_in_rule__Simple_expression__Alternatives_22587 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulesigned_number_in_rule__Simple_expression__Alternatives_22605 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Alternatives_2_0_02640 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Alternatives_2_0_02653 = new BitSet(new long[]{0x0000000000000042L});
+    public static final BitSet FOLLOW_RULE_OR_KEYWORD_in_rule__Simple_expression__Alternatives_2_0_02674 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_in_rule__Factor__Alternatives2706 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulenumber_in_rule__Factor__Alternatives2723 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Factor__Alternatives2740 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleset_in_rule__Factor__Alternatives2757 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_NIL_KEYWORD_in_rule__Factor__Alternatives2774 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulefunction_designator_in_rule__Factor__Alternatives2791 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Factor__Group_6__0_in_rule__Factor__Alternatives2808 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Factor__Group_7__0_in_rule__Factor__Alternatives2826 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleunsigned_number_in_rule__Number__Alternatives2859 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulesigned_number_in_rule__Number__Alternatives2876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_NUMBER_in_rule__Unsigned_number__Alternatives2908 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_REAL_NUMBER_in_rule__Unsigned_number__Alternatives2925 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SIGNED_INTEGER_NUMBER_in_rule__Signed_number__Alternatives2957 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SIGNED_REAL_NUMBER_in_rule__Signed_number__Alternatives2974 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulecompound_statement_in_rule__Structured_statement__Alternatives3006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulerepetitive_statement_in_rule__Structured_statement__Alternatives3023 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleconditional_statement_in_rule__Structured_statement__Alternatives3040 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulewith_statement_in_rule__Structured_statement__Alternatives3057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulewhile_statement_in_rule__Repetitive_statement__Alternatives3089 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulerepeat_statement_in_rule__Repetitive_statement__Alternatives3106 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulefor_statement_in_rule__Repetitive_statement__Alternatives3123 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_TO_KEYWORD_in_rule__For_statement__Alternatives_23155 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DOWNTO_KEYWORD_in_rule__For_statement__Alternatives_23172 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleif_statement_in_rule__Conditional_statement__Alternatives3204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulecase_statement_in_rule__Conditional_statement__Alternatives3221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constant__Group_0__0_in_rule__Constant__Alternatives3253 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Constant__Alternatives3271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Constant__Alternatives_0_13303 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulenumber_in_rule__Constant__Alternatives_0_13320 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program__Group__0__Impl_in_rule__Program__Group__03350 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_rule__Program__Group__1_in_rule__Program__Group__03353 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleprogram_heading_block_in_rule__Program__Group__0__Impl3380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program__Group__1__Impl_in_rule__Program__Group__13409 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_rule__Program__Group__2_in_rule__Program__Group__13412 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleblock_in_rule__Program__Group__1__Impl3439 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program__Group__2__Impl_in_rule__Program__Group__23468 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_rule__Program__Group__2__Impl3496 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group__0__Impl_in_rule__Program_heading_block__Group__03533 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group__1_in_rule__Program_heading_block__Group__03536 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rule__Program_heading_block__Group__0__Impl3564 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group__1__Impl_in_rule__Program_heading_block__Group__13595 = new BitSet(new long[]{0x0000C00000000000L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group__2_in_rule__Program_heading_block__Group__13598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Program_heading_block__Group__1__Impl3625 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group__2__Impl_in_rule__Program_heading_block__Group__23654 = new BitSet(new long[]{0x0000C00000000000L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group__3_in_rule__Program_heading_block__Group__23657 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__0_in_rule__Program_heading_block__Group__2__Impl3684 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group__3__Impl_in_rule__Program_heading_block__Group__33715 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__Program_heading_block__Group__3__Impl3743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__0__Impl_in_rule__Program_heading_block__Group_2__03782 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__1_in_rule__Program_heading_block__Group_2__03785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__Program_heading_block__Group_2__0__Impl3813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__1__Impl_in_rule__Program_heading_block__Group_2__13844 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__2_in_rule__Program_heading_block__Group_2__13847 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleidentifier_list_in_rule__Program_heading_block__Group_2__1__Impl3874 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Program_heading_block__Group_2__2__Impl_in_rule__Program_heading_block__Group_2__23903 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__Program_heading_block__Group_2__2__Impl3931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Identifier_list__Group__0__Impl_in_rule__Identifier_list__Group__03968 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_rule__Identifier_list__Group__1_in_rule__Identifier_list__Group__03971 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Identifier_list__Group__0__Impl3998 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Identifier_list__Group__1__Impl_in_rule__Identifier_list__Group__14027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Identifier_list__Group_1__0_in_rule__Identifier_list__Group__1__Impl4054 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_rule__Identifier_list__Group_1__0__Impl_in_rule__Identifier_list__Group_1__04089 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__Identifier_list__Group_1__1_in_rule__Identifier_list__Group_1__04092 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_rule__Identifier_list__Group_1__0__Impl4120 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Identifier_list__Group_1__1__Impl_in_rule__Identifier_list__Group_1__14151 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Identifier_list__Group_1__1__Impl4178 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Block__Group__0__Impl_in_rule__Block__Group__04211 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_rule__Block__Group__1_in_rule__Block__Group__04214 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruledeclaration_part_in_rule__Block__Group__0__Impl4241 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Block__Group__1__Impl_in_rule__Block__Group__14270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_part_in_rule__Block__Group__1__Impl4297 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement_part__Group__0__Impl_in_rule__Statement_part__Group__04330 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__Statement_part__Group__1_in_rule__Statement_part__Group__04333 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_BEGIN_KEYWORD_in_rule__Statement_part__Group__0__Impl4360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement_part__Group__1__Impl_in_rule__Statement_part__Group__14389 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_rule__Statement_part__Group__2_in_rule__Statement_part__Group__14392 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_sequence_in_rule__Statement_part__Group__1__Impl4419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement_part__Group__2__Impl_in_rule__Statement_part__Group__24448 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_END_KEYWORD_in_rule__Statement_part__Group__2__Impl4475 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement_sequence__Group__0__Impl_in_rule__Statement_sequence__Group__04510 = new BitSet(new long[]{0x0000400000000000L});
+    public static final BitSet FOLLOW_rule__Statement_sequence__Group__1_in_rule__Statement_sequence__Group__04513 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_in_rule__Statement_sequence__Group__0__Impl4540 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement_sequence__Group__1__Impl_in_rule__Statement_sequence__Group__14569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement_sequence__Group_1__0_in_rule__Statement_sequence__Group__1__Impl4596 = new BitSet(new long[]{0x0000400000000002L});
+    public static final BitSet FOLLOW_rule__Statement_sequence__Group_1__0__Impl_in_rule__Statement_sequence__Group_1__04631 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__Statement_sequence__Group_1__1_in_rule__Statement_sequence__Group_1__04634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__Statement_sequence__Group_1__0__Impl4662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement_sequence__Group_1__1__Impl_in_rule__Statement_sequence__Group_1__14693 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_in_rule__Statement_sequence__Group_1__1__Impl4720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement__Group__0__Impl_in_rule__Statement__Group__04753 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__Statement__Group__1_in_rule__Statement__Group__04756 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement__Group_0__0_in_rule__Statement__Group__0__Impl4783 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement__Group__1__Impl_in_rule__Statement__Group__14814 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement__Alternatives_1_in_rule__Statement__Group__1__Impl4841 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement__Group_0__0__Impl_in_rule__Statement__Group_0__04875 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_rule__Statement__Group_0__1_in_rule__Statement__Group_0__04878 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_in_rule__Statement__Group_0__0__Impl4905 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Statement__Group_0__1__Impl_in_rule__Statement__Group_0__14934 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rule__Statement__Group_0__1__Impl4962 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment_statement__Group__0__Impl_in_rule__Assignment_statement__Group__04997 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_rule__Assignment_statement__Group__1_in_rule__Assignment_statement__Group__05000 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_in_rule__Assignment_statement__Group__0__Impl5027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment_statement__Group__1__Impl_in_rule__Assignment_statement__Group__15056 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Assignment_statement__Group__2_in_rule__Assignment_statement__Group__15059 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__Assignment_statement__Group__1__Impl5087 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment_statement__Group__2__Impl_in_rule__Assignment_statement__Group__25118 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_rule__Assignment_statement__Group__2__Impl5145 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Indexed_variable__Group__0__Impl_in_rule__Indexed_variable__Group__05180 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_rule__Indexed_variable__Group__1_in_rule__Indexed_variable__Group__05183 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_in_rule__Indexed_variable__Group__0__Impl5210 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Indexed_variable__Group__1__Impl_in_rule__Indexed_variable__Group__15239 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Indexed_variable__Group__2_in_rule__Indexed_variable__Group__15242 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rule__Indexed_variable__Group__1__Impl5270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Indexed_variable__Group__2__Impl_in_rule__Indexed_variable__Group__25301 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_rule__Indexed_variable__Group__3_in_rule__Indexed_variable__Group__25304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_list_in_rule__Indexed_variable__Group__2__Impl5331 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Indexed_variable__Group__3__Impl_in_rule__Indexed_variable__Group__35360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_rule__Indexed_variable__Group__3__Impl5388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression_list__Group__0__Impl_in_rule__Expression_list__Group__05427 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_rule__Expression_list__Group__1_in_rule__Expression_list__Group__05430 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_rule__Expression_list__Group__0__Impl5457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression_list__Group__1__Impl_in_rule__Expression_list__Group__15486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression_list__Group_1__0_in_rule__Expression_list__Group__1__Impl5513 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_rule__Expression_list__Group_1__0__Impl_in_rule__Expression_list__Group_1__05548 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Expression_list__Group_1__1_in_rule__Expression_list__Group_1__05551 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_rule__Expression_list__Group_1__0__Impl5579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression_list__Group_1__1__Impl_in_rule__Expression_list__Group_1__15610 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_rule__Expression_list__Group_1__1__Impl5637 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression__Group__0__Impl_in_rule__Expression__Group__05670 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_rule__Expression__Group__1_in_rule__Expression__Group__05673 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulesimple_expression_in_rule__Expression__Group__0__Impl5700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression__Group__1__Impl_in_rule__Expression__Group__15729 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression__Group_1__0_in_rule__Expression__Group__1__Impl5756 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression__Group_1__0__Impl_in_rule__Expression__Group_1__05791 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Expression__Group_1__1_in_rule__Expression__Group_1__05794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_RELATIONAL_OPERATOR_in_rule__Expression__Group_1__0__Impl5821 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression__Group_1__1__Impl_in_rule__Expression__Group_1__15850 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulesimple_expression_in_rule__Expression__Group_1__1__Impl5877 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Group__0__Impl_in_rule__Simple_expression__Group__05910 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Group__1_in_rule__Simple_expression__Group__05913 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__Group__0__Impl5941 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Group__1__Impl_in_rule__Simple_expression__Group__15972 = new BitSet(new long[]{0x0000000000001CD0L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Group__2_in_rule__Simple_expression__Group__15975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleterm_in_rule__Simple_expression__Group__1__Impl6002 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Group__2__Impl_in_rule__Simple_expression__Group__26031 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Alternatives_2_in_rule__Simple_expression__Group__2__Impl6058 = new BitSet(new long[]{0x0000000000001CD2L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Group_2_0__0__Impl_in_rule__Simple_expression__Group_2_0__06095 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Group_2_0__1_in_rule__Simple_expression__Group_2_0__06098 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Alternatives_2_0_0_in_rule__Simple_expression__Group_2_0__0__Impl6125 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Simple_expression__Group_2_0__1__Impl_in_rule__Simple_expression__Group_2_0__16155 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleterm_in_rule__Simple_expression__Group_2_0__1__Impl6182 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Term__Group__0__Impl_in_rule__Term__Group__06215 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_rule__Term__Group__1_in_rule__Term__Group__06218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulefactor_in_rule__Term__Group__0__Impl6245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Term__Group__1__Impl_in_rule__Term__Group__16274 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Term__Group_1__0_in_rule__Term__Group__1__Impl6301 = new BitSet(new long[]{0x0000000000040002L});
+    public static final BitSet FOLLOW_rule__Term__Group_1__0__Impl_in_rule__Term__Group_1__06336 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Term__Group_1__1_in_rule__Term__Group_1__06339 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_MULTIPLICATION_OPERATOR_in_rule__Term__Group_1__0__Impl6366 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Term__Group_1__1__Impl_in_rule__Term__Group_1__16395 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulefactor_in_rule__Term__Group_1__1__Impl6422 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Factor__Group_6__0__Impl_in_rule__Factor__Group_6__06455 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Factor__Group_6__1_in_rule__Factor__Group_6__06458 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__Factor__Group_6__0__Impl6486 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Factor__Group_6__1__Impl_in_rule__Factor__Group_6__16517 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__Factor__Group_6__2_in_rule__Factor__Group_6__16520 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_rule__Factor__Group_6__1__Impl6547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Factor__Group_6__2__Impl_in_rule__Factor__Group_6__26576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__Factor__Group_6__2__Impl6604 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Factor__Group_7__0__Impl_in_rule__Factor__Group_7__06641 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Factor__Group_7__1_in_rule__Factor__Group_7__06644 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_NOT_KEYWORD_in_rule__Factor__Group_7__0__Impl6671 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Factor__Group_7__1__Impl_in_rule__Factor__Group_7__16700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulefactor_in_rule__Factor__Group_7__1__Impl6727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Set__Group__0__Impl_in_rule__Set__Group__06760 = new BitSet(new long[]{0x0030800000081F70L});
+    public static final BitSet FOLLOW_rule__Set__Group__1_in_rule__Set__Group__06763 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rule__Set__Group__0__Impl6791 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Set__Group__1__Impl_in_rule__Set__Group__16822 = new BitSet(new long[]{0x0030800000081F70L});
+    public static final BitSet FOLLOW_rule__Set__Group__2_in_rule__Set__Group__16825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_list_in_rule__Set__Group__1__Impl6853 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Set__Group__2__Impl_in_rule__Set__Group__26884 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_rule__Set__Group__2__Impl6912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Function_designator__Group__0__Impl_in_rule__Function_designator__Group__06949 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_rule__Function_designator__Group__1_in_rule__Function_designator__Group__06952 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IDENTIFIER_in_rule__Function_designator__Group__0__Impl6979 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Function_designator__Group__1__Impl_in_rule__Function_designator__Group__17008 = new BitSet(new long[]{0x0011800000081F70L});
+    public static final BitSet FOLLOW_rule__Function_designator__Group__2_in_rule__Function_designator__Group__17011 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__Function_designator__Group__1__Impl7039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Function_designator__Group__2__Impl_in_rule__Function_designator__Group__27070 = new BitSet(new long[]{0x0011800000081F70L});
+    public static final BitSet FOLLOW_rule__Function_designator__Group__3_in_rule__Function_designator__Group__27073 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_list_in_rule__Function_designator__Group__2__Impl7101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Function_designator__Group__3__Impl_in_rule__Function_designator__Group__37132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__Function_designator__Group__3__Impl7160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Compound_statement__Group__0__Impl_in_rule__Compound_statement__Group__07199 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__Compound_statement__Group__1_in_rule__Compound_statement__Group__07202 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_BEGIN_KEYWORD_in_rule__Compound_statement__Group__0__Impl7229 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Compound_statement__Group__1__Impl_in_rule__Compound_statement__Group__17258 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_rule__Compound_statement__Group__2_in_rule__Compound_statement__Group__17261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_sequence_in_rule__Compound_statement__Group__1__Impl7288 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Compound_statement__Group__2__Impl_in_rule__Compound_statement__Group__27317 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_END_KEYWORD_in_rule__Compound_statement__Group__2__Impl7344 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__While_statement__Group__0__Impl_in_rule__While_statement__Group__07379 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__While_statement__Group__1_in_rule__While_statement__Group__07382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_WHILE_KEYWORD_in_rule__While_statement__Group__0__Impl7409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__While_statement__Group__1__Impl_in_rule__While_statement__Group__17438 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_rule__While_statement__Group__2_in_rule__While_statement__Group__17441 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_rule__While_statement__Group__1__Impl7468 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__While_statement__Group__2__Impl_in_rule__While_statement__Group__27497 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__While_statement__Group__3_in_rule__While_statement__Group__27500 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DO_KEYWORD_in_rule__While_statement__Group__2__Impl7527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__While_statement__Group__3__Impl_in_rule__While_statement__Group__37556 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_in_rule__While_statement__Group__3__Impl7583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Repeat_statement__Group__0__Impl_in_rule__Repeat_statement__Group__07620 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__Repeat_statement__Group__1_in_rule__Repeat_statement__Group__07623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_REPEAT_KEYWORD_in_rule__Repeat_statement__Group__0__Impl7650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Repeat_statement__Group__1__Impl_in_rule__Repeat_statement__Group__17679 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_rule__Repeat_statement__Group__2_in_rule__Repeat_statement__Group__17682 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_sequence_in_rule__Repeat_statement__Group__1__Impl7709 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Repeat_statement__Group__2__Impl_in_rule__Repeat_statement__Group__27738 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Repeat_statement__Group__3_in_rule__Repeat_statement__Group__27741 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_UNTIL_KEYWORD_in_rule__Repeat_statement__Group__2__Impl7768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Repeat_statement__Group__3__Impl_in_rule__Repeat_statement__Group__37797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_rule__Repeat_statement__Group__3__Impl7824 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__0__Impl_in_rule__For_statement__Group__07861 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__1_in_rule__For_statement__Group__07864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_FOR_KEYWORD_in_rule__For_statement__Group__0__Impl7891 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__1__Impl_in_rule__For_statement__Group__17920 = new BitSet(new long[]{0x0000000000006000L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__2_in_rule__For_statement__Group__17923 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleassignment_statement_in_rule__For_statement__Group__1__Impl7950 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__2__Impl_in_rule__For_statement__Group__27979 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__3_in_rule__For_statement__Group__27982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__For_statement__Alternatives_2_in_rule__For_statement__Group__2__Impl8009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__3__Impl_in_rule__For_statement__Group__38039 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__4_in_rule__For_statement__Group__38042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_rule__For_statement__Group__3__Impl8069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__4__Impl_in_rule__For_statement__Group__48098 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__5_in_rule__For_statement__Group__48101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DO_KEYWORD_in_rule__For_statement__Group__4__Impl8128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__For_statement__Group__5__Impl_in_rule__For_statement__Group__58157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_in_rule__For_statement__Group__5__Impl8184 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__If_statement__Group__0__Impl_in_rule__If_statement__Group__08225 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__If_statement__Group__1_in_rule__If_statement__Group__08228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IF_KEYWORD_in_rule__If_statement__Group__0__Impl8255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__If_statement__Group__1__Impl_in_rule__If_statement__Group__18284 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_rule__If_statement__Group__2_in_rule__If_statement__Group__18287 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_rule__If_statement__Group__1__Impl8314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__If_statement__Group__2__Impl_in_rule__If_statement__Group__28343 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__If_statement__Group__3_in_rule__If_statement__Group__28346 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_THEN_KEYWORD_in_rule__If_statement__Group__2__Impl8373 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__If_statement__Group__3__Impl_in_rule__If_statement__Group__38402 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_rule__If_statement__Group__4_in_rule__If_statement__Group__38405 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_in_rule__If_statement__Group__3__Impl8432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__If_statement__Group__4__Impl_in_rule__If_statement__Group__48461 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__If_statement__Group_4__0_in_rule__If_statement__Group__4__Impl8488 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__If_statement__Group_4__0__Impl_in_rule__If_statement__Group_4__08529 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__If_statement__Group_4__1_in_rule__If_statement__Group_4__08532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ELSE_KEYWORD_in_rule__If_statement__Group_4__0__Impl8559 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__If_statement__Group_4__1__Impl_in_rule__If_statement__Group_4__18588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_in_rule__If_statement__Group_4__1__Impl8615 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__0__Impl_in_rule__Case_statement__Group__08648 = new BitSet(new long[]{0x0010800000081F70L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__1_in_rule__Case_statement__Group__08651 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_CASE_KEYWORD_in_rule__Case_statement__Group__0__Impl8678 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__1__Impl_in_rule__Case_statement__Group__18707 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__2_in_rule__Case_statement__Group__18710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleexpression_in_rule__Case_statement__Group__1__Impl8737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__2__Impl_in_rule__Case_statement__Group__28766 = new BitSet(new long[]{0x0000000000001D70L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__3_in_rule__Case_statement__Group__28769 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_OF_KEYWORD_in_rule__Case_statement__Group__2__Impl8796 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__3__Impl_in_rule__Case_statement__Group__38825 = new BitSet(new long[]{0x0000400000010000L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__4_in_rule__Case_statement__Group__38828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulecase_limb_in_rule__Case_statement__Group__3__Impl8855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__4__Impl_in_rule__Case_statement__Group__48884 = new BitSet(new long[]{0x0000400000010000L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__5_in_rule__Case_statement__Group__48887 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group_4__0_in_rule__Case_statement__Group__4__Impl8914 = new BitSet(new long[]{0x0000400000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__5__Impl_in_rule__Case_statement__Group__58945 = new BitSet(new long[]{0x0000400000010000L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__6_in_rule__Case_statement__Group__58948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__Case_statement__Group__5__Impl8977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group__6__Impl_in_rule__Case_statement__Group__69010 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_END_KEYWORD_in_rule__Case_statement__Group__6__Impl9037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group_4__0__Impl_in_rule__Case_statement__Group_4__09080 = new BitSet(new long[]{0x0000000000001D70L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group_4__1_in_rule__Case_statement__Group_4__09083 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__Case_statement__Group_4__0__Impl9111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_statement__Group_4__1__Impl_in_rule__Case_statement__Group_4__19142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulecase_limb_in_rule__Case_statement__Group_4__1__Impl9169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_limb__Group__0__Impl_in_rule__Case_limb__Group__09202 = new BitSet(new long[]{0x0004000000000000L});
+    public static final BitSet FOLLOW_rule__Case_limb__Group__1_in_rule__Case_limb__Group__09205 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulecase_label_list_in_rule__Case_limb__Group__0__Impl9232 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_limb__Group__1__Impl_in_rule__Case_limb__Group__19261 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__Case_limb__Group__2_in_rule__Case_limb__Group__19264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rule__Case_limb__Group__1__Impl9292 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_limb__Group__2__Impl_in_rule__Case_limb__Group__29323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_in_rule__Case_limb__Group__2__Impl9350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_label_list__Group__0__Impl_in_rule__Case_label_list__Group__09385 = new BitSet(new long[]{0x0002000000000000L});
+    public static final BitSet FOLLOW_rule__Case_label_list__Group__1_in_rule__Case_label_list__Group__09388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleconstant_in_rule__Case_label_list__Group__0__Impl9415 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_label_list__Group__1__Impl_in_rule__Case_label_list__Group__19444 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_label_list__Group_1__0_in_rule__Case_label_list__Group__1__Impl9471 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_rule__Case_label_list__Group_1__0__Impl_in_rule__Case_label_list__Group_1__09506 = new BitSet(new long[]{0x0000000000001D70L});
+    public static final BitSet FOLLOW_rule__Case_label_list__Group_1__1_in_rule__Case_label_list__Group_1__09509 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_rule__Case_label_list__Group_1__0__Impl9537 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Case_label_list__Group_1__1__Impl_in_rule__Case_label_list__Group_1__19568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleconstant_in_rule__Case_label_list__Group_1__1__Impl9595 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constant__Group_0__0__Impl_in_rule__Constant__Group_0__09628 = new BitSet(new long[]{0x0000000000001C70L});
+    public static final BitSet FOLLOW_rule__Constant__Group_0__1_in_rule__Constant__Group_0__09631 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Constant__Group_0__0__Impl9659 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constant__Group_0__1__Impl_in_rule__Constant__Group_0__19690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constant__Alternatives_0_1_in_rule__Constant__Group_0__1__Impl9717 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__0__Impl_in_rule__With_statement__Group__09751 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__1_in_rule__With_statement__Group__09754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_WITH_KEYWORD_in_rule__With_statement__Group__0__Impl9781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__1__Impl_in_rule__With_statement__Group__19810 = new BitSet(new long[]{0x0002000000200000L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__2_in_rule__With_statement__Group__19813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_in_rule__With_statement__Group__1__Impl9840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__2__Impl_in_rule__With_statement__Group__29869 = new BitSet(new long[]{0x0002000000200000L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__3_in_rule__With_statement__Group__29872 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__With_statement__Group_2__0_in_rule__With_statement__Group__2__Impl9899 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__3__Impl_in_rule__With_statement__Group__39930 = new BitSet(new long[]{0x00000000D3508030L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__4_in_rule__With_statement__Group__39933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DO_KEYWORD_in_rule__With_statement__Group__3__Impl9960 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__With_statement__Group__4__Impl_in_rule__With_statement__Group__49989 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulestatement_in_rule__With_statement__Group__4__Impl10016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__With_statement__Group_2__0__Impl_in_rule__With_statement__Group_2__010055 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_rule__With_statement__Group_2__1_in_rule__With_statement__Group_2__010058 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_rule__With_statement__Group_2__0__Impl10086 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__With_statement__Group_2__1__Impl_in_rule__With_statement__Group_2__110117 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulevariable_in_rule__With_statement__Group_2__1__Impl10144 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Goto_statement__Group__0__Impl_in_rule__Goto_statement__Group__010177 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Goto_statement__Group__1_in_rule__Goto_statement__Group__010180 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_GOTO_KEYWORD_in_rule__Goto_statement__Group__0__Impl10207 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Goto_statement__Group__1__Impl_in_rule__Goto_statement__Group__110236 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_in_rule__Goto_statement__Group__1__Impl10263 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__0__Impl_in_rule__Label_declaration_part__Group__010296 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__1_in_rule__Label_declaration_part__Group__010299 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_LABEL_KEYWORD_in_rule__Label_declaration_part__Group__0__Impl10326 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__1__Impl_in_rule__Label_declaration_part__Group__110355 = new BitSet(new long[]{0x0002400000000000L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__2_in_rule__Label_declaration_part__Group__110358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_in_rule__Label_declaration_part__Group__1__Impl10385 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__2__Impl_in_rule__Label_declaration_part__Group__210414 = new BitSet(new long[]{0x0002400000000000L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__3_in_rule__Label_declaration_part__Group__210417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group_2__0_in_rule__Label_declaration_part__Group__2__Impl10444 = new BitSet(new long[]{0x0002000000000002L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group__3__Impl_in_rule__Label_declaration_part__Group__310475 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_rule__Label_declaration_part__Group__3__Impl10503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group_2__0__Impl_in_rule__Label_declaration_part__Group_2__010542 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group_2__1_in_rule__Label_declaration_part__Group_2__010545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_49_in_rule__Label_declaration_part__Group_2__0__Impl10573 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Label_declaration_part__Group_2__1__Impl_in_rule__Label_declaration_part__Group_2__110604 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulelabel_in_rule__Label_declaration_part__Group_2__1__Impl10631 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleprogram_in_rule__Pascal__ProgramAssignment10669 = new BitSet(new long[]{0x0000000000000002L});
 
 }

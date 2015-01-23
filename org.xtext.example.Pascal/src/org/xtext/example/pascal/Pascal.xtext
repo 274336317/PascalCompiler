@@ -102,8 +102,8 @@ function_designator:
 	IDENTIFIER "(" expression_list ? ")"
 ;
 
-structured_statement: //TODO
-	compound_statement | repetitive_statement | conditional_statement
+structured_statement: 
+	compound_statement | repetitive_statement | conditional_statement | with_statement
 ;
 
 compound_statement:
@@ -147,7 +147,11 @@ case_label_list:
 ;
 
 constant:
-	( "+" | "-" ) ? ( IDENTIFIER | number ) | STRING 	
+	ADDITION_OPERATOR ? ( IDENTIFIER | number ) | STRING 	
+;
+
+with_statement:
+	WITH_KEYWORD variable ( "," variable ) * DO_KEYWORD statement	
 ;
 
 goto_statement:
@@ -250,8 +254,12 @@ terminal OF_KEYWORD:
 	"of"	
 ;
 
+terminal WITH_KEYWORD:
+	"with"	
+;
+
 terminal SIGNED_INTEGER_NUMBER:
-	( "+" | "-" ) INTEGER_NUMBER	
+	ADDITION_OPERATOR INTEGER_NUMBER	
 ;
 
 terminal INTEGER_NUMBER: 
@@ -259,7 +267,7 @@ terminal INTEGER_NUMBER:
 ;
 
 terminal SIGNED_REAL_NUMBER:
-	( "+" | "-" ) REAL_NUMBER
+	ADDITION_OPERATOR REAL_NUMBER
 ;
 
 terminal REAL_NUMBER:
@@ -272,7 +280,7 @@ terminal UNSIGNED_DIGIT_SEQUENCE:
 ;
 
 terminal DIGIT_SEQUENCE:
-	( "+" | "-" ) ? UNSIGNED_DIGIT_SEQUENCE	
+	ADDITION_OPERATOR ? UNSIGNED_DIGIT_SEQUENCE	
 ;
 
 terminal DIGIT:
