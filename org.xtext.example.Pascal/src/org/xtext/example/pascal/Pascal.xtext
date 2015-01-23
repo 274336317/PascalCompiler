@@ -30,19 +30,19 @@ statement_sequence:
 	statement ( ";" statement ) *
 ;
 
-statement: //TODO
+statement: 
 	( label ":" ) ? ( simple_statement | structured_statement )
 ;
 
 label:
-	INTEGER_NUMBER	
+	SIGNED_INTEGER_NUMBER | INTEGER_NUMBER
 ;
 
 simple_statement: 
 	( assignment_statement | function_designator | goto_statement ) ?	
 ;
  
-assignment_statement: //TODO
+assignment_statement: 
 	variable ":=" expression	
 ;
 
@@ -160,10 +160,100 @@ goto_statement:
 
 declaration_part: //TODO
 	( label_declaration_part ) ?
+	( constant_definition_part ) ? 
+	( type_definition_part ) ?
 ;
 
 label_declaration_part:
 	LABEL_KEYWORD label ( "," label ) * ";"
+;
+
+constant_definition_part:
+	CONST_KEYWORD ( constant_definition ";" ) +	
+;
+
+constant_definition:
+	IDENTIFIER "=" constant	
+;
+
+type_definition_part:
+	TYPE_KEYWORD ( type_definition ";" ) +	
+;
+
+type_definition:
+	IDENTIFIER "=" type	
+;
+
+type: //TODO
+	simple_type | structured_type | IDENTIFIER
+;
+
+simple_type: 
+	subrange_type | enumerated_type
+;
+
+subrange_type:
+	constant ".." constant | NUMERIC_SUBRANGE
+;
+
+enumerated_type:
+	"(" identifier_list ")"
+;
+
+structured_type:
+	( PACKED_KEYWORD ) ? unpacked_structured_type	
+;
+
+unpacked_structured_type: 
+	array_type | record_type | set_type | file_type
+;
+
+array_type:
+	ARRAY_KEYWORD "[" index_type ( "," index_type ) * "]" OF_KEYWORD type
+;
+
+index_type:
+	simple_type	
+;
+
+record_type:
+	RECORD_KEYWORD field_list END_KEYWORD	
+;
+
+field_list:
+	( ( fixed_part ( ";" variant_part ) ? | variant_part ) ( ";" ) ? ) ?	
+;
+
+fixed_part:
+	record_section ( ";" record_section ) *
+;
+
+record_section:
+	identifier_list ":" type	
+;
+
+variant_part:
+	CASE_KEYWORD tag_field IDENTIFIER OF_KEYWORD variant ( ";" variant ) *  	
+;
+
+tag_field:
+	( IDENTIFIER ":" ) ?	
+;
+
+variant:
+	case_label_list ":" "(" field_list ")"	
+;
+
+set_type:
+	SET_KEYWORD OF_KEYWORD type	
+;
+
+file_type:
+	FILE_KEYWORD OF_KEYWORD type
+;
+
+terminal NUMERIC_SUBRANGE:
+	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER ) ".."	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER )
 ;
 
 terminal ADDITION_OPERATOR:
@@ -256,6 +346,34 @@ terminal OF_KEYWORD:
 
 terminal WITH_KEYWORD:
 	"with"	
+;
+
+terminal CONST_KEYWORD:
+	"const"
+;
+
+terminal TYPE_KEYWORD:
+	"type"	
+;
+
+terminal PACKED_KEYWORD:
+	"packed"	
+;
+
+terminal ARRAY_KEYWORD:
+	"array"	
+;
+
+terminal RECORD_KEYWORD:
+	"record"	
+;
+
+terminal SET_KEYWORD:
+	"set"	
+;
+
+terminal FILE_KEYWORD:
+	"file"
 ;
 
 terminal SIGNED_INTEGER_NUMBER:

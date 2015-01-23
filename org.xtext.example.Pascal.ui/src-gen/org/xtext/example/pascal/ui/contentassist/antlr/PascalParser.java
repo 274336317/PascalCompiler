@@ -38,6 +38,7 @@ public class PascalParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getStatementAccess().getAlternatives_1(), "rule__Statement__Alternatives_1");
+					put(grammarAccess.getLabelAccess().getAlternatives(), "rule__Label__Alternatives");
 					put(grammarAccess.getSimple_statementAccess().getAlternatives(), "rule__Simple_statement__Alternatives");
 					put(grammarAccess.getSimple_expressionAccess().getAlternatives_2(), "rule__Simple_expression__Alternatives_2");
 					put(grammarAccess.getSimple_expressionAccess().getAlternatives_2_0_0(), "rule__Simple_expression__Alternatives_2_0_0");
@@ -51,6 +52,11 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConditional_statementAccess().getAlternatives(), "rule__Conditional_statement__Alternatives");
 					put(grammarAccess.getConstantAccess().getAlternatives(), "rule__Constant__Alternatives");
 					put(grammarAccess.getConstantAccess().getAlternatives_0_1(), "rule__Constant__Alternatives_0_1");
+					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
+					put(grammarAccess.getSimple_typeAccess().getAlternatives(), "rule__Simple_type__Alternatives");
+					put(grammarAccess.getSubrange_typeAccess().getAlternatives(), "rule__Subrange_type__Alternatives");
+					put(grammarAccess.getUnpacked_structured_typeAccess().getAlternatives(), "rule__Unpacked_structured_type__Alternatives");
+					put(grammarAccess.getField_listAccess().getAlternatives_0(), "rule__Field_list__Alternatives_0");
 					put(grammarAccess.getProgramAccess().getGroup(), "rule__Program__Group__0");
 					put(grammarAccess.getProgram_heading_blockAccess().getGroup(), "rule__Program_heading_block__Group__0");
 					put(grammarAccess.getProgram_heading_blockAccess().getGroup_2(), "rule__Program_heading_block__Group_2__0");
@@ -91,8 +97,33 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getWith_statementAccess().getGroup(), "rule__With_statement__Group__0");
 					put(grammarAccess.getWith_statementAccess().getGroup_2(), "rule__With_statement__Group_2__0");
 					put(grammarAccess.getGoto_statementAccess().getGroup(), "rule__Goto_statement__Group__0");
+					put(grammarAccess.getDeclaration_partAccess().getGroup(), "rule__Declaration_part__Group__0");
 					put(grammarAccess.getLabel_declaration_partAccess().getGroup(), "rule__Label_declaration_part__Group__0");
 					put(grammarAccess.getLabel_declaration_partAccess().getGroup_2(), "rule__Label_declaration_part__Group_2__0");
+					put(grammarAccess.getConstant_definition_partAccess().getGroup(), "rule__Constant_definition_part__Group__0");
+					put(grammarAccess.getConstant_definition_partAccess().getGroup_1(), "rule__Constant_definition_part__Group_1__0");
+					put(grammarAccess.getConstant_definitionAccess().getGroup(), "rule__Constant_definition__Group__0");
+					put(grammarAccess.getType_definition_partAccess().getGroup(), "rule__Type_definition_part__Group__0");
+					put(grammarAccess.getType_definition_partAccess().getGroup_1(), "rule__Type_definition_part__Group_1__0");
+					put(grammarAccess.getType_definitionAccess().getGroup(), "rule__Type_definition__Group__0");
+					put(grammarAccess.getSubrange_typeAccess().getGroup_0(), "rule__Subrange_type__Group_0__0");
+					put(grammarAccess.getEnumerated_typeAccess().getGroup(), "rule__Enumerated_type__Group__0");
+					put(grammarAccess.getStructured_typeAccess().getGroup(), "rule__Structured_type__Group__0");
+					put(grammarAccess.getArray_typeAccess().getGroup(), "rule__Array_type__Group__0");
+					put(grammarAccess.getArray_typeAccess().getGroup_3(), "rule__Array_type__Group_3__0");
+					put(grammarAccess.getRecord_typeAccess().getGroup(), "rule__Record_type__Group__0");
+					put(grammarAccess.getField_listAccess().getGroup(), "rule__Field_list__Group__0");
+					put(grammarAccess.getField_listAccess().getGroup_0_0(), "rule__Field_list__Group_0_0__0");
+					put(grammarAccess.getField_listAccess().getGroup_0_0_1(), "rule__Field_list__Group_0_0_1__0");
+					put(grammarAccess.getFixed_partAccess().getGroup(), "rule__Fixed_part__Group__0");
+					put(grammarAccess.getFixed_partAccess().getGroup_1(), "rule__Fixed_part__Group_1__0");
+					put(grammarAccess.getRecord_sectionAccess().getGroup(), "rule__Record_section__Group__0");
+					put(grammarAccess.getVariant_partAccess().getGroup(), "rule__Variant_part__Group__0");
+					put(grammarAccess.getVariant_partAccess().getGroup_5(), "rule__Variant_part__Group_5__0");
+					put(grammarAccess.getTag_fieldAccess().getGroup(), "rule__Tag_field__Group__0");
+					put(grammarAccess.getVariantAccess().getGroup(), "rule__Variant__Group__0");
+					put(grammarAccess.getSet_typeAccess().getGroup(), "rule__Set_type__Group__0");
+					put(grammarAccess.getFile_typeAccess().getGroup(), "rule__File_type__Group__0");
 					put(grammarAccess.getPascalAccess().getProgramAssignment(), "rule__Pascal__ProgramAssignment");
 				}
 			};
