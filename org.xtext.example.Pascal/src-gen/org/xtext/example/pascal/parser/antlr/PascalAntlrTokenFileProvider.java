@@ -10,6 +10,6 @@ public class PascalAntlrTokenFileProvider implements IAntlrTokenFileProvider {
 	
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/xtext/example/pascal/parser/antlr/internal/InternalPascal.tokens");
+    	return classLoader.getResourceAsStream("org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.tokens");
 	}
 }

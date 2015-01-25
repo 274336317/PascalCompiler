@@ -64,12 +64,11 @@ Workflow {
     		fragment = resourceFactory.ResourceFactoryFragment auto-inject {}
     
     		// The antlr parser generator fragment.
-    		fragment = parser.antlr.XtextAntlrGeneratorFragment auto-inject {
-    		//  options = {
-    		//      backtrack = true
-    		//	ignoreCase = true
-    		//  }
-    		}
+    		fragment = parser.antlr.ex.rt.AntlrGeneratorFragment {
+			    options = {
+			        ignoreCase = true
+			    }
+			}
     		
     		// Xtend-based API for validation
     		fragment = validation.ValidatorFragment auto-inject {
@@ -82,7 +81,7 @@ Workflow {
     		// fragment = exporting.SimpleNamesFragment auto-inject {}
     
     		// scoping and exporting API
-    		fragment = scoping.ImportNamespacesScopingFragment auto-inject { }
+    		fragment = scoping.ImportNamespacesScopingFragment auto-inject { ignoreCase = true }
     		fragment = exporting.QualifiedNamesFragment auto-inject {}
     		fragment = builder.BuilderIntegrationFragment auto-inject {}
     
@@ -106,8 +105,12 @@ Workflow {
     		fragment = contentAssist.ContentAssistFragment auto-inject { }
     
     		// generates a more lightweight Antlr parser and lexer tailored for content assist
-    		fragment = parser.antlr.XtextAntlrUiGeneratorFragment auto-inject { }
-
+    		fragment = parser.antlr.ex.ca.ContentAssistParserGeneratorFragment {
+			    options = {
+			        ignoreCase = true
+			    }
+			}
+			
     		// generates junit test support classes into Generator#pathTestProject
     		fragment = junit.Junit4Fragment auto-inject {}
     
@@ -131,4 +134,3 @@ Workflow {
     	}
     }
 }
-

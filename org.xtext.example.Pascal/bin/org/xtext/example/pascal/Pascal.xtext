@@ -327,7 +327,7 @@ terminal ADDITION_OPERATOR:
 ; 
 
 terminal MULTIPLICATION_OPERATOR:
-	"*" | "/" | "div" | "mod" | "and"	
+	"*" | "/" | "div" | "mod" | "and" 
 ;
 
 terminal RELATIONAL_OPERATOR:
