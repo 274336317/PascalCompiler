@@ -10,8 +10,8 @@ program:
 	program_heading_block block "."
 ;
 
-program_heading_block:
-	"program" IDENTIFIER ( "(" identifier_list ")" ) ? ";"	
+program_heading_block: //TODO: esse parametro foi adicionado como opcional
+	PROGRAM_KEYWORD IDENTIFIER ( "(" identifier_list ")" ) ? ";"	
 ;
  
 identifier_list:
@@ -38,8 +38,8 @@ label:
 	SIGNED_INTEGER_NUMBER | INTEGER_NUMBER
 ;
 
-simple_statement: 
-	( assignment_statement | function_designator | goto_statement ) ?	
+simple_statement: //TODO: FOI ADICIONADO O PARAMETRO IDENTIFIER (FUNCTION DESIGNATOR SEM PARAMETRO)
+	( assignment_statement | function_designator | goto_statement | IDENTIFIER ) ?	
 ;
  
 assignment_statement: 
@@ -47,19 +47,19 @@ assignment_statement:
 ;
 
 variable: //TODO
-	entire_variable //| component_variable
+	entire_variable | component_variable
 ;
 
 entire_variable:
 	IDENTIFIER
 ;
 
-component_variable: //TODO
-	indexed_variable 
+component_variable: //TODO -> se for só a recursão está resolvido!
+	entire_variable "[" expression_list "]" indexed_variable_ 
 ;
 
-indexed_variable: //FIXME: RECURSAO INDIRETA A ESQUERDA
-	variable "[" expression_list "]"	
+indexed_variable_:
+	( "[" expression_list "]" indexed_variable_ ) ?
 ;
 
 expression_list:
@@ -206,12 +206,16 @@ structured_type:
 	( PACKED_KEYWORD ) ? unpacked_structured_type	
 ;
 
-unpacked_structured_type: 
-	array_type | record_type | set_type | file_type
+unpacked_structured_type: //TODO: ADICIONADO DYNAMIC_ARRAY_TYPE
+	array_type | dynamic_array_type | record_type | set_type | file_type
 ;
 
 array_type:
 	ARRAY_KEYWORD "[" index_type ( "," index_type ) * "]" OF_KEYWORD type
+;
+
+dynamic_array_type:
+	ARRAY_KEYWORD OF_KEYWORD type	
 ;
 
 index_type:
@@ -332,6 +336,10 @@ terminal MULTIPLICATION_OPERATOR:
 
 terminal RELATIONAL_OPERATOR:
 	"=" | "<>" | "<" | "<=" | ">" | ">=" | "in"	
+;
+
+terminal PROGRAM_KEYWORD:
+	"program"	
 ;
 
 terminal BEGIN_KEYWORD:

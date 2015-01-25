@@ -69,6 +69,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
+		////TODO: esse parametro foi adicionado como opcional
 		//program_heading_block:
 		//	"program" IDENTIFIER ("(" identifier_list ")")? ";";
 		public ParserRule getRule() { return rule; }
@@ -260,12 +261,14 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cAssignment_statementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cFunction_designatorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cGoto_statementParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cIDENTIFIERTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
+		////TODO: FOI ADICIONADO O PARAMETRO IDENTIFIER (FUNCTION DESIGNATOR SEM PARAMETRO)
 		//simple_statement:
-		//	(assignment_statement | function_designator | goto_statement)?;
+		//	(assignment_statement | function_designator | goto_statement | IDENTIFIER)?;
 		public ParserRule getRule() { return rule; }
 
-		//(assignment_statement | function_designator | goto_statement)?
+		//(assignment_statement | function_designator | goto_statement | IDENTIFIER)?
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//assignment_statement
@@ -276,6 +279,9 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 		//goto_statement
 		public RuleCall getGoto_statementParserRuleCall_2() { return cGoto_statementParserRuleCall_2; }
+
+		//IDENTIFIER
+		public RuleCall getIDENTIFIERTerminalRuleCall_3() { return cIDENTIFIERTerminalRuleCall_3; }
 	}
 
 	public class Assignment_statementElements extends AbstractParserRuleElementFinder {
@@ -304,16 +310,23 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class VariableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "variable");
-		private final RuleCall cEntire_variableParserRuleCall = (RuleCall)rule.eContents().get(1);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cEntire_variableParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cComponent_variableParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		////TODO
-		//variable: //| component_variable
-		//	entire_variable;
+		//variable:
+		//	entire_variable | component_variable;
 		public ParserRule getRule() { return rule; }
 
-		////| component_variable
+		//entire_variable | component_variable
+		public Alternatives getAlternatives() { return cAlternatives; }
+
 		//entire_variable
-		public RuleCall getEntire_variableParserRuleCall() { return cEntire_variableParserRuleCall; }
+		public RuleCall getEntire_variableParserRuleCall_0() { return cEntire_variableParserRuleCall_0; }
+
+		//component_variable
+		public RuleCall getComponent_variableParserRuleCall_1() { return cComponent_variableParserRuleCall_1; }
 	}
 
 	public class Entire_variableElements extends AbstractParserRuleElementFinder {
@@ -330,35 +343,23 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class Component_variableElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "component_variable");
-		private final RuleCall cIndexed_variableParserRuleCall = (RuleCall)rule.eContents().get(1);
-		
-		////TODO
-		//component_variable:
-		//	indexed_variable;
-		public ParserRule getRule() { return rule; }
-
-		//indexed_variable
-		public RuleCall getIndexed_variableParserRuleCall() { return cIndexed_variableParserRuleCall; }
-	}
-
-	public class Indexed_variableElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "indexed_variable");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cVariableParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cEntire_variableParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cExpression_listParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final RuleCall cIndexed_variable_ParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
-		////FIXME: RECURSAO INDIRETA A ESQUERDA
-		//indexed_variable:
-		//	variable "[" expression_list "]";
+		////TODO -> se for só a recursão está resolvido!
+		//component_variable:
+		//	entire_variable "[" expression_list "]" indexed_variable_;
 		public ParserRule getRule() { return rule; }
 
-		//variable "[" expression_list "]"
+		//entire_variable "[" expression_list "]" indexed_variable_
 		public Group getGroup() { return cGroup; }
 
-		//variable
-		public RuleCall getVariableParserRuleCall_0() { return cVariableParserRuleCall_0; }
+		//entire_variable
+		public RuleCall getEntire_variableParserRuleCall_0() { return cEntire_variableParserRuleCall_0; }
 
 		//"["
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
@@ -368,6 +369,37 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+
+		//indexed_variable_
+		public RuleCall getIndexed_variable_ParserRuleCall_4() { return cIndexed_variable_ParserRuleCall_4; }
+	}
+
+	public class Indexed_variable_Elements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "indexed_variable_");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cExpression_listParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cIndexed_variable_ParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		
+		//indexed_variable_:
+		//	("[" expression_list "]" indexed_variable_)?;
+		public ParserRule getRule() { return rule; }
+
+		//("[" expression_list "]" indexed_variable_)?
+		public Group getGroup() { return cGroup; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+
+		//expression_list
+		public RuleCall getExpression_listParserRuleCall_1() { return cExpression_listParserRuleCall_1; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+
+		//indexed_variable_
+		public RuleCall getIndexed_variable_ParserRuleCall_3() { return cIndexed_variable_ParserRuleCall_3; }
 	}
 
 	public class Expression_listElements extends AbstractParserRuleElementFinder {
@@ -1422,28 +1454,33 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "unpacked_structured_type");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cArray_typeParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cRecord_typeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cSet_typeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cFile_typeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cDynamic_array_typeParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cRecord_typeParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cSet_typeParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cFile_typeParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
+		////TODO: ADICIONADO DYNAMIC_ARRAY_TYPE
 		//unpacked_structured_type:
-		//	array_type | record_type | set_type | file_type;
+		//	array_type | dynamic_array_type | record_type | set_type | file_type;
 		public ParserRule getRule() { return rule; }
 
-		//array_type | record_type | set_type | file_type
+		//array_type | dynamic_array_type | record_type | set_type | file_type
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//array_type
 		public RuleCall getArray_typeParserRuleCall_0() { return cArray_typeParserRuleCall_0; }
 
+		//dynamic_array_type
+		public RuleCall getDynamic_array_typeParserRuleCall_1() { return cDynamic_array_typeParserRuleCall_1; }
+
 		//record_type
-		public RuleCall getRecord_typeParserRuleCall_1() { return cRecord_typeParserRuleCall_1; }
+		public RuleCall getRecord_typeParserRuleCall_2() { return cRecord_typeParserRuleCall_2; }
 
 		//set_type
-		public RuleCall getSet_typeParserRuleCall_2() { return cSet_typeParserRuleCall_2; }
+		public RuleCall getSet_typeParserRuleCall_3() { return cSet_typeParserRuleCall_3; }
 
 		//file_type
-		public RuleCall getFile_typeParserRuleCall_3() { return cFile_typeParserRuleCall_3; }
+		public RuleCall getFile_typeParserRuleCall_4() { return cFile_typeParserRuleCall_4; }
 	}
 
 	public class Array_typeElements extends AbstractParserRuleElementFinder {
@@ -1492,6 +1529,30 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 		//type
 		public RuleCall getTypeParserRuleCall_6() { return cTypeParserRuleCall_6; }
+	}
+
+	public class Dynamic_array_typeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "dynamic_array_type");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cARRAY_KEYWORDTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cOF_KEYWORDTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final RuleCall cTypeParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//dynamic_array_type:
+		//	ARRAY_KEYWORD OF_KEYWORD type;
+		public ParserRule getRule() { return rule; }
+
+		//ARRAY_KEYWORD OF_KEYWORD type
+		public Group getGroup() { return cGroup; }
+
+		//ARRAY_KEYWORD
+		public RuleCall getARRAY_KEYWORDTerminalRuleCall_0() { return cARRAY_KEYWORDTerminalRuleCall_0; }
+
+		//OF_KEYWORD
+		public RuleCall getOF_KEYWORDTerminalRuleCall_1() { return cOF_KEYWORDTerminalRuleCall_1; }
+
+		//type
+		public RuleCall getTypeParserRuleCall_2() { return cTypeParserRuleCall_2; }
 	}
 
 	public class Index_typeElements extends AbstractParserRuleElementFinder {
@@ -2274,7 +2335,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	private final VariableElements pVariable;
 	private final Entire_variableElements pEntire_variable;
 	private final Component_variableElements pComponent_variable;
-	private final Indexed_variableElements pIndexed_variable;
+	private final Indexed_variable_Elements pIndexed_variable_;
 	private final Expression_listElements pExpression_list;
 	private final ExpressionElements pExpression;
 	private final Simple_expressionElements pSimple_expression;
@@ -2312,6 +2373,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	private final Structured_typeElements pStructured_type;
 	private final Unpacked_structured_typeElements pUnpacked_structured_type;
 	private final Array_typeElements pArray_type;
+	private final Dynamic_array_typeElements pDynamic_array_type;
 	private final Index_typeElements pIndex_type;
 	private final Record_typeElements pRecord_type;
 	private final Field_listElements pField_list;
@@ -2409,7 +2471,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		this.pVariable = new VariableElements();
 		this.pEntire_variable = new Entire_variableElements();
 		this.pComponent_variable = new Component_variableElements();
-		this.pIndexed_variable = new Indexed_variableElements();
+		this.pIndexed_variable_ = new Indexed_variable_Elements();
 		this.pExpression_list = new Expression_listElements();
 		this.pExpression = new ExpressionElements();
 		this.pSimple_expression = new Simple_expressionElements();
@@ -2447,6 +2509,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		this.pStructured_type = new Structured_typeElements();
 		this.pUnpacked_structured_type = new Unpacked_structured_typeElements();
 		this.pArray_type = new Array_typeElements();
+		this.pDynamic_array_type = new Dynamic_array_typeElements();
 		this.pIndex_type = new Index_typeElements();
 		this.pRecord_type = new Record_typeElements();
 		this.pField_list = new Field_listElements();
@@ -2569,6 +2632,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getProgramAccess().getRule();
 	}
 
+	////TODO: esse parametro foi adicionado como opcional
 	//program_heading_block:
 	//	"program" IDENTIFIER ("(" identifier_list ")")? ";";
 	public Program_heading_blockElements getProgram_heading_blockAccess() {
@@ -2639,8 +2703,9 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getLabelAccess().getRule();
 	}
 
+	////TODO: FOI ADICIONADO O PARAMETRO IDENTIFIER (FUNCTION DESIGNATOR SEM PARAMETRO)
 	//simple_statement:
-	//	(assignment_statement | function_designator | goto_statement)?;
+	//	(assignment_statement | function_designator | goto_statement | IDENTIFIER)?;
 	public Simple_statementElements getSimple_statementAccess() {
 		return pSimple_statement;
 	}
@@ -2660,8 +2725,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////TODO
-	//variable: //| component_variable
-	//	entire_variable;
+	//variable:
+	//	entire_variable | component_variable;
 	public VariableElements getVariableAccess() {
 		return pVariable;
 	}
@@ -2680,9 +2745,9 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getEntire_variableAccess().getRule();
 	}
 
-	////TODO
+	////TODO -> se for só a recursão está resolvido!
 	//component_variable:
-	//	indexed_variable;
+	//	entire_variable "[" expression_list "]" indexed_variable_;
 	public Component_variableElements getComponent_variableAccess() {
 		return pComponent_variable;
 	}
@@ -2691,15 +2756,14 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getComponent_variableAccess().getRule();
 	}
 
-	////FIXME: RECURSAO INDIRETA A ESQUERDA
-	//indexed_variable:
-	//	variable "[" expression_list "]";
-	public Indexed_variableElements getIndexed_variableAccess() {
-		return pIndexed_variable;
+	//indexed_variable_:
+	//	("[" expression_list "]" indexed_variable_)?;
+	public Indexed_variable_Elements getIndexed_variable_Access() {
+		return pIndexed_variable_;
 	}
 	
-	public ParserRule getIndexed_variableRule() {
-		return getIndexed_variableAccess().getRule();
+	public ParserRule getIndexed_variable_Rule() {
+		return getIndexed_variable_Access().getRule();
 	}
 
 	//expression_list:
@@ -3054,8 +3118,9 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getStructured_typeAccess().getRule();
 	}
 
+	////TODO: ADICIONADO DYNAMIC_ARRAY_TYPE
 	//unpacked_structured_type:
-	//	array_type | record_type | set_type | file_type;
+	//	array_type | dynamic_array_type | record_type | set_type | file_type;
 	public Unpacked_structured_typeElements getUnpacked_structured_typeAccess() {
 		return pUnpacked_structured_type;
 	}
@@ -3072,6 +3137,16 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getArray_typeRule() {
 		return getArray_typeAccess().getRule();
+	}
+
+	//dynamic_array_type:
+	//	ARRAY_KEYWORD OF_KEYWORD type;
+	public Dynamic_array_typeElements getDynamic_array_typeAccess() {
+		return pDynamic_array_type;
+	}
+	
+	public ParserRule getDynamic_array_typeRule() {
+		return getDynamic_array_typeAccess().getRule();
 	}
 
 	//index_type:

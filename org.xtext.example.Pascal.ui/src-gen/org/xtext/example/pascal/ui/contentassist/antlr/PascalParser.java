@@ -40,6 +40,7 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStatementAccess().getAlternatives_1(), "rule__Statement__Alternatives_1");
 					put(grammarAccess.getLabelAccess().getAlternatives(), "rule__Label__Alternatives");
 					put(grammarAccess.getSimple_statementAccess().getAlternatives(), "rule__Simple_statement__Alternatives");
+					put(grammarAccess.getVariableAccess().getAlternatives(), "rule__Variable__Alternatives");
 					put(grammarAccess.getSimple_expressionAccess().getAlternatives_2(), "rule__Simple_expression__Alternatives_2");
 					put(grammarAccess.getSimple_expressionAccess().getAlternatives_2_0_0(), "rule__Simple_expression__Alternatives_2_0_0");
 					put(grammarAccess.getFactorAccess().getAlternatives(), "rule__Factor__Alternatives");
@@ -76,7 +77,8 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStatementAccess().getGroup(), "rule__Statement__Group__0");
 					put(grammarAccess.getStatementAccess().getGroup_0(), "rule__Statement__Group_0__0");
 					put(grammarAccess.getAssignment_statementAccess().getGroup(), "rule__Assignment_statement__Group__0");
-					put(grammarAccess.getIndexed_variableAccess().getGroup(), "rule__Indexed_variable__Group__0");
+					put(grammarAccess.getComponent_variableAccess().getGroup(), "rule__Component_variable__Group__0");
+					put(grammarAccess.getIndexed_variable_Access().getGroup(), "rule__Indexed_variable___Group__0");
 					put(grammarAccess.getExpression_listAccess().getGroup(), "rule__Expression_list__Group__0");
 					put(grammarAccess.getExpression_listAccess().getGroup_1(), "rule__Expression_list__Group_1__0");
 					put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
@@ -118,6 +120,7 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStructured_typeAccess().getGroup(), "rule__Structured_type__Group__0");
 					put(grammarAccess.getArray_typeAccess().getGroup(), "rule__Array_type__Group__0");
 					put(grammarAccess.getArray_typeAccess().getGroup_3(), "rule__Array_type__Group_3__0");
+					put(grammarAccess.getDynamic_array_typeAccess().getGroup(), "rule__Dynamic_array_type__Group__0");
 					put(grammarAccess.getRecord_typeAccess().getGroup(), "rule__Record_type__Group__0");
 					put(grammarAccess.getField_listAccess().getGroup(), "rule__Field_list__Group__0");
 					put(grammarAccess.getField_listAccess().getGroup_0_0(), "rule__Field_list__Group_0_0__0");
