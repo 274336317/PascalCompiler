@@ -16,11 +16,85 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 
 
 
+Procedure : ('P'|'p')('R'|'r')('O'|'o')('C'|'c')('E'|'e')('D'|'d')('U'|'u')('R'|'r')('E'|'e');
+
+Function : ('F'|'f')('U'|'u')('N'|'n')('C'|'c')('T'|'t')('I'|'i')('O'|'o')('N'|'n');
+
+Forward : ('F'|'f')('O'|'o')('R'|'r')('W'|'w')('A'|'a')('R'|'r')('D'|'d');
+
 Program : ('P'|'p')('R'|'r')('O'|'o')('G'|'g')('R'|'r')('A'|'a')('M'|'m');
+
+Downto : ('D'|'d')('O'|'o')('W'|'w')('N'|'n')('T'|'t')('O'|'o');
+
+Packed : ('P'|'p')('A'|'a')('C'|'c')('K'|'k')('E'|'e')('D'|'d');
+
+Record : ('R'|'r')('E'|'e')('C'|'c')('O'|'o')('R'|'r')('D'|'d');
+
+Repeat : ('R'|'r')('E'|'e')('P'|'p')('E'|'e')('A'|'a')('T'|'t');
+
+Array : ('A'|'a')('R'|'r')('R'|'r')('A'|'a')('Y'|'y');
+
+Begin : ('B'|'b')('E'|'e')('G'|'g')('I'|'i')('N'|'n');
+
+Const : ('C'|'c')('O'|'o')('N'|'n')('S'|'s')('T'|'t');
+
+False : ('F'|'f')('A'|'a')('L'|'l')('S'|'s')('E'|'e');
+
+Label : ('L'|'l')('A'|'a')('B'|'b')('E'|'e')('L'|'l');
+
+Until : ('U'|'u')('N'|'n')('T'|'t')('I'|'i')('L'|'l');
+
+While : ('W'|'w')('H'|'h')('I'|'i')('L'|'l')('E'|'e');
+
+Case : ('C'|'c')('A'|'a')('S'|'s')('E'|'e');
+
+Else : ('E'|'e')('L'|'l')('S'|'s')('E'|'e');
+
+File : ('F'|'f')('I'|'i')('L'|'l')('E'|'e');
+
+Goto : ('G'|'g')('O'|'o')('T'|'t')('O'|'o');
+
+Then : ('T'|'t')('H'|'h')('E'|'e')('N'|'n');
+
+True : ('T'|'t')('R'|'r')('U'|'u')('E'|'e');
+
+Type : ('T'|'t')('Y'|'y')('P'|'p')('E'|'e');
+
+With : ('W'|'w')('I'|'i')('T'|'t')('H'|'h');
+
+And : ('A'|'a')('N'|'n')('D'|'d');
+
+Div : ('D'|'d')('I'|'i')('V'|'v');
+
+End : ('E'|'e')('N'|'n')('D'|'d');
+
+For : ('F'|'f')('O'|'o')('R'|'r');
+
+Mod : ('M'|'m')('O'|'o')('D'|'d');
+
+Nil : ('N'|'n')('I'|'i')('L'|'l');
+
+Not : ('N'|'n')('O'|'o')('T'|'t');
+
+Set : ('S'|'s')('E'|'e')('T'|'t');
+
+Var : ('V'|'v')('A'|'a')('R'|'r');
 
 FullStopFullStop : '.''.';
 
 ColonEqualsSign : ':''=';
+
+Do : ('D'|'d')('O'|'o');
+
+If : ('I'|'i')('F'|'f');
+
+In : ('I'|'i')('N'|'n');
+
+Of : ('O'|'o')('F'|'f');
+
+Or : ('O'|'o')('R'|'r');
+
+To : ('T'|'t')('O'|'o');
 
 LeftParenthesis : '(';
 
@@ -44,79 +118,13 @@ CircumflexAccent : '^';
 
 
 
-RULE_NUMERIC_SUBRANGE : (RULE_INTEGER_NUMBER|RULE_REAL_NUMBER|RULE_SIGNED_INTEGER_NUMBER|RULE_SIGNED_REAL_NUMBER) '..' (RULE_INTEGER_NUMBER|RULE_REAL_NUMBER|RULE_SIGNED_INTEGER_NUMBER|RULE_SIGNED_REAL_NUMBER);
+RULE_NUMERIC_SUBRANGE : (RULE_INTEGER_NUMBER|RULE_REAL_NUMBER|RULE_SIGNED_INTEGER_NUMBER|RULE_SIGNED_REAL_NUMBER) '..';
 
 RULE_ADDITION_OPERATOR : ('+'|'-');
 
-RULE_MULTIPLICATION_OPERATOR : ('*'|'/'|'div'|'mod'|'and');
+RULE_MULTIPLICATION_OPERATOR : ('*'|'/');
 
-RULE_RELATIONAL_OPERATOR : ('='|'<>'|'<'|'<='|'>'|'>='|'in');
-
-RULE_BEGIN_KEYWORD : 'begin';
-
-RULE_END_KEYWORD : 'end';
-
-RULE_LABEL_KEYWORD : 'label';
-
-RULE_NIL_KEYWORD : 'nil';
-
-RULE_NOT_KEYWORD : 'not';
-
-RULE_OR_KEYWORD : 'or';
-
-RULE_GOTO_KEYWORD : 'goto';
-
-RULE_WHILE_KEYWORD : 'while';
-
-RULE_DO_KEYWORD : 'do';
-
-RULE_REPEAT_KEYWORD : 'repeat';
-
-RULE_UNTIL_KEYWORD : 'until';
-
-RULE_FOR_KEYWORD : 'for';
-
-RULE_TO_KEYWORD : 'to';
-
-RULE_DOWNTO_KEYWORD : 'downto';
-
-RULE_IF_KEYWORD : 'if';
-
-RULE_THEN_KEYWORD : 'then';
-
-RULE_ELSE_KEYWORD : 'else';
-
-RULE_CASE_KEYWORD : 'case';
-
-RULE_OF_KEYWORD : 'of';
-
-RULE_WITH_KEYWORD : 'with';
-
-RULE_CONST_KEYWORD : 'const';
-
-RULE_TYPE_KEYWORD : 'type';
-
-RULE_PACKED_KEYWORD : 'packed';
-
-RULE_ARRAY_KEYWORD : 'array';
-
-RULE_RECORD_KEYWORD : 'record';
-
-RULE_SET_KEYWORD : 'set';
-
-RULE_FILE_KEYWORD : 'file';
-
-RULE_VAR_KEYWORD : 'var';
-
-RULE_PROCEDURE_KEYWORD : 'procedure';
-
-RULE_FORWARD_KEYWORD : 'forward';
-
-RULE_FUNCTION_KEYWORD : 'function';
-
-RULE_TRUE_KEYWORD : 'true';
-
-RULE_FALSE_KEYWORD : 'false';
+RULE_RELATIONAL_OPERATOR : ('='|'<>'|'<'|'<='|'>'|'>=');
 
 RULE_SIGNED_INTEGER_NUMBER : RULE_ADDITION_OPERATOR RULE_INTEGER_NUMBER;
 
@@ -132,19 +140,13 @@ RULE_DIGIT_SEQUENCE : RULE_ADDITION_OPERATOR? RULE_UNSIGNED_DIGIT_SEQUENCE;
 
 RULE_DIGIT : '0'..'9';
 
-RULE_IDENTIFIER : RULE_LETTER_EXTENDED (RULE_LETTER_EXTENDED|RULE_DIGIT)*;
-
-RULE_LETTER : ('A'..'Z'|'a'..'z');
-
-RULE_LETTER_EXTENDED : (RULE_LETTER|'_');
+RULE_ML_COMMENT : ('(*' ( options {greedy=false;} : . )*'*)'|'{' ( options {greedy=false;} : . )*'}');
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_INT : ('0'..'9')+;
 
 RULE_STRING : ('"' ('\\' .|~(('\\'|'"')))* '"'|'\'' ('\\' .|~(('\\'|'\'')))* '\'');
-
-RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 

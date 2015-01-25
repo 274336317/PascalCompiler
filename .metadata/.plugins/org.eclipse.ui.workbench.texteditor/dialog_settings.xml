@@ -3,29 +3,36 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="13" key="DIALOG_Y_ORIGIN"/>
-		<item value="900" key="DIALOG_X_ORIGIN"/>
 		<item value="381" key="DIALOG_HEIGHT"/>
+		<item value="900" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
-		<item value="false" key="wholeword"/>
-		<item value="OR_KEYWORD" key="selection"/>
+		<item value="true" key="wholeword"/>
+		<item value="RELATIONAL_OPERATOR" key="selection"/>
 		<list key="findhistory">
-			<item value="OR_KEYWORD"/>
-			<item value="addition"/>
-			<item value="ARRAY_KEYWORD"/>
-			<item value="array_keyword"/>
-			<item value="typ"/>
-			<item value="( "/>
-			<item value="label"/>
-			<item value="ContentAssistParserGeneratorFragment"/>
+			<item value="RELATIONAL_OPERATOR"/>
+			<item value="constant"/>
+			<item value="IDENTIFIER"/>
+			<item value="MULTIPLICATION_OPERATOR"/>
+			<item value="FALSE_KEYWORD"/>
+			<item value="TRUE_KEYWORD"/>
+			<item value="FUNCTION_KEYWORD"/>
+			<item value="FORWARD_KEYWORD"/>
 		</list>
 		<list key="replacehistory">
-			<item value="ADDITION"/>
+			<item value="ID"/>
+			<item value="&quot;false&quot;"/>
+			<item value="&quot;true&quot;"/>
+			<item value="&quot;function&quot;"/>
+			<item value="&quot;forward&quot;"/>
+			<item value="&quot;procedure&quot;"/>
+			<item value="&quot;var&quot;"/>
+			<item value="&quot;file&quot;"/>
 		</list>
 	</section>
 </section>

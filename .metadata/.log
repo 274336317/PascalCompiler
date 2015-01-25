@@ -159,3 +159,89 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.core.resources 4 376 2015-01-25 13:54:43.511
 !MESSAGE Marker id 8619 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:06:20.806
+!MESSAGE Marker id 8636 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:06:20.818
+!MESSAGE Marker id 8635 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:06:20.828
+!MESSAGE Marker id 8638 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:06:20.840
+!MESSAGE Marker id 8637 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:06:20.863
+!MESSAGE Marker id 8634 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:18:37.624
+!MESSAGE Marker id 8753 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:18:37.633
+!MESSAGE Marker id 8754 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:18:37.642
+!MESSAGE Marker id 8757 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:18:37.652
+!MESSAGE Marker id 8755 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:18:37.663
+!MESSAGE Marker id 8756 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:40:09.099
+!MESSAGE Marker id 8901 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:40:09.171
+!MESSAGE Marker id 8902 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:40:09.179
+!MESSAGE Marker id 8905 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:40:09.187
+!MESSAGE Marker id 8906 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:40:09.195
+!MESSAGE Marker id 8903 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:40:09.203
+!MESSAGE Marker id 8904 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:48:57.260
+!MESSAGE Marker id 8973 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:48:57.272
+!MESSAGE Marker id 8974 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:48:57.284
+!MESSAGE Marker id 8971 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:48:57.296
+!MESSAGE Marker id 8972 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:48:57.308
+!MESSAGE Marker id 8970 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:48:57.317
+!MESSAGE Marker id 8976 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:48:57.327
+!MESSAGE Marker id 8975 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-01-25 14:48:57.337
+!MESSAGE Marker id 8977 not found.
+!SESSION 2015-01-25 15:00:07.799 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.7.0_67
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2015-01-25 15:01:00.663
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\dell'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

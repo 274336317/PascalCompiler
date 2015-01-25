@@ -40,9 +40,11 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStatementAccess().getAlternatives_1(), "rule__Statement__Alternatives_1");
 					put(grammarAccess.getLabelAccess().getAlternatives(), "rule__Label__Alternatives");
 					put(grammarAccess.getSimple_statementAccess().getAlternatives(), "rule__Simple_statement__Alternatives");
-					put(grammarAccess.getVariableAccess().getAlternatives(), "rule__Variable__Alternatives");
+					put(grammarAccess.getVariable_Access().getAlternatives(), "rule__Variable___Alternatives");
+					put(grammarAccess.getExpressionAccess().getAlternatives_1_0(), "rule__Expression__Alternatives_1_0");
 					put(grammarAccess.getSimple_expressionAccess().getAlternatives_2(), "rule__Simple_expression__Alternatives_2");
 					put(grammarAccess.getSimple_expressionAccess().getAlternatives_2_0_0(), "rule__Simple_expression__Alternatives_2_0_0");
+					put(grammarAccess.getTermAccess().getAlternatives_1_0(), "rule__Term__Alternatives_1_0");
 					put(grammarAccess.getFactorAccess().getAlternatives(), "rule__Factor__Alternatives");
 					put(grammarAccess.getNumberAccess().getAlternatives(), "rule__Number__Alternatives");
 					put(grammarAccess.getUnsigned_numberAccess().getAlternatives(), "rule__Unsigned_number__Alternatives");
@@ -77,8 +79,10 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getStatementAccess().getGroup(), "rule__Statement__Group__0");
 					put(grammarAccess.getStatementAccess().getGroup_0(), "rule__Statement__Group_0__0");
 					put(grammarAccess.getAssignment_statementAccess().getGroup(), "rule__Assignment_statement__Group__0");
-					put(grammarAccess.getComponent_variableAccess().getGroup(), "rule__Component_variable__Group__0");
-					put(grammarAccess.getIndexed_variable_Access().getGroup(), "rule__Indexed_variable___Group__0");
+					put(grammarAccess.getVariableAccess().getGroup(), "rule__Variable__Group__0");
+					put(grammarAccess.getVariable_Access().getGroup_0(), "rule__Variable___Group_0__0");
+					put(grammarAccess.getVariable_Access().getGroup_1(), "rule__Variable___Group_1__0");
+					put(grammarAccess.getVariable_Access().getGroup_2(), "rule__Variable___Group_2__0");
 					put(grammarAccess.getExpression_listAccess().getGroup(), "rule__Expression_list__Group__0");
 					put(grammarAccess.getExpression_listAccess().getGroup_1(), "rule__Expression_list__Group_1__0");
 					put(grammarAccess.getExpressionAccess().getGroup(), "rule__Expression__Group__0");
@@ -116,6 +120,7 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getType_definition_partAccess().getGroup_1(), "rule__Type_definition_part__Group_1__0");
 					put(grammarAccess.getType_definitionAccess().getGroup(), "rule__Type_definition__Group__0");
 					put(grammarAccess.getSubrange_typeAccess().getGroup_0(), "rule__Subrange_type__Group_0__0");
+					put(grammarAccess.getSubrange_typeAccess().getGroup_1(), "rule__Subrange_type__Group_1__0");
 					put(grammarAccess.getEnumerated_typeAccess().getGroup(), "rule__Enumerated_type__Group__0");
 					put(grammarAccess.getStructured_typeAccess().getGroup(), "rule__Structured_type__Group__0");
 					put(grammarAccess.getArray_typeAccess().getGroup(), "rule__Array_type__Group__0");

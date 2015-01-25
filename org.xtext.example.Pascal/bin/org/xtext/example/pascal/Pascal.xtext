@@ -11,11 +11,11 @@ program:
 ;
 
 program_heading_block: //TODO: esse parametro foi adicionado como opcional
-	PROGRAM_KEYWORD IDENTIFIER ( "(" identifier_list ")" ) ? ";"	
+	"program" ID ( "(" identifier_list ")" ) ? ";"	
 ;
  
 identifier_list:
-	IDENTIFIER ( "," IDENTIFIER ) *	
+	ID ( "," ID ) *	
 ;
 
 block:
@@ -23,7 +23,7 @@ block:
 ;
 
 statement_part:
-	BEGIN_KEYWORD statement_sequence END_KEYWORD	
+	"begin" statement_sequence "end"	
 ;
 
 statement_sequence:
@@ -38,48 +38,40 @@ label:
 	SIGNED_INTEGER_NUMBER | INTEGER_NUMBER
 ;
 
-simple_statement: //TODO: FOI ADICIONADO O PARAMETRO IDENTIFIER (FUNCTION DESIGNATOR SEM PARAMETRO)
-	( assignment_statement | function_designator | goto_statement | IDENTIFIER ) ?	
+simple_statement: //TODO: FOI ADICIONADO O PARAMETRO ID (FUNCTION DESIGNATOR SEM PARAMETRO)
+	( assignment_statement | function_designator | goto_statement | ID ) ?	
 ;
  
 assignment_statement: 
 	variable ":=" expression	
 ;
 
-variable: //TODO
-	entire_variable | component_variable
+variable: //FALTOU REFERENCED_VARIABLE, MAS ACHO QUE FUNCIONA
+	ID variable_ 
 ;
-
-entire_variable:
-	IDENTIFIER
-;
-
-component_variable: //TODO -> se for só a recursão está resolvido!
-	entire_variable "[" expression_list "]" indexed_variable_ 
-;
-
-indexed_variable_:
-	( "[" expression_list "]" indexed_variable_ ) ?
+ 
+variable_: //TODO: REMOVIDO RECURSÃO A ESQUERDA (ERA COMPONENT_VARIABLE)
+	( "[" expression_list "]" variable_ | "." ID variable_ | "^" variable_ ) ?
 ;
 
 expression_list:
 	expression ( "," expression ) * 	
 ;
 
-expression:
-	simple_expression ( RELATIONAL_OPERATOR simple_expression ) ?
+expression: //TODO: ADICIONADO "=" PQ N TAVA RECONHECENDO EM RELATIONAL_OPERATOR
+	simple_expression ( ( RELATIONAL_OPERATOR | "in" | "=" ) simple_expression ) ?
 ; 
 
 simple_expression: 
-	( ADDITION_OPERATOR+ ) ? term ( ( ADDITION_OPERATOR+ | OR_KEYWORD ) term | signed_number ) *
+	( ADDITION_OPERATOR+ ) ? term ( ( ADDITION_OPERATOR+ | "or" ) term | signed_number ) *
 ;
   
 term:
-	factor ( MULTIPLICATION_OPERATOR factor ) * 
+	factor ( ( MULTIPLICATION_OPERATOR | "div" | "mod" | "and" ) factor ) * 
 ;
 
 factor: 
-	variable | number | STRING | set | NIL_KEYWORD | TRUE_KEYWORD | FALSE_KEYWORD | function_designator | "(" expression ")" | NOT_KEYWORD factor	
+	variable | number | STRING | set | "nil" | "true" | "false" | function_designator | "(" expression ")" | "not" factor	
 ;
 
 number:
@@ -99,7 +91,7 @@ set:
 ;
 
 function_designator:
-	IDENTIFIER "(" expression_list ? ")"
+	ID "(" expression_list ? ")"
 ;
 
 structured_statement: 
@@ -107,7 +99,7 @@ structured_statement:
 ;
 
 compound_statement:
-	BEGIN_KEYWORD statement_sequence END_KEYWORD
+	"begin" statement_sequence "end"
 ;
 
 repetitive_statement: 
@@ -115,15 +107,15 @@ repetitive_statement:
 ;
 
 while_statement:
-	WHILE_KEYWORD expression DO_KEYWORD statement	
+	"while" expression "do" statement	
 ;
 
 repeat_statement:
-	REPEAT_KEYWORD statement_sequence UNTIL_KEYWORD expression	
+	"repeat" statement_sequence "until" expression	
 ;
 
 for_statement:
-	FOR_KEYWORD assignment_statement ( TO_KEYWORD | DOWNTO_KEYWORD ) expression DO_KEYWORD statement	
+	"for" assignment_statement ( "to" | "downto" ) expression "do" statement	
 ;
 
 conditional_statement: 
@@ -131,11 +123,11 @@ conditional_statement:
 ;
 
 if_statement:
-	IF_KEYWORD expression THEN_KEYWORD statement ( ELSE_KEYWORD statement )	?
+	"if" expression "then" statement ( "else" statement )	?
 ;
 
 case_statement:
-	CASE_KEYWORD expression OF_KEYWORD case_limb ( ";" case_limb ) * ( ";" ) ? END_KEYWORD	
+	"case" expression "of" case_limb ( ";" case_limb ) * ( ";" ) ? "end"	
 ;
 
 case_limb:
@@ -147,15 +139,15 @@ case_label_list:
 ;
 
 constant:
-	ADDITION_OPERATOR ? ( IDENTIFIER | number ) | STRING 	
+	ADDITION_OPERATOR ? ( ID | number ) | STRING | "true" | "false" | "nil"
 ;
 
 with_statement:
-	WITH_KEYWORD variable ( "," variable ) * DO_KEYWORD statement	
+	"with" variable ( "," variable ) * "do" statement	
 ;
 
 goto_statement:
-	GOTO_KEYWORD label	
+	"goto" label	
 ;
 
 declaration_part: 
@@ -167,35 +159,35 @@ declaration_part:
 ;
 
 label_declaration_part:
-	LABEL_KEYWORD label ( "," label ) * ";"
+	"label" label ( "," label ) * ";"
 ;
 
 constant_definition_part:
-	CONST_KEYWORD ( constant_definition ";" ) +	
+	"const" ( constant_definition ";" ) +	
 ;
 
 constant_definition:
-	IDENTIFIER "=" constant	
+	ID "=" constant	
 ;
 
 type_definition_part:
-	TYPE_KEYWORD ( type_definition ";" ) +	
+	"type" ( type_definition ";" ) +	
 ;
 
 type_definition:
-	IDENTIFIER "=" type	
+	ID "=" type	
 ;
 
-type: 
-	simple_type | structured_type | pointer_type | IDENTIFIER
+type: //TODO: REMOVIDO ID
+	simple_type | structured_type | pointer_type 
 ;
 
-simple_type: 
-	subrange_type | enumerated_type
+simple_type: //TODO: ADICIONADO ID
+	subrange_type | enumerated_type | ID
 ;
 
-subrange_type:
-	constant ".." constant | NUMERIC_SUBRANGE
+subrange_type hidden(WS): //TODO: ADICIONADO HIDDEN(WS) PARA REMOVER ESPAÇO EM BRANCO
+	 constant ".." constant | NUMERIC_SUBRANGE constant
 ;
 
 enumerated_type:
@@ -203,7 +195,7 @@ enumerated_type:
 ;
 
 structured_type:
-	( PACKED_KEYWORD ) ? unpacked_structured_type	
+	( "packed" ) ? unpacked_structured_type	
 ;
 
 unpacked_structured_type: //TODO: ADICIONADO DYNAMIC_ARRAY_TYPE
@@ -211,11 +203,11 @@ unpacked_structured_type: //TODO: ADICIONADO DYNAMIC_ARRAY_TYPE
 ;
 
 array_type:
-	ARRAY_KEYWORD "[" index_type ( "," index_type ) * "]" OF_KEYWORD type
+	"array" "[" index_type ( "," index_type ) * "]" "of" type
 ;
 
 dynamic_array_type:
-	ARRAY_KEYWORD OF_KEYWORD type	
+	"array" "of" type	
 ;
 
 index_type:
@@ -223,8 +215,8 @@ index_type:
 ;
 
 record_type:
-	RECORD_KEYWORD field_list END_KEYWORD	
-;
+	"record" field_list "end"	
+; 
 
 field_list:
 	( ( fixed_part ( ";" variant_part ) ? | variant_part ) ( ";" ) ? ) ?	
@@ -239,11 +231,11 @@ record_section:
 ;
 
 variant_part:
-	CASE_KEYWORD tag_field IDENTIFIER OF_KEYWORD variant ( ";" variant ) *  	
+	"case" tag_field ID "of" variant ( ";" variant ) *  	
 ;
 
 tag_field:
-	( IDENTIFIER ":" ) ?	
+	( ID ":" ) ?	
 ;
 
 variant:
@@ -251,19 +243,19 @@ variant:
 ;
 
 set_type:
-	SET_KEYWORD OF_KEYWORD type	
+	"set" "of" type	
 ;
 
 file_type:
-	FILE_KEYWORD OF_KEYWORD type
+	"file" "of" type
 ;
 
-pointer_type:
-	"^" IDENTIFIER	
+pointer_type: //TODO: MUDADO ID PARA TYPE
+	"^" type 
 ; 
 
 variable_declaration_part:
-	VAR_KEYWORD record_section ";" ( record_section ";" ) *
+	"var" record_section ";" ( record_section ";" ) *
 ;
 
 procedure_and_function_declaration_part:
@@ -271,11 +263,11 @@ procedure_and_function_declaration_part:
 ;
 
 procedure_declaration:
-	procedure_heading ";" ( block | FORWARD_KEYWORD )
+	procedure_heading ";" ( block | "forward" )
 ;
 
 procedure_heading:
-	PROCEDURE_KEYWORD IDENTIFIER ( formal_parameter_list ) ?	
+	"procedure" ID ( formal_parameter_list ) ?	
 ;
 
 formal_parameter_list:
@@ -291,7 +283,7 @@ value_parameter_section:
 ;
 
 parameter_type:
-	conformant_array_schema | IDENTIFIER	
+	conformant_array_schema | ID	
 ;
 
 conformant_array_schema:
@@ -299,31 +291,31 @@ conformant_array_schema:
 ;
 
 packed_conformant_array_schema:
-	PACKED_KEYWORD ARRAY_KEYWORD "[" bound_specification "]" OF_KEYWORD IDENTIFIER	
+	"packed" "array" "[" bound_specification "]" "of" ID	
 ;
 
 bound_specification:
-	IDENTIFIER ".." IDENTIFIER ":" IDENTIFIER	
+	ID ".." ID ":" ID	
 ;
 
 unpacked_conformant_array_schema:
-	ARRAY_KEYWORD "[" bound_specification ( ";" bound_specification ) * "]" OF_KEYWORD ( conformant_array_schema | IDENTIFIER )	
+	"array" "[" bound_specification ( ";" bound_specification ) * "]" "of" ( conformant_array_schema | ID )	
 ;
 
 variable_parameter_section:
-	VAR_KEYWORD identifier_list ":" parameter_type	
+	"var" identifier_list ":" parameter_type	
 ;
 
 function_heading:
-	FUNCTION_KEYWORD IDENTIFIER ( formal_parameter_list ) ? ":" IDENTIFIER
+	"function" ID ( formal_parameter_list ) ? ":" ID
 ;
  
 function_declaration:
-	function_heading ";" ( block | FORWARD_KEYWORD) 
+	function_heading ";" ( block | "forward") 
 ;
  
 terminal NUMERIC_SUBRANGE:
-	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER ) ".."	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER )
+	( INTEGER_NUMBER | REAL_NUMBER | SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER ) ".."	
 ;
 
 terminal ADDITION_OPERATOR:
@@ -331,147 +323,11 @@ terminal ADDITION_OPERATOR:
 ; 
 
 terminal MULTIPLICATION_OPERATOR:
-	"*" | "/" | "div" | "mod" | "and" 
+	"*" | "/" 
 ;
 
 terminal RELATIONAL_OPERATOR:
-	"=" | "<>" | "<" | "<=" | ">" | ">=" | "in"	
-;
-
-terminal PROGRAM_KEYWORD:
-	"program"	
-;
-
-terminal BEGIN_KEYWORD:
-	"begin"	
-;
-
-terminal END_KEYWORD:
-	"end"	
-;
-
-terminal LABEL_KEYWORD:
-	"label"
-;
-
-terminal NIL_KEYWORD:
-	"nil"	
-;
-
-terminal NOT_KEYWORD:
-	"not"	
-;
-
-terminal OR_KEYWORD:
-	"or"	
-;
-
-terminal GOTO_KEYWORD:
-	"goto"	
-;
-
-terminal WHILE_KEYWORD:
-	"while"	
-;
-
-terminal DO_KEYWORD:
-	"do"	
-;
-
-terminal REPEAT_KEYWORD:
-	"repeat"	
-;
-
-terminal UNTIL_KEYWORD:
-	"until"	
-;
-
-terminal FOR_KEYWORD:
-	"for"	
-;
-
-terminal TO_KEYWORD:
-	"to"	
-;
-
-terminal DOWNTO_KEYWORD:
-	"downto"	
-;
-
-terminal IF_KEYWORD:
-	"if"	
-;
-
-terminal THEN_KEYWORD:
-	"then"	
-;
-
-terminal ELSE_KEYWORD:
-	"else"	
-;
-
-terminal CASE_KEYWORD:
-	"case"	
-;
-
-terminal OF_KEYWORD:
-	"of"	
-;
-
-terminal WITH_KEYWORD:
-	"with"	
-;
-
-terminal CONST_KEYWORD:
-	"const"
-;
-
-terminal TYPE_KEYWORD:
-	"type"	
-;
-
-terminal PACKED_KEYWORD:
-	"packed"	
-;
-
-terminal ARRAY_KEYWORD:
-	"array"	
-;
-
-terminal RECORD_KEYWORD:
-	"record"	
-;
-
-terminal SET_KEYWORD:
-	"set"	
-;
-
-terminal FILE_KEYWORD:
-	"file"
-;
-
-terminal VAR_KEYWORD:
-	"var"
-;
-
-terminal PROCEDURE_KEYWORD:
-	"procedure"	
-;
-
-terminal FORWARD_KEYWORD:
-	"forward"	
-;
-
-terminal FUNCTION_KEYWORD:
-	"function"	
-;
-
-terminal TRUE_KEYWORD:
-	"true"	
-;
-
-terminal FALSE_KEYWORD:
-	"false"	
+	"=" | "<>" | "<" | "<=" | ">" | ">=" 
 ;
 
 terminal SIGNED_INTEGER_NUMBER:
@@ -503,14 +359,4 @@ terminal DIGIT:
 	"0".."9"
 ;
 
-terminal IDENTIFIER:
-	LETTER_EXTENDED ( LETTER_EXTENDED | DIGIT ) *	
-;
-
-terminal LETTER:
-	"A".."Z" | "a".."z"
-;
-
-terminal LETTER_EXTENDED:
-	LETTER | "_"	
-; 
+terminal ML_COMMENT : '(*' -> '*)' | '{' -> '}';
