@@ -3,6 +3,15 @@
  */
 package org.xtext.example.pascal.validation;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.validation.Check;
+import org.xtext.example.pascal.pascal.PascalPackage;
+import org.xtext.example.pascal.pascal.assignment_statement;
+import org.xtext.example.pascal.pascal.identifier_list;
+import org.xtext.example.pascal.pascal.record_section;
+import org.xtext.example.pascal.pascal.type;
+import org.xtext.example.pascal.pascal.variable_declaration_part;
 import org.xtext.example.pascal.validation.AbstractPascalValidator;
 
 /**
@@ -12,4 +21,38 @@ import org.xtext.example.pascal.validation.AbstractPascalValidator;
  */
 @SuppressWarnings("all")
 public class PascalValidator extends AbstractPascalValidator {
+  private Map<String, type> variables;
+  
+  @Check
+  public void checkVariableWasDeclared(final variable_declaration_part variable) {
+    EList<record_section> _sections = variable.getSections();
+    for (final record_section record : _sections) {
+      identifier_list _identifiers = record.getIdentifiers();
+      EList<String> _names = _identifiers.getNames();
+      for (final String id : _names) {
+        type _type = record.getType();
+        this.variables.put(id, _type);
+      }
+    }
+  }
+  
+  /**
+   * @Check
+   * def checkVariableWasDeclared(variable variable) {
+   * //variável não foi declarada
+   * if (!variables.containsKey(variable.name)) {
+   * error("Variable was not declared", PascalPackage.Literals.ASSIGNMENT_STATEMENT__VARIABLE);
+   * }
+   * }
+   */
+  @Check
+  public void checkVariableWasDeclared(final assignment_statement variable) {
+    org.xtext.example.pascal.pascal.variable _variable = variable.getVariable();
+    String _name = _variable.getName();
+    boolean _containsKey = this.variables.containsKey(_name);
+    boolean _not = (!_containsKey);
+    if (_not) {
+      this.error("Variable was not declared", PascalPackage.Literals.ASSIGNMENT_STATEMENT__VARIABLE);
+    }
+  }
 }

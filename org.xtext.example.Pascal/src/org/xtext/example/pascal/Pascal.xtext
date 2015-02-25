@@ -7,35 +7,35 @@ pascal:
 ; 
 
 program:
-	program_heading_block block "."
+	heading=program_heading_block block=block "."
 ;
 
 program_heading_block: //TODO: esse parametro foi adicionado como opcional
-	"program" ID ( "(" identifier_list ")" ) ? ";"	
+	"program" name=ID ( "(" identifiers=identifier_list ")" ) ? ";"	
 ;
  
 identifier_list:
-	ID ( "," ID ) *	
+	names+=ID ( "," names+=ID ) *	
 ;
 
 block:
-	declaration_part statement_part
+	declaration=declaration_part statement=statement_part
 ;
 
 statement_part:
-	"begin" statement_sequence "end"	
+	"begin" sequence=statement_sequence "end"	
 ;
 
 statement_sequence:
-	statement ( ";" statement ) *
+	statements+=statement ( ";" statements+=statement ) *
 ;
-
-statement: 
-	( label ":" ) ? ( simple_statement | structured_statement )
+ 
+statement:  
+	( label=label ":" ) ? ( statement=simple_statement | statement=structured_statement )
 ;
 
 label:
-	SIGNED_INTEGER_NUMBER | INTEGER_NUMBER
+	number=SIGNED_INTEGER_NUMBER | number=INTEGER_NUMBER
 ;
 
 simple_statement: //TODO: FOI ADICIONADO O PARAMETRO ID (FUNCTION DESIGNATOR SEM PARAMETRO)
@@ -43,31 +43,31 @@ simple_statement: //TODO: FOI ADICIONADO O PARAMETRO ID (FUNCTION DESIGNATOR SEM
 ;
  
 assignment_statement: 
-	variable ":=" expression	
-;
-
-variable: //FALTOU REFERENCED_VARIABLE, MAS ACHO QUE FUNCIONA
-	ID variable_ 
+	variable=variable ":=" expression=expression	
 ;
  
-variable_: //TODO: REMOVIDO RECURSÃO A ESQUERDA (ERA COMPONENT_VARIABLE)
-	( "[" expression_list "]" variable_ | "." ID variable_ | "^" variable_ ) ?
+variable: //FALTOU REFERENCED_VARIABLE, MAS ACHO QUE FUNCIONA
+	name=ID variable=var_
 ;
+    
+var_: //TODO: REMOVIDO RECURSÃO A ESQUERDA (ERA COMPONENT_VARIABLE)
+	( "[" expressions=expression_list "]" variable=var_ | "." name=ID variable=var_ | "^" variable=var_ ) ?
+; 
 
 expression_list:
-	expression ( "," expression ) * 	
+	expressions+=expression ( "," expressions+=expression ) * 	
 ;
 
 expression: //TODO: ADICIONADO "=" PQ N TAVA RECONHECENDO EM RELATIONAL_OPERATOR
-	simple_expression ( ( RELATIONAL_OPERATOR | "in" | "=" ) simple_expression ) ?
+	expressions+=simple_expression ( ( operator=RELATIONAL_OPERATOR | operator="in" | operator="=" ) expressions+=simple_expression ) ?
 ; 
 
 simple_expression: 
-	( ADDITION_OPERATOR+ ) ? term ( ( ADDITION_OPERATOR+ | "or" ) term | signed_number ) *
+	( opterators+=ADDITION_OPERATOR+ ) ? terms+=term ( ( operators+=ADDITION_OPERATOR+ | operators+="or" ) terms+=term | numbers+=signed_number ) *
 ;
   
 term:
-	factor ( ( MULTIPLICATION_OPERATOR | "div" | "mod" | "and" ) factor ) * 
+	factors+=factor ( ( operators+=MULTIPLICATION_OPERATOR | operators+="div" | operators+="mod" | operators+="and" ) factors+=factor ) * 
 ;
 
 factor: 
@@ -75,127 +75,127 @@ factor:
 ;
 
 number:
-	unsigned_number | signed_number	
+	number=unsigned_number | number=signed_number	
 ;
 
 unsigned_number:
-	INTEGER_NUMBER | REAL_NUMBER	
+	number=INTEGER_NUMBER | number=REAL_NUMBER	
 ;
  
 signed_number:
-	SIGNED_INTEGER_NUMBER | SIGNED_REAL_NUMBER
+	number=SIGNED_INTEGER_NUMBER | number=SIGNED_REAL_NUMBER
 ;
 
 set:
-	"[" expression_list ? "]"	
+	brackets+="[" expressions=expression_list ? brackets+="]"	
 ;
 
 function_designator:
-	ID "(" expression_list ? ")"
+	name=ID "(" expressions=expression_list ? ")"
 ;
 
 structured_statement: 
-	compound_statement | repetitive_statement | conditional_statement | with_statement
+	statement=compound_statement | statement=repetitive_statement | statement=conditional_statement | statement=with_statement
 ;
 
 compound_statement:
-	"begin" statement_sequence "end"
+	"begin" sequence=statement_sequence "end"
 ;
 
 repetitive_statement: 
-	while_statement | repeat_statement | for_statement
+	statement=while_statement | statement=repeat_statement | statement=for_statement
 ;
 
 while_statement:
-	"while" expression "do" statement	
+	"while" expression=expression "do" statement=statement	
 ;
 
 repeat_statement:
-	"repeat" statement_sequence "until" expression	
+	"repeat" sequence=statement_sequence "until" expression=expression	
 ;
 
 for_statement:
-	"for" assignment_statement ( "to" | "downto" ) expression "do" statement	
+	"for" assignment=assignment_statement ( "to" | "downto" ) expression=expression "do" statement=statement	
 ;
 
 conditional_statement: 
-	if_statement | case_statement
+	statement=if_statement | statement=case_statement
 ;
 
 if_statement:
-	"if" expression "then" statement ( "else" statement )	?
+	"if" expression=expression "then" ifStatement=statement ( "else" elseStatement=statement )	?
 ;
 
 case_statement:
-	"case" expression "of" case_limb ( ";" case_limb ) * ( ";" ) ? "end"	
+	"case" expression=expression "of" cases+=case_limb ( ";" cases+=case_limb ) * ( ";" ) ? "end"	
 ;
 
 case_limb:
-	case_label_list ":" statement	
+	cases=case_label_list ":" statement=statement	
 ;
 
 case_label_list:
-	constant ( "," constant ) *	
+	constants+=constant ( "," constants+=constant ) *	
 ;
 
 constant:
-	ADDITION_OPERATOR ? ( ID | number ) | STRING | "true" | "false" | "nil"
+	opterator=ADDITION_OPERATOR ? ( name=ID | number=number ) | string=STRING | boolLiteral="true" | boolLiteral="false" | nil="nil"
 ;
 
 with_statement:
-	"with" variable ( "," variable ) * "do" statement	
+	"with" variables+=variable ( "," variables+=variable ) * "do" statement=statement	
 ;
 
 goto_statement:
-	"goto" label	
+	"goto" label=label	
 ;
 
 declaration_part: 
-	( label_declaration_part ) ?
-	( constant_definition_part ) ? 
-	( type_definition_part ) ?
-	( variable_declaration_part ) ? 
-	procedure_and_function_declaration_part
+	( label=label_declaration_part ) ?
+	( constant=constant_definition_part ) ? 
+	( type=type_definition_part ) ?
+	( variable=variable_declaration_part ) ? 
+	procedure=procedure_and_function_declaration_part
 ;
 
 label_declaration_part:
-	"label" label ( "," label ) * ";"
+	"label" labels+=label ( "," labels+=label ) * ";"
 ;
 
 constant_definition_part:
-	"const" ( constant_definition ";" ) +	
+	"const" ( consts+=constant_definition ";" ) +	
 ;
 
 constant_definition:
-	ID "=" constant	
+	name=ID "=" const=constant	
 ;
 
 type_definition_part:
-	"type" ( type_definition ";" ) +	
+	"type" ( types+=type_definition ";" ) +	
 ;
 
 type_definition:
-	ID "=" type	
+	name=ID "=" type=type	
 ;
 
 type: //TODO: REMOVIDO ID
-	simple_type | structured_type | pointer_type 
+	type=simple_type | type=structured_type | type=pointer_type 
 ;
 
 simple_type: //TODO: ADICIONADO ID
-	subrange_type | enumerated_type | ID
+	type=subrange_type | type=enumerated_type | name=ID
 ;
 
 subrange_type hidden(WS): //TODO: ADICIONADO HIDDEN(WS) PARA REMOVER ESPAÇO EM BRANCO
-	 constant ".." constant | NUMERIC_SUBRANGE constant
+	 initialConst=constant ".." finalConst=constant | subrange=NUMERIC_SUBRANGE const=constant
 ;
 
 enumerated_type:
-	"(" identifier_list ")"
+	"(" identifiers=identifier_list ")"
 ;
 
 structured_type:
-	( "packed" ) ? unpacked_structured_type	
+	( "packed" ) ? type=unpacked_structured_type	
 ;
 
 unpacked_structured_type: //TODO: ADICIONADO DYNAMIC_ARRAY_TYPE
@@ -203,75 +203,75 @@ unpacked_structured_type: //TODO: ADICIONADO DYNAMIC_ARRAY_TYPE
 ;
 
 array_type:
-	"array" "[" index_type ( "," index_type ) * "]" "of" type
+	"array" "[" indexes+=index_type ( "," indexes+=index_type ) * "]" "of" type=type
 ;
 
 dynamic_array_type:
-	"array" "of" type	
+	"array" "of" type=type	
 ;
 
 index_type:
-	simple_type	
+	type=simple_type	
 ;
 
 record_type:
-	"record" field_list "end"	
+	recordKeyword="record" fields=field_list? endKeyword="end"	
 ; 
 
 field_list:
-	( ( fixed_part ( ";" variant_part ) ? | variant_part ) ( ";" ) ? ) ?	
+	( fixed=fixed_part ( ";" variants+=variant_part ) ? | variants+=variant_part ) ( ";" ) ? 
 ;
 
 fixed_part:
-	record_section ( ";" record_section ) *
+	sections+=record_section ( ";" sections+=record_section ) *
 ;
 
 record_section:
-	identifier_list ":" type	
+	identifiers=identifier_list ":" type=type	
 ;
 
 variant_part:
-	"case" tag_field ID "of" variant ( ";" variant ) *  	
+	"case" tag=tag_field? name=ID "of" variants+=variant ( ";" variants+=variant ) *  	
 ;
 
 tag_field:
-	( ID ":" ) ?	
+	name=ID ":" 
 ;
 
 variant:
-	case_label_list ":" "(" field_list ")"	
+	labels=case_label_list ":" "(" fields=field_list? ")"	
 ;
 
 set_type:
-	"set" "of" type	
+	"set" "of" type=type	
 ;
 
 file_type:
-	"file" "of" type
+	"file" "of" type=type
 ;
 
 pointer_type: //TODO: MUDADO ID PARA TYPE
-	"^" type 
+	"^" type=type 
 ; 
 
 variable_declaration_part:
-	"var" record_section ";" ( record_section ";" ) *
+	"var" sections+=record_section ";" ( sections+=record_section ";" ) *
 ;
-
+ 
 procedure_and_function_declaration_part:
-	( ( procedure_declaration | function_declaration  ) ";" ) *	
+	( ( declarations+=procedure_declaration | declarations+=function_declaration  ) ";" ) *	
 ;
 
 procedure_declaration:
-	procedure_heading ";" ( block | "forward" )
+	heading=procedure_heading ";" ( block=block | "forward" )
 ;
 
 procedure_heading:
-	"procedure" ID ( formal_parameter_list ) ?	
+	"procedure" name=ID ( parameters=formal_parameter_list ) ?	
 ;
 
 formal_parameter_list:
-	"(" formal_parameter_section ( ";" formal_parameter_section ) * ")"	
+	"(" parameters+=formal_parameter_section ( ";" parameters+=formal_parameter_section ) * ")"	
 ;
 
 formal_parameter_section: 
@@ -279,11 +279,11 @@ formal_parameter_section:
 ;
 
 value_parameter_section:
-	identifier_list ":" parameter_type	
+	identifiers=identifier_list ":" type=parameter_type	
 ;
 
 parameter_type:
-	conformant_array_schema | ID	
+	conformant_array_schema | name=ID	
 ;
 
 conformant_array_schema:
@@ -291,27 +291,27 @@ conformant_array_schema:
 ;
 
 packed_conformant_array_schema:
-	"packed" "array" "[" bound_specification "]" "of" ID	
+	"packed" "array" "[" bound=bound_specification "]" "of" name=ID	
 ;
 
 bound_specification:
-	ID ".." ID ":" ID	
+	initial=ID ".." final=ID ":" name=ID	
 ;
 
 unpacked_conformant_array_schema:
-	"array" "[" bound_specification ( ";" bound_specification ) * "]" "of" ( conformant_array_schema | ID )	
+	"array" "[" bounds+=bound_specification ( ";" bounds+=bound_specification ) * "]" "of" ( array=conformant_array_schema | name=ID )	
 ;
 
 variable_parameter_section:
-	"var" identifier_list ":" parameter_type	
+	"var" identifiers=identifier_list ":" type=parameter_type	
 ;
 
 function_heading:
-	"function" ID ( formal_parameter_list ) ? ":" ID
+	"function" name=ID ( parameters=formal_parameter_list ) ? ":" returnType=ID
 ;
  
 function_declaration:
-	function_heading ";" ( block | "forward") 
+	heading=function_heading ";" ( block=block | "forward") 
 ;
  
 terminal NUMERIC_SUBRANGE:
