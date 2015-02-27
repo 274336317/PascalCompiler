@@ -7,7 +7,7 @@ pascal:
 ; 
 
 program:
-	heading=program_heading_block block=block "."
+	heading=program_heading_block block=block "." 
 ;
 
 program_heading_block: //TODO: esse parametro foi adicionado como opcional
@@ -18,8 +18,13 @@ identifier_list:
 	names+=ID ( "," names+=ID ) *	
 ;
 
-block:
-	declaration=declaration_part statement=statement_part
+block: //TODO: INLINE DECLARATION PART
+	( label=label_declaration_part ) ?
+	( constant=constant_definition_part ) ? 
+	( type=type_definition_part ) ?
+	( variable=variable_declaration_part ) ? 
+	( abstraction=procedure_and_function_declaration_part ) ? 
+	statement=statement_part
 ;
 
 statement_part:
@@ -31,7 +36,7 @@ statement_sequence:
 ;
  
 statement:  
-	( label=label ":" ) ? ( statement=simple_statement | statement=structured_statement )
+	( label=label ":" ) ? ( simple=simple_statement | structured=structured_statement )
 ;
 
 label:
@@ -39,7 +44,7 @@ label:
 ;
 
 simple_statement: //TODO: FOI ADICIONADO O PARAMETRO ID (FUNCTION DESIGNATOR SEM PARAMETRO)
-	( assignment_statement | function_designator | goto_statement | ID ) ?	
+	( assignment=assignment_statement | function=function_designator | goto=goto_statement | ID ) ?	
 ;
  
 assignment_statement: 
@@ -150,14 +155,6 @@ goto_statement:
 	"goto" label=label	
 ;
 
-declaration_part: 
-	( label=label_declaration_part ) ?
-	( constant=constant_definition_part ) ? 
-	( type=type_definition_part ) ?
-	( variable=variable_declaration_part ) ? 
-	procedure=procedure_and_function_declaration_part
-;
-
 label_declaration_part:
 	"label" labels+=label ( "," labels+=label ) * ";"
 ;
@@ -226,6 +223,14 @@ fixed_part:
 	sections+=record_section ( ";" sections+=record_section ) *
 ;
 
+variable_identifier_list:
+	names+=ID ( "," names+=ID ) *
+;
+
+variable_section:
+	identifiers=variable_identifier_list ":" type=type	
+;
+
 record_section:
 	identifiers=identifier_list ":" type=type	
 ;
@@ -255,11 +260,11 @@ pointer_type: //TODO: MUDADO ID PARA TYPE
 ; 
 
 variable_declaration_part:
-	"var" sections+=record_section ";" ( sections+=record_section ";" ) *
+	"var" sections+=variable_section ";" ( sections+=variable_section ";" ) *
 ;
- 
+  
 procedure_and_function_declaration_part:
-	( ( declarations+=procedure_declaration | declarations+=function_declaration  ) ";" ) *	
+	( ( procedures+=procedure_declaration | functions+=function_declaration  ) ";" ) +
 ;
 
 procedure_declaration:

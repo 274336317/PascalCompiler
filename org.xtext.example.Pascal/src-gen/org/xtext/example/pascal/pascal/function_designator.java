@@ -20,7 +20,7 @@ package org.xtext.example.pascal.pascal;
  * @model
  * @generated
  */
-public interface function_designator extends simple_statement, factor
+public interface function_designator extends factor
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

@@ -101,7 +101,6 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
       case PascalPackage.CONSTANT: return createconstant();
       case PascalPackage.WITH_STATEMENT: return createwith_statement();
       case PascalPackage.GOTO_STATEMENT: return creategoto_statement();
-      case PascalPackage.DECLARATION_PART: return createdeclaration_part();
       case PascalPackage.LABEL_DECLARATION_PART: return createlabel_declaration_part();
       case PascalPackage.CONSTANT_DEFINITION_PART: return createconstant_definition_part();
       case PascalPackage.CONSTANT_DEFINITION: return createconstant_definition();
@@ -119,6 +118,8 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
       case PascalPackage.RECORD_TYPE: return createrecord_type();
       case PascalPackage.FIELD_LIST: return createfield_list();
       case PascalPackage.FIXED_PART: return createfixed_part();
+      case PascalPackage.VARIABLE_IDENTIFIER_LIST: return createvariable_identifier_list();
+      case PascalPackage.VARIABLE_SECTION: return createvariable_section();
       case PascalPackage.RECORD_SECTION: return createrecord_section();
       case PascalPackage.VARIANT_PART: return createvariant_part();
       case PascalPackage.TAG_FIELD: return createtag_field();
@@ -558,17 +559,6 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public declaration_part createdeclaration_part()
-  {
-    declaration_partImpl declaration_part = new declaration_partImpl();
-    return declaration_part;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public label_declaration_part createlabel_declaration_part()
   {
     label_declaration_partImpl label_declaration_part = new label_declaration_partImpl();
@@ -749,6 +739,28 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
   {
     fixed_partImpl fixed_part = new fixed_partImpl();
     return fixed_part;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public variable_identifier_list createvariable_identifier_list()
+  {
+    variable_identifier_listImpl variable_identifier_list = new variable_identifier_listImpl();
+    return variable_identifier_list;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public variable_section createvariable_section()
+  {
+    variable_sectionImpl variable_section = new variable_sectionImpl();
+    return variable_section;
   }
 
   /**

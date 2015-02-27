@@ -3,6 +3,8 @@
  */
 package org.xtext.example.pascal.scoping
 
+import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
+
 /**
  * This class contains custom scoping description.
  * 
@@ -10,6 +12,6 @@ package org.xtext.example.pascal.scoping
  * on how and when to use it 
  *
  */
-class PascalScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
-
+class PascalScopeProvider extends AbstractDeclarativeScopeProvider {
+	
 }

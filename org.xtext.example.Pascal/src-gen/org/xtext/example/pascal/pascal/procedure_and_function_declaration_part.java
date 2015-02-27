@@ -14,7 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.procedure_and_function_declaration_part#getDeclarations <em>Declarations</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.procedure_and_function_declaration_part#getProcedures <em>Procedures</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.procedure_and_function_declaration_part#getFunctions <em>Functions</em>}</li>
  * </ul>
  * </p>
  *
@@ -25,19 +26,35 @@ import org.eclipse.emf.ecore.EObject;
 public interface procedure_and_function_declaration_part extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Declarations</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+   * Returns the value of the '<em><b>Procedures</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.pascal.pascal.procedure_declaration}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Procedures</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Declarations</em>' containment reference list.
-   * @see org.xtext.example.pascal.pascal.PascalPackage#getprocedure_and_function_declaration_part_Declarations()
+   * @return the value of the '<em>Procedures</em>' containment reference list.
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getprocedure_and_function_declaration_part_Procedures()
    * @model containment="true"
    * @generated
    */
-  EList<EObject> getDeclarations();
+  EList<procedure_declaration> getProcedures();
+
+  /**
+   * Returns the value of the '<em><b>Functions</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.pascal.pascal.function_declaration}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Functions</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Functions</em>' containment reference list.
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getprocedure_and_function_declaration_part_Functions()
+   * @model containment="true"
+   * @generated
+   */
+  EList<function_declaration> getFunctions();
 
 } // procedure_and_function_declaration_part

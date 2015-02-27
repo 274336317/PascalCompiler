@@ -1,0 +1,17 @@
+package org.xtext.example.pascal.validation;
+
+import org.eclipse.emf.ecore.EClass;
+
+public class Error {
+
+	private String message;
+	private ErrorType type;
+	private EClass feature;
+	
+	public Error(String message, ErrorType type, EClass feature) {
+		this.message = message;
+		this.type = type;
+		this.feature = feature;
+	}
+	
+}

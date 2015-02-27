@@ -26,7 +26,6 @@ import org.xtext.example.pascal.pascal.conditional_statement;
 import org.xtext.example.pascal.pascal.constant;
 import org.xtext.example.pascal.pascal.constant_definition;
 import org.xtext.example.pascal.pascal.constant_definition_part;
-import org.xtext.example.pascal.pascal.declaration_part;
 import org.xtext.example.pascal.pascal.dynamic_array_type;
 import org.xtext.example.pascal.pascal.enumerated_type;
 import org.xtext.example.pascal.pascal.expression;
@@ -63,6 +62,7 @@ import org.xtext.example.pascal.pascal.set;
 import org.xtext.example.pascal.pascal.set_type;
 import org.xtext.example.pascal.pascal.signed_number;
 import org.xtext.example.pascal.pascal.simple_expression;
+import org.xtext.example.pascal.pascal.simple_statement;
 import org.xtext.example.pascal.pascal.simple_type;
 import org.xtext.example.pascal.pascal.statement;
 import org.xtext.example.pascal.pascal.statement_part;
@@ -81,7 +81,9 @@ import org.xtext.example.pascal.pascal.value_parameter_section;
 import org.xtext.example.pascal.pascal.var_;
 import org.xtext.example.pascal.pascal.variable;
 import org.xtext.example.pascal.pascal.variable_declaration_part;
+import org.xtext.example.pascal.pascal.variable_identifier_list;
 import org.xtext.example.pascal.pascal.variable_parameter_section;
+import org.xtext.example.pascal.pascal.variable_section;
 import org.xtext.example.pascal.pascal.variant;
 import org.xtext.example.pascal.pascal.variant_part;
 import org.xtext.example.pascal.pascal.while_statement;
@@ -104,8 +106,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				}
 				else break;
 			case PascalPackage.ASSIGNMENT_STATEMENT:
-				if(context == grammarAccess.getAssignment_statementRule() ||
-				   context == grammarAccess.getSimple_statementRule()) {
+				if(context == grammarAccess.getAssignment_statementRule()) {
 					sequence_assignment_statement(context, (assignment_statement) semanticObject); 
 					return; 
 				}
@@ -167,12 +168,6 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case PascalPackage.CONSTANT_DEFINITION_PART:
 				if(context == grammarAccess.getConstant_definition_partRule()) {
 					sequence_constant_definition_part(context, (constant_definition_part) semanticObject); 
-					return; 
-				}
-				else break;
-			case PascalPackage.DECLARATION_PART:
-				if(context == grammarAccess.getDeclaration_partRule()) {
-					sequence_declaration_part(context, (declaration_part) semanticObject); 
 					return; 
 				}
 				else break;
@@ -241,8 +236,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				else break;
 			case PascalPackage.FUNCTION_DESIGNATOR:
 				if(context == grammarAccess.getFactorRule() ||
-				   context == grammarAccess.getFunction_designatorRule() ||
-				   context == grammarAccess.getSimple_statementRule()) {
+				   context == grammarAccess.getFunction_designatorRule()) {
 					sequence_function_designator(context, (function_designator) semanticObject); 
 					return; 
 				}
@@ -255,8 +249,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				}
 				else break;
 			case PascalPackage.GOTO_STATEMENT:
-				if(context == grammarAccess.getGoto_statementRule() ||
-				   context == grammarAccess.getSimple_statementRule()) {
+				if(context == grammarAccess.getGoto_statementRule()) {
 					sequence_goto_statement(context, (goto_statement) semanticObject); 
 					return; 
 				}
@@ -406,6 +399,12 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
+			case PascalPackage.SIMPLE_STATEMENT:
+				if(context == grammarAccess.getSimple_statementRule()) {
+					sequence_simple_statement(context, (simple_statement) semanticObject); 
+					return; 
+				}
+				else break;
 			case PascalPackage.SIMPLE_TYPE:
 				if(context == grammarAccess.getSimple_typeRule()) {
 					sequence_simple_type(context, (simple_type) semanticObject); 
@@ -518,10 +517,22 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 					return; 
 				}
 				else break;
+			case PascalPackage.VARIABLE_IDENTIFIER_LIST:
+				if(context == grammarAccess.getVariable_identifier_listRule()) {
+					sequence_variable_identifier_list(context, (variable_identifier_list) semanticObject); 
+					return; 
+				}
+				else break;
 			case PascalPackage.VARIABLE_PARAMETER_SECTION:
 				if(context == grammarAccess.getFormal_parameter_sectionRule() ||
 				   context == grammarAccess.getVariable_parameter_sectionRule()) {
 					sequence_variable_parameter_section(context, (variable_parameter_section) semanticObject); 
+					return; 
+				}
+				else break;
+			case PascalPackage.VARIABLE_SECTION:
+				if(context == grammarAccess.getVariable_sectionRule()) {
+					sequence_variable_section(context, (variable_section) semanticObject); 
 					return; 
 				}
 				else break;
@@ -583,20 +594,17 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (declaration=declaration_part statement=statement_part)
+	 *     (
+	 *         label=label_declaration_part? 
+	 *         constant=constant_definition_part? 
+	 *         type=type_definition_part? 
+	 *         variable=variable_declaration_part? 
+	 *         abstraction=procedure_and_function_declaration_part? 
+	 *         statement=statement_part
+	 *     )
 	 */
 	protected void sequence_block(EObject context, block semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, PascalPackage.Literals.BLOCK__DECLARATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalPackage.Literals.BLOCK__DECLARATION));
-			if(transientValues.isValueTransient(semanticObject, PascalPackage.Literals.BLOCK__STATEMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalPackage.Literals.BLOCK__STATEMENT));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getBlockAccess().getDeclarationDeclaration_partParserRuleCall_0_0(), semanticObject.getDeclaration());
-		feeder.accept(grammarAccess.getBlockAccess().getStatementStatement_partParserRuleCall_1_0(), semanticObject.getStatement());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -717,21 +725,6 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     consts+=constant_definition+
 	 */
 	protected void sequence_constant_definition_part(EObject context, constant_definition_part semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (
-	 *         label=label_declaration_part? 
-	 *         constant=constant_definition_part? 
-	 *         type=type_definition_part? 
-	 *         variable=variable_declaration_part? 
-	 *         procedure=procedure_and_function_declaration_part
-	 *     )
-	 */
-	protected void sequence_declaration_part(EObject context, declaration_part semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1017,7 +1010,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (declarations+=procedure_declaration | declarations+=function_declaration)*
+	 *     (procedures+=procedure_declaration | functions+=function_declaration)+
 	 */
 	protected void sequence_procedure_and_function_declaration_part(EObject context, procedure_and_function_declaration_part semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1171,6 +1164,15 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
+	 *     (assignment=assignment_statement | function=function_designator | goto=goto_statement)?
+	 */
+	protected void sequence_simple_statement(EObject context, simple_statement semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
 	 *     (type=subrange_type | type=enumerated_type | name=ID)
 	 */
 	protected void sequence_simple_type(EObject context, simple_type semanticObject) {
@@ -1205,7 +1207,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (label=label? (statement=simple_statement | statement=structured_statement))
+	 *     (label=label? (simple=simple_statement | structured=structured_statement))
 	 */
 	protected void sequence_statement(EObject context, statement semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1356,9 +1358,18 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (sections+=record_section sections+=record_section*)
+	 *     (sections+=variable_section sections+=variable_section*)
 	 */
 	protected void sequence_variable_declaration_part(EObject context, variable_declaration_part semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (names+=ID names+=ID*)
+	 */
+	protected void sequence_variable_identifier_list(EObject context, variable_identifier_list semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1378,6 +1389,25 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getVariable_parameter_sectionAccess().getIdentifiersIdentifier_listParserRuleCall_1_0(), semanticObject.getIdentifiers());
 		feeder.accept(grammarAccess.getVariable_parameter_sectionAccess().getTypeParameter_typeParserRuleCall_3_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (identifiers=variable_identifier_list type=type)
+	 */
+	protected void sequence_variable_section(EObject context, variable_section semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, PascalPackage.Literals.VARIABLE_SECTION__IDENTIFIERS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalPackage.Literals.VARIABLE_SECTION__IDENTIFIERS));
+			if(transientValues.isValueTransient(semanticObject, PascalPackage.Literals.VARIABLE_SECTION__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, PascalPackage.Literals.VARIABLE_SECTION__TYPE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getVariable_sectionAccess().getIdentifiersVariable_identifier_listParserRuleCall_0_0(), semanticObject.getIdentifiers());
+		feeder.accept(grammarAccess.getVariable_sectionAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	

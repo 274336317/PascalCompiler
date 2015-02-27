@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.goto_statement;
@@ -27,7 +28,7 @@ import org.xtext.example.pascal.pascal.label;
  *
  * @generated
  */
-public class goto_statementImpl extends simple_statementImpl implements goto_statement
+public class goto_statementImpl extends MinimalEObjectImpl.Container implements goto_statement
 {
   /**
    * The cached value of the '{@link #getLabel() <em>Label</em>}' containment reference.

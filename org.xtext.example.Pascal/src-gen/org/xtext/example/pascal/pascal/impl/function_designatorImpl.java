@@ -28,7 +28,7 @@ import org.xtext.example.pascal.pascal.function_designator;
  *
  * @generated
  */
-public class function_designatorImpl extends simple_statementImpl implements function_designator
+public class function_designatorImpl extends factorImpl implements function_designator
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.

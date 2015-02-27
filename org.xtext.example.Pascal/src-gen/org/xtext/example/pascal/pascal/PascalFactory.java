@@ -356,15 +356,6 @@ public interface PascalFactory extends EFactory
   goto_statement creategoto_statement();
 
   /**
-   * Returns a new object of class '<em>declaration part</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>declaration part</em>'.
-   * @generated
-   */
-  declaration_part createdeclaration_part();
-
-  /**
    * Returns a new object of class '<em>label declaration part</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -516,6 +507,24 @@ public interface PascalFactory extends EFactory
    * @generated
    */
   fixed_part createfixed_part();
+
+  /**
+   * Returns a new object of class '<em>variable identifier list</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>variable identifier list</em>'.
+   * @generated
+   */
+  variable_identifier_list createvariable_identifier_list();
+
+  /**
+   * Returns a new object of class '<em>variable section</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>variable section</em>'.
+   * @generated
+   */
+  variable_section createvariable_section();
 
   /**
    * Returns a new object of class '<em>record section</em>'.

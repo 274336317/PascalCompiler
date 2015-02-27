@@ -26,7 +26,7 @@ public interface variable_declaration_part extends EObject
 {
   /**
    * Returns the value of the '<em><b>Sections</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.pascal.pascal.record_section}.
+   * The list contents are of type {@link org.xtext.example.pascal.pascal.variable_section}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Sections</em>' containment reference list isn't clear,
@@ -38,6 +38,6 @@ public interface variable_declaration_part extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<record_section> getSections();
+  EList<variable_section> getSections();
 
 } // variable_declaration_part

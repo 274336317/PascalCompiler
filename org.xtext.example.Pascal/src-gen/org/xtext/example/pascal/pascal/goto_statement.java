@@ -2,6 +2,7 @@
  */
 package org.xtext.example.pascal.pascal;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +20,7 @@ package org.xtext.example.pascal.pascal;
  * @model
  * @generated
  */
-public interface goto_statement extends simple_statement
+public interface goto_statement extends EObject
 {
   /**
    * Returns the value of the '<em><b>Label</b></em>' containment reference.

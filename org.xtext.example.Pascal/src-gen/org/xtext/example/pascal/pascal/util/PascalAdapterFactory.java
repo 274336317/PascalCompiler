@@ -260,11 +260,6 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
         return creategoto_statementAdapter();
       }
       @Override
-      public Adapter casedeclaration_part(declaration_part object)
-      {
-        return createdeclaration_partAdapter();
-      }
-      @Override
       public Adapter caselabel_declaration_part(label_declaration_part object)
       {
         return createlabel_declaration_partAdapter();
@@ -348,6 +343,16 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
       public Adapter casefixed_part(fixed_part object)
       {
         return createfixed_partAdapter();
+      }
+      @Override
+      public Adapter casevariable_identifier_list(variable_identifier_list object)
+      {
+        return createvariable_identifier_listAdapter();
+      }
+      @Override
+      public Adapter casevariable_section(variable_section object)
+      {
+        return createvariable_sectionAdapter();
       }
       @Override
       public Adapter caserecord_section(record_section object)
@@ -1037,21 +1042,6 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.declaration_part <em>declaration part</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.declaration_part
-   * @generated
-   */
-  public Adapter createdeclaration_partAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.label_declaration_part <em>label declaration part</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1302,6 +1292,36 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createfixed_partAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.variable_identifier_list <em>variable identifier list</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.pascal.pascal.variable_identifier_list
+   * @generated
+   */
+  public Adapter createvariable_identifier_listAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.variable_section <em>variable section</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.pascal.pascal.variable_section
+   * @generated
+   */
+  public Adapter createvariable_sectionAdapter()
   {
     return null;
   }

@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
-import org.xtext.example.pascal.pascal.record_section;
 import org.xtext.example.pascal.pascal.variable_declaration_part;
+import org.xtext.example.pascal.pascal.variable_section;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +43,7 @@ public class variable_declaration_partImpl extends MinimalEObjectImpl.Container 
    * @generated
    * @ordered
    */
-  protected EList<record_section> sections;
+  protected EList<variable_section> sections;
 
   /**
    * <!-- begin-user-doc -->
@@ -71,11 +71,11 @@ public class variable_declaration_partImpl extends MinimalEObjectImpl.Container 
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<record_section> getSections()
+  public EList<variable_section> getSections()
   {
     if (sections == null)
     {
-      sections = new EObjectContainmentEList<record_section>(record_section.class, this, PascalPackage.VARIABLE_DECLARATION_PART__SECTIONS);
+      sections = new EObjectContainmentEList<variable_section>(variable_section.class, this, PascalPackage.VARIABLE_DECLARATION_PART__SECTIONS);
     }
     return sections;
   }
@@ -125,7 +125,7 @@ public class variable_declaration_partImpl extends MinimalEObjectImpl.Container 
     {
       case PascalPackage.VARIABLE_DECLARATION_PART__SECTIONS:
         getSections().clear();
-        getSections().addAll((Collection<? extends record_section>)newValue);
+        getSections().addAll((Collection<? extends variable_section>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

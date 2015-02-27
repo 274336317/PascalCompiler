@@ -1,0 +1,11 @@
+package org.xtext.example.pascal.validation;
+
+import org.xtext.example.pascal.pascal.PascalPackage;
+
+public class Error {
+
+	private String message;
+	private ErrorType type;
+	private EClass feature;
+	
+}

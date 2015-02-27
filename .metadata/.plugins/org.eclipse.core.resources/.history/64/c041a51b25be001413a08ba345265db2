@@ -1,0 +1,41 @@
+package org.xtext.example.pascal.validation;
+
+import org.eclipse.emf.ecore.EAttribute;
+
+public class Error {
+
+	private String message;
+	private ErrorType type;
+	private Object feature;
+	
+	public Error(String message, ErrorType type, Object feature) {
+		this.message = message;
+		this.type = type;
+		this.feature = feature;
+	}
+	
+	public Error(ErrorType type) {
+		this(null, type, null);
+	}
+	
+	public String getMessage() {
+		return this.message;
+	}
+	
+	public ErrorType getType() {
+		return this.type;
+	}
+	
+	public Object getFeature() {
+		return this.feature;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Error))
+			return false;
+		Error other = (Error) obj;
+		return this.type == other.type;
+	}
+	
+}

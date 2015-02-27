@@ -1,0 +1,28 @@
+package org.xtext.example.pascal.validation;
+
+import org.xtext.example.pascal.pascal.type;
+
+public class Variable {
+
+	private String name;
+	private type type;
+	private boolean inherited;
+	
+	public Variable(String name, type type, boolean inherited) {
+		this.name = name;
+		this.type = type;
+		this.inherited = inherited;
+	}
+	
+	public boolean isInherited() {
+		return this.inherited;
+	}
+	
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Variable))
+			return false;
+		Variable other = (Variable) obj;
+		return other.name.toLowerCase().equals(this.name.toLowerCase());
+	}
+	
+}

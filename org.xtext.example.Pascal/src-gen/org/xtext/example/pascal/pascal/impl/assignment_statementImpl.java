@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.assignment_statement;
@@ -29,7 +30,7 @@ import org.xtext.example.pascal.pascal.variable;
  *
  * @generated
  */
-public class assignment_statementImpl extends simple_statementImpl implements assignment_statement
+public class assignment_statementImpl extends MinimalEObjectImpl.Container implements assignment_statement
 {
   /**
    * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.

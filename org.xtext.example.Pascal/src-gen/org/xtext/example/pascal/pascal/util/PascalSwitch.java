@@ -146,7 +146,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         assignment_statement assignment_statement = (assignment_statement)theEObject;
         T result = caseassignment_statement(assignment_statement);
-        if (result == null) result = casesimple_statement(assignment_statement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -235,7 +234,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         function_designator function_designator = (function_designator)theEObject;
         T result = casefunction_designator(function_designator);
-        if (result == null) result = casesimple_statement(function_designator);
         if (result == null) result = casefactor(function_designator);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -335,14 +333,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         goto_statement goto_statement = (goto_statement)theEObject;
         T result = casegoto_statement(goto_statement);
-        if (result == null) result = casesimple_statement(goto_statement);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PascalPackage.DECLARATION_PART:
-      {
-        declaration_part declaration_part = (declaration_part)theEObject;
-        T result = casedeclaration_part(declaration_part);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -465,6 +455,20 @@ public class PascalSwitch<T> extends Switch<T>
       {
         fixed_part fixed_part = (fixed_part)theEObject;
         T result = casefixed_part(fixed_part);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PascalPackage.VARIABLE_IDENTIFIER_LIST:
+      {
+        variable_identifier_list variable_identifier_list = (variable_identifier_list)theEObject;
+        T result = casevariable_identifier_list(variable_identifier_list);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case PascalPackage.VARIABLE_SECTION:
+      {
+        variable_section variable_section = (variable_section)theEObject;
+        T result = casevariable_section(variable_section);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1230,22 +1234,6 @@ public class PascalSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>declaration part</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>declaration part</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casedeclaration_part(declaration_part object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>label declaration part</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1513,6 +1501,38 @@ public class PascalSwitch<T> extends Switch<T>
    * @generated
    */
   public T casefixed_part(fixed_part object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>variable identifier list</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>variable identifier list</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casevariable_identifier_list(variable_identifier_list object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>variable section</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>variable section</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casevariable_section(variable_section object)
   {
     return null;
   }
