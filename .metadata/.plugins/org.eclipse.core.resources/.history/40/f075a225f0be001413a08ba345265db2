@@ -1,0 +1,41 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.emf.ecore.EObject;
+
+public class SmartHashSet<T> extends HashSet<T> {
+
+	private static final long serialVersionUID = 1L;
+	private PascalValidator validator;
+	private Map<EObject, Set<Error>> errorList;
+	private Set<ErrorType> listeners;
+	
+	public SmartHashSet(PascalValidator validator, Map<EObject, Set<Error>> errorList, ErrorType... listeners) {
+		this.errorList = errorList;
+		this.listeners = new HashSet<ErrorType>(listeners);
+		this.validator = validator;
+	}
+	
+	private void updateErrorList() {
+		for (EObject e : errorList.keySet()) {
+			for (Error err : errorList.get(e)) {
+				for (ErrorType type : listeners) {
+					if (err.getType() == type) {
+						validator.showError(e);
+					}
+				}
+			}
+		}
+	}
+	
+	@Override
+	public boolean add(T e) {
+		boolean success = this.add(e);
+		updateErrorList();
+		return success;
+	}
+	
+}

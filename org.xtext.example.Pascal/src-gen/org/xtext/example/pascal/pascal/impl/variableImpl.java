@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.var_;
@@ -28,7 +29,7 @@ import org.xtext.example.pascal.pascal.variable;
  *
  * @generated
  */
-public class variableImpl extends factorImpl implements variable
+public class variableImpl extends MinimalEObjectImpl.Container implements variable
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.

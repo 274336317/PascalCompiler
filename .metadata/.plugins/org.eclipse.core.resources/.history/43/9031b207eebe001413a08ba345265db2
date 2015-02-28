@@ -1,0 +1,8 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.HashSet;
+
+public class SmartHashSet extends HashSet {
+
+	private Map<EObject, Set<Error>> errorList;
+}

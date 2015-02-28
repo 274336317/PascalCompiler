@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.expression_list;
@@ -28,7 +29,7 @@ import org.xtext.example.pascal.pascal.function_designator;
  *
  * @generated
  */
-public class function_designatorImpl extends factorImpl implements function_designator
+public class function_designatorImpl extends MinimalEObjectImpl.Container implements function_designator
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.

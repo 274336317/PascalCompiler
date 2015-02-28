@@ -2,6 +2,7 @@
  */
 package org.xtext.example.pascal.pascal;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package org.xtext.example.pascal.pascal;
  * @model
  * @generated
  */
-public interface function_designator extends factor
+public interface function_designator extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

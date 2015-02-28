@@ -5,11 +5,11 @@ import org.xtext.example.pascal.pascal.type;
 public class Variable {
 
 	private String name;
-	private type type;
+	private String type;
 	private boolean inherited;
 	private VariableType varType;
 	
-	public Variable(String name, type type, boolean inherited, VariableType varType) {
+	public Variable(String name, String type, boolean inherited, VariableType varType) {
 		this.name = name;
 		this.type = type;
 		this.inherited = inherited;
@@ -24,7 +24,7 @@ public class Variable {
 		return this.name;
 	}
 	
-	public type getType() {
+	public String getType() {
 		return this.type;
 	}
 	

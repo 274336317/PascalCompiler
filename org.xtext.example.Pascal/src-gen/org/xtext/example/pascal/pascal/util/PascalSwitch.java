@@ -153,7 +153,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         variable variable = (variable)theEObject;
         T result = casevariable(variable);
-        if (result == null) result = casefactor(variable);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -234,7 +233,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         function_designator function_designator = (function_designator)theEObject;
         T result = casefunction_designator(function_designator);
-        if (result == null) result = casefactor(function_designator);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -548,7 +546,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         procedure_heading procedure_heading = (procedure_heading)theEObject;
         T result = caseprocedure_heading(procedure_heading);
-        if (result == null) result = caseformal_parameter_section(procedure_heading);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -570,7 +567,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         value_parameter_section value_parameter_section = (value_parameter_section)theEObject;
         T result = casevalue_parameter_section(value_parameter_section);
-        if (result == null) result = caseformal_parameter_section(value_parameter_section);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -618,7 +614,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         variable_parameter_section variable_parameter_section = (variable_parameter_section)theEObject;
         T result = casevariable_parameter_section(variable_parameter_section);
-        if (result == null) result = caseformal_parameter_section(variable_parameter_section);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -626,7 +621,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         function_heading function_heading = (function_heading)theEObject;
         T result = casefunction_heading(function_heading);
-        if (result == null) result = caseformal_parameter_section(function_heading);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }

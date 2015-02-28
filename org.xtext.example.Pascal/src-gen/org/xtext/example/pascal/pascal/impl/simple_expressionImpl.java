@@ -29,9 +29,8 @@ import org.xtext.example.pascal.pascal.term;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl#getOpterators <em>Opterators</em>}</li>
- *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl#getTerms <em>Terms</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl#getOperators <em>Operators</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl#getTerms <em>Terms</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl#getNumbers <em>Numbers</em>}</li>
  * </ul>
  * </p>
@@ -41,14 +40,14 @@ import org.xtext.example.pascal.pascal.term;
 public class simple_expressionImpl extends MinimalEObjectImpl.Container implements simple_expression
 {
   /**
-   * The cached value of the '{@link #getOpterators() <em>Opterators</em>}' attribute list.
+   * The cached value of the '{@link #getOperators() <em>Operators</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getOpterators()
+   * @see #getOperators()
    * @generated
    * @ordered
    */
-  protected EList<String> opterators;
+  protected EList<String> operators;
 
   /**
    * The cached value of the '{@link #getTerms() <em>Terms</em>}' containment reference list.
@@ -59,16 +58,6 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
    * @ordered
    */
   protected EList<term> terms;
-
-  /**
-   * The cached value of the '{@link #getOperators() <em>Operators</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOperators()
-   * @generated
-   * @ordered
-   */
-  protected EList<String> operators;
 
   /**
    * The cached value of the '{@link #getNumbers() <em>Numbers</em>}' containment reference list.
@@ -106,13 +95,13 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getOpterators()
+  public EList<String> getOperators()
   {
-    if (opterators == null)
+    if (operators == null)
     {
-      opterators = new EDataTypeEList<String>(String.class, this, PascalPackage.SIMPLE_EXPRESSION__OPTERATORS);
+      operators = new EDataTypeEList<String>(String.class, this, PascalPackage.SIMPLE_EXPRESSION__OPERATORS);
     }
-    return opterators;
+    return operators;
   }
 
   /**
@@ -127,20 +116,6 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
       terms = new EObjectContainmentEList<term>(term.class, this, PascalPackage.SIMPLE_EXPRESSION__TERMS);
     }
     return terms;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<String> getOperators()
-  {
-    if (operators == null)
-    {
-      operators = new EDataTypeEList<String>(String.class, this, PascalPackage.SIMPLE_EXPRESSION__OPERATORS);
-    }
-    return operators;
   }
 
   /**
@@ -185,12 +160,10 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case PascalPackage.SIMPLE_EXPRESSION__OPTERATORS:
-        return getOpterators();
-      case PascalPackage.SIMPLE_EXPRESSION__TERMS:
-        return getTerms();
       case PascalPackage.SIMPLE_EXPRESSION__OPERATORS:
         return getOperators();
+      case PascalPackage.SIMPLE_EXPRESSION__TERMS:
+        return getTerms();
       case PascalPackage.SIMPLE_EXPRESSION__NUMBERS:
         return getNumbers();
     }
@@ -208,17 +181,13 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case PascalPackage.SIMPLE_EXPRESSION__OPTERATORS:
-        getOpterators().clear();
-        getOpterators().addAll((Collection<? extends String>)newValue);
+      case PascalPackage.SIMPLE_EXPRESSION__OPERATORS:
+        getOperators().clear();
+        getOperators().addAll((Collection<? extends String>)newValue);
         return;
       case PascalPackage.SIMPLE_EXPRESSION__TERMS:
         getTerms().clear();
         getTerms().addAll((Collection<? extends term>)newValue);
-        return;
-      case PascalPackage.SIMPLE_EXPRESSION__OPERATORS:
-        getOperators().clear();
-        getOperators().addAll((Collection<? extends String>)newValue);
         return;
       case PascalPackage.SIMPLE_EXPRESSION__NUMBERS:
         getNumbers().clear();
@@ -238,14 +207,11 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case PascalPackage.SIMPLE_EXPRESSION__OPTERATORS:
-        getOpterators().clear();
+      case PascalPackage.SIMPLE_EXPRESSION__OPERATORS:
+        getOperators().clear();
         return;
       case PascalPackage.SIMPLE_EXPRESSION__TERMS:
         getTerms().clear();
-        return;
-      case PascalPackage.SIMPLE_EXPRESSION__OPERATORS:
-        getOperators().clear();
         return;
       case PascalPackage.SIMPLE_EXPRESSION__NUMBERS:
         getNumbers().clear();
@@ -264,12 +230,10 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case PascalPackage.SIMPLE_EXPRESSION__OPTERATORS:
-        return opterators != null && !opterators.isEmpty();
-      case PascalPackage.SIMPLE_EXPRESSION__TERMS:
-        return terms != null && !terms.isEmpty();
       case PascalPackage.SIMPLE_EXPRESSION__OPERATORS:
         return operators != null && !operators.isEmpty();
+      case PascalPackage.SIMPLE_EXPRESSION__TERMS:
+        return terms != null && !terms.isEmpty();
       case PascalPackage.SIMPLE_EXPRESSION__NUMBERS:
         return numbers != null && !numbers.isEmpty();
     }
@@ -287,9 +251,7 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (opterators: ");
-    result.append(opterators);
-    result.append(", operators: ");
+    result.append(" (operators: ");
     result.append(operators);
     result.append(')');
     return result.toString();

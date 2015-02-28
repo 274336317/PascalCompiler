@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.identifier_list;
@@ -29,7 +30,7 @@ import org.xtext.example.pascal.pascal.value_parameter_section;
  *
  * @generated
  */
-public class value_parameter_sectionImpl extends formal_parameter_sectionImpl implements value_parameter_section
+public class value_parameter_sectionImpl extends MinimalEObjectImpl.Container implements value_parameter_section
 {
   /**
    * The cached value of the '{@link #getIdentifiers() <em>Identifiers</em>}' containment reference.

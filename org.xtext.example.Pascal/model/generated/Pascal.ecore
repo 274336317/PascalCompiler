@@ -67,7 +67,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="variable" eSuperTypes="#//factor">
+  <eClassifiers xsi:type="ecore:EClass" name="variable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//var_"
         containment="true"/>
@@ -89,12 +89,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="simple_expression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="opterators" unique="false"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="terms" upperBound="-1"
         eType="#//term" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="numbers" upperBound="-1"
         eType="#//signed_number" containment="true"/>
   </eClassifiers>
@@ -104,7 +102,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operators" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="factor"/>
+  <eClassifiers xsi:type="ecore:EClass" name="factor">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//variable"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//function_designator"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="number" eSuperTypes="#//factor">
     <eStructuralFeatures xsi:type="ecore:EReference" name="number" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
@@ -121,13 +124,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" eType="#//expression_list"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="function_designator" eSuperTypes="#//factor">
+  <eClassifiers xsi:type="ecore:EClass" name="function_designator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" eType="#//expression_list"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="structured_statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compound" eType="#//compound_statement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repetitive" eType="#//repetitive_statement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="conditional" eType="#//conditional_statement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="withStmt" eType="#//with_statement"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="compound_statement">
@@ -135,7 +144,11 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="repetitive_statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="whileStmt" eType="#//while_statement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="repeatStmt" eType="#//repeat_statement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forStmt" eType="#//for_statement"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="while_statement">
@@ -159,7 +172,9 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="conditional_statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statement" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ifStmt" eType="#//if_statement"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="caseStmt" eType="#//case_statement"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="if_statement">
@@ -336,7 +351,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//block"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="procedure_heading" eSuperTypes="#//formal_parameter_section">
+  <eClassifiers xsi:type="ecore:EClass" name="procedure_heading">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" eType="#//formal_parameter_list"
         containment="true"/>
@@ -345,8 +360,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//formal_parameter_section" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="formal_parameter_section"/>
-  <eClassifiers xsi:type="ecore:EClass" name="value_parameter_section" eSuperTypes="#//formal_parameter_section">
+  <eClassifiers xsi:type="ecore:EClass" name="formal_parameter_section">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//value_parameter_section"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//variable_parameter_section"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedure" eType="#//procedure_heading"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//function_heading"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="value_parameter_section">
     <eStructuralFeatures xsi:type="ecore:EReference" name="identifiers" eType="#//identifier_list"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//parameter_type"
@@ -371,13 +395,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="#//conformant_array_schema"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="variable_parameter_section" eSuperTypes="#//formal_parameter_section">
+  <eClassifiers xsi:type="ecore:EClass" name="variable_parameter_section">
     <eStructuralFeatures xsi:type="ecore:EReference" name="identifiers" eType="#//identifier_list"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//parameter_type"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="function_heading" eSuperTypes="#//formal_parameter_section">
+  <eClassifiers xsi:type="ecore:EClass" name="function_heading">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" eType="#//formal_parameter_list"
         containment="true"/>

@@ -1,1 +1,4 @@
 1425002362520	Rename enum constant 'NOT_DECLARED'
+1425090090541	Rename type 'SmartHashSet'
+1425090112048	Rename type 'WatchableSet'
+1425090489456	Delete element

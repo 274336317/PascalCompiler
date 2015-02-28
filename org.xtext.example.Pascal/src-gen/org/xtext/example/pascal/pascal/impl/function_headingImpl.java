@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.formal_parameter_list;
@@ -29,7 +30,7 @@ import org.xtext.example.pascal.pascal.function_heading;
  *
  * @generated
  */
-public class function_headingImpl extends formal_parameter_sectionImpl implements function_heading
+public class function_headingImpl extends MinimalEObjectImpl.Container implements function_heading
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.

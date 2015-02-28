@@ -2,6 +2,7 @@
  */
 package org.xtext.example.pascal.pascal;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,7 +21,7 @@ package org.xtext.example.pascal.pascal;
  * @model
  * @generated
  */
-public interface variable_parameter_section extends formal_parameter_section
+public interface variable_parameter_section extends EObject
 {
   /**
    * Returns the value of the '<em><b>Identifiers</b></em>' containment reference.

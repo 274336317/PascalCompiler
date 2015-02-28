@@ -12,7 +12,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.conditional_statement#getStatement <em>Statement</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.conditional_statement#getIfStmt <em>If Stmt</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.conditional_statement#getCaseStmt <em>Case Stmt</em>}</li>
  * </ul>
  * </p>
  *
@@ -23,29 +24,55 @@ import org.eclipse.emf.ecore.EObject;
 public interface conditional_statement extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Statement</b></em>' containment reference.
+   * Returns the value of the '<em><b>If Stmt</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Statement</em>' containment reference isn't clear,
+   * If the meaning of the '<em>If Stmt</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Statement</em>' containment reference.
-   * @see #setStatement(EObject)
-   * @see org.xtext.example.pascal.pascal.PascalPackage#getconditional_statement_Statement()
+   * @return the value of the '<em>If Stmt</em>' containment reference.
+   * @see #setIfStmt(if_statement)
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getconditional_statement_IfStmt()
    * @model containment="true"
    * @generated
    */
-  EObject getStatement();
+  if_statement getIfStmt();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.pascal.pascal.conditional_statement#getStatement <em>Statement</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.conditional_statement#getIfStmt <em>If Stmt</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Statement</em>' containment reference.
-   * @see #getStatement()
+   * @param value the new value of the '<em>If Stmt</em>' containment reference.
+   * @see #getIfStmt()
    * @generated
    */
-  void setStatement(EObject value);
+  void setIfStmt(if_statement value);
+
+  /**
+   * Returns the value of the '<em><b>Case Stmt</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Case Stmt</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Case Stmt</em>' containment reference.
+   * @see #setCaseStmt(case_statement)
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getconditional_statement_CaseStmt()
+   * @model containment="true"
+   * @generated
+   */
+  case_statement getCaseStmt();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.conditional_statement#getCaseStmt <em>Case Stmt</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Case Stmt</em>' containment reference.
+   * @see #getCaseStmt()
+   * @generated
+   */
+  void setCaseStmt(case_statement value);
 
 } // conditional_statement

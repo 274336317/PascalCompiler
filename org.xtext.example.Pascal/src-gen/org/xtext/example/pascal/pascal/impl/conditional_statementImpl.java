@@ -6,14 +6,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
+import org.xtext.example.pascal.pascal.case_statement;
 import org.xtext.example.pascal.pascal.conditional_statement;
+import org.xtext.example.pascal.pascal.if_statement;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +23,8 @@ import org.xtext.example.pascal.pascal.conditional_statement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.impl.conditional_statementImpl#getStatement <em>Statement</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.conditional_statementImpl#getIfStmt <em>If Stmt</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.conditional_statementImpl#getCaseStmt <em>Case Stmt</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,14 +33,24 @@ import org.xtext.example.pascal.pascal.conditional_statement;
 public class conditional_statementImpl extends MinimalEObjectImpl.Container implements conditional_statement
 {
   /**
-   * The cached value of the '{@link #getStatement() <em>Statement</em>}' containment reference.
+   * The cached value of the '{@link #getIfStmt() <em>If Stmt</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getStatement()
+   * @see #getIfStmt()
    * @generated
    * @ordered
    */
-  protected EObject statement;
+  protected if_statement ifStmt;
+
+  /**
+   * The cached value of the '{@link #getCaseStmt() <em>Case Stmt</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getCaseStmt()
+   * @generated
+   * @ordered
+   */
+  protected case_statement caseStmt;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,9 +78,9 @@ public class conditional_statementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getStatement()
+  public if_statement getIfStmt()
   {
-    return statement;
+    return ifStmt;
   }
 
   /**
@@ -76,13 +88,13 @@ public class conditional_statementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetStatement(EObject newStatement, NotificationChain msgs)
+  public NotificationChain basicSetIfStmt(if_statement newIfStmt, NotificationChain msgs)
   {
-    EObject oldStatement = statement;
-    statement = newStatement;
+    if_statement oldIfStmt = ifStmt;
+    ifStmt = newIfStmt;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.CONDITIONAL_STATEMENT__STATEMENT, oldStatement, newStatement);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.CONDITIONAL_STATEMENT__IF_STMT, oldIfStmt, newIfStmt);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -93,20 +105,68 @@ public class conditional_statementImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setStatement(EObject newStatement)
+  public void setIfStmt(if_statement newIfStmt)
   {
-    if (newStatement != statement)
+    if (newIfStmt != ifStmt)
     {
       NotificationChain msgs = null;
-      if (statement != null)
-        msgs = ((InternalEObject)statement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.CONDITIONAL_STATEMENT__STATEMENT, null, msgs);
-      if (newStatement != null)
-        msgs = ((InternalEObject)newStatement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.CONDITIONAL_STATEMENT__STATEMENT, null, msgs);
-      msgs = basicSetStatement(newStatement, msgs);
+      if (ifStmt != null)
+        msgs = ((InternalEObject)ifStmt).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.CONDITIONAL_STATEMENT__IF_STMT, null, msgs);
+      if (newIfStmt != null)
+        msgs = ((InternalEObject)newIfStmt).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.CONDITIONAL_STATEMENT__IF_STMT, null, msgs);
+      msgs = basicSetIfStmt(newIfStmt, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.CONDITIONAL_STATEMENT__STATEMENT, newStatement, newStatement));
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.CONDITIONAL_STATEMENT__IF_STMT, newIfStmt, newIfStmt));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public case_statement getCaseStmt()
+  {
+    return caseStmt;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetCaseStmt(case_statement newCaseStmt, NotificationChain msgs)
+  {
+    case_statement oldCaseStmt = caseStmt;
+    caseStmt = newCaseStmt;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.CONDITIONAL_STATEMENT__CASE_STMT, oldCaseStmt, newCaseStmt);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setCaseStmt(case_statement newCaseStmt)
+  {
+    if (newCaseStmt != caseStmt)
+    {
+      NotificationChain msgs = null;
+      if (caseStmt != null)
+        msgs = ((InternalEObject)caseStmt).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.CONDITIONAL_STATEMENT__CASE_STMT, null, msgs);
+      if (newCaseStmt != null)
+        msgs = ((InternalEObject)newCaseStmt).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.CONDITIONAL_STATEMENT__CASE_STMT, null, msgs);
+      msgs = basicSetCaseStmt(newCaseStmt, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.CONDITIONAL_STATEMENT__CASE_STMT, newCaseStmt, newCaseStmt));
   }
 
   /**
@@ -119,8 +179,10 @@ public class conditional_statementImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case PascalPackage.CONDITIONAL_STATEMENT__STATEMENT:
-        return basicSetStatement(null, msgs);
+      case PascalPackage.CONDITIONAL_STATEMENT__IF_STMT:
+        return basicSetIfStmt(null, msgs);
+      case PascalPackage.CONDITIONAL_STATEMENT__CASE_STMT:
+        return basicSetCaseStmt(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -135,8 +197,10 @@ public class conditional_statementImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case PascalPackage.CONDITIONAL_STATEMENT__STATEMENT:
-        return getStatement();
+      case PascalPackage.CONDITIONAL_STATEMENT__IF_STMT:
+        return getIfStmt();
+      case PascalPackage.CONDITIONAL_STATEMENT__CASE_STMT:
+        return getCaseStmt();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -151,8 +215,11 @@ public class conditional_statementImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case PascalPackage.CONDITIONAL_STATEMENT__STATEMENT:
-        setStatement((EObject)newValue);
+      case PascalPackage.CONDITIONAL_STATEMENT__IF_STMT:
+        setIfStmt((if_statement)newValue);
+        return;
+      case PascalPackage.CONDITIONAL_STATEMENT__CASE_STMT:
+        setCaseStmt((case_statement)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,8 +235,11 @@ public class conditional_statementImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case PascalPackage.CONDITIONAL_STATEMENT__STATEMENT:
-        setStatement((EObject)null);
+      case PascalPackage.CONDITIONAL_STATEMENT__IF_STMT:
+        setIfStmt((if_statement)null);
+        return;
+      case PascalPackage.CONDITIONAL_STATEMENT__CASE_STMT:
+        setCaseStmt((case_statement)null);
         return;
     }
     super.eUnset(featureID);
@@ -185,8 +255,10 @@ public class conditional_statementImpl extends MinimalEObjectImpl.Container impl
   {
     switch (featureID)
     {
-      case PascalPackage.CONDITIONAL_STATEMENT__STATEMENT:
-        return statement != null;
+      case PascalPackage.CONDITIONAL_STATEMENT__IF_STMT:
+        return ifStmt != null;
+      case PascalPackage.CONDITIONAL_STATEMENT__CASE_STMT:
+        return caseStmt != null;
     }
     return super.eIsSet(featureID);
   }

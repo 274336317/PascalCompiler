@@ -68,7 +68,7 @@ expression: //TODO: ADICIONADO "=" PQ N TAVA RECONHECENDO EM RELATIONAL_OPERATOR
 ; 
 
 simple_expression: 
-	( opterators+=ADDITION_OPERATOR+ ) ? terms+=term ( ( operators+=ADDITION_OPERATOR+ | operators+="or" ) terms+=term | numbers+=signed_number ) *
+	( operators+=ADDITION_OPERATOR+ ) ? terms+=term ( ( operators+=ADDITION_OPERATOR+ | operators+="or" ) terms+=term | numbers+=signed_number ) *
 ;
   
 term:
@@ -76,7 +76,7 @@ term:
 ;
 
 factor: 
-	variable | number | STRING | set | "nil" | "true" | "false" | function_designator | "(" expression ")" | "not" factor	
+	variable=variable | number | STRING | set | "nil" | "true" | "false" | function=function_designator | "(" expression ")" | "not" factor	
 ;
 
 number:
@@ -100,7 +100,7 @@ function_designator:
 ;
 
 structured_statement: 
-	statement=compound_statement | statement=repetitive_statement | statement=conditional_statement | statement=with_statement
+	compound=compound_statement | repetitive=repetitive_statement | conditional=conditional_statement | withStmt=with_statement
 ;
 
 compound_statement:
@@ -108,7 +108,7 @@ compound_statement:
 ;
 
 repetitive_statement: 
-	statement=while_statement | statement=repeat_statement | statement=for_statement
+	whileStmt=while_statement | repeatStmt=repeat_statement | forStmt=for_statement
 ;
 
 while_statement:
@@ -124,7 +124,7 @@ for_statement:
 ;
 
 conditional_statement: 
-	statement=if_statement | statement=case_statement
+	ifStmt=if_statement | caseStmt=case_statement
 ;
 
 if_statement:
@@ -279,8 +279,8 @@ formal_parameter_list:
 	"(" parameters+=formal_parameter_section ( ";" parameters+=formal_parameter_section ) * ")"	
 ;
 
-formal_parameter_section: 
-	value_parameter_section | variable_parameter_section | procedure_heading | function_heading
+formal_parameter_section:  
+	value=value_parameter_section | variable=variable_parameter_section | procedure=procedure_heading | function=function_heading
 ;
 
 value_parameter_section:
