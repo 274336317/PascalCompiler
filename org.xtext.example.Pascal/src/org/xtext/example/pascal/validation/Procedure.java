@@ -46,7 +46,29 @@ public class Procedure extends Element {
 			Iterator<Variable> it1 = this.parameters.iterator();
 			Iterator<Variable> it2 = other.parameters.iterator();
 			while (it1.hasNext() && it2.hasNext()) {
-				if (!it1.next().getVarType().equals(it2.next().getVarType()))
+				String it1Type = it1.next().getVarType();
+				String it2Type = it2.next().getVarType();
+				if (!it1Type.equals(it2Type))
+					return false;
+			}
+			return true;
+		}
+		return super.equals(obj);
+	}
+	
+	public boolean equalsWithTypeCoersion(Object obj) {
+		if (obj != null && (obj instanceof Procedure)) {
+			Procedure other = (Procedure) obj;
+			if (!this.name.toLowerCase().equals(other.name.toLowerCase()))
+				return false;
+			if (this.parameters.size() != other.parameters.size()) 
+				return false;
+			Iterator<Variable> it1 = this.parameters.iterator();
+			Iterator<Variable> it2 = other.parameters.iterator();
+			while (it1.hasNext() && it2.hasNext()) {
+				String it1Type = it1.next().getVarType();
+				String it2Type = it2.next().getVarType();
+				if (!TypeInferer.areTypesCompatibles(it1Type, it2Type))
 					return false;
 			}
 			return true;

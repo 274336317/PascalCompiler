@@ -82,6 +82,7 @@ import org.xtext.example.pascal.validation.ElementType;
 import org.xtext.example.pascal.validation.ErrorType;
 import org.xtext.example.pascal.validation.Function;
 import org.xtext.example.pascal.validation.Procedure;
+import org.xtext.example.pascal.validation.Type;
 import org.xtext.example.pascal.validation.TypeInferer;
 import org.xtext.example.pascal.validation.Variable;
 
@@ -98,7 +99,11 @@ public class PascalValidator extends AbstractPascalValidator {
   
   private Map<block, Set<Procedure>> abstractions = new HashMap<block, Set<Procedure>>();
   
+  private Map<block, Set<Type>> types = new HashMap<block, Set<Type>>();
+  
   private Set<Procedure> standardAbstractions = new HashSet<Procedure>();
+  
+  private Set<Type> standardTypes = new HashSet<Type>();
   
   public HashSet<Variable> getParameters(final String... vars) {
     HashSet<Variable> variables = new HashSet<Variable>();
@@ -153,11 +158,11 @@ public class PascalValidator extends AbstractPascalValidator {
         boolean _equals_2 = Objects.equal(returnType, "void");
         if (_equals_2) {
           HashSet<Variable> _parameters_1 = this.getParameters(parameters);
-          Procedure _procedure = new Procedure(name, true, _parameters_1, false);
+          Procedure _procedure = new Procedure(name, false, _parameters_1, false);
           abstractions.add(_procedure);
         } else {
           HashSet<Variable> _parameters_2 = this.getParameters(parameters);
-          Function _function_1 = new Function(name, true, _parameters_2, false, returnType);
+          Function _function_1 = new Function(name, false, _parameters_2, false, returnType);
           abstractions.add(_function_1);
         }
       }
@@ -206,6 +211,25 @@ public class PascalValidator extends AbstractPascalValidator {
     return this.standardAbstractions;
   }
   
+  public Set<Type> getStandardTypes() {
+    boolean _isEmpty = this.standardTypes.isEmpty();
+    if (_isEmpty) {
+      Type _type = new Type("real", false);
+      this.standardTypes.add(_type);
+      Type _type_1 = new Type("integer", false);
+      this.standardTypes.add(_type_1);
+      Type _type_2 = new Type("shortint", false);
+      this.standardTypes.add(_type_2);
+      Type _type_3 = new Type("longint", false);
+      this.standardTypes.add(_type_3);
+      Type _type_4 = new Type("boolean", false);
+      this.standardTypes.add(_type_4);
+      Type _type_5 = new Type("char", false);
+      this.standardTypes.add(_type_5);
+    }
+    return this.standardTypes;
+  }
+  
   public <T extends Element> T search(final Set<T> elements, final T key) {
     for (final T t : elements) {
       boolean _equals = t.equals(key);
@@ -214,6 +238,23 @@ public class PascalValidator extends AbstractPascalValidator {
       }
     }
     return null;
+  }
+  
+  public Procedure searchWithTypeCoersion(final Set<Procedure> elements, final Procedure key) {
+    Procedure optimal = null;
+    for (final Procedure t : elements) {
+      {
+        boolean _equals = t.equals(key);
+        if (_equals) {
+          return t;
+        }
+        boolean _equalsWithTypeCoersion = t.equalsWithTypeCoersion(key);
+        if (_equalsWithTypeCoersion) {
+          optimal = t;
+        }
+      }
+    }
+    return optimal;
   }
   
   public boolean insertError(final EObject object, final String message, final ErrorType type, final EStructuralFeature feature) {
@@ -245,28 +286,15 @@ public class PascalValidator extends AbstractPascalValidator {
     this.showError(object);
   }
   
-  public <T extends Element> Object clear(final block b, final ElementType type, final Map<block, Set<T>> container) {
-    Object _xifexpression = null;
-    boolean _containsKey = container.containsKey(b);
-    boolean _not = (!_containsKey);
-    if (_not) {
-      boolean _xblockexpression = false;
-      {
+  public <T extends Element> boolean clear(final block b, final ElementType type, final Map<block, Set<T>> container) {
+    boolean _xblockexpression = false;
+    {
+      boolean _containsKey = container.containsKey(b);
+      boolean _not = (!_containsKey);
+      if (_not) {
         HashSet<T> _hashSet = new HashSet<T>();
         container.put(b, _hashSet);
-        boolean _xifexpression_1 = false;
-        boolean _equals = Objects.equal(container, this.abstractions);
-        if (_equals) {
-          Set<Procedure> _get = this.abstractions.get(b);
-          Set<Procedure> _standardAbstractions = this.getStandardAbstractions();
-          _xifexpression_1 = _get.addAll(_standardAbstractions);
-        }
-        _xblockexpression = _xifexpression_1;
-      }
-      _xifexpression = Boolean.valueOf(_xblockexpression);
-    } else {
-      Set<T> _xblockexpression_1 = null;
-      {
+      } else {
         HashSet<T> newSet = new HashSet<T>();
         Set<T> _get = container.get(b);
         for (final T t : _get) {
@@ -282,11 +310,27 @@ public class PascalValidator extends AbstractPascalValidator {
             newSet.add(t);
           }
         }
-        _xblockexpression_1 = container.put(b, newSet);
+        container.put(b, newSet);
       }
-      _xifexpression = _xblockexpression_1;
+      boolean _xifexpression = false;
+      boolean _equals = Objects.equal(container, this.abstractions);
+      if (_equals) {
+        Set<Procedure> _get_1 = this.abstractions.get(b);
+        Set<Procedure> _standardAbstractions = this.getStandardAbstractions();
+        _xifexpression = _get_1.addAll(_standardAbstractions);
+      } else {
+        boolean _xifexpression_1 = false;
+        boolean _equals_1 = Objects.equal(container, this.types);
+        if (_equals_1) {
+          Set<Type> _get_2 = this.types.get(b);
+          Set<Type> _standardTypes = this.getStandardTypes();
+          _xifexpression_1 = _get_2.addAll(_standardTypes);
+        }
+        _xifexpression = _xifexpression_1;
+      }
+      _xblockexpression = _xifexpression;
     }
-    return _xifexpression;
+    return _xblockexpression;
   }
   
   public HashSet<Variable> getParameters(final block b, final function_designator f) {
@@ -904,7 +948,7 @@ public class PascalValidator extends AbstractPascalValidator {
   
   public void checkAbstraction(final block b, final Procedure proc, final boolean functionOnly, final EObject object, final EStructuralFeature feature) {
     Set<Procedure> _get = this.abstractions.get(b);
-    Procedure abstractionFound = this.<Procedure>search(_get, proc);
+    Procedure abstractionFound = this.searchWithTypeCoersion(_get, proc);
     boolean _equals = Objects.equal(abstractionFound, null);
     if (_equals) {
       Set<Procedure> _get_1 = this.abstractions.get(b);

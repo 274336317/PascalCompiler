@@ -43,7 +43,10 @@ class PascalValidator extends AbstractPascalValidator {
 	private Map<EObject, Set<Error>> errorList = new HashMap<EObject, Set<Error>>();
 	private Map<block, Set<Variable>> variables = new HashMap<block, Set<Variable>>();
 	private Map<block, Set<Procedure>> abstractions = new HashMap<block, Set<Procedure>>();
+	private Map<block, Set<Type>> types = new HashMap<block, Set<Type>>();
+	
 	private Set<Procedure> standardAbstractions = new HashSet<Procedure>();
+	private Set<Type> standardTypes = new HashSet<Type>();
 	
 	def getParameters(String... vars) {
 		var variables = new HashSet<Variable>();
@@ -80,14 +83,14 @@ class PascalValidator extends AbstractPascalValidator {
 				} else {
 					throw new RuntimeException("Invalid return type");
 				}
-			} else if (returnType == "void") {
-					abstractions.add(new Procedure(name, true, getParameters(parameters), false)); 
+			} else if (returnType == "void") { 
+					abstractions.add(new Procedure(name, false, getParameters(parameters), false)); 
 			} else {
-				abstractions.add(new Function(name, true, getParameters(parameters), false, returnType)); 
+				abstractions.add(new Function(name, false, getParameters(parameters), false, returnType)); 
 			}
 		}
 	}
-	
+	 
 	def setStandardAbstractions(Set<Procedure> it) {
 		addAbstraction("round", "integer", "real");
 		addAbstraction("chr", "char", "integer");
@@ -129,12 +132,35 @@ class PascalValidator extends AbstractPascalValidator {
 		return standardAbstractions;
 	}
 	
+	def getStandardTypes() {
+		if (standardTypes.isEmpty) {
+			standardTypes.add(new Type("real", false));
+			standardTypes.add(new Type("integer", false));
+			standardTypes.add(new Type("shortint", false));
+			standardTypes.add(new Type("longint", false));
+			standardTypes.add(new Type("boolean", false));
+			standardTypes.add(new Type("char", false)); 
+		}	
+		return standardTypes;
+	}
+	
 	def <T extends Element> search(Set<T> elements, T key) {
 		for (T t : elements) {
 			if (t.equals(key))
 				return t;
 		} 
 		return null;	
+	}
+	
+	def searchWithTypeCoersion(Set<Procedure> elements, Procedure key) {
+		var Procedure optimal = null; 
+		for (Procedure t : elements) {
+			if (t.equals(key))
+				return t;
+			if (t.equalsWithTypeCoersion(key))
+				optimal = t;
+		}  
+		return optimal;
 	}
 	 
 	def insertError(EObject object, String message, ErrorType type, EStructuralFeature feature) {
@@ -155,9 +181,6 @@ class PascalValidator extends AbstractPascalValidator {
 	def <T extends Element> clear(block b, ElementType type, Map<block, Set<T>> container) {
 		if (!container.containsKey(b)) {
 			container.put(b, new HashSet<T>());
-			if (container == abstractions) {
-				abstractions.get(b).addAll(getStandardAbstractions());
-			}
 		} else {
 			var newSet = new HashSet<T>();
 			for (T t : container.get(b)) {
@@ -166,6 +189,11 @@ class PascalValidator extends AbstractPascalValidator {
 				}	 
 			} 
 			container.put(b, newSet);
+		}
+		if (container == abstractions) {
+			abstractions.get(b).addAll(getStandardAbstractions());
+		} else if (container == types) {
+			types.get(b).addAll(getStandardTypes());
 		}
 	}
 	
@@ -463,8 +491,8 @@ class PascalValidator extends AbstractPascalValidator {
 	}
 	
 	def checkAbstraction(block b, Procedure proc, boolean functionOnly, EObject object, EStructuralFeature feature) {
-		var abstractionFound = search(abstractions.get(b), proc);
-		if (abstractionFound == null) { 
+		var abstractionFound = searchWithTypeCoersion(abstractions.get(b), proc);
+		if (abstractionFound == null) {  
 			for (Procedure p : abstractions.get(b)) {
 				if (p.name.toLowerCase.equals(proc.name.toLowerCase)) {
 					if (p.parameters.size != proc.parameters.size) {
