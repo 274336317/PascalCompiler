@@ -567,6 +567,12 @@ class PascalValidator extends AbstractPascalValidator {
 				}
 			} else if (simple.function != null) {
 				checkAbstractionCall(b, simple.function, false); 
+			} else if (simple.function_noargs != null) {
+				if (search(abstractions.get(b), new Procedure(simple.function_noargs, new HashSet<Variable>())) == null) {
+					insertError(simple, "Procedure was not declared.", ErrorType.NOT_DECLARATION, PascalPackage.Literals.SIMPLE_STATEMENT__FUNCTION_NOARGS);
+				} else {
+					removeError(simple, ErrorType.NOT_DECLARATION); 
+				}
 			}
 		} else if (stmt.structured != null) {
 			var structured = stmt.structured;

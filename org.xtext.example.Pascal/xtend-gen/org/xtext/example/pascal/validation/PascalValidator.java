@@ -1101,27 +1101,43 @@ public class PascalValidator extends AbstractPascalValidator {
         if (_notEquals_2) {
           function_designator _function_1 = simple.getFunction();
           this.checkAbstractionCall(b, _function_1, false);
+        } else {
+          String _function_noargs = simple.getFunction_noargs();
+          boolean _notEquals_3 = (!Objects.equal(_function_noargs, null));
+          if (_notEquals_3) {
+            Set<Procedure> _get = this.abstractions.get(b);
+            String _function_noargs_1 = simple.getFunction_noargs();
+            HashSet<Variable> _hashSet = new HashSet<Variable>();
+            Procedure _procedure = new Procedure(_function_noargs_1, _hashSet);
+            Procedure _search = this.<Procedure>search(_get, _procedure);
+            boolean _equals = Objects.equal(_search, null);
+            if (_equals) {
+              this.insertError(simple, "Procedure was not declared.", ErrorType.NOT_DECLARATION, PascalPackage.Literals.SIMPLE_STATEMENT__FUNCTION_NOARGS);
+            } else {
+              this.removeError(simple, ErrorType.NOT_DECLARATION);
+            }
+          }
         }
       }
     } else {
       structured_statement _structured = stmt.getStructured();
-      boolean _notEquals_3 = (!Objects.equal(_structured, null));
-      if (_notEquals_3) {
+      boolean _notEquals_4 = (!Objects.equal(_structured, null));
+      if (_notEquals_4) {
         structured_statement structured = stmt.getStructured();
         compound_statement _compound = structured.getCompound();
-        boolean _notEquals_4 = (!Objects.equal(_compound, null));
-        if (_notEquals_4) {
+        boolean _notEquals_5 = (!Objects.equal(_compound, null));
+        if (_notEquals_5) {
           compound_statement compound = structured.getCompound();
           statement_sequence _sequence = compound.getSequence();
           this.checkStatements(b, _sequence);
         } else {
           repetitive_statement _repetitive = structured.getRepetitive();
-          boolean _notEquals_5 = (!Objects.equal(_repetitive, null));
-          if (_notEquals_5) {
+          boolean _notEquals_6 = (!Objects.equal(_repetitive, null));
+          if (_notEquals_6) {
             repetitive_statement repetitive = structured.getRepetitive();
             while_statement _whileStmt = repetitive.getWhileStmt();
-            boolean _notEquals_6 = (!Objects.equal(_whileStmt, null));
-            if (_notEquals_6) {
+            boolean _notEquals_7 = (!Objects.equal(_whileStmt, null));
+            if (_notEquals_7) {
               while_statement _whileStmt_1 = repetitive.getWhileStmt();
               expression _expression_1 = _whileStmt_1.getExpression();
               this.checkExpression(b, _expression_1);
@@ -1130,8 +1146,8 @@ public class PascalValidator extends AbstractPascalValidator {
               this.checkStatement(b, _statement);
             } else {
               repeat_statement _repeatStmt = repetitive.getRepeatStmt();
-              boolean _notEquals_7 = (!Objects.equal(_repeatStmt, null));
-              if (_notEquals_7) {
+              boolean _notEquals_8 = (!Objects.equal(_repeatStmt, null));
+              if (_notEquals_8) {
                 repeat_statement _repeatStmt_1 = repetitive.getRepeatStmt();
                 statement_sequence _sequence_1 = _repeatStmt_1.getSequence();
                 this.checkStatements(b, _sequence_1);
@@ -1140,8 +1156,8 @@ public class PascalValidator extends AbstractPascalValidator {
                 this.checkExpression(b, _expression_2);
               } else {
                 for_statement _forStmt = repetitive.getForStmt();
-                boolean _notEquals_8 = (!Objects.equal(_forStmt, null));
-                if (_notEquals_8) {
+                boolean _notEquals_9 = (!Objects.equal(_forStmt, null));
+                if (_notEquals_9) {
                   for_statement _forStmt_1 = repetitive.getForStmt();
                   assignment_statement _assignment_6 = _forStmt_1.getAssignment();
                   variable _variable_2 = _assignment_6.getVariable();
@@ -1157,27 +1173,27 @@ public class PascalValidator extends AbstractPascalValidator {
             }
           } else {
             conditional_statement _conditional = structured.getConditional();
-            boolean _notEquals_9 = (!Objects.equal(_conditional, null));
-            if (_notEquals_9) {
+            boolean _notEquals_10 = (!Objects.equal(_conditional, null));
+            if (_notEquals_10) {
               conditional_statement conditional = structured.getConditional();
               if_statement _ifStmt = conditional.getIfStmt();
-              boolean _notEquals_10 = (!Objects.equal(_ifStmt, null));
-              if (_notEquals_10) {
+              boolean _notEquals_11 = (!Objects.equal(_ifStmt, null));
+              if (_notEquals_11) {
                 if_statement ifStmt = conditional.getIfStmt();
                 expression _expression_4 = ifStmt.getExpression();
                 this.checkExpression(b, _expression_4);
                 statement _ifStatement = ifStmt.getIfStatement();
                 this.checkStatement(b, _ifStatement);
                 statement _elseStatement = ifStmt.getElseStatement();
-                boolean _notEquals_11 = (!Objects.equal(_elseStatement, null));
-                if (_notEquals_11) {
+                boolean _notEquals_12 = (!Objects.equal(_elseStatement, null));
+                if (_notEquals_12) {
                   statement _elseStatement_1 = ifStmt.getElseStatement();
                   this.checkStatement(b, _elseStatement_1);
                 }
               } else {
                 case_statement _caseStmt = conditional.getCaseStmt();
-                boolean _notEquals_12 = (!Objects.equal(_caseStmt, null));
-                if (_notEquals_12) {
+                boolean _notEquals_13 = (!Objects.equal(_caseStmt, null));
+                if (_notEquals_13) {
                   case_statement caseStmt = conditional.getCaseStmt();
                   expression _expression_5 = caseStmt.getExpression();
                   this.checkExpression(b, _expression_5);
@@ -1197,8 +1213,8 @@ public class PascalValidator extends AbstractPascalValidator {
               }
             } else {
               with_statement _withStmt = structured.getWithStmt();
-              boolean _notEquals_13 = (!Objects.equal(_withStmt, null));
-              if (_notEquals_13) {
+              boolean _notEquals_14 = (!Objects.equal(_withStmt, null));
+              if (_notEquals_14) {
                 with_statement withStmt = structured.getWithStmt();
                 EList<variable> _variables = withStmt.getVariables();
                 for (final variable v : _variables) {

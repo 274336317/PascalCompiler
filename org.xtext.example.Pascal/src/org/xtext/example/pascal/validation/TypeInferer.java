@@ -18,6 +18,10 @@ public class TypeInferer {
 	}
 
 	public static String greater(String type1, String type2) {
+		if (type1 == null || type1.equals(""))
+			return type2;
+		if (type2 == null || type2.equals(""))
+			return type1; 
 		int type1Weight = getTypeWeight(type1);
 		int type2Weight = getTypeWeight(type2);
 		if (type1Weight > type2Weight)
