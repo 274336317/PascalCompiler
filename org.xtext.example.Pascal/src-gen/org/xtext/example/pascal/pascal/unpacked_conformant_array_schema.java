@@ -4,6 +4,8 @@ package org.xtext.example.pascal.pascal;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>unpacked conformant array schema</b></em>'.
@@ -13,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.xtext.example.pascal.pascal.unpacked_conformant_array_schema#getBounds <em>Bounds</em>}</li>
- *   <li>{@link org.xtext.example.pascal.pascal.unpacked_conformant_array_schema#getArray <em>Array</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.unpacked_conformant_array_schema#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -21,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface unpacked_conformant_array_schema extends conformant_array_schema
+public interface unpacked_conformant_array_schema extends EObject
 {
   /**
    * Returns the value of the '<em><b>Bounds</b></em>' containment reference list.
@@ -40,29 +42,29 @@ public interface unpacked_conformant_array_schema extends conformant_array_schem
   EList<bound_specification> getBounds();
 
   /**
-   * Returns the value of the '<em><b>Array</b></em>' containment reference.
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Array</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Array</em>' containment reference.
-   * @see #setArray(conformant_array_schema)
-   * @see org.xtext.example.pascal.pascal.PascalPackage#getunpacked_conformant_array_schema_Array()
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(parameter_type)
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getunpacked_conformant_array_schema_Type()
    * @model containment="true"
    * @generated
    */
-  conformant_array_schema getArray();
+  parameter_type getType();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.pascal.pascal.unpacked_conformant_array_schema#getArray <em>Array</em>}' containment reference.
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.unpacked_conformant_array_schema#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Array</em>' containment reference.
-   * @see #getArray()
+   * @param value the new value of the '<em>Type</em>' containment reference.
+   * @see #getType()
    * @generated
    */
-  void setArray(conformant_array_schema value);
+  void setType(parameter_type value);
 
 } // unpacked_conformant_array_schema

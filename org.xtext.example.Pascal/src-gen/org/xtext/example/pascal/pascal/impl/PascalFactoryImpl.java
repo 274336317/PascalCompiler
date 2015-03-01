@@ -83,8 +83,7 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
       case PascalPackage.TERM: return createterm();
       case PascalPackage.FACTOR: return createfactor();
       case PascalPackage.NUMBER: return createnumber();
-      case PascalPackage.UNSIGNED_NUMBER: return createunsigned_number();
-      case PascalPackage.SIGNED_NUMBER: return createsigned_number();
+      case PascalPackage.ANY_NUMBER: return createany_number();
       case PascalPackage.SET: return createset();
       case PascalPackage.FUNCTION_DESIGNATOR: return createfunction_designator();
       case PascalPackage.STRUCTURED_STATEMENT: return createstructured_statement();
@@ -359,21 +358,10 @@ public class PascalFactoryImpl extends EFactoryImpl implements PascalFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public unsigned_number createunsigned_number()
+  public any_number createany_number()
   {
-    unsigned_numberImpl unsigned_number = new unsigned_numberImpl();
-    return unsigned_number;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public signed_number createsigned_number()
-  {
-    signed_numberImpl signed_number = new signed_numberImpl();
-    return signed_number;
+    any_numberImpl any_number = new any_numberImpl();
+    return any_number;
   }
 
   /**

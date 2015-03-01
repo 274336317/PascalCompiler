@@ -4,18 +4,24 @@
 package org.xtext.example.pascal.validation;
 
 import com.google.common.base.Objects;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.xtext.example.pascal.pascal.PascalFactory;
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.abstraction_declaration;
 import org.xtext.example.pascal.pascal.abstraction_heading;
+import org.xtext.example.pascal.pascal.any_number;
+import org.xtext.example.pascal.pascal.array_type;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
 import org.xtext.example.pascal.pascal.case_label_list;
@@ -23,30 +29,45 @@ import org.xtext.example.pascal.pascal.case_limb;
 import org.xtext.example.pascal.pascal.case_statement;
 import org.xtext.example.pascal.pascal.compound_statement;
 import org.xtext.example.pascal.pascal.conditional_statement;
+import org.xtext.example.pascal.pascal.conformant_array_schema;
 import org.xtext.example.pascal.pascal.constant;
 import org.xtext.example.pascal.pascal.constant_definition;
 import org.xtext.example.pascal.pascal.constant_definition_part;
+import org.xtext.example.pascal.pascal.dynamic_array_type;
+import org.xtext.example.pascal.pascal.enumerated_type;
 import org.xtext.example.pascal.pascal.expression;
 import org.xtext.example.pascal.pascal.expression_list;
 import org.xtext.example.pascal.pascal.factor;
+import org.xtext.example.pascal.pascal.file_type;
 import org.xtext.example.pascal.pascal.for_statement;
 import org.xtext.example.pascal.pascal.formal_parameter_list;
 import org.xtext.example.pascal.pascal.formal_parameter_section;
 import org.xtext.example.pascal.pascal.function_designator;
 import org.xtext.example.pascal.pascal.identifier_list;
 import org.xtext.example.pascal.pascal.if_statement;
+import org.xtext.example.pascal.pascal.number;
+import org.xtext.example.pascal.pascal.packed_conformant_array_schema;
 import org.xtext.example.pascal.pascal.parameter_type;
+import org.xtext.example.pascal.pascal.pointer_type;
 import org.xtext.example.pascal.pascal.procedure_and_function_declaration_part;
+import org.xtext.example.pascal.pascal.record_type;
 import org.xtext.example.pascal.pascal.repeat_statement;
 import org.xtext.example.pascal.pascal.repetitive_statement;
+import org.xtext.example.pascal.pascal.set;
+import org.xtext.example.pascal.pascal.set_type;
 import org.xtext.example.pascal.pascal.simple_expression;
 import org.xtext.example.pascal.pascal.simple_statement;
+import org.xtext.example.pascal.pascal.simple_type;
 import org.xtext.example.pascal.pascal.statement;
 import org.xtext.example.pascal.pascal.statement_part;
 import org.xtext.example.pascal.pascal.statement_sequence;
 import org.xtext.example.pascal.pascal.structured_statement;
+import org.xtext.example.pascal.pascal.structured_type;
+import org.xtext.example.pascal.pascal.subrange_type;
 import org.xtext.example.pascal.pascal.term;
 import org.xtext.example.pascal.pascal.type;
+import org.xtext.example.pascal.pascal.unpacked_conformant_array_schema;
+import org.xtext.example.pascal.pascal.unpacked_structured_type;
 import org.xtext.example.pascal.pascal.value_parameter_section;
 import org.xtext.example.pascal.pascal.variable;
 import org.xtext.example.pascal.pascal.variable_declaration_part;
@@ -61,6 +82,7 @@ import org.xtext.example.pascal.validation.ElementType;
 import org.xtext.example.pascal.validation.ErrorType;
 import org.xtext.example.pascal.validation.Function;
 import org.xtext.example.pascal.validation.Procedure;
+import org.xtext.example.pascal.validation.TypeInferer;
 import org.xtext.example.pascal.validation.Variable;
 
 /**
@@ -75,6 +97,114 @@ public class PascalValidator extends AbstractPascalValidator {
   private Map<block, Set<Variable>> variables = new HashMap<block, Set<Variable>>();
   
   private Map<block, Set<Procedure>> abstractions = new HashMap<block, Set<Procedure>>();
+  
+  private Set<Procedure> standardAbstractions = new HashSet<Procedure>();
+  
+  public HashSet<Variable> getParameters(final String... vars) {
+    HashSet<Variable> variables = new HashSet<Variable>();
+    int count = 0;
+    for (final String type : vars) {
+      {
+        Variable _variable = new Variable(("arg_" + Integer.valueOf(count)), type, false, ElementType.PARAMETER);
+        variables.add(_variable);
+        count++;
+      }
+    }
+    HashSet<Variable> parameters = new HashSet<Variable>(variables);
+    return parameters;
+  }
+  
+  public <T extends Object> ArrayList<T> replaceListElement(final List<T> list, final int index, final T newElement) {
+    ArrayList<T> newList = new ArrayList<T>(list);
+    newList.remove(index);
+    newList.add(index, newElement);
+    return newList;
+  }
+  
+  public void addAbstraction(final Set<Procedure> abstractions, final String name, final String returnType, final String... parameters) {
+    List<String> virtualParameters = IterableExtensions.<String>toList(((Iterable<String>)Conversions.doWrapArray(parameters)));
+    boolean isVirtual = false;
+    for (int i = 0; (i < virtualParameters.size()); i++) {
+      String _get = virtualParameters.get(i);
+      boolean _equals = Objects.equal(_get, "numeric");
+      if (_equals) {
+        ArrayList<String> _replaceListElement = this.<String>replaceListElement(virtualParameters, i, "integer");
+        this.addAbstraction(abstractions, name, returnType, ((String[])Conversions.unwrapArray(_replaceListElement, String.class)));
+        ArrayList<String> _replaceListElement_1 = this.<String>replaceListElement(virtualParameters, i, "real");
+        this.addAbstraction(abstractions, name, returnType, ((String[])Conversions.unwrapArray(_replaceListElement_1, String.class)));
+        isVirtual = true;
+      }
+    }
+    if ((!isVirtual)) {
+      boolean _equals = Objects.equal(returnType, "reflect");
+      if (_equals) {
+        int _length = parameters.length;
+        boolean _equals_1 = (_length == 1);
+        if (_equals_1) {
+          HashSet<Variable> _parameters = this.getParameters(parameters);
+          List<String> _list = IterableExtensions.<String>toList(((Iterable<String>)Conversions.doWrapArray(parameters)));
+          String _get = _list.get(0);
+          Function _function = new Function(name, true, _parameters, false, _get);
+          abstractions.add(_function);
+        } else {
+          throw new RuntimeException("Invalid return type");
+        }
+      } else {
+        boolean _equals_2 = Objects.equal(returnType, "void");
+        if (_equals_2) {
+          HashSet<Variable> _parameters_1 = this.getParameters(parameters);
+          Procedure _procedure = new Procedure(name, true, _parameters_1, false);
+          abstractions.add(_procedure);
+        } else {
+          HashSet<Variable> _parameters_2 = this.getParameters(parameters);
+          Function _function_1 = new Function(name, true, _parameters_2, false, returnType);
+          abstractions.add(_function_1);
+        }
+      }
+    }
+  }
+  
+  public void setStandardAbstractions(final Set<Procedure> it) {
+    this.addAbstraction(it, "round", "integer", "real");
+    this.addAbstraction(it, "chr", "char", "integer");
+    this.addAbstraction(it, "abs", "reflect", "numeric");
+    this.addAbstraction(it, "odd", "boolean", "integer");
+    this.addAbstraction(it, "sqr", "reflect", "numeric");
+    this.addAbstraction(it, "sqrt", "real", "numeric");
+    this.addAbstraction(it, "sin", "real", "numeric");
+    this.addAbstraction(it, "cos", "real", "numeric");
+    this.addAbstraction(it, "arctan", "real", "numeric");
+    this.addAbstraction(it, "ln", "real", "numeric");
+    this.addAbstraction(it, "exp", "real", "numeric");
+    this.addAbstraction(it, "succ", "...enumerated", "...enumerated");
+    this.addAbstraction(it, "succ", "integer", "integer");
+    this.addAbstraction(it, "pred", "...enumerated", "...enumerated");
+    this.addAbstraction(it, "pred", "integer", "integer");
+    this.addAbstraction(it, "new", "void", "^?");
+    this.addAbstraction(it, "dispose", "void", "^?");
+    this.addAbstraction(it, "strconcat", "void", "packed array of char", "packed array of char");
+    this.addAbstraction(it, "strdelete", "void", "packed array of char", "integer", "integer");
+    this.addAbstraction(it, "strinsert", "void", "packed array of char", "packed array of char", "integer");
+    this.addAbstraction(it, "strlen", "integer", "packed array of char");
+    this.addAbstraction(it, "strscan", "integer", "packed array of char", "packed array of char");
+    this.addAbstraction(it, "strlen", "integer", "packed array of char");
+    this.addAbstraction(it, "substr", "void", "packed array of char", "integer", "integer", "packed array of char");
+    this.addAbstraction(it, "address", "integer", "^?");
+    this.addAbstraction(it, "length", "integer", "[]?");
+    this.addAbstraction(it, "setlength", "void", "[]?", "integer");
+    this.addAbstraction(it, "write", "void", "?");
+    this.addAbstraction(it, "writeln", "void", "?");
+    this.addAbstraction(it, "read", "void", "file", "?");
+    this.addAbstraction(it, "readln", "void", "file", "?");
+  }
+  
+  public Set<Procedure> getStandardAbstractions() {
+    boolean _isEmpty = this.standardAbstractions.isEmpty();
+    if (_isEmpty) {
+      this.setStandardAbstractions(this.standardAbstractions);
+    }
+    return this.standardAbstractions;
+  }
   
   public <T extends Element> T search(final Set<T> elements, final T key) {
     for (final T t : elements) {
@@ -115,15 +245,27 @@ public class PascalValidator extends AbstractPascalValidator {
     this.showError(object);
   }
   
-  public <T extends Element> Set<T> clear(final block b, final ElementType type, final Map<block, Set<T>> container) {
-    Set<T> _xifexpression = null;
+  public <T extends Element> Object clear(final block b, final ElementType type, final Map<block, Set<T>> container) {
+    Object _xifexpression = null;
     boolean _containsKey = container.containsKey(b);
     boolean _not = (!_containsKey);
     if (_not) {
-      HashSet<T> _hashSet = new HashSet<T>();
-      _xifexpression = container.put(b, _hashSet);
+      boolean _xblockexpression = false;
+      {
+        HashSet<T> _hashSet = new HashSet<T>();
+        container.put(b, _hashSet);
+        boolean _xifexpression_1 = false;
+        boolean _equals = Objects.equal(container, this.abstractions);
+        if (_equals) {
+          Set<Procedure> _get = this.abstractions.get(b);
+          Set<Procedure> _standardAbstractions = this.getStandardAbstractions();
+          _xifexpression_1 = _get.addAll(_standardAbstractions);
+        }
+        _xblockexpression = _xifexpression_1;
+      }
+      _xifexpression = Boolean.valueOf(_xblockexpression);
     } else {
-      Set<T> _xblockexpression = null;
+      Set<T> _xblockexpression_1 = null;
       {
         HashSet<T> newSet = new HashSet<T>();
         Set<T> _get = container.get(b);
@@ -140,11 +282,327 @@ public class PascalValidator extends AbstractPascalValidator {
             newSet.add(t);
           }
         }
-        _xblockexpression = container.put(b, newSet);
+        _xblockexpression_1 = container.put(b, newSet);
       }
-      _xifexpression = _xblockexpression;
+      _xifexpression = _xblockexpression_1;
     }
     return _xifexpression;
+  }
+  
+  public HashSet<Variable> getParameters(final block b, final function_designator f) {
+    HashSet<Variable> parameters = new HashSet<Variable>();
+    expression_list _expressions = f.getExpressions();
+    boolean _notEquals = (!Objects.equal(_expressions, null));
+    if (_notEquals) {
+      int count = 0;
+      expression_list _expressions_1 = f.getExpressions();
+      EList<expression> _expressions_2 = _expressions_1.getExpressions();
+      for (final expression e : _expressions_2) {
+        {
+          String _type = this.getType(b, e);
+          Variable _variable = new Variable(("arg_" + Integer.valueOf(count)), _type, false, ElementType.PARAMETER);
+          parameters.add(_variable);
+          count++;
+        }
+      }
+    }
+    return parameters;
+  }
+  
+  public Procedure getAbstraction(final block b, final function_designator f) {
+    String name = f.getName();
+    HashSet<Variable> parameters = this.getParameters(b, f);
+    return new Procedure(name, parameters);
+  }
+  
+  public String getType(final type t) {
+    simple_type _simple = t.getSimple();
+    boolean _notEquals = (!Objects.equal(_simple, null));
+    if (_notEquals) {
+      simple_type simple = t.getSimple();
+      boolean _or = false;
+      subrange_type _subrange = simple.getSubrange();
+      boolean _notEquals_1 = (!Objects.equal(_subrange, null));
+      if (_notEquals_1) {
+        _or = true;
+      } else {
+        enumerated_type _enumerated = simple.getEnumerated();
+        boolean _notEquals_2 = (!Objects.equal(_enumerated, null));
+        _or = _notEquals_2;
+      }
+      if (_or) {
+        return "...enumerated";
+      } else {
+        String _name = simple.getName();
+        boolean _notEquals_3 = (!Objects.equal(_name, null));
+        if (_notEquals_3) {
+          return simple.getName();
+        }
+      }
+    } else {
+      structured_type _structured = t.getStructured();
+      boolean _notEquals_4 = (!Objects.equal(_structured, null));
+      if (_notEquals_4) {
+        String syntetizedType = "";
+        structured_type structured = t.getStructured();
+        boolean _isPacked = structured.isPacked();
+        if (_isPacked) {
+          String _syntetizedType = syntetizedType;
+          syntetizedType = (_syntetizedType + "packed ");
+        }
+        unpacked_structured_type unpacked = structured.getType();
+        array_type _array = unpacked.getArray();
+        boolean _notEquals_5 = (!Objects.equal(_array, null));
+        if (_notEquals_5) {
+          String _syntetizedType_1 = syntetizedType;
+          array_type _array_1 = unpacked.getArray();
+          type _type = _array_1.getType();
+          String _type_1 = this.getType(_type);
+          String _plus = ("array of " + _type_1);
+          syntetizedType = (_syntetizedType_1 + _plus);
+        } else {
+          dynamic_array_type _dynamic = unpacked.getDynamic();
+          boolean _notEquals_6 = (!Objects.equal(_dynamic, null));
+          if (_notEquals_6) {
+            String _syntetizedType_2 = syntetizedType;
+            dynamic_array_type _dynamic_1 = unpacked.getDynamic();
+            type _type_2 = _dynamic_1.getType();
+            String _type_3 = this.getType(_type_2);
+            String _plus_1 = ("array of " + _type_3);
+            syntetizedType = (_syntetizedType_2 + _plus_1);
+          } else {
+            record_type _record = unpacked.getRecord();
+            boolean _notEquals_7 = (!Objects.equal(_record, null));
+            if (_notEquals_7) {
+              String _syntetizedType_3 = syntetizedType;
+              syntetizedType = (_syntetizedType_3 + "record");
+            } else {
+              set_type _set = unpacked.getSet();
+              boolean _notEquals_8 = (!Objects.equal(_set, null));
+              if (_notEquals_8) {
+                String _syntetizedType_4 = syntetizedType;
+                set_type _set_1 = unpacked.getSet();
+                type _type_4 = _set_1.getType();
+                String _type_5 = this.getType(_type_4);
+                String _plus_2 = ("set of " + _type_5);
+                syntetizedType = (_syntetizedType_4 + _plus_2);
+              } else {
+                file_type _file = unpacked.getFile();
+                boolean _notEquals_9 = (!Objects.equal(_file, null));
+                if (_notEquals_9) {
+                  String _syntetizedType_5 = syntetizedType;
+                  file_type _file_1 = unpacked.getFile();
+                  type _type_6 = _file_1.getType();
+                  String _type_7 = this.getType(_type_6);
+                  String _plus_3 = ("file of " + _type_7);
+                  syntetizedType = (_syntetizedType_5 + _plus_3);
+                }
+              }
+            }
+          }
+        }
+        return syntetizedType;
+      } else {
+        pointer_type _pointer = t.getPointer();
+        boolean _notEquals_10 = (!Objects.equal(_pointer, null));
+        if (_notEquals_10) {
+          pointer_type _pointer_1 = t.getPointer();
+          type _type_8 = _pointer_1.getType();
+          String _type_9 = this.getType(_type_8);
+          return ("^" + _type_9);
+        }
+      }
+    }
+    return null;
+  }
+  
+  public String getType(final parameter_type type) {
+    conformant_array_schema _array = type.getArray();
+    boolean _notEquals = (!Objects.equal(_array, null));
+    if (_notEquals) {
+      conformant_array_schema array = type.getArray();
+      packed_conformant_array_schema _packed = array.getPacked();
+      boolean _notEquals_1 = (!Objects.equal(_packed, null));
+      if (_notEquals_1) {
+        packed_conformant_array_schema _packed_1 = array.getPacked();
+        String _name = _packed_1.getName();
+        return ("packed array of " + _name);
+      } else {
+        unpacked_conformant_array_schema _unpacked = array.getUnpacked();
+        boolean _notEquals_2 = (!Objects.equal(_unpacked, null));
+        if (_notEquals_2) {
+          unpacked_conformant_array_schema _unpacked_1 = array.getUnpacked();
+          parameter_type _type = _unpacked_1.getType();
+          String _type_1 = this.getType(_type);
+          return ("array of " + _type_1);
+        }
+      }
+    } else {
+      String _name_1 = type.getName();
+      boolean _notEquals_3 = (!Objects.equal(_name_1, null));
+      if (_notEquals_3) {
+        return type.getName();
+      }
+    }
+    return null;
+  }
+  
+  public String getType(final block b, final variable v) {
+    Set<Variable> _get = this.variables.get(b);
+    String _name = v.getName();
+    Variable _variable = new Variable(_name);
+    Variable variableFound = this.<Variable>search(_get, _variable);
+    boolean _notEquals = (!Objects.equal(variableFound, null));
+    if (_notEquals) {
+      return variableFound.getVarType();
+    }
+    return null;
+  }
+  
+  public String getType(final block b, final function_designator f) {
+    Procedure function = this.getAbstraction(b, f);
+    Set<Procedure> _get = this.abstractions.get(b);
+    Procedure abstractionFound = this.<Procedure>search(_get, function);
+    boolean _and = false;
+    boolean _notEquals = (!Objects.equal(abstractionFound, null));
+    if (!_notEquals) {
+      _and = false;
+    } else {
+      boolean _equals = Objects.equal(abstractionFound.type, ElementType.FUNCTION);
+      _and = _equals;
+    }
+    if (_and) {
+      Function functionFound = ((Function) abstractionFound);
+      return functionFound.getReturnType();
+    }
+    return null;
+  }
+  
+  public String getType(final block b, final factor f) {
+    variable _variable = f.getVariable();
+    boolean _notEquals = (!Objects.equal(_variable, null));
+    if (_notEquals) {
+      variable _variable_1 = f.getVariable();
+      return this.getType(b, _variable_1);
+    } else {
+      number _number = f.getNumber();
+      boolean _notEquals_1 = (!Objects.equal(_number, null));
+      if (_notEquals_1) {
+        number _number_1 = f.getNumber();
+        any_number number = _number_1.getNumber();
+        String _integer = number.getInteger();
+        boolean _notEquals_2 = (!Objects.equal(_integer, null));
+        if (_notEquals_2) {
+          return "integer";
+        } else {
+          String _real = number.getReal();
+          boolean _notEquals_3 = (!Objects.equal(_real, null));
+          if (_notEquals_3) {
+            return "real";
+          }
+        }
+      } else {
+        String _string = f.getString();
+        boolean _notEquals_4 = (!Objects.equal(_string, null));
+        if (_notEquals_4) {
+          return "packed array of char";
+        } else {
+          set _set = f.getSet();
+          boolean _notEquals_5 = (!Objects.equal(_set, null));
+          if (_notEquals_5) {
+            set _set_1 = f.getSet();
+            expression_list _expressions = _set_1.getExpressions();
+            return this.getType(b, _expressions);
+          } else {
+            boolean _isNil = f.isNil();
+            if (_isNil) {
+              return "nil";
+            } else {
+              boolean _or = false;
+              String _boolean = f.getBoolean();
+              boolean _notEquals_6 = (!Objects.equal(_boolean, null));
+              if (_notEquals_6) {
+                _or = true;
+              } else {
+                factor _not = f.getNot();
+                boolean _notEquals_7 = (!Objects.equal(_not, null));
+                _or = _notEquals_7;
+              }
+              if (_or) {
+                return "boolean";
+              } else {
+                function_designator _function = f.getFunction();
+                boolean _notEquals_8 = (!Objects.equal(_function, null));
+                if (_notEquals_8) {
+                  function_designator _function_1 = f.getFunction();
+                  return this.getType(b, _function_1);
+                } else {
+                  expression _expression = f.getExpression();
+                  boolean _notEquals_9 = (!Objects.equal(_expression, null));
+                  if (_notEquals_9) {
+                    expression _expression_1 = f.getExpression();
+                    return this.getType(b, _expression_1);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return null;
+  }
+  
+  public String getType(final block b, final term t) {
+    String greatestType = "";
+    EList<factor> _factors = t.getFactors();
+    for (final factor f : _factors) {
+      {
+        String type = this.getType(b, f);
+        String _greater = TypeInferer.greater(type, greatestType);
+        greatestType = _greater;
+      }
+    }
+    return greatestType;
+  }
+  
+  public String getType(final block b, final simple_expression expr) {
+    String greatestType = "";
+    EList<term> _terms = expr.getTerms();
+    for (final term t : _terms) {
+      {
+        String type = this.getType(b, t);
+        String _greater = TypeInferer.greater(type, greatestType);
+        greatestType = _greater;
+      }
+    }
+    return greatestType;
+  }
+  
+  public String getType(final block b, final expression expr) {
+    String greatestType = "";
+    EList<simple_expression> _expressions = expr.getExpressions();
+    for (final simple_expression e : _expressions) {
+      {
+        String type = this.getType(b, e);
+        String _greater = TypeInferer.greater(type, greatestType);
+        greatestType = _greater;
+      }
+    }
+    return greatestType;
+  }
+  
+  public String getType(final block b, final expression_list expr) {
+    String greatestType = "";
+    EList<expression> _expressions = expr.getExpressions();
+    for (final expression e : _expressions) {
+      {
+        String type = this.getType(b, e);
+        String _greater = TypeInferer.greater(type, greatestType);
+        greatestType = _greater;
+      }
+    }
+    return greatestType;
   }
   
   public <T extends Element> boolean addElementToAbstraction(final abstraction_declaration decl, final T element, final Map<block, Set<T>> container) {
@@ -283,8 +741,8 @@ public class PascalValidator extends AbstractPascalValidator {
               {
                 variable_parameter_section _variable_1 = section.getVariable();
                 parameter_type _type = _variable_1.getType();
-                String _string = _type.toString();
-                Variable parameter = new Variable(varName, _string, false, ElementType.PARAMETER);
+                String _type_1 = this.getType(_type);
+                Variable parameter = new Variable(varName, _type_1, false, ElementType.PARAMETER);
                 this.<Variable>addElement(b, parameter, this.variables, variable, PascalPackage.Literals.VARIABLE_PARAMETER_SECTION__IDENTIFIERS);
                 parameters.add(parameter);
               }
@@ -299,8 +757,8 @@ public class PascalValidator extends AbstractPascalValidator {
               for (final String valName : _names_1) {
                 {
                   parameter_type _type = value.getType();
-                  String _string = _type.toString();
-                  Variable parameter = new Variable(valName, _string, false, ElementType.PARAMETER);
+                  String _type_1 = this.getType(_type);
+                  Variable parameter = new Variable(valName, _type_1, false, ElementType.PARAMETER);
                   this.<Variable>addElement(b, parameter, this.variables, value, PascalPackage.Literals.VALUE_PARAMETER_SECTION__IDENTIFIERS);
                   parameters.add(parameter);
                 }
@@ -401,8 +859,8 @@ public class PascalValidator extends AbstractPascalValidator {
         EList<String> _names = _identifiers.getNames();
         for (final String name : _names) {
           type _type = section.getType();
-          String _string = _type.toString();
-          Variable _variable_2 = new Variable(name, _string, false, ElementType.VARIABLE);
+          String _type_1 = this.getType(_type);
+          Variable _variable_2 = new Variable(name, _type_1, false, ElementType.VARIABLE);
           this.<Variable>addElement(b, _variable_2, this.variables, section, PascalPackage.Literals.VARIABLE_SECTION__IDENTIFIERS);
         }
       }
@@ -444,7 +902,61 @@ public class PascalValidator extends AbstractPascalValidator {
     return Boolean.valueOf(_xblockexpression);
   }
   
-  public Object checkExpression(final block b, final expression expr) {
+  public void checkAbstraction(final block b, final Procedure proc, final boolean functionOnly, final EObject object, final EStructuralFeature feature) {
+    Set<Procedure> _get = this.abstractions.get(b);
+    Procedure abstractionFound = this.<Procedure>search(_get, proc);
+    boolean _equals = Objects.equal(abstractionFound, null);
+    if (_equals) {
+      Set<Procedure> _get_1 = this.abstractions.get(b);
+      for (final Procedure p : _get_1) {
+        String _lowerCase = p.name.toLowerCase();
+        String _lowerCase_1 = proc.name.toLowerCase();
+        boolean _equals_1 = _lowerCase.equals(_lowerCase_1);
+        if (_equals_1) {
+          int _size = p.parameters.size();
+          int _size_1 = proc.parameters.size();
+          boolean _notEquals = (_size != _size_1);
+          if (_notEquals) {
+            this.insertError(object, "Wrong number of arguments.", ErrorType.NOT_DECLARATION, feature);
+          } else {
+            this.insertError(object, "Incompatible types of arguments.", ErrorType.NOT_DECLARATION, feature);
+          }
+          return;
+        }
+      }
+      this.insertError(object, "Function was not declared.", ErrorType.NOT_DECLARATION, feature);
+    } else {
+      this.removeError(object, ErrorType.NOT_DECLARATION);
+      boolean _and = false;
+      boolean _equals_2 = Objects.equal(abstractionFound.type, ElementType.PROCEDURE);
+      if (!_equals_2) {
+        _and = false;
+      } else {
+        _and = functionOnly;
+      }
+      if (_and) {
+        this.insertError(object, "Procedures calls are not allowed in an expression.", ErrorType.FUNCTION_ONLY, feature);
+      } else {
+        this.removeError(object, ErrorType.FUNCTION_ONLY);
+      }
+    }
+  }
+  
+  public void checkAbstractionCall(final block b, final function_designator function, final boolean functionOnly) {
+    expression_list _expressions = function.getExpressions();
+    boolean _notEquals = (!Objects.equal(_expressions, null));
+    if (_notEquals) {
+      expression_list _expressions_1 = function.getExpressions();
+      EList<expression> _expressions_2 = _expressions_1.getExpressions();
+      for (final expression e : _expressions_2) {
+        this.checkExpression(b, e);
+      }
+    }
+    Procedure _abstraction = this.getAbstraction(b, function);
+    this.checkAbstraction(b, _abstraction, functionOnly, function, PascalPackage.Literals.FUNCTION_DESIGNATOR__NAME);
+  }
+  
+  public void checkExpression(final block b, final expression expr) {
     EList<simple_expression> _expressions = expr.getExpressions();
     for (final simple_expression s : _expressions) {
       EList<term> _terms = s.getTerms();
@@ -461,22 +973,13 @@ public class PascalValidator extends AbstractPascalValidator {
             function_designator _function = f.getFunction();
             boolean _notEquals_1 = (!Objects.equal(_function, null));
             if (_notEquals_1) {
-              function_designator function = f.getFunction();
-              expression_list _expressions_1 = function.getExpressions();
-              boolean _notEquals_2 = (!Objects.equal(_expressions_1, null));
-              if (_notEquals_2) {
-                expression_list _expressions_2 = function.getExpressions();
-                EList<expression> _expressions_3 = _expressions_2.getExpressions();
-                for (final expression e : _expressions_3) {
-                  this.checkExpression(b, e);
-                }
-              }
+              function_designator _function_1 = f.getFunction();
+              this.checkAbstractionCall(b, _function_1, true);
             }
           }
         }
       }
     }
-    return null;
   }
   
   public Boolean checkConstant(final block b, final constant const_) {
@@ -516,206 +1019,155 @@ public class PascalValidator extends AbstractPascalValidator {
     return Boolean.valueOf(_xifexpression);
   }
   
-  public Object checkStatement(final block b, final statement stmt) {
-    Object _xifexpression = null;
+  public void checkStatement(final block b, final statement stmt) {
     simple_statement _simple = stmt.getSimple();
     boolean _notEquals = (!Objects.equal(_simple, null));
     if (_notEquals) {
-      Boolean _xblockexpression = null;
-      {
-        simple_statement simple = stmt.getSimple();
-        Boolean _xifexpression_1 = null;
-        assignment_statement _assignment = simple.getAssignment();
-        boolean _notEquals_1 = (!Objects.equal(_assignment, null));
-        if (_notEquals_1) {
-          Boolean _xblockexpression_1 = null;
-          {
-            assignment_statement assignment = simple.getAssignment();
-            variable variable = assignment.getVariable();
-            _xblockexpression_1 = this.checkVariable(b, variable, true);
-          }
-          _xifexpression_1 = _xblockexpression_1;
-        } else {
-          function_designator _function = simple.getFunction();
-          boolean _notEquals_2 = (!Objects.equal(_function, null));
-          if (_notEquals_2) {
-            function_designator function = simple.getFunction();
-            expression_list _expressions = function.getExpressions();
-            boolean _notEquals_3 = (!Objects.equal(_expressions, null));
-            if (_notEquals_3) {
-              expression_list _expressions_1 = function.getExpressions();
-              EList<expression> _expressions_2 = _expressions_1.getExpressions();
-              for (final expression e : _expressions_2) {
-                this.checkExpression(b, e);
-              }
-            }
-          }
-        }
-        _xblockexpression = _xifexpression_1;
-      }
-      _xifexpression = _xblockexpression;
-    } else {
-      Object _xifexpression_1 = null;
-      structured_statement _structured = stmt.getStructured();
-      boolean _notEquals_1 = (!Objects.equal(_structured, null));
+      simple_statement simple = stmt.getSimple();
+      assignment_statement _assignment = simple.getAssignment();
+      boolean _notEquals_1 = (!Objects.equal(_assignment, null));
       if (_notEquals_1) {
-        Object _xblockexpression_1 = null;
-        {
-          structured_statement structured = stmt.getStructured();
-          Object _xifexpression_2 = null;
-          compound_statement _compound = structured.getCompound();
-          boolean _notEquals_2 = (!Objects.equal(_compound, null));
-          if (_notEquals_2) {
-            compound_statement compound = structured.getCompound();
-            statement_sequence _sequence = compound.getSequence();
-            this.checkStatements(b, _sequence);
-          } else {
-            Object _xifexpression_3 = null;
-            repetitive_statement _repetitive = structured.getRepetitive();
-            boolean _notEquals_3 = (!Objects.equal(_repetitive, null));
-            if (_notEquals_3) {
-              Object _xblockexpression_2 = null;
-              {
-                repetitive_statement repetitive = structured.getRepetitive();
-                Object _xifexpression_4 = null;
-                while_statement _whileStmt = repetitive.getWhileStmt();
-                boolean _notEquals_4 = (!Objects.equal(_whileStmt, null));
-                if (_notEquals_4) {
-                  Object _xblockexpression_3 = null;
-                  {
-                    while_statement _whileStmt_1 = repetitive.getWhileStmt();
-                    expression _expression = _whileStmt_1.getExpression();
-                    this.checkExpression(b, _expression);
-                    while_statement _whileStmt_2 = repetitive.getWhileStmt();
-                    statement _statement = _whileStmt_2.getStatement();
-                    _xblockexpression_3 = this.checkStatement(b, _statement);
-                  }
-                  _xifexpression_4 = _xblockexpression_3;
-                } else {
-                  Object _xifexpression_5 = null;
-                  repeat_statement _repeatStmt = repetitive.getRepeatStmt();
-                  boolean _notEquals_5 = (!Objects.equal(_repeatStmt, null));
-                  if (_notEquals_5) {
-                    Object _xblockexpression_4 = null;
-                    {
-                      repeat_statement _repeatStmt_1 = repetitive.getRepeatStmt();
-                      statement_sequence _sequence_1 = _repeatStmt_1.getSequence();
-                      this.checkStatements(b, _sequence_1);
-                      repeat_statement _repeatStmt_2 = repetitive.getRepeatStmt();
-                      expression _expression = _repeatStmt_2.getExpression();
-                      _xblockexpression_4 = this.checkExpression(b, _expression);
-                    }
-                    _xifexpression_5 = _xblockexpression_4;
-                  } else {
-                    Object _xifexpression_6 = null;
-                    for_statement _forStmt = repetitive.getForStmt();
-                    boolean _notEquals_6 = (!Objects.equal(_forStmt, null));
-                    if (_notEquals_6) {
-                      Object _xblockexpression_5 = null;
-                      {
-                        for_statement _forStmt_1 = repetitive.getForStmt();
-                        assignment_statement _assignment = _forStmt_1.getAssignment();
-                        variable _variable = _assignment.getVariable();
-                        this.checkVariable(b, _variable, true);
-                        for_statement _forStmt_2 = repetitive.getForStmt();
-                        expression _expression = _forStmt_2.getExpression();
-                        this.checkExpression(b, _expression);
-                        for_statement _forStmt_3 = repetitive.getForStmt();
-                        statement _statement = _forStmt_3.getStatement();
-                        _xblockexpression_5 = this.checkStatement(b, _statement);
-                      }
-                      _xifexpression_6 = _xblockexpression_5;
-                    }
-                    _xifexpression_5 = _xifexpression_6;
-                  }
-                  _xifexpression_4 = _xifexpression_5;
-                }
-                _xblockexpression_2 = _xifexpression_4;
-              }
-              _xifexpression_3 = _xblockexpression_2;
-            } else {
-              Object _xifexpression_4 = null;
-              conditional_statement _conditional = structured.getConditional();
-              boolean _notEquals_4 = (!Objects.equal(_conditional, null));
-              if (_notEquals_4) {
-                Object _xblockexpression_3 = null;
-                {
-                  conditional_statement conditional = structured.getConditional();
-                  Object _xifexpression_5 = null;
-                  if_statement _ifStmt = conditional.getIfStmt();
-                  boolean _notEquals_5 = (!Objects.equal(_ifStmt, null));
-                  if (_notEquals_5) {
-                    Object _xblockexpression_4 = null;
-                    {
-                      if_statement ifStmt = conditional.getIfStmt();
-                      expression _expression = ifStmt.getExpression();
-                      this.checkExpression(b, _expression);
-                      statement _ifStatement = ifStmt.getIfStatement();
-                      this.checkStatement(b, _ifStatement);
-                      Object _xifexpression_6 = null;
-                      statement _elseStatement = ifStmt.getElseStatement();
-                      boolean _notEquals_6 = (!Objects.equal(_elseStatement, null));
-                      if (_notEquals_6) {
-                        statement _elseStatement_1 = ifStmt.getElseStatement();
-                        _xifexpression_6 = this.checkStatement(b, _elseStatement_1);
-                      }
-                      _xblockexpression_4 = _xifexpression_6;
-                    }
-                    _xifexpression_5 = _xblockexpression_4;
-                  } else {
-                    case_statement _caseStmt = conditional.getCaseStmt();
-                    boolean _notEquals_6 = (!Objects.equal(_caseStmt, null));
-                    if (_notEquals_6) {
-                      case_statement caseStmt = conditional.getCaseStmt();
-                      expression _expression = caseStmt.getExpression();
-                      this.checkExpression(b, _expression);
-                      EList<case_limb> _cases = caseStmt.getCases();
-                      for (final case_limb limb : _cases) {
-                        {
-                          statement _statement = limb.getStatement();
-                          this.checkStatement(b, _statement);
-                          case_label_list _cases_1 = limb.getCases();
-                          EList<constant> _constants = _cases_1.getConstants();
-                          for (final constant c : _constants) {
-                            this.checkConstant(b, c);
-                          }
-                        }
-                      }
-                    }
-                  }
-                  _xblockexpression_3 = _xifexpression_5;
-                }
-                _xifexpression_4 = _xblockexpression_3;
-              } else {
-                Object _xifexpression_5 = null;
-                with_statement _withStmt = structured.getWithStmt();
-                boolean _notEquals_5 = (!Objects.equal(_withStmt, null));
-                if (_notEquals_5) {
-                  Object _xblockexpression_4 = null;
-                  {
-                    with_statement withStmt = structured.getWithStmt();
-                    EList<variable> _variables = withStmt.getVariables();
-                    for (final variable v : _variables) {
-                      this.checkVariable(b, v, false);
-                    }
-                    statement _statement = withStmt.getStatement();
-                    _xblockexpression_4 = this.checkStatement(b, _statement);
-                  }
-                  _xifexpression_5 = _xblockexpression_4;
-                }
-                _xifexpression_4 = _xifexpression_5;
-              }
-              _xifexpression_3 = _xifexpression_4;
-            }
-            _xifexpression_2 = _xifexpression_3;
-          }
-          _xblockexpression_1 = _xifexpression_2;
+        assignment_statement _assignment_1 = simple.getAssignment();
+        variable _variable = _assignment_1.getVariable();
+        this.checkVariable(b, _variable, true);
+        assignment_statement _assignment_2 = simple.getAssignment();
+        variable _variable_1 = _assignment_2.getVariable();
+        String variableType = this.getType(b, _variable_1);
+        assignment_statement _assignment_3 = simple.getAssignment();
+        expression _expression = _assignment_3.getExpression();
+        String expressionType = this.getType(b, _expression);
+        boolean _areTypesCompatibles = TypeInferer.areTypesCompatibles(variableType, expressionType);
+        boolean _not = (!_areTypesCompatibles);
+        if (_not) {
+          assignment_statement _assignment_4 = simple.getAssignment();
+          String _lowerCase = expressionType.toLowerCase();
+          String _plus = ("Cannot convert type " + _lowerCase);
+          String _plus_1 = (_plus + " to ");
+          String _lowerCase_1 = variableType.toLowerCase();
+          String _plus_2 = (_plus_1 + _lowerCase_1);
+          String _plus_3 = (_plus_2 + ".");
+          this.insertError(_assignment_4, _plus_3, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.ASSIGNMENT_STATEMENT__EXPRESSION);
+        } else {
+          assignment_statement _assignment_5 = simple.getAssignment();
+          this.removeError(_assignment_5, ErrorType.TYPE_CONVERSION_ERROR);
         }
-        _xifexpression_1 = _xblockexpression_1;
+      } else {
+        function_designator _function = simple.getFunction();
+        boolean _notEquals_2 = (!Objects.equal(_function, null));
+        if (_notEquals_2) {
+          function_designator _function_1 = simple.getFunction();
+          this.checkAbstractionCall(b, _function_1, false);
+        }
       }
-      _xifexpression = _xifexpression_1;
+    } else {
+      structured_statement _structured = stmt.getStructured();
+      boolean _notEquals_3 = (!Objects.equal(_structured, null));
+      if (_notEquals_3) {
+        structured_statement structured = stmt.getStructured();
+        compound_statement _compound = structured.getCompound();
+        boolean _notEquals_4 = (!Objects.equal(_compound, null));
+        if (_notEquals_4) {
+          compound_statement compound = structured.getCompound();
+          statement_sequence _sequence = compound.getSequence();
+          this.checkStatements(b, _sequence);
+        } else {
+          repetitive_statement _repetitive = structured.getRepetitive();
+          boolean _notEquals_5 = (!Objects.equal(_repetitive, null));
+          if (_notEquals_5) {
+            repetitive_statement repetitive = structured.getRepetitive();
+            while_statement _whileStmt = repetitive.getWhileStmt();
+            boolean _notEquals_6 = (!Objects.equal(_whileStmt, null));
+            if (_notEquals_6) {
+              while_statement _whileStmt_1 = repetitive.getWhileStmt();
+              expression _expression_1 = _whileStmt_1.getExpression();
+              this.checkExpression(b, _expression_1);
+              while_statement _whileStmt_2 = repetitive.getWhileStmt();
+              statement _statement = _whileStmt_2.getStatement();
+              this.checkStatement(b, _statement);
+            } else {
+              repeat_statement _repeatStmt = repetitive.getRepeatStmt();
+              boolean _notEquals_7 = (!Objects.equal(_repeatStmt, null));
+              if (_notEquals_7) {
+                repeat_statement _repeatStmt_1 = repetitive.getRepeatStmt();
+                statement_sequence _sequence_1 = _repeatStmt_1.getSequence();
+                this.checkStatements(b, _sequence_1);
+                repeat_statement _repeatStmt_2 = repetitive.getRepeatStmt();
+                expression _expression_2 = _repeatStmt_2.getExpression();
+                this.checkExpression(b, _expression_2);
+              } else {
+                for_statement _forStmt = repetitive.getForStmt();
+                boolean _notEquals_8 = (!Objects.equal(_forStmt, null));
+                if (_notEquals_8) {
+                  for_statement _forStmt_1 = repetitive.getForStmt();
+                  assignment_statement _assignment_6 = _forStmt_1.getAssignment();
+                  variable _variable_2 = _assignment_6.getVariable();
+                  this.checkVariable(b, _variable_2, true);
+                  for_statement _forStmt_2 = repetitive.getForStmt();
+                  expression _expression_3 = _forStmt_2.getExpression();
+                  this.checkExpression(b, _expression_3);
+                  for_statement _forStmt_3 = repetitive.getForStmt();
+                  statement _statement_1 = _forStmt_3.getStatement();
+                  this.checkStatement(b, _statement_1);
+                }
+              }
+            }
+          } else {
+            conditional_statement _conditional = structured.getConditional();
+            boolean _notEquals_9 = (!Objects.equal(_conditional, null));
+            if (_notEquals_9) {
+              conditional_statement conditional = structured.getConditional();
+              if_statement _ifStmt = conditional.getIfStmt();
+              boolean _notEquals_10 = (!Objects.equal(_ifStmt, null));
+              if (_notEquals_10) {
+                if_statement ifStmt = conditional.getIfStmt();
+                expression _expression_4 = ifStmt.getExpression();
+                this.checkExpression(b, _expression_4);
+                statement _ifStatement = ifStmt.getIfStatement();
+                this.checkStatement(b, _ifStatement);
+                statement _elseStatement = ifStmt.getElseStatement();
+                boolean _notEquals_11 = (!Objects.equal(_elseStatement, null));
+                if (_notEquals_11) {
+                  statement _elseStatement_1 = ifStmt.getElseStatement();
+                  this.checkStatement(b, _elseStatement_1);
+                }
+              } else {
+                case_statement _caseStmt = conditional.getCaseStmt();
+                boolean _notEquals_12 = (!Objects.equal(_caseStmt, null));
+                if (_notEquals_12) {
+                  case_statement caseStmt = conditional.getCaseStmt();
+                  expression _expression_5 = caseStmt.getExpression();
+                  this.checkExpression(b, _expression_5);
+                  EList<case_limb> _cases = caseStmt.getCases();
+                  for (final case_limb limb : _cases) {
+                    {
+                      statement _statement_2 = limb.getStatement();
+                      this.checkStatement(b, _statement_2);
+                      case_label_list _cases_1 = limb.getCases();
+                      EList<constant> _constants = _cases_1.getConstants();
+                      for (final constant c : _constants) {
+                        this.checkConstant(b, c);
+                      }
+                    }
+                  }
+                }
+              }
+            } else {
+              with_statement _withStmt = structured.getWithStmt();
+              boolean _notEquals_13 = (!Objects.equal(_withStmt, null));
+              if (_notEquals_13) {
+                with_statement withStmt = structured.getWithStmt();
+                EList<variable> _variables = withStmt.getVariables();
+                for (final variable v : _variables) {
+                  this.checkVariable(b, v, false);
+                }
+                statement _statement_2 = withStmt.getStatement();
+                this.checkStatement(b, _statement_2);
+              }
+            }
+          }
+        }
+      }
     }
-    return _xifexpression;
   }
   
   public void checkStatements(final block b, final statement_sequence sequence) {

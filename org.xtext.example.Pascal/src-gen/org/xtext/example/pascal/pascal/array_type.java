@@ -4,6 +4,8 @@ package org.xtext.example.pascal.pascal;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>array type</b></em>'.
@@ -21,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface array_type extends unpacked_structured_type
+public interface array_type extends EObject
 {
   /**
    * Returns the value of the '<em><b>Indexes</b></em>' containment reference list.

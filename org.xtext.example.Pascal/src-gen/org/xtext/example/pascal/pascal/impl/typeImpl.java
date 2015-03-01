@@ -6,13 +6,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
+import org.xtext.example.pascal.pascal.pointer_type;
+import org.xtext.example.pascal.pascal.simple_type;
+import org.xtext.example.pascal.pascal.structured_type;
 import org.xtext.example.pascal.pascal.type;
 
 /**
@@ -22,7 +24,9 @@ import org.xtext.example.pascal.pascal.type;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.impl.typeImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.typeImpl#getSimple <em>Simple</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.typeImpl#getStructured <em>Structured</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.typeImpl#getPointer <em>Pointer</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,14 +35,34 @@ import org.xtext.example.pascal.pascal.type;
 public class typeImpl extends MinimalEObjectImpl.Container implements type
 {
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+   * The cached value of the '{@link #getSimple() <em>Simple</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getType()
+   * @see #getSimple()
    * @generated
    * @ordered
    */
-  protected EObject type;
+  protected simple_type simple;
+
+  /**
+   * The cached value of the '{@link #getStructured() <em>Structured</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStructured()
+   * @generated
+   * @ordered
+   */
+  protected structured_type structured;
+
+  /**
+   * The cached value of the '{@link #getPointer() <em>Pointer</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPointer()
+   * @generated
+   * @ordered
+   */
+  protected pointer_type pointer;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,9 +90,9 @@ public class typeImpl extends MinimalEObjectImpl.Container implements type
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getType()
+  public simple_type getSimple()
   {
-    return type;
+    return simple;
   }
 
   /**
@@ -76,13 +100,13 @@ public class typeImpl extends MinimalEObjectImpl.Container implements type
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(EObject newType, NotificationChain msgs)
+  public NotificationChain basicSetSimple(simple_type newSimple, NotificationChain msgs)
   {
-    EObject oldType = type;
-    type = newType;
+    simple_type oldSimple = simple;
+    simple = newSimple;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.TYPE__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.TYPE__SIMPLE, oldSimple, newSimple);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -93,20 +117,116 @@ public class typeImpl extends MinimalEObjectImpl.Container implements type
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(EObject newType)
+  public void setSimple(simple_type newSimple)
   {
-    if (newType != type)
+    if (newSimple != simple)
     {
       NotificationChain msgs = null;
-      if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.TYPE__TYPE, null, msgs);
-      if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.TYPE__TYPE, null, msgs);
-      msgs = basicSetType(newType, msgs);
+      if (simple != null)
+        msgs = ((InternalEObject)simple).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.TYPE__SIMPLE, null, msgs);
+      if (newSimple != null)
+        msgs = ((InternalEObject)newSimple).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.TYPE__SIMPLE, null, msgs);
+      msgs = basicSetSimple(newSimple, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.TYPE__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.TYPE__SIMPLE, newSimple, newSimple));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public structured_type getStructured()
+  {
+    return structured;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetStructured(structured_type newStructured, NotificationChain msgs)
+  {
+    structured_type oldStructured = structured;
+    structured = newStructured;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.TYPE__STRUCTURED, oldStructured, newStructured);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setStructured(structured_type newStructured)
+  {
+    if (newStructured != structured)
+    {
+      NotificationChain msgs = null;
+      if (structured != null)
+        msgs = ((InternalEObject)structured).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.TYPE__STRUCTURED, null, msgs);
+      if (newStructured != null)
+        msgs = ((InternalEObject)newStructured).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.TYPE__STRUCTURED, null, msgs);
+      msgs = basicSetStructured(newStructured, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.TYPE__STRUCTURED, newStructured, newStructured));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public pointer_type getPointer()
+  {
+    return pointer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetPointer(pointer_type newPointer, NotificationChain msgs)
+  {
+    pointer_type oldPointer = pointer;
+    pointer = newPointer;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.TYPE__POINTER, oldPointer, newPointer);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPointer(pointer_type newPointer)
+  {
+    if (newPointer != pointer)
+    {
+      NotificationChain msgs = null;
+      if (pointer != null)
+        msgs = ((InternalEObject)pointer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.TYPE__POINTER, null, msgs);
+      if (newPointer != null)
+        msgs = ((InternalEObject)newPointer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.TYPE__POINTER, null, msgs);
+      msgs = basicSetPointer(newPointer, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.TYPE__POINTER, newPointer, newPointer));
   }
 
   /**
@@ -119,8 +239,12 @@ public class typeImpl extends MinimalEObjectImpl.Container implements type
   {
     switch (featureID)
     {
-      case PascalPackage.TYPE__TYPE:
-        return basicSetType(null, msgs);
+      case PascalPackage.TYPE__SIMPLE:
+        return basicSetSimple(null, msgs);
+      case PascalPackage.TYPE__STRUCTURED:
+        return basicSetStructured(null, msgs);
+      case PascalPackage.TYPE__POINTER:
+        return basicSetPointer(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -135,8 +259,12 @@ public class typeImpl extends MinimalEObjectImpl.Container implements type
   {
     switch (featureID)
     {
-      case PascalPackage.TYPE__TYPE:
-        return getType();
+      case PascalPackage.TYPE__SIMPLE:
+        return getSimple();
+      case PascalPackage.TYPE__STRUCTURED:
+        return getStructured();
+      case PascalPackage.TYPE__POINTER:
+        return getPointer();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -151,8 +279,14 @@ public class typeImpl extends MinimalEObjectImpl.Container implements type
   {
     switch (featureID)
     {
-      case PascalPackage.TYPE__TYPE:
-        setType((EObject)newValue);
+      case PascalPackage.TYPE__SIMPLE:
+        setSimple((simple_type)newValue);
+        return;
+      case PascalPackage.TYPE__STRUCTURED:
+        setStructured((structured_type)newValue);
+        return;
+      case PascalPackage.TYPE__POINTER:
+        setPointer((pointer_type)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,8 +302,14 @@ public class typeImpl extends MinimalEObjectImpl.Container implements type
   {
     switch (featureID)
     {
-      case PascalPackage.TYPE__TYPE:
-        setType((EObject)null);
+      case PascalPackage.TYPE__SIMPLE:
+        setSimple((simple_type)null);
+        return;
+      case PascalPackage.TYPE__STRUCTURED:
+        setStructured((structured_type)null);
+        return;
+      case PascalPackage.TYPE__POINTER:
+        setPointer((pointer_type)null);
         return;
     }
     super.eUnset(featureID);
@@ -185,8 +325,12 @@ public class typeImpl extends MinimalEObjectImpl.Container implements type
   {
     switch (featureID)
     {
-      case PascalPackage.TYPE__TYPE:
-        return type != null;
+      case PascalPackage.TYPE__SIMPLE:
+        return simple != null;
+      case PascalPackage.TYPE__STRUCTURED:
+        return structured != null;
+      case PascalPackage.TYPE__POINTER:
+        return pointer != null;
     }
     return super.eIsSet(featureID);
   }

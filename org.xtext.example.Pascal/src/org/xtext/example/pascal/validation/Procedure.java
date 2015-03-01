@@ -1,5 +1,6 @@
 package org.xtext.example.pascal.validation;
 
+import java.util.Iterator;
 import java.util.Set;
 
 public class Procedure extends Element {
@@ -7,7 +8,7 @@ public class Procedure extends Element {
 	protected Set<Variable> parameters;
 	protected boolean forward;
 	
-	public Procedure(String name, ElementType type, boolean inherited, Set<Variable> parameters, boolean forward) {
+	protected Procedure(String name, ElementType type, boolean inherited, Set<Variable> parameters, boolean forward) {
 		super(name, type, inherited);
 		this.parameters = parameters;
 		this.forward = forward;
@@ -17,8 +18,8 @@ public class Procedure extends Element {
 		this(name, ElementType.PROCEDURE, inherited, parameters, forward);
 	}
 
-	public Procedure(String name) {
-		this(name, ElementType.PROCEDURE, false, null, false);
+	public Procedure(String name, Set<Variable> parameters) {
+		this(name, ElementType.PROCEDURE, false, parameters, false);
 	}
 	
 	public Set<Variable> getParameters() {
@@ -32,6 +33,25 @@ public class Procedure extends Element {
 	@Override
 	public Element clone() {
 		return new Procedure(this.name, this.type, this.inherited, this.parameters, this.forward);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && (obj instanceof Procedure)) {
+			Procedure other = (Procedure) obj;
+			if (!this.name.toLowerCase().equals(other.name.toLowerCase()))
+				return false;
+			if (this.parameters.size() != other.parameters.size()) 
+				return false;
+			Iterator<Variable> it1 = this.parameters.iterator();
+			Iterator<Variable> it2 = other.parameters.iterator();
+			while (it1.hasNext() && it2.hasNext()) {
+				if (!it1.next().getVarType().equals(it2.next().getVarType()))
+					return false;
+			}
+			return true;
+		}
+		return super.equals(obj);
 	}
 	
 }

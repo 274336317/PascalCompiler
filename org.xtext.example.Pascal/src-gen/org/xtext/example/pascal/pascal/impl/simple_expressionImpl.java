@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
-import org.xtext.example.pascal.pascal.signed_number;
+import org.xtext.example.pascal.pascal.any_number;
 import org.xtext.example.pascal.pascal.simple_expression;
 import org.xtext.example.pascal.pascal.term;
 
@@ -67,7 +67,7 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
    * @generated
    * @ordered
    */
-  protected EList<signed_number> numbers;
+  protected EList<any_number> numbers;
 
   /**
    * <!-- begin-user-doc -->
@@ -123,11 +123,11 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<signed_number> getNumbers()
+  public EList<any_number> getNumbers()
   {
     if (numbers == null)
     {
-      numbers = new EObjectContainmentEList<signed_number>(signed_number.class, this, PascalPackage.SIMPLE_EXPRESSION__NUMBERS);
+      numbers = new EObjectContainmentEList<any_number>(any_number.class, this, PascalPackage.SIMPLE_EXPRESSION__NUMBERS);
     }
     return numbers;
   }
@@ -191,7 +191,7 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
         return;
       case PascalPackage.SIMPLE_EXPRESSION__NUMBERS:
         getNumbers().clear();
-        getNumbers().addAll((Collection<? extends signed_number>)newValue);
+        getNumbers().addAll((Collection<? extends any_number>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

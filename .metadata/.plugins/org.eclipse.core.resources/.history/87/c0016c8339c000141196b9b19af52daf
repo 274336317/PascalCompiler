@@ -1,0 +1,40 @@
+package org.xtext.example.pascal.validation;
+
+
+public class TypeInferer {
+
+	public static String greater(String type1, String type2) {
+		if (type1 == null || type1.equals(""))
+			return type2;
+		if (type2 == null || type2.equals(""))
+			return type1; 
+		if (type1 == "real" || type2 == "real")
+			return "real";	
+		return type1;
+	}
+	
+	private static int getTypeWeight(String type) {
+		switch (type) {
+		case "real":
+			return 4;
+		case "longint":
+			return 3;
+		case "integer":
+			return 2;
+		case "shortint":
+			return 1;
+		}
+		return -1;
+	}
+	
+	public static boolean areTypesCompatibles(String parent, String child) {
+		if (parent.equals(child))
+			return true;
+		int parentWeight = getTypeWeight(parent);
+		int childWeight = getTypeWeight(child);
+		if (parentWeight == -1 || childWeight == -1)
+			return false;
+		return parentWeight >= childWeight;
+	}
+
+}

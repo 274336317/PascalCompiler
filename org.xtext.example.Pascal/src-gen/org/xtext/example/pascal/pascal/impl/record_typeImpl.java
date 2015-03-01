@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.field_list;
@@ -29,7 +30,7 @@ import org.xtext.example.pascal.pascal.record_type;
  *
  * @generated
  */
-public class record_typeImpl extends unpacked_structured_typeImpl implements record_type
+public class record_typeImpl extends MinimalEObjectImpl.Container implements record_type
 {
   /**
    * The default value of the '{@link #getRecordKeyword() <em>Record Keyword</em>}' attribute.

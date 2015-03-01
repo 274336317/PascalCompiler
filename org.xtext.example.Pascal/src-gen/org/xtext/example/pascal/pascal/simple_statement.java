@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.pascal.pascal.simple_statement#getAssignment <em>Assignment</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.simple_statement#getFunction <em>Function</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.simple_statement#getGoto <em>Goto</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.simple_statement#getFunction_noargs <em>Function noargs</em>}</li>
  * </ul>
  * </p>
  *
@@ -101,5 +102,31 @@ public interface simple_statement extends EObject
    * @generated
    */
   void setGoto(goto_statement value);
+
+  /**
+   * Returns the value of the '<em><b>Function noargs</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Function noargs</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Function noargs</em>' attribute.
+   * @see #setFunction_noargs(String)
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getsimple_statement_Function_noargs()
+   * @model
+   * @generated
+   */
+  String getFunction_noargs();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.simple_statement#getFunction_noargs <em>Function noargs</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Function noargs</em>' attribute.
+   * @see #getFunction_noargs()
+   * @generated
+   */
+  void setFunction_noargs(String value);
 
 } // simple_statement

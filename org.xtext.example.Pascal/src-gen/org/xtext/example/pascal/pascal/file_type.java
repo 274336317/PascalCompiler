@@ -2,6 +2,7 @@
  */
 package org.xtext.example.pascal.pascal;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +20,7 @@ package org.xtext.example.pascal.pascal;
  * @model
  * @generated
  */
-public interface file_type extends unpacked_structured_type
+public interface file_type extends EObject
 {
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

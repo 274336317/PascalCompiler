@@ -194,22 +194,13 @@ public interface PascalFactory extends EFactory
   number createnumber();
 
   /**
-   * Returns a new object of class '<em>unsigned number</em>'.
+   * Returns a new object of class '<em>any number</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>unsigned number</em>'.
+   * @return a new object of class '<em>any number</em>'.
    * @generated
    */
-  unsigned_number createunsigned_number();
-
-  /**
-   * Returns a new object of class '<em>signed number</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>signed number</em>'.
-   * @generated
-   */
-  signed_number createsigned_number();
+  any_number createany_number();
 
   /**
    * Returns a new object of class '<em>set</em>'.

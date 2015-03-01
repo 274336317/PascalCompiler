@@ -60,7 +60,7 @@ public interface simple_expression extends EObject
 
   /**
    * Returns the value of the '<em><b>Numbers</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.pascal.pascal.signed_number}.
+   * The list contents are of type {@link org.xtext.example.pascal.pascal.any_number}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Numbers</em>' containment reference list isn't clear,
@@ -72,6 +72,6 @@ public interface simple_expression extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<signed_number> getNumbers();
+  EList<any_number> getNumbers();
 
 } // simple_expression

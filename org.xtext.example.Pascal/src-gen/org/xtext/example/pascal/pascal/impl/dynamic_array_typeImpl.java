@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.dynamic_array_type;
@@ -27,7 +28,7 @@ import org.xtext.example.pascal.pascal.type;
  *
  * @generated
  */
-public class dynamic_array_typeImpl extends unpacked_structured_typeImpl implements dynamic_array_type
+public class dynamic_array_typeImpl extends MinimalEObjectImpl.Container implements dynamic_array_type
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.

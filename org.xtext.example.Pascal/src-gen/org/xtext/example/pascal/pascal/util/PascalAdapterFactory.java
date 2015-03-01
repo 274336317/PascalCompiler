@@ -170,14 +170,9 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
         return createnumberAdapter();
       }
       @Override
-      public Adapter caseunsigned_number(unsigned_number object)
+      public Adapter caseany_number(any_number object)
       {
-        return createunsigned_numberAdapter();
-      }
-      @Override
-      public Adapter casesigned_number(signed_number object)
-      {
-        return createsigned_numberAdapter();
+        return createany_numberAdapter();
       }
       @Override
       public Adapter caseset(set object)
@@ -762,31 +757,16 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.unsigned_number <em>unsigned number</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.any_number <em>any number</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.unsigned_number
+   * @see org.xtext.example.pascal.pascal.any_number
    * @generated
    */
-  public Adapter createunsigned_numberAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.signed_number <em>signed number</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.signed_number
-   * @generated
-   */
-  public Adapter createsigned_numberAdapter()
+  public Adapter createany_numberAdapter()
   {
     return null;
   }

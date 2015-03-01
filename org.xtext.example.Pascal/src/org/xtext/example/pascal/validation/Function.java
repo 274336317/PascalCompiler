@@ -11,8 +11,8 @@ public class Function extends Procedure {
 		this.returnType = returnType;
 	}
 	
-	public Function(String name) {
-		this(name, false, null, false, null);
+	public Function(String name, Set<Variable> parameters) {
+		this(name, false, parameters, false, null);
 	}
 	
 	public String getReturnType() {
@@ -29,13 +29,4 @@ public class Function extends Procedure {
 		return "[" + this.name + ", " + this.inherited + ", " + this.type + ", " + this.returnType + "]";
 	}
 	 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj != null && (obj instanceof Procedure)) {
-			Procedure other = (Procedure) obj;
-			return this.name.toLowerCase().equals(other.name.toLowerCase());
-		}
-		return super.equals(obj);
-	}
-	
 }

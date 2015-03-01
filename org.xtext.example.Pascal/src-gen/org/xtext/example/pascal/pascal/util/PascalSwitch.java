@@ -174,7 +174,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         expression expression = (expression)theEObject;
         T result = caseexpression(expression);
-        if (result == null) result = casefactor(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -203,21 +202,13 @@ public class PascalSwitch<T> extends Switch<T>
       {
         number number = (number)theEObject;
         T result = casenumber(number);
-        if (result == null) result = casefactor(number);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PascalPackage.UNSIGNED_NUMBER:
+      case PascalPackage.ANY_NUMBER:
       {
-        unsigned_number unsigned_number = (unsigned_number)theEObject;
-        T result = caseunsigned_number(unsigned_number);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PascalPackage.SIGNED_NUMBER:
-      {
-        signed_number signed_number = (signed_number)theEObject;
-        T result = casesigned_number(signed_number);
+        any_number any_number = (any_number)theEObject;
+        T result = caseany_number(any_number);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -225,7 +216,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         set set = (set)theEObject;
         T result = caseset(set);
-        if (result == null) result = casefactor(set);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -415,7 +405,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         array_type array_type = (array_type)theEObject;
         T result = casearray_type(array_type);
-        if (result == null) result = caseunpacked_structured_type(array_type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -423,7 +412,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         dynamic_array_type dynamic_array_type = (dynamic_array_type)theEObject;
         T result = casedynamic_array_type(dynamic_array_type);
-        if (result == null) result = caseunpacked_structured_type(dynamic_array_type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -438,7 +426,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         record_type record_type = (record_type)theEObject;
         T result = caserecord_type(record_type);
-        if (result == null) result = caseunpacked_structured_type(record_type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -502,7 +489,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         set_type set_type = (set_type)theEObject;
         T result = caseset_type(set_type);
-        if (result == null) result = caseunpacked_structured_type(set_type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -510,7 +496,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         file_type file_type = (file_type)theEObject;
         T result = casefile_type(file_type);
-        if (result == null) result = caseunpacked_structured_type(file_type);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -582,7 +567,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         conformant_array_schema conformant_array_schema = (conformant_array_schema)theEObject;
         T result = caseconformant_array_schema(conformant_array_schema);
-        if (result == null) result = caseparameter_type(conformant_array_schema);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -590,8 +574,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         packed_conformant_array_schema packed_conformant_array_schema = (packed_conformant_array_schema)theEObject;
         T result = casepacked_conformant_array_schema(packed_conformant_array_schema);
-        if (result == null) result = caseconformant_array_schema(packed_conformant_array_schema);
-        if (result == null) result = caseparameter_type(packed_conformant_array_schema);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -606,8 +588,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         unpacked_conformant_array_schema unpacked_conformant_array_schema = (unpacked_conformant_array_schema)theEObject;
         T result = caseunpacked_conformant_array_schema(unpacked_conformant_array_schema);
-        if (result == null) result = caseconformant_array_schema(unpacked_conformant_array_schema);
-        if (result == null) result = caseparameter_type(unpacked_conformant_array_schema);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -927,33 +907,17 @@ public class PascalSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>unsigned number</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>any number</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>unsigned number</em>'.
+   * @return the result of interpreting the object as an instance of '<em>any number</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseunsigned_number(unsigned_number object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>signed number</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>signed number</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casesigned_number(signed_number object)
+  public T caseany_number(any_number object)
   {
     return null;
   }

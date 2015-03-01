@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.bound_specification;
@@ -22,12 +23,13 @@ import org.xtext.example.pascal.pascal.packed_conformant_array_schema;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.packed_conformant_array_schemaImpl#getBound <em>Bound</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.packed_conformant_array_schemaImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class packed_conformant_array_schemaImpl extends conformant_array_schemaImpl implements packed_conformant_array_schema
+public class packed_conformant_array_schemaImpl extends MinimalEObjectImpl.Container implements packed_conformant_array_schema
 {
   /**
    * The cached value of the '{@link #getBound() <em>Bound</em>}' containment reference.
@@ -38,6 +40,26 @@ public class packed_conformant_array_schemaImpl extends conformant_array_schemaI
    * @ordered
    */
   protected bound_specification bound;
+
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,6 +135,29 @@ public class packed_conformant_array_schemaImpl extends conformant_array_schemaI
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.PACKED_CONFORMANT_ARRAY_SCHEMA__NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -136,6 +181,8 @@ public class packed_conformant_array_schemaImpl extends conformant_array_schemaI
     {
       case PascalPackage.PACKED_CONFORMANT_ARRAY_SCHEMA__BOUND:
         return getBound();
+      case PascalPackage.PACKED_CONFORMANT_ARRAY_SCHEMA__NAME:
+        return getName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,6 +199,9 @@ public class packed_conformant_array_schemaImpl extends conformant_array_schemaI
     {
       case PascalPackage.PACKED_CONFORMANT_ARRAY_SCHEMA__BOUND:
         setBound((bound_specification)newValue);
+        return;
+      case PascalPackage.PACKED_CONFORMANT_ARRAY_SCHEMA__NAME:
+        setName((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,6 +220,9 @@ public class packed_conformant_array_schemaImpl extends conformant_array_schemaI
       case PascalPackage.PACKED_CONFORMANT_ARRAY_SCHEMA__BOUND:
         setBound((bound_specification)null);
         return;
+      case PascalPackage.PACKED_CONFORMANT_ARRAY_SCHEMA__NAME:
+        setName(NAME_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -186,8 +239,27 @@ public class packed_conformant_array_schemaImpl extends conformant_array_schemaI
     {
       case PascalPackage.PACKED_CONFORMANT_ARRAY_SCHEMA__BOUND:
         return bound != null;
+      case PascalPackage.PACKED_CONFORMANT_ARRAY_SCHEMA__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //packed_conformant_array_schemaImpl

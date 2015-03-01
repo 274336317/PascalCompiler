@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
@@ -34,7 +35,7 @@ import org.xtext.example.pascal.pascal.set;
  *
  * @generated
  */
-public class setImpl extends factorImpl implements set
+public class setImpl extends MinimalEObjectImpl.Container implements set
 {
   /**
    * The cached value of the '{@link #getBrackets() <em>Brackets</em>}' attribute list.

@@ -3,8 +3,10 @@
  */
 package org.xtext.example.pascal.validation
 
+import java.util.ArrayList
 import java.util.HashMap
 import java.util.HashSet
+import java.util.List
 import java.util.Map
 import java.util.Set
 import org.eclipse.emf.ecore.EObject
@@ -18,12 +20,16 @@ import org.xtext.example.pascal.pascal.case_limb
 import org.xtext.example.pascal.pascal.constant
 import org.xtext.example.pascal.pascal.constant_definition
 import org.xtext.example.pascal.pascal.expression
+import org.xtext.example.pascal.pascal.expression_list
 import org.xtext.example.pascal.pascal.factor
 import org.xtext.example.pascal.pascal.formal_parameter_section
+import org.xtext.example.pascal.pascal.function_designator
+import org.xtext.example.pascal.pascal.parameter_type
 import org.xtext.example.pascal.pascal.simple_expression
 import org.xtext.example.pascal.pascal.statement
 import org.xtext.example.pascal.pascal.statement_sequence
 import org.xtext.example.pascal.pascal.term
+import org.xtext.example.pascal.pascal.type
 import org.xtext.example.pascal.pascal.variable
 import org.xtext.example.pascal.pascal.variable_section
 
@@ -37,7 +43,92 @@ class PascalValidator extends AbstractPascalValidator {
 	private Map<EObject, Set<Error>> errorList = new HashMap<EObject, Set<Error>>();
 	private Map<block, Set<Variable>> variables = new HashMap<block, Set<Variable>>();
 	private Map<block, Set<Procedure>> abstractions = new HashMap<block, Set<Procedure>>();
-	 
+	private Set<Procedure> standardAbstractions = new HashSet<Procedure>();
+	
+	def getParameters(String... vars) {
+		var variables = new HashSet<Variable>();
+		var count = 0;
+		for (String type : vars) {
+			variables.add(new Variable("arg_" + count, type, false, ElementType.PARAMETER));
+			count++;
+		}
+		var parameters = new HashSet<Variable>(variables);
+		return parameters;	
+	}
+	
+	def <T> replaceListElement(List<T> list, int index, T newElement) {
+		var newList = new ArrayList<T>(list);
+		newList.remove(index);
+		newList.add(index, newElement);
+		return newList;
+	}
+	
+	def void addAbstraction(Set<Procedure> abstractions, String name, String returnType, String... parameters) {
+		var virtualParameters = parameters.toList;
+		var isVirtual = false;
+		for (var i = 0; i < virtualParameters.size; i++) {
+			if (virtualParameters.get(i) == "numeric") {
+				addAbstraction(abstractions, name, returnType, replaceListElement(virtualParameters, i, "integer"));
+				addAbstraction(abstractions, name, returnType, replaceListElement(virtualParameters, i, "real"));
+				isVirtual = true;
+			} 
+		}
+		if (!isVirtual) {
+			if (returnType == "reflect") { 
+				if (parameters.length == 1) { 
+					abstractions.add(new Function(name, true, getParameters(parameters), false, parameters.toList.get(0))); 
+				} else {
+					throw new RuntimeException("Invalid return type");
+				}
+			} else if (returnType == "void") {
+					abstractions.add(new Procedure(name, true, getParameters(parameters), false)); 
+			} else {
+				abstractions.add(new Function(name, true, getParameters(parameters), false, returnType)); 
+			}
+		}
+	}
+	
+	def setStandardAbstractions(Set<Procedure> it) {
+		addAbstraction("round", "integer", "real");
+		addAbstraction("chr", "char", "integer");
+		addAbstraction("abs", "reflect", "numeric");
+		addAbstraction("odd", "boolean", "integer");
+		addAbstraction("sqr", "reflect", "numeric");
+		addAbstraction("sqrt", "real", "numeric");
+		addAbstraction("sin", "real", "numeric");
+		addAbstraction("cos", "real", "numeric");
+		addAbstraction("arctan", "real", "numeric");
+		addAbstraction("ln", "real", "numeric");
+		addAbstraction("exp", "real", "numeric");
+		addAbstraction("succ", "...enumerated", "...enumerated");
+		addAbstraction("succ", "integer", "integer");
+		addAbstraction("pred", "...enumerated", "...enumerated");
+		addAbstraction("pred", "integer", "integer");
+		addAbstraction("new", "void", "^?");
+		addAbstraction("dispose", "void", "^?");
+		addAbstraction("strconcat", "void", "packed array of char", "packed array of char");
+		addAbstraction("strdelete", "void", "packed array of char", "integer", "integer");
+		addAbstraction("strinsert", "void", "packed array of char", "packed array of char", "integer");
+		addAbstraction("strlen", "integer", "packed array of char");
+		addAbstraction("strscan", "integer", "packed array of char", "packed array of char");
+		addAbstraction("strlen", "integer", "packed array of char");
+		addAbstraction("substr", "void", "packed array of char", "integer", "integer", "packed array of char");
+		addAbstraction("address", "integer", "^?");	
+		addAbstraction("length", "integer", "[]?");
+		addAbstraction("setlength", "void", "[]?", "integer");
+		addAbstraction("write", "void", "?");
+		addAbstraction("writeln", "void", "?");
+		addAbstraction("read", "void", "file", "?");
+		addAbstraction("readln", "void", "file", "?");
+	}
+	
+	def getStandardAbstractions() {
+		if (standardAbstractions.isEmpty) {
+			setStandardAbstractions(standardAbstractions);
+		}	
+		return standardAbstractions;
+	}
+	
 	def <T extends Element> search(Set<T> elements, T key) {
 		for (T t : elements) {
 			if (t.equals(key))
@@ -64,6 +155,9 @@ class PascalValidator extends AbstractPascalValidator {
 	def <T extends Element> clear(block b, ElementType type, Map<block, Set<T>> container) {
 		if (!container.containsKey(b)) {
 			container.put(b, new HashSet<T>());
+			if (container == abstractions) {
+				abstractions.get(b).addAll(getStandardAbstractions());
+			}
 		} else {
 			var newSet = new HashSet<T>();
 			for (T t : container.get(b)) {
@@ -74,7 +168,152 @@ class PascalValidator extends AbstractPascalValidator {
 			container.put(b, newSet);
 		}
 	}
-	 
+	
+	def getParameters(block b, function_designator f) {
+		var parameters = new HashSet<Variable>();
+		if (f.expressions != null) {
+			var count = 0; 
+			for (expression e : f.expressions.expressions) {
+				parameters.add(new Variable("arg_" + count, getType(b, e), false, ElementType.PARAMETER));
+				count++;
+			} 
+		}
+		return parameters;
+	}
+	
+	def getAbstraction(block b, function_designator f) {
+		var name = f.name; 
+		var parameters = getParameters(b, f);
+		return new Procedure(name, parameters);	
+	}
+	
+	def String getType(type t) {  
+		if (t.simple != null) {
+			var simple = t.simple;
+			if (simple.subrange != null || simple.enumerated != null) {
+				return "...enumerated";
+			} else if (simple.name != null) {
+				return simple.name;
+			} 
+		} else if (t.structured != null) {
+			var syntetizedType = "";
+			var structured = t.structured;
+			if (structured.packed) {
+				syntetizedType += "packed ";
+			}
+			var unpacked = structured.type;
+			if (unpacked.array != null) {
+				syntetizedType += "array of " + getType(unpacked.array.type);
+			} else if (unpacked.dynamic != null) {
+				syntetizedType += "array of " + getType(unpacked.dynamic.type);
+			} else if (unpacked.record != null) {
+				syntetizedType += "record";
+			} else if (unpacked.set != null) {
+				syntetizedType += "set of " + getType(unpacked.set.type);
+			} else if (unpacked.file != null) {
+				syntetizedType += "file of " + getType(unpacked.file.type);
+			}
+			return syntetizedType;
+		} else if (t.pointer != null) {
+			return "^" + getType(t.pointer.type);
+		}
+		return null;
+	}
+	
+	def String getType(parameter_type type) {
+		if (type.array != null) {
+			var array = type.array;
+			if (array.packed != null) {
+				return "packed array of " + array.packed.name;
+			} else if (array.unpacked != null) {
+				return "array of " + getType(array.unpacked.type);
+			}
+		} else if (type.name != null) {
+			return type.name;
+		}
+		return null;	
+	}
+	
+	def String getType(block b, variable v) {
+		var variableFound = search(variables.get(b), new Variable(v.name)); 
+		if (variableFound != null) {
+			return variableFound.getVarType();
+		} 
+		return null;
+	} 
+	
+	def String getType(block b, function_designator f) {
+		var function = getAbstraction(b, f);
+		var abstractionFound = search(abstractions.get(b), function);
+		if (abstractionFound != null && abstractionFound.type == ElementType.FUNCTION) {
+			var functionFound = abstractionFound as Function;
+			return functionFound.returnType;
+		}
+		return null;
+	}
+	
+	def String getType(block b, factor f) {
+		if (f.variable != null) {
+			return getType(b, f.variable);
+		} else if (f.number != null) {
+			var number = f.number.number;
+			if (number.integer != null) {
+				return "integer";
+			} else if (number.real != null) {
+				return "real";
+			}
+		} else if (f.string != null) {
+			return "packed array of char";
+		} else if (f.set != null) {
+			return getType(b, f.set.expressions); 
+		} else if (f.nil) {
+			return "nil";
+		} else if (f.boolean != null || f.not != null) {
+			return "boolean";
+		} else if (f.function != null) {
+			return getType(b, f.function);
+		} else if (f.expression != null) {
+			return getType(b, f.expression);
+		}
+		return null;
+	}
+	
+	def String getType(block b, term t) {
+		var greatestType = "";
+		for (factor f : t.factors) {
+			var type = getType(b, f);
+			greatestType = TypeInferer.greater(type, greatestType);
+		}
+		return greatestType;
+	}
+	
+	def String getType(block b, simple_expression expr) {
+		var greatestType = "";
+		for (term t : expr.terms) {
+			var type = getType(b, t);
+			greatestType = TypeInferer.greater(type, greatestType);
+		}
+		return greatestType;
+	}
+	
+	def String getType(block b, expression expr) {
+		var greatestType = "";
+		for (simple_expression e : expr.expressions) {
+			var type = getType(b, e);
+			greatestType = TypeInferer.greater(type, greatestType);
+		}
+		return greatestType;
+	}
+	
+	def String getType(block b, expression_list expr) {
+		var greatestType = "";
+		for (expression e : expr.expressions) {
+			var type = getType(b, e);
+			greatestType = TypeInferer.greater(type, greatestType);
+		}
+		return greatestType;
+	}
+	
 	def <T extends Element> addElementToAbstraction(abstraction_declaration decl, T element, Map<block, Set<T>> container) {
 		if (decl.block == null) {
 			decl.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
@@ -134,15 +373,15 @@ class PascalValidator extends AbstractPascalValidator {
 				for (formal_parameter_section section : list.parameters) {
 					if (section.variable != null) {
 						var variable = section.variable;
-						for (String varName : variable.identifiers.names) {
-							var parameter = new Variable(varName, section.variable.type.toString, false, ElementType.PARAMETER);
+						for (String varName : variable.identifiers.names) { 
+							var parameter = new Variable(varName, getType(section.variable.type), false, ElementType.PARAMETER);
 							addElement(b, parameter, variables, variable, PascalPackage.Literals.VARIABLE_PARAMETER_SECTION__IDENTIFIERS);
 							parameters.add(parameter);
 						}
 					} else if (section.value != null) {
 						var value = section.value;
 						for (String valName : value.identifiers.names) {
-							var parameter = new Variable(valName, value.type.toString, false, ElementType.PARAMETER);
+							var parameter = new Variable(valName, getType(value.type), false, ElementType.PARAMETER);
 							addElement(b, parameter, variables, value, PascalPackage.Literals.VALUE_PARAMETER_SECTION__IDENTIFIERS);
 							parameters.add(parameter);
 						}
@@ -201,7 +440,7 @@ class PascalValidator extends AbstractPascalValidator {
 		if (b.variable != null) {
 			for (variable_section section : b.variable.sections) {
 				for (String name : section.identifiers.names) {  
-					addElement(b, new Variable(name, section.type.toString(), false, ElementType.VARIABLE), variables, section, PascalPackage.Literals.VARIABLE_SECTION__IDENTIFIERS);
+					addElement(b, new Variable(name, getType(section.type), false, ElementType.VARIABLE), variables, section, PascalPackage.Literals.VARIABLE_SECTION__IDENTIFIERS);
 				}
 			}
 		}
@@ -223,19 +462,47 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 	}
 	
+	def checkAbstraction(block b, Procedure proc, boolean functionOnly, EObject object, EStructuralFeature feature) {
+		var abstractionFound = search(abstractions.get(b), proc);
+		if (abstractionFound == null) { 
+			for (Procedure p : abstractions.get(b)) {
+				if (p.name.toLowerCase.equals(proc.name.toLowerCase)) {
+					if (p.parameters.size != proc.parameters.size) {
+						insertError(object, "Wrong number of arguments.", ErrorType.NOT_DECLARATION, feature);
+					} else {
+						insertError(object, "Incompatible types of arguments.", ErrorType.NOT_DECLARATION, feature);
+					}
+					return;
+				}
+			}
+			insertError(object, "Function was not declared.", ErrorType.NOT_DECLARATION, feature); 
+		} else {
+			removeError(object, ErrorType.NOT_DECLARATION);
+			if (abstractionFound.type == ElementType.PROCEDURE && functionOnly) {
+				insertError(object, "Procedures calls are not allowed in an expression.", ErrorType.FUNCTION_ONLY, feature);
+			} else {
+				removeError(object, ErrorType.FUNCTION_ONLY);
+			}
+		}
+	} 
+	
+	def void checkAbstractionCall(block b, function_designator function, boolean functionOnly) {
+		if (function.expressions != null) {
+			for (expression e : function.expressions.expressions) {
+				checkExpression(b, e);
+			}
+		}
+		checkAbstraction(b, getAbstraction(b, function), functionOnly, function, PascalPackage.Literals.FUNCTION_DESIGNATOR__NAME); 
+	}  
+	
 	def checkExpression(block b, expression expr) {
 		for (simple_expression s : expr.expressions) {
 			for (term t : s.terms) {
 				for (factor f : t.factors) {
 					if (f.variable != null) {
 						checkVariable(b, f.variable, false);
-					} if (f.function != null) {
-						var function = f.function;
-						if (function.expressions != null) {
-							for (expression e : function.expressions.expressions) {
-								checkExpression(b, e);
-							}
-						}
+					} if (f.function != null) {	
+						checkAbstractionCall(b, f.function, true);
 					}
 				}
 			}
@@ -258,20 +525,20 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 	}
 	
-	def checkStatement(block b, statement stmt) {
+	def void checkStatement(block b, statement stmt) {
 		if (stmt.simple != null) {
 			var simple = stmt.simple;
 			if (simple.assignment != null) {
-				var assignment = simple.assignment;
-				var variable = assignment.variable;
-				checkVariable(b, variable, true);
-			} else if (simple.function != null) {
-				var function = simple.function;
-				if (function.expressions != null) {
-					for (expression e : function.expressions.expressions) {
-						checkExpression(b, e);
-					}
+				checkVariable(b, simple.assignment.variable, true);
+				var variableType = getType(b, simple.assignment.variable);
+				var expressionType = getType(b, simple.assignment.expression);
+				if (!TypeInferer.areTypesCompatibles(variableType, expressionType)) { 
+					 insertError(simple.assignment, "Cannot convert type " + expressionType.toLowerCase + " to " + variableType.toLowerCase + ".", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.ASSIGNMENT_STATEMENT__EXPRESSION);
+				} else {
+					removeError(simple.assignment, ErrorType.TYPE_CONVERSION_ERROR);
 				}
+			} else if (simple.function != null) {
+				checkAbstractionCall(b, simple.function, false); 
 			}
 		} else if (stmt.structured != null) {
 			var structured = stmt.structured;

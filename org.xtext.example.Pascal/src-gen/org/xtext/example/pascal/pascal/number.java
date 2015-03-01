@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface number extends factor
+public interface number extends EObject
 {
   /**
    * Returns the value of the '<em><b>Number</b></em>' containment reference.
@@ -31,12 +31,12 @@ public interface number extends factor
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Number</em>' containment reference.
-   * @see #setNumber(EObject)
+   * @see #setNumber(any_number)
    * @see org.xtext.example.pascal.pascal.PascalPackage#getnumber_Number()
    * @model containment="true"
    * @generated
    */
-  EObject getNumber();
+  any_number getNumber();
 
   /**
    * Sets the value of the '{@link org.xtext.example.pascal.pascal.number#getNumber <em>Number</em>}' containment reference.
@@ -46,6 +46,6 @@ public interface number extends factor
    * @see #getNumber()
    * @generated
    */
-  void setNumber(EObject value);
+  void setNumber(any_number value);
 
 } // number

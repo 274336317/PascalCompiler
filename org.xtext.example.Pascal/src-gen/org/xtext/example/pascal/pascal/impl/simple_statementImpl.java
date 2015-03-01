@@ -27,6 +27,7 @@ import org.xtext.example.pascal.pascal.simple_statement;
  *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_statementImpl#getAssignment <em>Assignment</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_statementImpl#getFunction <em>Function</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_statementImpl#getGoto <em>Goto</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_statementImpl#getFunction_noargs <em>Function noargs</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +64,26 @@ public class simple_statementImpl extends MinimalEObjectImpl.Container implement
    * @ordered
    */
   protected goto_statement goto_;
+
+  /**
+   * The default value of the '{@link #getFunction_noargs() <em>Function noargs</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFunction_noargs()
+   * @generated
+   * @ordered
+   */
+  protected static final String FUNCTION_NOARGS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getFunction_noargs() <em>Function noargs</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFunction_noargs()
+   * @generated
+   * @ordered
+   */
+  protected String function_noargs = FUNCTION_NOARGS_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -234,6 +255,29 @@ public class simple_statementImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getFunction_noargs()
+  {
+    return function_noargs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFunction_noargs(String newFunction_noargs)
+  {
+    String oldFunction_noargs = function_noargs;
+    function_noargs = newFunction_noargs;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.SIMPLE_STATEMENT__FUNCTION_NOARGS, oldFunction_noargs, function_noargs));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -265,6 +309,8 @@ public class simple_statementImpl extends MinimalEObjectImpl.Container implement
         return getFunction();
       case PascalPackage.SIMPLE_STATEMENT__GOTO:
         return getGoto();
+      case PascalPackage.SIMPLE_STATEMENT__FUNCTION_NOARGS:
+        return getFunction_noargs();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -287,6 +333,9 @@ public class simple_statementImpl extends MinimalEObjectImpl.Container implement
         return;
       case PascalPackage.SIMPLE_STATEMENT__GOTO:
         setGoto((goto_statement)newValue);
+        return;
+      case PascalPackage.SIMPLE_STATEMENT__FUNCTION_NOARGS:
+        setFunction_noargs((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -311,6 +360,9 @@ public class simple_statementImpl extends MinimalEObjectImpl.Container implement
       case PascalPackage.SIMPLE_STATEMENT__GOTO:
         setGoto((goto_statement)null);
         return;
+      case PascalPackage.SIMPLE_STATEMENT__FUNCTION_NOARGS:
+        setFunction_noargs(FUNCTION_NOARGS_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -331,8 +383,27 @@ public class simple_statementImpl extends MinimalEObjectImpl.Container implement
         return function != null;
       case PascalPackage.SIMPLE_STATEMENT__GOTO:
         return goto_ != null;
+      case PascalPackage.SIMPLE_STATEMENT__FUNCTION_NOARGS:
+        return FUNCTION_NOARGS_EDEFAULT == null ? function_noargs != null : !FUNCTION_NOARGS_EDEFAULT.equals(function_noargs);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (function_noargs: ");
+    result.append(function_noargs);
+    result.append(')');
+    return result.toString();
   }
 
 } //simple_statementImpl

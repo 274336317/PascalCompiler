@@ -1,0 +1,30 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.expression;
+import org.xtext.example.pascal.pascal.function_designator;
+
+public class ElementReverseEngineer {
+	
+	public static Set<Variable> getParameters(block b, function_designator f) {
+		Set<Variable> parameters = new HashSet<Variable>();
+		if (f.expressions != null) {
+			var count = 0; 
+			for (expression e : f.expressions.expressions) {
+				parameters.add(new Variable("arg_" + count, getType(b, e), false, ElementType.PARAMETER));
+				count++;
+			} 
+		}
+		return parameters;
+	}
+	
+	def getAbstraction(block b, function_designator f) {
+		var name = f.name; 
+		var parameters = getParameters(b, f);
+		return new Procedure(name, parameters);	
+	}
+	
+}

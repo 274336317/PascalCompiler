@@ -22,6 +22,7 @@ import org.xtext.example.pascal.pascal.unpacked_structured_type;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.structured_typeImpl#isPacked <em>Packed</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.structured_typeImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -30,6 +31,26 @@ import org.xtext.example.pascal.pascal.unpacked_structured_type;
  */
 public class structured_typeImpl extends MinimalEObjectImpl.Container implements structured_type
 {
+  /**
+   * The default value of the '{@link #isPacked() <em>Packed</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPacked()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean PACKED_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isPacked() <em>Packed</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPacked()
+   * @generated
+   * @ordered
+   */
+  protected boolean packed = PACKED_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -59,6 +80,29 @@ public class structured_typeImpl extends MinimalEObjectImpl.Container implements
   protected EClass eStaticClass()
   {
     return PascalPackage.Literals.STRUCTURED_TYPE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isPacked()
+  {
+    return packed;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPacked(boolean newPacked)
+  {
+    boolean oldPacked = packed;
+    packed = newPacked;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.STRUCTURED_TYPE__PACKED, oldPacked, packed));
   }
 
   /**
@@ -135,6 +179,8 @@ public class structured_typeImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
+      case PascalPackage.STRUCTURED_TYPE__PACKED:
+        return isPacked();
       case PascalPackage.STRUCTURED_TYPE__TYPE:
         return getType();
     }
@@ -151,6 +197,9 @@ public class structured_typeImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
+      case PascalPackage.STRUCTURED_TYPE__PACKED:
+        setPacked((Boolean)newValue);
+        return;
       case PascalPackage.STRUCTURED_TYPE__TYPE:
         setType((unpacked_structured_type)newValue);
         return;
@@ -168,6 +217,9 @@ public class structured_typeImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
+      case PascalPackage.STRUCTURED_TYPE__PACKED:
+        setPacked(PACKED_EDEFAULT);
+        return;
       case PascalPackage.STRUCTURED_TYPE__TYPE:
         setType((unpacked_structured_type)null);
         return;
@@ -185,10 +237,29 @@ public class structured_typeImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
+      case PascalPackage.STRUCTURED_TYPE__PACKED:
+        return packed != PACKED_EDEFAULT;
       case PascalPackage.STRUCTURED_TYPE__TYPE:
         return type != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (packed: ");
+    result.append(packed);
+    result.append(')');
+    return result.toString();
   }
 
 } //structured_typeImpl

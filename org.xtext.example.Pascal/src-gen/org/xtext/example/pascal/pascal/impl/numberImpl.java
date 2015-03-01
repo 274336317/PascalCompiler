@@ -6,12 +6,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
+import org.xtext.example.pascal.pascal.any_number;
 import org.xtext.example.pascal.pascal.number;
 
 /**
@@ -27,7 +28,7 @@ import org.xtext.example.pascal.pascal.number;
  *
  * @generated
  */
-public class numberImpl extends factorImpl implements number
+public class numberImpl extends MinimalEObjectImpl.Container implements number
 {
   /**
    * The cached value of the '{@link #getNumber() <em>Number</em>}' containment reference.
@@ -37,7 +38,7 @@ public class numberImpl extends factorImpl implements number
    * @generated
    * @ordered
    */
-  protected EObject number;
+  protected any_number number;
 
   /**
    * <!-- begin-user-doc -->
@@ -65,7 +66,7 @@ public class numberImpl extends factorImpl implements number
    * <!-- end-user-doc -->
    * @generated
    */
-  public EObject getNumber()
+  public any_number getNumber()
   {
     return number;
   }
@@ -75,9 +76,9 @@ public class numberImpl extends factorImpl implements number
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetNumber(EObject newNumber, NotificationChain msgs)
+  public NotificationChain basicSetNumber(any_number newNumber, NotificationChain msgs)
   {
-    EObject oldNumber = number;
+    any_number oldNumber = number;
     number = newNumber;
     if (eNotificationRequired())
     {
@@ -92,7 +93,7 @@ public class numberImpl extends factorImpl implements number
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setNumber(EObject newNumber)
+  public void setNumber(any_number newNumber)
   {
     if (newNumber != number)
     {
@@ -151,7 +152,7 @@ public class numberImpl extends factorImpl implements number
     switch (featureID)
     {
       case PascalPackage.NUMBER__NUMBER:
-        setNumber((EObject)newValue);
+        setNumber((any_number)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -168,7 +169,7 @@ public class numberImpl extends factorImpl implements number
     switch (featureID)
     {
       case PascalPackage.NUMBER__NUMBER:
-        setNumber((EObject)null);
+        setNumber((any_number)null);
         return;
     }
     super.eUnset(featureID);

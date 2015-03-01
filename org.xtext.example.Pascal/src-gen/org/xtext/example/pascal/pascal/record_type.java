@@ -2,6 +2,7 @@
  */
 package org.xtext.example.pascal.pascal;
 
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +22,7 @@ package org.xtext.example.pascal.pascal;
  * @model
  * @generated
  */
-public interface record_type extends unpacked_structured_type
+public interface record_type extends EObject
 {
   /**
    * Returns the value of the '<em><b>Record Keyword</b></em>' attribute.

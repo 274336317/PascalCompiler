@@ -3,13 +3,16 @@
 package org.xtext.example.pascal.pascal.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
+import org.xtext.example.pascal.pascal.conformant_array_schema;
 import org.xtext.example.pascal.pascal.parameter_type;
 
 /**
@@ -19,6 +22,7 @@ import org.xtext.example.pascal.pascal.parameter_type;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.parameter_typeImpl#getArray <em>Array</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.parameter_typeImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
@@ -27,6 +31,16 @@ import org.xtext.example.pascal.pascal.parameter_type;
  */
 public class parameter_typeImpl extends MinimalEObjectImpl.Container implements parameter_type
 {
+  /**
+   * The cached value of the '{@link #getArray() <em>Array</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getArray()
+   * @generated
+   * @ordered
+   */
+  protected conformant_array_schema array;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -73,6 +87,54 @@ public class parameter_typeImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  public conformant_array_schema getArray()
+  {
+    return array;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetArray(conformant_array_schema newArray, NotificationChain msgs)
+  {
+    conformant_array_schema oldArray = array;
+    array = newArray;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.PARAMETER_TYPE__ARRAY, oldArray, newArray);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setArray(conformant_array_schema newArray)
+  {
+    if (newArray != array)
+    {
+      NotificationChain msgs = null;
+      if (array != null)
+        msgs = ((InternalEObject)array).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.PARAMETER_TYPE__ARRAY, null, msgs);
+      if (newArray != null)
+        msgs = ((InternalEObject)newArray).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.PARAMETER_TYPE__ARRAY, null, msgs);
+      msgs = basicSetArray(newArray, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.PARAMETER_TYPE__ARRAY, newArray, newArray));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getName()
   {
     return name;
@@ -97,10 +159,28 @@ public class parameter_typeImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case PascalPackage.PARAMETER_TYPE__ARRAY:
+        return basicSetArray(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
+      case PascalPackage.PARAMETER_TYPE__ARRAY:
+        return getArray();
       case PascalPackage.PARAMETER_TYPE__NAME:
         return getName();
     }
@@ -117,6 +197,9 @@ public class parameter_typeImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
+      case PascalPackage.PARAMETER_TYPE__ARRAY:
+        setArray((conformant_array_schema)newValue);
+        return;
       case PascalPackage.PARAMETER_TYPE__NAME:
         setName((String)newValue);
         return;
@@ -134,6 +217,9 @@ public class parameter_typeImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
+      case PascalPackage.PARAMETER_TYPE__ARRAY:
+        setArray((conformant_array_schema)null);
+        return;
       case PascalPackage.PARAMETER_TYPE__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -151,6 +237,8 @@ public class parameter_typeImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
+      case PascalPackage.PARAMETER_TYPE__ARRAY:
+        return array != null;
       case PascalPackage.PARAMETER_TYPE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }

@@ -44,7 +44,7 @@ label:
 ;
 
 simple_statement: //TODO: FOI ADICIONADO O PARAMETRO ID (FUNCTION DESIGNATOR SEM PARAMETRO)
-	( assignment=assignment_statement | function=function_designator | goto=goto_statement | ID ) ?	
+	( assignment=assignment_statement | function=function_designator | goto=goto_statement | function_noargs=ID ) ?	
 ;
  
 assignment_statement: 
@@ -76,19 +76,23 @@ term:
 ;
 
 factor: 
-	variable=variable | number | STRING | set | "nil" | "true" | "false" | function=function_designator | "(" expression ")" | "not" factor	
+	variable=variable | number=number | string=STRING | set=set | nil?="nil" | boolean="true" | boolean="false" | function=function_designator | "(" expression=expression ")" | "not" not=factor	
 ;
 
 number:
-	number=unsigned_number | number=signed_number	
+	number=any_number	
 ;
 
-unsigned_number:
-	number=INTEGER_NUMBER | number=REAL_NUMBER	
+any_number:
+	unsigned_number | signed_number	
+;
+
+unsigned_number returns any_number:
+	integer=INTEGER_NUMBER | real=REAL_NUMBER	
 ;
  
-signed_number:
-	number=SIGNED_INTEGER_NUMBER | number=SIGNED_REAL_NUMBER
+signed_number returns any_number:
+	integer=SIGNED_INTEGER_NUMBER | real=SIGNED_REAL_NUMBER
 ;
 
 set:
@@ -176,11 +180,11 @@ type_definition:
 ;
 
 type: //TODO: REMOVIDO ID
-	type=simple_type | type=structured_type | type=pointer_type 
+	simple=simple_type | structured=structured_type | pointer=pointer_type 
 ;
 
 simple_type: //TODO: ADICIONADO ID
-	type=subrange_type | type=enumerated_type | name=ID
+	subrange=subrange_type | enumerated=enumerated_type | name=ID
 ;
 
 subrange_type hidden(WS): //TODO: ADICIONADO HIDDEN(WS) PARA REMOVER ESPAÇO EM BRANCO
@@ -192,11 +196,11 @@ enumerated_type:
 ;
 
 structured_type:
-	( "packed" ) ? type=unpacked_structured_type	
+	( packed?="packed" ) ? type=unpacked_structured_type	
 ;
 
 unpacked_structured_type: //TODO: ADICIONADO DYNAMIC_ARRAY_TYPE
-	array_type | dynamic_array_type | record_type | set_type | file_type
+	array=array_type | dynamic=dynamic_array_type | record=record_type | set=set_type | file=file_type
 ;
 
 array_type:
@@ -296,11 +300,11 @@ value_parameter_section:
 ;
 
 parameter_type:
-	conformant_array_schema | name=ID	
+	array=conformant_array_schema | name=ID	
 ;
 
 conformant_array_schema:
-	packed_conformant_array_schema | unpacked_conformant_array_schema	
+	packed=packed_conformant_array_schema | unpacked=unpacked_conformant_array_schema	
 ;
 
 packed_conformant_array_schema:
@@ -312,7 +316,7 @@ bound_specification:
 ;
 
 unpacked_conformant_array_schema:
-	"array" "[" bounds+=bound_specification ( ";" bounds+=bound_specification ) * "]" "of" ( array=conformant_array_schema | name=ID )	
+	"array" "[" bounds+=bound_specification ( ";" bounds+=bound_specification ) * "]" "of" type=parameter_type	
 ;
 
 variable_parameter_section:

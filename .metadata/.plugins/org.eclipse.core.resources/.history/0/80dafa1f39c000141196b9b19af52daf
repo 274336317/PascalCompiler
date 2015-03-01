@@ -1,0 +1,12 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.expression;
+import org.xtext.example.pascal.pascal.function_designator;
+
+public class ElementReverseEngineer {
+	 
+}
