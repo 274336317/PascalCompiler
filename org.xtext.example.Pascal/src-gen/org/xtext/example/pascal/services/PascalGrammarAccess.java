@@ -2623,6 +2623,46 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 	}
 
+	public class Abstraction_declarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "abstraction_declaration");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cProcedure_declarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFunction_declarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//abstraction_declaration:
+		//	procedure_declaration | function_declaration;
+		public ParserRule getRule() { return rule; }
+
+		//procedure_declaration | function_declaration
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//procedure_declaration
+		public RuleCall getProcedure_declarationParserRuleCall_0() { return cProcedure_declarationParserRuleCall_0; }
+
+		//function_declaration
+		public RuleCall getFunction_declarationParserRuleCall_1() { return cFunction_declarationParserRuleCall_1; }
+	}
+
+	public class Abstraction_headingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "abstraction_heading");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cProcedure_headingParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFunction_headingParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//abstraction_heading:
+		//	procedure_heading | function_heading;
+		public ParserRule getRule() { return rule; }
+
+		//procedure_heading | function_heading
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//procedure_heading
+		public RuleCall getProcedure_headingParserRuleCall_0() { return cProcedure_headingParserRuleCall_0; }
+
+		//function_heading
+		public RuleCall getFunction_headingParserRuleCall_1() { return cFunction_headingParserRuleCall_1; }
+	}
+
 	public class Procedure_declarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "procedure_declaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -2635,7 +2675,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cForwardAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final Keyword cForwardForwardKeyword_2_1_0 = (Keyword)cForwardAssignment_2_1.eContents().get(0);
 		
-		//procedure_declaration:
+		//procedure_declaration returns abstraction_heading:
 		//	heading=procedure_heading ";" (block=block | forward?="forward");
 		public ParserRule getRule() { return rule; }
 
@@ -2676,7 +2716,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cParametersAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cParametersFormal_parameter_listParserRuleCall_2_0 = (RuleCall)cParametersAssignment_2.eContents().get(0);
 		
-		//procedure_heading:
+		//procedure_heading returns abstraction_heading:
 		//	"procedure" name=ID parameters=formal_parameter_list?;
 		public ParserRule getRule() { return rule; }
 
@@ -3079,7 +3119,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cReturnTypeAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cReturnTypeIDTerminalRuleCall_4_0 = (RuleCall)cReturnTypeAssignment_4.eContents().get(0);
 		
-		//function_heading:
+		//function_heading returns abstraction_heading:
 		//	"function" name=ID parameters=formal_parameter_list? ":" returnType=ID;
 		public ParserRule getRule() { return rule; }
 
@@ -3123,7 +3163,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cForwardAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final Keyword cForwardForwardKeyword_2_1_0 = (Keyword)cForwardAssignment_2_1.eContents().get(0);
 		
-		//function_declaration:
+		//function_declaration returns abstraction_declaration:
 		//	heading=function_heading ";" (block=block | forward?="forward");
 		public ParserRule getRule() { return rule; }
 
@@ -3221,6 +3261,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	private final Pointer_typeElements pPointer_type;
 	private final Variable_declaration_partElements pVariable_declaration_part;
 	private final Procedure_and_function_declaration_partElements pProcedure_and_function_declaration_part;
+	private final Abstraction_declarationElements pAbstraction_declaration;
+	private final Abstraction_headingElements pAbstraction_heading;
 	private final Procedure_declarationElements pProcedure_declaration;
 	private final Procedure_headingElements pProcedure_heading;
 	private final Formal_parameter_listElements pFormal_parameter_list;
@@ -3321,6 +3363,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		this.pPointer_type = new Pointer_typeElements();
 		this.pVariable_declaration_part = new Variable_declaration_partElements();
 		this.pProcedure_and_function_declaration_part = new Procedure_and_function_declaration_partElements();
+		this.pAbstraction_declaration = new Abstraction_declarationElements();
+		this.pAbstraction_heading = new Abstraction_headingElements();
 		this.pProcedure_declaration = new Procedure_declarationElements();
 		this.pProcedure_heading = new Procedure_headingElements();
 		this.pFormal_parameter_list = new Formal_parameter_listElements();
@@ -4043,7 +4087,27 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getProcedure_and_function_declaration_partAccess().getRule();
 	}
 
-	//procedure_declaration:
+	//abstraction_declaration:
+	//	procedure_declaration | function_declaration;
+	public Abstraction_declarationElements getAbstraction_declarationAccess() {
+		return pAbstraction_declaration;
+	}
+	
+	public ParserRule getAbstraction_declarationRule() {
+		return getAbstraction_declarationAccess().getRule();
+	}
+
+	//abstraction_heading:
+	//	procedure_heading | function_heading;
+	public Abstraction_headingElements getAbstraction_headingAccess() {
+		return pAbstraction_heading;
+	}
+	
+	public ParserRule getAbstraction_headingRule() {
+		return getAbstraction_headingAccess().getRule();
+	}
+
+	//procedure_declaration returns abstraction_heading:
 	//	heading=procedure_heading ";" (block=block | forward?="forward");
 	public Procedure_declarationElements getProcedure_declarationAccess() {
 		return pProcedure_declaration;
@@ -4053,7 +4117,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getProcedure_declarationAccess().getRule();
 	}
 
-	//procedure_heading:
+	//procedure_heading returns abstraction_heading:
 	//	"procedure" name=ID parameters=formal_parameter_list?;
 	public Procedure_headingElements getProcedure_headingAccess() {
 		return pProcedure_heading;
@@ -4155,7 +4219,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getVariable_parameter_sectionAccess().getRule();
 	}
 
-	//function_heading:
+	//function_heading returns abstraction_heading:
 	//	"function" name=ID parameters=formal_parameter_list? ":" returnType=ID;
 	public Function_headingElements getFunction_headingAccess() {
 		return pFunction_heading;
@@ -4165,7 +4229,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunction_headingAccess().getRule();
 	}
 
-	//function_declaration:
+	//function_declaration returns abstraction_declaration:
 	//	heading=function_heading ";" (block=block | forward?="forward");
 	public Function_declarationElements getFunction_declarationAccess() {
 		return pFunction_declaration;

@@ -400,14 +400,14 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
         return createprocedure_and_function_declaration_partAdapter();
       }
       @Override
-      public Adapter caseprocedure_declaration(procedure_declaration object)
+      public Adapter caseabstraction_declaration(abstraction_declaration object)
       {
-        return createprocedure_declarationAdapter();
+        return createabstraction_declarationAdapter();
       }
       @Override
-      public Adapter caseprocedure_heading(procedure_heading object)
+      public Adapter caseabstraction_heading(abstraction_heading object)
       {
-        return createprocedure_headingAdapter();
+        return createabstraction_headingAdapter();
       }
       @Override
       public Adapter caseformal_parameter_list(formal_parameter_list object)
@@ -453,16 +453,6 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
       public Adapter casevariable_parameter_section(variable_parameter_section object)
       {
         return createvariable_parameter_sectionAdapter();
-      }
-      @Override
-      public Adapter casefunction_heading(function_heading object)
-      {
-        return createfunction_headingAdapter();
-      }
-      @Override
-      public Adapter casefunction_declaration(function_declaration object)
-      {
-        return createfunction_declarationAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -1462,31 +1452,31 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.procedure_declaration <em>procedure declaration</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.abstraction_declaration <em>abstraction declaration</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.procedure_declaration
+   * @see org.xtext.example.pascal.pascal.abstraction_declaration
    * @generated
    */
-  public Adapter createprocedure_declarationAdapter()
+  public Adapter createabstraction_declarationAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.procedure_heading <em>procedure heading</em>}'.
+   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.abstraction_heading <em>abstraction heading</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.procedure_heading
+   * @see org.xtext.example.pascal.pascal.abstraction_heading
    * @generated
    */
-  public Adapter createprocedure_headingAdapter()
+  public Adapter createabstraction_headingAdapter()
   {
     return null;
   }
@@ -1622,36 +1612,6 @@ public class PascalAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createvariable_parameter_sectionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.function_heading <em>function heading</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.function_heading
-   * @generated
-   */
-  public Adapter createfunction_headingAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.pascal.pascal.function_declaration <em>function declaration</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.pascal.pascal.function_declaration
-   * @generated
-   */
-  public Adapter createfunction_declarationAdapter()
   {
     return null;
   }

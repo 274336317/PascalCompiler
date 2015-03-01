@@ -13,7 +13,7 @@ public class Procedure extends Element {
 		this.forward = forward;
 	}
 	
-	public Procedure(String name, Set<Variable> parameters, boolean inherited, boolean forward) {
+	public Procedure(String name, boolean inherited,  Set<Variable> parameters, boolean forward) {
 		this(name, ElementType.PROCEDURE, inherited, parameters, forward);
 	}
 

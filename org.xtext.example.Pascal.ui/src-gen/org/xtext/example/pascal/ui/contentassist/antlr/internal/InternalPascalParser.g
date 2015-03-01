@@ -1944,6 +1944,10 @@ finally {
 
 
 
+
+
+
+
 // Entry rule entryRuleprocedure_declaration
 entryRuleprocedure_declaration 
 :
@@ -3003,6 +3007,8 @@ rule__Procedure_and_function_declaration_part__Alternatives_0
 finally {
 	restoreStackSize(stackSize);
 }
+
+
 
 rule__Procedure_declaration__Alternatives_2
     @init {

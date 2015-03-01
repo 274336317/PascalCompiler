@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 import org.xtext.example.pascal.pascal.PascalFactory;
 import org.xtext.example.pascal.pascal.PascalPackage;
+import org.xtext.example.pascal.pascal.abstraction_declaration;
+import org.xtext.example.pascal.pascal.abstraction_heading;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
 import org.xtext.example.pascal.pascal.case_label_list;
@@ -30,14 +32,11 @@ import org.xtext.example.pascal.pascal.factor;
 import org.xtext.example.pascal.pascal.for_statement;
 import org.xtext.example.pascal.pascal.formal_parameter_list;
 import org.xtext.example.pascal.pascal.formal_parameter_section;
-import org.xtext.example.pascal.pascal.function_declaration;
 import org.xtext.example.pascal.pascal.function_designator;
-import org.xtext.example.pascal.pascal.function_heading;
 import org.xtext.example.pascal.pascal.identifier_list;
 import org.xtext.example.pascal.pascal.if_statement;
 import org.xtext.example.pascal.pascal.parameter_type;
 import org.xtext.example.pascal.pascal.procedure_and_function_declaration_part;
-import org.xtext.example.pascal.pascal.procedure_declaration;
 import org.xtext.example.pascal.pascal.repeat_statement;
 import org.xtext.example.pascal.pascal.repetitive_statement;
 import org.xtext.example.pascal.pascal.simple_expression;
@@ -73,9 +72,9 @@ import org.xtext.example.pascal.validation.Variable;
 public class PascalValidator extends AbstractPascalValidator {
   private Map<EObject, Set<org.xtext.example.pascal.validation.Error>> errorList = new HashMap<EObject, Set<org.xtext.example.pascal.validation.Error>>();
   
-  private Map<EObject, Set<Variable>> variables = new HashMap<EObject, Set<Variable>>();
+  private Map<block, Set<Variable>> variables = new HashMap<block, Set<Variable>>();
   
-  private Map<EObject, Set<Procedure>> abstractions = new HashMap<EObject, Set<Procedure>>();
+  private Map<block, Set<Procedure>> abstractions = new HashMap<block, Set<Procedure>>();
   
   public <T extends Element> T search(final Set<T> elements, final T key) {
     for (final T t : elements) {
@@ -103,23 +102,20 @@ public class PascalValidator extends AbstractPascalValidator {
     return _xblockexpression;
   }
   
-  public boolean removeError(final EObject object, final ErrorType type) {
-    boolean _xblockexpression = false;
-    {
-      boolean _containsKey = this.errorList.containsKey(object);
-      boolean _not = (!_containsKey);
-      if (_not) {
-        HashSet<org.xtext.example.pascal.validation.Error> _hashSet = new HashSet<org.xtext.example.pascal.validation.Error>();
-        this.errorList.put(object, _hashSet);
-      }
-      Set<org.xtext.example.pascal.validation.Error> _get = this.errorList.get(object);
-      org.xtext.example.pascal.validation.Error _error = new org.xtext.example.pascal.validation.Error(type);
-      _xblockexpression = _get.remove(_error);
+  public void removeError(final EObject object, final ErrorType type) {
+    boolean _containsKey = this.errorList.containsKey(object);
+    boolean _not = (!_containsKey);
+    if (_not) {
+      HashSet<org.xtext.example.pascal.validation.Error> _hashSet = new HashSet<org.xtext.example.pascal.validation.Error>();
+      this.errorList.put(object, _hashSet);
     }
-    return _xblockexpression;
+    Set<org.xtext.example.pascal.validation.Error> _get = this.errorList.get(object);
+    org.xtext.example.pascal.validation.Error _error = new org.xtext.example.pascal.validation.Error(type);
+    _get.remove(_error);
+    this.showError(object);
   }
   
-  public <T extends Element> Set<T> clear(final block b, final ElementType type, final Map<EObject, Set<T>> container) {
+  public <T extends Element> Set<T> clear(final block b, final ElementType type, final Map<block, Set<T>> container) {
     Set<T> _xifexpression = null;
     boolean _containsKey = container.containsKey(b);
     boolean _not = (!_containsKey);
@@ -151,70 +147,62 @@ public class PascalValidator extends AbstractPascalValidator {
     return _xifexpression;
   }
   
-  public <T extends Element> void inheritElement(final block b, final T element, final Map<EObject, Set<T>> container) {
+  public <T extends Element> boolean addElementToAbstraction(final abstraction_declaration decl, final T element, final Map<block, Set<T>> container) {
+    boolean _xblockexpression = false;
+    {
+      block _block = decl.getBlock();
+      boolean _equals = Objects.equal(_block, null);
+      if (_equals) {
+        PascalFactory _pascalFactory = PascalPackage.eINSTANCE.getPascalFactory();
+        block _createblock = _pascalFactory.createblock();
+        decl.setBlock(_createblock);
+      }
+      block subblock = decl.getBlock();
+      boolean _containsKey = container.containsKey(subblock);
+      boolean _not = (!_containsKey);
+      if (_not) {
+        HashSet<T> _hashSet = new HashSet<T>();
+        container.put(subblock, _hashSet);
+      }
+      Set<T> _get = container.get(subblock);
+      _xblockexpression = _get.add(element);
+    }
+    return _xblockexpression;
+  }
+  
+  public <T extends Element> void inheritElement(final block b, final T element, final Map<block, Set<T>> container) {
     procedure_and_function_declaration_part _abstraction = b.getAbstraction();
     boolean _notEquals = (!Objects.equal(_abstraction, null));
     if (_notEquals) {
       procedure_and_function_declaration_part _abstraction_1 = b.getAbstraction();
-      EList<procedure_declaration> _procedures = _abstraction_1.getProcedures();
+      EList<abstraction_heading> _procedures = _abstraction_1.getProcedures();
       boolean _notEquals_1 = (!Objects.equal(_procedures, null));
       if (_notEquals_1) {
         procedure_and_function_declaration_part _abstraction_2 = b.getAbstraction();
-        EList<procedure_declaration> _procedures_1 = _abstraction_2.getProcedures();
-        for (final procedure_declaration procedure : _procedures_1) {
-          {
-            block _block = procedure.getBlock();
-            boolean _equals = Objects.equal(_block, null);
-            if (_equals) {
-              PascalFactory _pascalFactory = PascalPackage.eINSTANCE.getPascalFactory();
-              block _createblock = _pascalFactory.createblock();
-              procedure.setBlock(_createblock);
-            }
-            block subblock = procedure.getBlock();
-            boolean _containsKey = container.containsKey(subblock);
-            boolean _not = (!_containsKey);
-            if (_not) {
-              HashSet<T> _hashSet = new HashSet<T>();
-              container.put(subblock, _hashSet);
-            }
-            Set<T> _get = container.get(subblock);
-            _get.add(element);
-          }
+        EList<abstraction_heading> _procedures_1 = _abstraction_2.getProcedures();
+        for (final abstraction_declaration procedure : _procedures_1) {
+          this.<T>addElementToAbstraction(procedure, element, container);
         }
       }
       procedure_and_function_declaration_part _abstraction_3 = b.getAbstraction();
-      EList<function_declaration> _functions = _abstraction_3.getFunctions();
+      EList<abstraction_declaration> _functions = _abstraction_3.getFunctions();
       boolean _notEquals_2 = (!Objects.equal(_functions, null));
       if (_notEquals_2) {
         procedure_and_function_declaration_part _abstraction_4 = b.getAbstraction();
-        EList<function_declaration> _functions_1 = _abstraction_4.getFunctions();
-        for (final function_declaration function : _functions_1) {
+        EList<abstraction_declaration> _functions_1 = _abstraction_4.getFunctions();
+        for (final abstraction_declaration function : _functions_1) {
           {
-            block _block = function.getBlock();
-            boolean _equals = Objects.equal(_block, null);
+            this.<T>addElementToAbstraction(function, element, container);
+            boolean _equals = Objects.equal(container, this.variables);
             if (_equals) {
-              PascalFactory _pascalFactory = PascalPackage.eINSTANCE.getPascalFactory();
-              block _createblock = _pascalFactory.createblock();
-              function.setBlock(_createblock);
-            }
-            block subblock = function.getBlock();
-            boolean _containsKey = container.containsKey(subblock);
-            boolean _not = (!_containsKey);
-            if (_not) {
-              HashSet<T> _hashSet = new HashSet<T>();
-              container.put(subblock, _hashSet);
-            }
-            Set<T> _get = container.get(subblock);
-            _get.add(element);
-            boolean _equals_1 = container.equals(this.variables);
-            if (_equals_1) {
-              Set<Variable> _get_1 = this.variables.get(subblock);
-              function_heading _heading = function.getHeading();
+              block _block = function.getBlock();
+              Set<Variable> _get = this.variables.get(_block);
+              abstraction_heading _heading = function.getHeading();
               String _name = _heading.getName();
-              function_heading _heading_1 = function.getHeading();
+              abstraction_heading _heading_1 = function.getHeading();
               String _returnType = _heading_1.getReturnType();
               Variable _variable = new Variable(_name, _returnType, false, ElementType.FUNCTION_RETURN);
-              _get_1.add(_variable);
+              _get.add(_variable);
             }
           }
         }
@@ -222,7 +210,7 @@ public class PascalValidator extends AbstractPascalValidator {
     }
   }
   
-  public <T extends Element> Boolean addElement(final block b, final T element, final Map<EObject, Set<T>> container, final EObject errorSection, final EStructuralFeature errorFeature) {
+  public <T extends Element> Boolean addElement(final block b, final T element, final Map<block, Set<T>> container, final EObject errorSection, final EStructuralFeature errorFeature) {
     boolean _xblockexpression = false;
     {
       Set<T> _get = container.get(b);
@@ -249,7 +237,11 @@ public class PascalValidator extends AbstractPascalValidator {
           if (_equals_1) {
             _xifexpression_2 = this.insertError(errorSection, "Identifier reserved for function return.", ErrorType.REDECLARATION, errorFeature);
           } else {
-            _xifexpression_2 = this.insertError(errorSection, (("Identifier is already being used by a " + elementFound.type) + "."), ErrorType.REDECLARATION, errorFeature);
+            String _string = elementFound.type.toString();
+            String _lowerCase = _string.toLowerCase();
+            String _plus_1 = ("Identifier is already being used by a " + _lowerCase);
+            String _plus_2 = (_plus_1 + ".");
+            _xifexpression_2 = this.insertError(errorSection, _plus_2, ErrorType.REDECLARATION, errorFeature);
           }
           _xifexpression_1 = _xifexpression_2;
         }
@@ -270,14 +262,12 @@ public class PascalValidator extends AbstractPascalValidator {
     return Boolean.valueOf(_xblockexpression);
   }
   
-  public HashSet<Variable> getParameters(final block b, final function_declaration function) {
+  public HashSet<Variable> getParameters(final block b, final abstraction_heading heading) {
     HashSet<Variable> parameters = new HashSet<Variable>();
-    function_heading _heading = function.getHeading();
-    formal_parameter_list _parameters = _heading.getParameters();
+    formal_parameter_list _parameters = heading.getParameters();
     boolean _notEquals = (!Objects.equal(_parameters, null));
     if (_notEquals) {
-      function_heading _heading_1 = function.getHeading();
-      formal_parameter_list list = _heading_1.getParameters();
+      formal_parameter_list list = heading.getParameters();
       EList<formal_parameter_section> _parameters_1 = list.getParameters();
       boolean _notEquals_1 = (!Objects.equal(_parameters_1, null));
       if (_notEquals_1) {
@@ -323,58 +313,65 @@ public class PascalValidator extends AbstractPascalValidator {
     return parameters;
   }
   
-  public Boolean addFunction(final block b, final function_declaration funct) {
+  public Boolean addAbstraction(final block b, final abstraction_declaration decl, final abstraction_heading heading) {
     Boolean _xblockexpression = null;
     {
-      function_heading _heading = funct.getHeading();
-      String name = _heading.getName();
-      function_heading _heading_1 = funct.getHeading();
-      String returnType = _heading_1.getReturnType();
-      block _block = funct.getBlock();
+      String name = heading.getName();
+      block _block = decl.getBlock();
       boolean _equals = Objects.equal(_block, null);
       if (_equals) {
         PascalFactory _pascalFactory = PascalPackage.eINSTANCE.getPascalFactory();
         block _createblock = _pascalFactory.createblock();
-        funct.setBlock(_createblock);
+        decl.setBlock(_createblock);
       }
-      block _block_1 = funct.getBlock();
+      block _block_1 = decl.getBlock();
       this.<Variable>clear(_block_1, ElementType.PARAMETER, this.variables);
-      block _block_2 = funct.getBlock();
-      HashSet<Variable> parameters = this.getParameters(_block_2, funct);
-      boolean forward = funct.isForward();
-      Function _function = new Function(name, false, parameters, forward, returnType);
-      function_heading _heading_2 = funct.getHeading();
-      _xblockexpression = this.<Procedure>addElement(b, _function, this.abstractions, _heading_2, PascalPackage.Literals.FUNCTION_HEADING__NAME);
+      block _block_2 = decl.getBlock();
+      HashSet<Variable> parameters = this.getParameters(_block_2, heading);
+      boolean forward = decl.isForward();
+      String returnType = heading.getReturnType();
+      Boolean _xifexpression = null;
+      boolean _notEquals = (!Objects.equal(returnType, null));
+      if (_notEquals) {
+        Function _function = new Function(name, false, parameters, forward, returnType);
+        _xifexpression = this.<Procedure>addElement(b, _function, this.abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME);
+      } else {
+        Procedure _procedure = new Procedure(name, false, parameters, forward);
+        _xifexpression = this.<Procedure>addElement(b, _procedure, this.abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME);
+      }
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }
   
-  @Check
   public void checkAbstractionRedeclaration(final block b) {
     procedure_and_function_declaration_part _abstraction = b.getAbstraction();
     boolean _notEquals = (!Objects.equal(_abstraction, null));
     if (_notEquals) {
+      this.<Procedure>clear(b, ElementType.FUNCTION, this.abstractions);
+      this.<Procedure>clear(b, ElementType.PROCEDURE, this.abstractions);
       procedure_and_function_declaration_part abstraction = b.getAbstraction();
-      EList<function_declaration> _functions = abstraction.getFunctions();
+      EList<abstraction_declaration> _functions = abstraction.getFunctions();
       boolean _notEquals_1 = (!Objects.equal(_functions, null));
       if (_notEquals_1) {
-        this.<Procedure>clear(b, ElementType.FUNCTION, this.abstractions);
-        EList<function_declaration> _functions_1 = abstraction.getFunctions();
-        for (final function_declaration function : _functions_1) {
-          this.addFunction(b, function);
+        EList<abstraction_declaration> _functions_1 = abstraction.getFunctions();
+        for (final abstraction_declaration function : _functions_1) {
+          abstraction_heading _heading = function.getHeading();
+          this.addAbstraction(b, function, _heading);
         }
       }
-      EList<procedure_declaration> _procedures = abstraction.getProcedures();
+      EList<abstraction_heading> _procedures = abstraction.getProcedures();
       boolean _notEquals_2 = (!Objects.equal(_procedures, null));
       if (_notEquals_2) {
-        EList<procedure_declaration> _procedures_1 = abstraction.getProcedures();
-        for (final procedure_declaration procedure : _procedures_1) {
+        EList<abstraction_heading> _procedures_1 = abstraction.getProcedures();
+        for (final abstraction_declaration procedure : _procedures_1) {
+          abstraction_heading _heading_1 = procedure.getHeading();
+          this.addAbstraction(b, procedure, _heading_1);
         }
       }
     }
   }
   
-  @Check
   public void checkConstantRedeclaration(final block b) {
     this.<Variable>clear(b, ElementType.CONSTANT, this.variables);
     constant_definition_part _constant = b.getConstant();
@@ -392,7 +389,6 @@ public class PascalValidator extends AbstractPascalValidator {
     }
   }
   
-  @Check
   public void checkVariableRedeclaration(final block b) {
     this.<Variable>clear(b, ElementType.VARIABLE, this.variables);
     variable_declaration_part _variable = b.getVariable();
@@ -413,7 +409,7 @@ public class PascalValidator extends AbstractPascalValidator {
     }
   }
   
-  public boolean checkVariable(final block b, final variable v, final boolean isAssignment) {
+  public Boolean checkVariable(final block b, final variable v, final boolean isAssignment) {
     boolean _xblockexpression = false;
     {
       Set<Variable> _get = this.variables.get(b);
@@ -435,7 +431,7 @@ public class PascalValidator extends AbstractPascalValidator {
             if (_equals_1) {
               _xifexpression_2 = this.insertError(v, "Constants cannot be assigned.", ErrorType.CONSTANT_ASSIGNMENT, PascalPackage.Literals.VARIABLE__NAME);
             } else {
-              _xifexpression_2 = this.removeError(v, ErrorType.CONSTANT_ASSIGNMENT);
+              this.removeError(v, ErrorType.CONSTANT_ASSIGNMENT);
             }
             _xifexpression_1 = _xifexpression_2;
           }
@@ -445,7 +441,7 @@ public class PascalValidator extends AbstractPascalValidator {
       }
       _xblockexpression = _xifexpression;
     }
-    return _xblockexpression;
+    return Boolean.valueOf(_xblockexpression);
   }
   
   public Object checkExpression(final block b, final expression expr) {
@@ -483,7 +479,7 @@ public class PascalValidator extends AbstractPascalValidator {
     return null;
   }
   
-  public boolean checkConstant(final block b, final constant const_) {
+  public Boolean checkConstant(final block b, final constant const_) {
     boolean _xifexpression = false;
     String _name = const_.getName();
     boolean _notEquals = (!Objects.equal(_name, null));
@@ -507,7 +503,7 @@ public class PascalValidator extends AbstractPascalValidator {
             if (_notEquals_1) {
               _xifexpression_2 = this.insertError(const_, "Only constants are allowed.", ErrorType.CONSTANT_ONLY, PascalPackage.Literals.CONSTANT__NAME);
             } else {
-              _xifexpression_2 = this.removeError(const_, ErrorType.CONSTANT_ONLY);
+              this.removeError(const_, ErrorType.CONSTANT_ONLY);
             }
             _xblockexpression_1 = _xifexpression_2;
           }
@@ -517,7 +513,7 @@ public class PascalValidator extends AbstractPascalValidator {
       }
       _xifexpression = _xblockexpression;
     }
-    return _xifexpression;
+    return Boolean.valueOf(_xifexpression);
   }
   
   public Object checkStatement(final block b, final statement stmt) {
@@ -525,14 +521,14 @@ public class PascalValidator extends AbstractPascalValidator {
     simple_statement _simple = stmt.getSimple();
     boolean _notEquals = (!Objects.equal(_simple, null));
     if (_notEquals) {
-      boolean _xblockexpression = false;
+      Boolean _xblockexpression = null;
       {
         simple_statement simple = stmt.getSimple();
-        boolean _xifexpression_1 = false;
+        Boolean _xifexpression_1 = null;
         assignment_statement _assignment = simple.getAssignment();
         boolean _notEquals_1 = (!Objects.equal(_assignment, null));
         if (_notEquals_1) {
-          boolean _xblockexpression_1 = false;
+          Boolean _xblockexpression_1 = null;
           {
             assignment_statement assignment = simple.getAssignment();
             variable variable = assignment.getVariable();
@@ -557,7 +553,7 @@ public class PascalValidator extends AbstractPascalValidator {
         }
         _xblockexpression = _xifexpression_1;
       }
-      _xifexpression = Boolean.valueOf(_xblockexpression);
+      _xifexpression = _xblockexpression;
     } else {
       Object _xifexpression_1 = null;
       structured_statement _structured = stmt.getStructured();
@@ -729,11 +725,18 @@ public class PascalValidator extends AbstractPascalValidator {
     }
   }
   
-  @Check
   public void checkBlock(final block b) {
     statement_part _statement = b.getStatement();
     statement_sequence _sequence = _statement.getSequence();
     this.checkStatements(b, _sequence);
+  }
+  
+  @Check
+  public void runCheckes(final block b) {
+    this.checkAbstractionRedeclaration(b);
+    this.checkConstantRedeclaration(b);
+    this.checkVariableRedeclaration(b);
+    this.checkBlock(b);
   }
   
   @Check
@@ -744,7 +747,7 @@ public class PascalValidator extends AbstractPascalValidator {
       for (final org.xtext.example.pascal.validation.Error err : _get) {
         String _message = err.getMessage();
         EStructuralFeature _feature = err.getFeature();
-        this.error(_message, _feature);
+        this.error(_message, obj, _feature, (-1));
       }
     }
   }

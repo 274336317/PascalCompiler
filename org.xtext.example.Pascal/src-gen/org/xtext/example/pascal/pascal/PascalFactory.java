@@ -608,22 +608,22 @@ public interface PascalFactory extends EFactory
   procedure_and_function_declaration_part createprocedure_and_function_declaration_part();
 
   /**
-   * Returns a new object of class '<em>procedure declaration</em>'.
+   * Returns a new object of class '<em>abstraction declaration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>procedure declaration</em>'.
+   * @return a new object of class '<em>abstraction declaration</em>'.
    * @generated
    */
-  procedure_declaration createprocedure_declaration();
+  abstraction_declaration createabstraction_declaration();
 
   /**
-   * Returns a new object of class '<em>procedure heading</em>'.
+   * Returns a new object of class '<em>abstraction heading</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>procedure heading</em>'.
+   * @return a new object of class '<em>abstraction heading</em>'.
    * @generated
    */
-  procedure_heading createprocedure_heading();
+  abstraction_heading createabstraction_heading();
 
   /**
    * Returns a new object of class '<em>formal parameter list</em>'.
@@ -705,24 +705,6 @@ public interface PascalFactory extends EFactory
    * @generated
    */
   variable_parameter_section createvariable_parameter_section();
-
-  /**
-   * Returns a new object of class '<em>function heading</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>function heading</em>'.
-   * @generated
-   */
-  function_heading createfunction_heading();
-
-  /**
-   * Returns a new object of class '<em>function declaration</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>function declaration</em>'.
-   * @generated
-   */
-  function_declaration createfunction_declaration();
 
   /**
    * Returns the package supported by this factory.

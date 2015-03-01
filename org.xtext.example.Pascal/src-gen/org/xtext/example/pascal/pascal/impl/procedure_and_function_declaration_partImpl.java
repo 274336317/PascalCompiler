@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
-import org.xtext.example.pascal.pascal.function_declaration;
+import org.xtext.example.pascal.pascal.abstraction_declaration;
+import org.xtext.example.pascal.pascal.abstraction_heading;
 import org.xtext.example.pascal.pascal.procedure_and_function_declaration_part;
-import org.xtext.example.pascal.pascal.procedure_declaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public class procedure_and_function_declaration_partImpl extends MinimalEObjectI
    * @generated
    * @ordered
    */
-  protected EList<procedure_declaration> procedures;
+  protected EList<abstraction_heading> procedures;
 
   /**
    * The cached value of the '{@link #getFunctions() <em>Functions</em>}' containment reference list.
@@ -55,7 +55,7 @@ public class procedure_and_function_declaration_partImpl extends MinimalEObjectI
    * @generated
    * @ordered
    */
-  protected EList<function_declaration> functions;
+  protected EList<abstraction_declaration> functions;
 
   /**
    * <!-- begin-user-doc -->
@@ -83,11 +83,11 @@ public class procedure_and_function_declaration_partImpl extends MinimalEObjectI
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<procedure_declaration> getProcedures()
+  public EList<abstraction_heading> getProcedures()
   {
     if (procedures == null)
     {
-      procedures = new EObjectContainmentEList<procedure_declaration>(procedure_declaration.class, this, PascalPackage.PROCEDURE_AND_FUNCTION_DECLARATION_PART__PROCEDURES);
+      procedures = new EObjectContainmentEList<abstraction_heading>(abstraction_heading.class, this, PascalPackage.PROCEDURE_AND_FUNCTION_DECLARATION_PART__PROCEDURES);
     }
     return procedures;
   }
@@ -97,11 +97,11 @@ public class procedure_and_function_declaration_partImpl extends MinimalEObjectI
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<function_declaration> getFunctions()
+  public EList<abstraction_declaration> getFunctions()
   {
     if (functions == null)
     {
-      functions = new EObjectContainmentEList<function_declaration>(function_declaration.class, this, PascalPackage.PROCEDURE_AND_FUNCTION_DECLARATION_PART__FUNCTIONS);
+      functions = new EObjectContainmentEList<abstraction_declaration>(abstraction_declaration.class, this, PascalPackage.PROCEDURE_AND_FUNCTION_DECLARATION_PART__FUNCTIONS);
     }
     return functions;
   }
@@ -155,11 +155,11 @@ public class procedure_and_function_declaration_partImpl extends MinimalEObjectI
     {
       case PascalPackage.PROCEDURE_AND_FUNCTION_DECLARATION_PART__PROCEDURES:
         getProcedures().clear();
-        getProcedures().addAll((Collection<? extends procedure_declaration>)newValue);
+        getProcedures().addAll((Collection<? extends abstraction_heading>)newValue);
         return;
       case PascalPackage.PROCEDURE_AND_FUNCTION_DECLARATION_PART__FUNCTIONS:
         getFunctions().clear();
-        getFunctions().addAll((Collection<? extends function_declaration>)newValue);
+        getFunctions().addAll((Collection<? extends abstraction_declaration>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

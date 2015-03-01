@@ -12,9 +12,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.xtext.example.pascal.pascal.PascalPackage;
+import org.xtext.example.pascal.pascal.abstraction_heading;
 import org.xtext.example.pascal.pascal.formal_parameter_section;
-import org.xtext.example.pascal.pascal.function_heading;
-import org.xtext.example.pascal.pascal.procedure_heading;
 import org.xtext.example.pascal.pascal.value_parameter_section;
 import org.xtext.example.pascal.pascal.variable_parameter_section;
 
@@ -64,7 +63,7 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
    * @generated
    * @ordered
    */
-  protected procedure_heading procedure;
+  protected abstraction_heading procedure;
 
   /**
    * The cached value of the '{@link #getFunction() <em>Function</em>}' containment reference.
@@ -74,7 +73,7 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
    * @generated
    * @ordered
    */
-  protected function_heading function;
+  protected abstraction_heading function;
 
   /**
    * <!-- begin-user-doc -->
@@ -198,7 +197,7 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public procedure_heading getProcedure()
+  public abstraction_heading getProcedure()
   {
     return procedure;
   }
@@ -208,9 +207,9 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetProcedure(procedure_heading newProcedure, NotificationChain msgs)
+  public NotificationChain basicSetProcedure(abstraction_heading newProcedure, NotificationChain msgs)
   {
-    procedure_heading oldProcedure = procedure;
+    abstraction_heading oldProcedure = procedure;
     procedure = newProcedure;
     if (eNotificationRequired())
     {
@@ -225,7 +224,7 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProcedure(procedure_heading newProcedure)
+  public void setProcedure(abstraction_heading newProcedure)
   {
     if (newProcedure != procedure)
     {
@@ -246,7 +245,7 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public function_heading getFunction()
+  public abstraction_heading getFunction()
   {
     return function;
   }
@@ -256,9 +255,9 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetFunction(function_heading newFunction, NotificationChain msgs)
+  public NotificationChain basicSetFunction(abstraction_heading newFunction, NotificationChain msgs)
   {
-    function_heading oldFunction = function;
+    abstraction_heading oldFunction = function;
     function = newFunction;
     if (eNotificationRequired())
     {
@@ -273,7 +272,7 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setFunction(function_heading newFunction)
+  public void setFunction(abstraction_heading newFunction)
   {
     if (newFunction != function)
     {
@@ -350,10 +349,10 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
         setVariable((variable_parameter_section)newValue);
         return;
       case PascalPackage.FORMAL_PARAMETER_SECTION__PROCEDURE:
-        setProcedure((procedure_heading)newValue);
+        setProcedure((abstraction_heading)newValue);
         return;
       case PascalPackage.FORMAL_PARAMETER_SECTION__FUNCTION:
-        setFunction((function_heading)newValue);
+        setFunction((abstraction_heading)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -376,10 +375,10 @@ public class formal_parameter_sectionImpl extends MinimalEObjectImpl.Container i
         setVariable((variable_parameter_section)null);
         return;
       case PascalPackage.FORMAL_PARAMETER_SECTION__PROCEDURE:
-        setProcedure((procedure_heading)null);
+        setProcedure((abstraction_heading)null);
         return;
       case PascalPackage.FORMAL_PARAMETER_SECTION__FUNCTION:
-        setFunction((function_heading)null);
+        setFunction((abstraction_heading)null);
         return;
     }
     super.eUnset(featureID);

@@ -267,11 +267,19 @@ procedure_and_function_declaration_part:
 	( ( procedures+=procedure_declaration | functions+=function_declaration  ) ";" ) +
 ;
 
-procedure_declaration:
+abstraction_declaration:
+	procedure_declaration | function_declaration	
+;
+
+abstraction_heading:
+	procedure_heading | function_heading 
+;
+
+procedure_declaration returns abstraction_heading:
 	heading=procedure_heading ";" ( block=block | forward?="forward" )
 ;
 
-procedure_heading:
+procedure_heading returns abstraction_heading: 
 	"procedure" name=ID ( parameters=formal_parameter_list ) ?	
 ;
 
@@ -311,11 +319,11 @@ variable_parameter_section:
 	"var" identifiers=identifier_list ":" type=parameter_type	
 ;
 
-function_heading:
+function_heading returns abstraction_heading: 
 	"function" name=ID ( parameters=formal_parameter_list ) ? ":" returnType=ID
 ;
  
-function_declaration:
+function_declaration returns abstraction_declaration:
 	heading=function_heading ";" ( block=block | forward?="forward") 
 ;
  

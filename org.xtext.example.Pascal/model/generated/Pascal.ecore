@@ -341,21 +341,22 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="procedure_and_function_declaration_part">
     <eStructuralFeatures xsi:type="ecore:EReference" name="procedures" upperBound="-1"
-        eType="#//procedure_declaration" containment="true"/>
+        eType="#//abstraction_heading" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="functions" upperBound="-1"
-        eType="#//function_declaration" containment="true"/>
+        eType="#//abstraction_declaration" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="procedure_declaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="heading" eType="#//procedure_heading"
+  <eClassifiers xsi:type="ecore:EClass" name="abstraction_declaration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="heading" eType="#//abstraction_heading"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//block"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="forward" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="procedure_heading">
+  <eClassifiers xsi:type="ecore:EClass" name="abstraction_heading" eSuperTypes="#//abstraction_declaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" eType="#//formal_parameter_list"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="formal_parameter_list">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
@@ -366,9 +367,9 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//variable_parameter_section"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="procedure" eType="#//procedure_heading"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="procedure" eType="#//abstraction_heading"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//function_heading"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="function" eType="#//abstraction_heading"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="value_parameter_section">
@@ -401,18 +402,5 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//parameter_type"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="function_heading">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" eType="#//formal_parameter_list"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="function_declaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="heading" eType="#//function_heading"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//block"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forward" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>

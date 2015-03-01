@@ -27,7 +27,7 @@ public interface procedure_and_function_declaration_part extends EObject
 {
   /**
    * Returns the value of the '<em><b>Procedures</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.pascal.pascal.procedure_declaration}.
+   * The list contents are of type {@link org.xtext.example.pascal.pascal.abstraction_heading}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Procedures</em>' containment reference list isn't clear,
@@ -39,11 +39,11 @@ public interface procedure_and_function_declaration_part extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<procedure_declaration> getProcedures();
+  EList<abstraction_heading> getProcedures();
 
   /**
    * Returns the value of the '<em><b>Functions</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.pascal.pascal.function_declaration}.
+   * The list contents are of type {@link org.xtext.example.pascal.pascal.abstraction_declaration}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Functions</em>' containment reference list isn't clear,
@@ -55,6 +55,6 @@ public interface procedure_and_function_declaration_part extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<function_declaration> getFunctions();
+  EList<abstraction_declaration> getFunctions();
 
 } // procedure_and_function_declaration_part

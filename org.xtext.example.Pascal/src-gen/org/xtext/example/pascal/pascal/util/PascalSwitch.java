@@ -535,17 +535,18 @@ public class PascalSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PascalPackage.PROCEDURE_DECLARATION:
+      case PascalPackage.ABSTRACTION_DECLARATION:
       {
-        procedure_declaration procedure_declaration = (procedure_declaration)theEObject;
-        T result = caseprocedure_declaration(procedure_declaration);
+        abstraction_declaration abstraction_declaration = (abstraction_declaration)theEObject;
+        T result = caseabstraction_declaration(abstraction_declaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case PascalPackage.PROCEDURE_HEADING:
+      case PascalPackage.ABSTRACTION_HEADING:
       {
-        procedure_heading procedure_heading = (procedure_heading)theEObject;
-        T result = caseprocedure_heading(procedure_heading);
+        abstraction_heading abstraction_heading = (abstraction_heading)theEObject;
+        T result = caseabstraction_heading(abstraction_heading);
+        if (result == null) result = caseabstraction_declaration(abstraction_heading);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -614,20 +615,6 @@ public class PascalSwitch<T> extends Switch<T>
       {
         variable_parameter_section variable_parameter_section = (variable_parameter_section)theEObject;
         T result = casevariable_parameter_section(variable_parameter_section);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PascalPackage.FUNCTION_HEADING:
-      {
-        function_heading function_heading = (function_heading)theEObject;
-        T result = casefunction_heading(function_heading);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case PascalPackage.FUNCTION_DECLARATION:
-      {
-        function_declaration function_declaration = (function_declaration)theEObject;
-        T result = casefunction_declaration(function_declaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1676,33 +1663,33 @@ public class PascalSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>procedure declaration</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>abstraction declaration</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>procedure declaration</em>'.
+   * @return the result of interpreting the object as an instance of '<em>abstraction declaration</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseprocedure_declaration(procedure_declaration object)
+  public T caseabstraction_declaration(abstraction_declaration object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>procedure heading</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>abstraction heading</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>procedure heading</em>'.
+   * @return the result of interpreting the object as an instance of '<em>abstraction heading</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseprocedure_heading(procedure_heading object)
+  public T caseabstraction_heading(abstraction_heading object)
   {
     return null;
   }
@@ -1847,38 +1834,6 @@ public class PascalSwitch<T> extends Switch<T>
    * @generated
    */
   public T casevariable_parameter_section(variable_parameter_section object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>function heading</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>function heading</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casefunction_heading(function_heading object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>function declaration</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>function declaration</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casefunction_declaration(function_declaration object)
   {
     return null;
   }

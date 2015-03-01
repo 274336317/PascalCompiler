@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.pascal.pascal.PascalFactory;
 import org.xtext.example.pascal.pascal.PascalPackage;
+import org.xtext.example.pascal.pascal.abstraction_declaration;
+import org.xtext.example.pascal.pascal.abstraction_heading;
 import org.xtext.example.pascal.pascal.array_type;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
@@ -35,9 +37,7 @@ import org.xtext.example.pascal.pascal.fixed_part;
 import org.xtext.example.pascal.pascal.for_statement;
 import org.xtext.example.pascal.pascal.formal_parameter_list;
 import org.xtext.example.pascal.pascal.formal_parameter_section;
-import org.xtext.example.pascal.pascal.function_declaration;
 import org.xtext.example.pascal.pascal.function_designator;
-import org.xtext.example.pascal.pascal.function_heading;
 import org.xtext.example.pascal.pascal.goto_statement;
 import org.xtext.example.pascal.pascal.identifier_list;
 import org.xtext.example.pascal.pascal.if_statement;
@@ -50,8 +50,6 @@ import org.xtext.example.pascal.pascal.parameter_type;
 import org.xtext.example.pascal.pascal.pascal;
 import org.xtext.example.pascal.pascal.pointer_type;
 import org.xtext.example.pascal.pascal.procedure_and_function_declaration_part;
-import org.xtext.example.pascal.pascal.procedure_declaration;
-import org.xtext.example.pascal.pascal.procedure_heading;
 import org.xtext.example.pascal.pascal.program;
 import org.xtext.example.pascal.pascal.program_heading_block;
 import org.xtext.example.pascal.pascal.record_section;
@@ -558,14 +556,14 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass procedure_declarationEClass = null;
+  private EClass abstraction_declarationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass procedure_headingEClass = null;
+  private EClass abstraction_headingEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -629,20 +627,6 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * @generated
    */
   private EClass variable_parameter_sectionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass function_headingEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass function_declarationEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -2582,9 +2566,9 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getprocedure_declaration()
+  public EClass getabstraction_declaration()
   {
-    return procedure_declarationEClass;
+    return abstraction_declarationEClass;
   }
 
   /**
@@ -2592,9 +2576,9 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getprocedure_declaration_Heading()
+  public EReference getabstraction_declaration_Heading()
   {
-    return (EReference)procedure_declarationEClass.getEStructuralFeatures().get(0);
+    return (EReference)abstraction_declarationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2602,9 +2586,9 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getprocedure_declaration_Block()
+  public EReference getabstraction_declaration_Block()
   {
-    return (EReference)procedure_declarationEClass.getEStructuralFeatures().get(1);
+    return (EReference)abstraction_declarationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2612,9 +2596,9 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getprocedure_declaration_Forward()
+  public EAttribute getabstraction_declaration_Forward()
   {
-    return (EAttribute)procedure_declarationEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)abstraction_declarationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2622,9 +2606,9 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getprocedure_heading()
+  public EClass getabstraction_heading()
   {
-    return procedure_headingEClass;
+    return abstraction_headingEClass;
   }
 
   /**
@@ -2632,9 +2616,9 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getprocedure_heading_Name()
+  public EAttribute getabstraction_heading_Name()
   {
-    return (EAttribute)procedure_headingEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)abstraction_headingEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2642,9 +2626,19 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getprocedure_heading_Parameters()
+  public EReference getabstraction_heading_Parameters()
   {
-    return (EReference)procedure_headingEClass.getEStructuralFeatures().get(1);
+    return (EReference)abstraction_headingEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getabstraction_heading_ReturnType()
+  {
+    return (EAttribute)abstraction_headingEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2895,86 +2889,6 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
   public EReference getvariable_parameter_section_Type()
   {
     return (EReference)variable_parameter_sectionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getfunction_heading()
-  {
-    return function_headingEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getfunction_heading_Name()
-  {
-    return (EAttribute)function_headingEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getfunction_heading_Parameters()
-  {
-    return (EReference)function_headingEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getfunction_heading_ReturnType()
-  {
-    return (EAttribute)function_headingEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getfunction_declaration()
-  {
-    return function_declarationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getfunction_declaration_Heading()
-  {
-    return (EReference)function_declarationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getfunction_declaration_Block()
-  {
-    return (EReference)function_declarationEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getfunction_declaration_Forward()
-  {
-    return (EAttribute)function_declarationEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -3259,14 +3173,15 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     createEReference(procedure_and_function_declaration_partEClass, PROCEDURE_AND_FUNCTION_DECLARATION_PART__PROCEDURES);
     createEReference(procedure_and_function_declaration_partEClass, PROCEDURE_AND_FUNCTION_DECLARATION_PART__FUNCTIONS);
 
-    procedure_declarationEClass = createEClass(PROCEDURE_DECLARATION);
-    createEReference(procedure_declarationEClass, PROCEDURE_DECLARATION__HEADING);
-    createEReference(procedure_declarationEClass, PROCEDURE_DECLARATION__BLOCK);
-    createEAttribute(procedure_declarationEClass, PROCEDURE_DECLARATION__FORWARD);
+    abstraction_declarationEClass = createEClass(ABSTRACTION_DECLARATION);
+    createEReference(abstraction_declarationEClass, ABSTRACTION_DECLARATION__HEADING);
+    createEReference(abstraction_declarationEClass, ABSTRACTION_DECLARATION__BLOCK);
+    createEAttribute(abstraction_declarationEClass, ABSTRACTION_DECLARATION__FORWARD);
 
-    procedure_headingEClass = createEClass(PROCEDURE_HEADING);
-    createEAttribute(procedure_headingEClass, PROCEDURE_HEADING__NAME);
-    createEReference(procedure_headingEClass, PROCEDURE_HEADING__PARAMETERS);
+    abstraction_headingEClass = createEClass(ABSTRACTION_HEADING);
+    createEAttribute(abstraction_headingEClass, ABSTRACTION_HEADING__NAME);
+    createEReference(abstraction_headingEClass, ABSTRACTION_HEADING__PARAMETERS);
+    createEAttribute(abstraction_headingEClass, ABSTRACTION_HEADING__RETURN_TYPE);
 
     formal_parameter_listEClass = createEClass(FORMAL_PARAMETER_LIST);
     createEReference(formal_parameter_listEClass, FORMAL_PARAMETER_LIST__PARAMETERS);
@@ -3301,16 +3216,6 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     variable_parameter_sectionEClass = createEClass(VARIABLE_PARAMETER_SECTION);
     createEReference(variable_parameter_sectionEClass, VARIABLE_PARAMETER_SECTION__IDENTIFIERS);
     createEReference(variable_parameter_sectionEClass, VARIABLE_PARAMETER_SECTION__TYPE);
-
-    function_headingEClass = createEClass(FUNCTION_HEADING);
-    createEAttribute(function_headingEClass, FUNCTION_HEADING__NAME);
-    createEReference(function_headingEClass, FUNCTION_HEADING__PARAMETERS);
-    createEAttribute(function_headingEClass, FUNCTION_HEADING__RETURN_TYPE);
-
-    function_declarationEClass = createEClass(FUNCTION_DECLARATION);
-    createEReference(function_declarationEClass, FUNCTION_DECLARATION__HEADING);
-    createEReference(function_declarationEClass, FUNCTION_DECLARATION__BLOCK);
-    createEAttribute(function_declarationEClass, FUNCTION_DECLARATION__FORWARD);
   }
 
   /**
@@ -3350,6 +3255,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     record_typeEClass.getESuperTypes().add(this.getunpacked_structured_type());
     set_typeEClass.getESuperTypes().add(this.getunpacked_structured_type());
     file_typeEClass.getESuperTypes().add(this.getunpacked_structured_type());
+    abstraction_headingEClass.getESuperTypes().add(this.getabstraction_declaration());
     conformant_array_schemaEClass.getESuperTypes().add(this.getparameter_type());
     packed_conformant_array_schemaEClass.getESuperTypes().add(this.getconformant_array_schema());
     unpacked_conformant_array_schemaEClass.getESuperTypes().add(this.getconformant_array_schema());
@@ -3604,17 +3510,18 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEReference(getvariable_declaration_part_Sections(), this.getvariable_section(), null, "sections", null, 0, -1, variable_declaration_part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(procedure_and_function_declaration_partEClass, procedure_and_function_declaration_part.class, "procedure_and_function_declaration_part", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getprocedure_and_function_declaration_part_Procedures(), this.getprocedure_declaration(), null, "procedures", null, 0, -1, procedure_and_function_declaration_part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getprocedure_and_function_declaration_part_Functions(), this.getfunction_declaration(), null, "functions", null, 0, -1, procedure_and_function_declaration_part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getprocedure_and_function_declaration_part_Procedures(), this.getabstraction_heading(), null, "procedures", null, 0, -1, procedure_and_function_declaration_part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getprocedure_and_function_declaration_part_Functions(), this.getabstraction_declaration(), null, "functions", null, 0, -1, procedure_and_function_declaration_part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(procedure_declarationEClass, procedure_declaration.class, "procedure_declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getprocedure_declaration_Heading(), this.getprocedure_heading(), null, "heading", null, 0, 1, procedure_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getprocedure_declaration_Block(), this.getblock(), null, "block", null, 0, 1, procedure_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getprocedure_declaration_Forward(), ecorePackage.getEBoolean(), "forward", null, 0, 1, procedure_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(abstraction_declarationEClass, abstraction_declaration.class, "abstraction_declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getabstraction_declaration_Heading(), this.getabstraction_heading(), null, "heading", null, 0, 1, abstraction_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getabstraction_declaration_Block(), this.getblock(), null, "block", null, 0, 1, abstraction_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getabstraction_declaration_Forward(), ecorePackage.getEBoolean(), "forward", null, 0, 1, abstraction_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(procedure_headingEClass, procedure_heading.class, "procedure_heading", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getprocedure_heading_Name(), ecorePackage.getEString(), "name", null, 0, 1, procedure_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getprocedure_heading_Parameters(), this.getformal_parameter_list(), null, "parameters", null, 0, 1, procedure_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(abstraction_headingEClass, abstraction_heading.class, "abstraction_heading", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getabstraction_heading_Name(), ecorePackage.getEString(), "name", null, 0, 1, abstraction_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getabstraction_heading_Parameters(), this.getformal_parameter_list(), null, "parameters", null, 0, 1, abstraction_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getabstraction_heading_ReturnType(), ecorePackage.getEString(), "returnType", null, 0, 1, abstraction_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(formal_parameter_listEClass, formal_parameter_list.class, "formal_parameter_list", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getformal_parameter_list_Parameters(), this.getformal_parameter_section(), null, "parameters", null, 0, -1, formal_parameter_list.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3622,8 +3529,8 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEClass(formal_parameter_sectionEClass, formal_parameter_section.class, "formal_parameter_section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getformal_parameter_section_Value(), this.getvalue_parameter_section(), null, "value", null, 0, 1, formal_parameter_section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getformal_parameter_section_Variable(), this.getvariable_parameter_section(), null, "variable", null, 0, 1, formal_parameter_section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getformal_parameter_section_Procedure(), this.getprocedure_heading(), null, "procedure", null, 0, 1, formal_parameter_section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getformal_parameter_section_Function(), this.getfunction_heading(), null, "function", null, 0, 1, formal_parameter_section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getformal_parameter_section_Procedure(), this.getabstraction_heading(), null, "procedure", null, 0, 1, formal_parameter_section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getformal_parameter_section_Function(), this.getabstraction_heading(), null, "function", null, 0, 1, formal_parameter_section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(value_parameter_sectionEClass, value_parameter_section.class, "value_parameter_section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getvalue_parameter_section_Identifiers(), this.getidentifier_list(), null, "identifiers", null, 0, 1, value_parameter_section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3649,16 +3556,6 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEClass(variable_parameter_sectionEClass, variable_parameter_section.class, "variable_parameter_section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getvariable_parameter_section_Identifiers(), this.getidentifier_list(), null, "identifiers", null, 0, 1, variable_parameter_section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getvariable_parameter_section_Type(), this.getparameter_type(), null, "type", null, 0, 1, variable_parameter_section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(function_headingEClass, function_heading.class, "function_heading", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getfunction_heading_Name(), ecorePackage.getEString(), "name", null, 0, 1, function_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getfunction_heading_Parameters(), this.getformal_parameter_list(), null, "parameters", null, 0, 1, function_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getfunction_heading_ReturnType(), ecorePackage.getEString(), "returnType", null, 0, 1, function_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(function_declarationEClass, function_declaration.class, "function_declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getfunction_declaration_Heading(), this.getfunction_heading(), null, "heading", null, 0, 1, function_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getfunction_declaration_Block(), this.getblock(), null, "block", null, 0, 1, function_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getfunction_declaration_Forward(), ecorePackage.getEBoolean(), "forward", null, 0, 1, function_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

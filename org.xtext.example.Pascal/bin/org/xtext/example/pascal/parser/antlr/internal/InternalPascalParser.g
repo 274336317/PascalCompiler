@@ -4802,6 +4802,10 @@ ruleprocedure_and_function_declaration_part returns [EObject current=null]
 
 
 
+
+
+
+
 // Entry rule entryRuleprocedure_declaration
 entryRuleprocedure_declaration returns [EObject current=null]
 	:

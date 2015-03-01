@@ -61,6 +61,8 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnpacked_structured_typeAccess().getAlternatives(), "rule__Unpacked_structured_type__Alternatives");
 					put(grammarAccess.getField_listAccess().getAlternatives_0(), "rule__Field_list__Alternatives_0");
 					put(grammarAccess.getProcedure_and_function_declaration_partAccess().getAlternatives_0(), "rule__Procedure_and_function_declaration_part__Alternatives_0");
+					put(grammarAccess.getAbstraction_declarationAccess().getAlternatives(), "rule__Abstraction_declaration__Alternatives");
+					put(grammarAccess.getAbstraction_headingAccess().getAlternatives(), "rule__Abstraction_heading__Alternatives");
 					put(grammarAccess.getProcedure_declarationAccess().getAlternatives_2(), "rule__Procedure_declaration__Alternatives_2");
 					put(grammarAccess.getFormal_parameter_sectionAccess().getAlternatives(), "rule__Formal_parameter_section__Alternatives");
 					put(grammarAccess.getParameter_typeAccess().getAlternatives(), "rule__Parameter_type__Alternatives");

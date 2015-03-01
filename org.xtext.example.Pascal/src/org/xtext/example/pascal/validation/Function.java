@@ -29,4 +29,13 @@ public class Function extends Procedure {
 		return "[" + this.name + ", " + this.inherited + ", " + this.type + ", " + this.returnType + "]";
 	}
 	 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && (obj instanceof Procedure)) {
+			Procedure other = (Procedure) obj;
+			return this.name.toLowerCase().equals(other.name.toLowerCase());
+		}
+		return super.equals(obj);
+	}
+	
 }

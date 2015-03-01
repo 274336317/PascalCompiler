@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.EStructuralFeature
 import org.eclipse.xtext.validation.Check
 import org.xtext.example.pascal.pascal.PascalPackage
+import org.xtext.example.pascal.pascal.abstraction_declaration
+import org.xtext.example.pascal.pascal.abstraction_heading
 import org.xtext.example.pascal.pascal.block
 import org.xtext.example.pascal.pascal.case_limb
 import org.xtext.example.pascal.pascal.constant
@@ -18,8 +20,6 @@ import org.xtext.example.pascal.pascal.constant_definition
 import org.xtext.example.pascal.pascal.expression
 import org.xtext.example.pascal.pascal.factor
 import org.xtext.example.pascal.pascal.formal_parameter_section
-import org.xtext.example.pascal.pascal.function_declaration
-import org.xtext.example.pascal.pascal.procedure_declaration
 import org.xtext.example.pascal.pascal.simple_expression
 import org.xtext.example.pascal.pascal.statement
 import org.xtext.example.pascal.pascal.statement_sequence
@@ -35,9 +35,9 @@ import org.xtext.example.pascal.pascal.variable_section
 class PascalValidator extends AbstractPascalValidator {
 	
 	private Map<EObject, Set<Error>> errorList = new HashMap<EObject, Set<Error>>();
-	private Map<EObject, Set<Variable>> variables = new HashMap<EObject, Set<Variable>>();
-	private Map<EObject, Set<Procedure>> abstractions = new HashMap<EObject, Set<Procedure>>();
-	
+	private Map<block, Set<Variable>> variables = new HashMap<block, Set<Variable>>();
+	private Map<block, Set<Procedure>> abstractions = new HashMap<block, Set<Procedure>>();
+	 
 	def <T extends Element> search(Set<T> elements, T key) {
 		for (T t : elements) {
 			if (t.equals(key))
@@ -58,9 +58,10 @@ class PascalValidator extends AbstractPascalValidator {
 			errorList.put(object, new HashSet<Error>());
 		}
 		errorList.get(object).remove(new Error(type));
+		showError(object);
 	} 
-	
-	def <T extends Element> clear(block b, ElementType type, Map<EObject, Set<T>> container) {
+	 
+	def <T extends Element> clear(block b, ElementType type, Map<block, Set<T>> container) {
 		if (!container.containsKey(b)) {
 			container.put(b, new HashSet<T>());
 		} else {
@@ -73,40 +74,37 @@ class PascalValidator extends AbstractPascalValidator {
 			container.put(b, newSet);
 		}
 	}
-	
-	def <T extends Element> inheritElement(block b, T element, Map<EObject, Set<T>> container) {
+	 
+	def <T extends Element> addElementToAbstraction(abstraction_declaration decl, T element, Map<block, Set<T>> container) {
+		if (decl.block == null) {
+			decl.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
+		}
+		var subblock = decl.block;
+		if (!container.containsKey(subblock)) {
+			container.put(subblock, new HashSet<T>());
+		} 
+		container.get(subblock).add(element);
+	}
+	 
+	def <T extends Element> inheritElement(block b, T element, Map<block, Set<T>> container) {
 		if (b.abstraction != null) {
 			if (b.abstraction.procedures != null) {
-				for (procedure_declaration procedure : b.abstraction.procedures) {
-					if (procedure.block == null) {
-						procedure.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
-					}
-					var subblock = procedure.block;
-					if (!container.containsKey(subblock)) {
-						container.put(subblock, new HashSet<T>());
-					}
-					container.get(subblock).add(element);
+				for (abstraction_declaration procedure : b.abstraction.procedures) {
+					addElementToAbstraction(procedure, element, container);
 				}
 			}
 			if (b.abstraction.functions != null) {
-				for (function_declaration function : b.abstraction.functions) {
-					if (function.block == null) {
-						function.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
-					}
-					var subblock = function.block;
-					if (!container.containsKey(subblock)) {
-						container.put(subblock, new HashSet<T>());
-					}
-					container.get(subblock).add(element);
-					if (container.equals(variables)) {
-						variables.get(subblock).add(new Variable(function.heading.name, function.heading.returnType, false, ElementType.FUNCTION_RETURN));
+				for (abstraction_declaration function : b.abstraction.functions) {
+					addElementToAbstraction(function, element, container);
+					if (container == variables) { 
+						variables.get(function.block).add(new Variable(function.heading.name, function.heading.returnType, false, ElementType.FUNCTION_RETURN));
 					}
 				}
 			}
 		}
 	} 
-	
-	def <T extends Element> addElement(block b, T element, Map<EObject, Set<T>> container, EObject errorSection, EStructuralFeature errorFeature) {			
+	 
+	def <T extends Element> addElement(block b, T element, Map<block, Set<T>> container, EObject errorSection, EStructuralFeature errorFeature) {			
 		var elementFound = search(container.get(b), element);
 		if (elementFound != null && !elementFound.isInherited) {
 			if (element.type == elementFound.type) { 
@@ -115,7 +113,7 @@ class PascalValidator extends AbstractPascalValidator {
 				if (elementFound.type == ElementType.FUNCTION_RETURN) {
 					insertError(errorSection, "Identifier reserved for function return.", ErrorType.REDECLARATION, errorFeature);
 				} else {
-					insertError(errorSection, "Identifier is already being used by a " + elementFound.type + ".", ErrorType.REDECLARATION, errorFeature);
+					insertError(errorSection, "Identifier is already being used by a " + elementFound.type.toString().toLowerCase() + ".", ErrorType.REDECLARATION, errorFeature);
 				} 
 			}
 		} else { 
@@ -128,10 +126,10 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 	}
 	
-	def getParameters(block b, function_declaration function) {
+	def getParameters(block b, abstraction_heading heading) {
 		var parameters = new HashSet<Variable>();
-		if (function.heading.parameters != null) {
-			var list = function.heading.parameters;
+		if (heading.parameters != null) {
+			var list = heading.parameters;
 			if (list.parameters != null) {
 				for (formal_parameter_section section : list.parameters) {
 					if (section.variable != null) {
@@ -154,39 +152,41 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 		return parameters;
 	}
-	
-	def addFunction(block b, function_declaration funct) {
-		var name = funct.heading.name;
-		var returnType = funct.heading.returnType;
-		if (funct.block == null) {
-			funct.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
+	 
+	def addAbstraction(block b, abstraction_declaration decl, abstraction_heading heading) {
+		var name = heading.name;
+		if (decl.block == null) {
+			decl.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
 		}
-		clear(funct.block, ElementType.PARAMETER, variables); 
-		var parameters = getParameters(funct.block, funct);
-		var forward = funct.forward;
-		addElement(b, new Function(name, false, parameters, forward, returnType), abstractions, funct.heading, PascalPackage.Literals.FUNCTION_HEADING__NAME);
-	}  
-	
-	@Check
+		clear(decl.block, ElementType.PARAMETER, variables); 
+		var parameters = getParameters(decl.block, heading);
+		var forward = decl.forward;
+		var returnType = heading.returnType;
+		if (returnType != null) {  
+			addElement(b, new Function(name, false, parameters, forward, returnType), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME); 
+		} else {
+			addElement(b, new Procedure(name, false, parameters, forward), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME);
+		}
+	} 
+	 
 	def checkAbstractionRedeclaration(block b) {
 		if (b.abstraction != null) {
+			clear(b, ElementType.FUNCTION, abstractions); 
+			clear(b, ElementType.PROCEDURE, abstractions); 
 			var abstraction = b.abstraction;
 			if (abstraction.functions != null) {
-				clear(b, ElementType.FUNCTION, abstractions); 
-				for (function_declaration function : abstraction.functions) {
-					addFunction(b, function);
+				for (abstraction_declaration function : abstraction.functions) {
+					addAbstraction(b, function, function.heading);
 				}
 			}
 			if (abstraction.procedures != null) {
-				for (procedure_declaration procedure : abstraction.procedures) {
-					
+				for (abstraction_declaration procedure : abstraction.procedures) {
+					addAbstraction(b, procedure, procedure.heading);
 				}
 			}
 		}	
 	}
 	
-	
-	@Check
 	def checkConstantRedeclaration(block b) {
 		clear(b, ElementType.CONSTANT, variables);
 		if (b.constant != null) {
@@ -196,7 +196,6 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 	} 
 	
-	@Check
 	def checkVariableRedeclaration(block b) {		
 		clear(b, ElementType.VARIABLE, variables);
 		if (b.variable != null) {
@@ -327,17 +326,25 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 	} 
 	
-	@Check
 	def checkBlock(block b) {
 		checkStatements(b, b.statement.sequence);
+	}
+	
+	@Check
+	def runCheckes(block b) {
+		checkAbstractionRedeclaration(b);
+		checkConstantRedeclaration(b);
+		checkVariableRedeclaration(b);
+		checkBlock(b);
 	}
 	
 	@Check
 	def showError(EObject obj) {
 		if (errorList.containsKey(obj)) {
 			for (Error err : errorList.get(obj)) {
-				error(err.message, err.feature);
+				error(err.message, obj, err.feature, -1);
 			} 
+			
 		} 
 	}
 	
