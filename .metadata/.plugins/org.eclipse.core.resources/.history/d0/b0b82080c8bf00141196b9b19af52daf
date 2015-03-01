@@ -1,0 +1,26 @@
+package org.xtext.example.pascal.validation;
+
+
+public class Variable extends Element {
+
+	private String varType;
+	
+	public Variable(String name, String varType, boolean inherited, ElementType type) {
+		super(name, type, inherited);
+		this.varType = varType;
+	}
+	
+	public Variable(String name) {
+		this(name, null, false, ElementType.VARIABLE);
+	}
+	
+	public String getVarType() {
+		return this.varType;
+	}
+	 
+	public Variable clone() {
+		Variable cloned = new Variable(this.name, this.varType, this.inherited, this.type);
+		return cloned;
+	}
+	
+}

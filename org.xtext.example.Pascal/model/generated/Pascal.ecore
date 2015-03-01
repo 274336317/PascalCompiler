@@ -350,6 +350,7 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//block"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forward" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="procedure_heading">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -412,5 +413,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" eType="#//block"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="forward" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>

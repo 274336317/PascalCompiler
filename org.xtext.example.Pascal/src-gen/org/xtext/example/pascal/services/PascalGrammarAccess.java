@@ -2632,13 +2632,14 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Assignment cBlockAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
 		private final RuleCall cBlockBlockParserRuleCall_2_0_0 = (RuleCall)cBlockAssignment_2_0.eContents().get(0);
-		private final Keyword cForwardKeyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
+		private final Assignment cForwardAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cForwardForwardKeyword_2_1_0 = (Keyword)cForwardAssignment_2_1.eContents().get(0);
 		
 		//procedure_declaration:
-		//	heading=procedure_heading ";" (block=block | "forward");
+		//	heading=procedure_heading ";" (block=block | forward?="forward");
 		public ParserRule getRule() { return rule; }
 
-		//heading=procedure_heading ";" (block=block | "forward")
+		//heading=procedure_heading ";" (block=block | forward?="forward")
 		public Group getGroup() { return cGroup; }
 
 		//heading=procedure_heading
@@ -2650,7 +2651,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 
-		//block=block | "forward"
+		//block=block | forward?="forward"
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//block=block
@@ -2659,8 +2660,11 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//block
 		public RuleCall getBlockBlockParserRuleCall_2_0_0() { return cBlockBlockParserRuleCall_2_0_0; }
 
+		//forward?="forward"
+		public Assignment getForwardAssignment_2_1() { return cForwardAssignment_2_1; }
+
 		//"forward"
-		public Keyword getForwardKeyword_2_1() { return cForwardKeyword_2_1; }
+		public Keyword getForwardForwardKeyword_2_1_0() { return cForwardForwardKeyword_2_1_0; }
 	}
 
 	public class Procedure_headingElements extends AbstractParserRuleElementFinder {
@@ -3116,13 +3120,14 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Assignment cBlockAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
 		private final RuleCall cBlockBlockParserRuleCall_2_0_0 = (RuleCall)cBlockAssignment_2_0.eContents().get(0);
-		private final Keyword cForwardKeyword_2_1 = (Keyword)cAlternatives_2.eContents().get(1);
+		private final Assignment cForwardAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cForwardForwardKeyword_2_1_0 = (Keyword)cForwardAssignment_2_1.eContents().get(0);
 		
 		//function_declaration:
-		//	heading=function_heading ";" (block=block | "forward");
+		//	heading=function_heading ";" (block=block | forward?="forward");
 		public ParserRule getRule() { return rule; }
 
-		//heading=function_heading ";" (block=block | "forward")
+		//heading=function_heading ";" (block=block | forward?="forward")
 		public Group getGroup() { return cGroup; }
 
 		//heading=function_heading
@@ -3134,7 +3139,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//";"
 		public Keyword getSemicolonKeyword_1() { return cSemicolonKeyword_1; }
 
-		//block=block | "forward"
+		//block=block | forward?="forward"
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//block=block
@@ -3143,8 +3148,11 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//block
 		public RuleCall getBlockBlockParserRuleCall_2_0_0() { return cBlockBlockParserRuleCall_2_0_0; }
 
+		//forward?="forward"
+		public Assignment getForwardAssignment_2_1() { return cForwardAssignment_2_1; }
+
 		//"forward"
-		public Keyword getForwardKeyword_2_1() { return cForwardKeyword_2_1; }
+		public Keyword getForwardForwardKeyword_2_1_0() { return cForwardForwardKeyword_2_1_0; }
 	}
 	
 	
@@ -4036,7 +4044,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//procedure_declaration:
-	//	heading=procedure_heading ";" (block=block | "forward");
+	//	heading=procedure_heading ";" (block=block | forward?="forward");
 	public Procedure_declarationElements getProcedure_declarationAccess() {
 		return pProcedure_declaration;
 	}
@@ -4158,7 +4166,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//function_declaration:
-	//	heading=function_heading ";" (block=block | "forward");
+	//	heading=function_heading ";" (block=block | forward?="forward");
 	public Function_declarationElements getFunction_declarationAccess() {
 		return pFunction_declaration;
 	}

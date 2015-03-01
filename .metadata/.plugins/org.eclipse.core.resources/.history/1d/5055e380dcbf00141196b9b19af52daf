@@ -1,0 +1,44 @@
+package org.xtext.example.pascal.validation;
+
+public enum ElementType {
+
+	VARIABLE, CONSTANT, PARAMETER, FUNCTION_RETURN, FUNCTION, PROCEDURE;
+	
+	@Override
+	public String toString() {
+		switch(this) {
+		case VARIABLE:
+			return "Variable";
+		case CONSTANT:
+			return "Constant";
+		case PARAMETER:
+			return "Parameter";
+		case FUNCTION:
+			return "Function";
+		case PROCEDURE:
+			return "Procedure";
+		default:
+			return "Undefined";
+		}
+	}
+
+	public ElementClass getElementClass() {
+		switch (this) {
+		case VARIABLE:
+			return ElementClass.VARIABLE;
+		case CONSTANT:
+			return ElementClass.VARIABLE;
+		case PARAMETER:
+			return ElementClass.VARIABLE;
+		case FUNCTION_RETURN:
+			return ElementClass.VARIABLE;
+		case FUNCTION:
+			return ElementClass.ABSTRACTION;
+		case PROCEDURE:
+			return ElementClass.ABSTRACTION;
+		default:
+			return ElementClass.UNDEFINED; 
+		}
+	}
+	
+}

@@ -1,0 +1,9 @@
+package org.xtext.example.pascal.validation;
+
+public class Abstraction {
+
+	private String name;
+	private Set<Variable> parameters;
+	
+	
+}

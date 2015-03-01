@@ -872,7 +872,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (heading=function_heading block=block?)
+	 *     (heading=function_heading (block=block | forward?='forward'))
 	 */
 	protected void sequence_function_declaration(EObject context, function_declaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1045,7 +1045,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (heading=procedure_heading block=block?)
+	 *     (heading=procedure_heading (block=block | forward?='forward'))
 	 */
 	protected void sequence_procedure_declaration(EObject context, procedure_declaration semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

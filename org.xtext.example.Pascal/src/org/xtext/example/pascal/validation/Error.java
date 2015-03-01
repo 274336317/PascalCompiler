@@ -38,4 +38,9 @@ public class Error {
 		return this.type == other.type;
 	}
 	
+	@Override
+	public String toString() {
+		return "[" + this.type + ": " + this.message + "]";
+	}
+	
 }

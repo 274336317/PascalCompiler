@@ -261,6 +261,7 @@
     <genClasses ecoreClass="Pascal.ecore#//procedure_declaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//procedure_declaration/heading"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//procedure_declaration/block"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//procedure_declaration/forward"/>
     </genClasses>
     <genClasses ecoreClass="Pascal.ecore#//procedure_heading">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//procedure_heading/name"/>
@@ -307,6 +308,7 @@
     <genClasses ecoreClass="Pascal.ecore#//function_declaration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//function_declaration/heading"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//function_declaration/block"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//function_declaration/forward"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

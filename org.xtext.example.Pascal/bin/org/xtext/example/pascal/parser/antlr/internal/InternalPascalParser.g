@@ -4858,12 +4858,23 @@ ruleprocedure_declaration returns [EObject current=null]
 
 )
 )
-    |
-	otherlv_3=Forward
+    |(
+(
+		lv_forward_3_0=
+	Forward
     {
-    	newLeafNode(otherlv_3, grammarAccess.getProcedure_declarationAccess().getForwardKeyword_2_1());
+        newLeafNode(lv_forward_3_0, grammarAccess.getProcedure_declarationAccess().getForwardForwardKeyword_2_1_0());
     }
-))
+
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getProcedure_declarationRule());
+	        }
+       		setWithLastConsumed($current, "forward", true, "forward");
+	    }
+
+)
+)))
 ;
 
 
@@ -5745,12 +5756,23 @@ rulefunction_declaration returns [EObject current=null]
 
 )
 )
-    |
-	otherlv_3=Forward
+    |(
+(
+		lv_forward_3_0=
+	Forward
     {
-    	newLeafNode(otherlv_3, grammarAccess.getFunction_declarationAccess().getForwardKeyword_2_1());
+        newLeafNode(lv_forward_3_0, grammarAccess.getFunction_declarationAccess().getForwardForwardKeyword_2_1_0());
     }
-))
+
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFunction_declarationRule());
+	        }
+       		setWithLastConsumed($current, "forward", true, "forward");
+	    }
+
+)
+)))
 ;
 
 

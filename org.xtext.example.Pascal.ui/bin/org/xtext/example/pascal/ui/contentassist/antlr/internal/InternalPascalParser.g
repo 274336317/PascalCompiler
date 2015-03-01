@@ -3016,11 +3016,9 @@ rule__Procedure_declaration__Alternatives_2
 )
 
     |(
-{ before(grammarAccess.getProcedure_declarationAccess().getForwardKeyword_2_1()); }
-
-	Forward 
-
-{ after(grammarAccess.getProcedure_declarationAccess().getForwardKeyword_2_1()); }
+{ before(grammarAccess.getProcedure_declarationAccess().getForwardAssignment_2_1()); }
+(rule__Procedure_declaration__ForwardAssignment_2_1)
+{ after(grammarAccess.getProcedure_declarationAccess().getForwardAssignment_2_1()); }
 )
 
 ;
@@ -3140,11 +3138,9 @@ rule__Function_declaration__Alternatives_2
 )
 
     |(
-{ before(grammarAccess.getFunction_declarationAccess().getForwardKeyword_2_1()); }
-
-	Forward 
-
-{ after(grammarAccess.getFunction_declarationAccess().getForwardKeyword_2_1()); }
+{ before(grammarAccess.getFunction_declarationAccess().getForwardAssignment_2_1()); }
+(rule__Function_declaration__ForwardAssignment_2_1)
+{ after(grammarAccess.getFunction_declarationAccess().getForwardAssignment_2_1()); }
 )
 
 ;
@@ -14108,6 +14104,29 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__Procedure_declaration__ForwardAssignment_2_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getProcedure_declarationAccess().getForwardForwardKeyword_2_1_0()); }
+(
+{ before(grammarAccess.getProcedure_declarationAccess().getForwardForwardKeyword_2_1_0()); }
+
+	Forward 
+
+{ after(grammarAccess.getProcedure_declarationAccess().getForwardForwardKeyword_2_1_0()); }
+)
+
+{ after(grammarAccess.getProcedure_declarationAccess().getForwardForwardKeyword_2_1_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__Procedure_heading__NameAssignment_1
     @init {
 		int stackSize = keepStackSize();
@@ -14506,6 +14525,29 @@ rule__Function_declaration__BlockAssignment_2_0
 (
 { before(grammarAccess.getFunction_declarationAccess().getBlockBlockParserRuleCall_2_0_0()); }
 	ruleblock{ after(grammarAccess.getFunction_declarationAccess().getBlockBlockParserRuleCall_2_0_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Function_declaration__ForwardAssignment_2_1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getFunction_declarationAccess().getForwardForwardKeyword_2_1_0()); }
+(
+{ before(grammarAccess.getFunction_declarationAccess().getForwardForwardKeyword_2_1_0()); }
+
+	Forward 
+
+{ after(grammarAccess.getFunction_declarationAccess().getForwardForwardKeyword_2_1_0()); }
+)
+
+{ after(grammarAccess.getFunction_declarationAccess().getForwardForwardKeyword_2_1_0()); }
 )
 
 ;

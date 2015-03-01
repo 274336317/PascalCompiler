@@ -268,7 +268,7 @@ procedure_and_function_declaration_part:
 ;
 
 procedure_declaration:
-	heading=procedure_heading ";" ( block=block | "forward" )
+	heading=procedure_heading ";" ( block=block | forward?="forward" )
 ;
 
 procedure_heading:
@@ -316,7 +316,7 @@ function_heading:
 ;
  
 function_declaration:
-	heading=function_heading ";" ( block=block | "forward") 
+	heading=function_heading ";" ( block=block | forward?="forward") 
 ;
  
 terminal NUMERIC_SUBRANGE:

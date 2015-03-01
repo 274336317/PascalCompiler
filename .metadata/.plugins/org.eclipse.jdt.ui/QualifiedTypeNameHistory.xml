@@ -3,4 +3,9 @@
 <fullyQualifiedTypeName name="org.eclipse.xtext.ui.editor.utils.TextStyle"/>
 <fullyQualifiedTypeName name="org.xtext.example.pascal.ui.MyAntlrTokenToAttributeIdMapper"/>
 <fullyQualifiedTypeName name="org.xtext.example.pascal.ui.MyHighLightingConfiguration"/>
+<fullyQualifiedTypeName name="org.xtext.example.pascal.pascal.PascalPackage"/>
+<fullyQualifiedTypeName name="org.xtext.example.pascal.pascal.PascalPackage.Literals"/>
+<fullyQualifiedTypeName name="org.eclipse.emf.ecore.EAttribute"/>
+<fullyQualifiedTypeName name="org.xtext.example.pascal.validation.PascalValidator"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>

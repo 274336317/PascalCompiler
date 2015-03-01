@@ -315,6 +315,7 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getProcedure_and_function_declaration_partAccess().getFunctionsAssignment_0_1(), "rule__Procedure_and_function_declaration_part__FunctionsAssignment_0_1");
 					put(grammarAccess.getProcedure_declarationAccess().getHeadingAssignment_0(), "rule__Procedure_declaration__HeadingAssignment_0");
 					put(grammarAccess.getProcedure_declarationAccess().getBlockAssignment_2_0(), "rule__Procedure_declaration__BlockAssignment_2_0");
+					put(grammarAccess.getProcedure_declarationAccess().getForwardAssignment_2_1(), "rule__Procedure_declaration__ForwardAssignment_2_1");
 					put(grammarAccess.getProcedure_headingAccess().getNameAssignment_1(), "rule__Procedure_heading__NameAssignment_1");
 					put(grammarAccess.getProcedure_headingAccess().getParametersAssignment_2(), "rule__Procedure_heading__ParametersAssignment_2");
 					put(grammarAccess.getFormal_parameter_listAccess().getParametersAssignment_1(), "rule__Formal_parameter_list__ParametersAssignment_1");
@@ -342,6 +343,7 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunction_headingAccess().getReturnTypeAssignment_4(), "rule__Function_heading__ReturnTypeAssignment_4");
 					put(grammarAccess.getFunction_declarationAccess().getHeadingAssignment_0(), "rule__Function_declaration__HeadingAssignment_0");
 					put(grammarAccess.getFunction_declarationAccess().getBlockAssignment_2_0(), "rule__Function_declaration__BlockAssignment_2_0");
+					put(grammarAccess.getFunction_declarationAccess().getForwardAssignment_2_1(), "rule__Function_declaration__ForwardAssignment_2_1");
 				}
 			};
 		}

@@ -1,0 +1,14 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.Set;
+
+public class Function extends Abstraction {
+
+	private String returnType;
+	
+	public Function(String name, Set<Variable> parameters, String returnType) {
+		super(name, parameters);
+		this.returnType = returnType;
+	}
+	
+}

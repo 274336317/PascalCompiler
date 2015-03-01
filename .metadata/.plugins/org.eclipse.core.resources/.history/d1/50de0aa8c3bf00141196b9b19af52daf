@@ -1,0 +1,18 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.Set;
+
+public class Function extends Procedure {
+
+	private String returnType;
+	
+	public Function(String name, Set<Variable> parameters, boolean inherited, String returnType) {
+		super(name, parameters, inherited, ElementType.FUNCTION);
+		this.returnType = returnType;
+	}
+	
+	public String getReturnType() {
+		return this.returnType;
+	}
+	
+}

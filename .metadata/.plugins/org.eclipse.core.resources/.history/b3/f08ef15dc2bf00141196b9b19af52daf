@@ -1,0 +1,37 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.Set;
+
+public class Abstraction extends Element {
+
+	private String name;
+	private Set<Variable> parameters;
+	
+	public Abstraction(String name) {
+		this(name, null, false);
+	}
+	
+	public Abstraction(String name, Set<Variable> parameters, boolean inherited) {
+		super(inherited);
+		this.name = name;
+		this.parameters = parameters;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public Set<Variable> getParameters() {
+		return this.parameters;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Abstraction)) {
+			return false;
+		}
+		Abstraction other = (Abstraction) obj;
+		return this.name.equals(other.name);
+	}
+	
+}

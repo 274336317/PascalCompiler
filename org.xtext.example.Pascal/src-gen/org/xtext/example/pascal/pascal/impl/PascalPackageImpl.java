@@ -2612,6 +2612,16 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getprocedure_declaration_Forward()
+  {
+    return (EAttribute)procedure_declarationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getprocedure_heading()
   {
     return procedure_headingEClass;
@@ -2962,6 +2972,16 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getfunction_declaration_Forward()
+  {
+    return (EAttribute)function_declarationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public PascalFactory getPascalFactory()
   {
     return (PascalFactory)getEFactoryInstance();
@@ -3242,6 +3262,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     procedure_declarationEClass = createEClass(PROCEDURE_DECLARATION);
     createEReference(procedure_declarationEClass, PROCEDURE_DECLARATION__HEADING);
     createEReference(procedure_declarationEClass, PROCEDURE_DECLARATION__BLOCK);
+    createEAttribute(procedure_declarationEClass, PROCEDURE_DECLARATION__FORWARD);
 
     procedure_headingEClass = createEClass(PROCEDURE_HEADING);
     createEAttribute(procedure_headingEClass, PROCEDURE_HEADING__NAME);
@@ -3289,6 +3310,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     function_declarationEClass = createEClass(FUNCTION_DECLARATION);
     createEReference(function_declarationEClass, FUNCTION_DECLARATION__HEADING);
     createEReference(function_declarationEClass, FUNCTION_DECLARATION__BLOCK);
+    createEAttribute(function_declarationEClass, FUNCTION_DECLARATION__FORWARD);
   }
 
   /**
@@ -3588,6 +3610,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEClass(procedure_declarationEClass, procedure_declaration.class, "procedure_declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getprocedure_declaration_Heading(), this.getprocedure_heading(), null, "heading", null, 0, 1, procedure_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getprocedure_declaration_Block(), this.getblock(), null, "block", null, 0, 1, procedure_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getprocedure_declaration_Forward(), ecorePackage.getEBoolean(), "forward", null, 0, 1, procedure_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(procedure_headingEClass, procedure_heading.class, "procedure_heading", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getprocedure_heading_Name(), ecorePackage.getEString(), "name", null, 0, 1, procedure_heading.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3635,6 +3658,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEClass(function_declarationEClass, function_declaration.class, "function_declaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getfunction_declaration_Heading(), this.getfunction_heading(), null, "heading", null, 0, 1, function_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getfunction_declaration_Block(), this.getblock(), null, "block", null, 0, 1, function_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getfunction_declaration_Forward(), ecorePackage.getEBoolean(), "forward", null, 0, 1, function_declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

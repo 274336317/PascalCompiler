@@ -1,0 +1,16 @@
+package org.xtext.example.pascal.validation;
+
+public class Element {
+
+	protected ElementType type;
+	protected boolean inherited;
+	
+	public Element(ElementType type, boolean inherited) {
+		this.inherited = inherited;
+	}
+	
+	public boolean isInherited() {
+		return this.inherited;
+	}
+	
+}

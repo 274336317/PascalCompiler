@@ -17,7 +17,6 @@ import org.xtext.example.pascal.pascal.constant
 import org.xtext.example.pascal.pascal.constant_definition
 import org.xtext.example.pascal.pascal.expression
 import org.xtext.example.pascal.pascal.factor
-import org.xtext.example.pascal.pascal.formal_parameter_list
 import org.xtext.example.pascal.pascal.formal_parameter_section
 import org.xtext.example.pascal.pascal.function_declaration
 import org.xtext.example.pascal.pascal.procedure_declaration
@@ -37,11 +36,12 @@ class PascalValidator extends AbstractPascalValidator {
 	
 	private Map<EObject, Set<Error>> errorList = new HashMap<EObject, Set<Error>>();
 	private Map<EObject, Set<Variable>> variables = new HashMap<EObject, Set<Variable>>();
+	private Map<EObject, Set<Procedure>> abstractions = new HashMap<EObject, Set<Procedure>>();
 	
-	def search(Set<Variable> variables, Variable key) {
-		for (Variable v : variables) {
-			if (v.equals(key))
-				return v;
+	def <T extends Element> search(Set<T> elements, T key) {
+		for (T t : elements) {
+			if (t.equals(key))
+				return t;
 		} 
 		return null;	
 	}
@@ -60,114 +60,126 @@ class PascalValidator extends AbstractPascalValidator {
 		errorList.get(object).remove(new Error(type));
 	} 
 	
-	def clear(block block, VariableType varType) {
-		if (!variables.containsKey(block)) {
-			variables.put(block, new HashSet<Variable>());
+	def <T extends Element> clear(block b, ElementType type, Map<EObject, Set<T>> container) {
+		if (!container.containsKey(b)) {
+			container.put(b, new HashSet<T>());
 		} else {
-			var newSet = new HashSet<Variable>();
-			for (Variable v : variables.get(block)) {
-				if (v.varType != varType || v.isInherited) {
-					newSet.add(v);
-				}	
+			var newSet = new HashSet<T>();
+			for (T t : container.get(b)) {
+				if (t.type != type || t.isInherited) {
+					newSet.add(t);
+				}	 
 			} 
-			variables.put(block, newSet);
+			container.put(b, newSet);
 		}
 	}
 	
-	def inheritVariables(block block, Variable variable) {
-		if (block.abstraction != null) {
-			if (block.abstraction.procedures != null) {
-				for (procedure_declaration declaration : block.abstraction.procedures) {
-					if (declaration.block != null) {
-						var subblock = declaration.block;
-						if (subblock != null) {
-							if (!variables.containsKey(subblock)) {
-								variables.put(subblock, new HashSet<Variable>());
-							}
-							variables.get(subblock).add(variable);
-						}
+	def <T extends Element> inheritElement(block b, T element, Map<EObject, Set<T>> container) {
+		if (b.abstraction != null) {
+			if (b.abstraction.procedures != null) {
+				for (procedure_declaration procedure : b.abstraction.procedures) {
+					if (procedure.block == null) {
+						procedure.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
 					}
+					var subblock = procedure.block;
+					if (!container.containsKey(subblock)) {
+						container.put(subblock, new HashSet<T>());
+					}
+					container.get(subblock).add(element);
 				}
 			}
-			if (block.abstraction.functions != null) {
-				for (function_declaration declaration : block.abstraction.functions) {
-					if (declaration.block != null) {
-						var subblock = declaration.block;
-						if (subblock != null) {
-							if (!variables.containsKey(subblock)) {
-								variables.put(subblock, new HashSet<Variable>());
-							}
-							variables.get(subblock).add(variable);
-							variables.get(subblock).add(new Variable(declaration.heading.name, declaration.heading.returnType, false, VariableType.FUNCTION_RETURN));
-						}
+			if (b.abstraction.functions != null) {
+				for (function_declaration function : b.abstraction.functions) {
+					if (function.block == null) {
+						function.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
+					}
+					var subblock = function.block;
+					if (!container.containsKey(subblock)) {
+						container.put(subblock, new HashSet<T>());
+					}
+					container.get(subblock).add(element);
+					if (container.equals(variables)) {
+						variables.get(subblock).add(new Variable(function.heading.name, function.heading.returnType, false, ElementType.FUNCTION_RETURN));
 					}
 				}
 			}
 		}
-	}
+	} 
 	
-	def addVariable(block block, String name, String type, VariableType varType, EObject errorSection, EStructuralFeature errorFeature) {			
-		var tempVariable = new Variable(name, type, false, varType);
-		var searchVariable = search(variables.get(block), tempVariable);
-		if (searchVariable != null && !searchVariable.isInherited) {
-			if (varType == searchVariable.varType) { 
-				insertError(errorSection, varType + " cannot be redeclared.", ErrorType.REDECLARATION, errorFeature); 
+	def <T extends Element> addElement(block b, T element, Map<EObject, Set<T>> container, EObject errorSection, EStructuralFeature errorFeature) {			
+		var elementFound = search(container.get(b), element);
+		if (elementFound != null && !elementFound.isInherited) {
+			if (element.type == elementFound.type) { 
+				insertError(errorSection, element.type + " cannot be redeclared.", ErrorType.REDECLARATION, errorFeature); 
 			} else { 
-				if (searchVariable.varType == VariableType.VARIABLE) {
-					insertError(errorSection, "Identifier is already being used by a variable.", ErrorType.REDECLARATION, errorFeature);
-				} else if (searchVariable.varType == VariableType.CONSTANT) {
-					insertError(errorSection, "Identifier is already being used by a constant.", ErrorType.REDECLARATION, errorFeature);
-				} else if (searchVariable.varType == VariableType.PARAMETER) {
-					insertError(errorSection, "Identifier is already being used by a parameter.", ErrorType.REDECLARATION, errorFeature);
-				} else if (searchVariable.varType == VariableType.FUNCTION_RETURN) {
+				if (elementFound.type == ElementType.FUNCTION_RETURN) {
 					insertError(errorSection, "Identifier reserved for function return.", ErrorType.REDECLARATION, errorFeature);
-				}
+				} else {
+					insertError(errorSection, "Identifier is already being used by a " + elementFound.type + ".", ErrorType.REDECLARATION, errorFeature);
+				} 
 			}
 		} else { 
 			removeError(errorSection, ErrorType.REDECLARATION);
-			variables.get(block).remove(searchVariable);
-			variables.get(block).add(tempVariable);
-			inheritVariables(block, new Variable(name, type, true, varType));
+			container.get(b).remove(elementFound);
+			container.get(b).add(element);
+			var inheritedElement = element.clone() as T;
+			inheritedElement.inherited = true; 
+			inheritElement(b, inheritedElement, container);
 		}
 	}
 	
-	def addParameters(block block, formal_parameter_list list) {
-		clear(block, VariableType.PARAMETER);
-		if (list != null) {
+	def getParameters(block b, function_declaration function) {
+		var parameters = new HashSet<Variable>();
+		if (function.heading.parameters != null) {
+			var list = function.heading.parameters;
 			if (list.parameters != null) {
 				for (formal_parameter_section section : list.parameters) {
-					if (section.variable != null) { 
-						var variable = section.variable; 
-						for (String name : variable.identifiers.names) {
-							addVariable(block, name, variable.type.toString(), VariableType.PARAMETER, variable, PascalPackage.Literals.VARIABLE_PARAMETER_SECTION__IDENTIFIERS);
+					if (section.variable != null) {
+						var variable = section.variable;
+						for (String varName : variable.identifiers.names) {
+							var parameter = new Variable(varName, section.variable.type.toString, false, ElementType.PARAMETER);
+							addElement(b, parameter, variables, variable, PascalPackage.Literals.VARIABLE_PARAMETER_SECTION__IDENTIFIERS);
+							parameters.add(parameter);
 						}
-					} else if (section.value != null) { 
+					} else if (section.value != null) {
 						var value = section.value;
-						for (String name : value.identifiers.names) {
-							addVariable(block, name, value.type.toString(), VariableType.PARAMETER, value, PascalPackage.Literals.VALUE_PARAMETER_SECTION__IDENTIFIERS);
+						for (String valName : value.identifiers.names) {
+							var parameter = new Variable(valName, value.type.toString, false, ElementType.PARAMETER);
+							addElement(b, parameter, variables, value, PascalPackage.Literals.VALUE_PARAMETER_SECTION__IDENTIFIERS);
+							parameters.add(parameter);
 						}
 					}
 				}
 			}
 		}
+		return parameters;
 	}
 	
+	def addFunction(block b, function_declaration funct) {
+		var name = funct.heading.name;
+		var returnType = funct.heading.returnType;
+		if (funct.block == null) {
+			funct.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
+		}
+		clear(funct.block, ElementType.PARAMETER, variables); 
+		var parameters = getParameters(funct.block, funct);
+		var forward = funct.forward;
+		addElement(b, new Function(name, false, parameters, forward, returnType), abstractions, funct.heading, PascalPackage.Literals.FUNCTION_HEADING__NAME);
+	}  
+	
 	@Check
-	def checkAbstractionRedeclaration(block block) {
-		if (block.abstraction != null) {
-			var abstraction = block.abstraction;
+	def checkAbstractionRedeclaration(block b) {
+		if (b.abstraction != null) {
+			var abstraction = b.abstraction;
 			if (abstraction.functions != null) {
+				clear(b, ElementType.FUNCTION, abstractions); 
 				for (function_declaration function : abstraction.functions) {
-					if (function.block != null) {
-						addParameters(function.block, function.heading.parameters);
-					}
+					addFunction(b, function);
 				}
 			}
 			if (abstraction.procedures != null) {
 				for (procedure_declaration procedure : abstraction.procedures) {
-					if (procedure.block != null) {
-						addParameters(procedure.block, procedure.heading.parameters); 
-					}
+					
 				}
 			}
 		}	
@@ -175,54 +187,54 @@ class PascalValidator extends AbstractPascalValidator {
 	
 	
 	@Check
-	def checkConstantRedeclaration(block block) {
-		clear(block, VariableType.CONSTANT);
-		if (block.constant != null) {
-			for (constant_definition const : block.constant.consts) {
-				addVariable(block, const.name, const.const.toString(), VariableType.CONSTANT, const, PascalPackage.Literals.CONSTANT_DEFINITION__NAME);
+	def checkConstantRedeclaration(block b) {
+		clear(b, ElementType.CONSTANT, variables);
+		if (b.constant != null) {
+			for (constant_definition const : b.constant.consts) {
+				addElement(b, new Variable(const.name, const.const.toString(), false, ElementType.CONSTANT), variables, const, PascalPackage.Literals.CONSTANT_DEFINITION__NAME);
 			}
 		}
 	} 
 	
 	@Check
-	def checkVariableRedeclaration(block block) {		
-		clear(block, VariableType.VARIABLE);
-		if (block.variable != null) {
-			for (variable_section section : block.variable.sections) {
-				for (String name : section.identifiers.names) { 
-					addVariable(block, name, section.type.toString(), VariableType.VARIABLE, section, PascalPackage.Literals.VARIABLE_SECTION__IDENTIFIERS);
+	def checkVariableRedeclaration(block b) {		
+		clear(b, ElementType.VARIABLE, variables);
+		if (b.variable != null) {
+			for (variable_section section : b.variable.sections) {
+				for (String name : section.identifiers.names) {  
+					addElement(b, new Variable(name, section.type.toString(), false, ElementType.VARIABLE), variables, section, PascalPackage.Literals.VARIABLE_SECTION__IDENTIFIERS);
 				}
 			}
 		}
 	}
 	
-	def checkVariable(block block, variable variable, boolean isAssignment) { 
-		var searchVariable = search(variables.get(block), new Variable(variable.name));
+	def checkVariable(block b, variable v, boolean isAssignment) { 
+		var searchVariable = search(variables.get(b), new Variable(v.name));
 		if (searchVariable == null) {
-			insertError(variable, "Variable was not declared.", ErrorType.NOT_DECLARATION, PascalPackage.Literals.VARIABLE__NAME);
+			insertError(v, "Variable was not declared.", ErrorType.NOT_DECLARATION, PascalPackage.Literals.VARIABLE__NAME);
 		} else {
-			removeError(variable, ErrorType.NOT_DECLARATION);
+			removeError(v, ErrorType.NOT_DECLARATION);
 			if (isAssignment) {
-				if (searchVariable.varType == VariableType.CONSTANT) {
-					insertError(variable, "Constants cannot be assigned.", ErrorType.CONSTANT_ASSIGNMENT, PascalPackage.Literals.VARIABLE__NAME);
+				if (searchVariable.type == ElementType.CONSTANT) {
+					insertError(v, "Constants cannot be assigned.", ErrorType.CONSTANT_ASSIGNMENT, PascalPackage.Literals.VARIABLE__NAME);
 				} else {
-					removeError(variable, ErrorType.CONSTANT_ASSIGNMENT);
+					removeError(v, ErrorType.CONSTANT_ASSIGNMENT);
 				}
 			}
 		}
 	}
 	
-	def checkExpression(block block, expression expr) {
+	def checkExpression(block b, expression expr) {
 		for (simple_expression s : expr.expressions) {
 			for (term t : s.terms) {
 				for (factor f : t.factors) {
 					if (f.variable != null) {
-						checkVariable(block, f.variable, false);
+						checkVariable(b, f.variable, false);
 					} if (f.function != null) {
 						var function = f.function;
 						if (function.expressions != null) {
 							for (expression e : function.expressions.expressions) {
-								checkExpression(block, e);
+								checkExpression(b, e);
 							}
 						}
 					}
@@ -231,14 +243,14 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 	}
 	
-	def checkConstant(block block, constant const) {
+	def checkConstant(block b, constant const) {
 		if (const.name != null) {
-			var searchVariable = search(variables.get(block), new Variable(const.name));
+			var searchVariable = search(variables.get(b), new Variable(const.name));
 			if (searchVariable == null) {
 				insertError(const, "Constant was not declared.", ErrorType.NOT_DECLARATION, PascalPackage.Literals.CONSTANT__NAME);
 			} else {
 				removeError(const, ErrorType.NOT_DECLARATION);
-				if (searchVariable.varType != VariableType.CONSTANT) {
+				if (searchVariable.type != ElementType.CONSTANT) {
 					insertError(const, "Only constants are allowed.", ErrorType.CONSTANT_ONLY, PascalPackage.Literals.CONSTANT__NAME);
 				} else {
 					removeError(const, ErrorType.CONSTANT_ONLY);
@@ -247,18 +259,18 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 	}
 	
-	def checkStatement(block block, statement stmt) {
+	def checkStatement(block b, statement stmt) {
 		if (stmt.simple != null) {
 			var simple = stmt.simple;
 			if (simple.assignment != null) {
 				var assignment = simple.assignment;
 				var variable = assignment.variable;
-				checkVariable(block, variable, true);
+				checkVariable(b, variable, true);
 			} else if (simple.function != null) {
 				var function = simple.function;
 				if (function.expressions != null) {
 					for (expression e : function.expressions.expressions) {
-						checkExpression(block, e);
+						checkExpression(b, e);
 					}
 				}
 			}
@@ -266,58 +278,58 @@ class PascalValidator extends AbstractPascalValidator {
 			var structured = stmt.structured;
 			if (structured.compound != null) {
 				var compound = structured.compound; 
-				checkStatements(block, compound.sequence); 
+				checkStatements(b, compound.sequence); 
 			} else if (structured.repetitive != null) {
 				var repetitive = structured.repetitive;	
 				if (repetitive.whileStmt != null) {
-					checkExpression(block, repetitive.whileStmt.expression);
-					checkStatement(block, repetitive.whileStmt.statement);
+					checkExpression(b, repetitive.whileStmt.expression);
+					checkStatement(b, repetitive.whileStmt.statement);
 				} else if (repetitive.repeatStmt != null) {
-					checkStatements(block, repetitive.repeatStmt.sequence);
-					checkExpression(block, repetitive.repeatStmt.expression);
+					checkStatements(b, repetitive.repeatStmt.sequence);
+					checkExpression(b, repetitive.repeatStmt.expression);
 				} else if (repetitive.forStmt != null) {
-					checkVariable(block, repetitive.forStmt.assignment.variable, true);
-					checkExpression(block, repetitive.forStmt.expression);
-					checkStatement(block, repetitive.forStmt.statement);
+					checkVariable(b, repetitive.forStmt.assignment.variable, true);
+					checkExpression(b, repetitive.forStmt.expression);
+					checkStatement(b, repetitive.forStmt.statement);
 				}
 			} else if (structured.conditional != null) {
 				var conditional = structured.conditional;
 				if (conditional.ifStmt != null) {
 					var ifStmt = conditional.ifStmt;
-					checkExpression(block, ifStmt.expression);
-					checkStatement(block, ifStmt.ifStatement);
+					checkExpression(b, ifStmt.expression);
+					checkStatement(b, ifStmt.ifStatement);
 					if (ifStmt.elseStatement != null) {
-						checkStatement(block, ifStmt.elseStatement);
+						checkStatement(b, ifStmt.elseStatement);
 					}
 				} else if (conditional.caseStmt != null) {
 					var caseStmt = conditional.caseStmt;
-					checkExpression(block, caseStmt.expression);
+					checkExpression(b, caseStmt.expression);
 					for (case_limb limb : caseStmt.cases) {
-						checkStatement(block, limb.statement);
+						checkStatement(b, limb.statement);
 						for (constant c : limb.cases.constants) {
-							checkConstant(block, c);
+							checkConstant(b, c);
 						}
 					}
 				} 
 			} else if (structured.withStmt != null) {
 				var withStmt = structured.withStmt;
 				for (variable v : withStmt.variables) {
-					checkVariable(block, v, false);
+					checkVariable(b, v, false);
 				}
-				checkStatement(block, withStmt.statement);
+				checkStatement(b, withStmt.statement);
 			}
 		}
 	}
 	
-	def checkStatements(block block, statement_sequence sequence) {
+	def checkStatements(block b, statement_sequence sequence) {
 		for (statement stmt : sequence.statements) {
-			checkStatement(block, stmt);
+			checkStatement(b, stmt);
 		}
 	} 
 	
 	@Check
-	def checkBlock(block block) {
-		checkStatements(block, block.statement.sequence);
+	def checkBlock(block b) {
+		checkStatements(b, b.statement.sequence);
 	}
 	
 	@Check

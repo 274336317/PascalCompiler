@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.xtext.example.pascal.pascal.procedure_declaration#getHeading <em>Heading</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.procedure_declaration#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.procedure_declaration#isForward <em>Forward</em>}</li>
  * </ul>
  * </p>
  *
@@ -74,5 +75,31 @@ public interface procedure_declaration extends EObject
    * @generated
    */
   void setBlock(block value);
+
+  /**
+   * Returns the value of the '<em><b>Forward</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Forward</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Forward</em>' attribute.
+   * @see #setForward(boolean)
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getprocedure_declaration_Forward()
+   * @model
+   * @generated
+   */
+  boolean isForward();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.pascal.pascal.procedure_declaration#isForward <em>Forward</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Forward</em>' attribute.
+   * @see #isForward()
+   * @generated
+   */
+  void setForward(boolean value);
 
 } // procedure_declaration

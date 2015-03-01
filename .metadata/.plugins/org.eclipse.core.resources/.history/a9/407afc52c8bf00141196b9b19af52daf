@@ -1,0 +1,45 @@
+package org.xtext.example.pascal.validation;
+
+public abstract class Element {
+
+	protected String name;
+	protected ElementType type;
+	protected boolean inherited;
+	
+	public Element(String name, ElementType type, boolean inherited) {
+		this.name = name;
+		this.type = type;
+		this.inherited = inherited;
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public ElementType getType() {
+		return this.type;
+	}
+
+	public boolean isInherited() {
+		return this.inherited;
+	}
+
+	public Element clone() {
+		return null;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Procedure)) {
+			return false;
+		}
+		Procedure other = (Procedure) obj;
+		return this.name.toLowerCase().equals(other.name.toLowerCase());
+	}
+
+	@Override
+	public String toString() {
+		return "[" + this.name + ", " + this.inherited + ", " + this.type + "]";
+	}
+	 
+}

@@ -2472,13 +2472,22 @@ public interface PascalPackage extends EPackage
   int PROCEDURE_DECLARATION__BLOCK = 1;
 
   /**
+   * The feature id for the '<em><b>Forward</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PROCEDURE_DECLARATION__FORWARD = 2;
+
+  /**
    * The number of structural features of the '<em>procedure declaration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROCEDURE_DECLARATION_FEATURE_COUNT = 2;
+  int PROCEDURE_DECLARATION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.pascal.pascal.impl.procedure_headingImpl <em>procedure heading</em>}' class.
@@ -2934,13 +2943,22 @@ public interface PascalPackage extends EPackage
   int FUNCTION_DECLARATION__BLOCK = 1;
 
   /**
+   * The feature id for the '<em><b>Forward</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FUNCTION_DECLARATION__FORWARD = 2;
+
+  /**
    * The number of structural features of the '<em>function declaration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FUNCTION_DECLARATION_FEATURE_COUNT = 2;
+  int FUNCTION_DECLARATION_FEATURE_COUNT = 3;
 
 
   /**
@@ -4968,6 +4986,17 @@ public interface PascalPackage extends EPackage
   EReference getprocedure_declaration_Block();
 
   /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.pascal.pascal.procedure_declaration#isForward <em>Forward</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Forward</em>'.
+   * @see org.xtext.example.pascal.pascal.procedure_declaration#isForward()
+   * @see #getprocedure_declaration()
+   * @generated
+   */
+  EAttribute getprocedure_declaration_Forward();
+
+  /**
    * Returns the meta object for class '{@link org.xtext.example.pascal.pascal.procedure_heading <em>procedure heading</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5339,6 +5368,17 @@ public interface PascalPackage extends EPackage
    * @generated
    */
   EReference getfunction_declaration_Block();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.pascal.pascal.function_declaration#isForward <em>Forward</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Forward</em>'.
+   * @see org.xtext.example.pascal.pascal.function_declaration#isForward()
+   * @see #getfunction_declaration()
+   * @generated
+   */
+  EAttribute getfunction_declaration_Forward();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -7016,6 +7056,14 @@ public interface PascalPackage extends EPackage
     EReference PROCEDURE_DECLARATION__BLOCK = eINSTANCE.getprocedure_declaration_Block();
 
     /**
+     * The meta object literal for the '<em><b>Forward</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PROCEDURE_DECLARATION__FORWARD = eINSTANCE.getprocedure_declaration_Forward();
+
+    /**
      * The meta object literal for the '{@link org.xtext.example.pascal.pascal.impl.procedure_headingImpl <em>procedure heading</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -7318,6 +7366,14 @@ public interface PascalPackage extends EPackage
      * @generated
      */
     EReference FUNCTION_DECLARATION__BLOCK = eINSTANCE.getfunction_declaration_Block();
+
+    /**
+     * The meta object literal for the '<em><b>Forward</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FUNCTION_DECLARATION__FORWARD = eINSTANCE.getfunction_declaration_Forward();
 
   }
 

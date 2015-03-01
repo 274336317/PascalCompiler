@@ -25,6 +25,7 @@ import org.xtext.example.pascal.pascal.procedure_heading;
  * <ul>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.procedure_declarationImpl#getHeading <em>Heading</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.procedure_declarationImpl#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.procedure_declarationImpl#isForward <em>Forward</em>}</li>
  * </ul>
  * </p>
  *
@@ -51,6 +52,26 @@ public class procedure_declarationImpl extends MinimalEObjectImpl.Container impl
    * @ordered
    */
   protected block block;
+
+  /**
+   * The default value of the '{@link #isForward() <em>Forward</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isForward()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean FORWARD_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isForward() <em>Forward</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isForward()
+   * @generated
+   * @ordered
+   */
+  protected boolean forward = FORWARD_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -174,6 +195,29 @@ public class procedure_declarationImpl extends MinimalEObjectImpl.Container impl
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isForward()
+  {
+    return forward;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setForward(boolean newForward)
+  {
+    boolean oldForward = forward;
+    forward = newForward;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.PROCEDURE_DECLARATION__FORWARD, oldForward, forward));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -201,6 +245,8 @@ public class procedure_declarationImpl extends MinimalEObjectImpl.Container impl
         return getHeading();
       case PascalPackage.PROCEDURE_DECLARATION__BLOCK:
         return getBlock();
+      case PascalPackage.PROCEDURE_DECLARATION__FORWARD:
+        return isForward();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -220,6 +266,9 @@ public class procedure_declarationImpl extends MinimalEObjectImpl.Container impl
         return;
       case PascalPackage.PROCEDURE_DECLARATION__BLOCK:
         setBlock((block)newValue);
+        return;
+      case PascalPackage.PROCEDURE_DECLARATION__FORWARD:
+        setForward((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -241,6 +290,9 @@ public class procedure_declarationImpl extends MinimalEObjectImpl.Container impl
       case PascalPackage.PROCEDURE_DECLARATION__BLOCK:
         setBlock((block)null);
         return;
+      case PascalPackage.PROCEDURE_DECLARATION__FORWARD:
+        setForward(FORWARD_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -259,8 +311,27 @@ public class procedure_declarationImpl extends MinimalEObjectImpl.Container impl
         return heading != null;
       case PascalPackage.PROCEDURE_DECLARATION__BLOCK:
         return block != null;
+      case PascalPackage.PROCEDURE_DECLARATION__FORWARD:
+        return forward != FORWARD_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (forward: ");
+    result.append(forward);
+    result.append(')');
+    return result.toString();
   }
 
 } //procedure_declarationImpl
