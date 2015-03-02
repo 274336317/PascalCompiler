@@ -394,6 +394,9 @@ class PascalValidator extends AbstractPascalValidator {
 	}
 	
 	def String getType(block b, expression expr) {
+		if (expr.operator != null) {
+			return "boolean";
+		}
 		var greatestType = "";
 		for (simple_expression e : expr.expressions) {
 			var type = getType(b, e);
@@ -630,16 +633,86 @@ class PascalValidator extends AbstractPascalValidator {
 		checkAbstraction(b, getAbstraction(b, function), functionOnly, function, PascalPackage.Literals.FUNCTION_DESIGNATOR__NAME); 
 	}  
 	
+	def checkFactor(block b, factor f) {
+		if (f.variable != null) {
+			checkVariable(b, f.variable, false);
+		} else if (f.function != null) {	
+			checkAbstractionCall(b, f.function, true);
+		} else if (f.not != null) {
+			if (!getType(b, f.not).equals("boolean")) {
+				insertError(f, "Cannot convert " + getType(b, f.not) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.FACTOR__NOT);
+			} else {
+				removeError(f, ErrorType.TYPE_CONVERSION_ERROR);
+			}
+		}
+	}
+	
+	def checkTerm(block b, term t) {
+		var isBoolean = false;
+		var isNumeric = false;
+		if (t.operators != null) {
+			for (String op : t.operators) {
+				if (op.equals("and")) {
+					isBoolean = true;
+				} else if (!isBoolean) {
+					isNumeric = true;
+				} else {
+					insertError(t, "Invalid operator for boolean.", ErrorType.INVALID_OPERATOR, PascalPackage.Literals.TERM__OPERATORS);	
+					return;
+				}
+			}
+		}
+		removeError(t, ErrorType.INVALID_OPERATOR);
+		for (factor f : t.factors) {
+			if (isBoolean) {
+				if (!getType(b, f).equals("boolean")) {
+					insertError(t, "Cannot convert " + getType(b, f) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.TERM__FACTORS);		
+				} else {
+					removeError(t, ErrorType.TYPE_CONVERSION_ERROR);
+				}
+			} else if (isNumeric) {
+				if (TypeInferer.getTypeWeight(getType(b, f)) == -1) {
+					insertError(t, "Cannot convert " + getType(b, f) + " to numeric.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.TERM__FACTORS);		
+				} else {
+					removeError(t, ErrorType.TYPE_CONVERSION_ERROR);
+				}
+			}
+			checkFactor(b, f);
+		}
+	}
+	
 	def checkExpression(block b, expression expr) {
 		for (simple_expression s : expr.expressions) {
+			var isBoolean = false;
+			var isNumeric = false;
+			if (s.operators != null) {
+				for (String op : s.operators) {
+					if (op.equals("or")) {
+						isBoolean = true;
+					} else if (!isBoolean) {
+						isNumeric = true;
+					} else {
+						insertError(s, "Invalid operator for boolean.", ErrorType.INVALID_OPERATOR, PascalPackage.Literals.SIMPLE_EXPRESSION__OPERATORS);	
+						return;
+					} 
+				}
+			}
+			removeError(s, ErrorType.INVALID_OPERATOR);
 			for (term t : s.terms) {
-				for (factor f : t.factors) {
-					if (f.variable != null) {
-						checkVariable(b, f.variable, false);
-					} if (f.function != null) {	
-						checkAbstractionCall(b, f.function, true);
+				if (isBoolean) {
+					if (!getType(b, t).equals("boolean")) {
+						insertError(s, "Cannot convert " + getType(b, t) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);		
+					} else {
+						removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
+					}
+				} else if (isNumeric) {
+					if (TypeInferer.getTypeWeight(getType(b, t)) == -1) {
+						insertError(s, "Cannot convert " + getType(b, t) + " to numeric.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
+					} else {
+						removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
 					}
 				}
+				checkTerm(b, t);
 			}
 		}
 	}

@@ -786,6 +786,11 @@ public class PascalValidator extends AbstractPascalValidator {
   }
   
   public String getType(final block b, final expression expr) {
+    String _operator = expr.getOperator();
+    boolean _notEquals = (!Objects.equal(_operator, null));
+    if (_notEquals) {
+      return "boolean";
+    }
     String greatestType = "";
     EList<simple_expression> _expressions = expr.getExpressions();
     for (final simple_expression e : _expressions) {
@@ -1225,26 +1230,161 @@ public class PascalValidator extends AbstractPascalValidator {
     this.checkAbstraction(b, _abstraction, functionOnly, function, PascalPackage.Literals.FUNCTION_DESIGNATOR__NAME);
   }
   
+  public Boolean checkFactor(final block b, final factor f) {
+    boolean _xifexpression = false;
+    variable _variable = f.getVariable();
+    boolean _notEquals = (!Objects.equal(_variable, null));
+    if (_notEquals) {
+      variable _variable_1 = f.getVariable();
+      _xifexpression = this.checkVariable(b, _variable_1, false);
+    } else {
+      boolean _xifexpression_1 = false;
+      function_designator _function = f.getFunction();
+      boolean _notEquals_1 = (!Objects.equal(_function, null));
+      if (_notEquals_1) {
+        function_designator _function_1 = f.getFunction();
+        this.checkAbstractionCall(b, _function_1, true);
+      } else {
+        boolean _xifexpression_2 = false;
+        factor _not = f.getNot();
+        boolean _notEquals_2 = (!Objects.equal(_not, null));
+        if (_notEquals_2) {
+          boolean _xifexpression_3 = false;
+          factor _not_1 = f.getNot();
+          String _type = this.getType(b, _not_1);
+          boolean _equals = _type.equals("boolean");
+          boolean _not_2 = (!_equals);
+          if (_not_2) {
+            factor _not_3 = f.getNot();
+            String _type_1 = this.getType(b, _not_3);
+            String _plus = ("Cannot convert " + _type_1);
+            String _plus_1 = (_plus + " to boolean.");
+            _xifexpression_3 = this.insertError(f, _plus_1, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.FACTOR__NOT);
+          } else {
+            this.removeError(f, ErrorType.TYPE_CONVERSION_ERROR);
+          }
+          _xifexpression_2 = _xifexpression_3;
+        }
+        _xifexpression_1 = _xifexpression_2;
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    return Boolean.valueOf(_xifexpression);
+  }
+  
+  public void checkTerm(final block b, final term t) {
+    boolean isBoolean = false;
+    boolean isNumeric = false;
+    EList<String> _operators = t.getOperators();
+    boolean _notEquals = (!Objects.equal(_operators, null));
+    if (_notEquals) {
+      EList<String> _operators_1 = t.getOperators();
+      for (final String op : _operators_1) {
+        boolean _equals = op.equals("and");
+        if (_equals) {
+          isBoolean = true;
+        } else {
+          if ((!isBoolean)) {
+            isNumeric = true;
+          } else {
+            this.insertError(t, "Invalid operator for boolean.", ErrorType.INVALID_OPERATOR, PascalPackage.Literals.TERM__OPERATORS);
+            return;
+          }
+        }
+      }
+    }
+    this.removeError(t, ErrorType.INVALID_OPERATOR);
+    EList<factor> _factors = t.getFactors();
+    for (final factor f : _factors) {
+      {
+        if (isBoolean) {
+          String _type = this.getType(b, f);
+          boolean _equals_1 = _type.equals("boolean");
+          boolean _not = (!_equals_1);
+          if (_not) {
+            String _type_1 = this.getType(b, f);
+            String _plus = ("Cannot convert " + _type_1);
+            String _plus_1 = (_plus + " to boolean.");
+            this.insertError(t, _plus_1, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.TERM__FACTORS);
+          } else {
+            this.removeError(t, ErrorType.TYPE_CONVERSION_ERROR);
+          }
+        } else {
+          if (isNumeric) {
+            String _type_2 = this.getType(b, f);
+            int _typeWeight = TypeInferer.getTypeWeight(_type_2);
+            boolean _equals_2 = (_typeWeight == (-1));
+            if (_equals_2) {
+              String _type_3 = this.getType(b, f);
+              String _plus_2 = ("Cannot convert " + _type_3);
+              String _plus_3 = (_plus_2 + " to numeric.");
+              this.insertError(t, _plus_3, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.TERM__FACTORS);
+            } else {
+              this.removeError(t, ErrorType.TYPE_CONVERSION_ERROR);
+            }
+          }
+        }
+        this.checkFactor(b, f);
+      }
+    }
+  }
+  
   public void checkExpression(final block b, final expression expr) {
     EList<simple_expression> _expressions = expr.getExpressions();
     for (final simple_expression s : _expressions) {
-      EList<term> _terms = s.getTerms();
-      for (final term t : _terms) {
-        EList<factor> _factors = t.getFactors();
-        for (final factor f : _factors) {
+      {
+        boolean isBoolean = false;
+        boolean isNumeric = false;
+        EList<String> _operators = s.getOperators();
+        boolean _notEquals = (!Objects.equal(_operators, null));
+        if (_notEquals) {
+          EList<String> _operators_1 = s.getOperators();
+          for (final String op : _operators_1) {
+            boolean _equals = op.equals("or");
+            if (_equals) {
+              isBoolean = true;
+            } else {
+              if ((!isBoolean)) {
+                isNumeric = true;
+              } else {
+                this.insertError(s, "Invalid operator for boolean.", ErrorType.INVALID_OPERATOR, PascalPackage.Literals.SIMPLE_EXPRESSION__OPERATORS);
+                return;
+              }
+            }
+          }
+        }
+        this.removeError(s, ErrorType.INVALID_OPERATOR);
+        EList<term> _terms = s.getTerms();
+        for (final term t : _terms) {
           {
-            variable _variable = f.getVariable();
-            boolean _notEquals = (!Objects.equal(_variable, null));
-            if (_notEquals) {
-              variable _variable_1 = f.getVariable();
-              this.checkVariable(b, _variable_1, false);
+            if (isBoolean) {
+              String _type = this.getType(b, t);
+              boolean _equals_1 = _type.equals("boolean");
+              boolean _not = (!_equals_1);
+              if (_not) {
+                String _type_1 = this.getType(b, t);
+                String _plus = ("Cannot convert " + _type_1);
+                String _plus_1 = (_plus + " to boolean.");
+                this.insertError(s, _plus_1, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
+              } else {
+                this.removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
+              }
+            } else {
+              if (isNumeric) {
+                String _type_2 = this.getType(b, t);
+                int _typeWeight = TypeInferer.getTypeWeight(_type_2);
+                boolean _equals_2 = (_typeWeight == (-1));
+                if (_equals_2) {
+                  String _type_3 = this.getType(b, t);
+                  String _plus_2 = ("Cannot convert " + _type_3);
+                  String _plus_3 = (_plus_2 + " to numeric.");
+                  this.insertError(s, _plus_3, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
+                } else {
+                  this.removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
+                }
+              }
             }
-            function_designator _function = f.getFunction();
-            boolean _notEquals_1 = (!Objects.equal(_function, null));
-            if (_notEquals_1) {
-              function_designator _function_1 = f.getFunction();
-              this.checkAbstractionCall(b, _function_1, true);
-            }
+            this.checkTerm(b, t);
           }
         }
       }

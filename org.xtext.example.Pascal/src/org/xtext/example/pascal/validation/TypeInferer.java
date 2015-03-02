@@ -3,7 +3,7 @@ package org.xtext.example.pascal.validation;
 
 public class TypeInferer {
 
-	private static int getTypeWeight(String type) {
+	public static int getTypeWeight(String type) {
 		switch (type) {
 		case "real":
 			return 4;
