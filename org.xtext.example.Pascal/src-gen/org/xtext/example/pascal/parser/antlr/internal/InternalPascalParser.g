@@ -1208,23 +1208,16 @@ ruleexpression returns [EObject current=null]
 
 // Entry rule entryRulesimple_expression
 entryRulesimple_expression returns [EObject current=null]
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
-	}
 	:
 	{ newCompositeNode(grammarAccess.getSimple_expressionRule()); }
 	 iv_rulesimple_expression=rulesimple_expression 
 	 { $current=$iv_rulesimple_expression.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule simple_expression
 rulesimple_expression returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
     }
     @after { leaveRule(); }:
 ((
@@ -1337,9 +1330,6 @@ rulesimple_expression returns [EObject current=null]
 )
 ))*)
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 
@@ -1347,23 +1337,16 @@ finally {
 
 // Entry rule entryRuleterm
 entryRuleterm returns [EObject current=null]
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
-	}
 	:
 	{ newCompositeNode(grammarAccess.getTermRule()); }
 	 iv_ruleterm=ruleterm 
 	 { $current=$iv_ruleterm.current; } 
 	 EOF 
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 // Rule term
 ruleterm returns [EObject current=null] 
     @init { enterRule(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
     }
     @after { leaveRule(); }:
 ((
@@ -1473,9 +1456,6 @@ ruleterm returns [EObject current=null]
 )
 ))*)
 ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 

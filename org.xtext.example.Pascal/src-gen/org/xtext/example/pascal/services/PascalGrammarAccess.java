@@ -663,7 +663,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNumbersAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final RuleCall cNumbersSigned_numberParserRuleCall_2_1_0 = (RuleCall)cNumbersAssignment_2_1.eContents().get(0);
 		
-		//simple_expression hidden(WS):
+		//simple_expression:
 		//	operators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
 		//	numbers+=signed_number)*;
 		public ParserRule getRule() { return rule; }
@@ -736,7 +736,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFactorsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cFactorsFactorParserRuleCall_1_1_0 = (RuleCall)cFactorsAssignment_1_1.eContents().get(0);
 		
-		//term hidden(WS):
+		//term:
 		//	factors+=factor ((operators+=MULTIPLICATION_OPERATOR | operators+="div" | operators+="mod" | operators+="and")
 		//	factors+=factor)*;
 		public ParserRule getRule() { return rule; }
@@ -3649,7 +3649,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionAccess().getRule();
 	}
 
-	//simple_expression hidden(WS):
+	//simple_expression:
 	//	operators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
 	//	numbers+=signed_number)*;
 	public Simple_expressionElements getSimple_expressionAccess() {
@@ -3660,7 +3660,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getSimple_expressionAccess().getRule();
 	}
 
-	//term hidden(WS):
+	//term:
 	//	factors+=factor ((operators+=MULTIPLICATION_OPERATOR | operators+="div" | operators+="mod" | operators+="and")
 	//	factors+=factor)*;
 	public TermElements getTermAccess() {

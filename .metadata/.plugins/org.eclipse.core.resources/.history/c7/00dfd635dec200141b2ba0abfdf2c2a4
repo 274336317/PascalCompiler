@@ -46,7 +46,7 @@ public abstract class Element {
 		if (name == null) {
 			if (other.name != null)
 				return false;
-		} else if (!name.toLowerCase().equals(other.name.toLowerCase()))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
