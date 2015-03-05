@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="variables.put" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="insertError"/>
-			<item value="variables.put"/>
-			<item value="variables"/>
+			<item value="excepted"/>
+			<item value="variable:"/>
+			<item value="getType(block b, varia"/>
 			<item value="checkVariable"/>
-			<item value="constant"/>
-			<item value="simple_state"/>
-			<item value="for_statement"/>
-			<item value="for_s"/>
+			<item value="checkExpression("/>
+			<item value="expression:"/>
+			<item value="expression"/>
+			<item value="checkExpres"/>
 		</list>
 		<list key="replacehistory">
 			<item value="ID"/>

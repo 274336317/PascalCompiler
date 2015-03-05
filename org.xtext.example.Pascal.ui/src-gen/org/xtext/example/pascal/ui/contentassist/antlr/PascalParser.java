@@ -188,10 +188,11 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getVariableAccess().getNameAssignment_0(), "rule__Variable__NameAssignment_0");
 					put(grammarAccess.getVariableAccess().getVariableAssignment_1(), "rule__Variable__VariableAssignment_1");
 					put(grammarAccess.getVar_Access().getExpressionsAssignment_0_1(), "rule__Var___ExpressionsAssignment_0_1");
-					put(grammarAccess.getVar_Access().getVariableAssignment_0_3(), "rule__Var___VariableAssignment_0_3");
+					put(grammarAccess.getVar_Access().getArrayAssignment_0_3(), "rule__Var___ArrayAssignment_0_3");
+					put(grammarAccess.getVar_Access().getAccessorAssignment_1_0(), "rule__Var___AccessorAssignment_1_0");
 					put(grammarAccess.getVar_Access().getNameAssignment_1_1(), "rule__Var___NameAssignment_1_1");
 					put(grammarAccess.getVar_Access().getVariableAssignment_1_2(), "rule__Var___VariableAssignment_1_2");
-					put(grammarAccess.getVar_Access().getVariableAssignment_2_1(), "rule__Var___VariableAssignment_2_1");
+					put(grammarAccess.getVar_Access().getPointerAssignment_2_1(), "rule__Var___PointerAssignment_2_1");
 					put(grammarAccess.getExpression_listAccess().getExpressionsAssignment_0(), "rule__Expression_list__ExpressionsAssignment_0");
 					put(grammarAccess.getExpression_listAccess().getExpressionsAssignment_1_1(), "rule__Expression_list__ExpressionsAssignment_1_1");
 					put(grammarAccess.getExpressionAccess().getExpressionsAssignment_0(), "rule__Expression__ExpressionsAssignment_0");

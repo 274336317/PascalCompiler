@@ -23,8 +23,11 @@ import org.xtext.example.pascal.pascal.var_;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.var_Impl#getExpressions <em>Expressions</em>}</li>
- *   <li>{@link org.xtext.example.pascal.pascal.impl.var_Impl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.var_Impl#getArray <em>Array</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.var_Impl#isAccessor <em>Accessor</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.var_Impl#getName <em>Name</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.var_Impl#getVariable <em>Variable</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.var_Impl#getPointer <em>Pointer</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,14 +46,34 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
   protected expression_list expressions;
 
   /**
-   * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
+   * The cached value of the '{@link #getArray() <em>Array</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVariable()
+   * @see #getArray()
    * @generated
    * @ordered
    */
-  protected var_ variable;
+  protected var_ array;
+
+  /**
+   * The default value of the '{@link #isAccessor() <em>Accessor</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isAccessor()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean ACCESSOR_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isAccessor() <em>Accessor</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isAccessor()
+   * @generated
+   * @ordered
+   */
+  protected boolean accessor = ACCESSOR_EDEFAULT;
 
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -71,6 +94,26 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getVariable() <em>Variable</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getVariable()
+   * @generated
+   * @ordered
+   */
+  protected var_ variable;
+
+  /**
+   * The cached value of the '{@link #getPointer() <em>Pointer</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPointer()
+   * @generated
+   * @ordered
+   */
+  protected var_ pointer;
 
   /**
    * <!-- begin-user-doc -->
@@ -146,6 +189,100 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
    * <!-- end-user-doc -->
    * @generated
    */
+  public var_ getArray()
+  {
+    return array;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetArray(var_ newArray, NotificationChain msgs)
+  {
+    var_ oldArray = array;
+    array = newArray;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.VAR___ARRAY, oldArray, newArray);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setArray(var_ newArray)
+  {
+    if (newArray != array)
+    {
+      NotificationChain msgs = null;
+      if (array != null)
+        msgs = ((InternalEObject)array).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.VAR___ARRAY, null, msgs);
+      if (newArray != null)
+        msgs = ((InternalEObject)newArray).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.VAR___ARRAY, null, msgs);
+      msgs = basicSetArray(newArray, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.VAR___ARRAY, newArray, newArray));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isAccessor()
+  {
+    return accessor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setAccessor(boolean newAccessor)
+  {
+    boolean oldAccessor = accessor;
+    accessor = newAccessor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.VAR___ACCESSOR, oldAccessor, accessor));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.VAR___NAME, oldName, name));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public var_ getVariable()
   {
     return variable;
@@ -194,9 +331,9 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public var_ getPointer()
   {
-    return name;
+    return pointer;
   }
 
   /**
@@ -204,12 +341,37 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public NotificationChain basicSetPointer(var_ newPointer, NotificationChain msgs)
   {
-    String oldName = name;
-    name = newName;
+    var_ oldPointer = pointer;
+    pointer = newPointer;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.VAR___NAME, oldName, name));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PascalPackage.VAR___POINTER, oldPointer, newPointer);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPointer(var_ newPointer)
+  {
+    if (newPointer != pointer)
+    {
+      NotificationChain msgs = null;
+      if (pointer != null)
+        msgs = ((InternalEObject)pointer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PascalPackage.VAR___POINTER, null, msgs);
+      if (newPointer != null)
+        msgs = ((InternalEObject)newPointer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - PascalPackage.VAR___POINTER, null, msgs);
+      msgs = basicSetPointer(newPointer, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.VAR___POINTER, newPointer, newPointer));
   }
 
   /**
@@ -224,8 +386,12 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
     {
       case PascalPackage.VAR___EXPRESSIONS:
         return basicSetExpressions(null, msgs);
+      case PascalPackage.VAR___ARRAY:
+        return basicSetArray(null, msgs);
       case PascalPackage.VAR___VARIABLE:
         return basicSetVariable(null, msgs);
+      case PascalPackage.VAR___POINTER:
+        return basicSetPointer(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -242,10 +408,16 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
     {
       case PascalPackage.VAR___EXPRESSIONS:
         return getExpressions();
-      case PascalPackage.VAR___VARIABLE:
-        return getVariable();
+      case PascalPackage.VAR___ARRAY:
+        return getArray();
+      case PascalPackage.VAR___ACCESSOR:
+        return isAccessor();
       case PascalPackage.VAR___NAME:
         return getName();
+      case PascalPackage.VAR___VARIABLE:
+        return getVariable();
+      case PascalPackage.VAR___POINTER:
+        return getPointer();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -263,11 +435,20 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
       case PascalPackage.VAR___EXPRESSIONS:
         setExpressions((expression_list)newValue);
         return;
-      case PascalPackage.VAR___VARIABLE:
-        setVariable((var_)newValue);
+      case PascalPackage.VAR___ARRAY:
+        setArray((var_)newValue);
+        return;
+      case PascalPackage.VAR___ACCESSOR:
+        setAccessor((Boolean)newValue);
         return;
       case PascalPackage.VAR___NAME:
         setName((String)newValue);
+        return;
+      case PascalPackage.VAR___VARIABLE:
+        setVariable((var_)newValue);
+        return;
+      case PascalPackage.VAR___POINTER:
+        setPointer((var_)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -286,11 +467,20 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
       case PascalPackage.VAR___EXPRESSIONS:
         setExpressions((expression_list)null);
         return;
-      case PascalPackage.VAR___VARIABLE:
-        setVariable((var_)null);
+      case PascalPackage.VAR___ARRAY:
+        setArray((var_)null);
+        return;
+      case PascalPackage.VAR___ACCESSOR:
+        setAccessor(ACCESSOR_EDEFAULT);
         return;
       case PascalPackage.VAR___NAME:
         setName(NAME_EDEFAULT);
+        return;
+      case PascalPackage.VAR___VARIABLE:
+        setVariable((var_)null);
+        return;
+      case PascalPackage.VAR___POINTER:
+        setPointer((var_)null);
         return;
     }
     super.eUnset(featureID);
@@ -308,10 +498,16 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
     {
       case PascalPackage.VAR___EXPRESSIONS:
         return expressions != null;
-      case PascalPackage.VAR___VARIABLE:
-        return variable != null;
+      case PascalPackage.VAR___ARRAY:
+        return array != null;
+      case PascalPackage.VAR___ACCESSOR:
+        return accessor != ACCESSOR_EDEFAULT;
       case PascalPackage.VAR___NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case PascalPackage.VAR___VARIABLE:
+        return variable != null;
+      case PascalPackage.VAR___POINTER:
+        return pointer != null;
     }
     return super.eIsSet(featureID);
   }
@@ -327,7 +523,9 @@ public class var_Impl extends MinimalEObjectImpl.Container implements var_
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (accessor: ");
+    result.append(accessor);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

@@ -1088,7 +1088,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getvar__Variable()
+  public EReference getvar__Array()
   {
     return (EReference)var_EClass.getEStructuralFeatures().get(1);
   }
@@ -1098,9 +1098,39 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getvar__Name()
+  public EAttribute getvar__Accessor()
   {
     return (EAttribute)var_EClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getvar__Name()
+  {
+    return (EAttribute)var_EClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getvar__Variable()
+  {
+    return (EReference)var_EClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getvar__Pointer()
+  {
+    return (EReference)var_EClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -3165,8 +3195,11 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
 
     var_EClass = createEClass(VAR_);
     createEReference(var_EClass, VAR___EXPRESSIONS);
-    createEReference(var_EClass, VAR___VARIABLE);
+    createEReference(var_EClass, VAR___ARRAY);
+    createEAttribute(var_EClass, VAR___ACCESSOR);
     createEAttribute(var_EClass, VAR___NAME);
+    createEReference(var_EClass, VAR___VARIABLE);
+    createEReference(var_EClass, VAR___POINTER);
 
     expression_listEClass = createEClass(EXPRESSION_LIST);
     createEReference(expression_listEClass, EXPRESSION_LIST__EXPRESSIONS);
@@ -3513,8 +3546,11 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
 
     initEClass(var_EClass, var_.class, "var_", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getvar__Expressions(), this.getexpression_list(), null, "expressions", null, 0, 1, var_.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getvar__Variable(), this.getvar_(), null, "variable", null, 0, 1, var_.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getvar__Array(), this.getvar_(), null, "array", null, 0, 1, var_.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getvar__Accessor(), ecorePackage.getEBoolean(), "accessor", null, 0, 1, var_.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getvar__Name(), ecorePackage.getEString(), "name", null, 0, 1, var_.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getvar__Variable(), this.getvar_(), null, "variable", null, 0, 1, var_.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getvar__Pointer(), this.getvar_(), null, "pointer", null, 0, 1, var_.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expression_listEClass, expression_list.class, "expression_list", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getexpression_list_Expressions(), this.getexpression(), null, "expressions", null, 0, -1, expression_list.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

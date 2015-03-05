@@ -651,7 +651,8 @@ public class PascalValidator extends AbstractPascalValidator {
     boolean _notEquals = (!Objects.equal(variableFound, null));
     if (_notEquals) {
       String _varType = variableFound.getVarType();
-      return this.getRealType(b, _varType);
+      String type = this.getRealType(b, _varType);
+      return type;
     }
     return null;
   }
@@ -1170,7 +1171,13 @@ public class PascalValidator extends AbstractPascalValidator {
           int _size_1 = proc.parameters.size();
           boolean _notEquals = (_size != _size_1);
           if (_notEquals) {
-            this.insertError(object, "Wrong number of arguments.", ErrorType.NOT_DECLARATION, feature);
+            int _size_2 = p.parameters.size();
+            String _plus = ("Wrong number of arguments. It expected " + Integer.valueOf(_size_2));
+            String _plus_1 = (_plus + " received ");
+            int _size_3 = proc.parameters.size();
+            String _plus_2 = (_plus_1 + Integer.valueOf(_size_3));
+            String _plus_3 = (_plus_2 + " arguments.");
+            this.insertError(object, _plus_3, ErrorType.NOT_DECLARATION, feature);
           } else {
             Iterator<Variable> it1 = p.parameters.iterator();
             Iterator<Variable> it2 = proc.parameters.iterator();
@@ -1178,18 +1185,18 @@ public class PascalValidator extends AbstractPascalValidator {
               {
                 Variable type1 = it1.next();
                 Variable type2 = it2.next();
-                String _varType = type2.getVarType();
-                String _varType_1 = type1.getVarType();
+                String _varType = type1.getVarType();
+                String _varType_1 = type2.getVarType();
                 boolean _areTypesCompatibles = TypeInferer.areTypesCompatibles(_varType, _varType_1);
                 boolean _not = (!_areTypesCompatibles);
                 if (_not) {
-                  String _varType_2 = type2.getVarType();
-                  String _plus = ("Incompatible types of arguments: Cannot convert " + _varType_2);
-                  String _plus_1 = (_plus + " to ");
-                  String _varType_3 = type1.getVarType();
-                  String _plus_2 = (_plus_1 + _varType_3);
-                  String _plus_3 = (_plus_2 + ".");
-                  this.insertError(object, _plus_3, ErrorType.NOT_DECLARATION, feature);
+                  String _varType_2 = type1.getVarType();
+                  String _plus_4 = ("Incompatible types of arguments. It expected " + _varType_2);
+                  String _plus_5 = (_plus_4 + " received ");
+                  String _varType_3 = type2.getVarType();
+                  String _plus_6 = (_plus_5 + _varType_3);
+                  String _plus_7 = (_plus_6 + ".");
+                  this.insertError(object, _plus_7, ErrorType.NOT_DECLARATION, feature);
                   return;
                 }
               }
@@ -1230,26 +1237,22 @@ public class PascalValidator extends AbstractPascalValidator {
     this.checkAbstraction(b, _abstraction, functionOnly, function, PascalPackage.Literals.FUNCTION_DESIGNATOR__NAME);
   }
   
-  public Boolean checkFactor(final block b, final factor f) {
-    boolean _xifexpression = false;
+  public void checkFactor(final block b, final factor f) {
     variable _variable = f.getVariable();
     boolean _notEquals = (!Objects.equal(_variable, null));
     if (_notEquals) {
       variable _variable_1 = f.getVariable();
-      _xifexpression = this.checkVariable(b, _variable_1, false);
+      this.checkVariable(b, _variable_1, false);
     } else {
-      boolean _xifexpression_1 = false;
       function_designator _function = f.getFunction();
       boolean _notEquals_1 = (!Objects.equal(_function, null));
       if (_notEquals_1) {
         function_designator _function_1 = f.getFunction();
         this.checkAbstractionCall(b, _function_1, true);
       } else {
-        boolean _xifexpression_2 = false;
         factor _not = f.getNot();
         boolean _notEquals_2 = (!Objects.equal(_not, null));
         if (_notEquals_2) {
-          boolean _xifexpression_3 = false;
           factor _not_1 = f.getNot();
           String _type = this.getType(b, _not_1);
           boolean _equals = _type.equals("boolean");
@@ -1259,17 +1262,22 @@ public class PascalValidator extends AbstractPascalValidator {
             String _type_1 = this.getType(b, _not_3);
             String _plus = ("Cannot convert " + _type_1);
             String _plus_1 = (_plus + " to boolean.");
-            _xifexpression_3 = this.insertError(f, _plus_1, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.FACTOR__NOT);
+            this.insertError(f, _plus_1, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.FACTOR__NOT);
           } else {
             this.removeError(f, ErrorType.TYPE_CONVERSION_ERROR);
           }
-          _xifexpression_2 = _xifexpression_3;
+          factor _not_4 = f.getNot();
+          this.checkFactor(b, _not_4);
+        } else {
+          expression _expression = f.getExpression();
+          boolean _notEquals_3 = (!Objects.equal(_expression, null));
+          if (_notEquals_3) {
+            expression _expression_1 = f.getExpression();
+            this.checkExpression(b, _expression_1);
+          }
         }
-        _xifexpression_1 = _xifexpression_2;
       }
-      _xifexpression = _xifexpression_1;
     }
-    return Boolean.valueOf(_xifexpression);
   }
   
   public void checkTerm(final block b, final term t) {

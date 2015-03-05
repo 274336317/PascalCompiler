@@ -1418,7 +1418,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     ((expressions=expression_list variable=var_) | (name=ID variable=var_) | variable=var_)?
+	 *     ((expressions=expression_list array=var_) | (accessor?='.' name=ID variable=var_) | pointer=var_)?
 	 */
 	protected void sequence_var_(EObject context, var_ semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

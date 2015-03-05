@@ -331,7 +331,8 @@ class PascalValidator extends AbstractPascalValidator {
 	def String getType(block b, variable v) {
 		var variableFound = search(variables.get(b), new Variable(v.name)); 
 		if (variableFound != null) {
-			return getRealType(b, variableFound.getVarType());
+			var type = getRealType(b, variableFound.getVarType());
+			return type;
 		} 
 		return null;
 	} 
@@ -597,15 +598,15 @@ class PascalValidator extends AbstractPascalValidator {
 			for (Procedure p : abstractions.get(b)) {
 				if (p.name.toLowerCase.equals(proc.name.toLowerCase)) {
 					if (p.parameters.size != proc.parameters.size) {
-						insertError(object, "Wrong number of arguments.", ErrorType.NOT_DECLARATION, feature);
+						insertError(object, "Wrong number of arguments. It expected " + p.parameters.size + " received " + proc.parameters.size + " arguments.", ErrorType.NOT_DECLARATION, feature);
 					} else {
 						var it1 = p.parameters.iterator;
 						var it2 = proc.parameters.iterator;
 						while (it1.hasNext && it2.hasNext) {
 							var type1 = it1.next;
 							var type2 = it2.next; 
-							if (!TypeInferer.areTypesCompatibles(type2.varType, type1.varType)) {
-								insertError(object, "Incompatible types of arguments: Cannot convert " + type2.varType + " to " + type1.varType + ".", ErrorType.NOT_DECLARATION, feature);
+							if (!TypeInferer.areTypesCompatibles(type1.varType, type2.varType)) {
+								insertError(object, "Incompatible types of arguments. It expected " + type1.varType + " received " + type2.varType + ".", ErrorType.NOT_DECLARATION, feature);
 								return;
 							}	
 						}
@@ -633,7 +634,7 @@ class PascalValidator extends AbstractPascalValidator {
 		checkAbstraction(b, getAbstraction(b, function), functionOnly, function, PascalPackage.Literals.FUNCTION_DESIGNATOR__NAME); 
 	}  
 	
-	def checkFactor(block b, factor f) {
+	def void checkFactor(block b, factor f) {
 		if (f.variable != null) {
 			checkVariable(b, f.variable, false);
 		} else if (f.function != null) {	
@@ -644,10 +645,13 @@ class PascalValidator extends AbstractPascalValidator {
 			} else {
 				removeError(f, ErrorType.TYPE_CONVERSION_ERROR);
 			}
+			checkFactor(b, f.not); 
+		} else if (f.expression != null) {
+			checkExpression(b, f.expression);
 		}
 	}
 	
-	def checkTerm(block b, term t) {
+	def void checkTerm(block b, term t) {
 		var isBoolean = false;
 		var isNumeric = false;
 		if (t.operators != null) {
@@ -681,7 +685,7 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 	}
 	
-	def checkExpression(block b, expression expr) {
+	def void checkExpression(block b, expression expr) {
 		for (simple_expression s : expr.expressions) {
 			var isBoolean = false;
 			var isNumeric = false;

@@ -56,7 +56,7 @@ variable: //FALTOU REFERENCED_VARIABLE, MAS ACHO QUE FUNCIONA
 ;
     
 var_: //TODO: REMOVIDO RECURSÃO A ESQUERDA (ERA COMPONENT_VARIABLE)
-	( "[" expressions=expression_list "]" variable=var_ | "." name=ID variable=var_ | "^" variable=var_ ) ?
+	( "[" expressions=expression_list "]" array=var_ | accessor?="." name=ID variable=var_ | "^" pointer=var_ ) ?
 ; 
 
 expression_list:

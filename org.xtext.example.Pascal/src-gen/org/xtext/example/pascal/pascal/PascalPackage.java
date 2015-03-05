@@ -538,13 +538,22 @@ public interface PascalPackage extends EPackage
   int VAR___EXPRESSIONS = 0;
 
   /**
-   * The feature id for the '<em><b>Variable</b></em>' containment reference.
+   * The feature id for the '<em><b>Array</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VAR___VARIABLE = 1;
+  int VAR___ARRAY = 1;
+
+  /**
+   * The feature id for the '<em><b>Accessor</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VAR___ACCESSOR = 2;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -553,7 +562,25 @@ public interface PascalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR___NAME = 2;
+  int VAR___NAME = 3;
+
+  /**
+   * The feature id for the '<em><b>Variable</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VAR___VARIABLE = 4;
+
+  /**
+   * The feature id for the '<em><b>Pointer</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VAR___POINTER = 5;
 
   /**
    * The number of structural features of the '<em>var </em>' class.
@@ -562,7 +589,7 @@ public interface PascalPackage extends EPackage
    * @generated
    * @ordered
    */
-  int VAR__FEATURE_COUNT = 3;
+  int VAR__FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link org.xtext.example.pascal.pascal.impl.expression_listImpl <em>expression list</em>}' class.
@@ -3422,15 +3449,26 @@ public interface PascalPackage extends EPackage
   EReference getvar__Expressions();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.pascal.pascal.var_#getVariable <em>Variable</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.pascal.pascal.var_#getArray <em>Array</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Variable</em>'.
-   * @see org.xtext.example.pascal.pascal.var_#getVariable()
+   * @return the meta object for the containment reference '<em>Array</em>'.
+   * @see org.xtext.example.pascal.pascal.var_#getArray()
    * @see #getvar_()
    * @generated
    */
-  EReference getvar__Variable();
+  EReference getvar__Array();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.pascal.pascal.var_#isAccessor <em>Accessor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Accessor</em>'.
+   * @see org.xtext.example.pascal.pascal.var_#isAccessor()
+   * @see #getvar_()
+   * @generated
+   */
+  EAttribute getvar__Accessor();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.pascal.pascal.var_#getName <em>Name</em>}'.
@@ -3442,6 +3480,28 @@ public interface PascalPackage extends EPackage
    * @generated
    */
   EAttribute getvar__Name();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.pascal.pascal.var_#getVariable <em>Variable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Variable</em>'.
+   * @see org.xtext.example.pascal.pascal.var_#getVariable()
+   * @see #getvar_()
+   * @generated
+   */
+  EReference getvar__Variable();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.pascal.pascal.var_#getPointer <em>Pointer</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Pointer</em>'.
+   * @see org.xtext.example.pascal.pascal.var_#getPointer()
+   * @see #getvar_()
+   * @generated
+   */
+  EReference getvar__Pointer();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.pascal.pascal.expression_list <em>expression list</em>}'.
@@ -5929,12 +5989,20 @@ public interface PascalPackage extends EPackage
     EReference VAR___EXPRESSIONS = eINSTANCE.getvar__Expressions();
 
     /**
-     * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Array</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference VAR___VARIABLE = eINSTANCE.getvar__Variable();
+    EReference VAR___ARRAY = eINSTANCE.getvar__Array();
+
+    /**
+     * The meta object literal for the '<em><b>Accessor</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute VAR___ACCESSOR = eINSTANCE.getvar__Accessor();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -5943,6 +6011,22 @@ public interface PascalPackage extends EPackage
      * @generated
      */
     EAttribute VAR___NAME = eINSTANCE.getvar__Name();
+
+    /**
+     * The meta object literal for the '<em><b>Variable</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VAR___VARIABLE = eINSTANCE.getvar__Variable();
+
+    /**
+     * The meta object literal for the '<em><b>Pointer</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VAR___POINTER = eINSTANCE.getvar__Pointer();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.pascal.pascal.impl.expression_listImpl <em>expression list</em>}' class.

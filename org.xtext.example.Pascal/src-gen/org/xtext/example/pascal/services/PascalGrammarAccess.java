@@ -468,28 +468,29 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExpressionsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
 		private final RuleCall cExpressionsExpression_listParserRuleCall_0_1_0 = (RuleCall)cExpressionsAssignment_0_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_0_2 = (Keyword)cGroup_0.eContents().get(2);
-		private final Assignment cVariableAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
-		private final RuleCall cVariableVar_ParserRuleCall_0_3_0 = (RuleCall)cVariableAssignment_0_3.eContents().get(0);
+		private final Assignment cArrayAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
+		private final RuleCall cArrayVar_ParserRuleCall_0_3_0 = (RuleCall)cArrayAssignment_0_3.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cAccessorAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cAccessorFullStopKeyword_1_0_0 = (Keyword)cAccessorAssignment_1_0.eContents().get(0);
 		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
 		private final Assignment cVariableAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cVariableVar_ParserRuleCall_1_2_0 = (RuleCall)cVariableAssignment_1_2.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
 		private final Keyword cCircumflexAccentKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cVariableAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cVariableVar_ParserRuleCall_2_1_0 = (RuleCall)cVariableAssignment_2_1.eContents().get(0);
+		private final Assignment cPointerAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cPointerVar_ParserRuleCall_2_1_0 = (RuleCall)cPointerAssignment_2_1.eContents().get(0);
 		
 		////TODO: REMOVIDO RECURSÃO A ESQUERDA (ERA COMPONENT_VARIABLE)
 		//var_:
-		//	("[" expressions=expression_list "]" variable=var_ | "." name=ID variable=var_ | "^" variable=var_)?;
+		//	("[" expressions=expression_list "]" array=var_ | accessor?="." name=ID variable=var_ | "^" pointer=var_)?;
 		public ParserRule getRule() { return rule; }
 
-		//("[" expressions=expression_list "]" variable=var_ | "." name=ID variable=var_ | "^" variable=var_)?
+		//("[" expressions=expression_list "]" array=var_ | accessor?="." name=ID variable=var_ | "^" pointer=var_)?
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"[" expressions=expression_list "]" variable=var_
+		//"[" expressions=expression_list "]" array=var_
 		public Group getGroup_0() { return cGroup_0; }
 
 		//"["
@@ -504,17 +505,20 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//"]"
 		public Keyword getRightSquareBracketKeyword_0_2() { return cRightSquareBracketKeyword_0_2; }
 
-		//variable=var_
-		public Assignment getVariableAssignment_0_3() { return cVariableAssignment_0_3; }
+		//array=var_
+		public Assignment getArrayAssignment_0_3() { return cArrayAssignment_0_3; }
 
 		//var_
-		public RuleCall getVariableVar_ParserRuleCall_0_3_0() { return cVariableVar_ParserRuleCall_0_3_0; }
+		public RuleCall getArrayVar_ParserRuleCall_0_3_0() { return cArrayVar_ParserRuleCall_0_3_0; }
 
-		//"." name=ID variable=var_
+		//accessor?="." name=ID variable=var_
 		public Group getGroup_1() { return cGroup_1; }
 
+		//accessor?="."
+		public Assignment getAccessorAssignment_1_0() { return cAccessorAssignment_1_0; }
+
 		//"."
-		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
+		public Keyword getAccessorFullStopKeyword_1_0_0() { return cAccessorFullStopKeyword_1_0_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
@@ -528,17 +532,17 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//var_
 		public RuleCall getVariableVar_ParserRuleCall_1_2_0() { return cVariableVar_ParserRuleCall_1_2_0; }
 
-		//"^" variable=var_
+		//"^" pointer=var_
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"^"
 		public Keyword getCircumflexAccentKeyword_2_0() { return cCircumflexAccentKeyword_2_0; }
 
-		//variable=var_
-		public Assignment getVariableAssignment_2_1() { return cVariableAssignment_2_1; }
+		//pointer=var_
+		public Assignment getPointerAssignment_2_1() { return cPointerAssignment_2_1; }
 
 		//var_
-		public RuleCall getVariableVar_ParserRuleCall_2_1_0() { return cVariableVar_ParserRuleCall_2_1_0; }
+		public RuleCall getPointerVar_ParserRuleCall_2_1_0() { return cPointerVar_ParserRuleCall_2_1_0; }
 	}
 
 	public class Expression_listElements extends AbstractParserRuleElementFinder {
@@ -659,7 +663,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNumbersAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final RuleCall cNumbersSigned_numberParserRuleCall_2_1_0 = (RuleCall)cNumbersAssignment_2_1.eContents().get(0);
 		
-		//simple_expression:
+		//simple_expression hidden(WS):
 		//	operators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
 		//	numbers+=signed_number)*;
 		public ParserRule getRule() { return rule; }
@@ -732,7 +736,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFactorsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cFactorsFactorParserRuleCall_1_1_0 = (RuleCall)cFactorsAssignment_1_1.eContents().get(0);
 		
-		//term:
+		//term hidden(WS):
 		//	factors+=factor ((operators+=MULTIPLICATION_OPERATOR | operators+="div" | operators+="mod" | operators+="and")
 		//	factors+=factor)*;
 		public ParserRule getRule() { return rule; }
@@ -3614,7 +3618,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 	////TODO: REMOVIDO RECURSÃO A ESQUERDA (ERA COMPONENT_VARIABLE)
 	//var_:
-	//	("[" expressions=expression_list "]" variable=var_ | "." name=ID variable=var_ | "^" variable=var_)?;
+	//	("[" expressions=expression_list "]" array=var_ | accessor?="." name=ID variable=var_ | "^" pointer=var_)?;
 	public Var_Elements getVar_Access() {
 		return pVar_;
 	}
@@ -3645,7 +3649,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionAccess().getRule();
 	}
 
-	//simple_expression:
+	//simple_expression hidden(WS):
 	//	operators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
 	//	numbers+=signed_number)*;
 	public Simple_expressionElements getSimple_expressionAccess() {
@@ -3656,7 +3660,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getSimple_expressionAccess().getRule();
 	}
 
-	//term:
+	//term hidden(WS):
 	//	factors+=factor ((operators+=MULTIPLICATION_OPERATOR | operators+="div" | operators+="mod" | operators+="and")
 	//	factors+=factor)*;
 	public TermElements getTermAccess() {

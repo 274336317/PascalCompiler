@@ -59,8 +59,11 @@
     </genClasses>
     <genClasses ecoreClass="Pascal.ecore#//var_">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//var_/expressions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//var_/variable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//var_/array"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//var_/accessor"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//var_/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//var_/variable"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//var_/pointer"/>
     </genClasses>
     <genClasses ecoreClass="Pascal.ecore#//expression_list">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//expression_list/expressions"/>

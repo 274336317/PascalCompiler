@@ -531,16 +531,23 @@ finally {
 
 // Entry rule entryRulesimple_expression
 entryRulesimple_expression 
+@init {
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
+}
 :
 { before(grammarAccess.getSimple_expressionRule()); }
 	 rulesimple_expression
 { after(grammarAccess.getSimple_expressionRule()); } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule simple_expression
 rulesimple_expression 
     @init {
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
 		int stackSize = keepStackSize();
     }
     :
@@ -553,22 +560,30 @@ rulesimple_expression
 ;
 finally {
 	restoreStackSize(stackSize);
+	myHiddenTokenState.restore();
 }
 
 
 
 // Entry rule entryRuleterm
 entryRuleterm 
+@init {
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
+}
 :
 { before(grammarAccess.getTermRule()); }
 	 ruleterm
 { after(grammarAccess.getTermRule()); } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule term
 ruleterm 
     @init {
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
 		int stackSize = keepStackSize();
     }
     :
@@ -581,6 +596,7 @@ ruleterm
 ;
 finally {
 	restoreStackSize(stackSize);
+	myHiddenTokenState.restore();
 }
 
 
@@ -4389,9 +4405,9 @@ rule__Var___Group_0__3__Impl
     }
 :
 (
-{ before(grammarAccess.getVar_Access().getVariableAssignment_0_3()); }
-(rule__Var___VariableAssignment_0_3)
-{ after(grammarAccess.getVar_Access().getVariableAssignment_0_3()); }
+{ before(grammarAccess.getVar_Access().getArrayAssignment_0_3()); }
+(rule__Var___ArrayAssignment_0_3)
+{ after(grammarAccess.getVar_Access().getArrayAssignment_0_3()); }
 )
 
 ;
@@ -4426,11 +4442,9 @@ rule__Var___Group_1__0__Impl
     }
 :
 (
-{ before(grammarAccess.getVar_Access().getFullStopKeyword_1_0()); }
-
-	FullStop 
-
-{ after(grammarAccess.getVar_Access().getFullStopKeyword_1_0()); }
+{ before(grammarAccess.getVar_Access().getAccessorAssignment_1_0()); }
+(rule__Var___AccessorAssignment_1_0)
+{ after(grammarAccess.getVar_Access().getAccessorAssignment_1_0()); }
 )
 
 ;
@@ -4550,9 +4564,9 @@ rule__Var___Group_2__1__Impl
     }
 :
 (
-{ before(grammarAccess.getVar_Access().getVariableAssignment_2_1()); }
-(rule__Var___VariableAssignment_2_1)
-{ after(grammarAccess.getVar_Access().getVariableAssignment_2_1()); }
+{ before(grammarAccess.getVar_Access().getPointerAssignment_2_1()); }
+(rule__Var___PointerAssignment_2_1)
+{ after(grammarAccess.getVar_Access().getPointerAssignment_2_1()); }
 )
 
 ;
@@ -12084,14 +12098,37 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Var___VariableAssignment_0_3
+rule__Var___ArrayAssignment_0_3
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getVar_Access().getVariableVar_ParserRuleCall_0_3_0()); }
-	rulevar_{ after(grammarAccess.getVar_Access().getVariableVar_ParserRuleCall_0_3_0()); }
+{ before(grammarAccess.getVar_Access().getArrayVar_ParserRuleCall_0_3_0()); }
+	rulevar_{ after(grammarAccess.getVar_Access().getArrayVar_ParserRuleCall_0_3_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Var___AccessorAssignment_1_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getVar_Access().getAccessorFullStopKeyword_1_0_0()); }
+(
+{ before(grammarAccess.getVar_Access().getAccessorFullStopKeyword_1_0_0()); }
+
+	FullStop 
+
+{ after(grammarAccess.getVar_Access().getAccessorFullStopKeyword_1_0_0()); }
+)
+
+{ after(grammarAccess.getVar_Access().getAccessorFullStopKeyword_1_0_0()); }
 )
 
 ;
@@ -12129,14 +12166,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Var___VariableAssignment_2_1
+rule__Var___PointerAssignment_2_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getVar_Access().getVariableVar_ParserRuleCall_2_1_0()); }
-	rulevar_{ after(grammarAccess.getVar_Access().getVariableVar_ParserRuleCall_2_1_0()); }
+{ before(grammarAccess.getVar_Access().getPointerVar_ParserRuleCall_2_1_0()); }
+	rulevar_{ after(grammarAccess.getVar_Access().getPointerVar_ParserRuleCall_2_1_0()); }
 )
 
 ;
