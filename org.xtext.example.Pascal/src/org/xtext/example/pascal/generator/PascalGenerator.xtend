@@ -30,8 +30,8 @@ class PascalGenerator implements IGenerator {
 	}
 
 	def getVariables(program e, block b) {
-		var artifacts = PascalValidator.artefacts.get(e.heading.name);
-		var map = artifacts.get("variables") as Map<block, Set<Variable>>;
+		var artefacts = PascalValidator.artefacts.get(e.heading.name);
+		var map = artefacts.get("variables") as Map<block, Set<Variable>>;
 		countVariables.put(b, 0);
 		return map.get(b);
 	}

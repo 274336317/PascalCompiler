@@ -45,8 +45,8 @@ public class PascalGenerator implements IGenerator {
   public Set<Variable> getVariables(final program e, final block b) {
     program_heading_block _heading = e.getHeading();
     String _name = _heading.getName();
-    Map<String, Object> artifacts = PascalValidator.artefacts.get(_name);
-    Object _get = artifacts.get("variables");
+    Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
+    Object _get = artefacts.get("variables");
     Map<block, Set<Variable>> map = ((Map<block, Set<Variable>>) _get);
     this.countVariables.put(b, Integer.valueOf(0));
     return map.get(b);
