@@ -25,6 +25,7 @@ import org.xtext.example.pascal.pascal.factor
 import org.xtext.example.pascal.pascal.formal_parameter_section
 import org.xtext.example.pascal.pascal.function_designator
 import org.xtext.example.pascal.pascal.parameter_type
+import org.xtext.example.pascal.pascal.program
 import org.xtext.example.pascal.pascal.simple_expression
 import org.xtext.example.pascal.pascal.statement
 import org.xtext.example.pascal.pascal.statement_sequence
@@ -41,13 +42,26 @@ import org.xtext.example.pascal.pascal.variable_section
  */
 class PascalValidator extends AbstractPascalValidator {
 	
+	public static Map<String, Map<String, Object>> artefacts = new HashMap<String, Map<String, Object>>();
+
 	private Map<EObject, Set<Error>> errorList = new HashMap<EObject, Set<Error>>();
 	private Map<block, Set<Variable>> variables = new HashMap<block, Set<Variable>>();
 	private Map<block, Set<Procedure>> abstractions = new HashMap<block, Set<Procedure>>();
 	private Map<block, Set<Type>> types = new HashMap<block, Set<Type>>();
-	
+	  
 	private Set<Procedure> standardAbstractions = new HashSet<Procedure>();
 	private Set<Type> standardTypes = new HashSet<Type>();
+	
+	@Check
+	def fillArtefacts(program p) {
+		var name = p.heading.name;
+		if (!artefacts.containsKey(name)) {
+			artefacts.put(name, new HashMap<String, Object>());
+			artefacts.get(name).put("variables", variables);
+			artefacts.get(name).put("abstractions", abstractions);
+			artefacts.get(name).put("types", types);
+		}	
+	}
 	
 	def getParameters(String... vars) {
 		var variables = new HashSet<Variable>();

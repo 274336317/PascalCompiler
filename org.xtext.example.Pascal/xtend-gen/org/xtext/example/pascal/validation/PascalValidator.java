@@ -51,6 +51,8 @@ import org.xtext.example.pascal.pascal.packed_conformant_array_schema;
 import org.xtext.example.pascal.pascal.parameter_type;
 import org.xtext.example.pascal.pascal.pointer_type;
 import org.xtext.example.pascal.pascal.procedure_and_function_declaration_part;
+import org.xtext.example.pascal.pascal.program;
+import org.xtext.example.pascal.pascal.program_heading_block;
 import org.xtext.example.pascal.pascal.record_type;
 import org.xtext.example.pascal.pascal.repeat_statement;
 import org.xtext.example.pascal.pascal.repetitive_statement;
@@ -96,6 +98,8 @@ import org.xtext.example.pascal.validation.Variable;
  */
 @SuppressWarnings("all")
 public class PascalValidator extends AbstractPascalValidator {
+  public static Map<String, Map<String, Object>> artefacts = new HashMap<String, Map<String, Object>>();
+  
   private Map<EObject, Set<org.xtext.example.pascal.validation.Error>> errorList = new HashMap<EObject, Set<org.xtext.example.pascal.validation.Error>>();
   
   private Map<block, Set<Variable>> variables = new HashMap<block, Set<Variable>>();
@@ -107,6 +111,34 @@ public class PascalValidator extends AbstractPascalValidator {
   private Set<Procedure> standardAbstractions = new HashSet<Procedure>();
   
   private Set<Type> standardTypes = new HashSet<Type>();
+  
+  @Check
+  public Object fillArtefacts(final program p) {
+    Object _xblockexpression = null;
+    {
+      program_heading_block _heading = p.getHeading();
+      String name = _heading.getName();
+      Object _xifexpression = null;
+      boolean _containsKey = PascalValidator.artefacts.containsKey(name);
+      boolean _not = (!_containsKey);
+      if (_not) {
+        Object _xblockexpression_1 = null;
+        {
+          HashMap<String, Object> _hashMap = new HashMap<String, Object>();
+          PascalValidator.artefacts.put(name, _hashMap);
+          Map<String, Object> _get = PascalValidator.artefacts.get(name);
+          _get.put("variables", this.variables);
+          Map<String, Object> _get_1 = PascalValidator.artefacts.get(name);
+          _get_1.put("abstractions", this.abstractions);
+          Map<String, Object> _get_2 = PascalValidator.artefacts.get(name);
+          _xblockexpression_1 = _get_2.put("types", this.types);
+        }
+        _xifexpression = _xblockexpression_1;
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
+  }
   
   public HashSet<Variable> getParameters(final String... vars) {
     HashSet<Variable> variables = new HashSet<Variable>();

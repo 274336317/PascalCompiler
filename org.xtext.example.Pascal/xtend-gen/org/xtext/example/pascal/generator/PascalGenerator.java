@@ -3,9 +3,22 @@
  */
 package org.xtext.example.pascal.generator;
 
+import com.google.common.collect.Iterables;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.program;
+import org.xtext.example.pascal.pascal.program_heading_block;
+import org.xtext.example.pascal.validation.PascalValidator;
+import org.xtext.example.pascal.validation.Variable;
 
 /**
  * Generates code from your model files on save.
@@ -14,6 +27,74 @@ import org.eclipse.xtext.generator.IGenerator;
  */
 @SuppressWarnings("all")
 public class PascalGenerator implements IGenerator {
+  private Map<block, Integer> countVariables = new HashMap<block, Integer>();
+  
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    TreeIterator<EObject> _allContents = resource.getAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+    Iterable<program> _filter = Iterables.<program>filter(_iterable, program.class);
+    for (final program e : _filter) {
+      program_heading_block _heading = e.getHeading();
+      String _name = _heading.getName();
+      String _plus = (_name + ".asm");
+      CharSequence _compile = this.compile(e);
+      fsa.generateFile(_plus, _compile);
+    }
+  }
+  
+  public Set<Variable> getVariables(final program e, final block b) {
+    program_heading_block _heading = e.getHeading();
+    String _name = _heading.getName();
+    Map<String, Object> artifacts = PascalValidator.artefacts.get(_name);
+    Object _get = artifacts.get("variables");
+    Map<block, Set<Variable>> map = ((Map<block, Set<Variable>>) _get);
+    this.countVariables.put(b, Integer.valueOf(0));
+    return map.get(b);
+  }
+  
+  public CharSequence compile(final program e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("; ");
+    program_heading_block _heading = e.getHeading();
+    String _name = _heading.getName();
+    _builder.append(_name, "");
+    _builder.newLineIfNotEmpty();
+    block _block = e.getBlock();
+    block _block_1 = e.getBlock();
+    Set<Variable> _variables = this.getVariables(e, _block_1);
+    CharSequence _compile = this.compile(_block, _variables);
+    _builder.append(_compile, "");
+    _builder.append(" ");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence compile(final block b, final Set<Variable> variables) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    _builder.append("; Loading variables");
+    _builder.newLine();
+    {
+      for(final Variable v : variables) {
+        CharSequence _compile = this.compile(v, b);
+        _builder.append(_compile, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compile(final Variable v, final block b) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("LD R");
+    Integer _get = this.countVariables.get(b);
+    int _plus = ((_get).intValue() + 1);
+    Integer _put = this.countVariables.put(b, Integer.valueOf(_plus));
+    _builder.append(_put, "");
+    _builder.append(", ");
+    String _name = v.getName();
+    _builder.append(_name, "");
+    _builder.newLineIfNotEmpty();
+    return _builder;
   }
 }
