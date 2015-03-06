@@ -10,7 +10,7 @@ public class Type extends Element {
 	}
 	
 	public Type(String name) {
-		this(name, false, null);
+		this(name, false, name);
 	}
 	
 	public String getRealType() {
@@ -19,8 +19,13 @@ public class Type extends Element {
 	
 	@Override
 	public Element clone() {
-		Type t = new Type(this.name, this.inherited, this.realType);
-		return t;
+		return new Type(this.name, this.inherited, this.realType);
+	}
+
+	//DONT MODIFY
+	@Override
+	public String toString() {
+		return this.name.toLowerCase();
 	}
 
 }

@@ -1,0 +1,16 @@
+package org.xtext.example.pascal.validation;
+
+public class ComposedType extends Type {
+
+	private Type containedType;
+	
+	public ComposedType(Type type) {
+		super(type.name, type.inherited, type.getRealType());
+		this.containedType = type;
+	}
+
+	public Type getContainedType() {
+		return containedType;
+	}
+	
+}

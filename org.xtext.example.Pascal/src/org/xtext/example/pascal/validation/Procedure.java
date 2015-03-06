@@ -46,9 +46,9 @@ public class Procedure extends Element {
 			Iterator<Variable> it1 = this.parameters.iterator();
 			Iterator<Variable> it2 = other.parameters.iterator();
 			while (it1.hasNext() && it2.hasNext()) {
-				String it1Type = it1.next().getVarType();
-				String it2Type = it2.next().getVarType();
-				if (!it1Type.equals(it2Type))
+				Type it1Type = it1.next().getVarType();
+				Type it2Type = it2.next().getVarType();
+				if (!it1Type.getRealType().equals(it2Type.getRealType()))
 					return false;
 			}
 			return true;
@@ -66,8 +66,8 @@ public class Procedure extends Element {
 			Iterator<Variable> it1 = this.parameters.iterator();
 			Iterator<Variable> it2 = other.parameters.iterator();
 			while (it1.hasNext() && it2.hasNext()) {
-				String it1Type = it1.next().getVarType();
-				String it2Type = it2.next().getVarType();
+				Type it1Type = it1.next().getVarType();
+				Type it2Type = it2.next().getVarType();
 				if (!TypeInferer.areTypesCompatibles(it1Type, it2Type))
 					return false;
 			}

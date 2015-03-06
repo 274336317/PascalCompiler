@@ -1,0 +1,12 @@
+package org.xtext.example.pascal.validation;
+
+public class ArrayType extends Type {
+
+	private Type type;
+	
+	public ArrayType(Type type) {
+		super(type.name, type.inherited, type.realType);
+		this.type = type;
+	}
+
+}

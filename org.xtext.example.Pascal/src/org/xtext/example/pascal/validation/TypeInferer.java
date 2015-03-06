@@ -3,8 +3,8 @@ package org.xtext.example.pascal.validation;
 
 public class TypeInferer {
 
-	public static int getTypeWeight(String type) {
-		switch (type) {
+	public static int getTypeWeight(Type type) {
+		switch (type.getRealType()) {
 		case "real":
 			return 4;
 		case "longint":
@@ -17,10 +17,10 @@ public class TypeInferer {
 		return -1;
 	}
 
-	public static String greater(String type1, String type2) {
-		if (type1 == null || type1.equals(""))
+	public static Type greater(Type type1, Type type2) {
+		if (type1 == null)
 			return type2;
-		if (type2 == null || type2.equals(""))
+		if (type2 == null)
 			return type1; 
 		int type1Weight = getTypeWeight(type1);
 		int type2Weight = getTypeWeight(type2);
@@ -29,7 +29,7 @@ public class TypeInferer {
 		return type2;
 	}
 	
-	public static boolean areTypesCompatibles(String parent, String child) {
+	public static boolean areTypesCompatibles(Type parent, Type child) {
 		if (parent.equals(child))
 			return true;
 		int parentWeight = getTypeWeight(parent);

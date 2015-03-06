@@ -1,0 +1,16 @@
+package org.xtext.example.pascal.validation;
+
+public class PointerType extends Type {
+
+	private Type containedType;
+	
+	public PointerType(Type type) {
+		super(type.name, type.inherited, type.getRealType());
+		this.containedType = type;
+	}
+
+	public Type getContainedType() {
+		return containedType;
+	}
+	
+}

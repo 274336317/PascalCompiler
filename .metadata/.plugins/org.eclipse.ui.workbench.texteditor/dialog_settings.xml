@@ -8,14 +8,14 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="excepted"/>
-			<item value="variable:"/>
-			<item value="getType(block b, varia"/>
-			<item value="checkVariable"/>
-			<item value="checkExpression("/>
-			<item value="expression:"/>
-			<item value="expression"/>
-			<item value="checkExpres"/>
+			<item value="packed array"/>
+			<item value="number:"/>
+			<item value="ADDITION_OPERATOR"/>
+			<item value="constant"/>
+			<item value="constant_definition"/>
+			<item value="formal_parameter_section"/>
+			<item value="getType"/>
+			<item value="getRealType"/>
 		</list>
 		<list key="replacehistory">
 			<item value="ID"/>

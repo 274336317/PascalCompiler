@@ -1,0 +1,9 @@
+package org.xtext.example.pascal.validation;
+
+public class ArrayType extends Type {
+
+	public ArrayType(String name, boolean inherited, String realType) {
+		super(name, inherited, realType);
+	}
+
+}

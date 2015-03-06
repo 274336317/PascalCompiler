@@ -4,9 +4,9 @@ import java.util.Set;
 
 public class Function extends Procedure {
 
-	private String returnType;
+	private Type returnType;
 	
-	public Function(String name, boolean inherited, Set<Variable> parameters, boolean forward, String returnType) {
+	public Function(String name, boolean inherited, Set<Variable> parameters, boolean forward, Type returnType) {
 		super(name, ElementType.FUNCTION, inherited, parameters, forward);
 		this.returnType = returnType;
 	}
@@ -15,7 +15,7 @@ public class Function extends Procedure {
 		this(name, false, parameters, false, null);
 	}
 	
-	public String getReturnType() {
+	public Type getReturnType() {
 		return this.returnType;
 	}
 	

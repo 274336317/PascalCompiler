@@ -3,29 +3,45 @@ package org.xtext.example.pascal.validation;
 
 public class Variable extends Element {
 
-	private String varType;
+	private Type varType;
+	private Object value;
 	
-	public Variable(String name, String varType, boolean inherited, ElementType type) {
+	public Variable(String name, Type varType, boolean inherited, ElementType type, Object value) {
 		super(name, type, inherited);
 		this.varType = varType;
+		this.value = value;
+	}
+	
+	public Variable(String name, Type varType, boolean inherited, ElementType type) {
+		this(name, varType, inherited, type, type == ElementType.PARAMETER ? 0 : null);
 	}
 	
 	public Variable(String name) {
-		this(name, null, false, ElementType.VARIABLE);
+		this(name, null, false, ElementType.VARIABLE, null);
 	}
 	
-	public String getVarType() {
+	public Type getVarType() {
 		return this.varType;
 	}
 	 
+	public Object getValue() {
+		return this.value;
+	}
+	
+	public void setValue(Object obj) {
+		this.value = obj;
+	}
+	
 	@Override
 	public Element clone() {
-		return new Variable(this.name, this.varType, this.inherited, this.type);
+		return new Variable(this.name, this.varType, this.inherited, this.type, this.value);
 	}
 
+	//DONT MODIFY
 	@Override
 	public String toString() {
-		return "[" + this.name + ", " + this.inherited + ", " + this.type + ", " + this.varType + "]";
+		return "" + this.varType;
+		//return "[" + this.name + ", " + this.inherited + ", " + this.type + ", " + this.varType + "]";
 	}
 	 
 }
