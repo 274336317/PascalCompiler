@@ -450,9 +450,9 @@ class PascalValidator extends AbstractPascalValidator {
 			} else {
 				removeError(heading, ErrorType.UNDEFINED_TYPE);
 			}
-			addElement(b, new Function(name, forward, parameters, forward, getType(b, returnType)), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME); 
+			addElement(b, new Function(name, false, parameters, forward, getType(b, returnType)), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME); 
 		} else {
-			addElement(b, new Procedure(name, forward, parameters, forward), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME);
+			addElement(b, new Procedure(name, false, parameters, forward), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME);
 		}
 	} 
 	 
@@ -581,7 +581,7 @@ class PascalValidator extends AbstractPascalValidator {
 		} else if (f.function != null) {	
 			checkAbstractionCall(b, f.function, true);
 		} else if (f.not != null) {
-			if (!getType(b, f.not).realType.toLowerCase.equals("boolean")) {
+			if (!getType(b, f.not).realType.equals("boolean")) {
 				insertError(f, "Cannot convert " + getType(b, f.not) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.FACTOR__NOT);
 			} else {
 				removeError(f, ErrorType.TYPE_CONVERSION_ERROR);
@@ -610,7 +610,7 @@ class PascalValidator extends AbstractPascalValidator {
 		removeError(t, ErrorType.INVALID_OPERATOR);
 		for (factor f : t.factors) {
 			if (isBoolean) {
-				if (!getType(b, f).realType.toLowerCase.equals("boolean")) {
+				if (!getType(b, f).realType.equals("boolean")) {
 					insertError(t, "Cannot convert " + getType(b, f) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.TERM__FACTORS);		
 				} else {
 					removeError(t, ErrorType.TYPE_CONVERSION_ERROR);
@@ -645,7 +645,7 @@ class PascalValidator extends AbstractPascalValidator {
 			removeError(s, ErrorType.INVALID_OPERATOR);
 			for (term t : s.terms) {
 				if (isBoolean) {
-					if (!getType(b, t).realType.toLowerCase.equals("boolean")) {
+					if (!getType(b, t).realType.equals("boolean")) {
 						insertError(s, "Cannot convert " + getType(b, t) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);		
 					} else {
 						removeError(s, ErrorType.TYPE_CONVERSION_ERROR);

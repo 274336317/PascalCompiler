@@ -401,6 +401,9 @@ class PascalValidator extends AbstractPascalValidator {
 		} else { 
 			removeError(errorSection, ErrorType.REDECLARATION);
 			//container.get(b).remove(elementFound);
+			if (container == abstractions) {
+				
+			}
 			container.get(b).add(element);
 			var inheritedElement = element.clone() as T;
 			inheritedElement.inherited = true; 
@@ -450,9 +453,9 @@ class PascalValidator extends AbstractPascalValidator {
 			} else {
 				removeError(heading, ErrorType.UNDEFINED_TYPE);
 			}
-			addElement(b, new Function(name, forward, parameters, forward, getType(b, returnType)), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME); 
+			addElement(b, new Function(name, false, parameters, forward, getType(b, returnType)), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME); 
 		} else {
-			addElement(b, new Procedure(name, forward, parameters, forward), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME);
+			addElement(b, new Procedure(name, false, parameters, forward), abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME);
 		}
 	} 
 	 

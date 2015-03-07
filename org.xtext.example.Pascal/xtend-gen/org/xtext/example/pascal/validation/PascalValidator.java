@@ -973,12 +973,12 @@ public class PascalValidator extends AbstractPascalValidator {
             this.removeError(heading, ErrorType.UNDEFINED_TYPE);
           }
           Type _type_1 = this.getType(b, returnType);
-          Function _function = new Function(name, false, parameters, forward, _type_1);
+          Function _function = new Function(name, forward, parameters, forward, _type_1);
           _xblockexpression_1 = this.<Procedure>addElement(b, _function, this.abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME);
         }
         _xifexpression = _xblockexpression_1;
       } else {
-        Procedure _procedure = new Procedure(name, false, parameters, forward);
+        Procedure _procedure = new Procedure(name, forward, parameters, forward);
         _xifexpression = this.<Procedure>addElement(b, _procedure, this.abstractions, heading, PascalPackage.Literals.ABSTRACTION_HEADING__NAME);
       }
       _xblockexpression = _xifexpression;
@@ -1218,7 +1218,8 @@ public class PascalValidator extends AbstractPascalValidator {
           factor _not_1 = f.getNot();
           Type _type = this.getType(b, _not_1);
           String _realType = _type.getRealType();
-          boolean _equals_1 = _realType.equals("boolean");
+          String _lowerCase = _realType.toLowerCase();
+          boolean _equals_1 = _lowerCase.equals("boolean");
           boolean _not_2 = (!_equals_1);
           if (_not_2) {
             factor _not_3 = f.getNot();
@@ -1271,7 +1272,8 @@ public class PascalValidator extends AbstractPascalValidator {
         if (isBoolean) {
           Type _type = this.getType(b, f);
           String _realType = _type.getRealType();
-          boolean _equals_1 = _realType.equals("boolean");
+          String _lowerCase = _realType.toLowerCase();
+          boolean _equals_1 = _lowerCase.equals("boolean");
           boolean _not = (!_equals_1);
           if (_not) {
             Type _type_1 = this.getType(b, f);
@@ -1332,7 +1334,8 @@ public class PascalValidator extends AbstractPascalValidator {
             if (isBoolean) {
               Type _type = this.getType(b, t);
               String _realType = _type.getRealType();
-              boolean _equals_1 = _realType.equals("boolean");
+              String _lowerCase = _realType.toLowerCase();
+              boolean _equals_1 = _lowerCase.equals("boolean");
               boolean _not = (!_equals_1);
               if (_not) {
                 Type _type_1 = this.getType(b, t);
