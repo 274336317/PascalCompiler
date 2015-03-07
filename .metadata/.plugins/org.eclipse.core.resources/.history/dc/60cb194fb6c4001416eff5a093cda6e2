@@ -1,0 +1,7 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.TreeSet;
+
+public class AdaptativeTreeSet<E> extends TreeSet<E> {
+
+}

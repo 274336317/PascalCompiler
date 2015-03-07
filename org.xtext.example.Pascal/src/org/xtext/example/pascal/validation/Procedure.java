@@ -76,4 +76,12 @@ public class Procedure extends Element {
 		return super.equals(obj);
 	}
 	
+	@Override
+	public int compareTo(Element other) {
+		if (super.compareTo(other) == 0) {
+			return -1;
+		}
+		return super.compareTo(other);
+	}
+	
 }

@@ -5,7 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class AdaptativeHashMap<K, E> extends HashMap<K, Set<E>> {
+@SuppressWarnings("rawtypes")
+public class AdaptativeHashMap<K, E extends Comparable> extends HashMap<K, Set<E>> {
  
 	private static final long serialVersionUID = 1L;
 	private Set<E> defaultValues;
@@ -24,7 +25,7 @@ public class AdaptativeHashMap<K, E> extends HashMap<K, Set<E>> {
 			@SuppressWarnings("unchecked")
 			K k = (K) key;
 			if (!this.containsKey(key)) {
-				this.put(k, new HashSet<E>());
+				this.put(k, new AdaptativeTreeSet<E>());
 			}
 			super.get(k).addAll(this.defaultValues);
 		} catch(Exception e) { }

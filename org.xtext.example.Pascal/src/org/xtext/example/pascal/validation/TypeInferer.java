@@ -30,7 +30,7 @@ public class TypeInferer {
 	}
 	
 	public static boolean areTypesCompatibles(Type parent, Type child) {
-		if (parent.equals(child))
+		if (parent.getRealType().equals(child.getRealType()))
 			return true;
 		int parentWeight = getTypeWeight(parent);
 		int childWeight = getTypeWeight(child);

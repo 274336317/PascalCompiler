@@ -1,6 +1,7 @@
 package org.xtext.example.pascal.validation;
 
-public abstract class Element {
+
+public abstract class Element implements Comparable<Element> {
 
 	protected String name;
 	protected ElementType type;
@@ -54,6 +55,11 @@ public abstract class Element {
 	@Override
 	public String toString() {
 		return "[" + this.name + ", " + this.inherited + ", " + this.type + "]";
+	}
+	 
+	@Override
+	public int compareTo(Element other) {
+		return this.name.compareTo(other.name);
 	}
 	 
 }

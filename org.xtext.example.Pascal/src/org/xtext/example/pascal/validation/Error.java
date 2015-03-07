@@ -2,7 +2,7 @@ package org.xtext.example.pascal.validation;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
-public class Error {
+public class Error implements Comparable<Error> {
 
 	private String message;
 	private ErrorType type;
@@ -41,6 +41,11 @@ public class Error {
 	@Override
 	public String toString() {
 		return "[" + this.type + ": " + this.message + "]";
+	}
+
+	@Override
+	public int compareTo(Error o) {
+		return this.type.compareTo(o.type);
 	}
 	
 }

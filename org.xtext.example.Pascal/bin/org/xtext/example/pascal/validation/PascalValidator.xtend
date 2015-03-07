@@ -47,7 +47,7 @@ class PascalValidator extends AbstractPascalValidator {
 	private final Map<block, Set<Variable>> variables = new AdaptativeHashMap<block, Variable>();
 	private final Map<block, Set<Procedure>> abstractions = new AdaptativeHashMap<block, Procedure>(APIProvider.procedures);
 	private final Map<block, Set<Type>> types = new AdaptativeHashMap<block, Type>(APIProvider.types);
-	   
+	     
 	@Check
 	def fillArtefacts(program p) {
 		var name = p.heading.name;
@@ -97,7 +97,7 @@ class PascalValidator extends AbstractPascalValidator {
 	}  
 	 
 	def <T extends Element> clear(block b, ElementType type, Map<block, Set<T>> container) {
-		var newSet = new HashSet<T>();
+		var newSet = new AdaptativeTreeSet<T>();
 		for (T t : container.get(b)) {
 			if (t.type != type || t.isInherited) {
 				newSet.add(t);
@@ -400,7 +400,7 @@ class PascalValidator extends AbstractPascalValidator {
 			}
 		} else { 
 			removeError(errorSection, ErrorType.REDECLARATION);
-			container.get(b).remove(elementFound);
+			//container.get(b).remove(elementFound);
 			container.get(b).add(element);
 			var inheritedElement = element.clone() as T;
 			inheritedElement.inherited = true; 
@@ -581,7 +581,7 @@ class PascalValidator extends AbstractPascalValidator {
 		} else if (f.function != null) {	
 			checkAbstractionCall(b, f.function, true);
 		} else if (f.not != null) {
-			if (!getType(b, f.not).equals(new Type("boolean"))) {
+			if (!getType(b, f.not).realType.equals("boolean")) {
 				insertError(f, "Cannot convert " + getType(b, f.not) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.FACTOR__NOT);
 			} else {
 				removeError(f, ErrorType.TYPE_CONVERSION_ERROR);
@@ -610,7 +610,7 @@ class PascalValidator extends AbstractPascalValidator {
 		removeError(t, ErrorType.INVALID_OPERATOR);
 		for (factor f : t.factors) {
 			if (isBoolean) {
-				if (!getType(b, f).equals(new Type("boolean"))) {
+				if (!getType(b, f).realType.equals("boolean")) {
 					insertError(t, "Cannot convert " + getType(b, f) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.TERM__FACTORS);		
 				} else {
 					removeError(t, ErrorType.TYPE_CONVERSION_ERROR);
@@ -645,7 +645,7 @@ class PascalValidator extends AbstractPascalValidator {
 			removeError(s, ErrorType.INVALID_OPERATOR);
 			for (term t : s.terms) {
 				if (isBoolean) {
-					if (!getType(b, t).equals(new Type("boolean"))) {
+					if (!getType(b, t).realType.equals("boolean")) {
 						insertError(s, "Cannot convert " + getType(b, t) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);		
 					} else {
 						removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
