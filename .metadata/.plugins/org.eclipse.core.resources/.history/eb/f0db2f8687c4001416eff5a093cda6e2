@@ -1,0 +1,15 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Utils {
+
+	public static <T> List<T> replaceListElement(List<T> list, int index, T newElement) {
+		List<T> newList = new ArrayList<T>(list);
+		newList.remove(index);
+		newList.add(index, newElement);
+		return newList;
+	}
+	
+}

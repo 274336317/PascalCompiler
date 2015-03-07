@@ -1,0 +1,12 @@
+package org.xtext.example.pascal.validation;
+
+public class Utils {
+
+	public <T> replaceListElement(List<T> list, int index, T newElement) {
+		var newList = new ArrayList<T>(list);
+		newList.remove(index);
+		newList.add(index, newElement);
+		return newList;
+	}
+	
+}

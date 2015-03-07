@@ -1,0 +1,120 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+public class APIProvider {
+
+	private static Set<Variable> getParametersWithType(String... parameters) {
+		Set<Variable> params = new HashSet<Variable>();
+		int count = 0;
+		for (String s : parameters) {
+			params.add(new Variable("arg_" + count, new Type(s), false, ElementType.PARAMETER));
+			count++;
+		}	
+		return params;
+	}
+	
+	private static void addAbstractionInAbstractions(Set<Procedure> abstractions, String name, Type returnType, String... parameters) {
+		if (returnType.equals(new Type("void"))) { 
+			abstractions.add(new Procedure(name, false, getParametersWithType(parameters), false)); 
+		} else {
+			abstractions.add(new Function(name, false, getParametersWithType(parameters), false, returnType)); 
+		}
+	} 
+	
+	private static void addAbstraction(Set<Procedure> abstractions, String name, String returnType, String... parameters) {  
+		if (returnType.equals("reflect")) {
+			if (parameters.length == 1) { 
+				addAbstraction(abstractions, name, parameters[0], parameters); 
+			} else {
+				throw new RuntimeException("Invalid return type");
+			}
+		} else {
+			var virtualParameters = parameters.toList;
+			var isVirtual = false;
+			for (var i = 0; i < virtualParameters.size; i++) {
+				if (virtualParameters.get(i).equals("numeric")) {
+					addAbstraction(abstractions, name, returnType, Util.replaceListElement(virtualParameters, i, "integer"));
+					addAbstraction(abstractions, name, returnType, Util.replaceListElement(virtualParameters, i, "real"));
+					isVirtual = true;
+				} else if (virtualParameters.get(i).contains("?")) {
+					for (Type t : getStandardTypes()) {
+						var String newParameterName = t.name;	 
+						if (virtualParameters.get(i).equals("?")) {
+							addAbstraction(abstractions, name, returnType, Util.replaceListElement(virtualParameters, i, newParameterName)); 
+						} else if (virtualParameters.get(i).equals("^?")) {
+							addAbstraction(abstractions, name, returnType, Util.replaceListElement(virtualParameters, i, "^" + newParameterName)); 
+						} else if (virtualParameters.get(i).equals("[]?")) {
+							addAbstraction(abstractions, name, returnType, Util.replaceListElement(virtualParameters, i, "array of " + newParameterName));
+						}
+					} 
+					isVirtual = true;
+				}
+			}
+			if (!isVirtual)  
+				addAbstractionInAbstractions(abstractions, name, new Type(returnType), parameters);
+		}
+	}
+	
+	def setStandardAbstractions(Set<Procedure> it) {
+		addAbstraction("round", "integer", "real"); 
+		addAbstraction("chr", "char", "integer");
+		addAbstraction("abs", "reflect", "numeric");
+		addAbstraction("odd", "boolean", "integer");
+		addAbstraction("sqr", "reflect", "numeric");
+		addAbstraction("sqrt", "real", "numeric");
+		addAbstraction("sin", "real", "numeric");
+		addAbstraction("cos", "real", "numeric");
+		addAbstraction("arctan", "real", "numeric");
+		addAbstraction("ln", "real", "numeric");
+		addAbstraction("exp", "real", "numeric");
+		addAbstraction("succ", "...enumerated", "...enumerated");
+		addAbstraction("succ", "integer", "integer");
+		addAbstraction("pred", "...enumerated", "...enumerated");
+		addAbstraction("pred", "integer", "integer");
+		addAbstraction("new", "void", "^?");
+		addAbstraction("dispose", "void", "^?");
+		addAbstraction("strconcat", "void", "array of char", "array of char");
+		addAbstraction("strdelete", "void", "array of char", "integer", "integer");
+		addAbstraction("strinsert", "void", "array of char", "array of char", "integer");
+		addAbstraction("strlen", "integer", "array of char");
+		addAbstraction("strscan", "integer", "array of char", "array of char");
+		addAbstraction("strlen", "integer", "array of char");
+		addAbstraction("substr", "void", "array of char", "integer", "integer", "array of char");
+		addAbstraction("address", "integer", "^?");	
+		addAbstraction("length", "integer", "[]?");
+		addAbstraction("setlength", "void", "[]?", "integer");
+		addAbstraction("write", "void", "?");
+		addAbstraction("write", "void", "array of char");
+		addAbstraction("write", "void"); 
+		addAbstraction("writeln", "void", "?");
+		addAbstraction("writeln", "void", "array of char");
+		addAbstraction("writeln", "void");
+		addAbstraction("read", "void", "?");
+		addAbstraction("read", "void", "array of char");
+		addAbstraction("read", "void");
+		addAbstraction("readln", "void", "?");
+		addAbstraction("readln", "void", "array of char");
+		addAbstraction("readln", "void");
+	}
+	
+	def Set<Procedure> getStandardAbstractions() {
+		var Set<Procedure> abstractions = new HashSet<Procedure>();
+		setStandardAbstractions(abstractions);
+		return abstractions;
+	} 
+	
+	def HashSet<Type> getStandardTypes() {
+		var HashSet<Type> standardTypes = new HashSet<Type>();
+		standardTypes.add(new Type("real", false, "real"));
+		standardTypes.add(new Type("integer", false, "integer"));
+		standardTypes.add(new Type("shortint", false, "shortint"));
+		standardTypes.add(new Type("longint", false, "longint"));
+		standardTypes.add(new Type("boolean", false, "boolean"));
+		standardTypes.add(new Type("char", false, "char")); 
+		return standardTypes;
+	}
+	
+}

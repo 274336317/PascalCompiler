@@ -1,0 +1,23 @@
+package org.xtext.example.pascal.validation;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.xtext.example.pascal.pascal.block;
+
+
+public <T> class AdaptativeHashMap extends HashMap {
+ 
+	private static final long serialVersionUID = 1L;
+	
+   /*
+	@Override
+	public Set<V> get(block key) {
+		if (!this.containsKey(key)) {
+			this.put(key, new HashSet<V>());
+		}
+		return super.get(key);
+	}
+	*/ 
+}

@@ -3,10 +3,8 @@
  */
 package org.xtext.example.pascal.validation
 
-import java.util.ArrayList
 import java.util.HashMap
 import java.util.HashSet
-import java.util.List
 import java.util.Map
 import java.util.Set
 import org.eclipse.emf.ecore.EObject
@@ -43,16 +41,13 @@ import org.xtext.example.pascal.pascal.variable_section
  */
 class PascalValidator extends AbstractPascalValidator {
 	
-	public static Map<String, Map<String, Object>> artefacts = new HashMap<String, Map<String, Object>>();
+	public static final Map<String, Map<String, Object>> artefacts = new HashMap<String, Map<String, Object>>();
 
-	private Map<EObject, Set<Error>> errorList = new HashMap<EObject, Set<Error>>();
-	private Map<block, Set<Variable>> variables = new HashMap<block, Set<Variable>>();
-	private Map<block, Set<Procedure>> abstractions = new HashMap<block, Set<Procedure>>();
-	private Map<block, Set<Type>> types = new HashMap<block, Set<Type>>();
-	  
-	private Set<Procedure> standardAbstractions = new HashSet<Procedure>();
-	private Set<Type> standardTypes = new HashSet<Type>();
-	
+	private final Map<EObject, Set<Error>> errorList = new AdaptativeHashMap<EObject, Error>();
+	private final Map<block, Set<Variable>> variables = new AdaptativeHashMap<block, Variable>();
+	private final Map<block, Set<Procedure>> abstractions = new AdaptativeHashMap<block, Procedure>(APIProvider.procedures);
+	private final Map<block, Set<Type>> types = new AdaptativeHashMap<block, Type>(APIProvider.types);
+	   
 	@Check
 	def fillArtefacts(program p) {
 		var name = p.heading.name;
@@ -62,131 +57,6 @@ class PascalValidator extends AbstractPascalValidator {
 			artefacts.get(name).put("abstractions", abstractions);
 			artefacts.get(name).put("types", types);
 		}	
-	}
-	
-	def getParameters(block b, String... vars) {
-		var variables = new HashSet<Variable>();
-		var count = 0;
-		for (String type : vars) {
-			variables.add(new Variable("arg_" + count, getType(b, type), false, ElementType.PARAMETER));
-			count++;
-		}
-		var parameters = new HashSet<Variable>(variables);
-		return parameters;	
-	}
-	
-	def <T> replaceListElement(List<T> list, int index, T newElement) {
-		var newList = new ArrayList<T>(list);
-		newList.remove(index);
-		newList.add(index, newElement);
-		return newList;
-	}
-	
-	def void addAbstraction(Set<Procedure> abstractions, block b, String name, Type returnType, String... parameters) {
-		if (returnType.equals(new Type("void"))) { 
-			abstractions.add(new Procedure(name, false, getParameters(b, parameters), false)); 
-		} else {
-			abstractions.add(new Function(name, false, getParameters(b, parameters), false, returnType)); 
-		}
-	}
-	
-	def void addAbstraction(Set<Procedure> abstractions, block b, String name, String returnType, String... parameters) {  
-		if (returnType.equals("reflect")) {
-			if (parameters.length == 1) { 
-				addAbstraction(abstractions, b, name, parameters.toList.get(0), parameters); 
-			} else {
-				throw new RuntimeException("Invalid return type");
-			}
-		} else {
-			var virtualParameters = parameters.toList;
-			var isVirtual = false;
-			for (var i = 0; i < virtualParameters.size; i++) {
-				if (virtualParameters.get(i).equals("numeric")) {
-					addAbstraction(abstractions, b, name, returnType, replaceListElement(virtualParameters, i, "integer"));
-					addAbstraction(abstractions, b, name, returnType, replaceListElement(virtualParameters, i, "real"));
-					isVirtual = true;
-				} else if (virtualParameters.get(i).contains("?")) {
-					var Set<Type> typesCollection;
-					if (types.containsKey(b)) {
-						typesCollection = types.get(b);
-					} else {
-						typesCollection = getStandardTypes();
-					}
-					for (Type t : typesCollection) {
-						var String newParameterName = t.name;	
-						if (virtualParameters.get(i).equals("?")) {
-							addAbstraction(abstractions, b, name, returnType, replaceListElement(virtualParameters, i, newParameterName)); 
-						} else if (virtualParameters.get(i).equals("^?")) {
-							addAbstraction(abstractions, b, name, returnType, replaceListElement(virtualParameters, i, "^" + newParameterName)); 
-						} else if (virtualParameters.get(i).equals("[]?")) {
-							addAbstraction(abstractions, b, name, returnType, replaceListElement(virtualParameters, i, "array of " + newParameterName));
-						}
-					} 
-					isVirtual = true;
-				}
-			}
-			if (!isVirtual)
-				addAbstraction(abstractions, b, name, getType(b, returnType), parameters);
-		}
-	}
-	
-	def setStandardAbstractions(block b, Set<Procedure> it) {
-		addAbstraction(b, "round", "integer", "real"); 
-		addAbstraction(b, "chr", "char", "integer");
-		addAbstraction(b, "abs", "reflect", "numeric");
-		addAbstraction(b, "odd", "boolean", "integer");
-		addAbstraction(b, "sqr", "reflect", "numeric");
-		addAbstraction(b, "sqrt", "real", "numeric");
-		addAbstraction(b, "sin", "real", "numeric");
-		addAbstraction(b, "cos", "real", "numeric");
-		addAbstraction(b, "arctan", "real", "numeric");
-		addAbstraction(b, "ln", "real", "numeric");
-		addAbstraction(b, "exp", "real", "numeric");
-		addAbstraction(b, "succ", "...enumerated", "...enumerated");
-		addAbstraction(b, "succ", "integer", "integer");
-		addAbstraction(b, "pred", "...enumerated", "...enumerated");
-		addAbstraction(b, "pred", "integer", "integer");
-		addAbstraction(b, "new", "void", "^?");
-		addAbstraction(b, "dispose", "void", "^?");
-		addAbstraction(b, "strconcat", "void", "array of char", "array of char");
-		addAbstraction(b, "strdelete", "void", "array of char", "integer", "integer");
-		addAbstraction(b, "strinsert", "void", "array of char", "array of char", "integer");
-		addAbstraction(b, "strlen", "integer", "array of char");
-		addAbstraction(b, "strscan", "integer", "array of char", "array of char");
-		addAbstraction(b, "strlen", "integer", "array of char");
-		addAbstraction(b, "substr", "void", "array of char", "integer", "integer", "array of char");
-		addAbstraction(b, "address", "integer", "^?");	
-		addAbstraction(b, "length", "integer", "[]?");
-		addAbstraction(b, "setlength", "void", "[]?", "integer");
-		addAbstraction(b, "write", "void", "?");
-		addAbstraction(b, "write", "void", "array of char");
-		addAbstraction(b, "write", "void"); 
-		addAbstraction(b, "writeln", "void", "?");
-		addAbstraction(b, "writeln", "void", "array of char");
-		addAbstraction(b, "writeln", "void");
-		addAbstraction(b, "read", "void", "?");
-		addAbstraction(b, "read", "void", "array of char");
-		addAbstraction(b, "read", "void");
-		addAbstraction(b, "readln", "void", "?");
-		addAbstraction(b, "readln", "void", "array of char");
-		addAbstraction(b, "readln", "void");
-	}
-	
-	def getStandardAbstractions(block b) {
-		setStandardAbstractions(b, standardAbstractions);
-		return standardAbstractions;
-	}
-	
-	def getStandardTypes() {
-		if (standardTypes.isEmpty) {
-			standardTypes.add(new Type("real", false, "real"));
-			standardTypes.add(new Type("integer", false, "integer"));
-			standardTypes.add(new Type("shortint", false, "shortint"));
-			standardTypes.add(new Type("longint", false, "longint"));
-			standardTypes.add(new Type("boolean", false, "boolean"));
-			standardTypes.add(new Type("char", false, "char")); 
-		}	
-		return standardTypes;
 	}
 	
 	def <T extends Element> search(Set<T> elements, T key) {
@@ -209,7 +79,6 @@ class PascalValidator extends AbstractPascalValidator {
 	}
 	 
 	def Type searchByName(Set<Type> types, Type key) {
-		if (key == null) return null;
 		for (Type t : types) {
 			if (t.name.toLowerCase.equals(key.name.toLowerCase)) {
 				return t;
@@ -219,37 +88,22 @@ class PascalValidator extends AbstractPascalValidator {
 	}
 	
 	def insertError(EObject object, String message, ErrorType type, EStructuralFeature feature) {
-		if (!errorList.containsKey(object)) {
-			errorList.put(object, new HashSet<Error>());
-		}
 		errorList.get(object).add(new Error(message, type, feature));
 	}
 	
 	def removeError(EObject object, ErrorType type) {
-		if (!errorList.containsKey(object)) {
-			errorList.put(object, new HashSet<Error>());
-		}
 		errorList.get(object).remove(new Error(type));
 		showError(object);
-	} 
+	}  
 	 
 	def <T extends Element> clear(block b, ElementType type, Map<block, Set<T>> container) {
-		if (!container.containsKey(b)) {
-			container.put(b, new HashSet<T>());
-		} else {
-			var newSet = new HashSet<T>();
-			for (T t : container.get(b)) {
-				if (t.type != type || t.isInherited) {
-					newSet.add(t);
-				}	 
-			} 
-			container.put(b, newSet);
-		}
-		if (container == abstractions) {
-			abstractions.get(b).addAll(getStandardAbstractions(b));
-		} else if (container == types) {
-			types.get(b).addAll(getStandardTypes());
-		}
+		var newSet = new HashSet<T>();
+		for (T t : container.get(b)) {
+			if (t.type != type || t.isInherited) {
+				newSet.add(t);
+			}	 
+		} 
+		container.put(b, newSet);
 	}
 	
 	def getParameters(block b, function_designator f) {
@@ -342,7 +196,7 @@ class PascalValidator extends AbstractPascalValidator {
 				return new ComposedType(getType(b, array.unpacked.type), ComposedTypeKind.ARRAY);
 			}
 		} else if (type.name != null) {
-			if (types.containsKey(b) && search(types.get(b), new Type(type.name)) == null) {
+			if (search(types.get(b), new Type(type.name)) == null) {
 				insertError(type, "Undefined type.", ErrorType.UNDEFINED_TYPE, PascalPackage.Literals.PARAMETER_TYPE__NAME);
 			} else {
 				removeError(type, ErrorType.UNDEFINED_TYPE);
@@ -505,9 +359,6 @@ class PascalValidator extends AbstractPascalValidator {
 			decl.block = PascalPackage.eINSTANCE.pascalFactory.createblock;
 		}
 		var subblock = decl.block;
-		if (!container.containsKey(subblock)) {
-			container.put(subblock, new HashSet<T>());
-		} 
 		container.get(subblock).add(element);
 	}
 	 
@@ -554,15 +405,6 @@ class PascalValidator extends AbstractPascalValidator {
 			var inheritedElement = element.clone() as T;
 			inheritedElement.inherited = true; 
 			inheritElement(b, inheritedElement, container);
-			if (container == types) {
-				for (Type t : types.get(b)) {
-					inheritElement(b, t, types);
-				}
-			} else if (container == abstractions) {
-				for (Procedure p : abstractions.get(b)) {
-					inheritElement(b, p, abstractions);
-				}
-			}
 		}
 	}
 	

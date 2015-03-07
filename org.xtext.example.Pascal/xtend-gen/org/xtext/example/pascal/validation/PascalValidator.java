@@ -4,20 +4,16 @@
 package org.xtext.example.pascal.validation;
 
 import com.google.common.base.Objects;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
-import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.xtext.example.pascal.pascal.PascalFactory;
 import org.xtext.example.pascal.pascal.PascalPackage;
 import org.xtext.example.pascal.pascal.abstraction_declaration;
@@ -82,7 +78,9 @@ import org.xtext.example.pascal.pascal.variable_parameter_section;
 import org.xtext.example.pascal.pascal.variable_section;
 import org.xtext.example.pascal.pascal.while_statement;
 import org.xtext.example.pascal.pascal.with_statement;
+import org.xtext.example.pascal.validation.APIProvider;
 import org.xtext.example.pascal.validation.AbstractPascalValidator;
+import org.xtext.example.pascal.validation.AdaptativeHashMap;
 import org.xtext.example.pascal.validation.ComposedType;
 import org.xtext.example.pascal.validation.ComposedTypeKind;
 import org.xtext.example.pascal.validation.Element;
@@ -101,19 +99,15 @@ import org.xtext.example.pascal.validation.Variable;
  */
 @SuppressWarnings("all")
 public class PascalValidator extends AbstractPascalValidator {
-  public static Map<String, Map<String, Object>> artefacts = new HashMap<String, Map<String, Object>>();
+  public final static Map<String, Map<String, Object>> artefacts = new HashMap<String, Map<String, Object>>();
   
-  private Map<EObject, Set<org.xtext.example.pascal.validation.Error>> errorList = new HashMap<EObject, Set<org.xtext.example.pascal.validation.Error>>();
+  private final Map<EObject, Set<org.xtext.example.pascal.validation.Error>> errorList = new AdaptativeHashMap<EObject, org.xtext.example.pascal.validation.Error>();
   
-  private Map<block, Set<Variable>> variables = new HashMap<block, Set<Variable>>();
+  private final Map<block, Set<Variable>> variables = new AdaptativeHashMap<block, Variable>();
   
-  private Map<block, Set<Procedure>> abstractions = new HashMap<block, Set<Procedure>>();
+  private final Map<block, Set<Procedure>> abstractions = new AdaptativeHashMap<block, Procedure>(APIProvider.procedures);
   
-  private Map<block, Set<Type>> types = new HashMap<block, Set<Type>>();
-  
-  private Set<Procedure> standardAbstractions = new HashSet<Procedure>();
-  
-  private Set<Type> standardTypes = new HashSet<Type>();
+  private final Map<block, Set<Type>> types = new AdaptativeHashMap<block, Type>(APIProvider.types);
   
   @Check
   public Object fillArtefacts(final program p) {
@@ -141,181 +135,6 @@ public class PascalValidator extends AbstractPascalValidator {
       _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
-  }
-  
-  public HashSet<Variable> getParameters(final block b, final String... vars) {
-    HashSet<Variable> variables = new HashSet<Variable>();
-    int count = 0;
-    for (final String type : vars) {
-      {
-        Type _type = this.getType(b, type);
-        Variable _variable = new Variable(("arg_" + Integer.valueOf(count)), _type, false, ElementType.PARAMETER);
-        variables.add(_variable);
-        count++;
-      }
-    }
-    HashSet<Variable> parameters = new HashSet<Variable>(variables);
-    return parameters;
-  }
-  
-  public <T extends Object> ArrayList<T> replaceListElement(final List<T> list, final int index, final T newElement) {
-    ArrayList<T> newList = new ArrayList<T>(list);
-    newList.remove(index);
-    newList.add(index, newElement);
-    return newList;
-  }
-  
-  public void addAbstraction(final Set<Procedure> abstractions, final block b, final String name, final Type returnType, final String... parameters) {
-    Type _type = new Type("void");
-    boolean _equals = returnType.equals(_type);
-    if (_equals) {
-      HashSet<Variable> _parameters = this.getParameters(b, parameters);
-      Procedure _procedure = new Procedure(name, false, _parameters, false);
-      abstractions.add(_procedure);
-    } else {
-      HashSet<Variable> _parameters_1 = this.getParameters(b, parameters);
-      Function _function = new Function(name, false, _parameters_1, false, returnType);
-      abstractions.add(_function);
-    }
-  }
-  
-  public void addAbstraction(final Set<Procedure> abstractions, final block b, final String name, final String returnType, final String... parameters) {
-    boolean _equals = returnType.equals("reflect");
-    if (_equals) {
-      int _length = parameters.length;
-      boolean _equals_1 = (_length == 1);
-      if (_equals_1) {
-        List<String> _list = IterableExtensions.<String>toList(((Iterable<String>)Conversions.doWrapArray(parameters)));
-        String _get = _list.get(0);
-        this.addAbstraction(abstractions, b, name, _get, parameters);
-      } else {
-        throw new RuntimeException("Invalid return type");
-      }
-    } else {
-      List<String> virtualParameters = IterableExtensions.<String>toList(((Iterable<String>)Conversions.doWrapArray(parameters)));
-      boolean isVirtual = false;
-      for (int i = 0; (i < virtualParameters.size()); i++) {
-        String _get_1 = virtualParameters.get(i);
-        boolean _equals_2 = _get_1.equals("numeric");
-        if (_equals_2) {
-          ArrayList<String> _replaceListElement = this.<String>replaceListElement(virtualParameters, i, "integer");
-          this.addAbstraction(abstractions, b, name, returnType, ((String[])Conversions.unwrapArray(_replaceListElement, String.class)));
-          ArrayList<String> _replaceListElement_1 = this.<String>replaceListElement(virtualParameters, i, "real");
-          this.addAbstraction(abstractions, b, name, returnType, ((String[])Conversions.unwrapArray(_replaceListElement_1, String.class)));
-          isVirtual = true;
-        } else {
-          String _get_2 = virtualParameters.get(i);
-          boolean _contains = _get_2.contains("?");
-          if (_contains) {
-            Set<Type> typesCollection = null;
-            boolean _containsKey = this.types.containsKey(b);
-            if (_containsKey) {
-              Set<Type> _get_3 = this.types.get(b);
-              typesCollection = _get_3;
-            } else {
-              Set<Type> _standardTypes = this.getStandardTypes();
-              typesCollection = _standardTypes;
-            }
-            for (final Type t : typesCollection) {
-              {
-                String newParameterName = t.name;
-                String _get_4 = virtualParameters.get(i);
-                boolean _equals_3 = _get_4.equals("?");
-                if (_equals_3) {
-                  ArrayList<String> _replaceListElement_2 = this.<String>replaceListElement(virtualParameters, i, newParameterName);
-                  this.addAbstraction(abstractions, b, name, returnType, ((String[])Conversions.unwrapArray(_replaceListElement_2, String.class)));
-                } else {
-                  String _get_5 = virtualParameters.get(i);
-                  boolean _equals_4 = _get_5.equals("^?");
-                  if (_equals_4) {
-                    ArrayList<String> _replaceListElement_3 = this.<String>replaceListElement(virtualParameters, i, ("^" + newParameterName));
-                    this.addAbstraction(abstractions, b, name, returnType, ((String[])Conversions.unwrapArray(_replaceListElement_3, String.class)));
-                  } else {
-                    String _get_6 = virtualParameters.get(i);
-                    boolean _equals_5 = _get_6.equals("[]?");
-                    if (_equals_5) {
-                      ArrayList<String> _replaceListElement_4 = this.<String>replaceListElement(virtualParameters, i, ("array of " + newParameterName));
-                      this.addAbstraction(abstractions, b, name, returnType, ((String[])Conversions.unwrapArray(_replaceListElement_4, String.class)));
-                    }
-                  }
-                }
-              }
-            }
-            isVirtual = true;
-          }
-        }
-      }
-      if ((!isVirtual)) {
-        Type _type = this.getType(b, returnType);
-        this.addAbstraction(abstractions, b, name, _type, parameters);
-      }
-    }
-  }
-  
-  public void setStandardAbstractions(final block b, final Set<Procedure> it) {
-    this.addAbstraction(it, b, "round", "integer", "real");
-    this.addAbstraction(it, b, "chr", "char", "integer");
-    this.addAbstraction(it, b, "abs", "reflect", "numeric");
-    this.addAbstraction(it, b, "odd", "boolean", "integer");
-    this.addAbstraction(it, b, "sqr", "reflect", "numeric");
-    this.addAbstraction(it, b, "sqrt", "real", "numeric");
-    this.addAbstraction(it, b, "sin", "real", "numeric");
-    this.addAbstraction(it, b, "cos", "real", "numeric");
-    this.addAbstraction(it, b, "arctan", "real", "numeric");
-    this.addAbstraction(it, b, "ln", "real", "numeric");
-    this.addAbstraction(it, b, "exp", "real", "numeric");
-    this.addAbstraction(it, b, "succ", "...enumerated", "...enumerated");
-    this.addAbstraction(it, b, "succ", "integer", "integer");
-    this.addAbstraction(it, b, "pred", "...enumerated", "...enumerated");
-    this.addAbstraction(it, b, "pred", "integer", "integer");
-    this.addAbstraction(it, b, "new", "void", "^?");
-    this.addAbstraction(it, b, "dispose", "void", "^?");
-    this.addAbstraction(it, b, "strconcat", "void", "array of char", "array of char");
-    this.addAbstraction(it, b, "strdelete", "void", "array of char", "integer", "integer");
-    this.addAbstraction(it, b, "strinsert", "void", "array of char", "array of char", "integer");
-    this.addAbstraction(it, b, "strlen", "integer", "array of char");
-    this.addAbstraction(it, b, "strscan", "integer", "array of char", "array of char");
-    this.addAbstraction(it, b, "strlen", "integer", "array of char");
-    this.addAbstraction(it, b, "substr", "void", "array of char", "integer", "integer", "array of char");
-    this.addAbstraction(it, b, "address", "integer", "^?");
-    this.addAbstraction(it, b, "length", "integer", "[]?");
-    this.addAbstraction(it, b, "setlength", "void", "[]?", "integer");
-    this.addAbstraction(it, b, "write", "void", "?");
-    this.addAbstraction(it, b, "write", "void", "array of char");
-    this.addAbstraction(it, b, "write", "void");
-    this.addAbstraction(it, b, "writeln", "void", "?");
-    this.addAbstraction(it, b, "writeln", "void", "array of char");
-    this.addAbstraction(it, b, "writeln", "void");
-    this.addAbstraction(it, b, "read", "void", "?");
-    this.addAbstraction(it, b, "read", "void", "array of char");
-    this.addAbstraction(it, b, "read", "void");
-    this.addAbstraction(it, b, "readln", "void", "?");
-    this.addAbstraction(it, b, "readln", "void", "array of char");
-    this.addAbstraction(it, b, "readln", "void");
-  }
-  
-  public Set<Procedure> getStandardAbstractions(final block b) {
-    this.setStandardAbstractions(b, this.standardAbstractions);
-    return this.standardAbstractions;
-  }
-  
-  public Set<Type> getStandardTypes() {
-    boolean _isEmpty = this.standardTypes.isEmpty();
-    if (_isEmpty) {
-      Type _type = new Type("real", false, "real");
-      this.standardTypes.add(_type);
-      Type _type_1 = new Type("integer", false, "integer");
-      this.standardTypes.add(_type_1);
-      Type _type_2 = new Type("shortint", false, "shortint");
-      this.standardTypes.add(_type_2);
-      Type _type_3 = new Type("longint", false, "longint");
-      this.standardTypes.add(_type_3);
-      Type _type_4 = new Type("boolean", false, "boolean");
-      this.standardTypes.add(_type_4);
-      Type _type_5 = new Type("char", false, "char");
-      this.standardTypes.add(_type_5);
-    }
-    return this.standardTypes;
   }
   
   public <T extends Element> T search(final Set<T> elements, final T key) {
@@ -346,15 +165,11 @@ public class PascalValidator extends AbstractPascalValidator {
   }
   
   public Type searchByName(final Set<Type> types, final Type key) {
-    boolean _equals = Objects.equal(key, null);
-    if (_equals) {
-      return null;
-    }
     for (final Type t : types) {
       String _lowerCase = t.name.toLowerCase();
       String _lowerCase_1 = key.name.toLowerCase();
-      boolean _equals_1 = _lowerCase.equals(_lowerCase_1);
-      if (_equals_1) {
+      boolean _equals = _lowerCase.equals(_lowerCase_1);
+      if (_equals) {
         return t;
       }
     }
@@ -362,77 +177,37 @@ public class PascalValidator extends AbstractPascalValidator {
   }
   
   public boolean insertError(final EObject object, final String message, final ErrorType type, final EStructuralFeature feature) {
-    boolean _xblockexpression = false;
-    {
-      boolean _containsKey = this.errorList.containsKey(object);
-      boolean _not = (!_containsKey);
-      if (_not) {
-        HashSet<org.xtext.example.pascal.validation.Error> _hashSet = new HashSet<org.xtext.example.pascal.validation.Error>();
-        this.errorList.put(object, _hashSet);
-      }
-      Set<org.xtext.example.pascal.validation.Error> _get = this.errorList.get(object);
-      org.xtext.example.pascal.validation.Error _error = new org.xtext.example.pascal.validation.Error(message, type, feature);
-      _xblockexpression = _get.add(_error);
-    }
-    return _xblockexpression;
+    Set<org.xtext.example.pascal.validation.Error> _get = this.errorList.get(object);
+    org.xtext.example.pascal.validation.Error _error = new org.xtext.example.pascal.validation.Error(message, type, feature);
+    return _get.add(_error);
   }
   
   public void removeError(final EObject object, final ErrorType type) {
-    boolean _containsKey = this.errorList.containsKey(object);
-    boolean _not = (!_containsKey);
-    if (_not) {
-      HashSet<org.xtext.example.pascal.validation.Error> _hashSet = new HashSet<org.xtext.example.pascal.validation.Error>();
-      this.errorList.put(object, _hashSet);
-    }
     Set<org.xtext.example.pascal.validation.Error> _get = this.errorList.get(object);
     org.xtext.example.pascal.validation.Error _error = new org.xtext.example.pascal.validation.Error(type);
     _get.remove(_error);
     this.showError(object);
   }
   
-  public <T extends Element> boolean clear(final block b, final ElementType type, final Map<block, Set<T>> container) {
-    boolean _xblockexpression = false;
+  public <T extends Element> Set<T> clear(final block b, final ElementType type, final Map<block, Set<T>> container) {
+    Set<T> _xblockexpression = null;
     {
-      boolean _containsKey = container.containsKey(b);
-      boolean _not = (!_containsKey);
-      if (_not) {
-        HashSet<T> _hashSet = new HashSet<T>();
-        container.put(b, _hashSet);
-      } else {
-        HashSet<T> newSet = new HashSet<T>();
-        Set<T> _get = container.get(b);
-        for (final T t : _get) {
-          boolean _or = false;
-          boolean _notEquals = (!Objects.equal(t.type, type));
-          if (_notEquals) {
-            _or = true;
-          } else {
-            boolean _isInherited = t.isInherited();
-            _or = _isInherited;
-          }
-          if (_or) {
-            newSet.add(t);
-          }
+      HashSet<T> newSet = new HashSet<T>();
+      Set<T> _get = container.get(b);
+      for (final T t : _get) {
+        boolean _or = false;
+        boolean _notEquals = (!Objects.equal(t.type, type));
+        if (_notEquals) {
+          _or = true;
+        } else {
+          boolean _isInherited = t.isInherited();
+          _or = _isInherited;
         }
-        container.put(b, newSet);
-      }
-      boolean _xifexpression = false;
-      boolean _equals = Objects.equal(container, this.abstractions);
-      if (_equals) {
-        Set<Procedure> _get_1 = this.abstractions.get(b);
-        Set<Procedure> _standardAbstractions = this.getStandardAbstractions(b);
-        _xifexpression = _get_1.addAll(_standardAbstractions);
-      } else {
-        boolean _xifexpression_1 = false;
-        boolean _equals_1 = Objects.equal(container, this.types);
-        if (_equals_1) {
-          Set<Type> _get_2 = this.types.get(b);
-          Set<Type> _standardTypes = this.getStandardTypes();
-          _xifexpression_1 = _get_2.addAll(_standardTypes);
+        if (_or) {
+          newSet.add(t);
         }
-        _xifexpression = _xifexpression_1;
       }
-      _xblockexpression = _xifexpression;
+      _xblockexpression = container.put(b, newSet);
     }
     return _xblockexpression;
   }
@@ -655,19 +430,12 @@ public class PascalValidator extends AbstractPascalValidator {
       String _name_1 = type.getName();
       boolean _notEquals_3 = (!Objects.equal(_name_1, null));
       if (_notEquals_3) {
-        boolean _and = false;
-        boolean _containsKey = this.types.containsKey(b);
-        if (!_containsKey) {
-          _and = false;
-        } else {
-          Set<Type> _get = this.types.get(b);
-          String _name_2 = type.getName();
-          Type _type_3 = new Type(_name_2);
-          Type _search = this.<Type>search(_get, _type_3);
-          boolean _equals = Objects.equal(_search, null);
-          _and = _equals;
-        }
-        if (_and) {
+        Set<Type> _get = this.types.get(b);
+        String _name_2 = type.getName();
+        Type _type_3 = new Type(_name_2);
+        Type _search = this.<Type>search(_get, _type_3);
+        boolean _equals = Objects.equal(_search, null);
+        if (_equals) {
           this.insertError(type, "Undefined type.", ErrorType.UNDEFINED_TYPE, PascalPackage.Literals.PARAMETER_TYPE__NAME);
         } else {
           this.removeError(type, ErrorType.UNDEFINED_TYPE);
@@ -1014,12 +782,6 @@ public class PascalValidator extends AbstractPascalValidator {
         decl.setBlock(_createblock);
       }
       block subblock = decl.getBlock();
-      boolean _containsKey = container.containsKey(subblock);
-      boolean _not = (!_containsKey);
-      if (_not) {
-        HashSet<T> _hashSet = new HashSet<T>();
-        container.put(subblock, _hashSet);
-      }
       Set<T> _get = container.get(subblock);
       _xblockexpression = _get.add(element);
     }
@@ -1123,21 +885,6 @@ public class PascalValidator extends AbstractPascalValidator {
         T inheritedElement = ((T) _clone);
         inheritedElement.inherited = true;
         this.<T>inheritElement(b, inheritedElement, container);
-        boolean _equals_3 = Objects.equal(container, this.types);
-        if (_equals_3) {
-          Set<Type> _get_4 = this.types.get(b);
-          for (final Type t : _get_4) {
-            this.<Type>inheritElement(b, t, this.types);
-          }
-        } else {
-          boolean _equals_4 = Objects.equal(container, this.abstractions);
-          if (_equals_4) {
-            Set<Procedure> _get_5 = this.abstractions.get(b);
-            for (final Procedure p : _get_5) {
-              this.<Procedure>inheritElement(b, p, this.abstractions);
-            }
-          }
-        }
       }
       _xblockexpression = _xifexpression;
     }
