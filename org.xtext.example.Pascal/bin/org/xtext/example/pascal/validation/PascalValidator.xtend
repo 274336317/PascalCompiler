@@ -47,7 +47,8 @@ class PascalValidator extends AbstractPascalValidator {
 	private final Map<block, Set<Variable>> variables = new AdaptativeHashMap<block, Variable>();
 	private final Map<block, Set<Procedure>> abstractions = new AdaptativeHashMap<block, Procedure>(APIProvider.procedures);
 	private final Map<block, Set<Type>> types = new AdaptativeHashMap<block, Type>(APIProvider.types);
-	     
+	private final Map<EObject, Type> calculatedTypes = new HashMap<EObject, Type>();
+	 
 	@Check
 	def fillArtefacts(program p) {
 		var name = p.heading.name;
@@ -56,6 +57,7 @@ class PascalValidator extends AbstractPascalValidator {
 			artefacts.get(name).put("variables", variables);
 			artefacts.get(name).put("abstractions", abstractions);
 			artefacts.get(name).put("types", types);
+			artefacts.get(name).put("calculatedTypes", calculatedTypes);
 		}	
 	}
 	
@@ -147,17 +149,18 @@ class PascalValidator extends AbstractPascalValidator {
 	}
 	
 	def Type getType(block b, type t) {  
+		var Type type = new Type("nil");
 		if (t.simple != null) {
 			var simple = t.simple;
 			if (simple.subrange != null || simple.enumerated != null) {
-				return new Type("enumerated", false, "...enumerated");
+				type = new Type("enumerated", false, "...enumerated");
 			} else if (simple.name != null) {
 				if (search(types.get(b), new Type(simple.name)) == null) {
 					insertError(t, "Undefined type.", ErrorType.UNDEFINED_TYPE, PascalPackage.Literals.TYPE__SIMPLE);
 				} else {
 					removeError(t, ErrorType.UNDEFINED_TYPE);
 				} 
-				return getType(b, simple.name);
+				type = getType(b, simple.name);
 			} 
 		} else if (t.structured != null) {
 			var syntetizedType = "";
@@ -167,11 +170,9 @@ class PascalValidator extends AbstractPascalValidator {
 			}
 			var unpacked = structured.type;
 			if (unpacked.array != null) {
-				var type = getType(b, unpacked.array.type);
-				return new ComposedType(type, ComposedTypeKind.ARRAY);
+				type = new ComposedType(getType(b, unpacked.array.type), ComposedTypeKind.ARRAY);
 			} else if (unpacked.dynamic != null) {
-				var type = getType(b, unpacked.dynamic.type);
-				return new ComposedType(type, ComposedTypeKind.ARRAY);
+				type = new ComposedType(getType(b, unpacked.dynamic.type), ComposedTypeKind.ARRAY);
 			} else if (unpacked.record != null) {
 				syntetizedType += "record";
 			} else if (unpacked.set != null) {
@@ -179,21 +180,21 @@ class PascalValidator extends AbstractPascalValidator {
 			} else if (unpacked.file != null) {
 				syntetizedType += "file of " + getType(b, unpacked.file.type).realType;
 			}
-			return new Type(syntetizedType);
+			type = new Type(syntetizedType);
 		} else if (t.pointer != null) {
-			var type = getType(b, t.pointer.type);
-			return new ComposedType(type, ComposedTypeKind.POINTER);
-		}
-		return new Type("nil");
+			type = new ComposedType(getType(b, t.pointer.type), ComposedTypeKind.POINTER);
+		} 
+		return type;
 	}
 	
 	def Type getType(block b, parameter_type type) {
+		var t = new Type("nil");
 		if (type.array != null) {
 			var array = type.array;
 			if (array.packed != null) {
-				return new ComposedType(getType(b, array.packed.name), ComposedTypeKind.ARRAY);
+				t = new ComposedType(getType(b, array.packed.name), ComposedTypeKind.ARRAY);
 			} else if (array.unpacked != null) {
-				return new ComposedType(getType(b, array.unpacked.type), ComposedTypeKind.ARRAY);
+				t = new ComposedType(getType(b, array.unpacked.type), ComposedTypeKind.ARRAY);
 			}
 		} else if (type.name != null) {
 			if (search(types.get(b), new Type(type.name)) == null) {
@@ -201,78 +202,83 @@ class PascalValidator extends AbstractPascalValidator {
 			} else {
 				removeError(type, ErrorType.UNDEFINED_TYPE);
 			}
-			return getType(b, type.name);
-		}
-		return new Type("nil");	
+			t = getType(b, type.name);
+		}	
+		return t;
 	}
 	
 	def Type getType(block b, constant const) {
+		var type = new Type("nil");
 		if (const.name != null) {
 			var varFound = search(variables.get(b), new Variable(const.name));
 			if (varFound != null) {
-				return varFound.varType;
+				type = varFound.varType;
 			} 
 		} else if (const.string != null) {
-			return new ComposedType(new Type("char"), ComposedTypeKind.ARRAY);
+			type = new ComposedType(new Type("char"), ComposedTypeKind.ARRAY);
 		} else if (const.boolLiteral != null) {
-			return new Type("boolean");
+			type = new Type("boolean");
 		} else if (const.nil != null) {
-			return new Type("nil");
+			type = new Type("nil");
 		} else if (const.number != null) {
 			if (const.number.number.integer != null) {
-				return new Type("integer");
+				type = new Type("integer");
 			} else if (const.number.number.real != null) {
-				return new Type("real");
+				type = new Type("real");
 			} 
 		}
-		return new Type("nil");
+		return type;
 	}
 	
 	def Type getType(block b, variable v) {
+		var type = new Type("nil");
 		var variableFound = search(variables.get(b), new Variable(v.name)); 
 		if (variableFound != null) {
-			return variableFound.varType;
+			type = variableFound.varType;
 		} 
-		return new Type("nil");
+		return type;
 	} 
 	
 	def Type getType(block b, function_designator f) {
+		var type = new Type("nil");
 		var function = getAbstraction(b, f);
 		var abstractionFound = searchWithTypeCoersion(abstractions.get(b), function);
 		if (abstractionFound != null && abstractionFound.type == ElementType.FUNCTION) {
 			var functionFound = abstractionFound as Function;
-			return functionFound.returnType;  
+			type = functionFound.returnType;  
 		}
-		return new Type("nil");
+		return type;
 	}
 	
 	def Type getType(block b, factor f) {
+		var type = new Type("nil");
 		if (f.variable != null) {
 			var variableFound = search(variables.get(b), new Variable(f.variable.name));
 			if (variableFound != null) {
-				return variableFound.varType;		
+				type = variableFound.varType;		
 			}
 		} else if (f.number != null) {
 			var number = f.number.number;
 			if (number.integer != null) {
-				return new Type("integer");
+				type = new Type("integer");
 			} else if (number.real != null) {
-				return new Type("real");
+				type = new Type("real");
 			}
 		} else if (f.string != null) {
-			return new ComposedType(new Type("char"), ComposedTypeKind.ARRAY);
+			type = new ComposedType(new Type("char"), ComposedTypeKind.ARRAY);
 		} else if (f.set != null) {
-			return getType(b, f.set.expressions); 
+			type = getType(b, f.set.expressions); 
 		} else if (f.nil) {
-			return new Type("nil");
+			type = new Type("nil");
 		} else if (f.boolean != null || f.not != null) {
-			return new Type("boolean");
+			type = new Type("boolean");
 		} else if (f.function != null) {
-			return getType(b, f.function);
+			type = getType(b, f.function);
 		} else if (f.expression != null) {
-			return getType(b, f.expression);
+			type = getType(b, f.expression);
 		}
-		return new Type("nil");
+		calculatedTypes.put(f, type);
+		return type;
 	}
 	
 	def Type getType(block b, term t) {
@@ -281,6 +287,7 @@ class PascalValidator extends AbstractPascalValidator {
 			var type = getType(b, f);
 			greatestType = TypeInferer.greater(type, greatestType);
 		}
+		calculatedTypes.put(t, greatestType);
 		return greatestType;
 	}
 	
@@ -290,19 +297,24 @@ class PascalValidator extends AbstractPascalValidator {
 			var type = getType(b, t);
 			greatestType = TypeInferer.greater(type, greatestType);
 		}
+		calculatedTypes.put(expr, greatestType);
 		return greatestType;
 	}
 	
 	def Type getType(block b, expression expr) {
+		var t = new Type("nil");
 		if (expr.operator != null) {
-			return new Type("boolean");
+			t = new Type("boolean");
+		} else {
+			var Type greatestType = null;
+			for (simple_expression e : expr.expressions) {
+				var type = getType(b, e);
+				greatestType = TypeInferer.greater(type, greatestType);
+			}
+			t = greatestType;
 		}
-		var Type greatestType = null;
-		for (simple_expression e : expr.expressions) {
-			var type = getType(b, e);
-			greatestType = TypeInferer.greater(type, greatestType);
-		}
-		return greatestType;
+		calculatedTypes.put(expr, t);
+		return t;
 	}
 	
 	def Type getType(block b, expression_list expr) {
@@ -311,6 +323,7 @@ class PascalValidator extends AbstractPascalValidator {
 			var type = getType(b, e);
 			greatestType = TypeInferer.greater(type, greatestType);
 		}
+		calculatedTypes.put(expr, greatestType);
 		return greatestType;
 	}
 	

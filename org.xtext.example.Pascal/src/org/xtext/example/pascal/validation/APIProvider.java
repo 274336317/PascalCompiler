@@ -27,40 +27,47 @@ public class APIProvider {
 	} 
 	
 	private static void addAbstraction(Set<Procedure> abstractions, String name, String returnType, String... parameters) {  
-		if (returnType.equals("reflect")) {
-			if (parameters.length == 1) { 
-				addAbstraction(abstractions, name, parameters[0], parameters); 
-			} else {
-				throw new RuntimeException("Invalid return type");
+		boolean isVirtual = false;
+		for (int i = 0; i < parameters.length; i++) {
+			if (parameters[i].equals("numeric")) {
+				String[] newParameters = new String[parameters.length];
+				System.arraycopy(parameters, 0, newParameters, 0, parameters.length);
+				newParameters[i] = "integer";
+				addAbstraction(abstractions, name, returnType, newParameters);
+				newParameters = new String[parameters.length];
+				System.arraycopy(parameters, 0, newParameters, 0, parameters.length);
+				newParameters[i] = "real";
+				addAbstraction(abstractions, name, returnType, newParameters);
+				isVirtual = true;
+			} else if (parameters[i].contains("?")) {
+				for (Type t : getStandardTypes()) {
+					String newParameterName = t.name;
+					String[] newParameters = new String[parameters.length];
+					System.arraycopy(parameters, 0, newParameters, 0, parameters.length);
+					if (parameters[i].equals("?")) {
+						newParameters[i] = newParameterName;
+						addAbstraction(abstractions, name, returnType, newParameters); 
+					} else if (parameters[i].equals("^?")) {
+						newParameters[i] = "^" + newParameterName; 
+						addAbstraction(abstractions, name, returnType, newParameters); 
+					} else if (parameters[i].equals("[]?")) {
+						newParameters[i] = "array of " + newParameterName;
+						addAbstraction(abstractions, name, returnType, newParameters);
+					}
+				} 
+				isVirtual = true;
 			}
-		} else {
-			boolean isVirtual = false;
-			for (int i = 0; i < parameters.length; i++) {
-				if (parameters[i].equals("numeric")) {
-					parameters[i] = "integer";
-					addAbstraction(abstractions, name, returnType, parameters);
-					parameters[i] = "real";
-					addAbstraction(abstractions, name, returnType, parameters);
-					isVirtual = true;
-				} else if (parameters[i].contains("?")) {
-					for (Type t : getStandardTypes()) {
-						String newParameterName = t.name;	 
-						if (parameters[i].equals("?")) {
-							parameters[i] = newParameterName;
-							addAbstraction(abstractions, name, returnType, parameters); 
-						} else if (parameters[i].equals("^?")) {
-							parameters[i] = "^" + newParameterName;
-							addAbstraction(abstractions, name, returnType, parameters); 
-						} else if (parameters[i].equals("[]?")) {
-							parameters[i] = "array of " + newParameterName;
-							addAbstraction(abstractions, name, returnType, parameters);
-						}
-					} 
-					isVirtual = true;
+		}
+		if (!isVirtual)  {
+			if (returnType.equals("reflect")) {
+				if (parameters.length == 1) { 
+					addAbstraction(abstractions, name, parameters[0], parameters); 
+				} else {
+					throw new RuntimeException("Invalid return type");
 				}
-			}
-			if (!isVirtual)  
+			} else {
 				addAbstractionInAbstractions(abstractions, name, new Type(returnType), parameters);
+			}
 		}
 	}
 	

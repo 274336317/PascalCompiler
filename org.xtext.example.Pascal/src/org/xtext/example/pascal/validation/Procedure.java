@@ -48,7 +48,7 @@ public class Procedure extends Element {
 			while (it1.hasNext() && it2.hasNext()) {
 				Type it1Type = it1.next().getVarType();
 				Type it2Type = it2.next().getVarType();
-				if (!it1Type.getRealType().equals(it2Type.getRealType()))
+				if (!it1Type.getRealType().toLowerCase().equals(it2Type.getRealType().toLowerCase()))
 					return false;
 			}
 			return true;

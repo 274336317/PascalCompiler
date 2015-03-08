@@ -3,10 +3,12 @@
  */
 package org.xtext.example.pascal.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -14,10 +16,28 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.pascal.pascal.any_number;
 import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.expression;
+import org.xtext.example.pascal.pascal.expression_list;
+import org.xtext.example.pascal.pascal.factor;
+import org.xtext.example.pascal.pascal.function_designator;
+import org.xtext.example.pascal.pascal.number;
 import org.xtext.example.pascal.pascal.program;
 import org.xtext.example.pascal.pascal.program_heading_block;
+import org.xtext.example.pascal.pascal.simple_expression;
+import org.xtext.example.pascal.pascal.simple_statement;
+import org.xtext.example.pascal.pascal.statement;
+import org.xtext.example.pascal.pascal.statement_part;
+import org.xtext.example.pascal.pascal.statement_sequence;
+import org.xtext.example.pascal.pascal.term;
+import org.xtext.example.pascal.pascal.variable;
+import org.xtext.example.pascal.validation.ComposedType;
+import org.xtext.example.pascal.validation.ComposedTypeKind;
+import org.xtext.example.pascal.validation.ElementType;
 import org.xtext.example.pascal.validation.PascalValidator;
+import org.xtext.example.pascal.validation.Type;
+import org.xtext.example.pascal.validation.TypeInferer;
 import org.xtext.example.pascal.validation.Variable;
 
 /**
@@ -27,7 +47,9 @@ import org.xtext.example.pascal.validation.Variable;
  */
 @SuppressWarnings("all")
 public class PascalGenerator implements IGenerator {
-  private Map<block, Integer> countVariables = new HashMap<block, Integer>();
+  private HashMap<String, String> stringTable = new HashMap<String, String>();
+  
+  private int memoryCount;
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
@@ -42,59 +64,707 @@ public class PascalGenerator implements IGenerator {
     }
   }
   
+  public void createStringTable(final program e) {
+    this.stringTable.clear();
+    this.memoryCount = 0;
+    TreeIterator<EObject> _eAllContents = e.eAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_eAllContents);
+    Iterable<factor> _filter = Iterables.<factor>filter(_iterable, factor.class);
+    for (final factor s : _filter) {
+      String _string = s.getString();
+      boolean _notEquals = (!Objects.equal(_string, null));
+      if (_notEquals) {
+        String _string_1 = s.getString();
+        boolean _containsKey = this.stringTable.containsKey(_string_1);
+        boolean _not = (!_containsKey);
+        if (_not) {
+          String _string_2 = s.getString();
+          int _size = this.stringTable.size();
+          String _plus = ("__STRING_" + Integer.valueOf(_size));
+          this.stringTable.put(_string_2, _plus);
+        }
+      }
+    }
+  }
+  
   public Set<Variable> getVariables(final program e, final block b) {
     program_heading_block _heading = e.getHeading();
     String _name = _heading.getName();
     Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
     Object _get = artefacts.get("variables");
     Map<block, Set<Variable>> map = ((Map<block, Set<Variable>>) _get);
-    this.countVariables.put(b, Integer.valueOf(0));
+    this.createStringTable(e);
     return map.get(b);
   }
   
-  public CharSequence compile(final program e) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("; ");
+  public String intToHex(final int x) {
+    int i = this.memoryCount;
+    int _memoryCount = this.memoryCount;
+    this.memoryCount = (_memoryCount + x);
+    return String.format("0x%x", Integer.valueOf(i));
+  }
+  
+  public int getNumberOfBytes(final Type t) {
+    String _realType = t.getRealType();
+    String type = _realType.toLowerCase();
+    boolean _or = false;
+    boolean _equals = type.equals("boolean");
+    if (_equals) {
+      _or = true;
+    } else {
+      boolean _equals_1 = type.equals("shortint");
+      _or = _equals_1;
+    }
+    if (_or) {
+      return 1;
+    } else {
+      boolean _equals_2 = type.equals("char");
+      if (_equals_2) {
+        return 2;
+      } else {
+        boolean _equals_3 = type.equals("integer");
+        if (_equals_3) {
+          return 4;
+        } else {
+          boolean _or_1 = false;
+          boolean _equals_4 = type.equals("longint");
+          if (_equals_4) {
+            _or_1 = true;
+          } else {
+            boolean _equals_5 = type.equals("real");
+            _or_1 = _equals_5;
+          }
+          if (_or_1) {
+            return 8;
+          }
+        }
+      }
+    }
+    return 4;
+  }
+  
+  public int getNumberOfBytes(final Variable v) {
+    Type _varType = v.getVarType();
+    return this.getNumberOfBytes(_varType);
+  }
+  
+  public Object getValue(final Variable v) {
+    Object _value = v.getValue();
+    if ((_value instanceof String)) {
+      Object _value_1 = v.getValue();
+      String _string = _value_1.toString();
+      String _replaceAll = _string.replaceAll("\'", "\"");
+      String _plus = ("\'" + _replaceAll);
+      return (_plus + "\'");
+    } else {
+      Object _value_2 = v.getValue();
+      if ((_value_2 instanceof Boolean)) {
+        Object _value_3 = v.getValue();
+        boolean _equals = _value_3.equals(Boolean.valueOf(true));
+        if (_equals) {
+          return Integer.valueOf(1);
+        } else {
+          return Integer.valueOf(0);
+        }
+      }
+    }
+    return v.getValue();
+  }
+  
+  public Type getType(final program e, final expression expr) {
     program_heading_block _heading = e.getHeading();
     String _name = _heading.getName();
-    _builder.append(_name, "");
+    Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
+    Object _get = artefacts.get("calculatedTypes");
+    Map<EObject, Type> map = ((Map<EObject, Type>) _get);
+    return map.get(expr);
+  }
+  
+  public CharSequence printString(final program e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("; Print string");
+    _builder.newLine();
+    _builder.append("_print_string:");
+    _builder.newLine();
+    _builder.append("push eax");
+    _builder.newLine();
+    _builder.append("push ebx ");
+    _builder.newLine();
+    _builder.append("sub esp, ebx");
+    _builder.newLine();
+    _builder.append("mov [esp], dword eax");
+    _builder.newLine();
+    _builder.append("call _printf");
+    _builder.newLine();
+    _builder.append("add esp, ebx");
+    _builder.newLine();
+    _builder.append("pop eax ");
+    _builder.newLine();
+    _builder.append("pop ebx");
+    _builder.newLine();
+    _builder.append("ret ;return");
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence printInteger(final program e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("; Print integer");
+    _builder.newLine();
+    _builder.append("_print_integer:");
+    _builder.newLine();
+    _builder.append("push eax");
+    _builder.newLine();
+    _builder.append("sub esp, 4");
+    _builder.newLine();
+    _builder.append("mov [esp], eax");
+    _builder.newLine();
+    _builder.append("sub esp, 4");
+    _builder.newLine();
+    _builder.append("lea eax, [__PRINTF_I]");
+    _builder.newLine();
+    _builder.append("mov [esp], eax");
+    _builder.newLine();
+    _builder.append("call _printf");
+    _builder.newLine();
+    _builder.append("add esp, 4");
+    _builder.newLine();
+    _builder.append("add esp, 4");
+    _builder.newLine();
+    _builder.append("pop eax");
+    _builder.newLine();
+    _builder.append("ret ;return ");
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence printBoolean(final program e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("; Print boolean");
+    _builder.newLine();
+    _builder.append("_print_boolean:");
+    _builder.newLine();
+    _builder.append("jnz .print_boolean_true");
+    _builder.newLine();
+    _builder.append("push eax");
+    _builder.newLine();
+    _builder.append("push ebx ");
+    _builder.newLine();
+    CharSequence _print = this.print(e, "__BOOLEAN_FALSE");
+    _builder.append(_print, "");
     _builder.newLineIfNotEmpty();
-    block _block = e.getBlock();
-    block _block_1 = e.getBlock();
-    Set<Variable> _variables = this.getVariables(e, _block_1);
-    CharSequence _compile = this.compile(_block, _variables);
-    _builder.append(_compile, "");
-    _builder.append(" ");
+    _builder.append("pop eax");
+    _builder.newLine();
+    _builder.append("pop ebx");
+    _builder.newLine();
+    _builder.append("ret ;return");
+    _builder.newLine();
+    _builder.append(".print_boolean_true:");
+    _builder.newLine();
+    _builder.append("push eax");
+    _builder.newLine();
+    _builder.append("push ebx ");
+    _builder.newLine();
+    CharSequence _print_1 = this.print(e, "__BOOLEAN_TRUE");
+    _builder.append(_print_1, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("pop eax");
+    _builder.newLine();
+    _builder.append("pop ebx");
+    _builder.newLine();
+    _builder.append("ret ;return");
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence printFloat(final program e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("; Print float");
+    _builder.newLine();
+    _builder.append("_print_float:");
+    _builder.newLine();
+    _builder.append("push eax ");
+    _builder.newLine();
+    _builder.append("sub esp, 8");
+    _builder.newLine();
+    _builder.append("mov [esp], eax");
+    _builder.newLine();
+    _builder.append("sub esp, 4");
+    _builder.newLine();
+    _builder.append("lea eax, [__PRINTF_F]");
+    _builder.newLine();
+    _builder.append("mov [esp], eax");
+    _builder.newLine();
+    _builder.append("call _printf");
+    _builder.newLine();
+    _builder.append("add esp, 12");
+    _builder.newLine();
+    _builder.append("pop eax ");
+    _builder.newLine();
+    _builder.append("ret ;return ");
+    _builder.newLine();
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compilePredefinedProcedures(final program e) {
+    StringConcatenation _builder = new StringConcatenation();
+    CharSequence _printString = this.printString(e);
+    _builder.append(_printString, "");
+    _builder.newLineIfNotEmpty();
+    CharSequence _printInteger = this.printInteger(e);
+    _builder.append(_printInteger, "");
+    _builder.newLineIfNotEmpty();
+    CharSequence _printBoolean = this.printBoolean(e);
+    _builder.append(_printBoolean, "");
+    _builder.newLineIfNotEmpty();
+    CharSequence _printFloat = this.printFloat(e);
+    _builder.append(_printFloat, "");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
   
-  public CharSequence compile(final block b, final Set<Variable> variables) {
+  public CharSequence compile(final program e) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("; Program ");
+    program_heading_block _heading = e.getHeading();
+    String _name = _heading.getName();
+    _builder.append(_name, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("global _main");
     _builder.newLine();
-    _builder.append("; Loading variables");
+    _builder.newLine();
+    _builder.append("extern _printf");
+    _builder.newLine();
+    _builder.append("extern _scanf ");
+    _builder.newLine();
+    _builder.newLine();
+    block _block = e.getBlock();
+    block _block_1 = e.getBlock();
+    Set<Variable> _variables = this.getVariables(e, _block_1);
+    CharSequence _compile = this.compile(e, _block, _variables);
+    _builder.append(_compile, "");
+    _builder.append(" ");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("; Code");
+    _builder.newLine();
+    _builder.append("section .text");
+    _builder.newLine();
+    _builder.newLine();
+    CharSequence _compilePredefinedProcedures = this.compilePredefinedProcedures(e);
+    _builder.append(_compilePredefinedProcedures, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("_main:");
+    _builder.newLine();
+    block _block_2 = e.getBlock();
+    block _block_3 = e.getBlock();
+    statement_part _statement = _block_3.getStatement();
+    CharSequence _compile_1 = this.compile(e, _block_2, _statement);
+    _builder.append(_compile_1, "");
+    _builder.append(" ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("ret\t; Exit program");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final program e, final block b, final Set<Variable> variables) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("; Loading global constants and strings");
+    _builder.newLine();
+    _builder.append("section .data");
+    _builder.newLine();
+    _builder.append("__NEW_LINE db 10, 0");
+    _builder.newLine();
+    _builder.append("__NEW_LINE_SIZE equ $-__NEW_LINE");
+    _builder.newLine();
+    _builder.append("__PRINTF_S db \'%s\', 0");
+    _builder.newLine();
+    _builder.append("__PRINTF_I db \'%d\', 0");
+    _builder.newLine();
+    _builder.append("__PRINTF_F db \'%f\', 0");
+    _builder.newLine();
+    _builder.append("__BOOLEAN_TRUE db \'true\', 0");
+    _builder.newLine();
+    _builder.append("__BOOLEAN_TRUE_SIZE equ $-__BOOLEAN_TRUE");
+    _builder.newLine();
+    _builder.append("__BOOLEAN_FALSE db \'false\', 0");
+    _builder.newLine();
+    _builder.append("__BOOLEAN_FALSE_SIZE equ $-__BOOLEAN_FALSE");
     _builder.newLine();
     {
+      Set<String> _keySet = this.stringTable.keySet();
+      for(final String s : _keySet) {
+        String _get = this.stringTable.get(s);
+        Type _type = new Type("char");
+        ComposedType _composedType = new ComposedType(_type, 
+          ComposedTypeKind.ARRAY);
+        Variable _variable = new Variable(_get, _composedType, false, ElementType.CONSTANT, s);
+        CharSequence _compileGlobalConstant = this.compileGlobalConstant(e, _variable, b);
+        _builder.append(_compileGlobalConstant, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
       for(final Variable v : variables) {
-        CharSequence _compile = this.compile(v, b);
-        _builder.append(_compile, "");
+        CharSequence _compileGlobalConstant_1 = this.compileGlobalConstant(e, v, b);
+        _builder.append(_compileGlobalConstant_1, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.newLine();
+    _builder.append("; Loading global variables");
+    _builder.newLine();
+    _builder.append("section .bss");
+    _builder.newLine();
+    {
+      for(final Variable v_1 : variables) {
+        CharSequence _compileGlobalVariables = this.compileGlobalVariables(e, v_1, b);
+        _builder.append(_compileGlobalVariables, "");
         _builder.newLineIfNotEmpty();
       }
     }
     return _builder;
   }
   
-  public CharSequence compile(final Variable v, final block b) {
+  public CharSequence compileGlobalConstant(final program e, final Variable v, final block b) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("LD R");
-    Integer _get = this.countVariables.get(b);
-    int _plus = ((_get).intValue() + 1);
-    Integer _put = this.countVariables.put(b, Integer.valueOf(_plus));
-    _builder.append(_put, "");
-    _builder.append(", ");
-    String _name = v.getName();
-    _builder.append(_name, "");
+    {
+      ElementType _type = v.getType();
+      boolean _equals = Objects.equal(_type, ElementType.CONSTANT);
+      if (_equals) {
+        {
+          Type _varType = v.getVarType();
+          String _realType = _varType.getRealType();
+          String _lowerCase = _realType.toLowerCase();
+          boolean _equals_1 = _lowerCase.equals("array of char");
+          if (_equals_1) {
+            String _name = v.getName();
+            _builder.append(_name, "");
+            _builder.append(" db ");
+            Object _value = this.getValue(v);
+            _builder.append(_value, "");
+            _builder.append(", 0");
+            _builder.newLineIfNotEmpty();
+            String _name_1 = v.getName();
+            _builder.append(_name_1, "");
+            _builder.append("_SIZE equ $-");
+            String _name_2 = v.getName();
+            _builder.append(_name_2, "");
+            _builder.newLineIfNotEmpty();
+          } else {
+            String _name_3 = v.getName();
+            _builder.append(_name_3, "");
+            _builder.append(" equ ");
+            Object _value_1 = this.getValue(v);
+            _builder.append(_value_1, "");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileGlobalVariables(final program e, final Variable v, final block b) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      ElementType _type = v.getType();
+      boolean _equals = Objects.equal(_type, ElementType.VARIABLE);
+      if (_equals) {
+        String _name = v.getName();
+        _builder.append(_name, "");
+        _builder.append(" RESB ");
+        int _numberOfBytes = this.getNumberOfBytes(v);
+        _builder.append(_numberOfBytes, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence computeFunction(final program e, final function_designator function) {
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder;
+  }
+  
+  public CharSequence computeFactor(final program e, final factor f) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      String _string = f.getString();
+      boolean _notEquals = (!Objects.equal(_string, null));
+      if (_notEquals) {
+        _builder.append("lea eax, [");
+        String _string_1 = f.getString();
+        String _get = this.stringTable.get(_string_1);
+        _builder.append(_get, "");
+        _builder.append("]");
+        _builder.newLineIfNotEmpty();
+        _builder.append("mov ebx, ");
+        String _string_2 = f.getString();
+        String _get_1 = this.stringTable.get(_string_2);
+        _builder.append(_get_1, "");
+        _builder.append("_SIZE");
+        _builder.newLineIfNotEmpty();
+      } else {
+        number _number = f.getNumber();
+        boolean _notEquals_1 = (!Objects.equal(_number, null));
+        if (_notEquals_1) {
+          {
+            number _number_1 = f.getNumber();
+            any_number _number_2 = _number_1.getNumber();
+            String _integer = _number_2.getInteger();
+            boolean _notEquals_2 = (!Objects.equal(_integer, null));
+            if (_notEquals_2) {
+              _builder.append("mov eax, ");
+              number _number_3 = f.getNumber();
+              any_number _number_4 = _number_3.getNumber();
+              String _integer_1 = _number_4.getInteger();
+              _builder.append(_integer_1, "");
+              _builder.newLineIfNotEmpty();
+            } else {
+            }
+          }
+        } else {
+          String _boolean = f.getBoolean();
+          boolean _notEquals_3 = (!Objects.equal(_boolean, null));
+          if (_notEquals_3) {
+            {
+              String _boolean_1 = f.getBoolean();
+              String _lowerCase = _boolean_1.toLowerCase();
+              boolean _equals = _lowerCase.equals("true");
+              if (_equals) {
+                _builder.append("mov eax, 1");
+                _builder.newLine();
+              } else {
+                _builder.append("mov eax, 0");
+                _builder.newLine();
+              }
+            }
+          } else {
+            variable _variable = f.getVariable();
+            boolean _notEquals_4 = (!Objects.equal(_variable, null));
+            if (_notEquals_4) {
+              _builder.append("mov eax, ");
+              variable _variable_1 = f.getVariable();
+              String _name = _variable_1.getName();
+              _builder.append(_name, "");
+              _builder.newLineIfNotEmpty();
+            } else {
+              function_designator _function = f.getFunction();
+              boolean _notEquals_5 = (!Objects.equal(_function, null));
+              if (_notEquals_5) {
+                function_designator _function_1 = f.getFunction();
+                CharSequence _computeFunction = this.computeFunction(e, _function_1);
+                _builder.append(_computeFunction, "");
+                _builder.newLineIfNotEmpty();
+              } else {
+                expression _expression = f.getExpression();
+                boolean _notEquals_6 = (!Objects.equal(_expression, null));
+                if (_notEquals_6) {
+                  expression _expression_1 = f.getExpression();
+                  CharSequence _computeExpression = this.computeExpression(e, _expression_1);
+                  _builder.append(_computeExpression, "");
+                  _builder.newLineIfNotEmpty();
+                } else {
+                  factor _not = f.getNot();
+                  boolean _notEquals_7 = (!Objects.equal(_not, null));
+                  if (_notEquals_7) {
+                    factor _not_1 = f.getNot();
+                    CharSequence _computeFactor = this.computeFactor(e, _not_1);
+                    _builder.append(_computeFactor, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("xor eax, 1");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence computeTerm(final program e, final term t) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<factor> _factors = t.getFactors();
+      for(final factor f : _factors) {
+        CharSequence _computeFactor = this.computeFactor(e, f);
+        _builder.append(_computeFactor, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence computeExpression(final program e, final expression exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<simple_expression> _expressions = exp.getExpressions();
+      for(final simple_expression expr : _expressions) {
+        {
+          EList<term> _terms = expr.getTerms();
+          for(final term t : _terms) {
+            CharSequence _computeTerm = this.computeTerm(e, t);
+            _builder.append(_computeTerm, "");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence print(final program e, final function_designator function) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      expression_list _expressions = function.getExpressions();
+      boolean _notEquals = (!Objects.equal(_expressions, null));
+      if (_notEquals) {
+        expression_list _expressions_1 = function.getExpressions();
+        EList<expression> _expressions_2 = _expressions_1.getExpressions();
+        expression _get = _expressions_2.get(0);
+        CharSequence _computeExpression = this.computeExpression(e, _get);
+        _builder.append(_computeExpression, "");
+        _builder.newLineIfNotEmpty();
+        {
+          expression_list _expressions_3 = function.getExpressions();
+          EList<expression> _expressions_4 = _expressions_3.getExpressions();
+          expression _get_1 = _expressions_4.get(0);
+          Type _type = this.getType(e, _get_1);
+          int _typeWeight = TypeInferer.getTypeWeight(_type);
+          boolean _equals = (_typeWeight == 4);
+          if (_equals) {
+            _builder.append("call _print_float");
+            _builder.newLine();
+          } else {
+            expression_list _expressions_5 = function.getExpressions();
+            EList<expression> _expressions_6 = _expressions_5.getExpressions();
+            expression _get_2 = _expressions_6.get(0);
+            Type _type_1 = this.getType(e, _get_2);
+            int _typeWeight_1 = TypeInferer.getTypeWeight(_type_1);
+            boolean _greaterEqualsThan = (_typeWeight_1 >= 0);
+            if (_greaterEqualsThan) {
+              _builder.append("call _print_integer");
+              _builder.newLine();
+            } else {
+              expression_list _expressions_7 = function.getExpressions();
+              EList<expression> _expressions_8 = _expressions_7.getExpressions();
+              expression _get_3 = _expressions_8.get(0);
+              Type _type_2 = this.getType(e, _get_3);
+              String _realType = _type_2.getRealType();
+              String _lowerCase = _realType.toLowerCase();
+              boolean _equals_1 = _lowerCase.equals("boolean");
+              if (_equals_1) {
+                _builder.append("and eax, 1 ; Setting zero flag");
+                _builder.newLine();
+                _builder.append("call _print_boolean");
+                _builder.newLine();
+              } else {
+                _builder.append("call _print_string");
+                _builder.newLine();
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence print(final program e, final String s) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("lea eax, [");
+    _builder.append(s, "");
+    _builder.append("]");
     _builder.newLineIfNotEmpty();
+    _builder.append("mov ebx, ");
+    _builder.append(s, "");
+    _builder.append("_SIZE");
+    _builder.newLineIfNotEmpty();
+    _builder.append("call _print_string");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence compile(final program e, final block b, final statement_part part) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      statement_sequence _sequence = part.getSequence();
+      EList<statement> _statements = _sequence.getStatements();
+      for(final statement s : _statements) {
+        {
+          simple_statement _simple = s.getSimple();
+          boolean _notEquals = (!Objects.equal(_simple, null));
+          if (_notEquals) {
+            {
+              simple_statement _simple_1 = s.getSimple();
+              String _function_noargs = _simple_1.getFunction_noargs();
+              boolean _notEquals_1 = (!Objects.equal(_function_noargs, null));
+              if (_notEquals_1) {
+                {
+                  simple_statement _simple_2 = s.getSimple();
+                  String _function_noargs_1 = _simple_2.getFunction_noargs();
+                  boolean _equals = _function_noargs_1.equals("writeln");
+                  if (_equals) {
+                    _builder.append("; Call writeln");
+                    _builder.newLine();
+                    CharSequence _print = this.print(e, "__NEW_LINE");
+                    _builder.append(_print, "");
+                    _builder.newLineIfNotEmpty();
+                  }
+                }
+              } else {
+                simple_statement _simple_3 = s.getSimple();
+                function_designator _function = _simple_3.getFunction();
+                boolean _notEquals_2 = (!Objects.equal(_function, null));
+                if (_notEquals_2) {
+                  {
+                    simple_statement _simple_4 = s.getSimple();
+                    function_designator _function_1 = _simple_4.getFunction();
+                    String _name = _function_1.getName();
+                    boolean _equals_1 = _name.equals("write");
+                    if (_equals_1) {
+                      _builder.append("; Call write");
+                      _builder.newLine();
+                      simple_statement _simple_5 = s.getSimple();
+                      function_designator _function_2 = _simple_5.getFunction();
+                      CharSequence _print_1 = this.print(e, _function_2);
+                      _builder.append(_print_1, "");
+                      _builder.newLineIfNotEmpty();
+                    } else {
+                      simple_statement _simple_6 = s.getSimple();
+                      function_designator _function_3 = _simple_6.getFunction();
+                      String _name_1 = _function_3.getName();
+                      boolean _equals_2 = _name_1.equals("writeln");
+                      if (_equals_2) {
+                        _builder.append("; Call writeln");
+                        _builder.newLine();
+                        simple_statement _simple_7 = s.getSimple();
+                        function_designator _function_4 = _simple_7.getFunction();
+                        CharSequence _print_2 = this.print(e, _function_4);
+                        _builder.append(_print_2, "");
+                        _builder.newLineIfNotEmpty();
+                        CharSequence _print_3 = this.print(e, "__NEW_LINE");
+                        _builder.append(_print_3, "");
+                        _builder.newLineIfNotEmpty();
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     return _builder;
   }
 }
