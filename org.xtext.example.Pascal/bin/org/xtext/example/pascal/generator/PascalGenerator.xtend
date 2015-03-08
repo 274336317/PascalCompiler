@@ -267,14 +267,40 @@ class PascalGenerator implements IGenerator {
 			«e.computeExpression(f.expression)»
 		«ELSEIF f.not != null»
 			«e.computeFactor(f.not)»
-			xor eax, 1
+			xor eax, 1 ; Logical not
 		«ENDIF»
 	'''
 	
 	def computeTerm(program e, term t) '''
-		«FOR f : t.factors»
-			«e.computeFactor(f)»
-		«ENDFOR»
+		«e.computeFactor(t.factors.get(0))»
+		«IF t.operators != null»
+			«var int index = 1»
+			«FOR operator : t.operators»
+				mov ecx, eax
+				«e.computeFactor(t.factors.get(index++))»
+				«IF operator.toLowerCase.equals("and")»
+					and ecx, eax ; And
+				«ELSEIF operator.toLowerCase.equals("mod")»
+					mov edx, eax ; Module
+					mov eax, ecx
+					mov ecx, edx
+					cdq
+					idiv ecx
+					mov ecx, edx
+				«ELSEIF operator.toLowerCase.equals("div") || operator.toLowerCase.equals("/")»
+					mov edx, eax ; Divide
+					mov eax, ecx
+					mov ecx, edx
+					cdq
+					idiv ecx
+					mov ecx, eax
+				«ELSEIF operator.toLowerCase.equals("*")»
+					mul ecx ; Multiply
+					mov ecx, eax
+				«ENDIF»
+				mov eax, ecx
+			«ENDFOR»
+		«ENDIF»
 	'''
 	
 	def computeExpression(program e, expression exp) '''

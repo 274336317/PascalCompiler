@@ -578,7 +578,7 @@ public class PascalGenerator implements IGenerator {
                     CharSequence _computeFactor = this.computeFactor(e, _not_1);
                     _builder.append(_computeFactor, "");
                     _builder.newLineIfNotEmpty();
-                    _builder.append("xor eax, 1");
+                    _builder.append("xor eax, 1 ; Logical not");
                     _builder.newLine();
                   }
                 }
@@ -593,12 +593,91 @@ public class PascalGenerator implements IGenerator {
   
   public CharSequence computeTerm(final program e, final term t) {
     StringConcatenation _builder = new StringConcatenation();
+    EList<factor> _factors = t.getFactors();
+    factor _get = _factors.get(0);
+    CharSequence _computeFactor = this.computeFactor(e, _get);
+    _builder.append(_computeFactor, "");
+    _builder.newLineIfNotEmpty();
     {
-      EList<factor> _factors = t.getFactors();
-      for(final factor f : _factors) {
-        CharSequence _computeFactor = this.computeFactor(e, f);
-        _builder.append(_computeFactor, "");
+      EList<String> _operators = t.getOperators();
+      boolean _notEquals = (!Objects.equal(_operators, null));
+      if (_notEquals) {
+        int index = 1;
         _builder.newLineIfNotEmpty();
+        {
+          EList<String> _operators_1 = t.getOperators();
+          for(final String operator : _operators_1) {
+            _builder.append("mov ecx, eax");
+            _builder.newLine();
+            EList<factor> _factors_1 = t.getFactors();
+            int _plusPlus = index++;
+            factor _get_1 = _factors_1.get(_plusPlus);
+            CharSequence _computeFactor_1 = this.computeFactor(e, _get_1);
+            _builder.append(_computeFactor_1, "");
+            _builder.newLineIfNotEmpty();
+            {
+              String _lowerCase = operator.toLowerCase();
+              boolean _equals = _lowerCase.equals("and");
+              if (_equals) {
+                _builder.append("and ecx, eax ; And");
+                _builder.newLine();
+              } else {
+                String _lowerCase_1 = operator.toLowerCase();
+                boolean _equals_1 = _lowerCase_1.equals("mod");
+                if (_equals_1) {
+                  _builder.append("mov edx, eax ; Module");
+                  _builder.newLine();
+                  _builder.append("mov eax, ecx");
+                  _builder.newLine();
+                  _builder.append("mov ecx, edx");
+                  _builder.newLine();
+                  _builder.append("cdq");
+                  _builder.newLine();
+                  _builder.append("idiv ecx");
+                  _builder.newLine();
+                  _builder.append("mov ecx, edx");
+                  _builder.newLine();
+                } else {
+                  boolean _or = false;
+                  String _lowerCase_2 = operator.toLowerCase();
+                  boolean _equals_2 = _lowerCase_2.equals("div");
+                  if (_equals_2) {
+                    _or = true;
+                  } else {
+                    String _lowerCase_3 = operator.toLowerCase();
+                    boolean _equals_3 = _lowerCase_3.equals("/");
+                    _or = _equals_3;
+                  }
+                  if (_or) {
+                    _builder.append("mov edx, eax ; Divide");
+                    _builder.newLine();
+                    _builder.append("mov eax, ecx");
+                    _builder.newLine();
+                    _builder.append("mov ecx, edx");
+                    _builder.newLine();
+                    _builder.append("cdq");
+                    _builder.newLine();
+                    _builder.append("idiv ecx");
+                    _builder.newLine();
+                    _builder.append("mov ecx, eax");
+                    _builder.newLine();
+                  } else {
+                    String _lowerCase_4 = operator.toLowerCase();
+                    boolean _equals_4 = _lowerCase_4.equals("*");
+                    if (_equals_4) {
+                      _builder.append("mul ecx ; Multiply");
+                      _builder.newLine();
+                      _builder.append("mov ecx, eax");
+                      _builder.newLine();
+                    }
+                  }
+                }
+              }
+            }
+            _builder.append("mov eax, ecx");
+            _builder.newLine();
+          }
+        }
       }
     }
     return _builder;
