@@ -531,16 +531,23 @@ finally {
 
 // Entry rule entryRulesimple_expression
 entryRulesimple_expression 
+@init {
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
+}
 :
 { before(grammarAccess.getSimple_expressionRule()); }
 	 rulesimple_expression
 { after(grammarAccess.getSimple_expressionRule()); } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule simple_expression
 rulesimple_expression 
     @init {
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
 		int stackSize = keepStackSize();
     }
     :
@@ -553,6 +560,7 @@ rulesimple_expression
 ;
 finally {
 	restoreStackSize(stackSize);
+	myHiddenTokenState.restore();
 }
 
 

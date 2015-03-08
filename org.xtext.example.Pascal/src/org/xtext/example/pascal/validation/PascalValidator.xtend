@@ -268,7 +268,7 @@ class PascalValidator extends AbstractPascalValidator {
 		} else if (f.string != null) {
 			type = new ComposedType(new Type("char"), ComposedTypeKind.ARRAY);
 		} else if (f.set != null) {
-			type = getType(b, f.set.expressions); 
+			type = getType(b, f.set.expressions, true); 
 		} else if (f.nil) {
 			type = new Type("nil");
 		} else if (f.boolean != null || f.not != null) {
@@ -328,13 +328,43 @@ class PascalValidator extends AbstractPascalValidator {
 		return t;
 	}
 	
-	def Type getType(block b, expression_list expr) {
+	def Type getType(block b, expression_list expr, boolean isCohese) {
 		var Type greatestType = null;
+		var hasErrors = true;
 		for (expression e : expr.expressions) {
 			var type = getType(b, e);
+			if (isCohese) {
+				if (greatestType != null && TypeInferer.getTypeWeight(greatestType) < 0 && TypeInferer.getTypeWeight(type) >= 0 || 
+					TypeInferer.getTypeWeight(type) < 0 && TypeInferer.getTypeWeight(greatestType) >= 0) {
+					insertError(expr, "Cannot convert " + type +  " to " + greatestType + ".", ErrorType.TYPE_COHESION, PascalPackage.Literals.EXPRESSION_LIST__EXPRESSIONS);
+					hasErrors = true;
+				} 
+			}
 			greatestType = TypeInferer.greater(type, greatestType);
 		}
+		if (!hasErrors) {
+			removeError(expr, ErrorType.TYPE_COHESION);
+		}
 		calculatedTypes.put(expr, greatestType);
+		return greatestType;
+	}
+	
+	def Type getType(block b, case_limb limb) {
+		var Type greatestType = null;
+		var boolean hasErrors = false;
+		for (constant c : limb.cases.constants) {
+			var type = getType(b, c);
+			if (greatestType != null && (TypeInferer.getTypeWeight(greatestType) < 0 && TypeInferer.getTypeWeight(type) >= 0 || 
+				TypeInferer.getTypeWeight(type) < 0 &&TypeInferer.getTypeWeight(greatestType) >= 0)) {
+				insertError(limb, "Cannot convert " + type +  " to " + greatestType + ".", ErrorType.TYPE_COHESION, PascalPackage.Literals.CASE_LIMB__CASES);
+				hasErrors = true;
+			} 
+			greatestType = TypeInferer.greater(type, greatestType);
+		} 
+		if (!hasErrors) {
+			removeError(limb, ErrorType.TYPE_COHESION);
+		}
+		calculatedTypes.put(limb, greatestType);
 		return greatestType;
 	}
 	
@@ -766,6 +796,11 @@ class PascalValidator extends AbstractPascalValidator {
 				if (conditional.ifStmt != null) {
 					var ifStmt = conditional.ifStmt;
 					checkExpression(b, ifStmt.expression);
+					if (!getType(b, ifStmt.expression).realType.toLowerCase.equals("boolean")) {
+						insertError(ifStmt, "Only booleans are allowed inside a condition.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.IF_STATEMENT__EXPRESSION);
+					} else {
+						removeError(ifStmt.expression, ErrorType.TYPE_CONVERSION_ERROR);
+					}
 					checkStatement(b, ifStmt.ifStatement);
 					if (ifStmt.elseStatement != null) {
 						checkStatement(b, ifStmt.elseStatement);
@@ -773,10 +808,19 @@ class PascalValidator extends AbstractPascalValidator {
 				} else if (conditional.caseStmt != null) {
 					var caseStmt = conditional.caseStmt;
 					checkExpression(b, caseStmt.expression);
-					for (case_limb limb : caseStmt.cases) {
-						checkStatement(b, limb.statement);
-						for (constant c : limb.cases.constants) {
-							checkConstant(b, c);
+					var exprType = getType(b, caseStmt.expression);
+					if (caseStmt.cases != null) {
+						for (case_limb limb : caseStmt.cases) {
+							checkStatement(b, limb.statement);
+							for (constant c : limb.cases.constants) {
+								checkConstant(b, c);
+							}
+							var limbType = getType(b, limb);
+							if (!TypeInferer.areTypesCompatibles(exprType, limbType)) {
+								insertError(limb, "Cannot convert " + limbType + " to " + exprType + ".", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.CASE_LIMB__CASES);
+							} else {
+								removeError(limb, ErrorType.TYPE_CONVERSION_ERROR);
+							}
 						}
 					}
 				} 
@@ -799,8 +843,7 @@ class PascalValidator extends AbstractPascalValidator {
 	def checkBlock(block b) {
 		checkStatements(b, b.statement.sequence);
 	}
-	
-	@Check
+		@Check
 	def runCheckes(block b) {
 		checkTypeRedeclaration(b);
 		checkAbstractionRedeclaration(b);
@@ -808,8 +851,7 @@ class PascalValidator extends AbstractPascalValidator {
 		checkVariableRedeclaration(b);
 		checkBlock(b);
 	}
-	
-	@Check
+		@Check
 	def showError(EObject obj) {
 		if (errorList.containsKey(obj)) {
 			for (Error err : errorList.get(obj)) {

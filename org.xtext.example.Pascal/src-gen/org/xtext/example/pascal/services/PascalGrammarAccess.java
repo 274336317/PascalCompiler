@@ -663,7 +663,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTermsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
 		private final RuleCall cTermsUnsigned_numberParserRuleCall_2_1_0 = (RuleCall)cTermsAssignment_2_1.eContents().get(0);
 		
-		//simple_expression:
+		//simple_expression hidden(WS):
 		//	prefixOperator=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR | operators+="or") terms+=term |
 		//	terms+=unsigned_number)*;
 		public ParserRule getRule() { return rule; }
@@ -1053,16 +1053,16 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.23/@alternatives/@elements.1'
+		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.23/@alternatives/@elements.2'
+		//expressions=expression_list?
 		public Assignment getExpressionsAssignment_2() { return cExpressionsAssignment_2; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.23/@alternatives/@elements.2/@terminal'
+		//expression_list
 		public RuleCall getExpressionsExpression_listParserRuleCall_2_0() { return cExpressionsExpression_listParserRuleCall_2_0; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.23/@alternatives/@elements.3'
+		//")"
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 
@@ -1078,34 +1078,37 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cWithStmtAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cWithStmtWith_statementParserRuleCall_3_0 = (RuleCall)cWithStmtAssignment_3.eContents().get(0);
 		
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#XtextFragmentProvider_org.xtext.example.pascal.Pascal/structured_statement'
+		//structured_statement:
+		//	compound=compound_statement | repetitive=repetitive_statement | conditional=conditional_statement |
+		//	withStmt=with_statement;
 		public ParserRule getRule() { return rule; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives'
+		//compound=compound_statement | repetitive=repetitive_statement | conditional=conditional_statement |
+		//withStmt=with_statement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.0'
+		//compound=compound_statement
 		public Assignment getCompoundAssignment_0() { return cCompoundAssignment_0; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.0/@terminal'
+		//compound_statement
 		public RuleCall getCompoundCompound_statementParserRuleCall_0_0() { return cCompoundCompound_statementParserRuleCall_0_0; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.1'
+		//repetitive=repetitive_statement
 		public Assignment getRepetitiveAssignment_1() { return cRepetitiveAssignment_1; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.1/@terminal'
+		//repetitive_statement
 		public RuleCall getRepetitiveRepetitive_statementParserRuleCall_1_0() { return cRepetitiveRepetitive_statementParserRuleCall_1_0; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.2'
+		//conditional=conditional_statement
 		public Assignment getConditionalAssignment_2() { return cConditionalAssignment_2; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.2/@terminal'
+		//conditional_statement
 		public RuleCall getConditionalConditional_statementParserRuleCall_2_0() { return cConditionalConditional_statementParserRuleCall_2_0; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.3'
+		//withStmt=with_statement
 		public Assignment getWithStmtAssignment_3() { return cWithStmtAssignment_3; }
 
-		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.3/@terminal'
+		//with_statement
 		public RuleCall getWithStmtWith_statementParserRuleCall_3_0() { return cWithStmtWith_statementParserRuleCall_3_0; }
 	}
 
@@ -3646,7 +3649,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		return getExpressionAccess().getRule();
 	}
 
-	//simple_expression:
+	//simple_expression hidden(WS):
 	//	prefixOperator=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR | operators+="or") terms+=term |
 	//	terms+=unsigned_number)*;
 	public Simple_expressionElements getSimple_expressionAccess() {

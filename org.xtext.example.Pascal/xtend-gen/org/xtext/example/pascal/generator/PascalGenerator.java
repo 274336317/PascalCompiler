@@ -19,18 +19,24 @@ import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.pascal.pascal.any_number;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.case_statement;
+import org.xtext.example.pascal.pascal.compound_statement;
+import org.xtext.example.pascal.pascal.conditional_statement;
 import org.xtext.example.pascal.pascal.expression;
 import org.xtext.example.pascal.pascal.expression_list;
 import org.xtext.example.pascal.pascal.factor;
 import org.xtext.example.pascal.pascal.function_designator;
+import org.xtext.example.pascal.pascal.if_statement;
 import org.xtext.example.pascal.pascal.number;
 import org.xtext.example.pascal.pascal.program;
 import org.xtext.example.pascal.pascal.program_heading_block;
+import org.xtext.example.pascal.pascal.repetitive_statement;
 import org.xtext.example.pascal.pascal.simple_expression;
 import org.xtext.example.pascal.pascal.simple_statement;
 import org.xtext.example.pascal.pascal.statement;
 import org.xtext.example.pascal.pascal.statement_part;
 import org.xtext.example.pascal.pascal.statement_sequence;
+import org.xtext.example.pascal.pascal.structured_statement;
 import org.xtext.example.pascal.pascal.term;
 import org.xtext.example.pascal.pascal.variable;
 import org.xtext.example.pascal.validation.ComposedType;
@@ -398,8 +404,9 @@ public class PascalGenerator implements IGenerator {
     block _block_2 = e.getBlock();
     block _block_3 = e.getBlock();
     statement_part _statement = _block_3.getStatement();
-    CharSequence _compile_1 = this.compile(e, _block_2, _statement);
-    _builder.append(_compile_1, "");
+    statement_sequence _sequence = _statement.getSequence();
+    CharSequence _compileSequence = this.compileSequence(e, _block_2, _sequence);
+    _builder.append(_compileSequence, "");
     _builder.append(" ");
     _builder.newLineIfNotEmpty();
     _builder.append("ret\t; Exit program");
@@ -1028,94 +1035,149 @@ public class PascalGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final program e, final block b, final statement_part part) {
+  public CharSequence compileSequence(final program e, final block b, final statement_sequence sequence) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      statement_sequence _sequence = part.getSequence();
-      EList<statement> _statements = _sequence.getStatements();
-      for(final statement s : _statements) {
+      EList<statement> _statements = sequence.getStatements();
+      for(final statement stmt : _statements) {
+        CharSequence _compileStatement = this.compileStatement(e, b, stmt);
+        _builder.append(_compileStatement, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileStatement(final program e, final block b, final statement s) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      simple_statement _simple = s.getSimple();
+      boolean _notEquals = (!Objects.equal(_simple, null));
+      if (_notEquals) {
         {
-          simple_statement _simple = s.getSimple();
-          boolean _notEquals = (!Objects.equal(_simple, null));
-          if (_notEquals) {
-            {
-              simple_statement _simple_1 = s.getSimple();
-              assignment_statement _assignment = _simple_1.getAssignment();
-              boolean _notEquals_1 = (!Objects.equal(_assignment, null));
-              if (_notEquals_1) {
-                _builder.append("; Assigning ");
-                simple_statement _simple_2 = s.getSimple();
-                assignment_statement _assignment_1 = _simple_2.getAssignment();
-                variable _variable = _assignment_1.getVariable();
-                String _name = _variable.getName();
-                _builder.append(_name, "");
-                _builder.newLineIfNotEmpty();
-                simple_statement _simple_3 = s.getSimple();
-                assignment_statement _assignment_2 = _simple_3.getAssignment();
-                expression _expression = _assignment_2.getExpression();
-                CharSequence _computeExpression = this.computeExpression(e, b, _expression);
-                _builder.append(_computeExpression, "");
-                _builder.newLineIfNotEmpty();
-                _builder.append("mov [");
-                simple_statement _simple_4 = s.getSimple();
-                assignment_statement _assignment_3 = _simple_4.getAssignment();
-                variable _variable_1 = _assignment_3.getVariable();
-                String _name_1 = _variable_1.getName();
-                _builder.append(_name_1, "");
-                _builder.append("], eax");
-                _builder.newLineIfNotEmpty();
-              } else {
-                simple_statement _simple_5 = s.getSimple();
-                String _function_noargs = _simple_5.getFunction_noargs();
-                boolean _notEquals_2 = (!Objects.equal(_function_noargs, null));
-                if (_notEquals_2) {
-                  {
-                    simple_statement _simple_6 = s.getSimple();
-                    String _function_noargs_1 = _simple_6.getFunction_noargs();
-                    boolean _equals = _function_noargs_1.equals("writeln");
-                    if (_equals) {
+          simple_statement _simple_1 = s.getSimple();
+          assignment_statement _assignment = _simple_1.getAssignment();
+          boolean _notEquals_1 = (!Objects.equal(_assignment, null));
+          if (_notEquals_1) {
+            _builder.append("; Assigning ");
+            simple_statement _simple_2 = s.getSimple();
+            assignment_statement _assignment_1 = _simple_2.getAssignment();
+            variable _variable = _assignment_1.getVariable();
+            String _name = _variable.getName();
+            _builder.append(_name, "");
+            _builder.newLineIfNotEmpty();
+            simple_statement _simple_3 = s.getSimple();
+            assignment_statement _assignment_2 = _simple_3.getAssignment();
+            expression _expression = _assignment_2.getExpression();
+            CharSequence _computeExpression = this.computeExpression(e, b, _expression);
+            _builder.append(_computeExpression, "");
+            _builder.newLineIfNotEmpty();
+            _builder.append("mov [");
+            simple_statement _simple_4 = s.getSimple();
+            assignment_statement _assignment_3 = _simple_4.getAssignment();
+            variable _variable_1 = _assignment_3.getVariable();
+            String _name_1 = _variable_1.getName();
+            _builder.append(_name_1, "");
+            _builder.append("], eax");
+            _builder.newLineIfNotEmpty();
+          } else {
+            simple_statement _simple_5 = s.getSimple();
+            String _function_noargs = _simple_5.getFunction_noargs();
+            boolean _notEquals_2 = (!Objects.equal(_function_noargs, null));
+            if (_notEquals_2) {
+              {
+                simple_statement _simple_6 = s.getSimple();
+                String _function_noargs_1 = _simple_6.getFunction_noargs();
+                boolean _equals = _function_noargs_1.equals("writeln");
+                if (_equals) {
+                  _builder.append("; Call writeln");
+                  _builder.newLine();
+                  CharSequence _print = this.print(e, "__NEW_LINE");
+                  _builder.append(_print, "");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+            } else {
+              simple_statement _simple_7 = s.getSimple();
+              function_designator _function = _simple_7.getFunction();
+              boolean _notEquals_3 = (!Objects.equal(_function, null));
+              if (_notEquals_3) {
+                {
+                  simple_statement _simple_8 = s.getSimple();
+                  function_designator _function_1 = _simple_8.getFunction();
+                  String _name_2 = _function_1.getName();
+                  boolean _equals_1 = _name_2.equals("write");
+                  if (_equals_1) {
+                    _builder.append("; Call write");
+                    _builder.newLine();
+                    simple_statement _simple_9 = s.getSimple();
+                    function_designator _function_2 = _simple_9.getFunction();
+                    CharSequence _print_1 = this.print(e, b, _function_2);
+                    _builder.append(_print_1, "");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    simple_statement _simple_10 = s.getSimple();
+                    function_designator _function_3 = _simple_10.getFunction();
+                    String _name_3 = _function_3.getName();
+                    boolean _equals_2 = _name_3.equals("writeln");
+                    if (_equals_2) {
                       _builder.append("; Call writeln");
                       _builder.newLine();
-                      CharSequence _print = this.print(e, "__NEW_LINE");
-                      _builder.append(_print, "");
+                      simple_statement _simple_11 = s.getSimple();
+                      function_designator _function_4 = _simple_11.getFunction();
+                      CharSequence _print_2 = this.print(e, b, _function_4);
+                      _builder.append(_print_2, "");
+                      _builder.newLineIfNotEmpty();
+                      CharSequence _print_3 = this.print(e, "__NEW_LINE");
+                      _builder.append(_print_3, "");
                       _builder.newLineIfNotEmpty();
                     }
                   }
-                } else {
-                  simple_statement _simple_7 = s.getSimple();
-                  function_designator _function = _simple_7.getFunction();
-                  boolean _notEquals_3 = (!Objects.equal(_function, null));
-                  if (_notEquals_3) {
-                    {
-                      simple_statement _simple_8 = s.getSimple();
-                      function_designator _function_1 = _simple_8.getFunction();
-                      String _name_2 = _function_1.getName();
-                      boolean _equals_1 = _name_2.equals("write");
-                      if (_equals_1) {
-                        _builder.append("; Call write");
+                }
+              }
+            }
+          }
+        }
+      } else {
+        structured_statement _structured = s.getStructured();
+        boolean _notEquals_4 = (!Objects.equal(_structured, null));
+        if (_notEquals_4) {
+          {
+            structured_statement _structured_1 = s.getStructured();
+            compound_statement _compound = _structured_1.getCompound();
+            boolean _notEquals_5 = (!Objects.equal(_compound, null));
+            if (_notEquals_5) {
+              structured_statement _structured_2 = s.getStructured();
+              compound_statement _compound_1 = _structured_2.getCompound();
+              statement_sequence _sequence = _compound_1.getSequence();
+              CharSequence _compileSequence = this.compileSequence(e, b, _sequence);
+              _builder.append(_compileSequence, "");
+              _builder.newLineIfNotEmpty();
+            } else {
+              structured_statement _structured_3 = s.getStructured();
+              repetitive_statement _repetitive = _structured_3.getRepetitive();
+              boolean _notEquals_6 = (!Objects.equal(_repetitive, null));
+              if (_notEquals_6) {
+                _builder.newLine();
+              } else {
+                structured_statement _structured_4 = s.getStructured();
+                conditional_statement _conditional = _structured_4.getConditional();
+                boolean _notEquals_7 = (!Objects.equal(_conditional, null));
+                if (_notEquals_7) {
+                  {
+                    structured_statement _structured_5 = s.getStructured();
+                    conditional_statement _conditional_1 = _structured_5.getConditional();
+                    if_statement _ifStmt = _conditional_1.getIfStmt();
+                    boolean _notEquals_8 = (!Objects.equal(_ifStmt, null));
+                    if (_notEquals_8) {
+                      _builder.newLine();
+                    } else {
+                      structured_statement _structured_6 = s.getStructured();
+                      conditional_statement _conditional_2 = _structured_6.getConditional();
+                      case_statement _caseStmt = _conditional_2.getCaseStmt();
+                      boolean _notEquals_9 = (!Objects.equal(_caseStmt, null));
+                      if (_notEquals_9) {
                         _builder.newLine();
-                        simple_statement _simple_9 = s.getSimple();
-                        function_designator _function_2 = _simple_9.getFunction();
-                        CharSequence _print_1 = this.print(e, b, _function_2);
-                        _builder.append(_print_1, "");
-                        _builder.newLineIfNotEmpty();
-                      } else {
-                        simple_statement _simple_10 = s.getSimple();
-                        function_designator _function_3 = _simple_10.getFunction();
-                        String _name_3 = _function_3.getName();
-                        boolean _equals_2 = _name_3.equals("writeln");
-                        if (_equals_2) {
-                          _builder.append("; Call writeln");
-                          _builder.newLine();
-                          simple_statement _simple_11 = s.getSimple();
-                          function_designator _function_4 = _simple_11.getFunction();
-                          CharSequence _print_2 = this.print(e, b, _function_4);
-                          _builder.append(_print_2, "");
-                          _builder.newLineIfNotEmpty();
-                          CharSequence _print_3 = this.print(e, "__NEW_LINE");
-                          _builder.append(_print_3, "");
-                          _builder.newLineIfNotEmpty();
-                        }
                       }
                     }
                   }

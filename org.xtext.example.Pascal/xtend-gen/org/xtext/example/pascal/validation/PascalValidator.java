@@ -607,7 +607,7 @@ public class PascalValidator extends AbstractPascalValidator {
           if (_notEquals_6) {
             set _set_1 = f.getSet();
             expression_list _expressions = _set_1.getExpressions();
-            Type _type_3 = this.getType(b, _expressions);
+            Type _type_3 = this.getType(b, _expressions, true);
             type = _type_3;
           } else {
             boolean _isNil = f.isNil();
@@ -728,17 +728,116 @@ public class PascalValidator extends AbstractPascalValidator {
     return t;
   }
   
-  public Type getType(final block b, final expression_list expr) {
+  public Type getType(final block b, final expression_list expr, final boolean isCohese) {
     Type greatestType = null;
+    boolean hasErrors = true;
     EList<expression> _expressions = expr.getExpressions();
     for (final expression e : _expressions) {
       {
         Type type = this.getType(b, e);
+        if (isCohese) {
+          boolean _or = false;
+          boolean _and = false;
+          boolean _and_1 = false;
+          boolean _notEquals = (!Objects.equal(greatestType, null));
+          if (!_notEquals) {
+            _and_1 = false;
+          } else {
+            int _typeWeight = TypeInferer.getTypeWeight(greatestType);
+            boolean _lessThan = (_typeWeight < 0);
+            _and_1 = _lessThan;
+          }
+          if (!_and_1) {
+            _and = false;
+          } else {
+            int _typeWeight_1 = TypeInferer.getTypeWeight(type);
+            boolean _greaterEqualsThan = (_typeWeight_1 >= 0);
+            _and = _greaterEqualsThan;
+          }
+          if (_and) {
+            _or = true;
+          } else {
+            boolean _and_2 = false;
+            int _typeWeight_2 = TypeInferer.getTypeWeight(type);
+            boolean _lessThan_1 = (_typeWeight_2 < 0);
+            if (!_lessThan_1) {
+              _and_2 = false;
+            } else {
+              int _typeWeight_3 = TypeInferer.getTypeWeight(greatestType);
+              boolean _greaterEqualsThan_1 = (_typeWeight_3 >= 0);
+              _and_2 = _greaterEqualsThan_1;
+            }
+            _or = _and_2;
+          }
+          if (_or) {
+            this.insertError(expr, (((("Cannot convert " + type) + " to ") + greatestType) + "."), ErrorType.TYPE_COHESION, PascalPackage.Literals.EXPRESSION_LIST__EXPRESSIONS);
+            hasErrors = true;
+          }
+        }
         Type _greater = TypeInferer.greater(type, greatestType);
         greatestType = _greater;
       }
     }
+    if ((!hasErrors)) {
+      this.removeError(expr, ErrorType.TYPE_COHESION);
+    }
     this.calculatedTypes.put(expr, greatestType);
+    return greatestType;
+  }
+  
+  public Type getType(final block b, final case_limb limb) {
+    Type greatestType = null;
+    boolean hasErrors = false;
+    case_label_list _cases = limb.getCases();
+    EList<constant> _constants = _cases.getConstants();
+    for (final constant c : _constants) {
+      {
+        Type type = this.getType(b, c);
+        boolean _and = false;
+        boolean _notEquals = (!Objects.equal(greatestType, null));
+        if (!_notEquals) {
+          _and = false;
+        } else {
+          boolean _or = false;
+          boolean _and_1 = false;
+          int _typeWeight = TypeInferer.getTypeWeight(greatestType);
+          boolean _lessThan = (_typeWeight < 0);
+          if (!_lessThan) {
+            _and_1 = false;
+          } else {
+            int _typeWeight_1 = TypeInferer.getTypeWeight(type);
+            boolean _greaterEqualsThan = (_typeWeight_1 >= 0);
+            _and_1 = _greaterEqualsThan;
+          }
+          if (_and_1) {
+            _or = true;
+          } else {
+            boolean _and_2 = false;
+            int _typeWeight_2 = TypeInferer.getTypeWeight(type);
+            boolean _lessThan_1 = (_typeWeight_2 < 0);
+            if (!_lessThan_1) {
+              _and_2 = false;
+            } else {
+              int _typeWeight_3 = TypeInferer.getTypeWeight(greatestType);
+              boolean _greaterEqualsThan_1 = (_typeWeight_3 >= 0);
+              _and_2 = _greaterEqualsThan_1;
+            }
+            _or = _and_2;
+          }
+          _and = _or;
+        }
+        if (_and) {
+          this.insertError(limb, (((("Cannot convert " + type) + " to ") + greatestType) + "."), ErrorType.TYPE_COHESION, PascalPackage.Literals.CASE_LIMB__CASES);
+          hasErrors = true;
+        }
+        Type _greater = TypeInferer.greater(type, greatestType);
+        greatestType = _greater;
+      }
+    }
+    if ((!hasErrors)) {
+      this.removeError(limb, ErrorType.TYPE_COHESION);
+    }
+    this.calculatedTypes.put(limb, greatestType);
     return greatestType;
   }
   
@@ -1618,6 +1717,18 @@ public class PascalValidator extends AbstractPascalValidator {
                 if_statement ifStmt = conditional.getIfStmt();
                 expression _expression_5 = ifStmt.getExpression();
                 this.checkExpression(b, _expression_5);
+                expression _expression_6 = ifStmt.getExpression();
+                Type _type = this.getType(b, _expression_6);
+                String _realType = _type.getRealType();
+                String _lowerCase = _realType.toLowerCase();
+                boolean _equals = _lowerCase.equals("boolean");
+                boolean _not_1 = (!_equals);
+                if (_not_1) {
+                  this.insertError(ifStmt, "Only booleans are allowed inside a condition.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.IF_STATEMENT__EXPRESSION);
+                } else {
+                  expression _expression_7 = ifStmt.getExpression();
+                  this.removeError(_expression_7, ErrorType.TYPE_CONVERSION_ERROR);
+                }
                 statement _ifStatement = ifStmt.getIfStatement();
                 this.checkStatement(b, _ifStatement);
                 statement _elseStatement = ifStmt.getElseStatement();
@@ -1631,17 +1742,31 @@ public class PascalValidator extends AbstractPascalValidator {
                 boolean _notEquals_15 = (!Objects.equal(_caseStmt, null));
                 if (_notEquals_15) {
                   case_statement caseStmt = conditional.getCaseStmt();
-                  expression _expression_6 = caseStmt.getExpression();
-                  this.checkExpression(b, _expression_6);
+                  expression _expression_8 = caseStmt.getExpression();
+                  this.checkExpression(b, _expression_8);
+                  expression _expression_9 = caseStmt.getExpression();
+                  Type exprType = this.getType(b, _expression_9);
                   EList<case_limb> _cases = caseStmt.getCases();
-                  for (final case_limb limb : _cases) {
-                    {
-                      statement _statement_2 = limb.getStatement();
-                      this.checkStatement(b, _statement_2);
-                      case_label_list _cases_1 = limb.getCases();
-                      EList<constant> _constants = _cases_1.getConstants();
-                      for (final constant c : _constants) {
-                        this.checkConstant(b, c);
+                  boolean _notEquals_16 = (!Objects.equal(_cases, null));
+                  if (_notEquals_16) {
+                    EList<case_limb> _cases_1 = caseStmt.getCases();
+                    for (final case_limb limb : _cases_1) {
+                      {
+                        statement _statement_2 = limb.getStatement();
+                        this.checkStatement(b, _statement_2);
+                        case_label_list _cases_2 = limb.getCases();
+                        EList<constant> _constants = _cases_2.getConstants();
+                        for (final constant c : _constants) {
+                          this.checkConstant(b, c);
+                        }
+                        Type limbType = this.getType(b, limb);
+                        boolean _areTypesCompatibles_1 = TypeInferer.areTypesCompatibles(exprType, limbType);
+                        boolean _not_2 = (!_areTypesCompatibles_1);
+                        if (_not_2) {
+                          this.insertError(limb, (((("Cannot convert " + limbType) + " to ") + exprType) + "."), ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.CASE_LIMB__CASES);
+                        } else {
+                          this.removeError(limb, ErrorType.TYPE_CONVERSION_ERROR);
+                        }
                       }
                     }
                   }
@@ -1649,8 +1774,8 @@ public class PascalValidator extends AbstractPascalValidator {
               }
             } else {
               with_statement _withStmt = structured.getWithStmt();
-              boolean _notEquals_16 = (!Objects.equal(_withStmt, null));
-              if (_notEquals_16) {
+              boolean _notEquals_17 = (!Objects.equal(_withStmt, null));
+              if (_notEquals_17) {
                 with_statement withStmt = structured.getWithStmt();
                 EList<variable> _variables = withStmt.getVariables();
                 for (final variable v_1 : _variables) {

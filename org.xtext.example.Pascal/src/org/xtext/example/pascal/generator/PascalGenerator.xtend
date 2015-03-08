@@ -17,7 +17,8 @@ import org.xtext.example.pascal.pascal.factor
 import org.xtext.example.pascal.pascal.function_designator
 import org.xtext.example.pascal.pascal.program
 import org.xtext.example.pascal.pascal.simple_expression
-import org.xtext.example.pascal.pascal.statement_part
+import org.xtext.example.pascal.pascal.statement
+import org.xtext.example.pascal.pascal.statement_sequence
 import org.xtext.example.pascal.pascal.term
 import org.xtext.example.pascal.pascal.variable
 import org.xtext.example.pascal.validation.ComposedType
@@ -218,7 +219,7 @@ class PascalGenerator implements IGenerator {
 		
 		«e.compilePredefinedProcedures»
 		_main:
-		«e.compile(e.block, e.block.statement)» 
+		«e.compileSequence(e.block, e.block.statement.sequence)» 
 		ret	; Exit program
 	'''
 
@@ -429,30 +430,46 @@ class PascalGenerator implements IGenerator {
 		call _print_string
 	'''
 	
-	def compile(program e, block b, statement_part part) '''
-		«FOR s : part.sequence.statements»
-			«IF s.simple != null»
-				«IF s.simple.assignment != null»
-					; Assigning «s.simple.assignment.variable.name»
-					«e.computeExpression(b, s.simple.assignment.expression)»
-					mov [«s.simple.assignment.variable.name»], eax
-				«ELSEIF s.simple.function_noargs != null»
-					«IF s.simple.function_noargs.equals("writeln")»
-						; Call writeln
-						«e.print("__NEW_LINE")»
-					«ENDIF»
-				«ELSEIF s.simple.function != null»
-					«IF s.simple.function.name.equals("write")»
-						; Call write
-						«e.print(b, s.simple.function)»
-					«ELSEIF s.simple.function.name.equals("writeln")»
-						; Call writeln
-						«e.print(b, s.simple.function)»
-						«e.print("__NEW_LINE")»
-					«ENDIF»
+	def CharSequence compileSequence(program e, block b, statement_sequence sequence) '''
+		«FOR stmt : sequence.statements»
+			«e.compileStatement(b, stmt)»
+		«ENDFOR»
+	'''
+	
+	def compileStatement(program e, block b, statement s) '''
+		«IF s.simple != null»
+			«IF s.simple.assignment != null»
+				; Assigning «s.simple.assignment.variable.name»
+				«e.computeExpression(b, s.simple.assignment.expression)»
+				mov [«s.simple.assignment.variable.name»], eax
+			«ELSEIF s.simple.function_noargs != null»
+				«IF s.simple.function_noargs.equals("writeln")»
+					; Call writeln
+					«e.print("__NEW_LINE")»
+				«ENDIF»
+			«ELSEIF s.simple.function != null»
+				«IF s.simple.function.name.equals("write")»
+					; Call write
+					«e.print(b, s.simple.function)»
+				«ELSEIF s.simple.function.name.equals("writeln")»
+					; Call writeln
+					«e.print(b, s.simple.function)»
+					«e.print("__NEW_LINE")»
 				«ENDIF»
 			«ENDIF»
-		«ENDFOR» 
+		«ELSEIF s.structured != null»
+			«IF s.structured.compound != null»
+				«e.compileSequence(b, s.structured.compound.sequence)»
+			«ELSEIF s.structured.repetitive != null»
+			
+			«ELSEIF s.structured.conditional != null»
+				«IF s.structured.conditional.ifStmt != null»
+				
+				«ELSEIF s.structured.conditional.caseStmt != null»
+				
+				«ENDIF»
+			«ENDIF»
+		«ENDIF»
 	'''
 	
 }
