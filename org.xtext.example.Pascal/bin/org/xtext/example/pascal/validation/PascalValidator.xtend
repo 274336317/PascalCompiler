@@ -164,24 +164,23 @@ class PascalValidator extends AbstractPascalValidator {
 				type = getType(b, simple.name);
 			} 
 		} else if (t.structured != null) {
-			var syntetizedType = "";
+			//var syntetizedType = "";
 			var structured = t.structured;
-			if (structured.packed) {
-				syntetizedType += "packed ";
-			}
+			//if (structured.packed) {
+			//	syntetizedType += "packed ";
+			//}
 			var unpacked = structured.type;
 			if (unpacked.array != null) {
 				type = new ComposedType(getType(b, unpacked.array.type), ComposedTypeKind.ARRAY);
 			} else if (unpacked.dynamic != null) {
 				type = new ComposedType(getType(b, unpacked.dynamic.type), ComposedTypeKind.ARRAY);
 			} else if (unpacked.record != null) {
-				syntetizedType += "record";
+				type = new Type("record");
 			} else if (unpacked.set != null) {
-				syntetizedType += "set of " + getType(b, unpacked.set.type).realType;
+				type = getType(b, unpacked.set.type);
 			} else if (unpacked.file != null) {
-				syntetizedType += "file of " + getType(b, unpacked.file.type).realType;
+				type = getType(b, unpacked.file.type);
 			}
-			type = new Type(syntetizedType);
 		} else if (t.pointer != null) {
 			type = new ComposedType(getType(b, t.pointer.type), ComposedTypeKind.POINTER);
 		} 
@@ -349,7 +348,7 @@ class PascalValidator extends AbstractPascalValidator {
 		return greatestType;
 	}
 	
-	def Type getType(block b, case_limb limb) {
+	def Type getType(block b, case_limb limb, Set<Object> values) {
 		var Type greatestType = null;
 		var boolean hasErrors = false;
 		for (constant c : limb.cases.constants) {
@@ -360,6 +359,13 @@ class PascalValidator extends AbstractPascalValidator {
 				hasErrors = true;
 			} 
 			greatestType = TypeInferer.greater(type, greatestType);
+			var constValue = getValue(b, c);
+			if (values.contains(constValue)) {
+				insertError(limb, "Repeated value in case limb: " + constValue + ".", ErrorType.CASE_LIMB_REPEATED, PascalPackage.Literals.CASE_LIMB__CASES);
+			} else {
+				removeError(limb, ErrorType.CASE_LIMB_REPEATED);
+				values.add(constValue);
+			}
 		} 
 		if (!hasErrors) {
 			removeError(limb, ErrorType.TYPE_COHESION);
@@ -402,7 +408,11 @@ class PascalValidator extends AbstractPascalValidator {
 		}
 		if (const.opterator != null) {
 			if (isNumeric(value) && const.opterator.equals("-")) {
-				return - Double.parseDouble(value.toString);
+				try {
+					return - Integer.parseInt(value.toString);
+				} catch(Exception e) {
+					return - Double.parseDouble(value.toString);
+				}
 			}
 		}
 		return value;
@@ -742,6 +752,11 @@ class PascalValidator extends AbstractPascalValidator {
 				} else {
 					removeError(const, ErrorType.CONSTANT_ONLY);
 				}
+				if (const.opterator != null && TypeInferer.getTypeWeight(searchVariable.varType) < 0) {
+					insertError(const, "Variable is not a number.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.CONSTANT__NAME);
+				} else {
+					removeError(const, ErrorType.TYPE_CONVERSION_ERROR);
+				}
 			}
 		}
 	}
@@ -810,12 +825,13 @@ class PascalValidator extends AbstractPascalValidator {
 					checkExpression(b, caseStmt.expression);
 					var exprType = getType(b, caseStmt.expression);
 					if (caseStmt.cases != null) {
+						var Set<Object> limbValues = new HashSet<Object>();
 						for (case_limb limb : caseStmt.cases) {
 							checkStatement(b, limb.statement);
 							for (constant c : limb.cases.constants) {
 								checkConstant(b, c);
 							}
-							var limbType = getType(b, limb);
+							var limbType = getType(b, limb, limbValues);
 							if (!TypeInferer.areTypesCompatibles(exprType, limbType)) {
 								insertError(limb, "Cannot convert " + limbType + " to " + exprType + ".", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.CASE_LIMB__CASES);
 							} else {

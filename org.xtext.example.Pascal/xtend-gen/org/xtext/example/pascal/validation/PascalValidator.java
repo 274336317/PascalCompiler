@@ -341,13 +341,7 @@ public class PascalValidator extends AbstractPascalValidator {
       structured_type _structured = t.getStructured();
       boolean _notEquals_4 = (!Objects.equal(_structured, null));
       if (_notEquals_4) {
-        String syntetizedType = "";
         structured_type structured = t.getStructured();
-        boolean _isPacked = structured.isPacked();
-        if (_isPacked) {
-          String _syntetizedType = syntetizedType;
-          syntetizedType = (_syntetizedType + "packed ");
-        }
         unpacked_structured_type unpacked = structured.getType();
         array_type _array = unpacked.getArray();
         boolean _notEquals_5 = (!Objects.equal(_array, null));
@@ -370,37 +364,29 @@ public class PascalValidator extends AbstractPascalValidator {
             record_type _record = unpacked.getRecord();
             boolean _notEquals_7 = (!Objects.equal(_record, null));
             if (_notEquals_7) {
-              String _syntetizedType_1 = syntetizedType;
-              syntetizedType = (_syntetizedType_1 + "record");
+              Type _type_7 = new Type("record");
+              type = _type_7;
             } else {
               set_type _set = unpacked.getSet();
               boolean _notEquals_8 = (!Objects.equal(_set, null));
               if (_notEquals_8) {
-                String _syntetizedType_2 = syntetizedType;
                 set_type _set_1 = unpacked.getSet();
-                org.xtext.example.pascal.pascal.type _type_7 = _set_1.getType();
-                Type _type_8 = this.getType(b, _type_7);
-                String _realType = _type_8.getRealType();
-                String _plus = ("set of " + _realType);
-                syntetizedType = (_syntetizedType_2 + _plus);
+                org.xtext.example.pascal.pascal.type _type_8 = _set_1.getType();
+                Type _type_9 = this.getType(b, _type_8);
+                type = _type_9;
               } else {
                 file_type _file = unpacked.getFile();
                 boolean _notEquals_9 = (!Objects.equal(_file, null));
                 if (_notEquals_9) {
-                  String _syntetizedType_3 = syntetizedType;
                   file_type _file_1 = unpacked.getFile();
-                  org.xtext.example.pascal.pascal.type _type_9 = _file_1.getType();
-                  Type _type_10 = this.getType(b, _type_9);
-                  String _realType_1 = _type_10.getRealType();
-                  String _plus_1 = ("file of " + _realType_1);
-                  syntetizedType = (_syntetizedType_3 + _plus_1);
+                  org.xtext.example.pascal.pascal.type _type_10 = _file_1.getType();
+                  Type _type_11 = this.getType(b, _type_10);
+                  type = _type_11;
                 }
               }
             }
           }
         }
-        Type _type_11 = new Type(syntetizedType);
-        type = _type_11;
       } else {
         pointer_type _pointer = t.getPointer();
         boolean _notEquals_10 = (!Objects.equal(_pointer, null));
@@ -785,7 +771,7 @@ public class PascalValidator extends AbstractPascalValidator {
     return greatestType;
   }
   
-  public Type getType(final block b, final case_limb limb) {
+  public Type getType(final block b, final case_limb limb, final Set<Object> values) {
     Type greatestType = null;
     boolean hasErrors = false;
     case_label_list _cases = limb.getCases();
@@ -832,6 +818,14 @@ public class PascalValidator extends AbstractPascalValidator {
         }
         Type _greater = TypeInferer.greater(type, greatestType);
         greatestType = _greater;
+        Object constValue = this.getValue(b, c);
+        boolean _contains = values.contains(constValue);
+        if (_contains) {
+          this.insertError(limb, (("Repeated value in case limb: " + constValue) + "."), ErrorType.CASE_LIMB_REPEATED, PascalPackage.Literals.CASE_LIMB__CASES);
+        } else {
+          this.removeError(limb, ErrorType.CASE_LIMB_REPEATED);
+          values.add(constValue);
+        }
       }
     }
     if ((!hasErrors)) {
@@ -931,9 +925,20 @@ public class PascalValidator extends AbstractPascalValidator {
         _and = _equals;
       }
       if (_and) {
-        String _string_2 = value.toString();
-        double _parseDouble = Double.parseDouble(_string_2);
-        return Double.valueOf((-_parseDouble));
+        try {
+          String _string_2 = value.toString();
+          int _parseInt = Integer.parseInt(_string_2);
+          return Integer.valueOf((-_parseInt));
+        } catch (final Throwable _t) {
+          if (_t instanceof Exception) {
+            final Exception e = (Exception)_t;
+            String _string_3 = value.toString();
+            double _parseDouble = Double.parseDouble(_string_3);
+            return Double.valueOf((-_parseDouble));
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
       }
     }
     return value;
@@ -1571,12 +1576,28 @@ public class PascalValidator extends AbstractPascalValidator {
           boolean _xblockexpression_1 = false;
           {
             this.removeError(const_, ErrorType.NOT_DECLARATION);
-            boolean _xifexpression_2 = false;
             boolean _notEquals_1 = (!Objects.equal(searchVariable.type, ElementType.CONSTANT));
             if (_notEquals_1) {
-              _xifexpression_2 = this.insertError(const_, "Only constants are allowed.", ErrorType.CONSTANT_ONLY, PascalPackage.Literals.CONSTANT__NAME);
+              this.insertError(const_, "Only constants are allowed.", ErrorType.CONSTANT_ONLY, PascalPackage.Literals.CONSTANT__NAME);
             } else {
               this.removeError(const_, ErrorType.CONSTANT_ONLY);
+            }
+            boolean _xifexpression_2 = false;
+            boolean _and = false;
+            String _opterator = const_.getOpterator();
+            boolean _notEquals_2 = (!Objects.equal(_opterator, null));
+            if (!_notEquals_2) {
+              _and = false;
+            } else {
+              Type _varType = searchVariable.getVarType();
+              int _typeWeight = TypeInferer.getTypeWeight(_varType);
+              boolean _lessThan = (_typeWeight < 0);
+              _and = _lessThan;
+            }
+            if (_and) {
+              _xifexpression_2 = this.insertError(const_, "Variable is not a number.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.CONSTANT__NAME);
+            } else {
+              this.removeError(const_, ErrorType.TYPE_CONVERSION_ERROR);
             }
             _xblockexpression_1 = _xifexpression_2;
           }
@@ -1749,6 +1770,7 @@ public class PascalValidator extends AbstractPascalValidator {
                   EList<case_limb> _cases = caseStmt.getCases();
                   boolean _notEquals_16 = (!Objects.equal(_cases, null));
                   if (_notEquals_16) {
+                    Set<Object> limbValues = new HashSet<Object>();
                     EList<case_limb> _cases_1 = caseStmt.getCases();
                     for (final case_limb limb : _cases_1) {
                       {
@@ -1759,7 +1781,7 @@ public class PascalValidator extends AbstractPascalValidator {
                         for (final constant c : _constants) {
                           this.checkConstant(b, c);
                         }
-                        Type limbType = this.getType(b, limb);
+                        Type limbType = this.getType(b, limb, limbValues);
                         boolean _areTypesCompatibles_1 = TypeInferer.areTypesCompatibles(exprType, limbType);
                         boolean _not_2 = (!_areTypesCompatibles_1);
                         if (_not_2) {

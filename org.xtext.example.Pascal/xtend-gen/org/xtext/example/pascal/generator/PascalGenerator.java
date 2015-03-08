@@ -15,13 +15,17 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.pascal.pascal.any_number;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
+import org.xtext.example.pascal.pascal.case_label_list;
+import org.xtext.example.pascal.pascal.case_limb;
 import org.xtext.example.pascal.pascal.case_statement;
 import org.xtext.example.pascal.pascal.compound_statement;
 import org.xtext.example.pascal.pascal.conditional_statement;
+import org.xtext.example.pascal.pascal.constant;
 import org.xtext.example.pascal.pascal.expression;
 import org.xtext.example.pascal.pascal.expression_list;
 import org.xtext.example.pascal.pascal.factor;
@@ -58,6 +62,12 @@ public class PascalGenerator implements IGenerator {
   
   private int labelCount;
   
+  private int conditionalLabelCount;
+  
+  private int caseLabelCount;
+  
+  private int caseGlobalLabelCount;
+  
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
@@ -65,6 +75,10 @@ public class PascalGenerator implements IGenerator {
     for (final program e : _filter) {
       {
         this.labelCount = 0;
+        this.conditionalLabelCount = 0;
+        this.caseLabelCount = 0;
+        this.caseGlobalLabelCount = 0;
+        this.stringTable.clear();
         program_heading_block _heading = e.getHeading();
         String _name = _heading.getName();
         String _plus = (_name + ".asm");
@@ -75,7 +89,6 @@ public class PascalGenerator implements IGenerator {
   }
   
   public void createStringTable(final program e) {
-    this.stringTable.clear();
     TreeIterator<EObject> _eAllContents = e.eAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_eAllContents);
     Iterable<factor> _filter = Iterables.<factor>filter(_iterable, factor.class);
@@ -94,6 +107,24 @@ public class PascalGenerator implements IGenerator {
         }
       }
     }
+    TreeIterator<EObject> _eAllContents_1 = e.eAllContents();
+    Iterable<EObject> _iterable_1 = IteratorExtensions.<EObject>toIterable(_eAllContents_1);
+    Iterable<constant> _filter_1 = Iterables.<constant>filter(_iterable_1, constant.class);
+    for (final constant const_ : _filter_1) {
+      String _string_3 = const_.getString();
+      boolean _notEquals_1 = (!Objects.equal(_string_3, null));
+      if (_notEquals_1) {
+        String _string_4 = const_.getString();
+        boolean _containsKey_1 = this.stringTable.containsKey(_string_4);
+        boolean _not_1 = (!_containsKey_1);
+        if (_not_1) {
+          String _string_5 = const_.getString();
+          int _size_1 = this.stringTable.size();
+          String _plus_1 = ("__STRING_" + Integer.valueOf(_size_1));
+          this.stringTable.put(_string_5, _plus_1);
+        }
+      }
+    }
   }
   
   public Set<Variable> getVariables(final program e, final block b) {
@@ -106,48 +137,19 @@ public class PascalGenerator implements IGenerator {
     return map.get(b);
   }
   
-  public int getNumberOfBytes(final Type t) {
-    String _realType = t.getRealType();
-    String type = _realType.toLowerCase();
-    boolean _or = false;
-    boolean _equals = type.equals("boolean");
-    if (_equals) {
-      _or = true;
+  public Number getValue(final number num) {
+    any_number _number = num.getNumber();
+    String _integer = _number.getInteger();
+    boolean _notEquals = (!Objects.equal(_integer, null));
+    if (_notEquals) {
+      any_number _number_1 = num.getNumber();
+      String _integer_1 = _number_1.getInteger();
+      return Integer.valueOf(_integer_1);
     } else {
-      boolean _equals_1 = type.equals("shortint");
-      _or = _equals_1;
+      any_number _number_2 = num.getNumber();
+      String _real = _number_2.getReal();
+      return Double.valueOf(_real);
     }
-    if (_or) {
-      return 1;
-    } else {
-      boolean _equals_2 = type.equals("char");
-      if (_equals_2) {
-        return 2;
-      } else {
-        boolean _equals_3 = type.equals("integer");
-        if (_equals_3) {
-          return 4;
-        } else {
-          boolean _or_1 = false;
-          boolean _equals_4 = type.equals("longint");
-          if (_equals_4) {
-            _or_1 = true;
-          } else {
-            boolean _equals_5 = type.equals("real");
-            _or_1 = _equals_5;
-          }
-          if (_or_1) {
-            return 8;
-          }
-        }
-      }
-    }
-    return 4;
-  }
-  
-  public int getNumberOfBytes(final Variable v) {
-    Type _varType = v.getVarType();
-    return this.getNumberOfBytes(_varType);
   }
   
   public Object getValue(final Variable v) {
@@ -173,13 +175,110 @@ public class PascalGenerator implements IGenerator {
     return v.getValue();
   }
   
-  public Type getType(final program e, final expression expr) {
-    program_heading_block _heading = e.getHeading();
-    String _name = _heading.getName();
-    Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
-    Object _get = artefacts.get("calculatedTypes");
-    Map<EObject, Type> map = ((Map<EObject, Type>) _get);
-    return map.get(expr);
+  public boolean isNumeric(final Object obj) {
+    try {
+      String _string = obj.toString();
+      Double.parseDouble(_string);
+      return true;
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+    return false;
+  }
+  
+  public Object getValue(final program e, final block b, final constant const_) {
+    Object value = null;
+    String _name = const_.getName();
+    boolean _notEquals = (!Objects.equal(_name, null));
+    if (_notEquals) {
+      Variable variable = this.searchConstant(e, b, const_);
+      Object _value = this.getValue(variable);
+      value = _value;
+      Type _varType = variable.getVarType();
+      int _typeWeight = TypeInferer.getTypeWeight(_varType);
+      boolean _equals = (_typeWeight == (-1));
+      if (_equals) {
+        return const_.getName();
+      }
+    } else {
+      number _number = const_.getNumber();
+      boolean _notEquals_1 = (!Objects.equal(_number, null));
+      if (_notEquals_1) {
+        number _number_1 = const_.getNumber();
+        Number _value_1 = this.getValue(_number_1);
+        value = _value_1;
+      } else {
+        String _string = const_.getString();
+        boolean _notEquals_2 = (!Objects.equal(_string, null));
+        if (_notEquals_2) {
+          String _string_1 = const_.getString();
+          String _get = this.stringTable.get(_string_1);
+          value = _get;
+        } else {
+          String _boolLiteral = const_.getBoolLiteral();
+          boolean _notEquals_3 = (!Objects.equal(_boolLiteral, null));
+          if (_notEquals_3) {
+            String _boolLiteral_1 = const_.getBoolLiteral();
+            Boolean _valueOf = Boolean.valueOf(_boolLiteral_1);
+            value = _valueOf;
+            boolean _equals_1 = Objects.equal(value, Boolean.valueOf(true));
+            if (_equals_1) {
+              return Integer.valueOf(1);
+            }
+            return Integer.valueOf(0);
+          } else {
+            String _nil = const_.getNil();
+            boolean _notEquals_4 = (!Objects.equal(_nil, null));
+            if (_notEquals_4) {
+              value = null;
+            }
+          }
+        }
+      }
+    }
+    String _opterator = const_.getOpterator();
+    boolean _notEquals_5 = (!Objects.equal(_opterator, null));
+    if (_notEquals_5) {
+      boolean _and = false;
+      boolean _isNumeric = this.isNumeric(value);
+      if (!_isNumeric) {
+        _and = false;
+      } else {
+        String _opterator_1 = const_.getOpterator();
+        boolean _equals_2 = _opterator_1.equals("-");
+        _and = _equals_2;
+      }
+      if (_and) {
+        try {
+          String _string_2 = value.toString();
+          int _parseInt = Integer.parseInt(_string_2);
+          return Integer.valueOf((-_parseInt));
+        } catch (final Throwable _t) {
+          if (_t instanceof Exception) {
+            final Exception excp = (Exception)_t;
+            String _string_3 = value.toString();
+            double _parseDouble = Double.parseDouble(_string_3);
+            return Double.valueOf((-_parseDouble));
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
+      }
+    }
+    return value;
+  }
+  
+  public Object getValue(final program e, final block b, final variable v) {
+    Variable variableFound = this.searchVariable(e, b, v);
+    boolean _notEquals = (!Objects.equal(variableFound, null));
+    if (_notEquals) {
+      return variableFound.getValue();
+    }
+    return null;
   }
   
   public Variable searchVariable(final program e, final block b, final variable v) {
@@ -200,6 +299,35 @@ public class PascalGenerator implements IGenerator {
       }
     }
     return null;
+  }
+  
+  public Variable searchConstant(final program e, final block b, final constant const_) {
+    program_heading_block _heading = e.getHeading();
+    String _name = _heading.getName();
+    Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
+    Object _get = artefacts.get("variables");
+    Map<block, Set<Variable>> map = ((Map<block, Set<Variable>>) _get);
+    Set<Variable> variables = map.get(b);
+    for (final Variable myVar : variables) {
+      String _name_1 = myVar.getName();
+      String _lowerCase = _name_1.toLowerCase();
+      String _name_2 = const_.getName();
+      String _lowerCase_1 = _name_2.toLowerCase();
+      boolean _equals = _lowerCase.equals(_lowerCase_1);
+      if (_equals) {
+        return myVar;
+      }
+    }
+    return null;
+  }
+  
+  public Type getType(final program e, final expression expr) {
+    program_heading_block _heading = e.getHeading();
+    String _name = _heading.getName();
+    Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
+    Object _get = artefacts.get("calculatedTypes");
+    Map<EObject, Type> map = ((Map<EObject, Type>) _get);
+    return map.get(expr);
   }
   
   public Type getType(final program e, final block b, final variable v) {
@@ -227,24 +355,34 @@ public class PascalGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("_print_string:");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("push eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("push ebx ");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("sub esp, ebx");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("mov [esp], dword eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("call _printf");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("add esp, ebx");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("pop eax ");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("pop ebx");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("ret ;return");
     _builder.newLine();
+    _builder.append("\t");
     _builder.newLine();
     return _builder;
   }
@@ -255,28 +393,40 @@ public class PascalGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("_print_integer:");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("push eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("sub esp, 4");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("mov [esp], eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("sub esp, 4");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("lea eax, [__PRINTF_I]");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("mov [esp], eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("call _printf");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("add esp, 4");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("add esp, 4");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("pop eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("ret ;return ");
     _builder.newLine();
+    _builder.append("\t");
     _builder.newLine();
     return _builder;
   }
@@ -287,36 +437,51 @@ public class PascalGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("_print_boolean:");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("jnz .print_boolean_true");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("push eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("push ebx ");
     _builder.newLine();
+    _builder.append("\t");
     CharSequence _print = this.print(e, "__BOOLEAN_FALSE");
-    _builder.append(_print, "");
+    _builder.append(_print, "\t");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
     _builder.append("pop eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("pop ebx");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("ret ;return");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append(".print_boolean_true:");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("push eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("push ebx ");
     _builder.newLine();
+    _builder.append("\t");
     CharSequence _print_1 = this.print(e, "__BOOLEAN_TRUE");
-    _builder.append(_print_1, "");
+    _builder.append(_print_1, "\t");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
     _builder.append("pop eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("pop ebx");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("ret ;return");
     _builder.newLine();
+    _builder.append("\t");
     _builder.newLine();
     return _builder;
   }
@@ -327,26 +492,37 @@ public class PascalGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("_print_float:");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("push eax ");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("sub esp, 8");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("mov [esp], eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("sub esp, 4");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("lea eax, [__PRINTF_F]");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("mov [esp], eax");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("call _printf");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("add esp, 12");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("pop eax ");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("ret ;return ");
     _builder.newLine();
+    _builder.append("\t");
     _builder.newLine();
     return _builder;
   }
@@ -401,14 +577,16 @@ public class PascalGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("_main:");
     _builder.newLine();
+    _builder.append("\t");
     block _block_2 = e.getBlock();
     block _block_3 = e.getBlock();
     statement_part _statement = _block_3.getStatement();
     statement_sequence _sequence = _statement.getSequence();
     CharSequence _compileSequence = this.compileSequence(e, _block_2, _sequence);
-    _builder.append(_compileSequence, "");
+    _builder.append(_compileSequence, "\t");
     _builder.append(" ");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
     _builder.append("ret\t; Exit program");
     _builder.newLine();
     return _builder;
@@ -420,44 +598,56 @@ public class PascalGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("section .data");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("__NEW_LINE db 10, 0");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("__NEW_LINE_SIZE equ $-__NEW_LINE");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("__PRINTF_S db \'%s\', 0");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("__PRINTF_I db \'%d\', 0");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("__PRINTF_F db \'%f\', 0");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("__BOOLEAN_TRUE db \'true\', 0");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("__BOOLEAN_TRUE_SIZE equ $-__BOOLEAN_TRUE");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("__BOOLEAN_FALSE db \'false\', 0");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("__BOOLEAN_FALSE_SIZE equ $-__BOOLEAN_FALSE");
     _builder.newLine();
     {
       Set<String> _keySet = this.stringTable.keySet();
       for(final String s : _keySet) {
+        _builder.append("\t");
         String _get = this.stringTable.get(s);
         Type _type = new Type("char");
         ComposedType _composedType = new ComposedType(_type, 
           ComposedTypeKind.ARRAY);
         Variable _variable = new Variable(_get, _composedType, false, ElementType.CONSTANT, s);
-        CharSequence _compileGlobalConstant = this.compileGlobalConstant(e, _variable, b);
-        _builder.append(_compileGlobalConstant, "");
+        CharSequence _compileGlobalConstant = this.compileGlobalConstant(e, _variable, b, true);
+        _builder.append(_compileGlobalConstant, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
     {
       for(final Variable v : variables) {
-        CharSequence _compileGlobalConstant_1 = this.compileGlobalConstant(e, v, b);
-        _builder.append(_compileGlobalConstant_1, "");
+        _builder.append("\t");
+        CharSequence _compileGlobalConstant_1 = this.compileGlobalConstant(e, v, b, false);
+        _builder.append(_compileGlobalConstant_1, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("\t");
     _builder.newLine();
     _builder.append("; Loading global variables");
     _builder.newLine();
@@ -465,15 +655,16 @@ public class PascalGenerator implements IGenerator {
     _builder.newLine();
     {
       for(final Variable v_1 : variables) {
+        _builder.append("\t");
         CharSequence _compileGlobalVariables = this.compileGlobalVariables(e, v_1, b);
-        _builder.append(_compileGlobalVariables, "");
+        _builder.append(_compileGlobalVariables, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
     return _builder;
   }
   
-  public CharSequence compileGlobalConstant(final program e, final Variable v, final block b) {
+  public CharSequence compileGlobalConstant(final program e, final Variable v, final block b, final boolean isString) {
     StringConcatenation _builder = new StringConcatenation();
     {
       ElementType _type = v.getType();
@@ -485,19 +676,23 @@ public class PascalGenerator implements IGenerator {
           String _lowerCase = _realType.toLowerCase();
           boolean _equals_1 = _lowerCase.equals("array of char");
           if (_equals_1) {
-            String _name = v.getName();
-            _builder.append(_name, "");
-            _builder.append(" db ");
-            Object _value = this.getValue(v);
-            _builder.append(_value, "");
-            _builder.append(", 0");
-            _builder.newLineIfNotEmpty();
-            String _name_1 = v.getName();
-            _builder.append(_name_1, "");
-            _builder.append("_SIZE equ $-");
-            String _name_2 = v.getName();
-            _builder.append(_name_2, "");
-            _builder.newLineIfNotEmpty();
+            {
+              if (isString) {
+                String _name = v.getName();
+                _builder.append(_name, "");
+                _builder.append(" db ");
+                Object _value = this.getValue(v);
+                _builder.append(_value, "");
+                _builder.append(", 0");
+                _builder.newLineIfNotEmpty();
+                String _name_1 = v.getName();
+                _builder.append(_name_1, "");
+                _builder.append("_SIZE equ $-");
+                String _name_2 = v.getName();
+                _builder.append(_name_2, "");
+                _builder.newLineIfNotEmpty();
+              }
+            }
           } else {
             String _name_3 = v.getName();
             _builder.append(_name_3, "");
@@ -520,9 +715,7 @@ public class PascalGenerator implements IGenerator {
       if (_equals) {
         String _name = v.getName();
         _builder.append(_name, "");
-        _builder.append(" RESB ");
-        int _numberOfBytes = this.getNumberOfBytes(v);
-        _builder.append(_numberOfBytes, "");
+        _builder.append(" RESB 4");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -595,32 +788,41 @@ public class PascalGenerator implements IGenerator {
                 variable _variable_1 = f.getVariable();
                 boolean _isConstant = this.isConstant(e, b, _variable_1);
                 if (_isConstant) {
-                  _builder.append("mov eax, ");
-                  variable _variable_2 = f.getVariable();
-                  String _name = _variable_2.getName();
-                  _builder.append(_name, "");
-                  _builder.newLineIfNotEmpty();
+                  {
+                    variable _variable_2 = f.getVariable();
+                    Type _type = this.getType(e, b, _variable_2);
+                    String _realType = _type.getRealType();
+                    String _lowerCase_1 = _realType.toLowerCase();
+                    boolean _equals_1 = _lowerCase_1.equals("array of char");
+                    if (_equals_1) {
+                      _builder.append("lea eax, [");
+                      variable _variable_3 = f.getVariable();
+                      Object _value = this.getValue(e, b, _variable_3);
+                      String _get_2 = this.stringTable.get(((String) _value));
+                      _builder.append(_get_2, "");
+                      _builder.append("]");
+                      _builder.newLineIfNotEmpty();
+                      _builder.append("mov ebx, ");
+                      variable _variable_4 = f.getVariable();
+                      Object _value_1 = this.getValue(e, b, _variable_4);
+                      String _get_3 = this.stringTable.get(((String) _value_1));
+                      _builder.append(_get_3, "");
+                      _builder.append("_SIZE");
+                      _builder.newLineIfNotEmpty();
+                    } else {
+                      _builder.append("mov eax, ");
+                      variable _variable_5 = f.getVariable();
+                      String _name = _variable_5.getName();
+                      _builder.append(_name, "");
+                      _builder.newLineIfNotEmpty();
+                    }
+                  }
                 } else {
                   _builder.append("mov eax, [");
-                  variable _variable_3 = f.getVariable();
-                  String _name_1 = _variable_3.getName();
+                  variable _variable_6 = f.getVariable();
+                  String _name_1 = _variable_6.getName();
                   _builder.append(_name_1, "");
                   _builder.append("]");
-                  _builder.newLineIfNotEmpty();
-                }
-              }
-              {
-                variable _variable_4 = f.getVariable();
-                Type _type = this.getType(e, b, _variable_4);
-                String _realType = _type.getRealType();
-                String _lowerCase_1 = _realType.toLowerCase();
-                boolean _equals_1 = _lowerCase_1.equals("array of char");
-                if (_equals_1) {
-                  _builder.append("mov ebx, ");
-                  variable _variable_5 = f.getVariable();
-                  String _name_2 = _variable_5.getName();
-                  _builder.append(_name_2, "");
-                  _builder.append("_SIZE");
                   _builder.newLineIfNotEmpty();
                 }
               }
@@ -870,8 +1072,9 @@ public class PascalGenerator implements IGenerator {
             {
               boolean _equals = operator.equals("=");
               if (_equals) {
-                _builder.append("jeq .set_to_true");
+                _builder.append("je .set_to_true");
                 _builder.append(this.labelCount, "");
+                _builder.append(" ; Equal");
                 _builder.newLineIfNotEmpty();
                 _builder.append("jmp .set_to_false");
                 _builder.append(this.labelCount, "");
@@ -881,6 +1084,7 @@ public class PascalGenerator implements IGenerator {
                 if (_equals_1) {
                   _builder.append("jg .set_to_true");
                   _builder.append(this.labelCount, "");
+                  _builder.append(" ; Greater");
                   _builder.newLineIfNotEmpty();
                   _builder.append("jmp .set_to_false");
                   _builder.append(this.labelCount, "");
@@ -890,6 +1094,7 @@ public class PascalGenerator implements IGenerator {
                   if (_equals_2) {
                     _builder.append("jge .set_to_true");
                     _builder.append(this.labelCount, "");
+                    _builder.append(" ; Greater or equal");
                     _builder.newLineIfNotEmpty();
                     _builder.append("jmp .set_to_false");
                     _builder.append(this.labelCount, "");
@@ -899,6 +1104,7 @@ public class PascalGenerator implements IGenerator {
                     if (_equals_3) {
                       _builder.append("jl .set_to_true");
                       _builder.append(this.labelCount, "");
+                      _builder.append(" ; Lesser");
                       _builder.newLineIfNotEmpty();
                       _builder.append("jmp .set_to_false");
                       _builder.append(this.labelCount, "");
@@ -908,6 +1114,7 @@ public class PascalGenerator implements IGenerator {
                       if (_equals_4) {
                         _builder.append("jle .set_to_true");
                         _builder.append(this.labelCount, "");
+                        _builder.append(" ; Lesser of equal");
                         _builder.newLineIfNotEmpty();
                         _builder.append("jmp .set_to_false");
                         _builder.append(this.labelCount, "");
@@ -917,6 +1124,7 @@ public class PascalGenerator implements IGenerator {
                         if (_equals_5) {
                           _builder.append("jne .set_to_true");
                           _builder.append(this.labelCount, "");
+                          _builder.append(" ; Different");
                           _builder.newLineIfNotEmpty();
                           _builder.append("jmp .set_to_false");
                           _builder.append(this.labelCount, "");
@@ -1170,14 +1378,123 @@ public class PascalGenerator implements IGenerator {
                     if_statement _ifStmt = _conditional_1.getIfStmt();
                     boolean _notEquals_8 = (!Objects.equal(_ifStmt, null));
                     if (_notEquals_8) {
+                      _builder.append("; If statement");
                       _builder.newLine();
-                    } else {
                       structured_statement _structured_6 = s.getStructured();
                       conditional_statement _conditional_2 = _structured_6.getConditional();
-                      case_statement _caseStmt = _conditional_2.getCaseStmt();
-                      boolean _notEquals_9 = (!Objects.equal(_caseStmt, null));
-                      if (_notEquals_9) {
+                      if_statement ifStmt = _conditional_2.getIfStmt();
+                      _builder.newLineIfNotEmpty();
+                      expression _expression_1 = ifStmt.getExpression();
+                      CharSequence _computeExpression_1 = this.computeExpression(e, b, _expression_1);
+                      _builder.append(_computeExpression_1, "");
+                      _builder.newLineIfNotEmpty();
+                      _builder.append("and eax, 1 ; Setting zero flag");
+                      _builder.newLine();
+                      int label = this.conditionalLabelCount++;
+                      _builder.newLineIfNotEmpty();
+                      _builder.append("jz .else_body");
+                      _builder.append(label, "");
+                      _builder.newLineIfNotEmpty();
+                      _builder.append(".if_body");
+                      _builder.append(label, "");
+                      _builder.append(":");
+                      _builder.newLineIfNotEmpty();
+                      _builder.append("\t");
+                      statement _ifStatement = ifStmt.getIfStatement();
+                      CharSequence _compileStatement = this.compileStatement(e, b, _ifStatement);
+                      _builder.append(_compileStatement, "\t");
+                      _builder.newLineIfNotEmpty();
+                      _builder.append("\t");
+                      _builder.append("jmp .conditional_out");
+                      _builder.append(label, "\t");
+                      _builder.newLineIfNotEmpty();
+                      _builder.append(".else_body");
+                      _builder.append(label, "");
+                      _builder.append(":");
+                      _builder.newLineIfNotEmpty();
+                      {
+                        statement _elseStatement = ifStmt.getElseStatement();
+                        boolean _notEquals_9 = (!Objects.equal(_elseStatement, null));
+                        if (_notEquals_9) {
+                          _builder.append("\t");
+                          statement _elseStatement_1 = ifStmt.getElseStatement();
+                          CharSequence _compileStatement_1 = this.compileStatement(e, b, _elseStatement_1);
+                          _builder.append(_compileStatement_1, "\t");
+                          _builder.newLineIfNotEmpty();
+                        }
+                      }
+                      _builder.append(".conditional_out");
+                      _builder.append(label, "");
+                      _builder.append(":");
+                      _builder.newLineIfNotEmpty();
+                    } else {
+                      structured_statement _structured_7 = s.getStructured();
+                      conditional_statement _conditional_3 = _structured_7.getConditional();
+                      case_statement _caseStmt = _conditional_3.getCaseStmt();
+                      boolean _notEquals_10 = (!Objects.equal(_caseStmt, null));
+                      if (_notEquals_10) {
+                        _builder.append("; Case statement");
                         _builder.newLine();
+                        structured_statement _structured_8 = s.getStructured();
+                        conditional_statement _conditional_4 = _structured_8.getConditional();
+                        case_statement caseStmt = _conditional_4.getCaseStmt();
+                        _builder.newLineIfNotEmpty();
+                        int globalLabel = this.caseGlobalLabelCount++;
+                        _builder.newLineIfNotEmpty();
+                        expression _expression_2 = caseStmt.getExpression();
+                        CharSequence _computeExpression_2 = this.computeExpression(e, b, _expression_2);
+                        _builder.append(_computeExpression_2, "");
+                        _builder.newLineIfNotEmpty();
+                        {
+                          EList<case_limb> _cases = caseStmt.getCases();
+                          for(final case_limb c : _cases) {
+                            _builder.append("; Case limb");
+                            _builder.newLine();
+                            int label_1 = this.caseLabelCount++;
+                            _builder.newLineIfNotEmpty();
+                            {
+                              case_label_list _cases_1 = c.getCases();
+                              EList<constant> _constants = _cases_1.getConstants();
+                              for(final constant constant : _constants) {
+                                _builder.append("; Comparison with constant");
+                                _builder.newLine();
+                                _builder.append("mov ecx, ");
+                                Object _value = this.getValue(e, b, constant);
+                                _builder.append(_value, "");
+                                _builder.newLineIfNotEmpty();
+                                _builder.append("cmp eax, ecx");
+                                _builder.newLine();
+                                _builder.append("je .case_limb_body");
+                                _builder.append(label_1, "");
+                                _builder.newLineIfNotEmpty();
+                              }
+                            }
+                            _builder.append("jmp .case_limb_out");
+                            _builder.append(label_1, "");
+                            _builder.newLineIfNotEmpty();
+                            _builder.append(".case_limb_body");
+                            _builder.append(label_1, "");
+                            _builder.append(":");
+                            _builder.newLineIfNotEmpty();
+                            _builder.append("\t");
+                            statement _statement = c.getStatement();
+                            CharSequence _compileStatement_2 = this.compileStatement(e, b, _statement);
+                            _builder.append(_compileStatement_2, "\t");
+                            _builder.newLineIfNotEmpty();
+                            _builder.append("\t");
+                            _builder.append("jmp .case_out");
+                            _builder.append(globalLabel, "\t");
+                            _builder.newLineIfNotEmpty();
+                            _builder.append(".case_limb_out");
+                            _builder.append(label_1, "");
+                            _builder.append(":");
+                            _builder.newLineIfNotEmpty();
+                          }
+                        }
+                        _builder.append(".case_out");
+                        _builder.append(globalLabel, "");
+                        _builder.append(":");
+                        _builder.newLineIfNotEmpty();
                       }
                     }
                   }

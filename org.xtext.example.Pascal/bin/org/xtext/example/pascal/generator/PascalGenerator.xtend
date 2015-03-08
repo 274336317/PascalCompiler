@@ -12,9 +12,11 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import org.xtext.example.pascal.pascal.any_number
 import org.xtext.example.pascal.pascal.block
+import org.xtext.example.pascal.pascal.constant
 import org.xtext.example.pascal.pascal.expression
 import org.xtext.example.pascal.pascal.factor
 import org.xtext.example.pascal.pascal.function_designator
+import org.xtext.example.pascal.pascal.number
 import org.xtext.example.pascal.pascal.program
 import org.xtext.example.pascal.pascal.simple_expression
 import org.xtext.example.pascal.pascal.statement
@@ -38,20 +40,33 @@ class PascalGenerator implements IGenerator {
 	
 	private HashMap<String, String> stringTable = new HashMap<String, String>();
 	private int labelCount;
+	private int conditionalLabelCount;
+	private int caseLabelCount;
+	private int caseGlobalLabelCount;
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for (e: resource.allContents.toIterable.filter(program)) {
 			labelCount = 0;
+			conditionalLabelCount = 0;
+			caseLabelCount = 0;
+			caseGlobalLabelCount = 0;
+			stringTable.clear();
 			fsa.generateFile(e.heading.name + ".asm", e.compile);
 		}
 	}
 
 	def createStringTable(program e) {
-		stringTable.clear();
 		for (s : e.eAllContents.toIterable.filter(factor)) {
 			if (s.string != null) {
 				if (!stringTable.containsKey(s.string)) {
 					stringTable.put(s.string, "__STRING_" + stringTable.size());
+				}
+			}
+		}
+		for (const : e.eAllContents.toIterable.filter(constant)) {
+			if (const.string != null) {
+				if (!stringTable.containsKey(const.string)) {
+					stringTable.put(const.string, "__STRING_" + stringTable.size());
 				}
 			}
 		}
@@ -60,27 +75,17 @@ class PascalGenerator implements IGenerator {
 	def getVariables(program e, block b) {
 		var artefacts = PascalValidator.artefacts.get(e.heading.name);
 		var map = artefacts.get("variables") as Map<block, Set<Variable>>;
+		e.createStringTable;
 		//memoryCount.put(b, memoryInit);
-		createStringTable(e);
 		return map.get(b);
 	}
 	
-	def getNumberOfBytes(Type t) {
-		var type = t.realType.toLowerCase;
-		if (type.equals("boolean") || type.equals("shortint")) {
-			return 1;
-		} else if (type.equals("char")) {
-			return 2;
-		} else if (type.equals("integer")) {
-			return 4;
-		} else if (type.equals("longint") || type.equals("real")) {
-			return 8;
-		} 
-		return 4;
-	}
-	
-	def getNumberOfBytes(Variable v) {
-		return getNumberOfBytes(v.varType);	
+	def getValue(number num) {
+		if (num.number.integer != null) {
+			return Integer.valueOf(num.number.integer);
+		} else {
+			return Double.valueOf(num.number.real);
+		}
 	}
 	
 	def getValue(Variable v) {
@@ -96,10 +101,51 @@ class PascalGenerator implements IGenerator {
 		return v.value;
 	}
 	
-	def Type getType(program e, expression expr) {
-		var artefacts = PascalValidator.artefacts.get(e.heading.name);
-		var map = artefacts.get("calculatedTypes") as Map<EObject, Type>;
-		return map.get(expr); 
+	def boolean isNumeric(Object obj) {
+		try {
+			Double.parseDouble(obj.toString);
+			return true;
+		} catch(Exception e) { }
+		return false;
+	}
+	
+	def getValue(program e, block b, constant const) {
+		var Object value = null;
+		if (const.name != null) {
+			var variable = searchConstant(e, b, const);
+			value = getValue(variable);
+			if (TypeInferer.getTypeWeight(variable.varType) == -1)
+				return const.name;
+		} else if (const.number != null) {
+			value = getValue(const.number);
+		} else if (const.string != null) {
+			value = stringTable.get(const.string);
+		} else if (const.boolLiteral != null) {
+			value = Boolean.valueOf(const.boolLiteral);
+			if (value == true) {
+				return 1;
+			} return 0;
+		} else if (const.nil != null) {
+			value = null;
+		}
+		if (const.opterator != null) {
+			if (isNumeric(value) && const.opterator.equals("-")) {
+				try {
+					return - Integer.parseInt(value.toString);
+				} catch(Exception excp) {
+					return - Double.parseDouble(value.toString);
+				}
+			}
+		}
+		return value;
+	}
+	
+	def Object getValue(program e, block b, variable v) {
+		var variableFound = searchVariable(e, b, v);
+		if (variableFound != null) {
+			return variableFound.value;
+		}
+		return null;
 	}
 	
 	def Variable searchVariable(program e, block b, variable v) {
@@ -112,6 +158,24 @@ class PascalGenerator implements IGenerator {
 			}	
 		}
 		return null;
+	}
+	
+	def Variable searchConstant(program e, block b, constant const) {
+		var artefacts = PascalValidator.artefacts.get(e.heading.name);
+		var map = artefacts.get("variables") as Map<block, Set<Variable>>;
+		var variables = map.get(b);
+		for (Variable myVar : variables) {
+			if (myVar.name.toLowerCase.equals(const.name.toLowerCase)) {
+				return myVar;
+			}	 
+		}
+		return null;
+	}
+	
+	def Type getType(program e, expression expr) {
+		var artefacts = PascalValidator.artefacts.get(e.heading.name);
+		var map = artefacts.get("calculatedTypes") as Map<EObject, Type>;
+		return map.get(expr); 
 	}
 	
 	def Type getType(program e, block b, variable v) {
@@ -133,69 +197,69 @@ class PascalGenerator implements IGenerator {
 	def printString(program e) '''
 		; Print string
 		_print_string:
-		push eax
-		push ebx 
-		sub esp, ebx
-		mov [esp], dword eax
-		call _printf
-		add esp, ebx
-		pop eax 
-		pop ebx
-		ret ;return
-		
+			push eax
+			push ebx 
+			sub esp, ebx
+			mov [esp], dword eax
+			call _printf
+			add esp, ebx
+			pop eax 
+			pop ebx
+			ret ;return
+			
 	'''
 	
 	def printInteger(program e) '''
 		; Print integer
 		_print_integer:
-		push eax
-		sub esp, 4
-		mov [esp], eax
-		sub esp, 4
-		lea eax, [__PRINTF_I]
-		mov [esp], eax
-		call _printf
-		add esp, 4
-		add esp, 4
-		pop eax
-		ret ;return 
-		
+			push eax
+			sub esp, 4
+			mov [esp], eax
+			sub esp, 4
+			lea eax, [__PRINTF_I]
+			mov [esp], eax
+			call _printf
+			add esp, 4
+			add esp, 4
+			pop eax
+			ret ;return 
+			
 	'''
 	
 	def printBoolean(program e) '''
 		; Print boolean
 		_print_boolean:
-		jnz .print_boolean_true
-		push eax
-		push ebx 
-		«e.print("__BOOLEAN_FALSE")»
-		pop eax
-		pop ebx
-		ret ;return
-		.print_boolean_true:
-		push eax
-		push ebx 
-		«e.print("__BOOLEAN_TRUE")»
-		pop eax
-		pop ebx
-		ret ;return
-		
+			jnz .print_boolean_true
+			push eax
+			push ebx 
+			«e.print("__BOOLEAN_FALSE")»
+			pop eax
+			pop ebx
+			ret ;return
+			.print_boolean_true:
+			push eax
+			push ebx 
+			«e.print("__BOOLEAN_TRUE")»
+			pop eax
+			pop ebx
+			ret ;return
+			
 	'''
 	
 	def printFloat(program e) '''
 		; Print float
 		_print_float:
-		push eax 
-		sub esp, 8
-		mov [esp], eax
-		sub esp, 4
-		lea eax, [__PRINTF_F]
-		mov [esp], eax
-		call _printf
-		add esp, 12
-		pop eax 
-		ret ;return 
-		
+			push eax 
+			sub esp, 8
+			mov [esp], eax
+			sub esp, 4
+			lea eax, [__PRINTF_F]
+			mov [esp], eax
+			call _printf
+			add esp, 12
+			pop eax 
+			ret ;return 
+			
 	'''
 	
 	def compilePredefinedProcedures(program e) '''
@@ -219,42 +283,44 @@ class PascalGenerator implements IGenerator {
 		
 		«e.compilePredefinedProcedures»
 		_main:
-		«e.compileSequence(e.block, e.block.statement.sequence)» 
-		ret	; Exit program
+			«e.compileSequence(e.block, e.block.statement.sequence)» 
+			ret	; Exit program
 	'''
 
 	def compile(program e, block b, Set<Variable> variables) ''' 
 		; Loading global constants and strings
 		section .data
-		__NEW_LINE db 10, 0
-		__NEW_LINE_SIZE equ $-__NEW_LINE
-		__PRINTF_S db '%s', 0
-		__PRINTF_I db '%d', 0
-		__PRINTF_F db '%f', 0
-		__BOOLEAN_TRUE db 'true', 0
-		__BOOLEAN_TRUE_SIZE equ $-__BOOLEAN_TRUE
-		__BOOLEAN_FALSE db 'false', 0
-		__BOOLEAN_FALSE_SIZE equ $-__BOOLEAN_FALSE
-		«FOR s : stringTable.keySet» 
-			«e.compileGlobalConstant(new Variable(stringTable.get(s), new ComposedType(new Type("char"), 
-				ComposedTypeKind.ARRAY), false, ElementType.CONSTANT, s), b)»
-		«ENDFOR»
-		«FOR v : variables»
-			«e.compileGlobalConstant(v, b)»
-		«ENDFOR»
-		
+			__NEW_LINE db 10, 0
+			__NEW_LINE_SIZE equ $-__NEW_LINE
+			__PRINTF_S db '%s', 0
+			__PRINTF_I db '%d', 0
+			__PRINTF_F db '%f', 0
+			__BOOLEAN_TRUE db 'true', 0
+			__BOOLEAN_TRUE_SIZE equ $-__BOOLEAN_TRUE
+			__BOOLEAN_FALSE db 'false', 0
+			__BOOLEAN_FALSE_SIZE equ $-__BOOLEAN_FALSE
+			«FOR s : stringTable.keySet» 
+				«e.compileGlobalConstant(new Variable(stringTable.get(s), new ComposedType(new Type("char"), 
+					ComposedTypeKind.ARRAY), false, ElementType.CONSTANT, s), b, true)»
+			«ENDFOR»
+			«FOR v : variables»
+				«e.compileGlobalConstant(v, b, false)»
+			«ENDFOR»
+			
 		; Loading global variables
 		section .bss
-		«FOR v : variables»
-			«e.compileGlobalVariables(v, b)»
-		«ENDFOR» 
+			«FOR v : variables»
+				«e.compileGlobalVariables(v, b)»
+			«ENDFOR» 
 	'''
 	 
-	def compileGlobalConstant(program e, Variable v, block b) '''
+	def compileGlobalConstant(program e, Variable v, block b, boolean isString) '''
 		«IF v.type == ElementType.CONSTANT»
 			«IF v.varType.realType.toLowerCase.equals("array of char")» 
-				«v.name» db «getValue(v)», 0
-				«v.name»_SIZE equ $-«v.name»
+				«IF isString»
+					«v.name» db «getValue(v)», 0
+					«v.name»_SIZE equ $-«v.name»
+				«ENDIF»
 			«ELSE»
 				«v.name» equ «getValue(v)»
 			«ENDIF»
@@ -263,7 +329,7 @@ class PascalGenerator implements IGenerator {
 	
 	def compileGlobalVariables(program e, Variable v, block b) '''
 		«IF v.type == ElementType.VARIABLE»
-			«v.name» RESB «getNumberOfBytes(v)»
+			«v.name» RESB 4
 		«ENDIF»
 	'''
 	
@@ -287,12 +353,14 @@ class PascalGenerator implements IGenerator {
 			«ENDIF»
 		«ELSEIF f.variable != null»
 			«IF e.isConstant(b, f.variable)»
-				mov eax, «f.variable.name»
+				«IF e.getType(b, f.variable).realType.toLowerCase.equals("array of char")»
+					lea eax, [«stringTable.get(e.getValue(b, f.variable) as String)»]
+					mov ebx, «stringTable.get(e.getValue(b, f.variable) as String)»_SIZE
+				«ELSE»
+					mov eax, «f.variable.name»
+				«ENDIF»
 			«ELSE»
 				mov eax, [«f.variable.name»]
-			«ENDIF»
-			«IF e.getType(b, f.variable).realType.toLowerCase.equals("array of char")»
-				mov ebx, «f.variable.name»_SIZE
 			«ENDIF»
 		«ELSEIF f.function != null»
 			«e.computeFunction(b, f.function)»
@@ -378,22 +446,22 @@ class PascalGenerator implements IGenerator {
 				«e.computeSimpleExpression(b, exp.expressions.get(index++))»
 				cmp ecx, eax
 				«IF operator.equals("=")»
-					jeq .set_to_true«labelCount»
+					je .set_to_true«labelCount» ; Equal
 					jmp .set_to_false«labelCount»
 				«ELSEIF operator.equals(">")»
-					jg .set_to_true«labelCount»
+					jg .set_to_true«labelCount» ; Greater
 					jmp .set_to_false«labelCount»
 				«ELSEIF operator.equals(">=")»
-					jge .set_to_true«labelCount»
+					jge .set_to_true«labelCount» ; Greater or equal
 					jmp .set_to_false«labelCount»
 				«ELSEIF operator.equals("<")»
-					jl .set_to_true«labelCount»
+					jl .set_to_true«labelCount» ; Lesser
 					jmp .set_to_false«labelCount»
 				«ELSEIF operator.equals("<=")»
-					jle .set_to_true«labelCount»
+					jle .set_to_true«labelCount» ; Lesser of equal
 					jmp .set_to_false«labelCount»
 				«ELSEIF operator.equals("<>")»
-					jne .set_to_true«labelCount»
+					jne .set_to_true«labelCount» ; Different
 					jmp .set_to_false«labelCount»
 				«ENDIF»
 				.set_to_true«labelCount»:
@@ -436,7 +504,7 @@ class PascalGenerator implements IGenerator {
 		«ENDFOR»
 	'''
 	
-	def compileStatement(program e, block b, statement s) '''
+	def CharSequence compileStatement(program e, block b, statement s) '''
 		«IF s.simple != null»
 			«IF s.simple.assignment != null»
 				; Assigning «s.simple.assignment.variable.name»
@@ -464,9 +532,41 @@ class PascalGenerator implements IGenerator {
 			
 			«ELSEIF s.structured.conditional != null»
 				«IF s.structured.conditional.ifStmt != null»
-				
+					; If statement
+					«var ifStmt = s.structured.conditional.ifStmt»
+					«e.computeExpression(b, ifStmt.expression)»
+					and eax, 1 ; Setting zero flag
+					«var int label = conditionalLabelCount++»
+					jz .else_body«label»
+					.if_body«label»:
+						«e.compileStatement(b, ifStmt.ifStatement)»
+						jmp .conditional_out«label»
+					.else_body«label»:
+						«IF ifStmt.elseStatement != null»
+							«e.compileStatement(b, ifStmt.elseStatement)»
+						«ENDIF»
+					.conditional_out«label»:
 				«ELSEIF s.structured.conditional.caseStmt != null»
-				
+					; Case statement
+					«var caseStmt = s.structured.conditional.caseStmt»
+					«var int globalLabel = caseGlobalLabelCount++»
+					«e.computeExpression(b, caseStmt.expression)»
+					«FOR c : caseStmt.cases»
+						; Case limb
+						«var int label = caseLabelCount++»
+						«FOR constant : c.cases.constants»
+							; Comparison with constant
+							mov ecx, «e.getValue(b, constant)»
+							cmp eax, ecx
+							je .case_limb_body«label»
+						«ENDFOR» 
+						jmp .case_limb_out«label»
+						.case_limb_body«label»:
+							«e.compileStatement(b, c.statement)»
+							jmp .case_out«globalLabel»
+						.case_limb_out«label»:
+					«ENDFOR»
+					.case_out«globalLabel»:
 				«ENDIF»
 			«ENDIF»
 		«ENDIF»
