@@ -70,12 +70,12 @@
     </genClasses>
     <genClasses ecoreClass="Pascal.ecore#//expression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//expression/expressions"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//expression/operator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//expression/operators"/>
     </genClasses>
     <genClasses ecoreClass="Pascal.ecore#//simple_expression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//simple_expression/operators"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//simple_expression/prefixOperators"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//simple_expression/terms"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//simple_expression/numbers"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//simple_expression/operators"/>
     </genClasses>
     <genClasses ecoreClass="Pascal.ecore#//term">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//term/factors"/>

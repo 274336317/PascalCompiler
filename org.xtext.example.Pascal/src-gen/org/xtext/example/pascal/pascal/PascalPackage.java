@@ -639,13 +639,13 @@ public interface PascalPackage extends EPackage
   int EXPRESSION__EXPRESSIONS = 0;
 
   /**
-   * The feature id for the '<em><b>Operator</b></em>' attribute.
+   * The feature id for the '<em><b>Operators</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION__OPERATOR = 1;
+  int EXPRESSION__OPERATORS = 1;
 
   /**
    * The number of structural features of the '<em>expression</em>' class.
@@ -667,13 +667,13 @@ public interface PascalPackage extends EPackage
   int SIMPLE_EXPRESSION = 15;
 
   /**
-   * The feature id for the '<em><b>Operators</b></em>' attribute list.
+   * The feature id for the '<em><b>Prefix Operators</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SIMPLE_EXPRESSION__OPERATORS = 0;
+  int SIMPLE_EXPRESSION__PREFIX_OPERATORS = 0;
 
   /**
    * The feature id for the '<em><b>Terms</b></em>' containment reference list.
@@ -685,13 +685,13 @@ public interface PascalPackage extends EPackage
   int SIMPLE_EXPRESSION__TERMS = 1;
 
   /**
-   * The feature id for the '<em><b>Numbers</b></em>' containment reference list.
+   * The feature id for the '<em><b>Operators</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SIMPLE_EXPRESSION__NUMBERS = 2;
+  int SIMPLE_EXPRESSION__OPERATORS = 2;
 
   /**
    * The number of structural features of the '<em>simple expression</em>' class.
@@ -3546,15 +3546,15 @@ public interface PascalPackage extends EPackage
   EReference getexpression_Expressions();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.pascal.pascal.expression#getOperator <em>Operator</em>}'.
+   * Returns the meta object for the attribute list '{@link org.xtext.example.pascal.pascal.expression#getOperators <em>Operators</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Operator</em>'.
-   * @see org.xtext.example.pascal.pascal.expression#getOperator()
+   * @return the meta object for the attribute list '<em>Operators</em>'.
+   * @see org.xtext.example.pascal.pascal.expression#getOperators()
    * @see #getexpression()
    * @generated
    */
-  EAttribute getexpression_Operator();
+  EAttribute getexpression_Operators();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.pascal.pascal.simple_expression <em>simple expression</em>}'.
@@ -3567,15 +3567,15 @@ public interface PascalPackage extends EPackage
   EClass getsimple_expression();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.pascal.pascal.simple_expression#getOperators <em>Operators</em>}'.
+   * Returns the meta object for the attribute list '{@link org.xtext.example.pascal.pascal.simple_expression#getPrefixOperators <em>Prefix Operators</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Operators</em>'.
-   * @see org.xtext.example.pascal.pascal.simple_expression#getOperators()
+   * @return the meta object for the attribute list '<em>Prefix Operators</em>'.
+   * @see org.xtext.example.pascal.pascal.simple_expression#getPrefixOperators()
    * @see #getsimple_expression()
    * @generated
    */
-  EAttribute getsimple_expression_Operators();
+  EAttribute getsimple_expression_PrefixOperators();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.pascal.pascal.simple_expression#getTerms <em>Terms</em>}'.
@@ -3589,15 +3589,15 @@ public interface PascalPackage extends EPackage
   EReference getsimple_expression_Terms();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.xtext.example.pascal.pascal.simple_expression#getNumbers <em>Numbers</em>}'.
+   * Returns the meta object for the attribute list '{@link org.xtext.example.pascal.pascal.simple_expression#getOperators <em>Operators</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Numbers</em>'.
-   * @see org.xtext.example.pascal.pascal.simple_expression#getNumbers()
+   * @return the meta object for the attribute list '<em>Operators</em>'.
+   * @see org.xtext.example.pascal.pascal.simple_expression#getOperators()
    * @see #getsimple_expression()
    * @generated
    */
-  EReference getsimple_expression_Numbers();
+  EAttribute getsimple_expression_Operators();
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.pascal.pascal.term <em>term</em>}'.
@@ -6065,12 +6065,12 @@ public interface PascalPackage extends EPackage
     EReference EXPRESSION__EXPRESSIONS = eINSTANCE.getexpression_Expressions();
 
     /**
-     * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Operators</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute EXPRESSION__OPERATOR = eINSTANCE.getexpression_Operator();
+    EAttribute EXPRESSION__OPERATORS = eINSTANCE.getexpression_Operators();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl <em>simple expression</em>}' class.
@@ -6083,12 +6083,12 @@ public interface PascalPackage extends EPackage
     EClass SIMPLE_EXPRESSION = eINSTANCE.getsimple_expression();
 
     /**
-     * The meta object literal for the '<em><b>Operators</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Prefix Operators</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SIMPLE_EXPRESSION__OPERATORS = eINSTANCE.getsimple_expression_Operators();
+    EAttribute SIMPLE_EXPRESSION__PREFIX_OPERATORS = eINSTANCE.getsimple_expression_PrefixOperators();
 
     /**
      * The meta object literal for the '<em><b>Terms</b></em>' containment reference list feature.
@@ -6099,12 +6099,12 @@ public interface PascalPackage extends EPackage
     EReference SIMPLE_EXPRESSION__TERMS = eINSTANCE.getsimple_expression_Terms();
 
     /**
-     * The meta object literal for the '<em><b>Numbers</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Operators</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SIMPLE_EXPRESSION__NUMBERS = eINSTANCE.getsimple_expression_Numbers();
+    EAttribute SIMPLE_EXPRESSION__OPERATORS = eINSTANCE.getsimple_expression_Operators();
 
     /**
      * The meta object literal for the '{@link org.xtext.example.pascal.pascal.impl.termImpl <em>term</em>}' class.

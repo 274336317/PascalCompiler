@@ -64,11 +64,11 @@ expression_list:
 ;
 
 expression: //TODO: ADICIONADO "=" PQ N TAVA RECONHECENDO EM RELATIONAL_OPERATOR
-	expressions+=simple_expression ( ( operator=RELATIONAL_OPERATOR | operator="in" | operator="=" ) expressions+=simple_expression ) ?
+	expressions+=simple_expression ( ( operators+=RELATIONAL_OPERATOR | operators+="in" | operators+="=" ) expressions+=simple_expression ) ?
 ; 
 
 simple_expression: 
-	( operators+=ADDITION_OPERATOR+ ) ? terms+=term ( ( operators+=ADDITION_OPERATOR+ | operators+="or" ) terms+=term | numbers+=signed_number ) *
+	( prefixOperators+=ADDITION_OPERATOR+ ) ? terms+=term ( ( operators+=ADDITION_OPERATOR+ | operators+="or" ) terms+=term | terms+=signed_number ) *
 ;
   
 term:

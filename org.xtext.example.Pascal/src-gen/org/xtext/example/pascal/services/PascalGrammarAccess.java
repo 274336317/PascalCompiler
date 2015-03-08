@@ -588,22 +588,22 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExpressionsSimple_expressionParserRuleCall_0_0 = (RuleCall)cExpressionsAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Alternatives cAlternatives_1_0 = (Alternatives)cGroup_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_1_0_0 = (Assignment)cAlternatives_1_0.eContents().get(0);
-		private final RuleCall cOperatorRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0 = (RuleCall)cOperatorAssignment_1_0_0.eContents().get(0);
-		private final Assignment cOperatorAssignment_1_0_1 = (Assignment)cAlternatives_1_0.eContents().get(1);
-		private final Keyword cOperatorInKeyword_1_0_1_0 = (Keyword)cOperatorAssignment_1_0_1.eContents().get(0);
-		private final Assignment cOperatorAssignment_1_0_2 = (Assignment)cAlternatives_1_0.eContents().get(2);
-		private final Keyword cOperatorEqualsSignKeyword_1_0_2_0 = (Keyword)cOperatorAssignment_1_0_2.eContents().get(0);
+		private final Assignment cOperatorsAssignment_1_0_0 = (Assignment)cAlternatives_1_0.eContents().get(0);
+		private final RuleCall cOperatorsRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0 = (RuleCall)cOperatorsAssignment_1_0_0.eContents().get(0);
+		private final Assignment cOperatorsAssignment_1_0_1 = (Assignment)cAlternatives_1_0.eContents().get(1);
+		private final Keyword cOperatorsInKeyword_1_0_1_0 = (Keyword)cOperatorsAssignment_1_0_1.eContents().get(0);
+		private final Assignment cOperatorsAssignment_1_0_2 = (Assignment)cAlternatives_1_0.eContents().get(2);
+		private final Keyword cOperatorsEqualsSignKeyword_1_0_2_0 = (Keyword)cOperatorsAssignment_1_0_2.eContents().get(0);
 		private final Assignment cExpressionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cExpressionsSimple_expressionParserRuleCall_1_1_0 = (RuleCall)cExpressionsAssignment_1_1.eContents().get(0);
 		
 		////TODO: ADICIONADO "=" PQ N TAVA RECONHECENDO EM RELATIONAL_OPERATOR
 		//expression:
-		//	expressions+=simple_expression ((operator=RELATIONAL_OPERATOR | operator="in" | operator="=")
+		//	expressions+=simple_expression ((operators+=RELATIONAL_OPERATOR | operators+="in" | operators+="=")
 		//	expressions+=simple_expression)?;
 		public ParserRule getRule() { return rule; }
 
-		//expressions+=simple_expression ((operator=RELATIONAL_OPERATOR | operator="in" | operator="=")
+		//expressions+=simple_expression ((operators+=RELATIONAL_OPERATOR | operators+="in" | operators+="=")
 		//expressions+=simple_expression)?
 		public Group getGroup() { return cGroup; }
 
@@ -613,29 +613,29 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//simple_expression
 		public RuleCall getExpressionsSimple_expressionParserRuleCall_0_0() { return cExpressionsSimple_expressionParserRuleCall_0_0; }
 
-		//((operator=RELATIONAL_OPERATOR | operator="in" | operator="=") expressions+=simple_expression)?
+		//((operators+=RELATIONAL_OPERATOR | operators+="in" | operators+="=") expressions+=simple_expression)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//operator=RELATIONAL_OPERATOR | operator="in" | operator="="
+		//operators+=RELATIONAL_OPERATOR | operators+="in" | operators+="="
 		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
 
-		//operator=RELATIONAL_OPERATOR
-		public Assignment getOperatorAssignment_1_0_0() { return cOperatorAssignment_1_0_0; }
+		//operators+=RELATIONAL_OPERATOR
+		public Assignment getOperatorsAssignment_1_0_0() { return cOperatorsAssignment_1_0_0; }
 
 		//RELATIONAL_OPERATOR
-		public RuleCall getOperatorRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0() { return cOperatorRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0; }
+		public RuleCall getOperatorsRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0() { return cOperatorsRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0; }
 
-		//operator="in"
-		public Assignment getOperatorAssignment_1_0_1() { return cOperatorAssignment_1_0_1; }
+		//operators+="in"
+		public Assignment getOperatorsAssignment_1_0_1() { return cOperatorsAssignment_1_0_1; }
 
 		//"in"
-		public Keyword getOperatorInKeyword_1_0_1_0() { return cOperatorInKeyword_1_0_1_0; }
+		public Keyword getOperatorsInKeyword_1_0_1_0() { return cOperatorsInKeyword_1_0_1_0; }
 
-		//operator="="
-		public Assignment getOperatorAssignment_1_0_2() { return cOperatorAssignment_1_0_2; }
+		//operators+="="
+		public Assignment getOperatorsAssignment_1_0_2() { return cOperatorsAssignment_1_0_2; }
 
 		//"="
-		public Keyword getOperatorEqualsSignKeyword_1_0_2_0() { return cOperatorEqualsSignKeyword_1_0_2_0; }
+		public Keyword getOperatorsEqualsSignKeyword_1_0_2_0() { return cOperatorsEqualsSignKeyword_1_0_2_0; }
 
 		//expressions+=simple_expression
 		public Assignment getExpressionsAssignment_1_1() { return cExpressionsAssignment_1_1; }
@@ -647,8 +647,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	public class Simple_expressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "simple_expression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cOperatorsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cOperatorsADDITION_OPERATORTerminalRuleCall_0_0 = (RuleCall)cOperatorsAssignment_0.eContents().get(0);
+		private final Assignment cPrefixOperatorsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0 = (RuleCall)cPrefixOperatorsAssignment_0.eContents().get(0);
 		private final Assignment cTermsAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTermsTermParserRuleCall_1_0 = (RuleCall)cTermsAssignment_1.eContents().get(0);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
@@ -660,23 +660,23 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOperatorsOrKeyword_2_0_0_1_0 = (Keyword)cOperatorsAssignment_2_0_0_1.eContents().get(0);
 		private final Assignment cTermsAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
 		private final RuleCall cTermsTermParserRuleCall_2_0_1_0 = (RuleCall)cTermsAssignment_2_0_1.eContents().get(0);
-		private final Assignment cNumbersAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cNumbersSigned_numberParserRuleCall_2_1_0 = (RuleCall)cNumbersAssignment_2_1.eContents().get(0);
+		private final Assignment cTermsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cTermsSigned_numberParserRuleCall_2_1_0 = (RuleCall)cTermsAssignment_2_1.eContents().get(0);
 		
 		//simple_expression:
-		//	operators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
-		//	numbers+=signed_number)*;
+		//	prefixOperators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
+		//	terms+=signed_number)*;
 		public ParserRule getRule() { return rule; }
 
-		//operators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
-		//numbers+=signed_number)*
+		//prefixOperators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
+		//terms+=signed_number)*
 		public Group getGroup() { return cGroup; }
 
-		//operators+=ADDITION_OPERATOR?
-		public Assignment getOperatorsAssignment_0() { return cOperatorsAssignment_0; }
+		//prefixOperators+=ADDITION_OPERATOR?
+		public Assignment getPrefixOperatorsAssignment_0() { return cPrefixOperatorsAssignment_0; }
 
 		//ADDITION_OPERATOR
-		public RuleCall getOperatorsADDITION_OPERATORTerminalRuleCall_0_0() { return cOperatorsADDITION_OPERATORTerminalRuleCall_0_0; }
+		public RuleCall getPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0() { return cPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0; }
 
 		//terms+=term
 		public Assignment getTermsAssignment_1() { return cTermsAssignment_1; }
@@ -684,7 +684,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//term
 		public RuleCall getTermsTermParserRuleCall_1_0() { return cTermsTermParserRuleCall_1_0; }
 
-		//((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term | numbers+=signed_number)*
+		//((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term | terms+=signed_number)*
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
 		//(operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term
@@ -711,11 +711,11 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//term
 		public RuleCall getTermsTermParserRuleCall_2_0_1_0() { return cTermsTermParserRuleCall_2_0_1_0; }
 
-		//numbers+=signed_number
-		public Assignment getNumbersAssignment_2_1() { return cNumbersAssignment_2_1; }
+		//terms+=signed_number
+		public Assignment getTermsAssignment_2_1() { return cTermsAssignment_2_1; }
 
 		//signed_number
-		public RuleCall getNumbersSigned_numberParserRuleCall_2_1_0() { return cNumbersSigned_numberParserRuleCall_2_1_0; }
+		public RuleCall getTermsSigned_numberParserRuleCall_2_1_0() { return cTermsSigned_numberParserRuleCall_2_1_0; }
 	}
 
 	public class TermElements extends AbstractParserRuleElementFinder {
@@ -3639,7 +3639,7 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 
 	////TODO: ADICIONADO "=" PQ N TAVA RECONHECENDO EM RELATIONAL_OPERATOR
 	//expression:
-	//	expressions+=simple_expression ((operator=RELATIONAL_OPERATOR | operator="in" | operator="=")
+	//	expressions+=simple_expression ((operators+=RELATIONAL_OPERATOR | operators+="in" | operators+="=")
 	//	expressions+=simple_expression)?;
 	public ExpressionElements getExpressionAccess() {
 		return pExpression;
@@ -3650,8 +3650,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//simple_expression:
-	//	operators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
-	//	numbers+=signed_number)*;
+	//	prefixOperators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
+	//	terms+=signed_number)*;
 	public Simple_expressionElements getSimple_expressionAccess() {
 		return pSimple_expression;
 	}

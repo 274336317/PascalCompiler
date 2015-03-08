@@ -118,13 +118,19 @@ public class AbstractPascalProposalProvider extends org.eclipse.xtext.common.ui.
 	public void completeExpression_Expressions(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
-	public void completeExpression_Operator(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeExpression_Operators(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (assignment.getTerminal() instanceof RuleCall) {
 			completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 		}
 		if (assignment.getTerminal() instanceof Keyword) {
 			// subclasses may override
 		}
+	}
+	public void completeSimple_expression_PrefixOperators(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	}
+	public void completeSimple_expression_Terms(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeSimple_expression_Operators(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (assignment.getTerminal() instanceof RuleCall) {
@@ -133,12 +139,6 @@ public class AbstractPascalProposalProvider extends org.eclipse.xtext.common.ui.
 		if (assignment.getTerminal() instanceof Keyword) {
 			// subclasses may override
 		}
-	}
-	public void completeSimple_expression_Terms(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
-	}
-	public void completeSimple_expression_Numbers(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeTerm_Factors(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);

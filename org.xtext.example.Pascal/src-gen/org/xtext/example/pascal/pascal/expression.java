@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.xtext.example.pascal.pascal.expression#getExpressions <em>Expressions</em>}</li>
- *   <li>{@link org.xtext.example.pascal.pascal.expression#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.expression#getOperators <em>Operators</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,29 +42,19 @@ public interface expression extends EObject
   EList<simple_expression> getExpressions();
 
   /**
-   * Returns the value of the '<em><b>Operator</b></em>' attribute.
+   * Returns the value of the '<em><b>Operators</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Operator</em>' attribute isn't clear,
+   * If the meaning of the '<em>Operators</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Operator</em>' attribute.
-   * @see #setOperator(String)
-   * @see org.xtext.example.pascal.pascal.PascalPackage#getexpression_Operator()
-   * @model
+   * @return the value of the '<em>Operators</em>' attribute list.
+   * @see org.xtext.example.pascal.pascal.PascalPackage#getexpression_Operators()
+   * @model unique="false"
    * @generated
    */
-  String getOperator();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.pascal.pascal.expression#getOperator <em>Operator</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Operator</em>' attribute.
-   * @see #getOperator()
-   * @generated
-   */
-  void setOperator(String value);
+  EList<String> getOperators();
 
 } // expression

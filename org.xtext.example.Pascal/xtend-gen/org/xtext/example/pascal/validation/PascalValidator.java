@@ -670,12 +670,26 @@ public class PascalValidator extends AbstractPascalValidator {
   
   public Type getType(final block b, final simple_expression expr) {
     Type greatestType = null;
-    EList<term> _terms = expr.getTerms();
-    for (final term t : _terms) {
-      {
+    EList<EObject> _terms = expr.getTerms();
+    for (final EObject obj : _terms) {
+      if ((obj instanceof term)) {
+        term t = ((term) obj);
         Type type = this.getType(b, t);
         Type _greater = TypeInferer.greater(type, greatestType);
         greatestType = _greater;
+      } else {
+        any_number n = ((any_number) obj);
+        String _integer = n.getInteger();
+        boolean _notEquals = (!Objects.equal(_integer, null));
+        if (_notEquals) {
+          Type _type = new Type("integer");
+          Type _greater_1 = TypeInferer.greater(_type, greatestType);
+          greatestType = _greater_1;
+        } else {
+          Type _type_1 = new Type("real");
+          Type _greater_2 = TypeInferer.greater(_type_1, greatestType);
+          greatestType = _greater_2;
+        }
       }
     }
     this.calculatedTypes.put(expr, greatestType);
@@ -684,9 +698,18 @@ public class PascalValidator extends AbstractPascalValidator {
   
   public Type getType(final block b, final expression expr) {
     Type t = new Type("nil");
-    String _operator = expr.getOperator();
-    boolean _notEquals = (!Objects.equal(_operator, null));
-    if (_notEquals) {
+    boolean _and = false;
+    EList<String> _operators = expr.getOperators();
+    boolean _notEquals = (!Objects.equal(_operators, null));
+    if (!_notEquals) {
+      _and = false;
+    } else {
+      EList<String> _operators_1 = expr.getOperators();
+      boolean _isEmpty = _operators_1.isEmpty();
+      boolean _not = (!_isEmpty);
+      _and = _not;
+    }
+    if (_and) {
       Type _type = new Type("boolean");
       t = _type;
     } else {
@@ -1297,7 +1320,8 @@ public class PascalValidator extends AbstractPascalValidator {
     if (_notEquals) {
       EList<String> _operators_1 = t.getOperators();
       for (final String op : _operators_1) {
-        boolean _equals = op.equals("and");
+        String _lowerCase = op.toLowerCase();
+        boolean _equals = _lowerCase.equals("and");
         if (_equals) {
           isBoolean = true;
         } else {
@@ -1317,8 +1341,8 @@ public class PascalValidator extends AbstractPascalValidator {
         if (isBoolean) {
           Type _type = this.getType(b, f);
           String _realType = _type.getRealType();
-          String _lowerCase = _realType.toLowerCase();
-          boolean _equals_1 = _lowerCase.equals("boolean");
+          String _lowerCase_1 = _realType.toLowerCase();
+          boolean _equals_1 = _lowerCase_1.equals("boolean");
           boolean _not = (!_equals_1);
           if (_not) {
             Type _type_1 = this.getType(b, f);
@@ -1354,12 +1378,27 @@ public class PascalValidator extends AbstractPascalValidator {
       {
         boolean isBoolean = false;
         boolean isNumeric = false;
+        boolean _and = false;
+        EList<String> _prefixOperators = s.getPrefixOperators();
+        boolean _notEquals = (!Objects.equal(_prefixOperators, null));
+        if (!_notEquals) {
+          _and = false;
+        } else {
+          EList<String> _prefixOperators_1 = s.getPrefixOperators();
+          boolean _isEmpty = _prefixOperators_1.isEmpty();
+          boolean _not = (!_isEmpty);
+          _and = _not;
+        }
+        if (_and) {
+          isNumeric = true;
+        }
         EList<String> _operators = s.getOperators();
-        boolean _notEquals = (!Objects.equal(_operators, null));
-        if (_notEquals) {
+        boolean _notEquals_1 = (!Objects.equal(_operators, null));
+        if (_notEquals_1) {
           EList<String> _operators_1 = s.getOperators();
           for (final String op : _operators_1) {
-            boolean _equals = op.equals("or");
+            String _lowerCase = op.toLowerCase();
+            boolean _equals = _lowerCase.equals("or");
             if (_equals) {
               isBoolean = true;
             } else {
@@ -1372,40 +1411,51 @@ public class PascalValidator extends AbstractPascalValidator {
             }
           }
         }
-        this.removeError(s, ErrorType.INVALID_OPERATOR);
-        EList<term> _terms = s.getTerms();
-        for (final term t : _terms) {
-          {
-            if (isBoolean) {
-              Type _type = this.getType(b, t);
-              String _realType = _type.getRealType();
-              String _lowerCase = _realType.toLowerCase();
-              boolean _equals_1 = _lowerCase.equals("boolean");
-              boolean _not = (!_equals_1);
-              if (_not) {
-                Type _type_1 = this.getType(b, t);
-                String _plus = ("Cannot convert " + _type_1);
-                String _plus_1 = (_plus + " to boolean.");
-                this.insertError(s, _plus_1, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
-              } else {
-                this.removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
-              }
-            } else {
-              if (isNumeric) {
-                Type _type_2 = this.getType(b, t);
-                int _typeWeight = TypeInferer.getTypeWeight(_type_2);
-                boolean _equals_2 = (_typeWeight == (-1));
-                if (_equals_2) {
-                  Type _type_3 = this.getType(b, t);
-                  String _plus_2 = ("Cannot convert " + _type_3);
-                  String _plus_3 = (_plus_2 + " to numeric.");
-                  this.insertError(s, _plus_3, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
+        if ((isNumeric && isBoolean)) {
+          this.insertError(s, "Only numeric types are allowed in this expression.", ErrorType.INVALID_OPERATOR, PascalPackage.Literals.SIMPLE_EXPRESSION__OPERATORS);
+        } else {
+          this.removeError(s, ErrorType.INVALID_OPERATOR);
+          EList<EObject> _terms = s.getTerms();
+          for (final EObject obj : _terms) {
+            if ((obj instanceof term)) {
+              term t = ((term) obj);
+              if (isBoolean) {
+                Type _type = this.getType(b, t);
+                String _realType = _type.getRealType();
+                String _lowerCase_1 = _realType.toLowerCase();
+                boolean _equals_1 = _lowerCase_1.equals("boolean");
+                boolean _not_1 = (!_equals_1);
+                if (_not_1) {
+                  Type _type_1 = this.getType(b, t);
+                  String _plus = ("Cannot convert " + _type_1);
+                  String _plus_1 = (_plus + " to boolean.");
+                  this.insertError(s, _plus_1, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
                 } else {
                   this.removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
                 }
+              } else {
+                if (isNumeric) {
+                  Type _type_2 = this.getType(b, t);
+                  int _typeWeight = TypeInferer.getTypeWeight(_type_2);
+                  boolean _equals_2 = (_typeWeight == (-1));
+                  if (_equals_2) {
+                    Type _type_3 = this.getType(b, t);
+                    String _plus_2 = ("Cannot convert " + _type_3);
+                    String _plus_3 = (_plus_2 + " to numeric.");
+                    this.insertError(s, _plus_3, ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
+                  } else {
+                    this.removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
+                  }
+                }
+              }
+              this.checkTerm(b, t);
+            } else {
+              if ((!isNumeric)) {
+                this.insertError(s, "Only numeric types are allowed.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
+              } else {
+                this.removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
               }
             }
-            this.checkTerm(b, t);
           }
         }
       }

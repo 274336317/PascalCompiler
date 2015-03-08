@@ -1131,18 +1131,18 @@ ruleexpression returns [EObject current=null]
 )
 )(((
 (
-		lv_operator_1_0=RULE_RELATIONAL_OPERATOR
+		lv_operators_1_0=RULE_RELATIONAL_OPERATOR
 		{
-			newLeafNode(lv_operator_1_0, grammarAccess.getExpressionAccess().getOperatorRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0()); 
+			newLeafNode(lv_operators_1_0, grammarAccess.getExpressionAccess().getOperatorsRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0()); 
 		}
 		{
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getExpressionRule());
 	        }
-       		setWithLastConsumed(
+       		addWithLastConsumed(
        			$current, 
-       			"operator",
-        		lv_operator_1_0, 
+       			"operators",
+        		lv_operators_1_0, 
         		"RELATIONAL_OPERATOR");
 	    }
 
@@ -1150,34 +1150,34 @@ ruleexpression returns [EObject current=null]
 )
     |(
 (
-		lv_operator_2_0=
+		lv_operators_2_0=
 	In
     {
-        newLeafNode(lv_operator_2_0, grammarAccess.getExpressionAccess().getOperatorInKeyword_1_0_1_0());
+        newLeafNode(lv_operators_2_0, grammarAccess.getExpressionAccess().getOperatorsInKeyword_1_0_1_0());
     }
 
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getExpressionRule());
 	        }
-       		setWithLastConsumed($current, "operator", lv_operator_2_0, "in");
+       		addWithLastConsumed($current, "operators", lv_operators_2_0, "in");
 	    }
 
 )
 )
     |(
 (
-		lv_operator_3_0=
+		lv_operators_3_0=
 	EqualsSign
     {
-        newLeafNode(lv_operator_3_0, grammarAccess.getExpressionAccess().getOperatorEqualsSignKeyword_1_0_2_0());
+        newLeafNode(lv_operators_3_0, grammarAccess.getExpressionAccess().getOperatorsEqualsSignKeyword_1_0_2_0());
     }
 
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getExpressionRule());
 	        }
-       		setWithLastConsumed($current, "operator", lv_operator_3_0, "=");
+       		addWithLastConsumed($current, "operators", lv_operators_3_0, "=");
 	    }
 
 )
@@ -1222,9 +1222,9 @@ rulesimple_expression returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_operators_0_0=RULE_ADDITION_OPERATOR
+		lv_prefixOperators_0_0=RULE_ADDITION_OPERATOR
 		{
-			newLeafNode(lv_operators_0_0, grammarAccess.getSimple_expressionAccess().getOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); 
+			newLeafNode(lv_prefixOperators_0_0, grammarAccess.getSimple_expressionAccess().getPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -1232,8 +1232,8 @@ rulesimple_expression returns [EObject current=null]
 	        }
        		addWithLastConsumed(
        			$current, 
-       			"operators",
-        		lv_operators_0_0, 
+       			"prefixOperators",
+        		lv_prefixOperators_0_0, 
         		"ADDITION_OPERATOR");
 	    }
 
@@ -1313,16 +1313,16 @@ rulesimple_expression returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSimple_expressionAccess().getNumbersSigned_numberParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermsSigned_numberParserRuleCall_2_1_0()); 
 	    }
-		lv_numbers_5_0=rulesigned_number		{
+		lv_terms_5_0=rulesigned_number		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSimple_expressionRule());
 	        }
        		add(
        			$current, 
-       			"numbers",
-        		lv_numbers_5_0, 
+       			"terms",
+        		lv_terms_5_0, 
         		"signed_number");
 	        afterParserOrEnumRuleCall();
 	    }

@@ -2724,13 +2724,13 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleexpression"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1110:1: ruleexpression returns [EObject current=null] : ( ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operator_2_0= In ) ) | ( (lv_operator_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )? ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1110:1: ruleexpression returns [EObject current=null] : ( ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operators_2_0= In ) ) | ( (lv_operators_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )? ) ;
     public final EObject ruleexpression() throws RecognitionException {
         EObject current = null;
 
-        Token lv_operator_1_0=null;
-        Token lv_operator_2_0=null;
-        Token lv_operator_3_0=null;
+        Token lv_operators_1_0=null;
+        Token lv_operators_2_0=null;
+        Token lv_operators_3_0=null;
         EObject lv_expressions_0_0 = null;
 
         EObject lv_expressions_4_0 = null;
@@ -2739,11 +2739,11 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1113:28: ( ( ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operator_2_0= In ) ) | ( (lv_operator_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )? ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1114:1: ( ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operator_2_0= In ) ) | ( (lv_operator_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )? )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1113:28: ( ( ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operators_2_0= In ) ) | ( (lv_operators_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )? ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1114:1: ( ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operators_2_0= In ) ) | ( (lv_operators_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )? )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1114:1: ( ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operator_2_0= In ) ) | ( (lv_operator_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )? )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1114:2: ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operator_2_0= In ) ) | ( (lv_operator_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )?
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1114:1: ( ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operators_2_0= In ) ) | ( (lv_operators_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )? )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1114:2: ( (lv_expressions_0_0= rulesimple_expression ) ) ( ( ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operators_2_0= In ) ) | ( (lv_operators_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )?
             {
             // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1114:2: ( (lv_expressions_0_0= rulesimple_expression ) )
             // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1115:1: (lv_expressions_0_0= rulesimple_expression )
@@ -2776,7 +2776,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:2: ( ( ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operator_2_0= In ) ) | ( (lv_operator_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )?
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:2: ( ( ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operators_2_0= In ) ) | ( (lv_operators_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) ) )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2785,9 +2785,9 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             }
             switch (alt16) {
                 case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:3: ( ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operator_2_0= In ) ) | ( (lv_operator_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:3: ( ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operators_2_0= In ) ) | ( (lv_operators_3_0= EqualsSign ) ) ) ( (lv_expressions_4_0= rulesimple_expression ) )
                     {
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:3: ( ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operator_2_0= In ) ) | ( (lv_operator_3_0= EqualsSign ) ) )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:3: ( ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) ) | ( (lv_operators_2_0= In ) ) | ( (lv_operators_3_0= EqualsSign ) ) )
                     int alt15=3;
                     switch ( input.LA(1) ) {
                     case RULE_RELATIONAL_OPERATOR:
@@ -2814,26 +2814,26 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
                     switch (alt15) {
                         case 1 :
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:4: ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:4: ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) )
                             {
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:4: ( (lv_operator_1_0= RULE_RELATIONAL_OPERATOR ) )
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1133:1: (lv_operator_1_0= RULE_RELATIONAL_OPERATOR )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1132:4: ( (lv_operators_1_0= RULE_RELATIONAL_OPERATOR ) )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1133:1: (lv_operators_1_0= RULE_RELATIONAL_OPERATOR )
                             {
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1133:1: (lv_operator_1_0= RULE_RELATIONAL_OPERATOR )
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1134:3: lv_operator_1_0= RULE_RELATIONAL_OPERATOR
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1133:1: (lv_operators_1_0= RULE_RELATIONAL_OPERATOR )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1134:3: lv_operators_1_0= RULE_RELATIONAL_OPERATOR
                             {
-                            lv_operator_1_0=(Token)match(input,RULE_RELATIONAL_OPERATOR,FOLLOW_RULE_RELATIONAL_OPERATOR_in_ruleexpression2166); 
+                            lv_operators_1_0=(Token)match(input,RULE_RELATIONAL_OPERATOR,FOLLOW_RULE_RELATIONAL_OPERATOR_in_ruleexpression2166); 
 
-                            			newLeafNode(lv_operator_1_0, grammarAccess.getExpressionAccess().getOperatorRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0()); 
+                            			newLeafNode(lv_operators_1_0, grammarAccess.getExpressionAccess().getOperatorsRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0()); 
                             		
 
                             	        if (current==null) {
                             	            current = createModelElement(grammarAccess.getExpressionRule());
                             	        }
-                                   		setWithLastConsumed(
+                                   		addWithLastConsumed(
                                    			current, 
-                                   			"operator",
-                                    		lv_operator_1_0, 
+                                   			"operators",
+                                    		lv_operators_1_0, 
                                     		"RELATIONAL_OPERATOR");
                             	    
 
@@ -2846,23 +2846,23 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1151:6: ( (lv_operator_2_0= In ) )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1151:6: ( (lv_operators_2_0= In ) )
                             {
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1151:6: ( (lv_operator_2_0= In ) )
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1152:1: (lv_operator_2_0= In )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1151:6: ( (lv_operators_2_0= In ) )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1152:1: (lv_operators_2_0= In )
                             {
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1152:1: (lv_operator_2_0= In )
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1153:3: lv_operator_2_0= In
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1152:1: (lv_operators_2_0= In )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1153:3: lv_operators_2_0= In
                             {
-                            lv_operator_2_0=(Token)match(input,In,FOLLOW_In_in_ruleexpression2196); 
+                            lv_operators_2_0=(Token)match(input,In,FOLLOW_In_in_ruleexpression2196); 
 
-                                    newLeafNode(lv_operator_2_0, grammarAccess.getExpressionAccess().getOperatorInKeyword_1_0_1_0());
+                                    newLeafNode(lv_operators_2_0, grammarAccess.getExpressionAccess().getOperatorsInKeyword_1_0_1_0());
                                 
 
                             	        if (current==null) {
                             	            current = createModelElement(grammarAccess.getExpressionRule());
                             	        }
-                                   		setWithLastConsumed(current, "operator", lv_operator_2_0, "in");
+                                   		addWithLastConsumed(current, "operators", lv_operators_2_0, "in");
                             	    
 
                             }
@@ -2874,23 +2874,23 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 3 :
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1168:6: ( (lv_operator_3_0= EqualsSign ) )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1168:6: ( (lv_operators_3_0= EqualsSign ) )
                             {
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1168:6: ( (lv_operator_3_0= EqualsSign ) )
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1169:1: (lv_operator_3_0= EqualsSign )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1168:6: ( (lv_operators_3_0= EqualsSign ) )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1169:1: (lv_operators_3_0= EqualsSign )
                             {
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1169:1: (lv_operator_3_0= EqualsSign )
-                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1170:3: lv_operator_3_0= EqualsSign
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1169:1: (lv_operators_3_0= EqualsSign )
+                            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1170:3: lv_operators_3_0= EqualsSign
                             {
-                            lv_operator_3_0=(Token)match(input,EqualsSign,FOLLOW_EqualsSign_in_ruleexpression2232); 
+                            lv_operators_3_0=(Token)match(input,EqualsSign,FOLLOW_EqualsSign_in_ruleexpression2232); 
 
-                                    newLeafNode(lv_operator_3_0, grammarAccess.getExpressionAccess().getOperatorEqualsSignKeyword_1_0_2_0());
+                                    newLeafNode(lv_operators_3_0, grammarAccess.getExpressionAccess().getOperatorsEqualsSignKeyword_1_0_2_0());
                                 
 
                             	        if (current==null) {
                             	            current = createModelElement(grammarAccess.getExpressionRule());
                             	        }
-                                   		setWithLastConsumed(current, "operator", lv_operator_3_0, "=");
+                                   		addWithLastConsumed(current, "operators", lv_operators_3_0, "=");
                             	    
 
                             }
@@ -2998,30 +2998,30 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulesimple_expression"
-    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1219:1: rulesimple_expression returns [EObject current=null] : ( ( (lv_operators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_numbers_5_0= rulesigned_number ) ) )* ) ;
+    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1219:1: rulesimple_expression returns [EObject current=null] : ( ( (lv_prefixOperators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_terms_5_0= rulesigned_number ) ) )* ) ;
     public final EObject rulesimple_expression() throws RecognitionException {
         EObject current = null;
 
-        Token lv_operators_0_0=null;
+        Token lv_prefixOperators_0_0=null;
         Token lv_operators_2_0=null;
         Token lv_operators_3_0=null;
         EObject lv_terms_1_0 = null;
 
         EObject lv_terms_4_0 = null;
 
-        EObject lv_numbers_5_0 = null;
+        EObject lv_terms_5_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1222:28: ( ( ( (lv_operators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_numbers_5_0= rulesigned_number ) ) )* ) )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1223:1: ( ( (lv_operators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_numbers_5_0= rulesigned_number ) ) )* )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1222:28: ( ( ( (lv_prefixOperators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_terms_5_0= rulesigned_number ) ) )* ) )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1223:1: ( ( (lv_prefixOperators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_terms_5_0= rulesigned_number ) ) )* )
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1223:1: ( ( (lv_operators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_numbers_5_0= rulesigned_number ) ) )* )
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1223:2: ( (lv_operators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_numbers_5_0= rulesigned_number ) ) )*
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1223:1: ( ( (lv_prefixOperators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_terms_5_0= rulesigned_number ) ) )* )
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1223:2: ( (lv_prefixOperators_0_0= RULE_ADDITION_OPERATOR ) )? ( (lv_terms_1_0= ruleterm ) ) ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_terms_5_0= rulesigned_number ) ) )*
             {
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1223:2: ( (lv_operators_0_0= RULE_ADDITION_OPERATOR ) )?
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1223:2: ( (lv_prefixOperators_0_0= RULE_ADDITION_OPERATOR ) )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -3030,14 +3030,14 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             }
             switch (alt17) {
                 case 1 :
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1224:1: (lv_operators_0_0= RULE_ADDITION_OPERATOR )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1224:1: (lv_prefixOperators_0_0= RULE_ADDITION_OPERATOR )
                     {
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1224:1: (lv_operators_0_0= RULE_ADDITION_OPERATOR )
-                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1225:3: lv_operators_0_0= RULE_ADDITION_OPERATOR
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1224:1: (lv_prefixOperators_0_0= RULE_ADDITION_OPERATOR )
+                    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1225:3: lv_prefixOperators_0_0= RULE_ADDITION_OPERATOR
                     {
-                    lv_operators_0_0=(Token)match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rulesimple_expression2354); 
+                    lv_prefixOperators_0_0=(Token)match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rulesimple_expression2354); 
 
-                    			newLeafNode(lv_operators_0_0, grammarAccess.getSimple_expressionAccess().getOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); 
+                    			newLeafNode(lv_prefixOperators_0_0, grammarAccess.getSimple_expressionAccess().getPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); 
                     		
 
                     	        if (current==null) {
@@ -3045,8 +3045,8 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
                     	        }
                            		addWithLastConsumed(
                            			current, 
-                           			"operators",
-                            		lv_operators_0_0, 
+                           			"prefixOperators",
+                            		lv_prefixOperators_0_0, 
                             		"ADDITION_OPERATOR");
                     	    
 
@@ -3089,7 +3089,7 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1259:2: ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_numbers_5_0= rulesigned_number ) ) )*
+            // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1259:2: ( ( ( ( (lv_operators_2_0= RULE_ADDITION_OPERATOR ) )+ | ( (lv_operators_3_0= Or ) ) ) ( (lv_terms_4_0= ruleterm ) ) ) | ( (lv_terms_5_0= rulesigned_number ) ) )*
             loop20:
             do {
                 int alt20=3;
@@ -3251,19 +3251,19 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1313:6: ( (lv_numbers_5_0= rulesigned_number ) )
+            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1313:6: ( (lv_terms_5_0= rulesigned_number ) )
             	    {
-            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1313:6: ( (lv_numbers_5_0= rulesigned_number ) )
-            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1314:1: (lv_numbers_5_0= rulesigned_number )
+            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1313:6: ( (lv_terms_5_0= rulesigned_number ) )
+            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1314:1: (lv_terms_5_0= rulesigned_number )
             	    {
-            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1314:1: (lv_numbers_5_0= rulesigned_number )
-            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1315:3: lv_numbers_5_0= rulesigned_number
+            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1314:1: (lv_terms_5_0= rulesigned_number )
+            	    // ../org.xtext.example.Pascal/src-gen/org/xtext/example/pascal/parser/antlr/internal/InternalPascalParser.g:1315:3: lv_terms_5_0= rulesigned_number
             	    {
             	     
-            	    	        newCompositeNode(grammarAccess.getSimple_expressionAccess().getNumbersSigned_numberParserRuleCall_2_1_0()); 
+            	    	        newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermsSigned_numberParserRuleCall_2_1_0()); 
             	    	    
             	    pushFollow(FOLLOW_rulesigned_number_in_rulesimple_expression2493);
-            	    lv_numbers_5_0=rulesigned_number();
+            	    lv_terms_5_0=rulesigned_number();
 
             	    state._fsp--;
 
@@ -3273,8 +3273,8 @@ public class InternalPascalParser extends AbstractInternalAntlrParser {
             	    	        }
             	           		add(
             	           			current, 
-            	           			"numbers",
-            	            		lv_numbers_5_0, 
+            	           			"terms",
+            	            		lv_terms_5_0, 
             	            		"signed_number");
             	    	        afterParserOrEnumRuleCall();
             	    	    

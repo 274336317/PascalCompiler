@@ -801,7 +801,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (expressions+=simple_expression ((operator=RELATIONAL_OPERATOR | operator='in' | operator='=') expressions+=simple_expression)?)
+	 *     (expressions+=simple_expression ((operators+=RELATIONAL_OPERATOR | operators+='in' | operators+='=') expressions+=simple_expression)?)
 	 */
 	protected void sequence_expression(EObject context, expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1222,7 +1222,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (operators+=ADDITION_OPERATOR? terms+=term (((operators+=ADDITION_OPERATOR+ | operators+='or') terms+=term) | numbers+=signed_number)*)
+	 *     (prefixOperators+=ADDITION_OPERATOR? terms+=term (((operators+=ADDITION_OPERATOR+ | operators+='or') terms+=term) | terms+=signed_number)*)
 	 */
 	protected void sequence_simple_expression(EObject context, simple_expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

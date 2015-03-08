@@ -10,13 +10,16 @@ import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import org.xtext.example.pascal.pascal.any_number
 import org.xtext.example.pascal.pascal.block
 import org.xtext.example.pascal.pascal.expression
 import org.xtext.example.pascal.pascal.factor
 import org.xtext.example.pascal.pascal.function_designator
 import org.xtext.example.pascal.pascal.program
+import org.xtext.example.pascal.pascal.simple_expression
 import org.xtext.example.pascal.pascal.statement_part
 import org.xtext.example.pascal.pascal.term
+import org.xtext.example.pascal.pascal.variable
 import org.xtext.example.pascal.validation.ComposedType
 import org.xtext.example.pascal.validation.ComposedTypeKind
 import org.xtext.example.pascal.validation.ElementType
@@ -33,17 +36,17 @@ import org.xtext.example.pascal.validation.Variable
 class PascalGenerator implements IGenerator {
 	
 	private HashMap<String, String> stringTable = new HashMap<String, String>();
-	private int memoryCount;
+	private int labelCount;
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for (e: resource.allContents.toIterable.filter(program)) {
+			labelCount = 0;
 			fsa.generateFile(e.heading.name + ".asm", e.compile);
 		}
 	}
 
 	def createStringTable(program e) {
 		stringTable.clear();
-		memoryCount = 0;
 		for (s : e.eAllContents.toIterable.filter(factor)) {
 			if (s.string != null) {
 				if (!stringTable.containsKey(s.string)) {
@@ -59,12 +62,6 @@ class PascalGenerator implements IGenerator {
 		//memoryCount.put(b, memoryInit);
 		createStringTable(e);
 		return map.get(b);
-	}
-	
-	def intToHex(int x) {
-		var i = memoryCount;
-		memoryCount += x;
-		return String.format("0x%x", i);
 	}
 	
 	def getNumberOfBytes(Type t) {
@@ -102,6 +99,18 @@ class PascalGenerator implements IGenerator {
 		var artefacts = PascalValidator.artefacts.get(e.heading.name);
 		var map = artefacts.get("calculatedTypes") as Map<EObject, Type>;
 		return map.get(expr); 
+	}
+	
+	def Type getType(program e, block b, variable v) {
+		var artefacts = PascalValidator.artefacts.get(e.heading.name);
+		var map = artefacts.get("variables") as Map<block, Set<Variable>>;
+		var variables = map.get(b);
+		for (Variable myVar : variables) {
+			if (myVar.name.toLowerCase.equals(v.name.toLowerCase)) {
+				return myVar.varType;
+			}	
+		}
+		return new Type("nil");
 	}
 	
 	def printString(program e) '''
@@ -241,10 +250,10 @@ class PascalGenerator implements IGenerator {
 		«ENDIF»
 	'''
 	
-	def computeFunction(program e, function_designator function) '''
+	def computeFunction(program e, block b, function_designator function) '''
 	'''
 	
-	def CharSequence computeFactor(program e, factor f) '''
+	def CharSequence computeFactor(program e, block b, factor f) '''
 		«IF f.string != null»
 			lea eax, [«stringTable.get(f.string)»]
 			mov ebx, «stringTable.get(f.string)»_SIZE
@@ -261,23 +270,26 @@ class PascalGenerator implements IGenerator {
 			«ENDIF»
 		«ELSEIF f.variable != null»
 			mov eax, «f.variable.name»
+			«IF e.getType(b, f.variable).realType.toLowerCase.equals("array of char")»
+				mov ebx, «f.variable.name»_SIZE
+			«ENDIF»
 		«ELSEIF f.function != null»
-			«e.computeFunction(f.function)»
+			«e.computeFunction(b, f.function)»
 		«ELSEIF f.expression != null»
-			«e.computeExpression(f.expression)»
+			«e.computeExpression(b, f.expression)»
 		«ELSEIF f.not != null»
-			«e.computeFactor(f.not)»
+			«e.computeFactor(b, f.not)»
 			xor eax, 1 ; Logical not
 		«ENDIF»
 	'''
 	
-	def computeTerm(program e, term t) '''
-		«e.computeFactor(t.factors.get(0))»
+	def computeTerm(program e, block b, term t) '''
+		«e.computeFactor(b, t.factors.get(0))»
 		«IF t.operators != null»
 			«var int index = 1»
 			«FOR operator : t.operators»
 				mov ecx, eax
-				«e.computeFactor(t.factors.get(index++))»
+				«e.computeFactor(b, t.factors.get(index++))»
 				«IF operator.toLowerCase.equals("and")»
 					and ecx, eax ; And
 				«ELSEIF operator.toLowerCase.equals("mod")»
@@ -287,14 +299,14 @@ class PascalGenerator implements IGenerator {
 					cdq
 					idiv ecx
 					mov ecx, edx
-				«ELSEIF operator.toLowerCase.equals("div") || operator.toLowerCase.equals("/")»
+				«ELSEIF operator.toLowerCase.equals("div") || operator.equals("/")»
 					mov edx, eax ; Divide
 					mov eax, ecx
 					mov ecx, edx
 					cdq
 					idiv ecx
 					mov ecx, eax
-				«ELSEIF operator.toLowerCase.equals("*")»
+				«ELSEIF operator.equals("*")»
 					mul ecx ; Multiply
 					mov ecx, eax
 				«ENDIF»
@@ -303,17 +315,79 @@ class PascalGenerator implements IGenerator {
 		«ENDIF»
 	'''
 	
-	def computeExpression(program e, expression exp) '''
-		«FOR expr : exp.expressions»
-			«FOR t : expr.terms»
-				«e.computeTerm(t)»
+	def computeSimpleExpression(program e, block b, simple_expression exp) '''
+		«e.computeTerm(b, exp.terms.get(0) as term)»
+		«IF exp.prefixOperators != null»
+			«FOR operator : exp.prefixOperators»
+				«IF operator.equals("-")»
+					neg aex
+				«ENDIF» 
 			«ENDFOR»
-		«ENDFOR»
+		«ENDIF»
+		«IF exp.operators != null»
+			«var int index = 1»
+			«FOR operator : exp.operators»
+				mov ecx, eax
+				«IF exp.terms.get(index) instanceof term»
+					«e.computeTerm(b, exp.terms.get(index++) as term)»
+				«ELSE»
+					mov eax, «(exp.terms.get(index++) as any_number).integer»
+				«ENDIF»
+				«IF operator.equals("or")»
+					or ecx, eax ; Logical or
+				«ELSEIF operator.equals("+")»
+					add ecx, eax ; Sum
+				«ELSEIF operator.equals("-")»
+					sub ecx, eax ; Sub
+				«ENDIF»
+				mov eax, ecx
+			«ENDFOR»
+		«ENDIF»
 	'''
 	
-	def print(program e, function_designator function) '''
+	def computeExpression(program e, block b, expression exp) '''
+		push ecx
+		«e.computeSimpleExpression(b, exp.expressions.get(0))»
+		«IF exp.operators != null»
+			«var int index = 1»
+			«FOR operator : exp.operators»
+				mov ecx, eax
+				«e.computeSimpleExpression(b, exp.expressions.get(index++))»
+				cmp ecx, eax
+				«IF operator.equals("=")»
+					jeq .set_to_true«labelCount»
+					jmp .set_to_false«labelCount»
+				«ELSEIF operator.equals(">")»
+					jg .set_to_true«labelCount»
+					jmp .set_to_false«labelCount»
+				«ELSEIF operator.equals(">=")»
+					jge .set_to_true«labelCount»
+					jmp .set_to_false«labelCount»
+				«ELSEIF operator.equals("<")»
+					jl .set_to_true«labelCount»
+					jmp .set_to_false«labelCount»
+				«ELSEIF operator.equals("<=")»
+					jle .set_to_true«labelCount»
+					jmp .set_to_false«labelCount»
+				«ELSEIF operator.equals("<>")»
+					jne .set_to_true«labelCount»
+					jmp .set_to_false«labelCount»
+				«ENDIF»
+				.set_to_true«labelCount»:
+					mov ecx, 1
+					jmp .out«labelCount»
+				.set_to_false«labelCount»:
+					mov ecx, 0
+				.out«labelCount++»:
+					mov eax, ecx
+			«ENDFOR»
+		«ENDIF»
+		pop ecx
+	'''
+	
+	def print(program e, block b, function_designator function) '''
 		«IF function.expressions != null»
-			«e.computeExpression(function.expressions.expressions.get(0))»
+			«e.computeExpression(b, function.expressions.expressions.get(0))»
 			«IF TypeInferer.getTypeWeight(e.getType(function.expressions.expressions.get(0))) == 4»
 				call _print_float
 			«ELSEIF TypeInferer.getTypeWeight(e.getType(function.expressions.expressions.get(0))) >= 0»
@@ -344,10 +418,10 @@ class PascalGenerator implements IGenerator {
 				«ELSEIF s.simple.function != null»
 					«IF s.simple.function.name.equals("write")»
 						; Call write
-						«e.print(s.simple.function)»
+						«e.print(b, s.simple.function)»
 					«ELSEIF s.simple.function.name.equals("writeln")»
 						; Call writeln
-						«e.print(s.simple.function)»
+						«e.print(b, s.simple.function)»
 						«e.print("__NEW_LINE")»
 					«ENDIF»
 				«ENDIF»

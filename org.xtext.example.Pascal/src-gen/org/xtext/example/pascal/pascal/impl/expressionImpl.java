@@ -4,7 +4,6 @@ package org.xtext.example.pascal.pascal.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,9 +11,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -30,7 +29,7 @@ import org.xtext.example.pascal.pascal.simple_expression;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.expressionImpl#getExpressions <em>Expressions</em>}</li>
- *   <li>{@link org.xtext.example.pascal.pascal.impl.expressionImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.expressionImpl#getOperators <em>Operators</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,24 +48,14 @@ public class expressionImpl extends MinimalEObjectImpl.Container implements expr
   protected EList<simple_expression> expressions;
 
   /**
-   * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+   * The cached value of the '{@link #getOperators() <em>Operators</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getOperator()
+   * @see #getOperators()
    * @generated
    * @ordered
    */
-  protected static final String OPERATOR_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOperator()
-   * @generated
-   * @ordered
-   */
-  protected String operator = OPERATOR_EDEFAULT;
+  protected EList<String> operators;
 
   /**
    * <!-- begin-user-doc -->
@@ -108,22 +97,13 @@ public class expressionImpl extends MinimalEObjectImpl.Container implements expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getOperator()
+  public EList<String> getOperators()
   {
-    return operator;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setOperator(String newOperator)
-  {
-    String oldOperator = operator;
-    operator = newOperator;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.EXPRESSION__OPERATOR, oldOperator, operator));
+    if (operators == null)
+    {
+      operators = new EDataTypeEList<String>(String.class, this, PascalPackage.EXPRESSION__OPERATORS);
+    }
+    return operators;
   }
 
   /**
@@ -154,8 +134,8 @@ public class expressionImpl extends MinimalEObjectImpl.Container implements expr
     {
       case PascalPackage.EXPRESSION__EXPRESSIONS:
         return getExpressions();
-      case PascalPackage.EXPRESSION__OPERATOR:
-        return getOperator();
+      case PascalPackage.EXPRESSION__OPERATORS:
+        return getOperators();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -175,8 +155,9 @@ public class expressionImpl extends MinimalEObjectImpl.Container implements expr
         getExpressions().clear();
         getExpressions().addAll((Collection<? extends simple_expression>)newValue);
         return;
-      case PascalPackage.EXPRESSION__OPERATOR:
-        setOperator((String)newValue);
+      case PascalPackage.EXPRESSION__OPERATORS:
+        getOperators().clear();
+        getOperators().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -195,8 +176,8 @@ public class expressionImpl extends MinimalEObjectImpl.Container implements expr
       case PascalPackage.EXPRESSION__EXPRESSIONS:
         getExpressions().clear();
         return;
-      case PascalPackage.EXPRESSION__OPERATOR:
-        setOperator(OPERATOR_EDEFAULT);
+      case PascalPackage.EXPRESSION__OPERATORS:
+        getOperators().clear();
         return;
     }
     super.eUnset(featureID);
@@ -214,8 +195,8 @@ public class expressionImpl extends MinimalEObjectImpl.Container implements expr
     {
       case PascalPackage.EXPRESSION__EXPRESSIONS:
         return expressions != null && !expressions.isEmpty();
-      case PascalPackage.EXPRESSION__OPERATOR:
-        return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
+      case PascalPackage.EXPRESSION__OPERATORS:
+        return operators != null && !operators.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -231,8 +212,8 @@ public class expressionImpl extends MinimalEObjectImpl.Container implements expr
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (operator: ");
-    result.append(operator);
+    result.append(" (operators: ");
+    result.append(operators);
     result.append(')');
     return result.toString();
   }

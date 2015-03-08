@@ -13,6 +13,7 @@ import org.eclipse.xtext.validation.Check
 import org.xtext.example.pascal.pascal.PascalPackage
 import org.xtext.example.pascal.pascal.abstraction_declaration
 import org.xtext.example.pascal.pascal.abstraction_heading
+import org.xtext.example.pascal.pascal.any_number
 import org.xtext.example.pascal.pascal.block
 import org.xtext.example.pascal.pascal.case_limb
 import org.xtext.example.pascal.pascal.constant
@@ -293,9 +294,19 @@ class PascalValidator extends AbstractPascalValidator {
 	
 	def Type getType(block b, simple_expression expr) {
 		var Type greatestType = null;
-		for (term t : expr.terms) {
-			var type = getType(b, t);
-			greatestType = TypeInferer.greater(type, greatestType);
+		for (EObject obj : expr.terms) {
+			if (obj instanceof term) {
+				var t = obj as term;
+				var type = getType(b, t);
+				greatestType = TypeInferer.greater(type, greatestType);
+			} else {
+				var n = obj as any_number;
+				if (n.integer != null) {
+					greatestType = TypeInferer.greater(new Type("integer"), greatestType);
+				} else {
+					greatestType = TypeInferer.greater(new Type("real"), greatestType);
+				}
+			}
 		}
 		calculatedTypes.put(expr, greatestType);
 		return greatestType;
@@ -303,7 +314,7 @@ class PascalValidator extends AbstractPascalValidator {
 	
 	def Type getType(block b, expression expr) {
 		var t = new Type("nil");
-		if (expr.operator != null) {
+		if (expr.operators != null && !expr.operators.empty) {
 			t = new Type("boolean");
 		} else {
 			var Type greatestType = null;
@@ -610,7 +621,7 @@ class PascalValidator extends AbstractPascalValidator {
 		var isNumeric = false;
 		if (t.operators != null) {
 			for (String op : t.operators) {
-				if (op.equals("and")) {
+				if (op.toLowerCase.equals("and")) {
 					isBoolean = true;
 				} else if (!isBoolean) {
 					isNumeric = true;
@@ -643,9 +654,12 @@ class PascalValidator extends AbstractPascalValidator {
 		for (simple_expression s : expr.expressions) {
 			var isBoolean = false;
 			var isNumeric = false;
+			if (s.prefixOperators != null && !s.prefixOperators.empty) {
+				isNumeric = true;
+			}
 			if (s.operators != null) {
 				for (String op : s.operators) {
-					if (op.equals("or")) {
+					if (op.toLowerCase.equals("or")) {
 						isBoolean = true;
 					} else if (!isBoolean) {
 						isNumeric = true;
@@ -655,22 +669,33 @@ class PascalValidator extends AbstractPascalValidator {
 					} 
 				}
 			}
-			removeError(s, ErrorType.INVALID_OPERATOR);
-			for (term t : s.terms) {
-				if (isBoolean) {
-					if (!getType(b, t).realType.toLowerCase.equals("boolean")) {
-						insertError(s, "Cannot convert " + getType(b, t) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);		
-					} else {
-						removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
-					}
-				} else if (isNumeric) {
-					if (TypeInferer.getTypeWeight(getType(b, t)) == -1) {
-						insertError(s, "Cannot convert " + getType(b, t) + " to numeric.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
+			if (isNumeric && isBoolean) {
+				insertError(s, "Only numeric types are allowed in this expression.", ErrorType.INVALID_OPERATOR, PascalPackage.Literals.SIMPLE_EXPRESSION__OPERATORS);	
+			} else {
+				removeError(s, ErrorType.INVALID_OPERATOR);
+				for (EObject obj : s.terms) {
+					if (obj instanceof term) {
+						var t = obj as term;
+						if (isBoolean) {
+							if (!getType(b, t).realType.toLowerCase.equals("boolean")) {
+								insertError(s, "Cannot convert " + getType(b, t) + " to boolean.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);		
+							} else {
+								removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
+							}
+						} else if (isNumeric) {
+							if (TypeInferer.getTypeWeight(getType(b, t)) == -1) {
+								insertError(s, "Cannot convert " + getType(b, t) + " to numeric.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
+							} else {
+								removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
+							}
+						}
+						checkTerm(b, t);
+					} else if (!isNumeric) {
+						insertError(s, "Only numeric types are allowed.", ErrorType.TYPE_CONVERSION_ERROR, PascalPackage.Literals.SIMPLE_EXPRESSION__TERMS);
 					} else {
 						removeError(s, ErrorType.TYPE_CONVERSION_ERROR);
 					}
 				}
-				checkTerm(b, t);
 			}
 		}
 	}

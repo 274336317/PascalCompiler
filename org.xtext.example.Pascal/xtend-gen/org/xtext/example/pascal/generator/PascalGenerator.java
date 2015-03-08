@@ -49,24 +49,26 @@ import org.xtext.example.pascal.validation.Variable;
 public class PascalGenerator implements IGenerator {
   private HashMap<String, String> stringTable = new HashMap<String, String>();
   
-  private int memoryCount;
+  private int labelCount;
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
     Iterable<program> _filter = Iterables.<program>filter(_iterable, program.class);
     for (final program e : _filter) {
-      program_heading_block _heading = e.getHeading();
-      String _name = _heading.getName();
-      String _plus = (_name + ".asm");
-      CharSequence _compile = this.compile(e);
-      fsa.generateFile(_plus, _compile);
+      {
+        this.labelCount = 0;
+        program_heading_block _heading = e.getHeading();
+        String _name = _heading.getName();
+        String _plus = (_name + ".asm");
+        CharSequence _compile = this.compile(e);
+        fsa.generateFile(_plus, _compile);
+      }
     }
   }
   
   public void createStringTable(final program e) {
     this.stringTable.clear();
-    this.memoryCount = 0;
     TreeIterator<EObject> _eAllContents = e.eAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_eAllContents);
     Iterable<factor> _filter = Iterables.<factor>filter(_iterable, factor.class);
@@ -95,13 +97,6 @@ public class PascalGenerator implements IGenerator {
     Map<block, Set<Variable>> map = ((Map<block, Set<Variable>>) _get);
     this.createStringTable(e);
     return map.get(b);
-  }
-  
-  public String intToHex(final int x) {
-    int i = this.memoryCount;
-    int _memoryCount = this.memoryCount;
-    this.memoryCount = (_memoryCount + x);
-    return String.format("0x%x", Integer.valueOf(i));
   }
   
   public int getNumberOfBytes(final Type t) {
@@ -178,6 +173,26 @@ public class PascalGenerator implements IGenerator {
     Object _get = artefacts.get("calculatedTypes");
     Map<EObject, Type> map = ((Map<EObject, Type>) _get);
     return map.get(expr);
+  }
+  
+  public Type getType(final program e, final block b, final variable v) {
+    program_heading_block _heading = e.getHeading();
+    String _name = _heading.getName();
+    Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
+    Object _get = artefacts.get("variables");
+    Map<block, Set<Variable>> map = ((Map<block, Set<Variable>>) _get);
+    Set<Variable> variables = map.get(b);
+    for (final Variable myVar : variables) {
+      String _name_1 = myVar.getName();
+      String _lowerCase = _name_1.toLowerCase();
+      String _name_2 = v.getName();
+      String _lowerCase_1 = _name_2.toLowerCase();
+      boolean _equals = _lowerCase.equals(_lowerCase_1);
+      if (_equals) {
+        return myVar.getVarType();
+      }
+    }
+    return new Type("nil");
   }
   
   public CharSequence printString(final program e) {
@@ -487,12 +502,12 @@ public class PascalGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence computeFunction(final program e, final function_designator function) {
+  public CharSequence computeFunction(final program e, final block b, final function_designator function) {
     StringConcatenation _builder = new StringConcatenation();
     return _builder;
   }
   
-  public CharSequence computeFactor(final program e, final factor f) {
+  public CharSequence computeFactor(final program e, final block b, final factor f) {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _string = f.getString();
@@ -554,12 +569,27 @@ public class PascalGenerator implements IGenerator {
               String _name = _variable_1.getName();
               _builder.append(_name, "");
               _builder.newLineIfNotEmpty();
+              {
+                variable _variable_2 = f.getVariable();
+                Type _type = this.getType(e, b, _variable_2);
+                String _realType = _type.getRealType();
+                String _lowerCase_1 = _realType.toLowerCase();
+                boolean _equals_1 = _lowerCase_1.equals("array of char");
+                if (_equals_1) {
+                  _builder.append("mov ebx, ");
+                  variable _variable_3 = f.getVariable();
+                  String _name_1 = _variable_3.getName();
+                  _builder.append(_name_1, "");
+                  _builder.append("_SIZE");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
             } else {
               function_designator _function = f.getFunction();
               boolean _notEquals_5 = (!Objects.equal(_function, null));
               if (_notEquals_5) {
                 function_designator _function_1 = f.getFunction();
-                CharSequence _computeFunction = this.computeFunction(e, _function_1);
+                CharSequence _computeFunction = this.computeFunction(e, b, _function_1);
                 _builder.append(_computeFunction, "");
                 _builder.newLineIfNotEmpty();
               } else {
@@ -567,7 +597,7 @@ public class PascalGenerator implements IGenerator {
                 boolean _notEquals_6 = (!Objects.equal(_expression, null));
                 if (_notEquals_6) {
                   expression _expression_1 = f.getExpression();
-                  CharSequence _computeExpression = this.computeExpression(e, _expression_1);
+                  CharSequence _computeExpression = this.computeExpression(e, b, _expression_1);
                   _builder.append(_computeExpression, "");
                   _builder.newLineIfNotEmpty();
                 } else {
@@ -575,7 +605,7 @@ public class PascalGenerator implements IGenerator {
                   boolean _notEquals_7 = (!Objects.equal(_not, null));
                   if (_notEquals_7) {
                     factor _not_1 = f.getNot();
-                    CharSequence _computeFactor = this.computeFactor(e, _not_1);
+                    CharSequence _computeFactor = this.computeFactor(e, b, _not_1);
                     _builder.append(_computeFactor, "");
                     _builder.newLineIfNotEmpty();
                     _builder.append("xor eax, 1 ; Logical not");
@@ -591,11 +621,11 @@ public class PascalGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence computeTerm(final program e, final term t) {
+  public CharSequence computeTerm(final program e, final block b, final term t) {
     StringConcatenation _builder = new StringConcatenation();
     EList<factor> _factors = t.getFactors();
     factor _get = _factors.get(0);
-    CharSequence _computeFactor = this.computeFactor(e, _get);
+    CharSequence _computeFactor = this.computeFactor(e, b, _get);
     _builder.append(_computeFactor, "");
     _builder.newLineIfNotEmpty();
     {
@@ -612,7 +642,7 @@ public class PascalGenerator implements IGenerator {
             EList<factor> _factors_1 = t.getFactors();
             int _plusPlus = index++;
             factor _get_1 = _factors_1.get(_plusPlus);
-            CharSequence _computeFactor_1 = this.computeFactor(e, _get_1);
+            CharSequence _computeFactor_1 = this.computeFactor(e, b, _get_1);
             _builder.append(_computeFactor_1, "");
             _builder.newLineIfNotEmpty();
             {
@@ -644,8 +674,7 @@ public class PascalGenerator implements IGenerator {
                   if (_equals_2) {
                     _or = true;
                   } else {
-                    String _lowerCase_3 = operator.toLowerCase();
-                    boolean _equals_3 = _lowerCase_3.equals("/");
+                    boolean _equals_3 = operator.equals("/");
                     _or = _equals_3;
                   }
                   if (_or) {
@@ -662,8 +691,7 @@ public class PascalGenerator implements IGenerator {
                     _builder.append("mov ecx, eax");
                     _builder.newLine();
                   } else {
-                    String _lowerCase_4 = operator.toLowerCase();
-                    boolean _equals_4 = _lowerCase_4.equals("*");
+                    boolean _equals_4 = operator.equals("*");
                     if (_equals_4) {
                       _builder.append("mul ecx ; Multiply");
                       _builder.newLine();
@@ -683,17 +711,83 @@ public class PascalGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence computeExpression(final program e, final expression exp) {
+  public CharSequence computeSimpleExpression(final program e, final block b, final simple_expression exp) {
     StringConcatenation _builder = new StringConcatenation();
+    EList<EObject> _terms = exp.getTerms();
+    EObject _get = _terms.get(0);
+    CharSequence _computeTerm = this.computeTerm(e, b, ((term) _get));
+    _builder.append(_computeTerm, "");
+    _builder.newLineIfNotEmpty();
     {
-      EList<simple_expression> _expressions = exp.getExpressions();
-      for(final simple_expression expr : _expressions) {
+      EList<String> _prefixOperators = exp.getPrefixOperators();
+      boolean _notEquals = (!Objects.equal(_prefixOperators, null));
+      if (_notEquals) {
         {
-          EList<term> _terms = expr.getTerms();
-          for(final term t : _terms) {
-            CharSequence _computeTerm = this.computeTerm(e, t);
-            _builder.append(_computeTerm, "");
-            _builder.newLineIfNotEmpty();
+          EList<String> _prefixOperators_1 = exp.getPrefixOperators();
+          for(final String operator : _prefixOperators_1) {
+            {
+              boolean _equals = operator.equals("-");
+              if (_equals) {
+                _builder.append("neg aex");
+                _builder.newLine();
+              }
+            }
+          }
+        }
+      }
+    }
+    {
+      EList<String> _operators = exp.getOperators();
+      boolean _notEquals_1 = (!Objects.equal(_operators, null));
+      if (_notEquals_1) {
+        int index = 1;
+        _builder.newLineIfNotEmpty();
+        {
+          EList<String> _operators_1 = exp.getOperators();
+          for(final String operator_1 : _operators_1) {
+            _builder.append("mov ecx, eax");
+            _builder.newLine();
+            {
+              EList<EObject> _terms_1 = exp.getTerms();
+              EObject _get_1 = _terms_1.get(index);
+              if ((_get_1 instanceof term)) {
+                EList<EObject> _terms_2 = exp.getTerms();
+                int _plusPlus = index++;
+                EObject _get_2 = _terms_2.get(_plusPlus);
+                CharSequence _computeTerm_1 = this.computeTerm(e, b, ((term) _get_2));
+                _builder.append(_computeTerm_1, "");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("mov eax, ");
+                EList<EObject> _terms_3 = exp.getTerms();
+                int _plusPlus_1 = index++;
+                EObject _get_3 = _terms_3.get(_plusPlus_1);
+                String _integer = ((any_number) _get_3).getInteger();
+                _builder.append(_integer, "");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+            {
+              boolean _equals_1 = operator_1.equals("or");
+              if (_equals_1) {
+                _builder.append("or ecx, eax ; Logical or");
+                _builder.newLine();
+              } else {
+                boolean _equals_2 = operator_1.equals("+");
+                if (_equals_2) {
+                  _builder.append("add ecx, eax ; Sum");
+                  _builder.newLine();
+                } else {
+                  boolean _equals_3 = operator_1.equals("-");
+                  if (_equals_3) {
+                    _builder.append("sub ecx, eax ; Sub");
+                    _builder.newLine();
+                  }
+                }
+              }
+            }
+            _builder.append("mov eax, ecx");
+            _builder.newLine();
           }
         }
       }
@@ -701,7 +795,131 @@ public class PascalGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence print(final program e, final function_designator function) {
+  public CharSequence computeExpression(final program e, final block b, final expression exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("push ecx");
+    _builder.newLine();
+    EList<simple_expression> _expressions = exp.getExpressions();
+    simple_expression _get = _expressions.get(0);
+    CharSequence _computeSimpleExpression = this.computeSimpleExpression(e, b, _get);
+    _builder.append(_computeSimpleExpression, "");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<String> _operators = exp.getOperators();
+      boolean _notEquals = (!Objects.equal(_operators, null));
+      if (_notEquals) {
+        int index = 1;
+        _builder.newLineIfNotEmpty();
+        {
+          EList<String> _operators_1 = exp.getOperators();
+          for(final String operator : _operators_1) {
+            _builder.append("mov ecx, eax");
+            _builder.newLine();
+            EList<simple_expression> _expressions_1 = exp.getExpressions();
+            int _plusPlus = index++;
+            simple_expression _get_1 = _expressions_1.get(_plusPlus);
+            CharSequence _computeSimpleExpression_1 = this.computeSimpleExpression(e, b, _get_1);
+            _builder.append(_computeSimpleExpression_1, "");
+            _builder.newLineIfNotEmpty();
+            _builder.append("cmp ecx, eax");
+            _builder.newLine();
+            {
+              boolean _equals = operator.equals("=");
+              if (_equals) {
+                _builder.append("jeq .set_to_true");
+                _builder.append(this.labelCount, "");
+                _builder.newLineIfNotEmpty();
+                _builder.append("jmp .set_to_false");
+                _builder.append(this.labelCount, "");
+                _builder.newLineIfNotEmpty();
+              } else {
+                boolean _equals_1 = operator.equals(">");
+                if (_equals_1) {
+                  _builder.append("jg .set_to_true");
+                  _builder.append(this.labelCount, "");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("jmp .set_to_false");
+                  _builder.append(this.labelCount, "");
+                  _builder.newLineIfNotEmpty();
+                } else {
+                  boolean _equals_2 = operator.equals(">=");
+                  if (_equals_2) {
+                    _builder.append("jge .set_to_true");
+                    _builder.append(this.labelCount, "");
+                    _builder.newLineIfNotEmpty();
+                    _builder.append("jmp .set_to_false");
+                    _builder.append(this.labelCount, "");
+                    _builder.newLineIfNotEmpty();
+                  } else {
+                    boolean _equals_3 = operator.equals("<");
+                    if (_equals_3) {
+                      _builder.append("jl .set_to_true");
+                      _builder.append(this.labelCount, "");
+                      _builder.newLineIfNotEmpty();
+                      _builder.append("jmp .set_to_false");
+                      _builder.append(this.labelCount, "");
+                      _builder.newLineIfNotEmpty();
+                    } else {
+                      boolean _equals_4 = operator.equals("<=");
+                      if (_equals_4) {
+                        _builder.append("jle .set_to_true");
+                        _builder.append(this.labelCount, "");
+                        _builder.newLineIfNotEmpty();
+                        _builder.append("jmp .set_to_false");
+                        _builder.append(this.labelCount, "");
+                        _builder.newLineIfNotEmpty();
+                      } else {
+                        boolean _equals_5 = operator.equals("<>");
+                        if (_equals_5) {
+                          _builder.append("jne .set_to_true");
+                          _builder.append(this.labelCount, "");
+                          _builder.newLineIfNotEmpty();
+                          _builder.append("jmp .set_to_false");
+                          _builder.append(this.labelCount, "");
+                          _builder.newLineIfNotEmpty();
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            _builder.append(".set_to_true");
+            _builder.append(this.labelCount, "");
+            _builder.append(":");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("mov ecx, 1");
+            _builder.newLine();
+            _builder.append("\t");
+            _builder.append("jmp .out");
+            _builder.append(this.labelCount, "\t");
+            _builder.newLineIfNotEmpty();
+            _builder.append(".set_to_false");
+            _builder.append(this.labelCount, "");
+            _builder.append(":");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("mov ecx, 0");
+            _builder.newLine();
+            _builder.append(".out");
+            int _plusPlus_1 = this.labelCount++;
+            _builder.append(_plusPlus_1, "");
+            _builder.append(":");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("mov eax, ecx");
+            _builder.newLine();
+          }
+        }
+      }
+    }
+    _builder.append("pop ecx");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence print(final program e, final block b, final function_designator function) {
     StringConcatenation _builder = new StringConcatenation();
     {
       expression_list _expressions = function.getExpressions();
@@ -710,7 +928,7 @@ public class PascalGenerator implements IGenerator {
         expression_list _expressions_1 = function.getExpressions();
         EList<expression> _expressions_2 = _expressions_1.getExpressions();
         expression _get = _expressions_2.get(0);
-        CharSequence _computeExpression = this.computeExpression(e, _get);
+        CharSequence _computeExpression = this.computeExpression(e, b, _get);
         _builder.append(_computeExpression, "");
         _builder.newLineIfNotEmpty();
         {
@@ -815,7 +1033,7 @@ public class PascalGenerator implements IGenerator {
                       _builder.newLine();
                       simple_statement _simple_5 = s.getSimple();
                       function_designator _function_2 = _simple_5.getFunction();
-                      CharSequence _print_1 = this.print(e, _function_2);
+                      CharSequence _print_1 = this.print(e, b, _function_2);
                       _builder.append(_print_1, "");
                       _builder.newLineIfNotEmpty();
                     } else {
@@ -828,7 +1046,7 @@ public class PascalGenerator implements IGenerator {
                         _builder.newLine();
                         simple_statement _simple_7 = s.getSimple();
                         function_designator _function_4 = _simple_7.getFunction();
-                        CharSequence _print_2 = this.print(e, _function_4);
+                        CharSequence _print_2 = this.print(e, b, _function_4);
                         _builder.append(_print_2, "");
                         _builder.newLineIfNotEmpty();
                         CharSequence _print_3 = this.print(e, "__NEW_LINE");

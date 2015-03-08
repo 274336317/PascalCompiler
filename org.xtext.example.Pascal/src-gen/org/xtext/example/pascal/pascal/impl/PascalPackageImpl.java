@@ -1178,7 +1178,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getexpression_Operator()
+  public EAttribute getexpression_Operators()
   {
     return (EAttribute)expressionEClass.getEStructuralFeatures().get(1);
   }
@@ -1198,7 +1198,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getsimple_expression_Operators()
+  public EAttribute getsimple_expression_PrefixOperators()
   {
     return (EAttribute)simple_expressionEClass.getEStructuralFeatures().get(0);
   }
@@ -1218,9 +1218,9 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getsimple_expression_Numbers()
+  public EAttribute getsimple_expression_Operators()
   {
-    return (EReference)simple_expressionEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)simple_expressionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -3206,12 +3206,12 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
 
     expressionEClass = createEClass(EXPRESSION);
     createEReference(expressionEClass, EXPRESSION__EXPRESSIONS);
-    createEAttribute(expressionEClass, EXPRESSION__OPERATOR);
+    createEAttribute(expressionEClass, EXPRESSION__OPERATORS);
 
     simple_expressionEClass = createEClass(SIMPLE_EXPRESSION);
-    createEAttribute(simple_expressionEClass, SIMPLE_EXPRESSION__OPERATORS);
+    createEAttribute(simple_expressionEClass, SIMPLE_EXPRESSION__PREFIX_OPERATORS);
     createEReference(simple_expressionEClass, SIMPLE_EXPRESSION__TERMS);
-    createEReference(simple_expressionEClass, SIMPLE_EXPRESSION__NUMBERS);
+    createEAttribute(simple_expressionEClass, SIMPLE_EXPRESSION__OPERATORS);
 
     termEClass = createEClass(TERM);
     createEReference(termEClass, TERM__FACTORS);
@@ -3557,12 +3557,12 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
 
     initEClass(expressionEClass, expression.class, "expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getexpression_Expressions(), this.getsimple_expression(), null, "expressions", null, 0, -1, expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getexpression_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getexpression_Operators(), ecorePackage.getEString(), "operators", null, 0, -1, expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(simple_expressionEClass, simple_expression.class, "simple_expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getsimple_expression_PrefixOperators(), ecorePackage.getEString(), "prefixOperators", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getsimple_expression_Terms(), ecorePackage.getEObject(), null, "terms", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getsimple_expression_Operators(), ecorePackage.getEString(), "operators", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getsimple_expression_Terms(), this.getterm(), null, "terms", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getsimple_expression_Numbers(), this.getany_number(), null, "numbers", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(termEClass, term.class, "term", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getterm_Factors(), this.getfactor(), null, "factors", null, 0, -1, term.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

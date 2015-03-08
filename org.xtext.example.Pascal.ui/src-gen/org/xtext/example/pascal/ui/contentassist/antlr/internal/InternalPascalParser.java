@@ -6825,13 +6825,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Expression__Alternatives_1_0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2450:1: rule__Expression__Alternatives_1_0 : ( ( ( rule__Expression__OperatorAssignment_1_0_0 ) ) | ( ( rule__Expression__OperatorAssignment_1_0_1 ) ) | ( ( rule__Expression__OperatorAssignment_1_0_2 ) ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2450:1: rule__Expression__Alternatives_1_0 : ( ( ( rule__Expression__OperatorsAssignment_1_0_0 ) ) | ( ( rule__Expression__OperatorsAssignment_1_0_1 ) ) | ( ( rule__Expression__OperatorsAssignment_1_0_2 ) ) );
     public final void rule__Expression__Alternatives_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2454:1: ( ( ( rule__Expression__OperatorAssignment_1_0_0 ) ) | ( ( rule__Expression__OperatorAssignment_1_0_1 ) ) | ( ( rule__Expression__OperatorAssignment_1_0_2 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2454:1: ( ( ( rule__Expression__OperatorsAssignment_1_0_0 ) ) | ( ( rule__Expression__OperatorsAssignment_1_0_1 ) ) | ( ( rule__Expression__OperatorsAssignment_1_0_2 ) ) )
             int alt8=3;
             switch ( input.LA(1) ) {
             case RULE_RELATIONAL_OPERATOR:
@@ -6858,24 +6858,24 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
             switch (alt8) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2455:1: ( ( rule__Expression__OperatorAssignment_1_0_0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2455:1: ( ( rule__Expression__OperatorsAssignment_1_0_0 ) )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2455:1: ( ( rule__Expression__OperatorAssignment_1_0_0 ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2456:1: ( rule__Expression__OperatorAssignment_1_0_0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2455:1: ( ( rule__Expression__OperatorsAssignment_1_0_0 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2456:1: ( rule__Expression__OperatorsAssignment_1_0_0 )
                     {
-                     before(grammarAccess.getExpressionAccess().getOperatorAssignment_1_0_0()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2457:1: ( rule__Expression__OperatorAssignment_1_0_0 )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2457:2: rule__Expression__OperatorAssignment_1_0_0
+                     before(grammarAccess.getExpressionAccess().getOperatorsAssignment_1_0_0()); 
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2457:1: ( rule__Expression__OperatorsAssignment_1_0_0 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2457:2: rule__Expression__OperatorsAssignment_1_0_0
                     {
-                    pushFollow(FOLLOW_rule__Expression__OperatorAssignment_1_0_0_in_rule__Expression__Alternatives_1_05409);
-                    rule__Expression__OperatorAssignment_1_0_0();
+                    pushFollow(FOLLOW_rule__Expression__OperatorsAssignment_1_0_0_in_rule__Expression__Alternatives_1_05409);
+                    rule__Expression__OperatorsAssignment_1_0_0();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getExpressionAccess().getOperatorAssignment_1_0_0()); 
+                     after(grammarAccess.getExpressionAccess().getOperatorsAssignment_1_0_0()); 
 
                     }
 
@@ -6883,24 +6883,24 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2461:6: ( ( rule__Expression__OperatorAssignment_1_0_1 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2461:6: ( ( rule__Expression__OperatorsAssignment_1_0_1 ) )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2461:6: ( ( rule__Expression__OperatorAssignment_1_0_1 ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2462:1: ( rule__Expression__OperatorAssignment_1_0_1 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2461:6: ( ( rule__Expression__OperatorsAssignment_1_0_1 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2462:1: ( rule__Expression__OperatorsAssignment_1_0_1 )
                     {
-                     before(grammarAccess.getExpressionAccess().getOperatorAssignment_1_0_1()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2463:1: ( rule__Expression__OperatorAssignment_1_0_1 )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2463:2: rule__Expression__OperatorAssignment_1_0_1
+                     before(grammarAccess.getExpressionAccess().getOperatorsAssignment_1_0_1()); 
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2463:1: ( rule__Expression__OperatorsAssignment_1_0_1 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2463:2: rule__Expression__OperatorsAssignment_1_0_1
                     {
-                    pushFollow(FOLLOW_rule__Expression__OperatorAssignment_1_0_1_in_rule__Expression__Alternatives_1_05427);
-                    rule__Expression__OperatorAssignment_1_0_1();
+                    pushFollow(FOLLOW_rule__Expression__OperatorsAssignment_1_0_1_in_rule__Expression__Alternatives_1_05427);
+                    rule__Expression__OperatorsAssignment_1_0_1();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getExpressionAccess().getOperatorAssignment_1_0_1()); 
+                     after(grammarAccess.getExpressionAccess().getOperatorsAssignment_1_0_1()); 
 
                     }
 
@@ -6908,24 +6908,24 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2467:6: ( ( rule__Expression__OperatorAssignment_1_0_2 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2467:6: ( ( rule__Expression__OperatorsAssignment_1_0_2 ) )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2467:6: ( ( rule__Expression__OperatorAssignment_1_0_2 ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2468:1: ( rule__Expression__OperatorAssignment_1_0_2 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2467:6: ( ( rule__Expression__OperatorsAssignment_1_0_2 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2468:1: ( rule__Expression__OperatorsAssignment_1_0_2 )
                     {
-                     before(grammarAccess.getExpressionAccess().getOperatorAssignment_1_0_2()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2469:1: ( rule__Expression__OperatorAssignment_1_0_2 )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2469:2: rule__Expression__OperatorAssignment_1_0_2
+                     before(grammarAccess.getExpressionAccess().getOperatorsAssignment_1_0_2()); 
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2469:1: ( rule__Expression__OperatorsAssignment_1_0_2 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2469:2: rule__Expression__OperatorsAssignment_1_0_2
                     {
-                    pushFollow(FOLLOW_rule__Expression__OperatorAssignment_1_0_2_in_rule__Expression__Alternatives_1_05445);
-                    rule__Expression__OperatorAssignment_1_0_2();
+                    pushFollow(FOLLOW_rule__Expression__OperatorsAssignment_1_0_2_in_rule__Expression__Alternatives_1_05445);
+                    rule__Expression__OperatorsAssignment_1_0_2();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getExpressionAccess().getOperatorAssignment_1_0_2()); 
+                     after(grammarAccess.getExpressionAccess().getOperatorsAssignment_1_0_2()); 
 
                     }
 
@@ -6950,13 +6950,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Alternatives_2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2478:1: rule__Simple_expression__Alternatives_2 : ( ( ( rule__Simple_expression__Group_2_0__0 ) ) | ( ( rule__Simple_expression__NumbersAssignment_2_1 ) ) );
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2478:1: rule__Simple_expression__Alternatives_2 : ( ( ( rule__Simple_expression__Group_2_0__0 ) ) | ( ( rule__Simple_expression__TermsAssignment_2_1 ) ) );
     public final void rule__Simple_expression__Alternatives_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2482:1: ( ( ( rule__Simple_expression__Group_2_0__0 ) ) | ( ( rule__Simple_expression__NumbersAssignment_2_1 ) ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2482:1: ( ( ( rule__Simple_expression__Group_2_0__0 ) ) | ( ( rule__Simple_expression__TermsAssignment_2_1 ) ) )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -6999,24 +6999,24 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2489:6: ( ( rule__Simple_expression__NumbersAssignment_2_1 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2489:6: ( ( rule__Simple_expression__TermsAssignment_2_1 ) )
                     {
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2489:6: ( ( rule__Simple_expression__NumbersAssignment_2_1 ) )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2490:1: ( rule__Simple_expression__NumbersAssignment_2_1 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2489:6: ( ( rule__Simple_expression__TermsAssignment_2_1 ) )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2490:1: ( rule__Simple_expression__TermsAssignment_2_1 )
                     {
-                     before(grammarAccess.getSimple_expressionAccess().getNumbersAssignment_2_1()); 
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2491:1: ( rule__Simple_expression__NumbersAssignment_2_1 )
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2491:2: rule__Simple_expression__NumbersAssignment_2_1
+                     before(grammarAccess.getSimple_expressionAccess().getTermsAssignment_2_1()); 
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2491:1: ( rule__Simple_expression__TermsAssignment_2_1 )
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:2491:2: rule__Simple_expression__TermsAssignment_2_1
                     {
-                    pushFollow(FOLLOW_rule__Simple_expression__NumbersAssignment_2_1_in_rule__Simple_expression__Alternatives_25496);
-                    rule__Simple_expression__NumbersAssignment_2_1();
+                    pushFollow(FOLLOW_rule__Simple_expression__TermsAssignment_2_1_in_rule__Simple_expression__Alternatives_25496);
+                    rule__Simple_expression__TermsAssignment_2_1();
 
                     state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getSimple_expressionAccess().getNumbersAssignment_2_1()); 
+                     after(grammarAccess.getSimple_expressionAccess().getTermsAssignment_2_1()); 
 
                     }
 
@@ -14302,20 +14302,20 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Simple_expression__Group__0__Impl"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4824:1: rule__Simple_expression__Group__0__Impl : ( ( rule__Simple_expression__OperatorsAssignment_0 )? ) ;
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4824:1: rule__Simple_expression__Group__0__Impl : ( ( rule__Simple_expression__PrefixOperatorsAssignment_0 )? ) ;
     public final void rule__Simple_expression__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4828:1: ( ( ( rule__Simple_expression__OperatorsAssignment_0 )? ) )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4829:1: ( ( rule__Simple_expression__OperatorsAssignment_0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4828:1: ( ( ( rule__Simple_expression__PrefixOperatorsAssignment_0 )? ) )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4829:1: ( ( rule__Simple_expression__PrefixOperatorsAssignment_0 )? )
             {
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4829:1: ( ( rule__Simple_expression__OperatorsAssignment_0 )? )
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4830:1: ( rule__Simple_expression__OperatorsAssignment_0 )?
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4829:1: ( ( rule__Simple_expression__PrefixOperatorsAssignment_0 )? )
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4830:1: ( rule__Simple_expression__PrefixOperatorsAssignment_0 )?
             {
-             before(grammarAccess.getSimple_expressionAccess().getOperatorsAssignment_0()); 
-            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4831:1: ( rule__Simple_expression__OperatorsAssignment_0 )?
+             before(grammarAccess.getSimple_expressionAccess().getPrefixOperatorsAssignment_0()); 
+            // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4831:1: ( rule__Simple_expression__PrefixOperatorsAssignment_0 )?
             int alt45=2;
             int LA45_0 = input.LA(1);
 
@@ -14324,10 +14324,10 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             }
             switch (alt45) {
                 case 1 :
-                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4831:2: rule__Simple_expression__OperatorsAssignment_0
+                    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:4831:2: rule__Simple_expression__PrefixOperatorsAssignment_0
                     {
-                    pushFollow(FOLLOW_rule__Simple_expression__OperatorsAssignment_0_in_rule__Simple_expression__Group__0__Impl10432);
-                    rule__Simple_expression__OperatorsAssignment_0();
+                    pushFollow(FOLLOW_rule__Simple_expression__PrefixOperatorsAssignment_0_in_rule__Simple_expression__Group__0__Impl10432);
+                    rule__Simple_expression__PrefixOperatorsAssignment_0();
 
                     state._fsp--;
 
@@ -14337,7 +14337,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getSimple_expressionAccess().getOperatorsAssignment_0()); 
+             after(grammarAccess.getSimple_expressionAccess().getPrefixOperatorsAssignment_0()); 
 
             }
 
@@ -33405,9 +33405,9 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Expression__ExpressionsAssignment_0"
 
 
-    // $ANTLR start "rule__Expression__OperatorAssignment_1_0_0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12213:1: rule__Expression__OperatorAssignment_1_0_0 : ( RULE_RELATIONAL_OPERATOR ) ;
-    public final void rule__Expression__OperatorAssignment_1_0_0() throws RecognitionException {
+    // $ANTLR start "rule__Expression__OperatorsAssignment_1_0_0"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12213:1: rule__Expression__OperatorsAssignment_1_0_0 : ( RULE_RELATIONAL_OPERATOR ) ;
+    public final void rule__Expression__OperatorsAssignment_1_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -33418,9 +33418,9 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12218:1: ( RULE_RELATIONAL_OPERATOR )
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12219:1: RULE_RELATIONAL_OPERATOR
             {
-             before(grammarAccess.getExpressionAccess().getOperatorRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0()); 
-            match(input,RULE_RELATIONAL_OPERATOR,FOLLOW_RULE_RELATIONAL_OPERATOR_in_rule__Expression__OperatorAssignment_1_0_025027); 
-             after(grammarAccess.getExpressionAccess().getOperatorRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0()); 
+             before(grammarAccess.getExpressionAccess().getOperatorsRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0()); 
+            match(input,RULE_RELATIONAL_OPERATOR,FOLLOW_RULE_RELATIONAL_OPERATOR_in_rule__Expression__OperatorsAssignment_1_0_025027); 
+             after(grammarAccess.getExpressionAccess().getOperatorsRELATIONAL_OPERATORTerminalRuleCall_1_0_0_0()); 
 
             }
 
@@ -33439,12 +33439,12 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Expression__OperatorAssignment_1_0_0"
+    // $ANTLR end "rule__Expression__OperatorsAssignment_1_0_0"
 
 
-    // $ANTLR start "rule__Expression__OperatorAssignment_1_0_1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12228:1: rule__Expression__OperatorAssignment_1_0_1 : ( ( In ) ) ;
-    public final void rule__Expression__OperatorAssignment_1_0_1() throws RecognitionException {
+    // $ANTLR start "rule__Expression__OperatorsAssignment_1_0_1"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12228:1: rule__Expression__OperatorsAssignment_1_0_1 : ( ( In ) ) ;
+    public final void rule__Expression__OperatorsAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -33455,17 +33455,17 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12233:1: ( ( In ) )
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12234:1: ( In )
             {
-             before(grammarAccess.getExpressionAccess().getOperatorInKeyword_1_0_1_0()); 
+             before(grammarAccess.getExpressionAccess().getOperatorsInKeyword_1_0_1_0()); 
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12235:1: ( In )
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12236:1: In
             {
-             before(grammarAccess.getExpressionAccess().getOperatorInKeyword_1_0_1_0()); 
-            match(input,In,FOLLOW_In_in_rule__Expression__OperatorAssignment_1_0_125063); 
-             after(grammarAccess.getExpressionAccess().getOperatorInKeyword_1_0_1_0()); 
+             before(grammarAccess.getExpressionAccess().getOperatorsInKeyword_1_0_1_0()); 
+            match(input,In,FOLLOW_In_in_rule__Expression__OperatorsAssignment_1_0_125063); 
+             after(grammarAccess.getExpressionAccess().getOperatorsInKeyword_1_0_1_0()); 
 
             }
 
-             after(grammarAccess.getExpressionAccess().getOperatorInKeyword_1_0_1_0()); 
+             after(grammarAccess.getExpressionAccess().getOperatorsInKeyword_1_0_1_0()); 
 
             }
 
@@ -33484,12 +33484,12 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Expression__OperatorAssignment_1_0_1"
+    // $ANTLR end "rule__Expression__OperatorsAssignment_1_0_1"
 
 
-    // $ANTLR start "rule__Expression__OperatorAssignment_1_0_2"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12251:1: rule__Expression__OperatorAssignment_1_0_2 : ( ( EqualsSign ) ) ;
-    public final void rule__Expression__OperatorAssignment_1_0_2() throws RecognitionException {
+    // $ANTLR start "rule__Expression__OperatorsAssignment_1_0_2"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12251:1: rule__Expression__OperatorsAssignment_1_0_2 : ( ( EqualsSign ) ) ;
+    public final void rule__Expression__OperatorsAssignment_1_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -33500,17 +33500,17 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12256:1: ( ( EqualsSign ) )
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12257:1: ( EqualsSign )
             {
-             before(grammarAccess.getExpressionAccess().getOperatorEqualsSignKeyword_1_0_2_0()); 
+             before(grammarAccess.getExpressionAccess().getOperatorsEqualsSignKeyword_1_0_2_0()); 
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12258:1: ( EqualsSign )
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12259:1: EqualsSign
             {
-             before(grammarAccess.getExpressionAccess().getOperatorEqualsSignKeyword_1_0_2_0()); 
-            match(input,EqualsSign,FOLLOW_EqualsSign_in_rule__Expression__OperatorAssignment_1_0_225107); 
-             after(grammarAccess.getExpressionAccess().getOperatorEqualsSignKeyword_1_0_2_0()); 
+             before(grammarAccess.getExpressionAccess().getOperatorsEqualsSignKeyword_1_0_2_0()); 
+            match(input,EqualsSign,FOLLOW_EqualsSign_in_rule__Expression__OperatorsAssignment_1_0_225107); 
+             after(grammarAccess.getExpressionAccess().getOperatorsEqualsSignKeyword_1_0_2_0()); 
 
             }
 
-             after(grammarAccess.getExpressionAccess().getOperatorEqualsSignKeyword_1_0_2_0()); 
+             after(grammarAccess.getExpressionAccess().getOperatorsEqualsSignKeyword_1_0_2_0()); 
 
             }
 
@@ -33529,7 +33529,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Expression__OperatorAssignment_1_0_2"
+    // $ANTLR end "rule__Expression__OperatorsAssignment_1_0_2"
 
 
     // $ANTLR start "rule__Expression__ExpressionsAssignment_1_1"
@@ -33573,9 +33573,9 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Expression__ExpressionsAssignment_1_1"
 
 
-    // $ANTLR start "rule__Simple_expression__OperatorsAssignment_0"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12289:1: rule__Simple_expression__OperatorsAssignment_0 : ( RULE_ADDITION_OPERATOR ) ;
-    public final void rule__Simple_expression__OperatorsAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__Simple_expression__PrefixOperatorsAssignment_0"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12289:1: rule__Simple_expression__PrefixOperatorsAssignment_0 : ( RULE_ADDITION_OPERATOR ) ;
+    public final void rule__Simple_expression__PrefixOperatorsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -33586,9 +33586,9 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12294:1: ( RULE_ADDITION_OPERATOR )
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12295:1: RULE_ADDITION_OPERATOR
             {
-             before(grammarAccess.getSimple_expressionAccess().getOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); 
-            match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__OperatorsAssignment_025177); 
-             after(grammarAccess.getSimple_expressionAccess().getOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); 
+             before(grammarAccess.getSimple_expressionAccess().getPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); 
+            match(input,RULE_ADDITION_OPERATOR,FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__PrefixOperatorsAssignment_025177); 
+             after(grammarAccess.getSimple_expressionAccess().getPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); 
 
             }
 
@@ -33607,7 +33607,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Simple_expression__OperatorsAssignment_0"
+    // $ANTLR end "rule__Simple_expression__PrefixOperatorsAssignment_0"
 
 
     // $ANTLR start "rule__Simple_expression__TermsAssignment_1"
@@ -33774,9 +33774,9 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__Simple_expression__TermsAssignment_2_0_1"
 
 
-    // $ANTLR start "rule__Simple_expression__NumbersAssignment_2_1"
-    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12372:1: rule__Simple_expression__NumbersAssignment_2_1 : ( rulesigned_number ) ;
-    public final void rule__Simple_expression__NumbersAssignment_2_1() throws RecognitionException {
+    // $ANTLR start "rule__Simple_expression__TermsAssignment_2_1"
+    // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12372:1: rule__Simple_expression__TermsAssignment_2_1 : ( rulesigned_number ) ;
+    public final void rule__Simple_expression__TermsAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -33787,13 +33787,13 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12377:1: ( rulesigned_number )
             // ../org.xtext.example.Pascal.ui/src-gen/org/xtext/example/pascal/ui/contentassist/antlr/internal/InternalPascalParser.g:12378:1: rulesigned_number
             {
-             before(grammarAccess.getSimple_expressionAccess().getNumbersSigned_numberParserRuleCall_2_1_0()); 
-            pushFollow(FOLLOW_rulesigned_number_in_rule__Simple_expression__NumbersAssignment_2_125345);
+             before(grammarAccess.getSimple_expressionAccess().getTermsSigned_numberParserRuleCall_2_1_0()); 
+            pushFollow(FOLLOW_rulesigned_number_in_rule__Simple_expression__TermsAssignment_2_125345);
             rulesigned_number();
 
             state._fsp--;
 
-             after(grammarAccess.getSimple_expressionAccess().getNumbersSigned_numberParserRuleCall_2_1_0()); 
+             after(grammarAccess.getSimple_expressionAccess().getTermsSigned_numberParserRuleCall_2_1_0()); 
 
             }
 
@@ -33812,7 +33812,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Simple_expression__NumbersAssignment_2_1"
+    // $ANTLR end "rule__Simple_expression__TermsAssignment_2_1"
 
 
     // $ANTLR start "rule__Term__FactorsAssignment_0"
@@ -40488,11 +40488,11 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Var___Group_0__0_in_rule__Var___Alternatives5340 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Var___Group_1__0_in_rule__Var___Alternatives5358 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Var___Group_2__0_in_rule__Var___Alternatives5376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression__OperatorAssignment_1_0_0_in_rule__Expression__Alternatives_1_05409 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression__OperatorAssignment_1_0_1_in_rule__Expression__Alternatives_1_05427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Expression__OperatorAssignment_1_0_2_in_rule__Expression__Alternatives_1_05445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression__OperatorsAssignment_1_0_0_in_rule__Expression__Alternatives_1_05409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression__OperatorsAssignment_1_0_1_in_rule__Expression__Alternatives_1_05427 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Expression__OperatorsAssignment_1_0_2_in_rule__Expression__Alternatives_1_05445 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Simple_expression__Group_2_0__0_in_rule__Simple_expression__Alternatives_25478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Simple_expression__NumbersAssignment_2_1_in_rule__Simple_expression__Alternatives_25496 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Simple_expression__TermsAssignment_2_1_in_rule__Simple_expression__Alternatives_25496 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Simple_expression__OperatorsAssignment_2_0_0_0_in_rule__Simple_expression__Alternatives_2_0_05531 = new BitSet(new long[]{0x0800000000000002L});
     public static final BitSet FOLLOW_rule__Simple_expression__OperatorsAssignment_2_0_0_0_in_rule__Simple_expression__Alternatives_2_0_05543 = new BitSet(new long[]{0x0800000000000002L});
     public static final BitSet FOLLOW_rule__Simple_expression__OperatorsAssignment_2_0_0_1_in_rule__Simple_expression__Alternatives_2_0_05564 = new BitSet(new long[]{0x0000000000000002L});
@@ -40704,7 +40704,7 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Expression__ExpressionsAssignment_1_1_in_rule__Expression__Group_1__1__Impl10368 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Simple_expression__Group__0__Impl_in_rule__Simple_expression__Group__010402 = new BitSet(new long[]{0x0BC8100301008000L,0x0000000000000014L});
     public static final BitSet FOLLOW_rule__Simple_expression__Group__1_in_rule__Simple_expression__Group__010405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Simple_expression__OperatorsAssignment_0_in_rule__Simple_expression__Group__0__Impl10432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Simple_expression__PrefixOperatorsAssignment_0_in_rule__Simple_expression__Group__0__Impl10432 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Simple_expression__Group__1__Impl_in_rule__Simple_expression__Group__110463 = new BitSet(new long[]{0x0BC0040000000000L});
     public static final BitSet FOLLOW_rule__Simple_expression__Group__2_in_rule__Simple_expression__Group__110466 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Simple_expression__TermsAssignment_1_in_rule__Simple_expression__Group__1__Impl10493 = new BitSet(new long[]{0x0000000000000002L});
@@ -41320,16 +41320,16 @@ public class InternalPascalParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleexpression_in_rule__Expression_list__ExpressionsAssignment_024934 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleexpression_in_rule__Expression_list__ExpressionsAssignment_1_124965 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulesimple_expression_in_rule__Expression__ExpressionsAssignment_024996 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_RELATIONAL_OPERATOR_in_rule__Expression__OperatorAssignment_1_0_025027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_In_in_rule__Expression__OperatorAssignment_1_0_125063 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_EqualsSign_in_rule__Expression__OperatorAssignment_1_0_225107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_RELATIONAL_OPERATOR_in_rule__Expression__OperatorsAssignment_1_0_025027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_In_in_rule__Expression__OperatorsAssignment_1_0_125063 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_EqualsSign_in_rule__Expression__OperatorsAssignment_1_0_225107 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulesimple_expression_in_rule__Expression__ExpressionsAssignment_1_125146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__OperatorsAssignment_025177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__PrefixOperatorsAssignment_025177 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleterm_in_rule__Simple_expression__TermsAssignment_125208 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ADDITION_OPERATOR_in_rule__Simple_expression__OperatorsAssignment_2_0_0_025239 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Or_in_rule__Simple_expression__OperatorsAssignment_2_0_0_125275 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleterm_in_rule__Simple_expression__TermsAssignment_2_0_125314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulesigned_number_in_rule__Simple_expression__NumbersAssignment_2_125345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulesigned_number_in_rule__Simple_expression__TermsAssignment_2_125345 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulefactor_in_rule__Term__FactorsAssignment_025376 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_MULTIPLICATION_OPERATOR_in_rule__Term__OperatorsAssignment_1_0_025407 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_Div_in_rule__Term__OperatorsAssignment_1_0_125443 = new BitSet(new long[]{0x0000000000000002L});
