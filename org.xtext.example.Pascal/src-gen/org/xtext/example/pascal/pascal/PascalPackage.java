@@ -667,13 +667,13 @@ public interface PascalPackage extends EPackage
   int SIMPLE_EXPRESSION = 15;
 
   /**
-   * The feature id for the '<em><b>Prefix Operators</b></em>' attribute list.
+   * The feature id for the '<em><b>Prefix Operator</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SIMPLE_EXPRESSION__PREFIX_OPERATORS = 0;
+  int SIMPLE_EXPRESSION__PREFIX_OPERATOR = 0;
 
   /**
    * The feature id for the '<em><b>Terms</b></em>' containment reference list.
@@ -3567,15 +3567,15 @@ public interface PascalPackage extends EPackage
   EClass getsimple_expression();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.xtext.example.pascal.pascal.simple_expression#getPrefixOperators <em>Prefix Operators</em>}'.
+   * Returns the meta object for the attribute '{@link org.xtext.example.pascal.pascal.simple_expression#getPrefixOperator <em>Prefix Operator</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Prefix Operators</em>'.
-   * @see org.xtext.example.pascal.pascal.simple_expression#getPrefixOperators()
+   * @return the meta object for the attribute '<em>Prefix Operator</em>'.
+   * @see org.xtext.example.pascal.pascal.simple_expression#getPrefixOperator()
    * @see #getsimple_expression()
    * @generated
    */
-  EAttribute getsimple_expression_PrefixOperators();
+  EAttribute getsimple_expression_PrefixOperator();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.xtext.example.pascal.pascal.simple_expression#getTerms <em>Terms</em>}'.
@@ -6083,12 +6083,12 @@ public interface PascalPackage extends EPackage
     EClass SIMPLE_EXPRESSION = eINSTANCE.getsimple_expression();
 
     /**
-     * The meta object literal for the '<em><b>Prefix Operators</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Prefix Operator</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SIMPLE_EXPRESSION__PREFIX_OPERATORS = eINSTANCE.getsimple_expression_PrefixOperators();
+    EAttribute SIMPLE_EXPRESSION__PREFIX_OPERATOR = eINSTANCE.getsimple_expression_PrefixOperator();
 
     /**
      * The meta object literal for the '<em><b>Terms</b></em>' containment reference list feature.

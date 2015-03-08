@@ -1222,7 +1222,7 @@ public class PascalSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	
 	/**
 	 * Constraint:
-	 *     (prefixOperators+=ADDITION_OPERATOR? terms+=term (((operators+=ADDITION_OPERATOR+ | operators+='or') terms+=term) | terms+=signed_number)*)
+	 *     (prefixOperator=ADDITION_OPERATOR? terms+=term (((operators+=ADDITION_OPERATOR | operators+='or') terms+=term) | terms+=unsigned_number)*)
 	 */
 	protected void sequence_simple_expression(EObject context, simple_expression semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

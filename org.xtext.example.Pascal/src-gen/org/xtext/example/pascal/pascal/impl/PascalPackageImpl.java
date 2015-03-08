@@ -1198,7 +1198,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getsimple_expression_PrefixOperators()
+  public EAttribute getsimple_expression_PrefixOperator()
   {
     return (EAttribute)simple_expressionEClass.getEStructuralFeatures().get(0);
   }
@@ -3209,7 +3209,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     createEAttribute(expressionEClass, EXPRESSION__OPERATORS);
 
     simple_expressionEClass = createEClass(SIMPLE_EXPRESSION);
-    createEAttribute(simple_expressionEClass, SIMPLE_EXPRESSION__PREFIX_OPERATORS);
+    createEAttribute(simple_expressionEClass, SIMPLE_EXPRESSION__PREFIX_OPERATOR);
     createEReference(simple_expressionEClass, SIMPLE_EXPRESSION__TERMS);
     createEAttribute(simple_expressionEClass, SIMPLE_EXPRESSION__OPERATORS);
 
@@ -3560,7 +3560,7 @@ public class PascalPackageImpl extends EPackageImpl implements PascalPackage
     initEAttribute(getexpression_Operators(), ecorePackage.getEString(), "operators", null, 0, -1, expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(simple_expressionEClass, simple_expression.class, "simple_expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getsimple_expression_PrefixOperators(), ecorePackage.getEString(), "prefixOperators", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getsimple_expression_PrefixOperator(), ecorePackage.getEString(), "prefixOperator", null, 0, 1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getsimple_expression_Terms(), ecorePackage.getEObject(), null, "terms", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getsimple_expression_Operators(), ecorePackage.getEString(), "operators", null, 0, -1, simple_expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

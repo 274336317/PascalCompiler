@@ -1222,18 +1222,18 @@ rulesimple_expression returns [EObject current=null]
     @after { leaveRule(); }:
 ((
 (
-		lv_prefixOperators_0_0=RULE_ADDITION_OPERATOR
+		lv_prefixOperator_0_0=RULE_ADDITION_OPERATOR
 		{
-			newLeafNode(lv_prefixOperators_0_0, grammarAccess.getSimple_expressionAccess().getPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); 
+			newLeafNode(lv_prefixOperator_0_0, grammarAccess.getSimple_expressionAccess().getPrefixOperatorADDITION_OPERATORTerminalRuleCall_0_0()); 
 		}
 		{
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getSimple_expressionRule());
 	        }
-       		addWithLastConsumed(
+       		setWithLastConsumed(
        			$current, 
-       			"prefixOperators",
-        		lv_prefixOperators_0_0, 
+       			"prefixOperator",
+        		lv_prefixOperator_0_0, 
         		"ADDITION_OPERATOR");
 	    }
 
@@ -1274,7 +1274,7 @@ rulesimple_expression returns [EObject current=null]
 	    }
 
 )
-)+
+)
     |(
 (
 		lv_operators_3_0=
@@ -1313,9 +1313,9 @@ rulesimple_expression returns [EObject current=null]
     |(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermsSigned_numberParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getSimple_expressionAccess().getTermsUnsigned_numberParserRuleCall_2_1_0()); 
 	    }
-		lv_terms_5_0=rulesigned_number		{
+		lv_terms_5_0=ruleunsigned_number		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getSimple_expressionRule());
 	        }
@@ -1323,7 +1323,7 @@ rulesimple_expression returns [EObject current=null]
        			$current, 
        			"terms",
         		lv_terms_5_0, 
-        		"signed_number");
+        		"unsigned_number");
 	        afterParserOrEnumRuleCall();
 	    }
 

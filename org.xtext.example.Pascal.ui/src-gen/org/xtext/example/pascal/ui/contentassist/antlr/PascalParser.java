@@ -200,7 +200,7 @@ public class PascalParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExpressionAccess().getOperatorsAssignment_1_0_1(), "rule__Expression__OperatorsAssignment_1_0_1");
 					put(grammarAccess.getExpressionAccess().getOperatorsAssignment_1_0_2(), "rule__Expression__OperatorsAssignment_1_0_2");
 					put(grammarAccess.getExpressionAccess().getExpressionsAssignment_1_1(), "rule__Expression__ExpressionsAssignment_1_1");
-					put(grammarAccess.getSimple_expressionAccess().getPrefixOperatorsAssignment_0(), "rule__Simple_expression__PrefixOperatorsAssignment_0");
+					put(grammarAccess.getSimple_expressionAccess().getPrefixOperatorAssignment_0(), "rule__Simple_expression__PrefixOperatorAssignment_0");
 					put(grammarAccess.getSimple_expressionAccess().getTermsAssignment_1(), "rule__Simple_expression__TermsAssignment_1");
 					put(grammarAccess.getSimple_expressionAccess().getOperatorsAssignment_2_0_0_0(), "rule__Simple_expression__OperatorsAssignment_2_0_0_0");
 					put(grammarAccess.getSimple_expressionAccess().getOperatorsAssignment_2_0_0_1(), "rule__Simple_expression__OperatorsAssignment_2_0_0_1");

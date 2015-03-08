@@ -2503,16 +2503,9 @@ rule__Simple_expression__Alternatives_2_0_0
     }
 :
 (
-(
 { before(grammarAccess.getSimple_expressionAccess().getOperatorsAssignment_2_0_0_0()); }
 (rule__Simple_expression__OperatorsAssignment_2_0_0_0)
 { after(grammarAccess.getSimple_expressionAccess().getOperatorsAssignment_2_0_0_0()); }
-)
-(
-{ before(grammarAccess.getSimple_expressionAccess().getOperatorsAssignment_2_0_0_0()); }
-(rule__Simple_expression__OperatorsAssignment_2_0_0_0)*
-{ after(grammarAccess.getSimple_expressionAccess().getOperatorsAssignment_2_0_0_0()); }
-)
 )
 
     |(
@@ -4827,9 +4820,9 @@ rule__Simple_expression__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getSimple_expressionAccess().getPrefixOperatorsAssignment_0()); }
-(rule__Simple_expression__PrefixOperatorsAssignment_0)?
-{ after(grammarAccess.getSimple_expressionAccess().getPrefixOperatorsAssignment_0()); }
+{ before(grammarAccess.getSimple_expressionAccess().getPrefixOperatorAssignment_0()); }
+(rule__Simple_expression__PrefixOperatorAssignment_0)?
+{ after(grammarAccess.getSimple_expressionAccess().getPrefixOperatorAssignment_0()); }
 )
 
 ;
@@ -12286,14 +12279,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Simple_expression__PrefixOperatorsAssignment_0
+rule__Simple_expression__PrefixOperatorAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getSimple_expressionAccess().getPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); }
-	RULE_ADDITION_OPERATOR{ after(grammarAccess.getSimple_expressionAccess().getPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0()); }
+{ before(grammarAccess.getSimple_expressionAccess().getPrefixOperatorADDITION_OPERATORTerminalRuleCall_0_0()); }
+	RULE_ADDITION_OPERATOR{ after(grammarAccess.getSimple_expressionAccess().getPrefixOperatorADDITION_OPERATORTerminalRuleCall_0_0()); }
 )
 
 ;
@@ -12375,8 +12368,8 @@ rule__Simple_expression__TermsAssignment_2_1
     }
 :
 (
-{ before(grammarAccess.getSimple_expressionAccess().getTermsSigned_numberParserRuleCall_2_1_0()); }
-	rulesigned_number{ after(grammarAccess.getSimple_expressionAccess().getTermsSigned_numberParserRuleCall_2_1_0()); }
+{ before(grammarAccess.getSimple_expressionAccess().getTermsUnsigned_numberParserRuleCall_2_1_0()); }
+	ruleunsigned_number{ after(grammarAccess.getSimple_expressionAccess().getTermsUnsigned_numberParserRuleCall_2_1_0()); }
 )
 
 ;

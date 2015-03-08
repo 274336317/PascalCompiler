@@ -126,7 +126,7 @@ public class AbstractPascalProposalProvider extends org.eclipse.xtext.common.ui.
 			// subclasses may override
 		}
 	}
-	public void completeSimple_expression_PrefixOperators(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeSimple_expression_PrefixOperator(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeSimple_expression_Terms(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {

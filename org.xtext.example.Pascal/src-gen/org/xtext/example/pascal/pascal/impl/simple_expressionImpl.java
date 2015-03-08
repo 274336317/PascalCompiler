@@ -4,6 +4,7 @@ package org.xtext.example.pascal.pascal.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -12,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
@@ -28,7 +30,7 @@ import org.xtext.example.pascal.pascal.simple_expression;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl#getPrefixOperators <em>Prefix Operators</em>}</li>
+ *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl#getPrefixOperator <em>Prefix Operator</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl#getTerms <em>Terms</em>}</li>
  *   <li>{@link org.xtext.example.pascal.pascal.impl.simple_expressionImpl#getOperators <em>Operators</em>}</li>
  * </ul>
@@ -39,14 +41,24 @@ import org.xtext.example.pascal.pascal.simple_expression;
 public class simple_expressionImpl extends MinimalEObjectImpl.Container implements simple_expression
 {
   /**
-   * The cached value of the '{@link #getPrefixOperators() <em>Prefix Operators</em>}' attribute list.
+   * The default value of the '{@link #getPrefixOperator() <em>Prefix Operator</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPrefixOperators()
+   * @see #getPrefixOperator()
    * @generated
    * @ordered
    */
-  protected EList<String> prefixOperators;
+  protected static final String PREFIX_OPERATOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getPrefixOperator() <em>Prefix Operator</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPrefixOperator()
+   * @generated
+   * @ordered
+   */
+  protected String prefixOperator = PREFIX_OPERATOR_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getTerms() <em>Terms</em>}' containment reference list.
@@ -94,13 +106,22 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getPrefixOperators()
+  public String getPrefixOperator()
   {
-    if (prefixOperators == null)
-    {
-      prefixOperators = new EDataTypeEList<String>(String.class, this, PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATORS);
-    }
-    return prefixOperators;
+    return prefixOperator;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setPrefixOperator(String newPrefixOperator)
+  {
+    String oldPrefixOperator = prefixOperator;
+    prefixOperator = newPrefixOperator;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATOR, oldPrefixOperator, prefixOperator));
   }
 
   /**
@@ -157,8 +178,8 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATORS:
-        return getPrefixOperators();
+      case PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATOR:
+        return getPrefixOperator();
       case PascalPackage.SIMPLE_EXPRESSION__TERMS:
         return getTerms();
       case PascalPackage.SIMPLE_EXPRESSION__OPERATORS:
@@ -178,9 +199,8 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATORS:
-        getPrefixOperators().clear();
-        getPrefixOperators().addAll((Collection<? extends String>)newValue);
+      case PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATOR:
+        setPrefixOperator((String)newValue);
         return;
       case PascalPackage.SIMPLE_EXPRESSION__TERMS:
         getTerms().clear();
@@ -204,8 +224,8 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATORS:
-        getPrefixOperators().clear();
+      case PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATOR:
+        setPrefixOperator(PREFIX_OPERATOR_EDEFAULT);
         return;
       case PascalPackage.SIMPLE_EXPRESSION__TERMS:
         getTerms().clear();
@@ -227,8 +247,8 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
   {
     switch (featureID)
     {
-      case PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATORS:
-        return prefixOperators != null && !prefixOperators.isEmpty();
+      case PascalPackage.SIMPLE_EXPRESSION__PREFIX_OPERATOR:
+        return PREFIX_OPERATOR_EDEFAULT == null ? prefixOperator != null : !PREFIX_OPERATOR_EDEFAULT.equals(prefixOperator);
       case PascalPackage.SIMPLE_EXPRESSION__TERMS:
         return terms != null && !terms.isEmpty();
       case PascalPackage.SIMPLE_EXPRESSION__OPERATORS:
@@ -248,8 +268,8 @@ public class simple_expressionImpl extends MinimalEObjectImpl.Container implemen
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (prefixOperators: ");
-    result.append(prefixOperators);
+    result.append(" (prefixOperator: ");
+    result.append(prefixOperator);
     result.append(", operators: ");
     result.append(operators);
     result.append(')');

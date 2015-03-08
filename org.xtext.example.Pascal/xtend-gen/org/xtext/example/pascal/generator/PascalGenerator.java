@@ -17,6 +17,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.pascal.pascal.any_number;
+import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
 import org.xtext.example.pascal.pascal.expression;
 import org.xtext.example.pascal.pascal.expression_list;
@@ -175,7 +176,7 @@ public class PascalGenerator implements IGenerator {
     return map.get(expr);
   }
   
-  public Type getType(final program e, final block b, final variable v) {
+  public Variable searchVariable(final program e, final block b, final variable v) {
     program_heading_block _heading = e.getHeading();
     String _name = _heading.getName();
     Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
@@ -189,10 +190,29 @@ public class PascalGenerator implements IGenerator {
       String _lowerCase_1 = _name_2.toLowerCase();
       boolean _equals = _lowerCase.equals(_lowerCase_1);
       if (_equals) {
-        return myVar.getVarType();
+        return myVar;
       }
     }
+    return null;
+  }
+  
+  public Type getType(final program e, final block b, final variable v) {
+    Variable variableFound = this.searchVariable(e, b, v);
+    boolean _notEquals = (!Objects.equal(variableFound, null));
+    if (_notEquals) {
+      return variableFound.getVarType();
+    }
     return new Type("nil");
+  }
+  
+  public boolean isConstant(final program e, final block b, final variable v) {
+    Variable variableFound = this.searchVariable(e, b, v);
+    boolean _notEquals = (!Objects.equal(variableFound, null));
+    if (_notEquals) {
+      ElementType _type = variableFound.getType();
+      return Objects.equal(_type, ElementType.CONSTANT);
+    }
+    return false;
   }
   
   public CharSequence printString(final program e) {
@@ -564,22 +584,35 @@ public class PascalGenerator implements IGenerator {
             variable _variable = f.getVariable();
             boolean _notEquals_4 = (!Objects.equal(_variable, null));
             if (_notEquals_4) {
-              _builder.append("mov eax, ");
-              variable _variable_1 = f.getVariable();
-              String _name = _variable_1.getName();
-              _builder.append(_name, "");
-              _builder.newLineIfNotEmpty();
               {
-                variable _variable_2 = f.getVariable();
-                Type _type = this.getType(e, b, _variable_2);
+                variable _variable_1 = f.getVariable();
+                boolean _isConstant = this.isConstant(e, b, _variable_1);
+                if (_isConstant) {
+                  _builder.append("mov eax, ");
+                  variable _variable_2 = f.getVariable();
+                  String _name = _variable_2.getName();
+                  _builder.append(_name, "");
+                  _builder.newLineIfNotEmpty();
+                } else {
+                  _builder.append("mov eax, [");
+                  variable _variable_3 = f.getVariable();
+                  String _name_1 = _variable_3.getName();
+                  _builder.append(_name_1, "");
+                  _builder.append("]");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+              {
+                variable _variable_4 = f.getVariable();
+                Type _type = this.getType(e, b, _variable_4);
                 String _realType = _type.getRealType();
                 String _lowerCase_1 = _realType.toLowerCase();
                 boolean _equals_1 = _lowerCase_1.equals("array of char");
                 if (_equals_1) {
                   _builder.append("mov ebx, ");
-                  variable _variable_3 = f.getVariable();
-                  String _name_1 = _variable_3.getName();
-                  _builder.append(_name_1, "");
+                  variable _variable_5 = f.getVariable();
+                  String _name_2 = _variable_5.getName();
+                  _builder.append(_name_2, "");
                   _builder.append("_SIZE");
                   _builder.newLineIfNotEmpty();
                 }
@@ -623,6 +656,8 @@ public class PascalGenerator implements IGenerator {
   
   public CharSequence computeTerm(final program e, final block b, final term t) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("push ecx");
+    _builder.newLine();
     EList<factor> _factors = t.getFactors();
     factor _get = _factors.get(0);
     CharSequence _computeFactor = this.computeFactor(e, b, _get);
@@ -708,30 +743,30 @@ public class PascalGenerator implements IGenerator {
         }
       }
     }
+    _builder.append("pop ecx");
+    _builder.newLine();
     return _builder;
   }
   
   public CharSequence computeSimpleExpression(final program e, final block b, final simple_expression exp) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("push ecx");
+    _builder.newLine();
     EList<EObject> _terms = exp.getTerms();
     EObject _get = _terms.get(0);
     CharSequence _computeTerm = this.computeTerm(e, b, ((term) _get));
     _builder.append(_computeTerm, "");
     _builder.newLineIfNotEmpty();
     {
-      EList<String> _prefixOperators = exp.getPrefixOperators();
-      boolean _notEquals = (!Objects.equal(_prefixOperators, null));
+      String _prefixOperator = exp.getPrefixOperator();
+      boolean _notEquals = (!Objects.equal(_prefixOperator, null));
       if (_notEquals) {
         {
-          EList<String> _prefixOperators_1 = exp.getPrefixOperators();
-          for(final String operator : _prefixOperators_1) {
-            {
-              boolean _equals = operator.equals("-");
-              if (_equals) {
-                _builder.append("neg aex");
-                _builder.newLine();
-              }
-            }
+          String _prefixOperator_1 = exp.getPrefixOperator();
+          boolean _equals = _prefixOperator_1.equals("-");
+          if (_equals) {
+            _builder.append("neg aex");
+            _builder.newLine();
           }
         }
       }
@@ -744,7 +779,7 @@ public class PascalGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
         {
           EList<String> _operators_1 = exp.getOperators();
-          for(final String operator_1 : _operators_1) {
+          for(final String operator : _operators_1) {
             _builder.append("mov ecx, eax");
             _builder.newLine();
             {
@@ -768,17 +803,17 @@ public class PascalGenerator implements IGenerator {
               }
             }
             {
-              boolean _equals_1 = operator_1.equals("or");
+              boolean _equals_1 = operator.equals("or");
               if (_equals_1) {
                 _builder.append("or ecx, eax ; Logical or");
                 _builder.newLine();
               } else {
-                boolean _equals_2 = operator_1.equals("+");
+                boolean _equals_2 = operator.equals("+");
                 if (_equals_2) {
                   _builder.append("add ecx, eax ; Sum");
                   _builder.newLine();
                 } else {
-                  boolean _equals_3 = operator_1.equals("-");
+                  boolean _equals_3 = operator.equals("-");
                   if (_equals_3) {
                     _builder.append("sub ecx, eax ; Sub");
                     _builder.newLine();
@@ -792,6 +827,8 @@ public class PascalGenerator implements IGenerator {
         }
       }
     }
+    _builder.append("pop ecx");
+    _builder.newLine();
     return _builder;
   }
   
@@ -1003,55 +1040,82 @@ public class PascalGenerator implements IGenerator {
           if (_notEquals) {
             {
               simple_statement _simple_1 = s.getSimple();
-              String _function_noargs = _simple_1.getFunction_noargs();
-              boolean _notEquals_1 = (!Objects.equal(_function_noargs, null));
+              assignment_statement _assignment = _simple_1.getAssignment();
+              boolean _notEquals_1 = (!Objects.equal(_assignment, null));
               if (_notEquals_1) {
-                {
-                  simple_statement _simple_2 = s.getSimple();
-                  String _function_noargs_1 = _simple_2.getFunction_noargs();
-                  boolean _equals = _function_noargs_1.equals("writeln");
-                  if (_equals) {
-                    _builder.append("; Call writeln");
-                    _builder.newLine();
-                    CharSequence _print = this.print(e, "__NEW_LINE");
-                    _builder.append(_print, "");
-                    _builder.newLineIfNotEmpty();
-                  }
-                }
-              } else {
+                _builder.append("; Assigning ");
+                simple_statement _simple_2 = s.getSimple();
+                assignment_statement _assignment_1 = _simple_2.getAssignment();
+                variable _variable = _assignment_1.getVariable();
+                String _name = _variable.getName();
+                _builder.append(_name, "");
+                _builder.newLineIfNotEmpty();
                 simple_statement _simple_3 = s.getSimple();
-                function_designator _function = _simple_3.getFunction();
-                boolean _notEquals_2 = (!Objects.equal(_function, null));
+                assignment_statement _assignment_2 = _simple_3.getAssignment();
+                expression _expression = _assignment_2.getExpression();
+                CharSequence _computeExpression = this.computeExpression(e, b, _expression);
+                _builder.append(_computeExpression, "");
+                _builder.newLineIfNotEmpty();
+                _builder.append("mov [");
+                simple_statement _simple_4 = s.getSimple();
+                assignment_statement _assignment_3 = _simple_4.getAssignment();
+                variable _variable_1 = _assignment_3.getVariable();
+                String _name_1 = _variable_1.getName();
+                _builder.append(_name_1, "");
+                _builder.append("], eax");
+                _builder.newLineIfNotEmpty();
+              } else {
+                simple_statement _simple_5 = s.getSimple();
+                String _function_noargs = _simple_5.getFunction_noargs();
+                boolean _notEquals_2 = (!Objects.equal(_function_noargs, null));
                 if (_notEquals_2) {
                   {
-                    simple_statement _simple_4 = s.getSimple();
-                    function_designator _function_1 = _simple_4.getFunction();
-                    String _name = _function_1.getName();
-                    boolean _equals_1 = _name.equals("write");
-                    if (_equals_1) {
-                      _builder.append("; Call write");
+                    simple_statement _simple_6 = s.getSimple();
+                    String _function_noargs_1 = _simple_6.getFunction_noargs();
+                    boolean _equals = _function_noargs_1.equals("writeln");
+                    if (_equals) {
+                      _builder.append("; Call writeln");
                       _builder.newLine();
-                      simple_statement _simple_5 = s.getSimple();
-                      function_designator _function_2 = _simple_5.getFunction();
-                      CharSequence _print_1 = this.print(e, b, _function_2);
-                      _builder.append(_print_1, "");
+                      CharSequence _print = this.print(e, "__NEW_LINE");
+                      _builder.append(_print, "");
                       _builder.newLineIfNotEmpty();
-                    } else {
-                      simple_statement _simple_6 = s.getSimple();
-                      function_designator _function_3 = _simple_6.getFunction();
-                      String _name_1 = _function_3.getName();
-                      boolean _equals_2 = _name_1.equals("writeln");
-                      if (_equals_2) {
-                        _builder.append("; Call writeln");
+                    }
+                  }
+                } else {
+                  simple_statement _simple_7 = s.getSimple();
+                  function_designator _function = _simple_7.getFunction();
+                  boolean _notEquals_3 = (!Objects.equal(_function, null));
+                  if (_notEquals_3) {
+                    {
+                      simple_statement _simple_8 = s.getSimple();
+                      function_designator _function_1 = _simple_8.getFunction();
+                      String _name_2 = _function_1.getName();
+                      boolean _equals_1 = _name_2.equals("write");
+                      if (_equals_1) {
+                        _builder.append("; Call write");
                         _builder.newLine();
-                        simple_statement _simple_7 = s.getSimple();
-                        function_designator _function_4 = _simple_7.getFunction();
-                        CharSequence _print_2 = this.print(e, b, _function_4);
-                        _builder.append(_print_2, "");
+                        simple_statement _simple_9 = s.getSimple();
+                        function_designator _function_2 = _simple_9.getFunction();
+                        CharSequence _print_1 = this.print(e, b, _function_2);
+                        _builder.append(_print_1, "");
                         _builder.newLineIfNotEmpty();
-                        CharSequence _print_3 = this.print(e, "__NEW_LINE");
-                        _builder.append(_print_3, "");
-                        _builder.newLineIfNotEmpty();
+                      } else {
+                        simple_statement _simple_10 = s.getSimple();
+                        function_designator _function_3 = _simple_10.getFunction();
+                        String _name_3 = _function_3.getName();
+                        boolean _equals_2 = _name_3.equals("writeln");
+                        if (_equals_2) {
+                          _builder.append("; Call writeln");
+                          _builder.newLine();
+                          simple_statement _simple_11 = s.getSimple();
+                          function_designator _function_4 = _simple_11.getFunction();
+                          CharSequence _print_2 = this.print(e, b, _function_4);
+                          _builder.append(_print_2, "");
+                          _builder.newLineIfNotEmpty();
+                          CharSequence _print_3 = this.print(e, "__NEW_LINE");
+                          _builder.append(_print_3, "");
+                          _builder.newLineIfNotEmpty();
+                        }
                       }
                     }
                   }

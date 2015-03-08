@@ -67,8 +67,8 @@ expression: //TODO: ADICIONADO "=" PQ N TAVA RECONHECENDO EM RELATIONAL_OPERATOR
 	expressions+=simple_expression ( ( operators+=RELATIONAL_OPERATOR | operators+="in" | operators+="=" ) expressions+=simple_expression ) ?
 ; 
 
-simple_expression: 
-	( prefixOperators+=ADDITION_OPERATOR+ ) ? terms+=term ( ( operators+=ADDITION_OPERATOR+ | operators+="or" ) terms+=term | terms+=signed_number ) *
+simple_expression hidden(WS): 
+	( prefixOperator=ADDITION_OPERATOR ) ? terms+=term ( ( operators+=ADDITION_OPERATOR | operators+="or" ) terms+=term | terms+=unsigned_number ) *
 ;
   
 term:

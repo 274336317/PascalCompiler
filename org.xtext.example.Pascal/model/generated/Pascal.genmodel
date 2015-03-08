@@ -73,7 +73,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//expression/operators"/>
     </genClasses>
     <genClasses ecoreClass="Pascal.ecore#//simple_expression">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//simple_expression/prefixOperators"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//simple_expression/prefixOperator"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pascal.ecore#//simple_expression/terms"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pascal.ecore#//simple_expression/operators"/>
     </genClasses>

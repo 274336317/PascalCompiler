@@ -654,7 +654,7 @@ class PascalValidator extends AbstractPascalValidator {
 		for (simple_expression s : expr.expressions) {
 			var isBoolean = false;
 			var isNumeric = false;
-			if (s.prefixOperators != null && !s.prefixOperators.empty) {
+			if (s.prefixOperator != null) {
 				isNumeric = true;
 			}
 			if (s.operators != null) {

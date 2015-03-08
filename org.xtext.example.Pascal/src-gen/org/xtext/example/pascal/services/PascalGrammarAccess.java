@@ -647,8 +647,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	public class Simple_expressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "simple_expression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cPrefixOperatorsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0 = (RuleCall)cPrefixOperatorsAssignment_0.eContents().get(0);
+		private final Assignment cPrefixOperatorAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPrefixOperatorADDITION_OPERATORTerminalRuleCall_0_0 = (RuleCall)cPrefixOperatorAssignment_0.eContents().get(0);
 		private final Assignment cTermsAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTermsTermParserRuleCall_1_0 = (RuleCall)cTermsAssignment_1.eContents().get(0);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
@@ -661,22 +661,22 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cTermsAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
 		private final RuleCall cTermsTermParserRuleCall_2_0_1_0 = (RuleCall)cTermsAssignment_2_0_1.eContents().get(0);
 		private final Assignment cTermsAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cTermsSigned_numberParserRuleCall_2_1_0 = (RuleCall)cTermsAssignment_2_1.eContents().get(0);
+		private final RuleCall cTermsUnsigned_numberParserRuleCall_2_1_0 = (RuleCall)cTermsAssignment_2_1.eContents().get(0);
 		
 		//simple_expression:
-		//	prefixOperators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
-		//	terms+=signed_number)*;
+		//	prefixOperator=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR | operators+="or") terms+=term |
+		//	terms+=unsigned_number)*;
 		public ParserRule getRule() { return rule; }
 
-		//prefixOperators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
-		//terms+=signed_number)*
+		//prefixOperator=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR | operators+="or") terms+=term |
+		//terms+=unsigned_number)*
 		public Group getGroup() { return cGroup; }
 
-		//prefixOperators+=ADDITION_OPERATOR?
-		public Assignment getPrefixOperatorsAssignment_0() { return cPrefixOperatorsAssignment_0; }
+		//prefixOperator=ADDITION_OPERATOR?
+		public Assignment getPrefixOperatorAssignment_0() { return cPrefixOperatorAssignment_0; }
 
 		//ADDITION_OPERATOR
-		public RuleCall getPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0() { return cPrefixOperatorsADDITION_OPERATORTerminalRuleCall_0_0; }
+		public RuleCall getPrefixOperatorADDITION_OPERATORTerminalRuleCall_0_0() { return cPrefixOperatorADDITION_OPERATORTerminalRuleCall_0_0; }
 
 		//terms+=term
 		public Assignment getTermsAssignment_1() { return cTermsAssignment_1; }
@@ -684,16 +684,16 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//term
 		public RuleCall getTermsTermParserRuleCall_1_0() { return cTermsTermParserRuleCall_1_0; }
 
-		//((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term | terms+=signed_number)*
+		//((operators+=ADDITION_OPERATOR | operators+="or") terms+=term | terms+=unsigned_number)*
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 
-		//(operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term
+		//(operators+=ADDITION_OPERATOR | operators+="or") terms+=term
 		public Group getGroup_2_0() { return cGroup_2_0; }
 
-		//operators+=ADDITION_OPERATOR+ | operators+="or"
+		//operators+=ADDITION_OPERATOR | operators+="or"
 		public Alternatives getAlternatives_2_0_0() { return cAlternatives_2_0_0; }
 
-		//operators+=ADDITION_OPERATOR+
+		//operators+=ADDITION_OPERATOR
 		public Assignment getOperatorsAssignment_2_0_0_0() { return cOperatorsAssignment_2_0_0_0; }
 
 		//ADDITION_OPERATOR
@@ -711,11 +711,11 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//term
 		public RuleCall getTermsTermParserRuleCall_2_0_1_0() { return cTermsTermParserRuleCall_2_0_1_0; }
 
-		//terms+=signed_number
+		//terms+=unsigned_number
 		public Assignment getTermsAssignment_2_1() { return cTermsAssignment_2_1; }
 
-		//signed_number
-		public RuleCall getTermsSigned_numberParserRuleCall_2_1_0() { return cTermsSigned_numberParserRuleCall_2_1_0; }
+		//unsigned_number
+		public RuleCall getTermsUnsigned_numberParserRuleCall_2_1_0() { return cTermsUnsigned_numberParserRuleCall_2_1_0; }
 	}
 
 	public class TermElements extends AbstractParserRuleElementFinder {
@@ -1053,16 +1053,16 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 
-		//"("
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.23/@alternatives/@elements.1'
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//expressions=expression_list?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.23/@alternatives/@elements.2'
 		public Assignment getExpressionsAssignment_2() { return cExpressionsAssignment_2; }
 
-		//expression_list
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.23/@alternatives/@elements.2/@terminal'
 		public RuleCall getExpressionsExpression_listParserRuleCall_2_0() { return cExpressionsExpression_listParserRuleCall_2_0; }
 
-		//")"
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.23/@alternatives/@elements.3'
 		public Keyword getRightParenthesisKeyword_3() { return cRightParenthesisKeyword_3; }
 	}
 
@@ -1078,37 +1078,34 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cWithStmtAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cWithStmtWith_statementParserRuleCall_3_0 = (RuleCall)cWithStmtAssignment_3.eContents().get(0);
 		
-		//structured_statement:
-		//	compound=compound_statement | repetitive=repetitive_statement | conditional=conditional_statement |
-		//	withStmt=with_statement;
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#XtextFragmentProvider_org.xtext.example.pascal.Pascal/structured_statement'
 		public ParserRule getRule() { return rule; }
 
-		//compound=compound_statement | repetitive=repetitive_statement | conditional=conditional_statement |
-		//withStmt=with_statement
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//compound=compound_statement
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.0'
 		public Assignment getCompoundAssignment_0() { return cCompoundAssignment_0; }
 
-		//compound_statement
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.0/@terminal'
 		public RuleCall getCompoundCompound_statementParserRuleCall_0_0() { return cCompoundCompound_statementParserRuleCall_0_0; }
 
-		//repetitive=repetitive_statement
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.1'
 		public Assignment getRepetitiveAssignment_1() { return cRepetitiveAssignment_1; }
 
-		//repetitive_statement
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.1/@terminal'
 		public RuleCall getRepetitiveRepetitive_statementParserRuleCall_1_0() { return cRepetitiveRepetitive_statementParserRuleCall_1_0; }
 
-		//conditional=conditional_statement
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.2'
 		public Assignment getConditionalAssignment_2() { return cConditionalAssignment_2; }
 
-		//conditional_statement
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.2/@terminal'
 		public RuleCall getConditionalConditional_statementParserRuleCall_2_0() { return cConditionalConditional_statementParserRuleCall_2_0; }
 
-		//withStmt=with_statement
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.3'
 		public Assignment getWithStmtAssignment_3() { return cWithStmtAssignment_3; }
 
-		//with_statement
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/org/xtext/example/pascal/Pascal.xtext#/0/@rules.24/@alternatives/@elements.3/@terminal'
 		public RuleCall getWithStmtWith_statementParserRuleCall_3_0() { return cWithStmtWith_statementParserRuleCall_3_0; }
 	}
 
@@ -3650,8 +3647,8 @@ public class PascalGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//simple_expression:
-	//	prefixOperators+=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR+ | operators+="or") terms+=term |
-	//	terms+=signed_number)*;
+	//	prefixOperator=ADDITION_OPERATOR? terms+=term ((operators+=ADDITION_OPERATOR | operators+="or") terms+=term |
+	//	terms+=unsigned_number)*;
 	public Simple_expressionElements getSimple_expressionAccess() {
 		return pSimple_expression;
 	}

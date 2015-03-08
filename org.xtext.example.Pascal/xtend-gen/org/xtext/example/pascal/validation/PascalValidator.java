@@ -1378,18 +1378,9 @@ public class PascalValidator extends AbstractPascalValidator {
       {
         boolean isBoolean = false;
         boolean isNumeric = false;
-        boolean _and = false;
-        EList<String> _prefixOperators = s.getPrefixOperators();
-        boolean _notEquals = (!Objects.equal(_prefixOperators, null));
-        if (!_notEquals) {
-          _and = false;
-        } else {
-          EList<String> _prefixOperators_1 = s.getPrefixOperators();
-          boolean _isEmpty = _prefixOperators_1.isEmpty();
-          boolean _not = (!_isEmpty);
-          _and = _not;
-        }
-        if (_and) {
+        String _prefixOperator = s.getPrefixOperator();
+        boolean _notEquals = (!Objects.equal(_prefixOperator, null));
+        if (_notEquals) {
           isNumeric = true;
         }
         EList<String> _operators = s.getOperators();
@@ -1424,8 +1415,8 @@ public class PascalValidator extends AbstractPascalValidator {
                 String _realType = _type.getRealType();
                 String _lowerCase_1 = _realType.toLowerCase();
                 boolean _equals_1 = _lowerCase_1.equals("boolean");
-                boolean _not_1 = (!_equals_1);
-                if (_not_1) {
+                boolean _not = (!_equals_1);
+                if (_not) {
                   Type _type_1 = this.getType(b, t);
                   String _plus = ("Cannot convert " + _type_1);
                   String _plus_1 = (_plus + " to boolean.");

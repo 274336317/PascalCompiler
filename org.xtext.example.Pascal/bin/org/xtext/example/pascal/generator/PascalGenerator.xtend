@@ -101,16 +101,32 @@ class PascalGenerator implements IGenerator {
 		return map.get(expr); 
 	}
 	
-	def Type getType(program e, block b, variable v) {
+	def Variable searchVariable(program e, block b, variable v) {
 		var artefacts = PascalValidator.artefacts.get(e.heading.name);
 		var map = artefacts.get("variables") as Map<block, Set<Variable>>;
 		var variables = map.get(b);
 		for (Variable myVar : variables) {
 			if (myVar.name.toLowerCase.equals(v.name.toLowerCase)) {
-				return myVar.varType;
+				return myVar;
 			}	
 		}
+		return null;
+	}
+	
+	def Type getType(program e, block b, variable v) {
+		var variableFound = searchVariable(e, b, v);
+		if (variableFound != null) {
+			return variableFound.varType;
+		}
 		return new Type("nil");
+	}
+	
+	def boolean isConstant(program e, block b, variable v) {
+		var variableFound = searchVariable(e, b, v);
+		if (variableFound != null) {
+			return variableFound.type == ElementType.CONSTANT;
+		}
+		return false;
 	}
 	
 	def printString(program e) '''
@@ -269,7 +285,11 @@ class PascalGenerator implements IGenerator {
 				mov eax, 0
 			«ENDIF»
 		«ELSEIF f.variable != null»
-			mov eax, «f.variable.name»
+			«IF e.isConstant(b, f.variable)»
+				mov eax, «f.variable.name»
+			«ELSE»
+				mov eax, [«f.variable.name»]
+			«ENDIF»
 			«IF e.getType(b, f.variable).realType.toLowerCase.equals("array of char")»
 				mov ebx, «f.variable.name»_SIZE
 			«ENDIF»
@@ -284,6 +304,7 @@ class PascalGenerator implements IGenerator {
 	'''
 	
 	def computeTerm(program e, block b, term t) '''
+		push ecx
 		«e.computeFactor(b, t.factors.get(0))»
 		«IF t.operators != null»
 			«var int index = 1»
@@ -313,16 +334,16 @@ class PascalGenerator implements IGenerator {
 				mov eax, ecx
 			«ENDFOR»
 		«ENDIF»
+		pop ecx
 	'''
 	
 	def computeSimpleExpression(program e, block b, simple_expression exp) '''
+		push ecx
 		«e.computeTerm(b, exp.terms.get(0) as term)»
-		«IF exp.prefixOperators != null»
-			«FOR operator : exp.prefixOperators»
-				«IF operator.equals("-")»
-					neg aex
-				«ENDIF» 
-			«ENDFOR»
+		«IF exp.prefixOperator != null»
+			«IF exp.prefixOperator.equals("-")»
+				neg aex
+			«ENDIF» 
 		«ENDIF»
 		«IF exp.operators != null»
 			«var int index = 1»
@@ -343,6 +364,7 @@ class PascalGenerator implements IGenerator {
 				mov eax, ecx
 			«ENDFOR»
 		«ENDIF»
+		pop ecx
 	'''
 	
 	def computeExpression(program e, block b, expression exp) '''
@@ -410,7 +432,11 @@ class PascalGenerator implements IGenerator {
 	def compile(program e, block b, statement_part part) '''
 		«FOR s : part.sequence.statements»
 			«IF s.simple != null»
-				«IF s.simple.function_noargs != null»
+				«IF s.simple.assignment != null»
+					; Assigning «s.simple.assignment.variable.name»
+					«e.computeExpression(b, s.simple.assignment.expression)»
+					mov [«s.simple.assignment.variable.name»], eax
+				«ELSEIF s.simple.function_noargs != null»
 					«IF s.simple.function_noargs.equals("writeln")»
 						; Call writeln
 						«e.print("__NEW_LINE")»
