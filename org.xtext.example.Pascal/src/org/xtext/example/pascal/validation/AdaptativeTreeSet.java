@@ -8,6 +8,15 @@ public class AdaptativeTreeSet<E> extends TreeSet<E> {
 	
 	@Override
 	public boolean add(E e) {
+		if (e instanceof Variable) {
+			if (((Variable) e).containingBlock == null) {
+				throw new RuntimeException("Invalid variable.");
+			}
+		} else if (e instanceof Procedure && !APIProvider.procedures.contains(e)) {
+			if (((Procedure) e).containingBlock == null || ((Procedure) e).declaration == null) {
+				throw new RuntimeException("Invalid procedure.");
+			}
+		}
 		if (this.contains(e)) {
 			this.remove(e);
 		}

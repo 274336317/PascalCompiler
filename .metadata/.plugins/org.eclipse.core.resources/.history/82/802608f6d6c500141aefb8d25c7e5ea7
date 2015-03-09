@@ -1,0 +1,33 @@
+package org.xtext.example.pascal.validation;
+
+import org.xtext.example.pascal.pascal.block;
+
+public class Type extends Element {
+
+	private String realType;
+	
+	public Type(String name, boolean inherited, block containingBlock, String realType) {
+		super(name, ElementType.TYPE, inherited, containingBlock);
+		this.realType = realType;
+	}
+	
+	public Type(String name) {
+		this(name, false, nul, name);
+	}
+	
+	public String getRealType() {
+		return this.realType;
+	}
+	
+	@Override
+	public Element clone() {
+		return new Type(this.name, this.inherited, this.realType);
+	}
+
+	//DONT MODIFY
+	@Override
+	public String toString() {
+		return this.name.toLowerCase();
+	}
+
+}

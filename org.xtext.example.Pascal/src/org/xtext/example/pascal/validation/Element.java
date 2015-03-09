@@ -1,16 +1,20 @@
 package org.xtext.example.pascal.validation;
 
+import org.xtext.example.pascal.pascal.block;
+
 
 public abstract class Element implements Comparable<Element> {
 
 	protected String name;
 	protected ElementType type;
 	protected boolean inherited;
+	protected block containingBlock;
 	
-	public Element(String name, ElementType type, boolean inherited) {
+	public Element(String name, ElementType type, boolean inherited, block containingBlock) {
 		this.name = name;
 		this.type = type;
 		this.inherited = inherited;
+		this.containingBlock = containingBlock;
 	}
 	
 	public String getName() {
@@ -25,6 +29,10 @@ public abstract class Element implements Comparable<Element> {
 		return this.inherited;
 	}
 
+	public block getContainingBlock() {
+		return this.containingBlock;
+	}
+	
 	public abstract Element clone();
 	
 	@Override

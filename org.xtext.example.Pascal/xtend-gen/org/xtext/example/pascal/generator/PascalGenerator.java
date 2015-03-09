@@ -5,7 +5,9 @@ package org.xtext.example.pascal.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.eclipse.emf.common.util.EList;
@@ -15,8 +17,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
-import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.pascal.pascal.abstraction_declaration;
+import org.xtext.example.pascal.pascal.abstraction_heading;
 import org.xtext.example.pascal.pascal.any_number;
 import org.xtext.example.pascal.pascal.assignment_statement;
 import org.xtext.example.pascal.pascal.block;
@@ -32,6 +36,7 @@ import org.xtext.example.pascal.pascal.factor;
 import org.xtext.example.pascal.pascal.function_designator;
 import org.xtext.example.pascal.pascal.if_statement;
 import org.xtext.example.pascal.pascal.number;
+import org.xtext.example.pascal.pascal.procedure_and_function_declaration_part;
 import org.xtext.example.pascal.pascal.program;
 import org.xtext.example.pascal.pascal.program_heading_block;
 import org.xtext.example.pascal.pascal.repetitive_statement;
@@ -43,10 +48,10 @@ import org.xtext.example.pascal.pascal.statement_sequence;
 import org.xtext.example.pascal.pascal.structured_statement;
 import org.xtext.example.pascal.pascal.term;
 import org.xtext.example.pascal.pascal.variable;
-import org.xtext.example.pascal.validation.ComposedType;
-import org.xtext.example.pascal.validation.ComposedTypeKind;
 import org.xtext.example.pascal.validation.ElementType;
+import org.xtext.example.pascal.validation.Function;
 import org.xtext.example.pascal.validation.PascalValidator;
+import org.xtext.example.pascal.validation.Procedure;
 import org.xtext.example.pascal.validation.Type;
 import org.xtext.example.pascal.validation.TypeInferer;
 import org.xtext.example.pascal.validation.Variable;
@@ -127,29 +132,38 @@ public class PascalGenerator implements IGenerator {
     }
   }
   
-  public Set<Variable> getVariables(final program e, final block b) {
+  public String getName(final block b) {
+    String _string = b.toString();
+    String lastName = _string.replaceAll("org.xtext.example.pascal.pascal.impl.blockImpl@", "");
+    return lastName;
+  }
+  
+  public Map<block, Set<Variable>> getVariables(final program e) {
     program_heading_block _heading = e.getHeading();
     String _name = _heading.getName();
     Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
     Object _get = artefacts.get("variables");
     Map<block, Set<Variable>> map = ((Map<block, Set<Variable>>) _get);
-    this.createStringTable(e);
-    return map.get(b);
+    return map;
   }
   
-  public Number getValue(final number num) {
-    any_number _number = num.getNumber();
-    String _integer = _number.getInteger();
-    boolean _notEquals = (!Objects.equal(_integer, null));
-    if (_notEquals) {
-      any_number _number_1 = num.getNumber();
-      String _integer_1 = _number_1.getInteger();
-      return Integer.valueOf(_integer_1);
-    } else {
-      any_number _number_2 = num.getNumber();
-      String _real = _number_2.getReal();
-      return Double.valueOf(_real);
-    }
+  public Set<Variable> getVariables(final program e, final block b) {
+    Map<block, Set<Variable>> _variables = this.getVariables(e);
+    return _variables.get(b);
+  }
+  
+  public Map<block, Set<Procedure>> getProcedures(final program e) {
+    program_heading_block _heading = e.getHeading();
+    String _name = _heading.getName();
+    Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
+    Object _get = artefacts.get("abstractions");
+    Map<block, Set<Procedure>> map = ((Map<block, Set<Procedure>>) _get);
+    return map;
+  }
+  
+  public Set<Procedure> getProcedures(final program e, final block b) {
+    Map<block, Set<Procedure>> _procedures = this.getProcedures(e);
+    return _procedures.get(b);
   }
   
   public Object getValue(final Variable v) {
@@ -175,150 +189,55 @@ public class PascalGenerator implements IGenerator {
     return v.getValue();
   }
   
-  public boolean isNumeric(final Object obj) {
-    try {
-      String _string = obj.toString();
-      Double.parseDouble(_string);
-      return true;
-    } catch (final Throwable _t) {
-      if (_t instanceof Exception) {
-        final Exception e = (Exception)_t;
-      } else {
-        throw Exceptions.sneakyThrow(_t);
-      }
-    }
-    return false;
-  }
-  
   public Object getValue(final program e, final block b, final constant const_) {
-    Object value = null;
-    String _name = const_.getName();
-    boolean _notEquals = (!Objects.equal(_name, null));
-    if (_notEquals) {
-      Variable variable = this.searchConstant(e, b, const_);
-      Object _value = this.getValue(variable);
-      value = _value;
-      Type _varType = variable.getVarType();
-      int _typeWeight = TypeInferer.getTypeWeight(_varType);
-      boolean _equals = (_typeWeight == (-1));
+    Set<Variable> variables = this.getVariables(e, b);
+    Object value = PascalValidator.getValue(const_, variables);
+    if ((value instanceof String)) {
+      String _name = const_.getName();
+      boolean _equals = Objects.equal(_name, null);
       if (_equals) {
+        boolean _containsKey = this.stringTable.containsKey(value);
+        if (_containsKey) {
+          return this.stringTable.get(value);
+        }
+      } else {
         return const_.getName();
       }
     } else {
-      number _number = const_.getNumber();
-      boolean _notEquals_1 = (!Objects.equal(_number, null));
-      if (_notEquals_1) {
-        number _number_1 = const_.getNumber();
-        Number _value_1 = this.getValue(_number_1);
-        value = _value_1;
-      } else {
-        String _string = const_.getString();
-        boolean _notEquals_2 = (!Objects.equal(_string, null));
-        if (_notEquals_2) {
-          String _string_1 = const_.getString();
-          String _get = this.stringTable.get(_string_1);
-          value = _get;
-        } else {
-          String _boolLiteral = const_.getBoolLiteral();
-          boolean _notEquals_3 = (!Objects.equal(_boolLiteral, null));
-          if (_notEquals_3) {
-            String _boolLiteral_1 = const_.getBoolLiteral();
-            Boolean _valueOf = Boolean.valueOf(_boolLiteral_1);
-            value = _valueOf;
-            boolean _equals_1 = Objects.equal(value, Boolean.valueOf(true));
-            if (_equals_1) {
-              return Integer.valueOf(1);
-            }
-            return Integer.valueOf(0);
-          } else {
-            String _nil = const_.getNil();
-            boolean _notEquals_4 = (!Objects.equal(_nil, null));
-            if (_notEquals_4) {
-              value = null;
-            }
-          }
+      if ((value instanceof Boolean)) {
+        if ((((Boolean) value).booleanValue() == true)) {
+          return Integer.valueOf(1);
         }
-      }
-    }
-    String _opterator = const_.getOpterator();
-    boolean _notEquals_5 = (!Objects.equal(_opterator, null));
-    if (_notEquals_5) {
-      boolean _and = false;
-      boolean _isNumeric = this.isNumeric(value);
-      if (!_isNumeric) {
-        _and = false;
-      } else {
-        String _opterator_1 = const_.getOpterator();
-        boolean _equals_2 = _opterator_1.equals("-");
-        _and = _equals_2;
-      }
-      if (_and) {
-        try {
-          String _string_2 = value.toString();
-          int _parseInt = Integer.parseInt(_string_2);
-          return Integer.valueOf((-_parseInt));
-        } catch (final Throwable _t) {
-          if (_t instanceof Exception) {
-            final Exception excp = (Exception)_t;
-            String _string_3 = value.toString();
-            double _parseDouble = Double.parseDouble(_string_3);
-            return Double.valueOf((-_parseDouble));
-          } else {
-            throw Exceptions.sneakyThrow(_t);
-          }
-        }
+        return Integer.valueOf(0);
       }
     }
     return value;
   }
   
-  public Object getValue(final program e, final block b, final variable v) {
-    Variable variableFound = this.searchVariable(e, b, v);
-    boolean _notEquals = (!Objects.equal(variableFound, null));
-    if (_notEquals) {
-      return variableFound.getValue();
+  public List<Variable> getArgumentTypes(final program e, final block b, final expression_list expList) {
+    List<Variable> list = new ArrayList<Variable>();
+    boolean _or = false;
+    boolean _equals = Objects.equal(expList, null);
+    if (_equals) {
+      _or = true;
+    } else {
+      EList<expression> _expressions = expList.getExpressions();
+      boolean _equals_1 = Objects.equal(_expressions, null);
+      _or = _equals_1;
     }
-    return null;
-  }
-  
-  public Variable searchVariable(final program e, final block b, final variable v) {
-    program_heading_block _heading = e.getHeading();
-    String _name = _heading.getName();
-    Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
-    Object _get = artefacts.get("variables");
-    Map<block, Set<Variable>> map = ((Map<block, Set<Variable>>) _get);
-    Set<Variable> variables = map.get(b);
-    for (final Variable myVar : variables) {
-      String _name_1 = myVar.getName();
-      String _lowerCase = _name_1.toLowerCase();
-      String _name_2 = v.getName();
-      String _lowerCase_1 = _name_2.toLowerCase();
-      boolean _equals = _lowerCase.equals(_lowerCase_1);
-      if (_equals) {
-        return myVar;
-      }
+    if (_or) {
+      return list;
     }
-    return null;
-  }
-  
-  public Variable searchConstant(final program e, final block b, final constant const_) {
-    program_heading_block _heading = e.getHeading();
-    String _name = _heading.getName();
-    Map<String, Object> artefacts = PascalValidator.artefacts.get(_name);
-    Object _get = artefacts.get("variables");
-    Map<block, Set<Variable>> map = ((Map<block, Set<Variable>>) _get);
-    Set<Variable> variables = map.get(b);
-    for (final Variable myVar : variables) {
-      String _name_1 = myVar.getName();
-      String _lowerCase = _name_1.toLowerCase();
-      String _name_2 = const_.getName();
-      String _lowerCase_1 = _name_2.toLowerCase();
-      boolean _equals = _lowerCase.equals(_lowerCase_1);
-      if (_equals) {
-        return myVar;
-      }
+    int count = 0;
+    EList<expression> _expressions_1 = expList.getExpressions();
+    for (final expression exp : _expressions_1) {
+      int _plusPlus = count++;
+      String _plus = ("arg_" + Integer.valueOf(_plusPlus));
+      Type _type = this.getType(e, exp);
+      Variable _variable = new Variable(_plus, _type, false, null, ElementType.PARAMETER);
+      list.add(_variable);
     }
-    return null;
+    return list;
   }
   
   public Type getType(final program e, final expression expr) {
@@ -330,23 +249,220 @@ public class PascalGenerator implements IGenerator {
     return map.get(expr);
   }
   
-  public Type getType(final program e, final block b, final variable v) {
-    Variable variableFound = this.searchVariable(e, b, v);
-    boolean _notEquals = (!Objects.equal(variableFound, null));
-    if (_notEquals) {
-      return variableFound.getVarType();
-    }
-    return new Type("nil");
+  public CharSequence compile(final program e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("; Program ");
+    program_heading_block _heading = e.getHeading();
+    String _name = _heading.getName();
+    _builder.append(_name, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("global _main");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("extern _printf");
+    _builder.newLine();
+    _builder.append("extern _scanf ");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("; Loading constants and strings");
+    _builder.newLine();
+    _builder.append("section .data");
+    _builder.newLine();
+    _builder.append("\t");
+    this.createStringTable(e);
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    CharSequence _compileStrings = this.compileStrings(e);
+    _builder.append(_compileStrings, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    block _block = e.getBlock();
+    CharSequence _compileAllConstants = this.compileAllConstants(e, _block);
+    _builder.append(_compileAllConstants, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("; Loading variables");
+    _builder.newLine();
+    _builder.append("section .bss");
+    _builder.newLine();
+    _builder.append("\t");
+    block _block_1 = e.getBlock();
+    CharSequence _compileAllVariables = this.compileAllVariables(e, _block_1);
+    _builder.append(_compileAllVariables, "\t");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("; Code");
+    _builder.newLine();
+    _builder.append("section .text");
+    _builder.newLine();
+    CharSequence _printString = this.printString(e);
+    _builder.append(_printString, "");
+    _builder.newLineIfNotEmpty();
+    CharSequence _printInteger = this.printInteger(e);
+    _builder.append(_printInteger, "");
+    _builder.newLineIfNotEmpty();
+    CharSequence _printBoolean = this.printBoolean(e);
+    _builder.append(_printBoolean, "");
+    _builder.newLineIfNotEmpty();
+    block _block_2 = e.getBlock();
+    CharSequence _compileAllProcedures = this.compileAllProcedures(e, _block_2);
+    _builder.append(_compileAllProcedures, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("_main:");
+    _builder.newLine();
+    block _block_3 = e.getBlock();
+    block _block_4 = e.getBlock();
+    statement_part _statement = _block_4.getStatement();
+    statement_sequence _sequence = _statement.getSequence();
+    CharSequence _compileSequence = this.compileSequence(e, _block_3, _sequence);
+    _builder.append(_compileSequence, "");
+    _builder.append(" ");
+    _builder.newLineIfNotEmpty();
+    _builder.append("ret\t; Exit program");
+    _builder.newLine();
+    return _builder;
   }
   
-  public boolean isConstant(final program e, final block b, final variable v) {
-    Variable variableFound = this.searchVariable(e, b, v);
-    boolean _notEquals = (!Objects.equal(variableFound, null));
-    if (_notEquals) {
-      ElementType _type = variableFound.getType();
-      return Objects.equal(_type, ElementType.CONSTANT);
+  public CharSequence compileAllProcedures(final program e, final block b) {
+    StringConcatenation _builder = new StringConcatenation();
+    Set<Procedure> _procedures = this.getProcedures(e, b);
+    CharSequence _compileProcedures = this.compileProcedures(e, b, _procedures);
+    _builder.append(_compileProcedures, "");
+    _builder.newLineIfNotEmpty();
+    {
+      procedure_and_function_declaration_part _abstraction = b.getAbstraction();
+      boolean _notEquals = (!Objects.equal(_abstraction, null));
+      if (_notEquals) {
+        {
+          procedure_and_function_declaration_part _abstraction_1 = b.getAbstraction();
+          EList<abstraction_heading> _procedures_1 = _abstraction_1.getProcedures();
+          for(final abstraction_heading p : _procedures_1) {
+            {
+              block _block = p.getBlock();
+              boolean _notEquals_1 = (!Objects.equal(_block, null));
+              if (_notEquals_1) {
+                block _block_1 = p.getBlock();
+                CharSequence _compileAllProcedures = this.compileAllProcedures(e, _block_1);
+                _builder.append(_compileAllProcedures, "");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          procedure_and_function_declaration_part _abstraction_2 = b.getAbstraction();
+          EList<abstraction_declaration> _functions = _abstraction_2.getFunctions();
+          for(final abstraction_declaration p_1 : _functions) {
+            {
+              block _block_2 = p_1.getBlock();
+              boolean _notEquals_2 = (!Objects.equal(_block_2, null));
+              if (_notEquals_2) {
+                block _block_3 = p_1.getBlock();
+                CharSequence _compileAllProcedures_1 = this.compileAllProcedures(e, _block_3);
+                _builder.append(_compileAllProcedures_1, "");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
     }
-    return false;
+    return _builder;
+  }
+  
+  public CharSequence compileAllVariables(final program e, final block b) {
+    StringConcatenation _builder = new StringConcatenation();
+    Set<Variable> _variables = this.getVariables(e, b);
+    CharSequence _compileVariables = this.compileVariables(e, b, _variables);
+    _builder.append(_compileVariables, "");
+    _builder.newLineIfNotEmpty();
+    {
+      procedure_and_function_declaration_part _abstraction = b.getAbstraction();
+      boolean _notEquals = (!Objects.equal(_abstraction, null));
+      if (_notEquals) {
+        {
+          procedure_and_function_declaration_part _abstraction_1 = b.getAbstraction();
+          EList<abstraction_heading> _procedures = _abstraction_1.getProcedures();
+          for(final abstraction_heading p : _procedures) {
+            {
+              block _block = p.getBlock();
+              boolean _notEquals_1 = (!Objects.equal(_block, null));
+              if (_notEquals_1) {
+                block _block_1 = p.getBlock();
+                CharSequence _compileAllVariables = this.compileAllVariables(e, _block_1);
+                _builder.append(_compileAllVariables, "");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          procedure_and_function_declaration_part _abstraction_2 = b.getAbstraction();
+          EList<abstraction_declaration> _functions = _abstraction_2.getFunctions();
+          for(final abstraction_declaration p_1 : _functions) {
+            {
+              block _block_2 = p_1.getBlock();
+              boolean _notEquals_2 = (!Objects.equal(_block_2, null));
+              if (_notEquals_2) {
+                block _block_3 = p_1.getBlock();
+                CharSequence _compileAllVariables_1 = this.compileAllVariables(e, _block_3);
+                _builder.append(_compileAllVariables_1, "");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileAllConstants(final program e, final block b) {
+    StringConcatenation _builder = new StringConcatenation();
+    Set<Variable> _variables = this.getVariables(e, b);
+    CharSequence _compileConstants = this.compileConstants(e, b, _variables);
+    _builder.append(_compileConstants, "");
+    _builder.newLineIfNotEmpty();
+    {
+      procedure_and_function_declaration_part _abstraction = b.getAbstraction();
+      boolean _notEquals = (!Objects.equal(_abstraction, null));
+      if (_notEquals) {
+        {
+          procedure_and_function_declaration_part _abstraction_1 = b.getAbstraction();
+          EList<abstraction_heading> _procedures = _abstraction_1.getProcedures();
+          for(final abstraction_heading p : _procedures) {
+            {
+              block _block = p.getBlock();
+              boolean _notEquals_1 = (!Objects.equal(_block, null));
+              if (_notEquals_1) {
+                block _block_1 = p.getBlock();
+                CharSequence _compileAllConstants = this.compileAllConstants(e, _block_1);
+                _builder.append(_compileAllConstants, "");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+        {
+          procedure_and_function_declaration_part _abstraction_2 = b.getAbstraction();
+          EList<abstraction_declaration> _functions = _abstraction_2.getFunctions();
+          for(final abstraction_declaration p_1 : _functions) {
+            {
+              block _block_2 = p_1.getBlock();
+              boolean _notEquals_2 = (!Objects.equal(_block_2, null));
+              if (_notEquals_2) {
+                block _block_3 = p_1.getBlock();
+                CharSequence _compileAllConstants_1 = this.compileAllConstants(e, _block_3);
+                _builder.append(_compileAllConstants_1, "");
+                _builder.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
   }
   
   public CharSequence printString(final program e) {
@@ -486,220 +602,118 @@ public class PascalGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence printFloat(final program e) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("; Print float");
-    _builder.newLine();
-    _builder.append("_print_float:");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("push eax ");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("sub esp, 8");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("mov [esp], eax");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("sub esp, 4");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("lea eax, [__PRINTF_F]");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("mov [esp], eax");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("call _printf");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("add esp, 12");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("pop eax ");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("ret ;return ");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence compilePredefinedProcedures(final program e) {
-    StringConcatenation _builder = new StringConcatenation();
-    CharSequence _printString = this.printString(e);
-    _builder.append(_printString, "");
-    _builder.newLineIfNotEmpty();
-    CharSequence _printInteger = this.printInteger(e);
-    _builder.append(_printInteger, "");
-    _builder.newLineIfNotEmpty();
-    CharSequence _printBoolean = this.printBoolean(e);
-    _builder.append(_printBoolean, "");
-    _builder.newLineIfNotEmpty();
-    CharSequence _printFloat = this.printFloat(e);
-    _builder.append(_printFloat, "");
-    _builder.newLineIfNotEmpty();
-    return _builder;
-  }
-  
-  public CharSequence compile(final program e) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("; Program ");
-    program_heading_block _heading = e.getHeading();
-    String _name = _heading.getName();
-    _builder.append(_name, "");
-    _builder.newLineIfNotEmpty();
-    _builder.append("global _main");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("extern _printf");
-    _builder.newLine();
-    _builder.append("extern _scanf ");
-    _builder.newLine();
-    _builder.newLine();
-    block _block = e.getBlock();
-    block _block_1 = e.getBlock();
-    Set<Variable> _variables = this.getVariables(e, _block_1);
-    CharSequence _compile = this.compile(e, _block, _variables);
-    _builder.append(_compile, "");
-    _builder.append(" ");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.append("; Code");
-    _builder.newLine();
-    _builder.append("section .text");
-    _builder.newLine();
-    _builder.newLine();
-    CharSequence _compilePredefinedProcedures = this.compilePredefinedProcedures(e);
-    _builder.append(_compilePredefinedProcedures, "");
-    _builder.newLineIfNotEmpty();
-    _builder.append("_main:");
-    _builder.newLine();
-    _builder.append("\t");
-    block _block_2 = e.getBlock();
-    block _block_3 = e.getBlock();
-    statement_part _statement = _block_3.getStatement();
-    statement_sequence _sequence = _statement.getSequence();
-    CharSequence _compileSequence = this.compileSequence(e, _block_2, _sequence);
-    _builder.append(_compileSequence, "\t");
-    _builder.append(" ");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    _builder.append("ret\t; Exit program");
-    _builder.newLine();
-    return _builder;
-  }
-  
-  public CharSequence compile(final program e, final block b, final Set<Variable> variables) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("; Loading global constants and strings");
-    _builder.newLine();
-    _builder.append("section .data");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("__NEW_LINE db 10, 0");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("__NEW_LINE_SIZE equ $-__NEW_LINE");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("__PRINTF_S db \'%s\', 0");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("__PRINTF_I db \'%d\', 0");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("__PRINTF_F db \'%f\', 0");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("__BOOLEAN_TRUE db \'true\', 0");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("__BOOLEAN_TRUE_SIZE equ $-__BOOLEAN_TRUE");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("__BOOLEAN_FALSE db \'false\', 0");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("__BOOLEAN_FALSE_SIZE equ $-__BOOLEAN_FALSE");
-    _builder.newLine();
-    {
-      Set<String> _keySet = this.stringTable.keySet();
-      for(final String s : _keySet) {
-        _builder.append("\t");
-        String _get = this.stringTable.get(s);
-        Type _type = new Type("char");
-        ComposedType _composedType = new ComposedType(_type, 
-          ComposedTypeKind.ARRAY);
-        Variable _variable = new Variable(_get, _composedType, false, ElementType.CONSTANT, s);
-        CharSequence _compileGlobalConstant = this.compileGlobalConstant(e, _variable, b, true);
-        _builder.append(_compileGlobalConstant, "\t");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    {
-      for(final Variable v : variables) {
-        _builder.append("\t");
-        CharSequence _compileGlobalConstant_1 = this.compileGlobalConstant(e, v, b, false);
-        _builder.append(_compileGlobalConstant_1, "\t");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t");
-    _builder.newLine();
-    _builder.append("; Loading global variables");
-    _builder.newLine();
-    _builder.append("section .bss");
-    _builder.newLine();
-    {
-      for(final Variable v_1 : variables) {
-        _builder.append("\t");
-        CharSequence _compileGlobalVariables = this.compileGlobalVariables(e, v_1, b);
-        _builder.append(_compileGlobalVariables, "\t");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    return _builder;
-  }
-  
-  public CharSequence compileGlobalConstant(final program e, final Variable v, final block b, final boolean isString) {
+  public CharSequence compileConstant(final program e, final block b, final Variable v) {
     StringConcatenation _builder = new StringConcatenation();
     {
+      boolean _and = false;
+      boolean _and_1 = false;
       ElementType _type = v.getType();
       boolean _equals = Objects.equal(_type, ElementType.CONSTANT);
+      if (!_equals) {
+        _and_1 = false;
+      } else {
+        boolean _isInherited = v.isInherited();
+        boolean _not = (!_isInherited);
+        _and_1 = _not;
+      }
+      if (!_and_1) {
+        _and = false;
+      } else {
+        Type _varType = v.getVarType();
+        String _realType = _varType.getRealType();
+        String _lowerCase = _realType.toLowerCase();
+        boolean _equals_1 = _lowerCase.equals("array of char");
+        boolean _not_1 = (!_equals_1);
+        _and = _not_1;
+      }
+      if (_and) {
+        String _name = v.getName();
+        _builder.append(_name, "");
+        _builder.append("_");
+        String _name_1 = this.getName(b);
+        _builder.append(_name_1, "");
+        _builder.append(" equ ");
+        Object _value = this.getValue(v);
+        _builder.append(_value, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileString(final program e, final String name, final String value) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(value, "");
+    _builder.append(" db \'");
+    String _replaceAll = name.replaceAll("\'", "");
+    _builder.append(_replaceAll, "");
+    _builder.append("\', 0");
+    _builder.newLineIfNotEmpty();
+    _builder.append(value, "");
+    _builder.append("_SIZE equ $-");
+    _builder.append(value, "");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public CharSequence compileVariable(final program e, final block b, final Variable v) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _and = false;
+      boolean _or = false;
+      boolean _or_1 = false;
+      ElementType _type = v.getType();
+      boolean _equals = Objects.equal(_type, ElementType.VARIABLE);
       if (_equals) {
+        _or_1 = true;
+      } else {
+        ElementType _type_1 = v.getType();
+        boolean _equals_1 = Objects.equal(_type_1, ElementType.PARAMETER);
+        _or_1 = _equals_1;
+      }
+      if (_or_1) {
+        _or = true;
+      } else {
+        ElementType _type_2 = v.getType();
+        boolean _equals_2 = Objects.equal(_type_2, ElementType.FUNCTION_RETURN);
+        _or = _equals_2;
+      }
+      if (!_or) {
+        _and = false;
+      } else {
+        boolean _isInherited = v.isInherited();
+        boolean _not = (!_isInherited);
+        _and = _not;
+      }
+      if (_and) {
         {
           Type _varType = v.getVarType();
           String _realType = _varType.getRealType();
           String _lowerCase = _realType.toLowerCase();
-          boolean _equals_1 = _lowerCase.equals("array of char");
-          if (_equals_1) {
+          boolean _equals_3 = _lowerCase.equals("array of char");
+          boolean _not_1 = (!_equals_3);
+          if (_not_1) {
             {
-              if (isString) {
-                String _name = v.getName();
+              ElementType _type_3 = v.getType();
+              boolean _equals_4 = Objects.equal(_type_3, ElementType.FUNCTION_RETURN);
+              if (_equals_4) {
+                String _extendedName = v.getExtendedName();
+                _builder.append(_extendedName, "");
+                _builder.append("_");
+                String _name = this.getName(b);
                 _builder.append(_name, "");
-                _builder.append(" db ");
-                Object _value = this.getValue(v);
-                _builder.append(_value, "");
-                _builder.append(", 0");
+                _builder.append(" RESB 4");
                 _builder.newLineIfNotEmpty();
+              } else {
                 String _name_1 = v.getName();
                 _builder.append(_name_1, "");
-                _builder.append("_SIZE equ $-");
-                String _name_2 = v.getName();
+                _builder.append("_");
+                String _name_2 = this.getName(b);
                 _builder.append(_name_2, "");
+                _builder.append(" RESB 4");
                 _builder.newLineIfNotEmpty();
               }
             }
-          } else {
-            String _name_3 = v.getName();
-            _builder.append(_name_3, "");
-            _builder.append(" equ ");
-            Object _value_1 = this.getValue(v);
-            _builder.append(_value_1, "");
-            _builder.newLineIfNotEmpty();
           }
         }
       }
@@ -707,16 +721,132 @@ public class PascalGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compileGlobalVariables(final program e, final Variable v, final block b) {
+  public CharSequence compileStrings(final program e) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("__NEW_LINE db 10, 0");
+    _builder.newLine();
+    _builder.append("__NEW_LINE_SIZE equ $-__NEW_LINE");
+    _builder.newLine();
+    _builder.append("__PRINTF_S db \'%s\', 0");
+    _builder.newLine();
+    _builder.append("__PRINTF_I db \'%d\', 0");
+    _builder.newLine();
+    _builder.append("__PRINTF_F db \'%f\', 0");
+    _builder.newLine();
+    _builder.append("__BOOLEAN_TRUE db \'true\', 0");
+    _builder.newLine();
+    _builder.append("__BOOLEAN_TRUE_SIZE equ $-__BOOLEAN_TRUE");
+    _builder.newLine();
+    _builder.append("__BOOLEAN_FALSE db \'false\', 0");
+    _builder.newLine();
+    _builder.append("__BOOLEAN_FALSE_SIZE equ $-__BOOLEAN_FALSE");
+    _builder.newLine();
+    {
+      Set<String> _keySet = this.stringTable.keySet();
+      for(final String s : _keySet) {
+        String _get = this.stringTable.get(s);
+        CharSequence _compileString = this.compileString(e, s, _get);
+        _builder.append(_compileString, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileConstants(final program e, final block b, final Set<Variable> variables) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      ElementType _type = v.getType();
-      boolean _equals = Objects.equal(_type, ElementType.VARIABLE);
-      if (_equals) {
-        String _name = v.getName();
-        _builder.append(_name, "");
-        _builder.append(" RESB 4");
+      for(final Variable variable : variables) {
+        CharSequence _compileConstant = this.compileConstant(e, b, variable);
+        _builder.append(_compileConstant, "");
         _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileVariables(final program e, final block b, final Set<Variable> variables) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      for(final Variable variable : variables) {
+        CharSequence _compileVariable = this.compileVariable(e, b, variable);
+        _builder.append(_compileVariable, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileProcedures(final program e, final block b, final Set<Procedure> procedures) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      for(final Procedure procedure : procedures) {
+        CharSequence _compileProcedure = this.compileProcedure(e, b, procedure);
+        _builder.append(_compileProcedure, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence compileProcedure(final program e, final block b, final Procedure procedure) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      boolean _and = false;
+      boolean _isForward = procedure.isForward();
+      boolean _not = (!_isForward);
+      if (!_not) {
+        _and = false;
+      } else {
+        boolean _isInherited = procedure.isInherited();
+        boolean _not_1 = (!_isInherited);
+        _and = _not_1;
+      }
+      if (_and) {
+        _builder.append("; Procedure ");
+        String _name = procedure.getName();
+        _builder.append(_name, "");
+        List<Variable> _parameters = procedure.getParameters();
+        _builder.append(_parameters, "");
+        _builder.newLineIfNotEmpty();
+        _builder.append("_");
+        String _extendedName = procedure.getExtendedName();
+        _builder.append(_extendedName, "");
+        _builder.append("_");
+        String _name_1 = this.getName(b);
+        _builder.append(_name_1, "");
+        _builder.append(":");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t");
+        abstraction_declaration _declaration = procedure.getDeclaration();
+        block _block = _declaration.getBlock();
+        abstraction_declaration _declaration_1 = procedure.getDeclaration();
+        block _block_1 = _declaration_1.getBlock();
+        statement_part _statement = _block_1.getStatement();
+        statement_sequence _sequence = _statement.getSequence();
+        CharSequence _compileSequence = this.compileSequence(e, _block, _sequence);
+        _builder.append(_compileSequence, "\t");
+        _builder.newLineIfNotEmpty();
+        {
+          if ((procedure instanceof Function)) {
+            _builder.append("\t");
+            _builder.append("mov eax, [");
+            String _extendedName_1 = ((Function)procedure).getExtendedName();
+            _builder.append(_extendedName_1, "\t");
+            _builder.append("_");
+            abstraction_declaration _declaration_2 = ((Function)procedure).getDeclaration();
+            block _block_2 = _declaration_2.getBlock();
+            String _name_2 = this.getName(_block_2);
+            _builder.append(_name_2, "\t");
+            _builder.append("]");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+        _builder.append("\t");
+        _builder.append("ret ;return");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.newLine();
       }
     }
     return _builder;
@@ -724,6 +854,98 @@ public class PascalGenerator implements IGenerator {
   
   public CharSequence computeFunction(final program e, final block b, final function_designator function) {
     StringConcatenation _builder = new StringConcatenation();
+    String name = function.getName();
+    _builder.newLineIfNotEmpty();
+    expression_list _expressions = function.getExpressions();
+    List<Variable> arguments = this.getArgumentTypes(e, b, _expressions);
+    _builder.newLineIfNotEmpty();
+    Procedure functionToSearch = new Procedure(name, arguments);
+    _builder.newLineIfNotEmpty();
+    Set<Procedure> _procedures = this.getProcedures(e, b);
+    Procedure functionFound = PascalValidator.searchWithTypeCoersion(_procedures, functionToSearch);
+    _builder.newLineIfNotEmpty();
+    {
+      List<Variable> _parameters = functionFound.getParameters();
+      for(final Variable arg : _parameters) {
+        _builder.append("mov edx, ");
+        String _name = arg.getName();
+        _builder.append(_name, "");
+        _builder.append("_");
+        abstraction_declaration _declaration = functionFound.getDeclaration();
+        block _block = _declaration.getBlock();
+        String _name_1 = this.getName(_block);
+        _builder.append(_name_1, "");
+        _builder.newLineIfNotEmpty();
+        _builder.append("push edx");
+        _builder.newLine();
+      }
+    }
+    {
+      boolean _and = false;
+      expression_list _expressions_1 = function.getExpressions();
+      boolean _notEquals = (!Objects.equal(_expressions_1, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        expression_list _expressions_2 = function.getExpressions();
+        EList<expression> _expressions_3 = _expressions_2.getExpressions();
+        boolean _notEquals_1 = (!Objects.equal(_expressions_3, null));
+        _and = _notEquals_1;
+      }
+      if (_and) {
+        expression_list _expressions_4 = function.getExpressions();
+        EList<expression> exps = _expressions_4.getExpressions();
+        _builder.newLineIfNotEmpty();
+        {
+          int _size = exps.size();
+          int _minus = (_size - 1);
+          IntegerRange _upTo = new IntegerRange(0, _minus);
+          for(final Integer i : _upTo) {
+            expression _get = exps.get((i).intValue());
+            CharSequence _computeExpression = this.computeExpression(e, b, _get);
+            _builder.append(_computeExpression, "");
+            _builder.newLineIfNotEmpty();
+            _builder.append("mov [");
+            List<Variable> _parameters_1 = functionFound.getParameters();
+            Variable _get_1 = _parameters_1.get((i).intValue());
+            String _name_2 = _get_1.getName();
+            _builder.append(_name_2, "");
+            _builder.append("_");
+            abstraction_declaration _declaration_1 = functionFound.getDeclaration();
+            block _block_1 = _declaration_1.getBlock();
+            String _name_3 = this.getName(_block_1);
+            _builder.append(_name_3, "");
+            _builder.append("], eax");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("call _");
+    String _extendedName = functionFound.getExtendedName();
+    _builder.append(_extendedName, "");
+    _builder.append("_");
+    block _containingBlock = functionFound.getContainingBlock();
+    String _name_4 = this.getName(_containingBlock);
+    _builder.append(_name_4, "");
+    _builder.newLineIfNotEmpty();
+    {
+      List<Variable> _parameters_2 = functionFound.getParameters();
+      for(final Variable arg_1 : _parameters_2) {
+        _builder.append("pop edx");
+        _builder.newLine();
+        _builder.append("mov [");
+        String _name_5 = arg_1.getName();
+        _builder.append(_name_5, "");
+        _builder.append("_");
+        abstraction_declaration _declaration_2 = functionFound.getDeclaration();
+        block _block_2 = _declaration_2.getBlock();
+        String _name_6 = this.getName(_block_2);
+        _builder.append(_name_6, "");
+        _builder.append("], edx");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
@@ -784,46 +1006,71 @@ public class PascalGenerator implements IGenerator {
             variable _variable = f.getVariable();
             boolean _notEquals_4 = (!Objects.equal(_variable, null));
             if (_notEquals_4) {
+              Set<Variable> _variables = this.getVariables(e, b);
+              variable _variable_1 = f.getVariable();
+              String _name = _variable_1.getName();
+              Variable _variable_2 = new Variable(_name);
+              Variable variableFound = PascalValidator.<Variable>search(_variables, _variable_2);
+              _builder.newLineIfNotEmpty();
               {
-                variable _variable_1 = f.getVariable();
-                boolean _isConstant = this.isConstant(e, b, _variable_1);
-                if (_isConstant) {
+                ElementType _type = variableFound.getType();
+                boolean _equals_1 = Objects.equal(_type, ElementType.CONSTANT);
+                if (_equals_1) {
                   {
-                    variable _variable_2 = f.getVariable();
-                    Type _type = this.getType(e, b, _variable_2);
-                    String _realType = _type.getRealType();
+                    Type _varType = variableFound.getVarType();
+                    String _realType = _varType.getRealType();
                     String _lowerCase_1 = _realType.toLowerCase();
-                    boolean _equals_1 = _lowerCase_1.equals("array of char");
-                    if (_equals_1) {
+                    boolean _equals_2 = _lowerCase_1.equals("array of char");
+                    if (_equals_2) {
                       _builder.append("lea eax, [");
-                      variable _variable_3 = f.getVariable();
-                      Object _value = this.getValue(e, b, _variable_3);
+                      Object _value = variableFound.getValue();
                       String _get_2 = this.stringTable.get(((String) _value));
                       _builder.append(_get_2, "");
                       _builder.append("]");
                       _builder.newLineIfNotEmpty();
                       _builder.append("mov ebx, ");
-                      variable _variable_4 = f.getVariable();
-                      Object _value_1 = this.getValue(e, b, _variable_4);
+                      Object _value_1 = variableFound.getValue();
                       String _get_3 = this.stringTable.get(((String) _value_1));
                       _builder.append(_get_3, "");
                       _builder.append("_SIZE");
                       _builder.newLineIfNotEmpty();
                     } else {
                       _builder.append("mov eax, ");
-                      variable _variable_5 = f.getVariable();
-                      String _name = _variable_5.getName();
-                      _builder.append(_name, "");
+                      block _containingBlock = variableFound.getContainingBlock();
+                      String _name_1 = this.getName(_containingBlock);
+                      _builder.append(_name_1, "");
+                      _builder.append("_");
+                      String _name_2 = variableFound.getName();
+                      _builder.append(_name_2, "");
                       _builder.newLineIfNotEmpty();
                     }
                   }
                 } else {
-                  _builder.append("mov eax, [");
-                  variable _variable_6 = f.getVariable();
-                  String _name_1 = _variable_6.getName();
-                  _builder.append(_name_1, "");
-                  _builder.append("]");
-                  _builder.newLineIfNotEmpty();
+                  {
+                    ElementType _type_1 = variableFound.getType();
+                    boolean _equals_3 = Objects.equal(_type_1, ElementType.FUNCTION_RETURN);
+                    if (_equals_3) {
+                      _builder.append("mov eax, [");
+                      String _extendedName = variableFound.getExtendedName();
+                      _builder.append(_extendedName, "");
+                      _builder.append("_");
+                      block _containingBlock_1 = variableFound.getContainingBlock();
+                      String _name_3 = this.getName(_containingBlock_1);
+                      _builder.append(_name_3, "");
+                      _builder.append("]");
+                      _builder.newLineIfNotEmpty();
+                    } else {
+                      _builder.append("mov eax, [");
+                      String _name_4 = variableFound.getName();
+                      _builder.append(_name_4, "");
+                      _builder.append("_");
+                      block _containingBlock_2 = variableFound.getContainingBlock();
+                      String _name_5 = this.getName(_containingBlock_2);
+                      _builder.append(_name_5, "");
+                      _builder.append("]");
+                      _builder.newLineIfNotEmpty();
+                    }
+                  }
                 }
               }
             } else {
@@ -1280,14 +1527,39 @@ public class PascalGenerator implements IGenerator {
             CharSequence _computeExpression = this.computeExpression(e, b, _expression);
             _builder.append(_computeExpression, "");
             _builder.newLineIfNotEmpty();
-            _builder.append("mov [");
+            Set<Variable> _variables = this.getVariables(e, b);
             simple_statement _simple_4 = s.getSimple();
             assignment_statement _assignment_3 = _simple_4.getAssignment();
             variable _variable_1 = _assignment_3.getVariable();
             String _name_1 = _variable_1.getName();
-            _builder.append(_name_1, "");
-            _builder.append("], eax");
+            Variable _variable_2 = new Variable(_name_1);
+            Variable variableFound = PascalValidator.<Variable>search(_variables, _variable_2);
             _builder.newLineIfNotEmpty();
+            {
+              ElementType _type = variableFound.getType();
+              boolean _equals = Objects.equal(_type, ElementType.FUNCTION_RETURN);
+              if (_equals) {
+                _builder.append("mov [");
+                String _extendedName = variableFound.getExtendedName();
+                _builder.append(_extendedName, "");
+                _builder.append("_");
+                block _containingBlock = variableFound.getContainingBlock();
+                String _name_2 = this.getName(_containingBlock);
+                _builder.append(_name_2, "");
+                _builder.append("], eax");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("mov [");
+                String _name_3 = variableFound.getName();
+                _builder.append(_name_3, "");
+                _builder.append("_");
+                block _containingBlock_1 = variableFound.getContainingBlock();
+                String _name_4 = this.getName(_containingBlock_1);
+                _builder.append(_name_4, "");
+                _builder.append("], eax");
+                _builder.newLineIfNotEmpty();
+              }
+            }
           } else {
             simple_statement _simple_5 = s.getSimple();
             String _function_noargs = _simple_5.getFunction_noargs();
@@ -1296,48 +1568,81 @@ public class PascalGenerator implements IGenerator {
               {
                 simple_statement _simple_6 = s.getSimple();
                 String _function_noargs_1 = _simple_6.getFunction_noargs();
-                boolean _equals = _function_noargs_1.equals("writeln");
-                if (_equals) {
+                boolean _equals_1 = _function_noargs_1.equals("writeln");
+                if (_equals_1) {
                   _builder.append("; Call writeln");
                   _builder.newLine();
                   CharSequence _print = this.print(e, "__NEW_LINE");
                   _builder.append(_print, "");
                   _builder.newLineIfNotEmpty();
+                } else {
+                  _builder.append("; Call ");
+                  simple_statement _simple_7 = s.getSimple();
+                  String _function_noargs_2 = _simple_7.getFunction_noargs();
+                  _builder.append(_function_noargs_2, "");
+                  _builder.newLineIfNotEmpty();
+                  Set<Procedure> _procedures = this.getProcedures(e, b);
+                  simple_statement _simple_8 = s.getSimple();
+                  String _function_noargs_3 = _simple_8.getFunction_noargs();
+                  ArrayList<Variable> _arrayList = new ArrayList<Variable>();
+                  Procedure _procedure = new Procedure(_function_noargs_3, _arrayList);
+                  Procedure functionFound = PascalValidator.<Procedure>search(_procedures, _procedure);
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("call _");
+                  String _extendedName_1 = functionFound.getExtendedName();
+                  _builder.append(_extendedName_1, "");
+                  _builder.append("_");
+                  block _containingBlock_2 = functionFound.getContainingBlock();
+                  String _name_5 = this.getName(_containingBlock_2);
+                  _builder.append(_name_5, "");
+                  _builder.newLineIfNotEmpty();
                 }
               }
             } else {
-              simple_statement _simple_7 = s.getSimple();
-              function_designator _function = _simple_7.getFunction();
+              simple_statement _simple_9 = s.getSimple();
+              function_designator _function = _simple_9.getFunction();
               boolean _notEquals_3 = (!Objects.equal(_function, null));
               if (_notEquals_3) {
                 {
-                  simple_statement _simple_8 = s.getSimple();
-                  function_designator _function_1 = _simple_8.getFunction();
-                  String _name_2 = _function_1.getName();
-                  boolean _equals_1 = _name_2.equals("write");
-                  if (_equals_1) {
+                  simple_statement _simple_10 = s.getSimple();
+                  function_designator _function_1 = _simple_10.getFunction();
+                  String _name_6 = _function_1.getName();
+                  boolean _equals_2 = _name_6.equals("write");
+                  if (_equals_2) {
                     _builder.append("; Call write");
                     _builder.newLine();
-                    simple_statement _simple_9 = s.getSimple();
-                    function_designator _function_2 = _simple_9.getFunction();
+                    simple_statement _simple_11 = s.getSimple();
+                    function_designator _function_2 = _simple_11.getFunction();
                     CharSequence _print_1 = this.print(e, b, _function_2);
                     _builder.append(_print_1, "");
                     _builder.newLineIfNotEmpty();
                   } else {
-                    simple_statement _simple_10 = s.getSimple();
-                    function_designator _function_3 = _simple_10.getFunction();
-                    String _name_3 = _function_3.getName();
-                    boolean _equals_2 = _name_3.equals("writeln");
-                    if (_equals_2) {
+                    simple_statement _simple_12 = s.getSimple();
+                    function_designator _function_3 = _simple_12.getFunction();
+                    String _name_7 = _function_3.getName();
+                    boolean _equals_3 = _name_7.equals("writeln");
+                    if (_equals_3) {
                       _builder.append("; Call writeln");
                       _builder.newLine();
-                      simple_statement _simple_11 = s.getSimple();
-                      function_designator _function_4 = _simple_11.getFunction();
+                      simple_statement _simple_13 = s.getSimple();
+                      function_designator _function_4 = _simple_13.getFunction();
                       CharSequence _print_2 = this.print(e, b, _function_4);
                       _builder.append(_print_2, "");
                       _builder.newLineIfNotEmpty();
                       CharSequence _print_3 = this.print(e, "__NEW_LINE");
                       _builder.append(_print_3, "");
+                      _builder.newLineIfNotEmpty();
+                    } else {
+                      _builder.append("; Call ");
+                      simple_statement _simple_14 = s.getSimple();
+                      function_designator _function_5 = _simple_14.getFunction();
+                      String _name_8 = _function_5.getName();
+                      _builder.append(_name_8, "");
+                      _builder.newLineIfNotEmpty();
+                      simple_statement _simple_15 = s.getSimple();
+                      function_designator _function_6 = _simple_15.getFunction();
+                      CharSequence _computeFunction = this.computeFunction(e, b, _function_6);
+                      _builder.append(_computeFunction, "");
                       _builder.newLineIfNotEmpty();
                     }
                   }
@@ -1355,6 +1660,8 @@ public class PascalGenerator implements IGenerator {
             compound_statement _compound = _structured_1.getCompound();
             boolean _notEquals_5 = (!Objects.equal(_compound, null));
             if (_notEquals_5) {
+              _builder.append("; Block");
+              _builder.newLine();
               structured_statement _structured_2 = s.getStructured();
               compound_statement _compound_1 = _structured_2.getCompound();
               statement_sequence _sequence = _compound_1.getSequence();

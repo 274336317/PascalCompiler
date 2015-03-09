@@ -1,18 +1,23 @@
 package org.xtext.example.pascal.validation;
 
-import java.util.Set;
+import java.util.List;
+
+import org.xtext.example.pascal.pascal.abstraction_declaration;
+import org.xtext.example.pascal.pascal.block;
 
 public class Function extends Procedure {
 
 	private Type returnType;
 	
-	public Function(String name, boolean inherited, Set<Variable> parameters, boolean forward, Type returnType) {
-		super(name, ElementType.FUNCTION, inherited, parameters, forward);
+	public Function(String name, boolean inherited, block containingBlock, abstraction_declaration declaration,
+			List<Variable> parameters, 
+			boolean forward, Type returnType) {
+		super(name, ElementType.FUNCTION, inherited, containingBlock, declaration, parameters, forward);
 		this.returnType = returnType;
 	}
 	
-	public Function(String name, Set<Variable> parameters) {
-		this(name, false, parameters, false, null);
+	public Function(String name, block containingBlock, abstraction_declaration declaration, List<Variable> parameters) {
+		this(name, false, containingBlock, declaration, parameters, false, null);
 	}
 	
 	public Type getReturnType() {
@@ -21,7 +26,8 @@ public class Function extends Procedure {
 	
 	@Override
 	public Element clone() {
-		return new Function(this.name, this.inherited, this.parameters, this.forward, this.returnType);
+		return new Function(this.name, this.inherited, this.containingBlock, this.declaration,
+				this.parameters, this.forward, this.returnType);
 	}
 
 	@Override

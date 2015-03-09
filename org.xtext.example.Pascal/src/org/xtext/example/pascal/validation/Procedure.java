@@ -1,28 +1,36 @@
 package org.xtext.example.pascal.validation;
 
 import java.util.Iterator;
-import java.util.Set;
+import java.util.List;
 
+import org.xtext.example.pascal.pascal.abstraction_declaration;
+import org.xtext.example.pascal.pascal.block;
+ 
 public class Procedure extends Element {
 
-	protected Set<Variable> parameters;
+	protected abstraction_declaration declaration;
+	protected List<Variable> parameters;
 	protected boolean forward;
 	
-	protected Procedure(String name, ElementType type, boolean inherited, Set<Variable> parameters, boolean forward) {
-		super(name, type, inherited);
+	protected Procedure(String name, ElementType type, boolean inherited, block containingBlock, 
+			abstraction_declaration declaration, List<Variable> parameters, 
+			boolean forward) {
+		super(name, type, inherited, containingBlock); 
 		this.parameters = parameters;
 		this.forward = forward;
+		this.declaration = declaration;
 	}
 	
-	public Procedure(String name, boolean inherited,  Set<Variable> parameters, boolean forward) {
-		this(name, ElementType.PROCEDURE, inherited, parameters, forward);
+	public Procedure(String name, boolean inherited, block containingBlock, 
+			abstraction_declaration declaration, List<Variable> parameters, boolean forward) {
+		this(name, ElementType.PROCEDURE, inherited, containingBlock, declaration, parameters, forward);
 	}
 
-	public Procedure(String name, Set<Variable> parameters) {
-		this(name, ElementType.PROCEDURE, false, parameters, false);
+	public Procedure(String name, List<Variable> parameters) {
+		this(name, ElementType.PROCEDURE, false, null, null, parameters, false);
 	}
 	
-	public Set<Variable> getParameters() {
+	public List<Variable> getParameters() {
 		return this.parameters;
 	}
 	
@@ -30,9 +38,22 @@ public class Procedure extends Element {
 		return this.forward;
 	}
 	
+	public abstraction_declaration getDeclaration() {
+		return this.declaration;
+	}
+	
+	public String getExtendedName() {
+		String extendedName = this.name;
+		for (Variable param : this.parameters) {
+			extendedName += "_" + param.getVarType().getRealType();
+		}
+		return extendedName;
+	}
+	
 	@Override
 	public Element clone() {
-		return new Procedure(this.name, this.type, this.inherited, this.parameters, this.forward);
+		return new Procedure(this.name, this.type, this.inherited, this.containingBlock, 
+				this.declaration, this.parameters, this.forward);
 	}
 
 	@Override

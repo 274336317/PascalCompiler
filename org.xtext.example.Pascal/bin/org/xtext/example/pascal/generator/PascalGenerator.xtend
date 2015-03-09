@@ -3,7 +3,9 @@
  */
 package org.xtext.example.pascal.generator
 
+import java.util.ArrayList
 import java.util.HashMap
+import java.util.List
 import java.util.Map
 import java.util.Set
 import org.eclipse.emf.ecore.EObject
@@ -14,19 +16,18 @@ import org.xtext.example.pascal.pascal.any_number
 import org.xtext.example.pascal.pascal.block
 import org.xtext.example.pascal.pascal.constant
 import org.xtext.example.pascal.pascal.expression
+import org.xtext.example.pascal.pascal.expression_list
 import org.xtext.example.pascal.pascal.factor
 import org.xtext.example.pascal.pascal.function_designator
-import org.xtext.example.pascal.pascal.number
 import org.xtext.example.pascal.pascal.program
 import org.xtext.example.pascal.pascal.simple_expression
 import org.xtext.example.pascal.pascal.statement
 import org.xtext.example.pascal.pascal.statement_sequence
 import org.xtext.example.pascal.pascal.term
-import org.xtext.example.pascal.pascal.variable
-import org.xtext.example.pascal.validation.ComposedType
-import org.xtext.example.pascal.validation.ComposedTypeKind
 import org.xtext.example.pascal.validation.ElementType
+import org.xtext.example.pascal.validation.Function
 import org.xtext.example.pascal.validation.PascalValidator
+import org.xtext.example.pascal.validation.Procedure
 import org.xtext.example.pascal.validation.Type
 import org.xtext.example.pascal.validation.TypeInferer
 import org.xtext.example.pascal.validation.Variable
@@ -72,22 +73,39 @@ class PascalGenerator implements IGenerator {
 		}
 	}
 	
-	def getVariables(program e, block b) {
+	//TODO SECTION
+	//--------------------------------------------------------------
+	// ACCESSOR FUNCTIONS
+	//--------------------------------------------------------------
+	def getName(block b) {
+		var lastName = b.toString.replaceAll("org.xtext.example.pascal.pascal.impl.blockImpl@", "");
+		return lastName;
+	}
+	
+	def getVariables(program e) {
 		var artefacts = PascalValidator.artefacts.get(e.heading.name);
 		var map = artefacts.get("variables") as Map<block, Set<Variable>>;
-		e.createStringTable;
-		//memoryCount.put(b, memoryInit);
-		return map.get(b);
+		return map;
 	}
 	
-	def getValue(number num) {
-		if (num.number.integer != null) {
-			return Integer.valueOf(num.number.integer);
-		} else {
-			return Double.valueOf(num.number.real);
-		}
+	def getVariables(program e, block b) {
+		return getVariables(e).get(b);
 	}
 	
+	def getProcedures(program e) {
+		var artefacts = PascalValidator.artefacts.get(e.heading.name);
+		var map = artefacts.get("abstractions") as Map<block, Set<Procedure>>;
+		return map;
+	}
+	
+	def getProcedures(program e, block b) {
+		return getProcedures(e).get(b);	
+	}
+	
+	//TODO: SECTION
+	//--------------------------------------------------
+	// VALUE INFERER SECTION
+	//--------------------------------------------------
 	def getValue(Variable v) {
 		if (v.value instanceof String) {
 			return "'" + v.value.toString.replaceAll("'", "\"") + "'";
@@ -101,75 +119,35 @@ class PascalGenerator implements IGenerator {
 		return v.value;
 	}
 	
-	def boolean isNumeric(Object obj) {
-		try {
-			Double.parseDouble(obj.toString);
-			return true;
-		} catch(Exception e) { }
-		return false;
-	}
-	
 	def getValue(program e, block b, constant const) {
-		var Object value = null;
-		if (const.name != null) {
-			var variable = searchConstant(e, b, const);
-			value = getValue(variable);
-			if (TypeInferer.getTypeWeight(variable.varType) == -1)
+		var variables = e.getVariables(b);
+		var value = PascalValidator.getValue(const, variables);
+		if (value instanceof String) {
+			if (const.name == null) {
+				if (stringTable.containsKey(value))
+				 	return stringTable.get(value);
+			} else {
 				return const.name;
-		} else if (const.number != null) {
-			value = getValue(const.number);
-		} else if (const.string != null) {
-			value = stringTable.get(const.string);
-		} else if (const.boolLiteral != null) {
-			value = Boolean.valueOf(const.boolLiteral);
-			if (value == true) {
-				return 1;
-			} return 0;
-		} else if (const.nil != null) {
-			value = null;
-		}
-		if (const.opterator != null) {
-			if (isNumeric(value) && const.opterator.equals("-")) {
-				try {
-					return - Integer.parseInt(value.toString);
-				} catch(Exception excp) {
-					return - Double.parseDouble(value.toString);
-				}
 			}
+		} else if (value instanceof Boolean) {
+			if (value == true) return 1;
+			return 0;
 		}
 		return value;
 	}
-	
-	def Object getValue(program e, block b, variable v) {
-		var variableFound = searchVariable(e, b, v);
-		if (variableFound != null) {
-			return variableFound.value;
+
+	//TODO: SECTION
+	//--------------------------------------------------
+	// TYPE INFERER SECTION
+	//--------------------------------------------------
+	def List<Variable> getArgumentTypes(program e, block b, expression_list expList) {
+		var List<Variable> list = new ArrayList<Variable>();
+		if (expList == null || expList.expressions == null) return list;
+		var int count = 0;
+		for (expression exp : expList.expressions) {
+			list.add(new Variable("arg_" + count++,  e.getType(exp), false, null, ElementType.PARAMETER));
 		}
-		return null;
-	}
-	
-	def Variable searchVariable(program e, block b, variable v) {
-		var artefacts = PascalValidator.artefacts.get(e.heading.name);
-		var map = artefacts.get("variables") as Map<block, Set<Variable>>;
-		var variables = map.get(b);
-		for (Variable myVar : variables) {
-			if (myVar.name.toLowerCase.equals(v.name.toLowerCase)) {
-				return myVar;
-			}	
-		}
-		return null;
-	}
-	
-	def Variable searchConstant(program e, block b, constant const) {
-		var artefacts = PascalValidator.artefacts.get(e.heading.name);
-		var map = artefacts.get("variables") as Map<block, Set<Variable>>;
-		var variables = map.get(b);
-		for (Variable myVar : variables) {
-			if (myVar.name.toLowerCase.equals(const.name.toLowerCase)) {
-				return myVar;
-			}	 
-		}
-		return null;
+		return list;
 	}
 	
 	def Type getType(program e, expression expr) {
@@ -178,21 +156,86 @@ class PascalGenerator implements IGenerator {
 		return map.get(expr); 
 	}
 	
-	def Type getType(program e, block b, variable v) {
-		var variableFound = searchVariable(e, b, v);
-		if (variableFound != null) {
-			return variableFound.varType;
-		}
-		return new Type("nil");
-	}
 	
-	def boolean isConstant(program e, block b, variable v) {
-		var variableFound = searchVariable(e, b, v);
-		if (variableFound != null) {
-			return variableFound.type == ElementType.CONSTANT;
-		}
-		return false;
-	}
+	//TODO: SECTION
+	//--------------------------------------------------
+	// COMPILER SECTION
+	//--------------------------------------------------
+	def compile(program e) '''
+		; Program «e.heading.name»
+		global _main
+		
+		extern _printf
+		extern _scanf 
+		
+		; Loading constants and strings
+		section .data
+			«e.createStringTable»
+			«e.compileStrings»
+			«e.compileAllConstants(e.block)»
+			
+		; Loading variables
+		section .bss
+			«e.compileAllVariables(e.block)»
+		
+		; Code
+		section .text
+		«e.printString»
+		«e.printInteger»
+		«e.printBoolean»
+		«e.compileAllProcedures(e.block)»
+		_main:
+		«e.compileSequence(e.block, e.block.statement.sequence)» 
+		ret	; Exit program
+	'''
+
+	def CharSequence compileAllProcedures(program e, block b) '''
+		«e.compileProcedures(b, e.getProcedures(b))»
+		«IF b.abstraction != null»
+			«FOR p : b.abstraction.procedures»
+				«IF p.block != null»
+					«e.compileAllProcedures(p.block)»
+				«ENDIF»
+			«ENDFOR»
+			«FOR p : b.abstraction.functions»
+				«IF p.block != null»
+					«e.compileAllProcedures(p.block)»
+				«ENDIF»
+			«ENDFOR»
+		«ENDIF»
+	'''
+	
+	def CharSequence compileAllVariables(program e, block b) '''
+		«e.compileVariables(b, e.getVariables(b))»
+		«IF b.abstraction != null»
+			«FOR p : b.abstraction.procedures»
+				«IF p.block != null»
+					«e.compileAllVariables(p.block)»
+				«ENDIF» 
+			«ENDFOR»
+			«FOR p : b.abstraction.functions»
+				«IF p.block != null»
+					«e.compileAllVariables(p.block)»
+				«ENDIF» 
+			«ENDFOR»
+		«ENDIF»
+	'''
+	
+	def CharSequence compileAllConstants(program e, block b) '''
+		«e.compileConstants(b, e.getVariables(b))»
+		«IF b.abstraction != null»
+			«FOR p : b.abstraction.procedures»
+				«IF p.block != null»
+					«e.compileAllConstants(p.block)»
+				«ENDIF» 
+			«ENDFOR»
+			«FOR p : b.abstraction.functions»
+				«IF p.block != null»
+					«e.compileAllConstants(p.block)»
+				«ENDIF» 
+			«ENDFOR»
+		«ENDIF»
+	'''
 	
 	def printString(program e) '''
 		; Print string
@@ -246,94 +289,98 @@ class PascalGenerator implements IGenerator {
 			
 	'''
 	
-	def printFloat(program e) '''
-		; Print float
-		_print_float:
-			push eax 
-			sub esp, 8
-			mov [esp], eax
-			sub esp, 4
-			lea eax, [__PRINTF_F]
-			mov [esp], eax
-			call _printf
-			add esp, 12
-			pop eax 
-			ret ;return 
-			
+	def compileConstant(program e, block b, Variable v) '''
+		«IF v.type == ElementType.CONSTANT && !v.isInherited &&
+			!v.varType.realType.toLowerCase.equals("array of char")» 
+				«v.name»_«getName(b)» equ «getValue(v)»
+		«ENDIF»
+	'''
+		
+	def compileString(program e, String name, String value) '''
+		«value» db '«name.replaceAll("'", "")»', 0
+		«value»_SIZE equ $-«value»
 	'''
 	
-	def compilePredefinedProcedures(program e) '''
-		«e.printString»
-		«e.printInteger»
-		«e.printBoolean»
-		«e.printFloat»
-	'''
-	
-	def compile(program e) '''
-		; Program «e.heading.name»
-		global _main
-		
-		extern _printf
-		extern _scanf 
-		
-		«e.compile(e.block, e.getVariables(e.block))» 
-		
-		; Code
-		section .text
-		
-		«e.compilePredefinedProcedures»
-		_main:
-			«e.compileSequence(e.block, e.block.statement.sequence)» 
-			ret	; Exit program
-	'''
-
-	def compile(program e, block b, Set<Variable> variables) ''' 
-		; Loading global constants and strings
-		section .data
-			__NEW_LINE db 10, 0
-			__NEW_LINE_SIZE equ $-__NEW_LINE
-			__PRINTF_S db '%s', 0
-			__PRINTF_I db '%d', 0
-			__PRINTF_F db '%f', 0
-			__BOOLEAN_TRUE db 'true', 0
-			__BOOLEAN_TRUE_SIZE equ $-__BOOLEAN_TRUE
-			__BOOLEAN_FALSE db 'false', 0
-			__BOOLEAN_FALSE_SIZE equ $-__BOOLEAN_FALSE
-			«FOR s : stringTable.keySet» 
-				«e.compileGlobalConstant(new Variable(stringTable.get(s), new ComposedType(new Type("char"), 
-					ComposedTypeKind.ARRAY), false, ElementType.CONSTANT, s), b, true)»
-			«ENDFOR»
-			«FOR v : variables»
-				«e.compileGlobalConstant(v, b, false)»
-			«ENDFOR»
-			
-		; Loading global variables
-		section .bss
-			«FOR v : variables»
-				«e.compileGlobalVariables(v, b)»
-			«ENDFOR» 
-	'''
-	 
-	def compileGlobalConstant(program e, Variable v, block b, boolean isString) '''
-		«IF v.type == ElementType.CONSTANT»
-			«IF v.varType.realType.toLowerCase.equals("array of char")» 
-				«IF isString»
-					«v.name» db «getValue(v)», 0
-					«v.name»_SIZE equ $-«v.name»
+	def compileVariable(program e, block b, Variable v) '''
+		«IF (v.type == ElementType.VARIABLE || v.type == ElementType.PARAMETER || 
+			v.type == ElementType.FUNCTION_RETURN) && !v.isInherited» 
+			«IF !v.varType.realType.toLowerCase.equals("array of char")»
+				«IF v.type == ElementType.FUNCTION_RETURN»
+					«v.extendedName»_«getName(b)» RESB 4
+				«ELSE»
+					«v.name»_«getName(b)» RESB 4
 				«ENDIF»
-			«ELSE»
-				«v.name» equ «getValue(v)»
 			«ENDIF»
 		«ENDIF»
 	'''
 	
-	def compileGlobalVariables(program e, Variable v, block b) '''
-		«IF v.type == ElementType.VARIABLE»
-			«v.name» RESB 4
+	def compileStrings(program e) '''
+		__NEW_LINE db 10, 0
+		__NEW_LINE_SIZE equ $-__NEW_LINE
+		__PRINTF_S db '%s', 0
+		__PRINTF_I db '%d', 0
+		__PRINTF_F db '%f', 0
+		__BOOLEAN_TRUE db 'true', 0
+		__BOOLEAN_TRUE_SIZE equ $-__BOOLEAN_TRUE
+		__BOOLEAN_FALSE db 'false', 0
+		__BOOLEAN_FALSE_SIZE equ $-__BOOLEAN_FALSE
+		«FOR s : stringTable.keySet» 
+			«e.compileString(s, stringTable.get(s))»
+		«ENDFOR»
+	'''
+	
+	def compileConstants(program e, block b, Set<Variable> variables) '''
+		«FOR variable : variables»
+			«e.compileConstant(b, variable)»
+		«ENDFOR»
+	'''
+	
+	def compileVariables(program e, block b, Set<Variable> variables) ''' 
+		«FOR variable : variables»
+			«e.compileVariable(b, variable)»
+		«ENDFOR»
+	'''
+	 
+	def CharSequence compileProcedures(program e, block b, Set<Procedure> procedures) '''
+		«FOR procedure : procedures»
+			«e.compileProcedure(b, procedure)»
+		«ENDFOR»
+	'''
+	
+	def CharSequence compileProcedure(program e, block b, Procedure procedure) '''
+		«IF !procedure.forward && !procedure.inherited»
+			; Procedure «procedure.name»«procedure.parameters»
+			_«procedure.extendedName»_«getName(b)»:
+				«e.compileSequence(procedure.declaration.block, procedure.declaration.block.statement.sequence)»
+				«IF procedure instanceof Function»
+				mov eax, [«procedure.extendedName»_«getName(procedure.declaration.block)»]
+				«ENDIF»
+				ret ;return
+				
 		«ENDIF»
 	'''
 	
 	def computeFunction(program e, block b, function_designator function) '''
+		«var name = function.name»
+		«var arguments = e.getArgumentTypes(b, function.expressions)»
+		«var functionToSearch = new Procedure(name, arguments)»
+		«var functionFound = PascalValidator.searchWithTypeCoersion(e.getProcedures(b), functionToSearch)»
+		«FOR arg : functionFound.parameters»
+			mov edx, «arg.name»_«getName(functionFound.declaration.block)»
+			push edx
+		«ENDFOR»
+		«IF function.expressions != null && function.expressions.expressions != null»
+			«var exps = function.expressions.expressions»
+			«FOR i : 0..exps.size-1»
+				«e.computeExpression(b, exps.get(i))»
+				mov [«functionFound.parameters.get(i).name»_«getName(functionFound.declaration.block)»], eax
+			«ENDFOR»
+		«ENDIF»
+		call _«functionFound.extendedName»_«getName(functionFound.containingBlock)»
+		«FOR arg : functionFound.parameters»
+			pop edx
+			mov [«arg.name»_«getName(functionFound.declaration.block)»], edx
+		«ENDFOR»
 	'''
 	
 	def CharSequence computeFactor(program e, block b, factor f) '''
@@ -352,15 +399,20 @@ class PascalGenerator implements IGenerator {
 				mov eax, 0
 			«ENDIF»
 		«ELSEIF f.variable != null»
-			«IF e.isConstant(b, f.variable)»
-				«IF e.getType(b, f.variable).realType.toLowerCase.equals("array of char")»
-					lea eax, [«stringTable.get(e.getValue(b, f.variable) as String)»]
-					mov ebx, «stringTable.get(e.getValue(b, f.variable) as String)»_SIZE
+			«var variableFound = PascalValidator.search(e.getVariables(b), new Variable(f.variable.name))»
+			«IF variableFound.type == ElementType.CONSTANT»
+				«IF variableFound.varType.realType.toLowerCase.equals("array of char")»
+					lea eax, [«stringTable.get(variableFound.value as String)»]
+					mov ebx, «stringTable.get(variableFound.value as String)»_SIZE
 				«ELSE»
-					mov eax, «f.variable.name»
+					mov eax, «getName(variableFound.containingBlock)»_«variableFound.name»
 				«ENDIF»
 			«ELSE»
-				mov eax, [«f.variable.name»]
+				«IF variableFound.type == ElementType.FUNCTION_RETURN»
+					mov eax, [«variableFound.extendedName»_«getName(variableFound.containingBlock)»]
+				«ELSE»
+					mov eax, [«variableFound.name»_«getName(variableFound.containingBlock)»]
+				«ENDIF»
 			«ENDIF»
 		«ELSEIF f.function != null»
 			«e.computeFunction(b, f.function)»
@@ -509,11 +561,20 @@ class PascalGenerator implements IGenerator {
 			«IF s.simple.assignment != null»
 				; Assigning «s.simple.assignment.variable.name»
 				«e.computeExpression(b, s.simple.assignment.expression)»
-				mov [«s.simple.assignment.variable.name»], eax
+				«var variableFound = PascalValidator.search(e.getVariables(b), new Variable(s.simple.assignment.variable.name))»
+				«IF variableFound.type == ElementType.FUNCTION_RETURN»
+					mov [«variableFound.extendedName»_«getName(variableFound.containingBlock)»], eax
+				«ELSE»
+					mov [«variableFound.name»_«getName(variableFound.containingBlock)»], eax
+				«ENDIF»
 			«ELSEIF s.simple.function_noargs != null»
 				«IF s.simple.function_noargs.equals("writeln")»
 					; Call writeln
 					«e.print("__NEW_LINE")»
+				«ELSE»
+					; Call «s.simple.function_noargs»
+					«var functionFound = PascalValidator.search(e.getProcedures(b), new Procedure(s.simple.function_noargs, new ArrayList<Variable>()))»
+					call _«functionFound.extendedName»_«getName(functionFound.containingBlock)»
 				«ENDIF»
 			«ELSEIF s.simple.function != null»
 				«IF s.simple.function.name.equals("write")»
@@ -523,10 +584,14 @@ class PascalGenerator implements IGenerator {
 					; Call writeln
 					«e.print(b, s.simple.function)»
 					«e.print("__NEW_LINE")»
+				«ELSE»
+					; Call «s.simple.function.name»
+					«e.computeFunction(b, s.simple.function)»
 				«ENDIF»
 			«ENDIF»
 		«ELSEIF s.structured != null»
 			«IF s.structured.compound != null»
+				; Block
 				«e.compileSequence(b, s.structured.compound.sequence)»
 			«ELSEIF s.structured.repetitive != null»
 			

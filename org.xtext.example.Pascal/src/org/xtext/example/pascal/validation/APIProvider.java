@@ -1,6 +1,8 @@
 package org.xtext.example.pascal.validation;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class APIProvider {
@@ -8,11 +10,11 @@ public class APIProvider {
 	public static final Set<Procedure> procedures = getStandardAbstractions();
 	public static final Set<Type> types = getStandardTypes();
 	
-	private static Set<Variable> getParametersWithType(String... parameters) {
-		Set<Variable> params = new HashSet<Variable>();
+	private static List<Variable> getParametersWithType(String... parameters) {
+		List<Variable> params = new ArrayList<Variable>();
 		int count = 0;
 		for (String s : parameters) {
-			params.add(new Variable("arg_" + count, new Type(s), false, ElementType.PARAMETER));
+			params.add(new Variable("arg_" + count, new Type(s), false, null, ElementType.PARAMETER));
 			count++;
 		}	
 		return params;
@@ -20,9 +22,9 @@ public class APIProvider {
 	
 	private static void addAbstractionInAbstractions(Set<Procedure> abstractions, String name, Type returnType, String... parameters) {
 		if (returnType.equals(new Type("void"))) { 
-			abstractions.add(new Procedure(name, false, getParametersWithType(parameters), false)); 
+			abstractions.add(new Procedure(name, false, null, null, getParametersWithType(parameters), true)); 
 		} else {
-			abstractions.add(new Function(name, false, getParametersWithType(parameters), false, returnType)); 
+			abstractions.add(new Function(name, false, null, null, getParametersWithType(parameters), true, returnType)); 
 		}
 	} 
 	

@@ -1,11 +1,12 @@
 package org.xtext.example.pascal.validation;
 
+
 public class Type extends Element {
 
 	private String realType;
 	
 	public Type(String name, boolean inherited, String realType) {
-		super(name, ElementType.TYPE, inherited);
+		super(name, ElementType.TYPE, inherited, null);
 		this.realType = realType;
 	}
 	
